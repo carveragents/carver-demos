@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinCoach AI — Regulatory Course Correction Demo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f1117; color: #e2e8f0;
+    height: 100vh; display: flex; flex-direction: column;
+  }
+
+  /* Top bar */
+  .topbar {
+    background: #1a1d2e; border-bottom: 1px solid #2d3148;
+    padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+  }
+  .topbar-logo { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .topbar-logo span { color: #6366f1; }
+  .topbar-sub { font-size: 12px; color: #64748b; border-left: 1px solid #2d3148; padding-left: 16px; }
+
+  /* Layout */
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* Panel title bars */
+  .panel-titlebar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 20px; flex-shrink: 0;
+    border-bottom: 1px solid #2d3148;
+  }
+  .panel-titlebar-left  { background: #0f1117; justify-content: flex-start; }
+  .panel-titlebar-right { background: #0d0f1a; justify-content: flex-start; }
+  .panel-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: 2px 9px; border-radius: 20px;
+  }
+  .panel-label-user  { background: #1c2a4a; color: #93c5fd; border: 1px solid #1e40af; }
+  .panel-label-admin { background: #1a1a2e; color: #a78bfa; border: 1px solid #4c1d95; }
+  .panel-title-text  { font-size: 11px; color: #475569; }
+
+  /* Add session button in titlebar */
+  .add-session-btn {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid #2d3148;
+    color: #64748b;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .15s;
+  }
+  .add-session-btn:hover { border-color: #6366f1; color: #a5b4fc; background: rgba(99,102,241,0.08); }
+
+  /* Main resizable divider (chat area ↔ admin) */
+  .divider {
+    width: 5px; flex-shrink: 0; cursor: col-resize;
+    background: #2d3148; transition: background .15s;
+    position: relative; z-index: 20;
+  }
+  .divider:hover, .divider.dragging { background: #6366f1; }
+  .divider::after {
+    content: '⋮'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 14px; color: #475569; line-height: 1;
+  }
+  .divider:hover::after, .divider.dragging::after { color: #a5b4fc; }
+
+  /* Inner session divider (between chat sessions) */
+  .session-divider {
+    width: 4px; flex-shrink: 0; cursor: col-resize;
+    background: #1a1d2e;
+    border-left: 1px solid #2d3148;
+    border-right: 1px solid #2d3148;
+    transition: background .15s;
+    position: relative; z-index: 10;
+  }
+  .session-divider:hover, .session-divider.dragging { background: #6366f1; }
+
+  /* Chat area (wraps all sessions) */
+  #chatArea {
+    display: flex; flex-direction: column;
+    flex: 1; min-width: 320px; overflow: hidden;
+  }
+
+  /* Sessions row */
+  #chatContainer {
+    display: flex; flex: 1; overflow: hidden;
+  }
+
+  /* Individual chat session */
+  .chat-session {
+    display: flex; flex-direction: column;
+    flex: 1; min-width: 300px; overflow: hidden;
+  }
+
+  /* Session close button */
+  .session-close-btn {
+    background: transparent; border: none;
+    color: #475569; cursor: pointer;
+    font-size: 13px; padding: 2px 5px;
+    border-radius: 4px; line-height: 1; margin-left: 4px;
+    transition: all .15s;
+  }
+  .session-close-btn:hover { color: #f87171; background: rgba(239,68,68,0.15); }
+
+  .chat-header {
+    padding: 14px 20px; background: #1a1d2e; border-bottom: 1px solid #2d3148;
+    display: flex; align-items: center; gap: 10px;
+    border-right: 1px solid #2d3148;
+  }
+  .chat-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg,#6366f1,#8b5cf6);
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+  }
+  .chat-title { font-size: 14px; font-weight: 600; }
+  .chat-subtitle { font-size: 11px; color: #64748b; margin-top: 1px; }
+  .header-badges { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .badge {
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; transition: all 0.3s;
+  }
+  .badge-sdk-off  { background:#3f1515; color:#f87171; border:1px solid #7f1d1d; }
+  .badge-sdk-on   { background:#0f3d2b; color:#34d399; border:1px solid #065f46; }
+  .badge-policy   { background:#1c2a4a; color:#93c5fd; border:1px solid #1e40af; font-size:10px; }
+
+  .messages { flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px; }
+  .messages::-webkit-scrollbar { width:4px; }
+  .messages::-webkit-scrollbar-thumb { background:#2d3148; border-radius:2px; }
+
+  .msg { display:flex; gap:10px; max-width:88%; }
+  .msg.user { align-self:flex-end; flex-direction:row-reverse; }
+  .msg.assistant { align-self:flex-start; }
+  .msg-avatar {
+    width:28px; height:28px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+  }
+  .msg.user .msg-avatar { background:#3730a3; }
+  .msg.assistant .msg-avatar { background:linear-gradient(135deg,#6366f1,#8b5cf6); }
+  .msg-bubble { padding:10px 14px; border-radius:12px; font-size:13.5px; line-height:1.55; }
+  .msg.user .msg-bubble { background:#1e40af; color:#e0e7ff; border-bottom-right-radius:3px; }
+  .msg.assistant .msg-bubble {
+    background:#1e2035; color:#e2e8f0; border-bottom-left-radius:3px; border:1px solid #2d3148;
+  }
+  .msg-annotation {
+    margin-top:5px; padding:5px 10px; border-radius:6px; font-size:11px;
+  }
+  .annotation-violation { background:#3f1515; border:1px solid #7f1d1d; color:#f87171; }
+  .annotation-compliant { background:#0f3d2b; border:1px solid #065f46; color:#6ee7b7; }
+
+  /* Inline risk highlighting */
+  .risk-phrase {
+    background: rgba(239,68,68,0.18);
+    border-bottom: 2px solid #ef4444;
+    border-radius: 2px;
+    cursor: help;
+    position: relative;
+  }
+  .risk-phrase.severity-medium {
+    background: rgba(251,146,60,0.18);
+    border-bottom-color: #fb923c;
+  }
+  .risk-phrase[data-reason]:hover::after {
+    content: attr(data-reason);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0;
+    background: #1e2035;
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 5px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    max-width: 320px;
+    white-space: normal;
+    z-index: 100;
+    pointer-events: none;
+    line-height: 1.4;
+  }
+  .risk-phrase.severity-medium[data-reason]:hover::after {
+    border-color: #fb923c;
+    color: #fdba74;
+  }
+  .risk-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 20px; margin-left: 8px;
+    vertical-align: middle;
+  }
+  .risk-badge-violations { background: #3f1515; color: #f87171; border: 1px solid #7f1d1d; }
+  .risk-badge-clean      { background: #0f3d2b; color: #34d399; border: 1px solid #065f46; }
+
+  .typing { display:flex; gap:4px; align-items:center; padding:4px 0; }
+  .typing span {
+    width:6px; height:6px; background:#6366f1; border-radius:50%; animation:bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2){animation-delay:.2s} .typing span:nth-child(3){animation-delay:.4s}
+  @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+  .chat-input {
+    padding:14px 20px; background:#1a1d2e; border-top:1px solid #2d3148;
+    display:flex; gap:8px; border-right: 1px solid #2d3148;
+  }
+  .chat-input input {
+    flex:1; background:#0f1117; border:1px solid #2d3148; border-radius:8px;
+    padding:10px 14px; color:#e2e8f0; font-size:13.5px; outline:none; transition:border-color .2s;
+  }
+  .chat-input input:focus { border-color:#6366f1; }
+  .chat-input input::placeholder { color:#475569; }
+  .btn {
+    border:none; border-radius:8px; padding:10px 14px;
+    font-size:13px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:5px;
+  }
+  .btn-primary { background:#6366f1; color:white; }
+  .btn-primary:hover { background:#4f46e5; }
+  .btn-primary:disabled { background:#374151; cursor:not-allowed; }
+  .btn-ghost { background:transparent; border:1px solid #2d3148; color:#64748b; }
+  .btn-ghost:hover { border-color:#475569; color:#94a3b8; }
+  .btn-success { background:#065f46; color:#34d399; border:1px solid #065f46; }
+  .btn-success:hover { background:#047857; }
+  .btn-warning { background:#78350f; color:#fcd34d; border:1px solid #92400e; }
+  .btn-warning:hover { background:#92400e; }
+
+  /* Admin panel */
+  .admin-panel {
+    flex-shrink: 0; display: flex; flex-direction: column; background: #13151f;
+    min-width: 280px; overflow-y: auto;
+  }
+  .admin-panel::-webkit-scrollbar { width:4px; }
+  .admin-panel::-webkit-scrollbar-thumb { background:#2d3148; border-radius:2px; }
+  .admin-header {
+    padding:14px 20px; background:#1a1d2e; border-bottom:1px solid #2d3148;
+    font-size:11px; font-weight:700; color:#64748b; letter-spacing:.08em; text-transform:uppercase;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .admin-body { padding:16px; display:flex; flex-direction:column; gap:16px; }
+
+  .section-title {
+    font-size:10px; font-weight:700; color:#64748b;
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;
+  }
+
+  /* Toggle card */
+  .card {
+    background:#1a1d2e; border:1px solid #2d3148; border-radius:10px; padding:14px;
+  }
+  .card-title { font-size:13px; font-weight:600; color:#e2e8f0; margin-bottom:4px; }
+  .card-desc { font-size:11px; color:#64748b; margin-bottom:12px; line-height:1.5; }
+  .toggle-row {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:9px 12px; background:#0f1117; border-radius:7px; border:1px solid #2d3148;
+  }
+  .toggle-label { font-size:12.5px; font-weight:500; }
+  .switch { position:relative; display:inline-block; width:44px; height:24px; }
+  .switch input { opacity:0; width:0; height:0; }
+  .slider {
+    position:absolute; cursor:pointer; inset:0;
+    background:#374151; border-radius:24px; transition:.3s;
+  }
+  .slider:before {
+    position:absolute; content:""; height:18px; width:18px;
+    left:3px; bottom:3px; background:white; border-radius:50%; transition:.3s;
+  }
+  input:checked + .slider { background:#6366f1; }
+  input:checked + .slider:before { transform:translateX(20px); }
+
+  /* Topic items */
+  .topic-item {
+    background:#1a1d2e; border:1px solid #2d3148; border-radius:9px;
+    padding:11px 13px; margin-bottom:7px; display:flex; gap:9px;
+  }
+  .topic-dot { width:8px; height:8px; border-radius:50%; margin-top:4px; flex-shrink:0; }
+  .topic-dot.active { background:#34d399; box-shadow:0 0 6px #34d399; }
+  .topic-dot.inactive { background:#374151; }
+  .topic-name { font-size:12.5px; font-weight:600; }
+  .topic-desc { font-size:11px; color:#64748b; margin-top:2px; line-height:1.4; }
+
+  /* Enforcement signals */
+  .enf-empty {
+    text-align:center; padding:20px; color:#475569; font-size:12px;
+    border:1px dashed #2d3148; border-radius:9px;
+  }
+  .enf-empty .icon { font-size:26px; margin-bottom:7px; }
+  .enf-card {
+    background:#1a1d2e; border:1px solid #1e4d3b; border-left:3px solid #34d399;
+    border-radius:9px; padding:12px; margin-bottom:8px;
+  }
+  .enf-source {
+    display:inline-flex; align-items:center; gap:3px;
+    background:#0f3d2b; color:#34d399; font-size:10px; font-weight:700;
+    padding:2px 7px; border-radius:20px; margin-bottom:6px; text-transform:uppercase;
+  }
+  .enf-ai-badge {
+    display:inline-flex; align-items:center; gap:3px; margin-left:4px;
+    background:#1c1a3b; color:#a78bfa; font-size:10px; font-weight:700;
+    padding:2px 7px; border-radius:20px; border:1px solid #4c1d95;
+  }
+  .enf-title { font-size:12px; font-weight:600; color:#e2e8f0; margin-bottom:4px; line-height:1.4; }
+  .enf-date { font-size:10px; color:#475569; margin-bottom:6px; }
+  .enf-summary {
+    font-size:11px; color:#94a3b8; line-height:1.5; margin-bottom:6px;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .enf-tags { display:flex; flex-wrap:wrap; gap:3px; }
+  .tag {
+    background:#1e2035; border:1px solid #2d3148; color:#94a3b8;
+    font-size:9.5px; padding:2px 6px; border-radius:20px;
+  }
+  .tag.hl { background:#1c2a4a; border-color:#3b5bdb; color:#93c5fd; }
+
+  /* Policy section */
+  .policy-card {
+    background:#1a1d2e; border:1px solid #2d3148; border-radius:10px; overflow:hidden;
+  }
+  .policy-resize-handle {
+    height: 6px; cursor: ns-resize; background: #1a1d2e;
+    border-bottom: 1px solid #2d3148; display: flex;
+    align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .policy-resize-handle:hover, .policy-resize-handle.dragging { background: #2d3148; }
+  .policy-resize-handle::before {
+    content: '···'; font-size: 10px; color: #475569; letter-spacing: 2px; line-height: 1;
+  }
+  .policy-resize-handle:hover::before,
+  .policy-resize-handle.dragging::before { color: #6366f1; }
+  .policy-header {
+    padding:12px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #2d3148;
+  }
+  .policy-ver {
+    font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px;
+  }
+  .policy-ver.v1 { background:#1c2a4a; color:#93c5fd; border:1px solid #1e40af; }
+  .policy-ver.v2 { background:#0f3d2b; color:#34d399; border:1px solid #065f46; }
+  .policy-title { font-size:12.5px; font-weight:600; flex:1; }
+  .policy-body { padding:12px 14px; }
+  .policy-text {
+    background:#0a0c14; border:1px solid #2d3148; border-radius:7px;
+    padding:10px; font-size:11px; font-family:'SF Mono','Fira Code',monospace;
+    color:#94a3b8; line-height:1.6; max-height:140px; overflow-y:auto;
+    white-space:pre-wrap; word-break:break-word;
+  }
+  .policy-text::-webkit-scrollbar { width:3px; }
+  .policy-text::-webkit-scrollbar-thumb { background:#2d3148; border-radius:2px; }
+  .policy-actions { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+
+  /* Diff viewer */
+  .diff-panel {
+    background:#0a0c14; border:1px solid #2d3148; border-radius:7px;
+    font-size:11px; font-family:'SF Mono','Fira Code',monospace;
+    line-height:1.6; max-height:320px; overflow-y:auto;
+    white-space:pre-wrap; word-break:break-word;
+  }
+  .diff-panel::-webkit-scrollbar { width:3px; }
+  .diff-panel::-webkit-scrollbar-thumb { background:#2d3148; border-radius:2px; }
+  .diff-line { padding:1px 10px; display:block; }
+  .diff-added   { background:rgba(52,211,153,.12); color:#6ee7b7; }
+  .diff-removed { background:rgba(248,113,113,.10); color:#fca5a5; text-decoration:line-through; opacity:.7; }
+  .diff-context { color:#475569; }
+  .diff-actions { margin-top:10px; display:flex; gap:8px; align-items:center; }
+
+  /* System prompt viewer */
+  .prompt-panel { background:#1a1d2e; border:1px solid #2d3148; border-radius:10px; overflow:hidden; }
+  .prompt-tab-bar { display:flex; border-bottom:1px solid #2d3148; }
+  .prompt-tab {
+    padding:7px 13px; font-size:11px; font-weight:600; cursor:pointer;
+    color:#475569; border-bottom:2px solid transparent; transition:all .15s; user-select:none;
+  }
+  .prompt-tab.active { color:#e2e8f0; border-bottom-color:#6366f1; }
+  .prompt-body {
+    padding:10px; font-size:10.5px; font-family:'SF Mono','Fira Code',monospace;
+    line-height:1.6; max-height:220px; overflow-y:auto;
+    white-space:pre-wrap; word-break:break-word;
+  }
+  .prompt-body::-webkit-scrollbar { width:3px; }
+  .prompt-body::-webkit-scrollbar-thumb { background:#2d3148; border-radius:2px; }
+  .p-platform { color:#94a3b8; }
+  .p-policy-v1 { color:#93c5fd; }
+  .p-policy-v2 { color:#6ee7b7; }
+
+  .spinner-inline {
+    display:inline-block; width:12px; height:12px;
+    border:2px solid #2d3148; border-top-color:#6366f1;
+    border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .loading-row {
+    display:flex; align-items:center; gap:8px;
+    font-size:12px; color:#64748b; padding:12px;
+    background:#1a1d2e; border-radius:9px; border:1px solid #2d3148;
+  }
+  .loading-spinner {
+    width:14px; height:14px; border:2px solid #2d3148; border-top-color:#6366f1;
+    border-radius:50%; animation:spin .7s linear infinite; flex-shrink:0;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">Fin<span>Coach</span> AI</div>
+  <div class="topbar-sub">Regulatory Course Correction Demo · Powered by Carver Horizon</div>
+</div>
+
+<div class="main" id="mainLayout">
+
+  <!-- Chat area (contains all sessions) -->
+  <div id="chatArea">
+    <!-- Area titlebar -->
+    <div class="panel-titlebar panel-titlebar-left">
+      <span class="panel-label panel-label-user">User</span>
+      <span class="panel-title-text">Customer-facing chatbot</span>
+      <button class="add-session-btn" onclick="addSession()">+ New Terminal</button>
+    </div>
+
+    <!-- Sessions row -->
+    <div id="chatContainer">
+      <!-- Session 1 (primary, no close button) -->
+      <div class="chat-session" id="session-1">
+        <div class="chat-header">
+          <div class="chat-avatar">🤖</div>
+          <div>
+            <div class="chat-title">FinCoach AI <span style="font-size:10px;color:#475569;font-weight:400"> · Session 1</span></div>
+            <div class="chat-subtitle">Investment Education Platform</div>
+          </div>
+          <div class="header-badges">
+            <div class="session-policy-badge badge badge-policy">Policy v1</div>
+            <div class="session-sdk-badge badge badge-sdk-off">Carver SDK OFF</div>
+          </div>
+        </div>
+
+        <div class="messages" id="session-1-messages">
+          <div class="msg assistant">
+            <div class="msg-avatar">🤖</div>
+            <div>
+              <div class="msg-bubble">Welcome to FinCoach! Ask me anything about our platform, trading courses, or investment signals.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <button class="btn btn-ghost" style="font-size:12px;padding:10px 10px" onclick="resetSession('session-1')">↺</button>
+          <input type="text" id="session-1-input"
+            placeholder='Try: "Can your platform help me make money?"'
+            onkeydown="if(event.key==='Enter') sendMessage('session-1')" />
+          <button class="btn btn-primary" id="session-1-sendBtn" onclick="sendMessage('session-1')">Send ↑</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main draggable divider -->
+  <div class="divider" id="divider"></div>
+
+  <!-- Admin panel -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="panel-titlebar panel-titlebar-right" style="position:sticky;top:0;z-index:10">
+      <span class="panel-label panel-label-admin">Admin</span>
+      <span class="panel-title-text">Operator control panel</span>
+    </div>
+    <div class="admin-body">
+
+      <!-- SDK Toggle -->
+      <div class="card">
+        <div class="card-title">🛡 Carver Regulatory SDK</div>
+        <div class="card-desc">
+          Pull live FTC/SEC enforcement signals into the admin context.
+          Use the policy update flow to propagate changes to the agent.
+        </div>
+        <div class="toggle-row">
+          <span class="toggle-label" id="toggleLabel">SDK Disabled</span>
+          <label class="switch">
+            <input type="checkbox" id="sdkToggle" onchange="toggleSDK(this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Topic subscriptions -->
+      <div>
+        <div class="section-title">Topic Subscriptions</div>
+        <div class="topic-item">
+          <div class="topic-dot inactive" id="dotFTC"></div>
+          <div>
+            <div class="topic-name">FTC — Federal Trade Commission</div>
+            <div class="topic-desc">Earnings claims, undisclosed AI, misleading refunds, testimonial incentives</div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <div class="topic-dot inactive" id="dotSEC"></div>
+          <div>
+            <div class="topic-name">SEC — Securities & Exchange Commission</div>
+            <div class="topic-desc">Investment advice disclosures, unregistered advisory activity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enforcement signals -->
+      <div>
+        <div class="section-title">Enforcement Signals</div>
+        <div id="enforcementList">
+          <div class="enf-empty">
+            <div class="icon">🔕</div>
+            Enable the Carver SDK above to pull live enforcement signals.
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy section -->
+      <div>
+        <div class="section-title">Compliance Policy</div>
+        <div class="policy-card" id="policyCard">
+          <div class="policy-resize-handle" id="policyResizeHandle"></div>
+          <div class="policy-header">
+            <div class="policy-ver v1" id="policyVerBadge">v1.0</div>
+            <div class="policy-title" id="policyTitle">FinCoach AI Agent — Compliance Policy</div>
+            <div style="font-size:10px;color:#34d399;font-weight:600" id="policyActiveMark">● ACTIVE</div>
+          </div>
+          <div class="policy-body">
+            <div class="policy-text" id="policyText"></div>
+            <div class="policy-actions" id="policyActions">
+              <button class="btn btn-warning" id="updatePolicyBtn"
+                onclick="generatePolicyUpdate()" style="display:none">
+                ✦ Update Policy from Enforcement Signals
+              </button>
+            </div>
+
+            <!-- Diff view (hidden until v2 generated) -->
+            <div id="diffSection" style="display:none;margin-top:12px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <div style="font-size:11px;font-weight:600;color:#e2e8f0">
+                  Policy diff — v1 → v2
+                  <span style="font-size:10px;color:#64748b;font-weight:400;margin-left:6px">
+                    (<span style="color:#6ee7b7">green</span> = added &nbsp;
+                     <span style="color:#fca5a5;text-decoration:line-through">red</span> = removed)
+                  </span>
+                </div>
+              </div>
+              <div class="diff-panel" id="diffPanel"></div>
+              <div class="diff-actions">
+                <button class="btn btn-success" id="activateV2Btn" onclick="activateV2()">
+                  ✓ Activate v2 — Apply to Agent
+                </button>
+                <span style="font-size:11px;color:#475569">Agent will use v2 immediately</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- System prompt viewer -->
+      <div>
+        <div class="section-title">Active System Prompt</div>
+        <div class="prompt-panel">
+          <div class="prompt-tab-bar">
+            <div class="prompt-tab active" id="tabPlatform" onclick="switchPromptTab('platform')">Platform Context</div>
+            <div class="prompt-tab" id="tabPolicy" onclick="switchPromptTab('policy')">Policy Doc</div>
+          </div>
+          <div class="prompt-body" id="promptBody"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let sdkEnabled = false;
+let currentPolicyVersion = 'v1';
+let activePromptTab = 'platform';
+let fullSystemPrompt = '';
+let platformContext = '';
+let policyText = '';
+let sessionCounter = 1;
+
+// ── Session management ────────────────────────────────────────────────────
+
+function addSession() {
+  sessionCounter++;
+  const sessionId = `session-${sessionCounter}`;
+  const container = document.getElementById('chatContainer');
+
+  // Add inner divider between the last session and the new one
+  const divEl = document.createElement('div');
+  divEl.className = 'session-divider';
+  divEl.dataset.leftSession = `session-${sessionCounter - 1}`;
+  divEl.dataset.rightSession = sessionId;
+  container.appendChild(divEl);
+  initSessionDivider(divEl);
+
+  // Create and append the new session
+  const sessionEl = createSessionElement(sessionId, true);
+  container.appendChild(sessionEl);
+
+  // Add welcome message
+  appendMessageToSession(sessionId, 'assistant',
+    'Welcome to FinCoach! Ask me anything about our platform, trading courses, or investment signals.',
+    null, []);
+
+  // Sync badges to current global state
+  syncSessionBadges(sessionId);
+
+  // Focus the new input
+  const input = document.getElementById(`${sessionId}-input`);
+  if (input) input.focus();
+}
+
+function createSessionElement(sessionId, closeable) {
+  const num = sessionId.split('-')[1];
+  const div = document.createElement('div');
+  div.className = 'chat-session';
+  div.id = sessionId;
+  div.innerHTML = `
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div>
+        <div class="chat-title">FinCoach AI <span style="font-size:10px;color:#475569;font-weight:400"> · Session ${num}</span></div>
+        <div class="chat-subtitle">Investment Education Platform</div>
+      </div>
+      <div class="header-badges">
+        <div class="session-policy-badge badge badge-policy">Policy v1</div>
+        <div class="session-sdk-badge badge badge-sdk-off">Carver SDK OFF</div>
+        ${closeable
+          ? `<button class="session-close-btn" onclick="closeSession('${sessionId}')" title="Close terminal">✕</button>`
+          : ''}
+      </div>
+    </div>
+    <div class="messages" id="${sessionId}-messages"></div>
+    <div class="chat-input">
+      <button class="btn btn-ghost" style="font-size:12px;padding:10px 10px"
+        onclick="resetSession('${sessionId}')">↺</button>
+      <input type="text" id="${sessionId}-input"
+        placeholder="Ask FinCoach AI..."
+        onkeydown="if(event.key==='Enter') sendMessage('${sessionId}')" />
+      <button class="btn btn-primary" id="${sessionId}-sendBtn"
+        onclick="sendMessage('${sessionId}')">Send ↑</button>
+    </div>`;
+  return div;
+}
+
+function closeSession(sessionId) {
+  const session = document.getElementById(sessionId);
+  if (!session) return;
+
+  // Remove preceding inner divider if present
+  const prev = session.previousElementSibling;
+  if (prev && prev.classList.contains('session-divider')) {
+    prev.remove();
+  }
+  session.remove();
+
+  // Reset remaining sessions to equal flex widths
+  document.querySelectorAll('.chat-session').forEach(s => {
+    s.style.flex = '1';
+    s.style.width = '';
+  });
+}
+
+function syncSessionBadges(sessionId) {
+  const session = document.getElementById(sessionId);
+  if (!session) return;
+
+  const sdkBadge = session.querySelector('.session-sdk-badge');
+  const policyBadge = session.querySelector('.session-policy-badge');
+
+  if (sdkBadge) {
+    sdkBadge.className = `badge session-sdk-badge ${sdkEnabled ? 'badge-sdk-on' : 'badge-sdk-off'}`;
+    sdkBadge.textContent = sdkEnabled ? 'Carver SDK ON' : 'Carver SDK OFF';
+  }
+
+  if (policyBadge) {
+    const isV2 = currentPolicyVersion === 'v2';
+    policyBadge.textContent = isV2 ? 'Policy v2' : 'Policy v1';
+    policyBadge.style.background = isV2 ? '#0f3d2b' : '';
+    policyBadge.style.color      = isV2 ? '#34d399' : '';
+    policyBadge.style.borderColor = isV2 ? '#065f46' : '';
+  }
+}
+
+function updateAllSessionBadges() {
+  document.querySelectorAll('.chat-session').forEach(s => syncSessionBadges(s.id));
+}
+
+// ── Inner session divider drag ────────────────────────────────────────────
+
+function initSessionDivider(divEl) {
+  let dragging = false;
+
+  divEl.addEventListener('mousedown', e => {
+    dragging = true;
+    divEl.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const leftId  = divEl.dataset.leftSession;
+    const rightId = divEl.dataset.rightSession;
+    const leftPanel  = document.getElementById(leftId);
+    const rightPanel = document.getElementById(rightId);
+    if (!leftPanel || !rightPanel) { dragging = false; return; }
+
+    const divW   = divEl.offsetWidth;
+    const totalW = leftPanel.offsetWidth + divW + rightPanel.offsetWidth;
+    const leftRect = leftPanel.getBoundingClientRect();
+    let leftW = e.clientX - leftRect.left;
+    leftW = Math.max(300, Math.min(leftW, totalW - divW - 300));
+    const rightW = totalW - leftW - divW;
+
+    leftPanel.style.flex  = 'none';
+    leftPanel.style.width = leftW + 'px';
+    rightPanel.style.flex  = 'none';
+    rightPanel.style.width = rightW + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    divEl.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+}
+
+// ── Chat (session-scoped) ─────────────────────────────────────────────────
+
+async function sendMessage(sessionId) {
+  const input   = document.getElementById(`${sessionId}-input`);
+  const sendBtn = document.getElementById(`${sessionId}-sendBtn`);
+  const text    = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const msgs = getConversationHistory(sessionId);
+  msgs.push({ role: 'user', content: text });
+  appendMessageToSession(sessionId, 'user', text);
+
+  const typingId = showTyping(sessionId);
+  sendBtn.disabled = true;
+
+  try {
+    const res = await fetch(`${API}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: msgs }),
+    });
+    const data = await res.json();
+    removeTyping(typingId);
+    appendMessageToSession(sessionId, 'assistant', data.reply, data.policy_version, data.flags || []);
+  } catch (e) {
+    removeTyping(typingId);
+    appendMessageToSession(sessionId, 'assistant', '⚠ Connection error. Is the server running?');
+  } finally {
+    sendBtn.disabled = false;
+  }
+}
+
+function getConversationHistory(sessionId) {
+  const msgs = [];
+  document.querySelectorAll(`#${sessionId}-messages .msg-record`).forEach(el => {
+    msgs.push({ role: el.dataset.role, content: el.dataset.content });
+  });
+  return msgs;
+}
+
+function appendMessageToSession(sessionId, role, content, policyVersion, flags) {
+  const messages = document.getElementById(`${sessionId}-messages`);
+  if (!messages) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${role}`;
+
+  // Hidden record for history reconstruction
+  const record = document.createElement('div');
+  record.className = 'msg-record';
+  record.dataset.role = role;
+  record.dataset.content = content;
+  record.style.display = 'none';
+  wrap.appendChild(record);
+
+  const avatar = document.createElement('div');
+  avatar.className = 'msg-avatar';
+  avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+  const inner = document.createElement('div');
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+
+  if (role === 'assistant' && flags && flags.length > 0) {
+    bubble.innerHTML = applyRiskHighlights(content, flags);
+  } else {
+    bubble.textContent = content;
+  }
+  inner.appendChild(bubble);
+
+  if (role === 'assistant' && policyVersion) {
+    const isV2 = policyVersion === 'v2';
+    const ann = document.createElement('div');
+    ann.className = `msg-annotation ${isV2 ? 'annotation-compliant' : 'annotation-violation'}`;
+
+    const flagCount = (flags || []).length;
+    if (isV2) {
+      ann.innerHTML = flagCount === 0
+        ? '✓ Response governed by Policy v2 (regulatory override active)'
+        : `✓ Policy v2 active — <span class="risk-badge risk-badge-violations">${flagCount} residual risk${flagCount>1?'s':''}</span>`;
+    } else {
+      const badge = flagCount > 0
+        ? `<span class="risk-badge risk-badge-violations">⚠ ${flagCount} risk phrase${flagCount>1?'s':''} — hover to inspect</span>`
+        : `<span class="risk-badge risk-badge-clean">✓ no flags</span>`;
+      ann.innerHTML = `Response governed by Policy v1 &nbsp;${badge}`;
+    }
+    inner.appendChild(ann);
+  }
+
+  wrap.appendChild(avatar);
+  wrap.appendChild(inner);
+  messages.appendChild(wrap);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function applyRiskHighlights(text, flags) {
+  const sorted = [...flags].sort((a, b) => b.phrase.length - a.phrase.length);
+  let html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  for (const flag of sorted) {
+    if (!flag.phrase) continue;
+    const escaped = flag.phrase.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const regex = new RegExp(escaped.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    const cls = flag.severity === 'medium' ? 'risk-phrase severity-medium' : 'risk-phrase';
+    const reason = (flag.reason || '').replace(/"/g,'&quot;');
+    html = html.replace(regex, match =>
+      `<span class="${cls}" data-reason="${reason}">${match}</span>`
+    );
+  }
+  return html;
+}
+
+function showTyping(sessionId) {
+  const messages = document.getElementById(`${sessionId}-messages`);
+  const id = 'typing-' + Date.now();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg assistant'; wrap.id = id;
+  wrap.innerHTML = `<div class="msg-avatar">🤖</div>
+    <div class="msg-bubble" style="padding:12px 16px">
+      <div class="typing"><span></span><span></span><span></span></div>
+    </div>`;
+  messages.appendChild(wrap);
+  messages.scrollTop = messages.scrollHeight;
+  return id;
+}
+
+function removeTyping(id) { const el = document.getElementById(id); if (el) el.remove(); }
+
+function resetSession(sessionId) {
+  const messages = document.getElementById(`${sessionId}-messages`);
+  if (!messages) return;
+  messages.innerHTML = `
+    <div class="msg assistant">
+      <div class="msg-avatar">🤖</div>
+      <div><div class="msg-bubble">Welcome to FinCoach! Ask me anything about our platform, trading courses, or investment signals.</div></div>
+    </div>`;
+}
+
+// ── SDK Toggle ────────────────────────────────────────────────────────────
+
+async function toggleSDK(enabled) {
+  const enfList = document.getElementById('enforcementList');
+
+  if (enabled) {
+    enfList.innerHTML = `
+      <div class="loading-row">
+        <div class="loading-spinner"></div>
+        Fetching enforcement signals from production data...
+      </div>`;
+  }
+
+  try {
+    const res = await fetch(`${API}/api/admin/toggle`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sdk_enabled: enabled }),
+    });
+    const data = await res.json();
+    sdkEnabled = data.sdk_enabled;
+
+    document.getElementById('toggleLabel').textContent = sdkEnabled
+      ? 'SDK Enabled — enforcement signals loaded'
+      : 'SDK Disabled';
+
+    // Topic dots
+    ['FTC','SEC'].forEach(t => {
+      document.getElementById(`dot${t}`).className = `topic-dot ${sdkEnabled ? 'active' : 'inactive'}`;
+    });
+
+    // Enforcement signals
+    if (sdkEnabled) {
+      renderEnforcements(data.enforcements || []);
+      document.getElementById('updatePolicyBtn').style.display = 'flex';
+    } else {
+      enfList.innerHTML = `
+        <div class="enf-empty">
+          <div class="icon">🔕</div>
+          Enable the Carver SDK above to pull live enforcement signals.
+        </div>`;
+      document.getElementById('updatePolicyBtn').style.display = 'none';
+      document.getElementById('diffSection').style.display = 'none';
+      currentPolicyVersion = 'v1';
+    }
+
+    // Policy + prompt
+    if (data.policy) {
+      currentPolicyVersion = data.policy.active_version || 'v1';
+      updatePolicyDisplay(data.policy);
+    }
+    if (data.active_system_prompt) updatePromptDisplay(data.active_system_prompt, data.policy);
+
+    updateAllSessionBadges();
+
+  } catch (e) {
+    enfList.innerHTML = `<div style="color:#f87171;font-size:12px;padding:8px">Error: ${e.message}</div>`;
+  }
+}
+
+// ── Policy update ─────────────────────────────────────────────────────────
+
+async function generatePolicyUpdate() {
+  const btn = document.getElementById('updatePolicyBtn');
+  const diffSection = document.getElementById('diffSection');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-inline"></span> Analyzing enforcement signals…';
+
+  try {
+    const res = await fetch(`${API}/api/admin/policy/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || 'Generation failed');
+    }
+    const data = await res.json();
+
+    renderDiff(data.diff || []);
+    diffSection.style.display = 'block';
+    diffSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    btn.innerHTML = '✦ Regenerate';
+    btn.disabled = false;
+  } catch (e) {
+    btn.innerHTML = `⚠ ${e.message}`;
+    btn.disabled = false;
+  }
+}
+
+async function activateV2() {
+  const btn = document.getElementById('activateV2Btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-inline"></span> Activating…';
+
+  try {
+    const res = await fetch(`${API}/api/admin/policy/activate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+
+    currentPolicyVersion = 'v2';
+    updatePolicyDisplay(data.policy);
+    if (data.active_system_prompt) updatePromptDisplay(data.active_system_prompt, data.policy);
+    updateAllSessionBadges();
+
+    btn.innerHTML = '✓ v2 Active';
+    btn.style.background = '#064e3b';
+    btn.style.cursor = 'default';
+    btn.disabled = true;
+  } catch (e) {
+    btn.innerHTML = '⚠ Failed';
+    btn.disabled = false;
+  }
+}
+
+// ── Rendering helpers ─────────────────────────────────────────────────────
+
+function renderEnforcements(list) {
+  const el = document.getElementById('enforcementList');
+  if (!list.length) {
+    el.innerHTML = `<div class="enf-empty"><div class="icon">🔍</div>No enforcement signals found.</div>`;
+    return;
+  }
+  el.innerHTML = list.map(e => {
+    const tagsHtml = (e.tags||[]).slice(0,5).map(t =>
+      `<span class="tag ${/artificial.intel|AI/i.test(t)?'hl':''}">${t}</span>`
+    ).join('');
+    return `
+      <div class="enf-card">
+        <div>
+          <span class="enf-source">⚡ ${e.topic_name}</span>
+          ${e.has_ai_tag ? '<span class="enf-ai-badge">🤖 AI-Flagged</span>' : ''}
+        </div>
+        <div class="enf-title">${e.title}</div>
+        ${e.published_at ? `<div class="enf-date">📅 ${e.published_at}</div>` : ''}
+        ${e.summary ? `<div class="enf-summary">${e.summary}</div>` : ''}
+        <div class="enf-tags">${tagsHtml}</div>
+        ${e.link ? `<div style="margin-top:6px"><a href="${e.link}" target="_blank" style="color:#6366f1;font-size:10.5px;text-decoration:none">↗ Source</a></div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+function updatePolicyDisplay(policy) {
+  const isV2 = policy.active_version === 'v2';
+  const text = isV2 ? policy.v2 : policy.v1;
+
+  document.getElementById('policyVerBadge').textContent = isV2 ? 'v2.0' : 'v1.0';
+  document.getElementById('policyVerBadge').className = `policy-ver ${isV2 ? 'v2' : 'v1'}`;
+  document.getElementById('policyText').textContent = text || '';
+}
+
+function renderDiff(diffLines) {
+  const panel = document.getElementById('diffPanel');
+  panel.innerHTML = diffLines.map(line => {
+    const esc = line.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const cls = line.type === 'added' ? 'diff-added'
+               : line.type === 'removed' ? 'diff-removed'
+               : 'diff-context';
+    const prefix = line.type === 'added' ? '+ ' : line.type === 'removed' ? '- ' : '  ';
+    return `<span class="diff-line ${cls}">${prefix}${esc}</span>`;
+  }).join('\n');
+}
+
+function updatePromptDisplay(fullPrompt, policy) {
+  fullSystemPrompt = fullPrompt || '';
+  const splitMarker = 'COMPLIANCE POLICY';
+  const idx = fullSystemPrompt.indexOf(splitMarker);
+  if (idx > -1) {
+    platformContext = fullSystemPrompt.substring(0, idx).trim();
+    policyText = fullSystemPrompt.substring(idx).trim();
+  } else {
+    platformContext = fullSystemPrompt;
+    policyText = '';
+  }
+  renderPromptBody();
+}
+
+function switchPromptTab(tab) {
+  activePromptTab = tab;
+  document.getElementById('tabPlatform').className = `prompt-tab${tab==='platform'?' active':''}`;
+  document.getElementById('tabPolicy').className = `prompt-tab${tab==='policy'?' active':''}`;
+  renderPromptBody();
+}
+
+function renderPromptBody() {
+  const el = document.getElementById('promptBody');
+  const raw = activePromptTab === 'platform' ? platformContext : policyText;
+  if (!raw) { el.innerHTML = `<span style="color:#475569"># Not loaded yet</span>`; return; }
+
+  const isPolicy = activePromptTab === 'policy';
+  const hasV2 = policyText.includes('Version: 2') || policyText.includes('Version:** 2');
+  const colorClass = isPolicy ? (hasV2 ? 'p-policy-v2' : 'p-policy-v1') : 'p-platform';
+
+  const esc = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  el.innerHTML = `<span class="${colorClass}">${esc}</span>`;
+}
+
+// ── Init page ─────────────────────────────────────────────────────────────
+
+async function initPage() {
+  try {
+    // Always reset to v1 + SDK off so every demo starts from a clean slate
+    await fetch(`${API}/api/admin/policy/reset`, { method: 'POST' });
+    // Also ensure SDK toggle reflects off state
+    document.getElementById('sdkToggle').checked = false;
+
+    const res = await fetch(`${API}/api/admin/status`);
+    const data = await res.json();
+    if (data.policy) {
+      currentPolicyVersion = data.policy.active_version || 'v1';
+      updatePolicyDisplay(data.policy);
+    }
+    if (data.active_system_prompt) updatePromptDisplay(data.active_system_prompt, data.policy);
+    updateAllSessionBadges();
+  } catch(e) {}
+}
+window.addEventListener('load', initPage);
+
+// ── Policy card vertical resize ──────────────────────────────────────────
+(function() {
+  const handle   = document.getElementById('policyResizeHandle');
+  const textBox  = document.getElementById('policyText');
+  let dragging   = false;
+  let startY     = 0;
+  let startH     = 0;
+  const MIN_H    = 60;
+  const MAX_H    = 600;
+
+  handle.addEventListener('mousedown', e => {
+    dragging = true;
+    startY   = e.clientY;
+    startH   = textBox.offsetHeight;
+    handle.classList.add('dragging');
+    document.body.style.cursor    = 'ns-resize';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const delta = e.clientY - startY;
+    const newH  = Math.min(MAX_H, Math.max(MIN_H, startH + delta));
+    textBox.style.maxHeight = newH + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove('dragging');
+    document.body.style.cursor    = '';
+    document.body.style.userSelect = '';
+  });
+})();
+
+// ── Main resizable divider (chatArea ↔ adminPanel) ────────────────────────
+(function() {
+  const divider    = document.getElementById('divider');
+  const chatArea   = document.getElementById('chatArea');
+  const adminPanel = document.getElementById('adminPanel');
+  const layout     = document.getElementById('mainLayout');
+  let dragging = false;
+
+  function initWidths() {
+    const total = layout.offsetWidth;
+    chatArea.style.width   = Math.round(total * 0.55) + 'px';
+    chatArea.style.flex    = 'none';
+    adminPanel.style.width = Math.round(total * 0.45) + 'px';
+    adminPanel.style.flex  = 'none';
+  }
+  initWidths();
+
+  divider.addEventListener('mousedown', e => {
+    dragging = true;
+    divider.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const rect  = layout.getBoundingClientRect();
+    const total = rect.width;
+    const divW  = divider.offsetWidth;
+    let chatW   = e.clientX - rect.left;
+    chatW = Math.max(320, Math.min(chatW, total - divW - 280));
+    chatArea.style.width   = chatW + 'px';
+    adminPanel.style.width = (total - chatW - divW) + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    divider.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+})();
+</script>
+</body>
+</html>
