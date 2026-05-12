@@ -1,9 +1,17 @@
 """
-Carver Feeds SDK integration for FinCoach demo.
+Carver Feeds SDK integration for Meridian Pay demo.
 
-Fetches enforcement-type annotations from the FTC and SEC topics,
-filters for signals relevant to AI-assisted sales platforms, and returns
-structured signals for injection into the agent's system prompt.
+Fetches enforcement, final-rule, and guidance annotations from six regulators
+directly applicable to a consumer banking AI assistant deployment, and computes
+which of the 7 deployment layers each signal affects.
+
+Topic IDs confirmed via production server query (May 2026):
+  CFPB  5bab5721-56e6-41ad-a6a8-54b534ee7f0b   65 entries / 90 days
+  Fed   36ff9f0e-2651-4dbb-9b42-c45eef8233e6  444 entries / 90 days
+  FDIC  c4e695da-7b78-45eb-9f51-57b350946019  150 entries / 90 days
+  OCC   ef0553d6-b0a2-4d50-b097-ff1ed48a30b9  126 entries / 90 days
+  FTC   bfc3cb59-b0ea-4726-867f-42155f156529  796 entries / 90 days
+  NYDFS 6c32e3fe-0709-4c6e-bcfb-066da7a57d72  321 entries / 90 days
 """
 
 import logging
@@ -14,23 +22,103 @@ from carver_feeds.carver_api import CarverFeedsAPIClient
 
 logger = logging.getLogger(__name__)
 
-# Topic IDs to subscribe to
 TOPIC_IDS = {
-    "FTC": "bfc3cb59-b0ea-4726-867f-42155f156529",
-    "SEC": "0364883a-c054-41d8-9168-1f9a983ceca9",
+    "CFPB":  "5bab5721-56e6-41ad-a6a8-54b534ee7f0b",
+    "Fed":   "36ff9f0e-2651-4dbb-9b42-c45eef8233e6",
+    "FDIC":  "c4e695da-7b78-45eb-9f51-57b350946019",
+    "OCC":   "ef0553d6-b0a2-4d50-b097-ff1ed48a30b9",
+    "FTC":   "bfc3cb59-b0ea-4726-867f-42155f156529",
+    "NYDFS": "6c32e3fe-0709-4c6e-bcfb-066da7a57d72",
 }
 
 CARVER_BASE_URL = "https://app.carveragents.ai"
 
-# Tags that make an enforcement signal relevant to an AI-powered sales/education platform.
-# Intentionally specific — generic "advertising" or "consumer protection" alone don't qualify.
+ACCEPTED_UPDATE_TYPES = {"enforcement", "final_rule", "guidance", "proposed_rule"}
+
+# Tags confirmed present in production feeds that are relevant to a
+# consumer banking AI chatbot deployment
 RELEVANT_TAGS = {
-    "earnings claims", "deceptive earnings claims", "false earnings claims",
-    "testimonials", "artificial intelligence",
-    "refund policy", "refund guarantee",
-    "deceptive advertising", "income claims",
-    "multi-level marketing", "mlm",
-    "deceptive practices",
+    # Model risk / AI governance (SR 26-2, Fed/OCC/FDIC joint guidance)
+    "model risk management", "model risk", "artificial intelligence",
+    "machine learning", "ai governance", "sr 11-7", "sr 26-2",
+    # Cybersecurity / data / PII (NYDFS 23 NYCRR 500, FDIC privacy, GLBA)
+    "cybersecurity", "data security", "data breach", "personal information",
+    "privacy", "pii", "glba", "safeguards rule", "23 nycrr 500",
+    # UDAAP / deception in digital channels
+    "udaap", "deceptive practices", "unfair practices", "abusive practices",
+    "consumer protection", "false claims", "misleading",
+    # Reg E / dispute resolution (CFPB 16(c) interpretation)
+    "reg e", "electronic fund transfer", "error resolution",
+    "dispute resolution", "efta",
+    # Fair lending / ECOA (NYDFS industry letter)
+    "fair lending", "ecoa", "equal credit opportunity", "discrimination",
+    # Chatbot / AI disclosure (FTC deception framework)
+    "chatbot", "ai disclosure", "undisclosed ai", "automated system",
+    # Scope / advice limitations
+    "unauthorized advice", "investment advice", "unlicensed",
+    "complaint handling", "consumer complaint",
+}
+
+# Which tag subsets indicate impact on each deployment layer.
+# Mapped against tags confirmed present in CFPB/Fed/FDIC/OCC/FTC/NYDFS feeds.
+LAYER_TAG_MAP: dict[int, set[str]] = {
+    1: {  # Input Guardrails — PII scrub, injection detect
+        "cybersecurity", "data security", "data breach", "personal information",
+        "privacy", "pii", "glba", "safeguards rule", "23 nycrr 500",
+        "model risk management",  # SR 26-2 includes input validation requirements
+    },
+    2: {  # Topic / Intent Router — allowlist, advice scope
+        "unauthorized advice", "investment advice", "unlicensed",
+        "fair lending", "ecoa", "equal credit opportunity",
+        "consumer complaint", "complaint handling",
+    },
+    3: {  # Retrieval Layer — grounding, accuracy
+        "model risk management", "model risk", "sr 26-2", "sr 11-7",
+        "false claims", "misleading", "deceptive practices",
+        "ai governance", "machine learning",
+    },
+    4: {  # System Prompt — role, behavior, identity
+        "artificial intelligence", "chatbot", "ai disclosure", "undisclosed ai",
+        "automated system", "model risk management", "ai governance",
+        "deceptive practices", "udaap", "abusive practices",
+    },
+    5: {  # Tool Gating — access control, least privilege
+        "cybersecurity", "data security", "data breach", "glba",
+        "model risk management", "unauthorized access",
+        "reg e", "electronic fund transfer", "error resolution",
+    },
+    6: {  # Output Validator — content, UDAAP, fair lending
+        "udaap", "deceptive practices", "unfair practices", "abusive practices",
+        "fair lending", "ecoa", "equal credit opportunity", "discrimination",
+        "consumer protection", "false claims", "misleading",
+        "reg e", "error resolution",
+    },
+    7: {  # Post-Processor — disclosures, redaction
+        "privacy", "pii", "consumer rights", "disclosure requirements",
+        "complaint handling", "consumer complaint",
+        "reg e", "electronic fund transfer", "efta",
+        "artificial intelligence", "chatbot", "ai disclosure",
+    },
+}
+
+LAYER_NAMES = {
+    1: "Input Guardrails",
+    2: "Topic / Intent Router",
+    3: "Retrieval Layer",
+    4: "System Prompt",
+    5: "Tool Gating",
+    6: "Output Validator",
+    7: "Post-Processor",
+}
+
+LAYER_REGULATORS = {
+    1: ["GLBA", "CFPB", "PCI-DSS"],
+    2: ["CFPB", "SEC / FINRA"],
+    3: ["CFPB", "Reg E"],
+    4: ["General"],
+    5: ["GLBA", "SOC 2", "UDAAP"],
+    6: ["UDAAP", "FTC", "Reg E", "TILA"],
+    7: ["CFPB", "Reg E", "TILA"],
 }
 
 
@@ -42,11 +130,12 @@ class EnforcementSignal:
     update_type: str
     topic_name: str
     topic_id: str
-    published_at: str      # ISO date string e.g. "2026-04-13"
+    published_at: str
     link: str
     tags: list[str] = field(default_factory=list)
     entities: list[str] = field(default_factory=list)
     has_ai_tag: bool = False
+    affected_layers: list[int] = field(default_factory=list)
 
 
 def _get_client() -> CarverFeedsAPIClient:
@@ -57,7 +146,6 @@ def _get_client() -> CarverFeedsAPIClient:
 
 
 def _parse_date(date_info) -> str:
-    """Extract ISO date string from reconciled_published_date field."""
     if not date_info:
         return ""
     if isinstance(date_info, dict):
@@ -66,25 +154,27 @@ def _parse_date(date_info) -> str:
 
 
 def _is_relevant(tags: list[str]) -> bool:
-    """Return True if the signal is relevant to an AI-powered sales platform."""
     tags_lower = {t.lower() for t in tags}
     return bool(tags_lower & RELEVANT_TAGS)
 
 
-def fetch_enforcements() -> list[EnforcementSignal]:
-    """
-    Fetch enforcement-type signals from FTC + SEC topics via the Carver SDK.
+def _compute_affected_layers(tags: list[str]) -> list[int]:
+    tags_lower = {t.lower() for t in tags}
+    return sorted(lid for lid, ltags in LAYER_TAG_MAP.items() if tags_lower & ltags)
 
-    Returns a list of relevant EnforcementSignal objects, sorted newest first,
-    capped at 10 total to keep the demo focused.
+
+def fetch_signals() -> list[EnforcementSignal]:
+    """
+    Fetch enforcement and final_rule signals from FTC + SEC topics.
+    Returns signals relevant to a consumer banking AI deployment, sorted newest first.
     """
     client = _get_client()
     signals: list[EnforcementSignal] = []
-    seen_entry_ids: set[str] = set()
+    seen: set[str] = set()
 
     for topic_name, topic_id in TOPIC_IDS.items():
         try:
-            logger.info(f"Fetching annotations for {topic_name} topic ({topic_id})...")
+            logger.info(f"Fetching annotations for {topic_name} ({topic_id})...")
             annotations = client.get_annotations(topic_ids=[topic_id])
 
             for ann_record in annotations:
@@ -92,30 +182,28 @@ def fetch_enforcements() -> list[EnforcementSignal]:
                 classification = annotation.get("classification", {})
                 update_type = classification.get("update_type", "")
 
-                if update_type != "enforcement":
+                if update_type not in ACCEPTED_UPDATE_TYPES:
                     continue
 
                 entry_id = ann_record.get("feed_entry_id", "")
-                if not entry_id or entry_id in seen_entry_ids:
+                if not entry_id or entry_id in seen:
                     continue
 
-                # Extract fields from classification.metadata
                 cls_meta = classification.get("metadata", {})
-                title = cls_meta.get("title") or "Untitled Enforcement Action"
+                title = cls_meta.get("title") or "Untitled Action"
                 summary = cls_meta.get("summary") or ""
                 link = cls_meta.get("feed_url") or ""
 
-                # Extract tags and entities from annotation.metadata
                 ann_meta = annotation.get("metadata", {})
                 tags = ann_meta.get("tags") or []
                 entities = ann_meta.get("entities") or []
 
-                # Only keep signals relevant to our demo scenario
                 if not _is_relevant(tags):
                     continue
 
                 published_at = _parse_date(annotation.get("reconciled_published_date"))
                 has_ai_tag = any("artificial intel" in t.lower() or t.lower() == "ai" for t in tags)
+                affected_layers = _compute_affected_layers(tags)
 
                 signal = EnforcementSignal(
                     entry_id=entry_id,
@@ -129,79 +217,28 @@ def fetch_enforcements() -> list[EnforcementSignal]:
                     tags=tags,
                     entities=entities,
                     has_ai_tag=has_ai_tag,
+                    affected_layers=affected_layers,
                 )
                 signals.append(signal)
-                seen_entry_ids.add(entry_id)
-                logger.info(f"  [{topic_name}] {title[:80]}")
+                seen.add(entry_id)
+                logger.info(
+                    f"  [{topic_name}] [{update_type}] {title[:70]} "
+                    f"→ layers {affected_layers}"
+                )
 
         except Exception as e:
-            logger.error(f"Error fetching {topic_name} enforcements: {e}")
+            logger.error(f"Error fetching {topic_name} signals: {e}")
 
-    # Sort: most recent first, cap at 8 for the demo
     signals.sort(key=lambda s: s.published_at or "", reverse=True)
-    signals = signals[:8]
-    logger.info(f"Total relevant enforcement signals: {len(signals)}")
+    signals = signals[:12]
+    logger.info(f"Total relevant signals: {len(signals)}")
     return signals
 
 
-def format_enforcements_for_prompt(signals: list[EnforcementSignal]) -> str:
-    """
-    Format enforcement signals as an override block injected into the agent's
-    system prompt. Explicitly supersedes specific parts of the base instructions
-    that conflict with active regulatory enforcement actions.
-    """
-    if not signals:
-        return ""
-
-    lines = [
-        "--- REGULATORY OVERRIDE (Carver Horizon · Live Enforcement Feed) ---",
-        "",
-        "The following enforcement actions have been automatically detected as",
-        "applicable to this platform. They OVERRIDE the corresponding parts of",
-        "your base instructions where there is a conflict:",
-        "",
-    ]
-
-    for i, sig in enumerate(signals, 1):
-        lines.append(f"[{i}] {sig.topic_name} Enforcement — {sig.title}")
-        if sig.published_at:
-            lines.append(f"    Issued: {sig.published_at}")
-        if sig.summary:
-            lines.append(f"    Summary: {sig.summary}")
-        if sig.has_ai_tag:
-            lines.append("    * This action explicitly names AI-generated content as a violation factor.")
-        if sig.tags:
-            lines.append(f"    Violations cited: {', '.join(sig.tags[:6])}")
-        if sig.link:
-            lines.append(f"    Source: {sig.link}")
-        lines.append("")
-
-    lines += [
-        "OVERRIDES TO YOUR BASE INSTRUCTIONS:",
-        "",
-        "Base instruction: 'share member success stories concretely'",
-        "→ OVERRIDDEN: Do NOT give specific return figures or income amounts.",
-        "  Reason: FTC enforcement actions cited above penalise specific earnings",
-        "  claims that lack substantiation (e.g. '20–50% returns', '$4,200/month').",
-        "",
-        "Base instruction: 'be warm, confident, and specific'",
-        "→ OVERRIDDEN on income claims: Redirect income questions to methodology.",
-        "  You may still be specific about course content, signal mechanics, etc.",
-        "",
-        "Base instruction: 'share member success stories'",
-        "→ OVERRIDDEN: Any testimonials must include: 'individual results vary",
-        "  significantly; these members may have received benefits for sharing'.",
-        "",
-        "Base instruction: 'subscription comes with a satisfaction guarantee'",
-        "→ OVERRIDDEN: Do not describe the guarantee without noting that terms",
-        "  and restrictions apply. Direct users to full terms for details.",
-        "",
-        "NEW REQUIREMENT (not in base instructions):",
-        "→ Disclose at the start of every conversation that you are an AI assistant.",
-        "  Reason: FTC enforcement explicitly called out undisclosed AI in the",
-        "  Publishing.com case (April 2026).",
-        "",
-        "--- END REGULATORY OVERRIDE ---",
-    ]
-
-    return "\n".join(lines)
+def signals_by_layer(signals: list[EnforcementSignal]) -> dict[int, list[EnforcementSignal]]:
+    """Group signals by the layers they affect."""
+    by_layer: dict[int, list[EnforcementSignal]] = {i: [] for i in range(1, 8)}
+    for sig in signals:
+        for layer_id in sig.affected_layers:
+            by_layer[layer_id].append(sig)
+    return by_layer
