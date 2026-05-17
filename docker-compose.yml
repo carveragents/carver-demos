@@ -1,0 +1,32 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: amicompliant
+      POSTGRES_USER: carver
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U carver -d amicompliant"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: ./amicompliant
+    restart: unless-stopped
+    ports:
+      - "7777:7777"
+    env_file:
+      - ./amicompliant/.env
+    environment:
+      DATABASE_URL: postgresql://carver:${POSTGRES_PASSWORD:-changeme}@db:5432/amicompliant
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

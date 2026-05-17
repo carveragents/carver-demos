@@ -139,12 +139,15 @@ def reset_all_to_v1() -> None:
 def generate_layer_updates(signals_by_layer: dict[int, list]) -> dict:
     """
     For each layer that has at least one enforcement signal, generate a v2
-    update using gpt-4o and compute the diff. Returns updated state dict.
+    update using Claude and compute the diff. Returns updated state dict.
     """
     if not _layers:
         load_all_v1()
 
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+    grok = OpenAI(
+        api_key=os.environ["GROK_API_KEY"],
+        base_url="https://api.x.ai/v1",
+    )
     affected = [lid for lid, sigs in signals_by_layer.items() if sigs]
     logger.info(f"Generating v2 for layers: {affected}")
 
@@ -156,34 +159,43 @@ def generate_layer_updates(signals_by_layer: dict[int, list]) -> dict:
         signals = signals_by_layer[layer_id]
         context = _format_signals(signals, layer_id, layer.name)
 
+        # Build citation hint from actual signals
+        signal_citations = "; ".join(
+            f"{s.topic_name} {s.update_type.replace('_',' ').title()} — {s.title[:60]} ({s.published_at[:7] if s.published_at else 'n/d'})"
+            for s in signals[:3]
+        )
+
         system = (
             "You are a senior compliance officer at a consumer banking company. "
-            f"You are updating Layer {layer_id} ({layer.name}) of a 7-layer AI agent "
-            "deployment policy in response to recent regulatory enforcement actions "
-            "and final rules. Requirements:\n"
-            "1. Preserve the overall document structure and heading format.\n"
-            "2. REMOVE or REPLACE any clauses in v1 that the enforcement actions show "
-            "are non-compliant. Do not just add to a bad clause — rewrite or delete it.\n"
-            "3. Strengthen or modify other existing rules where enforcement actions "
-            "reveal compliance gaps.\n"
-            "4. Add new rules for conduct not addressed in v1 but required by the "
-            "enforcement actions.\n"
-            "5. Specific fixes required for this layer based on the enforcement signals:\n"
-            "   - If v1 instructs the agent to tell consumers their account WILL be sent "
-            "to collections or reported to credit bureaus: REMOVE that instruction entirely "
-            "and replace with 'escalate to a human specialist and provide CFPB contact info' "
-            "[Required per CFPB UDAAP enforcement, 2026].\n"
-            "   - If v1 describes subscription cancellation as 'easy', 'straightforward', "
-            "or 'a few clicks' without disclosure language: REPLACE with language requiring "
-            "the agent to direct customers to review cancellation terms before confirming "
-            "[Required per FTC negative option rule enforcement, 2026].\n"
-            "   - If v1 allows sharing account data for unverified 'internal team' requests: "
-            "REPLACE with strict session-authenticated account-holder only access "
-            "[Required per NYDFS 23 NYCRR 500 cybersecurity enforcement, 2026].\n"
-            "6. Append an inline citation after each changed or added rule, e.g. "
-            "[Updated per FTC enforcement, 2026].\n"
-            "7. Update the version field to 2026.06.\n"
-            "8. Output ONLY the updated policy document — no preamble, no explanation."
+            f"You are rewriting Layer {layer_id} ({layer.name}) of a 7-layer AI agent "
+            "deployment policy to comply with the regulatory enforcement actions and "
+            "guidance listed in the user message.\n\n"
+            "STEP 1 — Extract requirements: For each signal, identify what specific "
+            "agent BEHAVIOR it prohibits or requires.\n\n"
+            "STEP 2 — Audit each v1 section: For every section or bullet, ask:\n"
+            "  (a) What behavior does this instruction prescribe?\n"
+            "  (b) Does any signal require the OPPOSITE or incompatible behavior?\n"
+            "  If YES → DELETE the old instruction and REPLACE it with a compliant "
+            "  version. Do NOT keep both — a document with conflicting instructions "
+            "  is worse than either alone.\n"
+            "  If NO → keep the section verbatim.\n\n"
+            "  Conflict patterns to watch for:\n"
+            "  - 'State X as fact / no need to verify' + signal requiring substantiation"
+            " → REPLACE with 'direct customer to verify X in their plan documents'\n"
+            "  - 'Treat as routine / avoid alarm words' + signal requiring incident "
+            "response for security events → REPLACE with escalation requirement\n"
+            "  - 'Give estimates when exact data unavailable' + signal prohibiting "
+            "misrepresentation of material facts → REPLACE with 'decline to quote "
+            "specific figures without verified account data'\n\n"
+            "STEP 3 — Fill gaps: Where signals require conduct not addressed in v1, "
+            "add a new section in the appropriate position.\n\n"
+            "Additional rules:\n"
+            "- The signals are the ONLY basis for changes.\n"
+            "- Do not import rules that belong to other deployment layers.\n"
+            f"- After every rewritten or added clause, cite the signal, e.g. "
+            f"[Updated per {signal_citations}].\n"
+            "- Update the version field to 2026.06.\n"
+            "- Output ONLY the final v2 policy document — no preamble, no reasoning."
         )
 
         user = (
@@ -192,13 +204,13 @@ def generate_layer_updates(signals_by_layer: dict[int, list]) -> dict:
         )
 
         try:
-            resp = client.chat.completions.create(
-                model="gpt-4o",
+            resp = grok.chat.completions.create(
+                model="grok-4-fast-non-reasoning",
                 messages=[
                     {"role": "system", "content": system},
                     {"role": "user", "content": user},
                 ],
-                temperature=0.2,
+                temperature=0,
                 max_tokens=2000,
             )
             v2_text = resp.choices[0].message.content.strip()
@@ -221,6 +233,24 @@ def _format_signals(signals: list, layer_id: int, layer_name: str) -> str:
             lines.append(f"    Issued: {sig.published_at}")
         if sig.summary:
             lines.append(f"    Summary: {sig.summary}")
+        if sig.what_changed:
+            lines.append(f"    What changed: {sig.what_changed}")
+        if sig.why_it_matters:
+            lines.append(f"    Why it matters: {sig.why_it_matters}")
+        if sig.risk_impact:
+            lines.append(f"    Risk impact: {sig.risk_impact}")
+        if sig.key_requirements:
+            lines.append("    Key requirements:")
+            for req in sig.key_requirements[:6]:
+                lines.append(f"      - {req}")
+        if sig.policy_change:
+            lines.append(f"    Policy change required: {sig.policy_change}")
+        if sig.tech_data_change:
+            lines.append(f"    Technology/data change required: {sig.tech_data_change}")
+        if sig.process_change:
+            lines.append(f"    Process change required: {sig.process_change}")
+        if sig.training_change:
+            lines.append(f"    Training change required: {sig.training_change}")
         if sig.tags:
             lines.append(f"    Violation categories: {', '.join(sig.tags[:6])}")
         lines.append("")

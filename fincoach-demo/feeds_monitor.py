@@ -35,37 +35,62 @@ CARVER_BASE_URL = "https://app.carveragents.ai"
 
 ACCEPTED_UPDATE_TYPES = {"enforcement", "final_rule", "guidance", "proposed_rule"}
 
-# Tags confirmed present in production feeds that are relevant to a
-# consumer banking AI chatbot deployment
+# Tags that match signals relevant to a consumer banking AI chatbot deployment.
+# Kept specific to avoid pulling in non-fintech FTC/CFPB cases.
 RELEVANT_TAGS = {
-    # Model risk / AI governance (SR 26-2, Fed/OCC/FDIC joint guidance)
+    # Model risk / AI governance (SR 26-2, Fed/OCC/FDIC interagency guidance)
     "model risk management", "model risk", "artificial intelligence",
     "machine learning", "ai governance", "sr 11-7", "sr 26-2",
-    # Cybersecurity / data / PII (NYDFS 23 NYCRR 500, FDIC privacy, GLBA)
+    # Cybersecurity / data / PII (NYDFS 23 NYCRR 500, GLBA Safeguards)
     "cybersecurity", "data security", "data breach", "personal information",
     "privacy", "pii", "glba", "safeguards rule", "23 nycrr 500",
-    # UDAAP / deception in digital channels
+    "incident reporting", "consumer data protection",
+    # UDAAP / consumer harm in financial products
     "udaap", "deceptive practices", "unfair practices", "abusive practices",
-    "consumer protection", "false claims", "misleading",
-    # Reg E / dispute resolution (CFPB 16(c) interpretation)
-    "reg e", "electronic fund transfer", "error resolution",
-    "dispute resolution", "efta",
-    # Fair lending / ECOA (NYDFS industry letter)
+    "consumer restitution", "federal trade commission act",
+    "debt collection", "credit reporting", "negative option",
+    # Payment / fintech scope (CFPB Wise, Reg E)
+    "remittance", "payment firms", "electronic fund transfer",
+    "reg e", "error resolution", "dispute resolution", "efta",
+    "banking", "banking compliance", "financial institution",
+    "prepaid card", "debit card", "money transfer", "payment", "fintech",
+    # Fair lending / ECOA
     "fair lending", "ecoa", "equal credit opportunity", "discrimination",
-    # Chatbot / AI disclosure (FTC deception framework)
+    # Chatbot / AI disclosure
     "chatbot", "ai disclosure", "undisclosed ai", "automated system",
-    # Scope / advice limitations
-    "unauthorized advice", "investment advice", "unlicensed",
-    "complaint handling", "consumer complaint",
+    # Scope / advice
+    "unauthorized advice", "investment advice", "complaint handling",
 }
+
+# Tags that disqualify a signal regardless of RELEVANT_TAGS matches.
+DISQUALIFYING_TAGS = {
+    # Non-fintech FTC enforcement (product labeling, manufacturing, antitrust)
+    "made in usa", "country of origin", "manufacturing", "labeling",
+    "merchandise", "textile", "apparel", "food safety",
+    "antitrust", "merger", "divestiture", "anticompetitive",
+    "telemarketing", "robocall", "do not call",
+    # Non-banking CFPB content
+    "medical debt", "wildfire", "natural disaster", "maui",
+    "mortgage credit product",
+    # NYDFS non-banking
+    "virtual currency", "climate change",
+}
+
+
+def _is_relevant(tags: list[str]) -> bool:
+    tags_lower = {t.lower() for t in tags}
+    if tags_lower & DISQUALIFYING_TAGS:
+        return False
+    return bool(tags_lower & RELEVANT_TAGS)
 
 # Which tag subsets indicate impact on each deployment layer.
 # Mapped against tags confirmed present in CFPB/Fed/FDIC/OCC/FTC/NYDFS feeds.
 LAYER_TAG_MAP: dict[int, set[str]] = {
-    1: {  # Input Guardrails — PII scrub, injection detect
+    1: {  # Input Guardrails — PII scrub, data exfiltration detect
         "cybersecurity", "data security", "data breach", "personal information",
         "privacy", "pii", "glba", "safeguards rule", "23 nycrr 500",
-        "model risk management",  # SR 26-2 includes input validation requirements
+        "incident reporting", "consumer data protection",
+        "model risk management",
     },
     2: {  # Topic / Intent Router — allowlist, advice scope
         "unauthorized advice", "investment advice", "unlicensed",
@@ -75,23 +100,29 @@ LAYER_TAG_MAP: dict[int, set[str]] = {
     3: {  # Retrieval Layer — grounding, accuracy
         "model risk management", "model risk", "sr 26-2", "sr 11-7",
         "false claims", "misleading", "deceptive practices",
-        "ai governance", "machine learning",
+        "ai governance", "machine learning", "banking compliance",
     },
     4: {  # System Prompt — role, behavior, identity
         "artificial intelligence", "chatbot", "ai disclosure", "undisclosed ai",
         "automated system", "model risk management", "ai governance",
-        "deceptive practices", "udaap", "abusive practices",
+        "deceptive practices", "udaap", "abusive practices", "banking compliance",
+        # Data security signals must also update the system prompt — an agent
+        # instructed to send data externally is itself a compliance gap
+        "consumer data protection", "data security", "privacy", "pii",
+        "cybersecurity", "incident reporting",
     },
     5: {  # Tool Gating — access control, least privilege
         "cybersecurity", "data security", "data breach", "glba",
+        "incident reporting", "consumer data protection",
         "model risk management", "unauthorized access",
         "reg e", "electronic fund transfer", "error resolution",
     },
-    6: {  # Output Validator — content, UDAAP, fair lending
+    6: {  # Output Validator — UDAAP, payment compliance, fair lending
         "udaap", "deceptive practices", "unfair practices", "abusive practices",
+        "consumer restitution", "federal trade commission act",
+        "remittance", "payment firms", "compliance",
         "fair lending", "ecoa", "equal credit opportunity", "discrimination",
-        "consumer protection", "false claims", "misleading",
-        "reg e", "error resolution",
+        "reg e", "error resolution", "debt collection", "credit reporting",
     },
     7: {  # Post-Processor — disclosures, redaction
         "privacy", "pii", "consumer rights", "disclosure requirements",
@@ -136,6 +167,15 @@ class EnforcementSignal:
     entities: list[str] = field(default_factory=list)
     has_ai_tag: bool = False
     affected_layers: list[int] = field(default_factory=list)
+    # Rich annotation fields
+    what_changed: str = ""
+    why_it_matters: str = ""
+    risk_impact: str = ""
+    key_requirements: list[str] = field(default_factory=list)
+    policy_change: str = ""
+    tech_data_change: str = ""
+    process_change: str = ""
+    training_change: str = ""
 
 
 def _get_client() -> CarverFeedsAPIClient:
@@ -151,11 +191,6 @@ def _parse_date(date_info) -> str:
     if isinstance(date_info, dict):
         return date_info.get("date", "") or ""
     return str(date_info)
-
-
-def _is_relevant(tags: list[str]) -> bool:
-    tags_lower = {t.lower() for t in tags}
-    return bool(tags_lower & RELEVANT_TAGS)
 
 
 def _compute_affected_layers(tags: list[str]) -> list[int]:
@@ -194,6 +229,11 @@ def fetch_signals() -> list[EnforcementSignal]:
                 summary = cls_meta.get("summary") or ""
                 link = cls_meta.get("feed_url") or ""
 
+                # Deduplicate by URL — multiple Carver annotations can point to
+                # the same source document (e.g. OCC monthly enforcement page)
+                if link and link in seen:
+                    continue
+
                 ann_meta = annotation.get("metadata", {})
                 tags = ann_meta.get("tags") or []
                 entities = ann_meta.get("entities") or []
@@ -204,6 +244,9 @@ def fetch_signals() -> list[EnforcementSignal]:
                 published_at = _parse_date(annotation.get("reconciled_published_date"))
                 has_ai_tag = any("artificial intel" in t.lower() or t.lower() == "ai" for t in tags)
                 affected_layers = _compute_affected_layers(tags)
+
+                impact = ann_meta.get("impact_summary") or {}
+                actionables = ann_meta.get("actionables") or {}
 
                 signal = EnforcementSignal(
                     entry_id=entry_id,
@@ -218,9 +261,19 @@ def fetch_signals() -> list[EnforcementSignal]:
                     entities=entities,
                     has_ai_tag=has_ai_tag,
                     affected_layers=affected_layers,
+                    what_changed=impact.get("what_changed") or "",
+                    why_it_matters=impact.get("why_it_matters") or "",
+                    risk_impact=impact.get("risk_impact") or "",
+                    key_requirements=impact.get("key_requirements") or [],
+                    policy_change=actionables.get("policy_change") or "",
+                    tech_data_change=actionables.get("tech_data_change") or "",
+                    process_change=actionables.get("process_change") or "",
+                    training_change=actionables.get("training_change") or "",
                 )
                 signals.append(signal)
                 seen.add(entry_id)
+                if link:
+                    seen.add(link)
                 logger.info(
                     f"  [{topic_name}] [{update_type}] {title[:70]} "
                     f"→ layers {affected_layers}"

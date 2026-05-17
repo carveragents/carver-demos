@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AmiCompliant — Carver Agents</title>
+  <style>
+    /* ── Reset & base ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #22c55e;
+      --green-dim:  #16a34a;
+      --green-faint:#dcfce7;
+      --black:      #0a0a0a;
+      --navy:       #0f1117;
+      --gray-900:   #111827;
+      --gray-700:   #374151;
+      --gray-500:   #6b7280;
+      --gray-300:   #d1d5db;
+      --gray-100:   #f3f4f6;
+      --white:      #ffffff;
+      --red-faint:  #fef2f2;
+      --red:        #ef4444;
+      --amber-faint:#fffbeb;
+      --amber:      #f59e0b;
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Nav ────────────────────────────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      border-bottom: 1px solid var(--gray-300);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-logo .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    .nav-badge {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--green-dim);
+      background: var(--green-faint);
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* ── Page system ────────────────────────────────────────────────────── */
+    .page { display: none; flex-direction: column; flex: 1; }
+    .page.active { display: flex; }
+
+    /* ── Landing ────────────────────────────────────────────────────────── */
+    #page-landing {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #f0fdf4 0%, var(--white) 70%);
+    }
+
+    .landing-eyebrow {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .landing-h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--black);
+      max-width: 720px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .landing-h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .landing-sub {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+
+    /* ── Buttons ────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all .15s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid var(--gray-300);
+    }
+    .btn-outline:hover { border-color: var(--black); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gray-500);
+      padding: .5rem .75rem;
+      font-size: .85rem;
+    }
+    .btn-ghost:hover { color: var(--black); }
+
+    .btn-sm { padding: .5rem 1rem; font-size: .85rem; }
+    .btn-lg { padding: 1rem 2.25rem; font-size: 1.05rem; }
+
+    .btn-copy {
+      background: var(--gray-100);
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+    .btn-copy:hover { background: var(--gray-300); }
+
+    /* ── Trust strip ────────────────────────────────────────────────────── */
+    .trust-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-300);
+      color: var(--gray-500);
+      font-size: .82rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .trust-dot { color: var(--green); font-size: 1rem; }
+
+    /* ── Choose page ────────────────────────────────────────────────────── */
+    #page-choose {
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+
+    .choose-header { text-align: center; margin-bottom: 3rem; }
+    .choose-header h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: .6rem; }
+    .choose-header p { color: var(--gray-500); }
+
+    .choice-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) { .choice-cards { grid-template-columns: 1fr; } }
+
+    .choice-card {
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      padding: 2rem;
+      cursor: pointer;
+      transition: all .18s ease;
+      text-align: left;
+      background: var(--white);
+    }
+    .choice-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px var(--green-faint);
+    }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--green-faint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; }
+    .card-desc { font-size: .88rem; color: var(--gray-500); line-height: 1.5; }
+
+    /* ── Inner page shell ───────────────────────────────────────────────── */
+    .inner-page {
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      flex: 1;
+    }
+
+    .inner-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .inner-header h2 { font-size: 1.5rem; font-weight: 800; }
+    .inner-header p { color: var(--gray-500); font-size: .9rem; margin-top: .2rem; }
+
+    /* ── Text input area ────────────────────────────────────────────────── */
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: .92rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 200px;
+      outline: none;
+      transition: border-color .15s;
+      line-height: 1.55;
+    }
+    textarea:focus { border-color: var(--green); }
+
+    /* ── Mode toggle ────────────────────────────────────────────────────── */
+    .mode-toggle {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .mode-btn {
+      padding: .45rem 1rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--gray-300);
+      background: var(--white);
+      color: var(--gray-700);
+      transition: all .15s;
+    }
+    .mode-btn.active {
+      border-color: var(--green);
+      background: var(--green-faint);
+      color: var(--green-dim);
+    }
+
+    /* ── Result boxes ───────────────────────────────────────────────────── */
+    .result-box {
+      margin-top: 1.5rem;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .result-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 1rem;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-300);
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .result-box pre, .result-box .result-text {
+      padding: 1rem;
+      font-size: .88rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: inherit;
+    }
+
+    /* ── File upload ────────────────────────────────────────────────────── */
+    .upload-zone {
+      border: 2px dashed var(--gray-300);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all .15s;
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: var(--green);
+      background: var(--green-faint);
+    }
+    .upload-zone input { display: none; }
+    .upload-filename {
+      margin-top: .5rem;
+      font-size: .82rem;
+      color: var(--green-dim);
+      font-weight: 600;
+    }
+
+    .or-divider {
+      text-align: center;
+      color: var(--gray-400);
+      font-size: .82rem;
+      margin: 1rem 0;
+      position: relative;
+    }
+    .or-divider::before, .or-divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: var(--gray-300);
+    }
+    .or-divider::before { left: 0; }
+    .or-divider::after { right: 0; }
+
+    /* ── Evaluation results ─────────────────────────────────────────────── */
+    .eval-results { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .eval-count-banner {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .eval-count-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      min-width: 2ch;
+    }
+
+    .eval-count-label { font-size: .92rem; line-height: 1.4; }
+    .eval-count-label strong { display: block; font-size: 1rem; }
+
+    /* Signal card */
+    .signal-card {
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .signal-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .signal-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .22rem .6rem;
+      border-radius: 999px;
+    }
+
+    .tag-enforcement { background: #fee2e2; color: #b91c1c; }
+    .tag-final_rule  { background: #dbeafe; color: #1d4ed8; }
+    .tag-ftc  { background: var(--green-faint); color: var(--green-dim); }
+    .tag-sec  { background: #ede9fe; color: #6d28d9; }
+
+    .signal-title { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+    .signal-meta  { font-size: .78rem; color: var(--gray-500); margin-top: .25rem; }
+
+    .signal-body { padding: 1.1rem 1.25rem; font-size: .9rem; line-height: 1.6; color: var(--gray-700); }
+
+    .signal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      margin-top: .75rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--green-dim);
+      text-decoration: none;
+    }
+    .signal-link:hover { text-decoration: underline; }
+
+    /* ── Diff viewer ────────────────────────────────────────────────────── */
+    .diff-viewer {
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      overflow: hidden;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: .8rem;
+    }
+
+    .diff-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 1rem;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-300);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .diff-legend {
+      display: flex;
+      gap: 1rem;
+      font-size: .75rem;
+      font-weight: 500;
+    }
+
+    .diff-legend-item { display: flex; align-items: center; gap: .3rem; }
+    .diff-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+    .diff-body { max-height: 420px; overflow-y: auto; }
+
+    .diff-line {
+      display: flex;
+      line-height: 1.55;
+    }
+
+    .diff-line-gutter {
+      width: 28px;
+      min-width: 28px;
+      text-align: center;
+      padding: .1rem 0;
+      font-size: .75rem;
+      user-select: none;
+      border-right: 1px solid rgba(0,0,0,.06);
+    }
+
+    .diff-line-content {
+      flex: 1;
+      padding: .1rem .75rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .diff-line.added   { background: #f0fdf4; }
+    .diff-line.removed { background: #fef2f2; }
+    .diff-line.context { background: var(--white); }
+
+    .diff-line.added   .diff-line-gutter { color: var(--green-dim); background: #dcfce7; }
+    .diff-line.removed .diff-line-gutter { color: #b91c1c;          background: #fee2e2; }
+    .diff-line.context .diff-line-gutter { color: var(--gray-300);  background: var(--gray-100); }
+
+    .diff-line.added   .diff-line-content { color: #166534; }
+    .diff-line.removed .diff-line-content { color: #991b1b; text-decoration: line-through; }
+    .diff-line.context .diff-line-content { color: var(--gray-700); }
+
+    /* Liability card */
+    .liability-card {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      background: var(--amber-faint);
+      border: 1.5px solid #fde68a;
+    }
+
+    .liability-label {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #92400e;
+      margin-bottom: .5rem;
+    }
+
+    .liability-amount {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #78350f;
+    }
+
+    .liability-range { font-size: .85rem; color: #92400e; margin-top: .3rem; }
+    .liability-basis { font-size: .8rem; color: #a16207; margin-top: .5rem; font-style: italic; }
+
+    /* Lead gate */
+    .lead-gate {
+      border: 1.5px solid var(--green);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      background: var(--green-faint);
+      text-align: center;
+    }
+
+    .lead-gate h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+    .lead-gate p  { font-size: .88rem; color: var(--gray-700); margin-bottom: 1rem; }
+
+    .lead-form {
+      display: flex;
+      gap: .6rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .lead-form input {
+      flex: 1;
+      padding: .65rem 1rem;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: .9rem;
+      outline: none;
+    }
+    .lead-form input:focus { border-color: var(--green); }
+
+    @media (max-width: 480px) { .lead-form { flex-direction: column; } }
+
+    /* ── Spinner ────────────────────────────────────────────────────────── */
+    .spinner-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+      padding: 2rem;
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--gray-300);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Misc ───────────────────────────────────────────────────────────── */
+    .flex-row { display: flex; align-items: center; gap: .75rem; }
+    .flex-col  { display: flex; flex-direction: column; gap: .5rem; }
+    .mt-1  { margin-top: .5rem; }
+    .mt-2  { margin-top: 1rem; }
+    .mt-3  { margin-top: 1.5rem; }
+    .label { font-size: .82rem; font-weight: 600; color: var(--gray-700); margin-bottom: .35rem; }
+    .small { font-size: .8rem; color: var(--gray-500); }
+
+    .alert {
+      padding: .9rem 1.1rem;
+      border-radius: 8px;
+      font-size: .88rem;
+    }
+    .alert-error   { background: var(--red-faint); color: #991b1b; border: 1px solid #fca5a5; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+    .tag {
+      font-size: .72rem;
+      font-weight: 600;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+
+    footer {
+      background: var(--navy);
+      color: var(--gray-500);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: .8rem;
+    }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('landing')">
+    <span class="dot"></span>
+    AmiCompliant
+  </a>
+  <span class="nav-badge">by Carver Agents</span>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     LANDING
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-landing" class="page active">
+  <div class="landing-eyebrow">Regulatory Intelligence · Live</div>
+  <h1 class="landing-h1">
+    Is your AI agent<br/><em>actually compliant</em>?
+  </h1>
+  <p class="landing-sub">
+    AmiCompliant checks your AI system prompt against live FTC &amp; SEC
+    enforcement actions and flags the financial exposure you might not know about.
+  </p>
+  <button class="btn btn-primary btn-lg" onclick="showPage('choose')">
+    Start &rarr;
+  </button>
+
+  <div class="trust-strip">
+    <div class="trust-item"><span class="trust-dot">●</span> Live FTC feed</div>
+    <div class="trust-item"><span class="trust-dot">●</span> Live SEC feed</div>
+    <div class="trust-item"><span class="trust-dot">●</span> 30-day enforcement window</div>
+    <div class="trust-item"><span class="trust-dot">●</span> Powered by Carver Agents</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     CHOOSE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-choose" class="page">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:4rem 2rem;">
+    <div class="choose-header">
+      <h2>What would you like to do?</h2>
+      <p>Choose a workflow below to get started.</p>
+    </div>
+    <div class="choice-cards">
+      <div class="choice-card" onclick="showPage('sanitise')">
+        <div class="card-icon">🧹</div>
+        <div class="card-title">Prompt Sanitisation</div>
+        <div class="card-desc">
+          Remove company-specific details from your AI system prompt before
+          sharing it externally. We clean it for you — or give you the prompt
+          to do it yourself.
+        </div>
+      </div>
+      <div class="choice-card" onclick="showPage('evaluate')">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">Evaluate My Prompt</div>
+        <div class="card-desc">
+          Upload or paste your AI system prompt. We check it against live FTC
+          and SEC enforcement actions from the last 30 days and estimate your
+          financial liability exposure.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-ghost mt-3" onclick="showPage('landing')">&larr; Back</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     SANITISE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-sanitise" class="page">
+  <div class="inner-page">
+    <div class="inner-header">
+      <div>
+        <h2>Prompt Sanitisation</h2>
+        <p>Paste the text you want to sanitise, then choose how you'd like to proceed.</p>
+      </div>
+    </div>
+
+    <div class="label">Your text</div>
+    <textarea id="san-input" placeholder="Paste your AI system prompt or any text here…" rows="9"></textarea>
+
+    <div class="flex-row mt-2">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="mode-do_it"   onclick="setMode('do_it')">Sanitise for me</button>
+        <button class="mode-btn"        id="mode-give_prompt" onclick="setMode('give_prompt')">Give me the prompt</button>
+      </div>
+      <div style="flex:1"></div>
+      <button class="btn btn-primary" onclick="runSanitise()">Run &rarr;</button>
+    </div>
+
+    <div id="san-loading" style="display:none">
+      <div class="spinner-wrap"><div class="spinner"></div>Sanitising…</div>
+    </div>
+
+    <div id="san-error" style="display:none" class="alert alert-error mt-2"></div>
+    <div id="san-result" style="display:none"></div>
+
+    <button class="btn btn-ghost mt-3" onclick="showPage('choose')">&larr; Back</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     EVALUATE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-evaluate" class="page">
+  <div class="inner-page">
+    <div class="inner-header">
+      <div>
+        <h2>Evaluate My Prompt</h2>
+        <p>Upload a <code>.md</code> or <code>.pdf</code> file, or paste your prompt below.</p>
+      </div>
+    </div>
+
+    <!-- File upload -->
+    <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+      <input type="file" id="file-input" accept=".md,.pdf,.txt" onchange="handleFileSelect(event)" />
+      <div>📄 Drop your <strong>.md</strong> or <strong>.pdf</strong> here, or click to browse</div>
+      <div class="upload-filename" id="file-name"></div>
+    </div>
+
+    <div class="or-divider">or</div>
+
+    <div class="label">Paste your prompt</div>
+    <textarea id="eval-input" placeholder="Paste your AI system prompt or compliance policy here…" rows="8"></textarea>
+
+    <div class="flex-row mt-2" style="justify-content:flex-end">
+      <button class="btn btn-primary" onclick="runEvaluate()">Evaluate &rarr;</button>
+    </div>
+
+    <div id="eval-loading" style="display:none">
+      <div class="spinner-wrap">
+        <div class="spinner"></div>
+        Fetching live regulatory signals and scoring relevance…
+      </div>
+    </div>
+
+    <div id="eval-error" style="display:none" class="alert alert-error mt-2"></div>
+    <div id="eval-results" style="display:none" class="eval-results"></div>
+
+    <button class="btn btn-ghost mt-3" onclick="showPage('choose')">&larr; Back</button>
+  </div>
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────────────────────── -->
+<footer>
+  <span>AmiCompliant · Powered by <a href="https://www.carveragents.ai" target="_blank">Carver Agents</a></span>
+</footer>
+
+<script>
+// ── Router ─────────────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  // Reset state on navigate away
+  if (id !== 'sanitise') resetSanitise();
+  if (id !== 'evaluate') resetEvaluate();
+}
+
+// ── Sanitise ───────────────────────────────────────────────────────────────
+let sanMode = 'do_it';
+
+function setMode(mode) {
+  sanMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mode-' + mode).classList.add('active');
+  hide('san-result');
+  hide('san-error');
+}
+
+function resetSanitise() {
+  document.getElementById('san-input').value = '';
+  hide('san-loading'); hide('san-result'); hide('san-error');
+}
+
+async function runSanitise() {
+  const text = document.getElementById('san-input').value.trim();
+  if (!text) { showError('san-error', 'Please paste some text first.'); return; }
+
+  hide('san-result'); hide('san-error');
+  show('san-loading');
+
+  try {
+    const res = await fetch('/api/sanitise', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ text, mode: sanMode }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Server error');
+    renderSanitiseResult(data);
+  } catch (e) {
+    showError('san-error', e.message);
+  } finally {
+    hide('san-loading');
+  }
+}
+
+function renderSanitiseResult(data) {
+  const el = document.getElementById('san-result');
+  if (data.mode === 'do_it') {
+    el.innerHTML = `
+      <div class="result-box">
+        <div class="result-box-header">
+          <span>Sanitised text</span>
+          <button class="btn btn-copy btn-sm" onclick="copyText('san-output')">Copy</button>
+        </div>
+        <div class="result-text" id="san-output">${escHtml(data.sanitised)}</div>
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div class="result-box">
+        <div class="result-box-header">
+          <span>Ready-to-copy sanitisation prompt</span>
+          <button class="btn btn-copy btn-sm" onclick="copyText('san-output')">Copy prompt</button>
+        </div>
+        <pre id="san-output">${escHtml(data.meta_prompt)}</pre>
+      </div>
+      <p class="small mt-1">Paste this into ChatGPT, Claude, or any LLM to sanitise your text.</p>`;
+  }
+  show('san-result');
+}
+
+// ── Evaluate ───────────────────────────────────────────────────────────────
+let selectedFile = null;
+let currentEvalId = null;
+
+function handleFileSelect(e) {
+  selectedFile = e.target.files[0] || null;
+  document.getElementById('file-name').textContent = selectedFile ? selectedFile.name : '';
+}
+
+// Drag & drop
+const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  const f = e.dataTransfer.files[0];
+  if (f) { selectedFile = f; document.getElementById('file-name').textContent = f.name; }
+});
+
+function resetEvaluate() {
+  document.getElementById('eval-input').value = '';
+  document.getElementById('file-name').textContent = '';
+  document.getElementById('file-input').value = '';
+  selectedFile = null;
+  currentEvalId = null;
+  hide('eval-loading'); hide('eval-results'); hide('eval-error');
+}
+
+async function runEvaluate() {
+  const text = document.getElementById('eval-input').value.trim();
+
+  if (!text && !selectedFile) {
+    showError('eval-error', 'Please paste your prompt or upload a file.');
+    return;
+  }
+
+  hide('eval-results'); hide('eval-error');
+  show('eval-loading');
+
+  try {
+    const form = new FormData();
+    if (selectedFile) form.append('file', selectedFile);
+    if (text) form.append('prompt_text', text);
+
+    const res = await fetch('/api/evaluate', { method: 'POST', body: form });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Server error');
+    currentEvalId = data.evaluation_id;
+    renderEvalResults(data);
+  } catch (e) {
+    showError('eval-error', e.message);
+  } finally {
+    hide('eval-loading');
+  }
+}
+
+function signalCardHtml(sig, label, labelColor) {
+  const typeTag = sig.update_type === 'enforcement'
+    ? '<span class="signal-tag tag-enforcement">Enforcement</span>'
+    : '<span class="signal-tag tag-final_rule">Final Rule</span>';
+  const agencyTag = sig.topic_name === 'FTC'
+    ? '<span class="signal-tag tag-ftc">FTC</span>'
+    : '<span class="signal-tag tag-sec">SEC</span>';
+  const aiNote = sig.has_ai_tag
+    ? '<div style="margin-top:.6rem;font-size:.8rem;color:#b91c1c;font-weight:600;">⚠️ This action explicitly names AI-generated content as a violation factor.</div>'
+    : '';
+  const tagHtml = (sig.tags || []).slice(0, 6).map(t =>
+    `<span class="tag">${escHtml(t)}</span>`).join('');
+
+  return `
+    <div class="signal-card">
+      <div class="signal-card-header">
+        <div style="flex:1">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:${labelColor};margin-bottom:.5rem">${label}</div>
+          <div class="flex-row" style="flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem">
+            ${typeTag} ${agencyTag}
+          </div>
+          <div class="signal-title">${escHtml(sig.title)}</div>
+          <div class="signal-meta">Published ${sig.published_at}${sig.topic_name ? ' · ' + sig.topic_name : ''}</div>
+        </div>
+      </div>
+      <div class="signal-body">
+        <div>${escHtml(sig.summary)}</div>
+        ${aiNote}
+        ${tagHtml ? `<div class="tag-row">${tagHtml}</div>` : ''}
+        ${sig.link ? `<a class="signal-link" href="${escHtml(sig.link)}" target="_blank">View source &rarr;</a>` : ''}
+      </div>
+    </div>`;
+}
+
+function renderEvalResults(data) {
+  const el = document.getElementById('eval-results');
+
+  if (data.n_relevant === 0) {
+    el.innerHTML = `
+      <div class="eval-count-banner">
+        <div class="eval-count-num" style="color:#6b7280">0</div>
+        <div class="eval-count-label">
+          <strong>No relevant signals found</strong>
+          No enforcement actions or final rules applicable to your prompt were published in the last 30 days.
+        </div>
+      </div>`;
+    show('eval-results');
+    return;
+  }
+
+  const cs = data.compliance_signal;
+  const ls = data.liability_signal;
+  const liab = data.liability;
+  const remaining = data.remaining;
+  const sameSignal = data.same_signal;
+
+  const liabHtml = liab ? `
+    <div class="liability-card">
+      <div class="liability-label">⚠️ Estimated financial exposure</div>
+      <div class="liability-amount">${fmtMoney(liab.low)} – ${fmtMoney(liab.high)}</div>
+      <div class="liability-range">Per-violation civil penalty range</div>
+      <div class="liability-basis">${escHtml(liab.basis)}</div>
+    </div>` : '';
+
+  const moreHtml = remaining > 0 ? `
+    <div class="lead-gate">
+      <h3>+ ${remaining} more relevant update${remaining > 1 ? 's' : ''} found</h3>
+      <p>Enter your email to receive the full signal report, including all ${remaining} additional
+      enforcement action${remaining > 1 ? 's' : ''} relevant to your prompt.</p>
+      <div class="lead-form">
+        <input type="email" id="lead-email" placeholder="you@company.com" />
+        <button class="btn btn-primary" onclick="submitLead()">Send me the report</button>
+      </div>
+      <div id="lead-msg" style="display:none;margin-top:.75rem;font-size:.85rem;font-weight:600;color:var(--green-dim)"></div>
+    </div>` : '';
+
+  const complianceCard = signalCardHtml(cs, 'Compliance update', '#166534');
+  const exposureCard   = sameSignal ? '' : signalCardHtml(ls, 'Financial exposure', '#92400e');
+
+  el.innerHTML = `
+    <div class="eval-count-banner">
+      <div class="eval-count-num">${data.n_relevant}</div>
+      <div class="eval-count-label">
+        <strong>regulatory update${data.n_relevant !== 1 ? 's' : ''} published in the last 30 days ${data.n_relevant !== 1 ? 'are' : 'is'} relevant to your policy</strong>
+        Based on live FTC &amp; SEC enforcement feeds via Carver Agents.
+      </div>
+    </div>
+
+    ${complianceCard}
+
+    <div class="diff-viewer">
+      <div class="diff-header">
+        <span>Suggested prompt update</span>
+        <div class="diff-legend">
+          <div class="diff-legend-item">
+            <div class="diff-legend-dot" style="background:#86efac"></div> Added
+          </div>
+          <div class="diff-legend-item">
+            <div class="diff-legend-dot" style="background:#fca5a5"></div> Removed
+          </div>
+        </div>
+      </div>
+      <div id="diff-body" class="diff-body">
+        <div class="spinner-wrap" style="padding:1.5rem">
+          <div class="spinner"></div>
+          Generating suggested updates…
+        </div>
+      </div>
+    </div>
+
+    ${exposureCard}
+    ${liabHtml}
+    ${moreHtml}`;
+
+  show('eval-results');
+
+  // Fetch diff in the background using the compliance signal
+  fetchSuggestedDiff(data.prompt_text, cs);
+}
+
+async function fetchSuggestedDiff(promptText, signal) {
+  const body = document.getElementById('diff-body');
+  if (!body) return;
+
+  try {
+    const res = await fetch('/api/suggest-update', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ prompt_text: promptText, signal }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.detail || 'Could not generate update');
+
+    const lines = data.diff || [];
+    if (lines.length === 0) {
+      body.innerHTML = '<div style="padding:1rem;font-size:.85rem;color:var(--gray-500)">No changes suggested — your prompt already addresses this enforcement action.</div>';
+      return;
+    }
+
+    const GLYPH = { added: '+', removed: '−', context: ' ', header: '' };
+    body.innerHTML = lines.map(line => {
+      if (line.type === 'header') {
+        return `<div style="padding:.25rem .75rem;font-size:.75rem;color:var(--gray-500);background:var(--gray-100);border-top:1px solid var(--gray-300);border-bottom:1px solid var(--gray-300);font-family:inherit">${escHtml(line.content)}</div>`;
+      }
+      const glyph = GLYPH[line.type] || ' ';
+      return `<div class="diff-line ${line.type}">
+        <div class="diff-line-gutter">${glyph}</div>
+        <div class="diff-line-content">${escHtml(line.content)}</div>
+      </div>`;
+    }).join('');
+
+  } catch (e) {
+    if (body) body.innerHTML = `<div style="padding:1rem;font-size:.85rem;color:#991b1b">Could not generate suggested update: ${escHtml(e.message)}</div>`;
+  }
+}
+
+function renderDiff(lines) {
+  if (!lines || lines.length === 0) return '';
+
+  const GLYPH = { added: '+', removed: '−', context: ' ' };
+
+  const rows = lines.map(line => {
+    const glyph = GLYPH[line.type] || ' ';
+    return `<div class="diff-line ${line.type}">
+      <div class="diff-line-gutter">${glyph}</div>
+      <div class="diff-line-content">${escHtml(line.content)}</div>
+    </div>`;
+  }).join('');
+
+  return `
+    <div class="diff-viewer">
+      <div class="diff-header">
+        <span>Suggested prompt update</span>
+        <div class="diff-legend">
+          <div class="diff-legend-item">
+            <div class="diff-legend-dot" style="background:#86efac"></div> Added
+          </div>
+          <div class="diff-legend-item">
+            <div class="diff-legend-dot" style="background:#fca5a5"></div> Removed
+          </div>
+        </div>
+      </div>
+      <div class="diff-body">${rows}</div>
+    </div>`;
+}
+
+async function submitLead() {
+  const email = document.getElementById('lead-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('lead-email').focus();
+    return;
+  }
+  try {
+    const res = await fetch('/api/leads', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, evaluation_id: currentEvalId || '' }),
+    });
+    if (res.ok) {
+      const msg = document.getElementById('lead-msg');
+      msg.textContent = "✓ You're on the list — we'll send the full report shortly.";
+      show('lead-msg');
+      document.querySelector('.lead-form').style.display = 'none';
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function show(id) { document.getElementById(id).style.display = ''; }
+function hide(id) { document.getElementById(id).style.display = 'none'; }
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.style.display = '';
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function copyText(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.btn-copy');
+    btns.forEach(b => { b.textContent = 'Copied!'; setTimeout(() => b.textContent = b.dataset.orig || 'Copy', 1500); });
+  });
+}
+
+function fmtMoney(n) {
+  if (!n && n !== 0) return '—';
+  if (n >= 1_000_000_000) return '$' + (n / 1_000_000_000).toFixed(1) + 'B';
+  if (n >= 1_000_000)     return '$' + (n / 1_000_000).toFixed(1) + 'M';
+  if (n >= 1_000)         return '$' + (n / 1_000).toFixed(0) + 'K';
+  return '$' + n.toLocaleString();
+}
+</script>
+</body>
+</html>
