@@ -3,7 +3,7 @@
 Mastercard's Business Risk Assessment and Mitigation (BRAM) program includes specific
 brand-integrity provisions that prohibit acquirers from processing transactions for
 merchants engaged in activities that violate Mastercard's acceptable use standards.
-Halyard Pay conducts ongoing content monitoring of merchant storefronts and transaction
+Acme Pay conducts ongoing content monitoring of merchant storefronts and transaction
 data to identify and remediate prohibited content.
 
 ## Prohibited categories

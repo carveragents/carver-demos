@@ -7,7 +7,7 @@ from presentation.render import make_env, render_change, render_timeline, render
 # Minimal site config for unit tests — full config lives at config/sites/spme.yaml.
 TEST_CONFIG = {
     "brand": {
-        "client": "Credio",
+        "client": "Acme Pay",
         "product": "Policy Updates",
         "tagline": "Powered by Carver Agents",
         "footer_note": "Test footer",

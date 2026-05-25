@@ -28,7 +28,7 @@ BEATS = [
             "In this demo, a custom-built AI agent reviews how Mastercard's "
             "Security Rules and Procedures publication — abbreviated "
             "S-P-M-E — evolved across five releases between 2022 and 2025, "
-            "and auto-applies the corresponding updates to Halyard Pay's "
+            "and auto-applies the corresponding updates to Acme Pay's "
             "internal compliance policies."
         ),
     },
@@ -39,7 +39,7 @@ BEATS = [
             "The agent runs in three stages. It detects every section that "
             "changed between consecutive releases, classifies the severity of "
             "each change, and proposes corresponding updates to the policies "
-            "of Halyard Pay — a hypothetical payment processor used here to "
+            "of Acme Pay — a hypothetical payment processor used here to "
             "demonstrate the workflow."
         ),
     },
@@ -124,7 +124,7 @@ BEATS = [
         "action": {"type": "scroll_into_view", "selector": ".change-card"},
         "narration": (
             "Each card cites the specific S-P-M-E section number and lists "
-            "the Halyard Pay policies that section touches."
+            "the Acme Pay policies that section touches."
         ),
     },
     {
@@ -151,7 +151,7 @@ BEATS = [
         "narration": (
             "Back on the change page, the Side-by-side tab shows the original "
             "S-P-M-E section on the left with word-level redlines, and the "
-            "proposed Halyard Pay policy edits on the right."
+            "proposed Acme Pay policy edits on the right."
         ),
     },
     {
@@ -195,7 +195,7 @@ BEATS = [
         "action": {"type": "scroll_into_view", "selector": "#side-by-side .file-panel"},
         "narration": (
             "The Side-by-side compare shows the new S-P-M-E text on the left, "
-            "and the proposed edits to the Halyard Pay Fraud Monitoring "
+            "and the proposed edits to the Acme Pay Fraud Monitoring "
             "policy on the right."
         ),
     },

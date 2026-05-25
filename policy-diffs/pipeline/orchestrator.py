@@ -24,7 +24,7 @@ class Orchestrator:
     For each section delta: classify -> filter cosmetic/clarifying -> map ->
     propose per-file edits -> persist a ChangeRecord JSON.
 
-    Sequential state model: the Credio policy files on disk remain pinned to
+    Sequential state model: the Acme Pay policy files on disk remain pinned to
     the v1 baseline. The orchestrator maintains an in-memory cumulative state
     across transitions within a single phase run, so transition N's proposer
     sees the files as they were after transition N-1's edits — matching how a

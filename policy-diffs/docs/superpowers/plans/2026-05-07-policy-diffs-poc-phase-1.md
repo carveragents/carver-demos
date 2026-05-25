@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build the end-to-end pipeline that fetches Mastercard SPME PDF versions from Wayback, detects per-section deltas, maps them to a synthetic Credio policy repo, proposes structured policy edits via OpenAI, and renders a static three-layer browser site (timeline → change-cards → tabbed detail) for customer demo.
+**Goal:** Build the end-to-end pipeline that fetches Mastercard SPME PDF versions from Wayback, detects per-section deltas, maps them to a synthetic Acme Pay policy repo, proposes structured policy edits via OpenAI, and renders a static three-layer browser site (timeline → change-cards → tabbed detail) for customer demo.
 
 **Architecture:** Six-stage Python pipeline (fetch · extract · diff · classify · map · propose), deterministic upstream + LLM downstream, output cached as reusable JSON/markdown partials. A separate sibling git repo (`credio-policies/`) holds the synthetic baseline + sequential branches. A renderer transforms the pipeline's change-record JSONs into static HTML pages.
 
@@ -32,7 +32,7 @@ policy-diffs/
 │   ├── extract.py                          # Section orchestrator over Extractor
 │   ├── diff.py                             # Per-section deterministic diff
 │   ├── classify.py                         # LLM materiality + summary
-│   ├── map_changes.py                      # LLM map MC → Credio policies
+│   ├── map_changes.py                      # LLM map MC → Acme Pay policies
 │   ├── propose.py                          # LLM emit per-file diff + change record
 │   ├── repo_manager.py                     # Apply patches on sequential branches
 │   ├── pdf_render.py                       # pandoc invocation
@@ -96,7 +96,7 @@ policy-diffs/
 [project]
 name = "policy-diffs"
 version = "0.1.0"
-description = "Mastercard B2B rule-change → Credio policy diff POC"
+description = "Mastercard B2B rule-change → Acme Pay policy diff POC"
 requires-python = ">=3.12"
 dependencies = [
   "pymupdf>=1.24",
@@ -157,7 +157,7 @@ api_key_env: OPENAI_API_KEY
 ```markdown
 # policy-diffs
 
-POC: Mastercard B2B artifact deltas → Credio policy update proposals.
+POC: Mastercard B2B artifact deltas → Acme Pay policy update proposals.
 
 ## Setup
 ```bash
@@ -820,7 +820,7 @@ git commit -m "feat(diff): per-section delta detection (added/removed/modified)"
 
 ---
 
-## Task 7: Synthetic Credio repo bootstrap
+## Task 7: Synthetic Acme Pay repo bootstrap
 
 **Files:**
 - Create: `credio-policies/` (sibling git repo)
@@ -848,9 +848,9 @@ mkdir -p credio-policies && cd credio-policies && git init -b main
 - [ ] **Step 2: Write `credio-policies/README.md`**
 
 ```markdown
-# Credio Policy Library
+# Acme Pay Policy Library
 
-Internal compliance rulebook referenced by Credio's risk and compliance agents.
+Internal compliance rulebook referenced by Acme Pay's risk and compliance agents.
 Each `policies/<area>/` folder contains:
 - `policy.md`   — narrative, distributed to compliance staff (also rendered to PDF in `dist/`)
 - `rules.yaml`  — machine-actionable thresholds and required actions
@@ -875,7 +875,7 @@ of receipt of the notice.
 2. Compile and submit an evidence package containing:
    - Transaction monitoring records covering the prior 180 days.
    - A written corrective action plan.
-3. Notify the Credio Compliance lead within 24 hours of receipt.
+3. Notify the Acme Pay Compliance lead within 24 hours of receipt.
 
 Source authority: Mastercard SPME §10.2.
 ```
@@ -931,7 +931,7 @@ Create `agents/fraud_ops/runbook.md` and `agents/bram_response/runbook.md`. Each
 1. On BRAM notice received: read `policies/bram_response/rules.yaml`.
 2. Halt actions listed under `halt_actions`.
 3. Open a case file; collect evidence from data sources matching `required_evidence`.
-4. Notify Credio Compliance lead within `internal_notification_hours` hours.
+4. Notify Acme Pay Compliance lead within `internal_notification_hours` hours.
 5. Submit response within `response_window_days` days.
 ```
 
@@ -1142,18 +1142,18 @@ git commit -m "feat(classify): LLM materiality scoring + plain-English summary"
 - [ ] **Step 1: Write `prompts/map.txt`**
 
 ```
-You are a payments compliance analyst mapping Mastercard SPME rule changes to Credio's internal policy library.
+You are a payments compliance analyst mapping Mastercard SPME rule changes to Acme Pay's internal policy library.
 
 You will be given:
-1. The Credio policy library catalog: a list of policy folders with a 1-line description and the Mastercard sections they cite.
+1. The Acme Pay policy library catalog: a list of policy folders with a 1-line description and the Mastercard sections they cite.
 2. One Mastercard SPME section diff (before / after).
 
 Your job:
-- List which Credio policy folders are likely affected. Cite policies by exact folder name.
+- List which Acme Pay policy folders are likely affected. Cite policies by exact folder name.
 - For each, write a 1–2 sentence rationale that names the specific obligation that shifted.
 - Echo back the SPME section_id.
 
-If no Credio policy is affected, return an empty `affected_policies` list and a `rationale` explaining why.
+If no Acme Pay policy is affected, return an empty `affected_policies` list and a `rationale` explaining why.
 
 Return strictly the JSON schema specified.
 ```
@@ -1199,7 +1199,7 @@ def test_map_delta_handles_empty_affected(mocker):
     mock_llm.complete_json.return_value = {
         "section_id": "99.9",
         "affected_policies": [],
-        "rationale": "Section concerns physical card embossing; no Credio surface.",
+        "rationale": "Section concerns physical card embossing; no Acme Pay surface.",
     }
 
     catalog = [PolicyCatalogEntry(name="x", description="", cited_sections=[])]
@@ -1282,7 +1282,7 @@ def map_delta(
     llm: LLMClient,
 ) -> MappingRecord:
     user = (
-        "Credio policy catalog:\n"
+        "Acme Pay policy catalog:\n"
         + json.dumps([c.__dict__ for c in catalog], indent=2)
         + "\n\nMastercard SPME diff:\n"
         f"section_id: {classification.section_id}\n"
@@ -1309,7 +1309,7 @@ Expected: 2 passed.
 
 ```bash
 git add prompts/map.txt pipeline/map_changes.py tests/test_map_changes.py
-git commit -m "feat(map): LLM-driven Mastercard section → Credio policy mapping"
+git commit -m "feat(map): LLM-driven Mastercard section → Acme Pay policy mapping"
 ```
 
 ---
@@ -1324,10 +1324,10 @@ git commit -m "feat(map): LLM-driven Mastercard section → Credio policy mappin
 - [ ] **Step 1: Write `prompts/propose.txt`**
 
 ```
-You are a payments compliance analyst proposing a concrete edit to a Credio policy file in response to a Mastercard SPME change.
+You are a payments compliance analyst proposing a concrete edit to a Acme Pay policy file in response to a Mastercard SPME change.
 
 You will be given:
-1. The current contents of one Credio policy file (markdown or yaml).
+1. The current contents of one Acme Pay policy file (markdown or yaml).
 2. The Mastercard SPME section diff (before / after).
 3. The rationale for why this file is affected.
 
@@ -1440,7 +1440,7 @@ Expected: 1 passed.
 
 ```bash
 git add prompts/propose.txt pipeline/propose.py tests/test_propose.py
-git commit -m "feat(propose): LLM emits full new file contents per affected Credio policy"
+git commit -m "feat(propose): LLM emits full new file contents per affected Acme Pay policy"
 ```
 
 ---
@@ -1903,12 +1903,12 @@ git commit -m "feat(record): ChangeRecord schema for pipeline → presentation h
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Credio Policy Updates{% endblock %}</title>
+  <title>{% block title %}Acme Pay Policy Updates{% endblock %}</title>
   <link rel="stylesheet" href="{{ assets_prefix }}assets/style.css">
 </head>
 <body>
   <header class="site-header">
-    <a href="{{ assets_prefix }}timeline.html" class="brand">Credio Policy Updates</a>
+    <a href="{{ assets_prefix }}timeline.html" class="brand">Acme Pay Policy Updates</a>
   </header>
   <main class="container">
     {% block content %}{% endblock %}
@@ -2035,7 +2035,7 @@ cd credio-policies && git add dist/assets/style.css && git commit -m "feat(dist)
       </span>
     </div>
     <div style="font-size:12px; color:#666; margin-top:6px;">
-      {{ t.affected_policy_count }} Credio policies affected ·
+      {{ t.affected_policy_count }} Acme Pay policies affected ·
       <a href="transitions/{{ t.slug }}.html">View {{ t.change_count }} changes →</a>
     </div>
   </div>
@@ -2270,7 +2270,7 @@ git commit -m "feat(presentation): per-transition change-cards page"
       <div class="prose">{{ change.section_redline_html | safe }}</div>
     </div>
     <div class="col">
-      <div class="label">Credio · {{ change.affected_files | length }} file(s) affected</div>
+      <div class="label">Acme Pay · {{ change.affected_files | length }} file(s) affected</div>
       {% for f in change.affected_files %}
         <div style="margin-bottom:14px;">
           <div style="font-size:12px; font-weight:600;">{{ f.path }}</div>
@@ -3073,7 +3073,7 @@ Expected:
 - [ ] **Step 3: Manually open `credio-policies/dist/timeline.html` in a browser**
 
 Navigate timeline → a transition → a detail page → confirm:
-- Side-by-side tab shows the Mastercard SPME redline on left, Credio file diffs on right.
+- Side-by-side tab shows the Mastercard SPME redline on left, Acme Pay file diffs on right.
 - Redline tab shows resulting `policy.md` in track-changes form.
 - Raw diff tab shows a unified diff.
 - Materiality badges render in expected colors.
@@ -3121,17 +3121,17 @@ Expected: 5 branches `pr-1` … `pr-5` exist; timeline shows 5 transitions; each
 For each `dist/changes/*.html`:
 - Side-by-side renders without empty columns.
 - Mastercard cited section ID is present and matches a real section in the corresponding extracted markdown.
-- At least one Credio file is visibly edited.
+- At least one Acme Pay file is visibly edited.
 
 - [ ] **Step 4: Validate phase 1 success criteria from §11 of the spec**
 
 Check each criterion explicitly:
-- [ ] All 5 SPME transitions produce a passing proposal (at least one Credio file edited per transition, valid YAML).
+- [ ] All 5 SPME transitions produce a passing proposal (at least one Acme Pay file edited per transition, valid YAML).
 - [ ] Each detail page cites specific Mastercard SPME section IDs.
 - [ ] Timeline → cards → detail navigation has no dead ends.
 - [ ] Side-by-side and redline render correctly for at least one example of clarifying / substantive / breaking class each (skip class if no instance exists; note in success report).
 - [ ] Cold-cache run completes in < 30 minutes; warm < 15.
-- [ ] Non-cosmetic Mastercard section diffs covered: ≥ 80% mapped to a Credio policy or explicitly marked "no surface".
+- [ ] Non-cosmetic Mastercard section diffs covered: ≥ 80% mapped to a Acme Pay policy or explicitly marked "no surface".
 
 - [ ] **Step 5: Commit phase 1 demo state**
 
@@ -3160,7 +3160,7 @@ echo "Phase 1 ready."
 ## Walkthrough (5 min)
 1. Land on timeline. Read out: "5 SPME transitions across 3 years; here's the materiality breakdown."
 2. Click into the most-loaded transition. Skim 1-2 cards.
-3. Open the headline change. Walk side-by-side: "Here is the exact Mastercard line that changed; here is the corresponding edit to a Credio file."
+3. Open the headline change. Walk side-by-side: "Here is the exact Mastercard line that changed; here is the corresponding edit to a Acme Pay file."
 4. Click Redline tab: "This is what compliance reviewers see — Word-style track changes."
 5. Click Raw diff: "And for engineers, here's the underlying patch."
 6. Back to timeline. Mention that the same pipeline runs against Mastercard Rules and Chargeback Guide in phases 2 and 3.
@@ -3168,7 +3168,7 @@ echo "Phase 1 ready."
 ## What to listen for
 - Is the change-detection right? (factual)
 - Is the impact mapping plausible? (expert judgment)
-- Would they merge the proposed Credio edit?
+- Would they merge the proposed Acme Pay edit?
 
 ## Captured feedback template
 - Misclassified changes:
@@ -3180,7 +3180,7 @@ echo "Phase 1 ready."
 
 - [ ] **Step 2: Run the dry-run with one internal reviewer**
 
-Capture feedback in the template. Do not ship to Credio until at least one round of internal feedback is integrated.
+Capture feedback in the template. Do not ship to Acme Pay until at least one round of internal feedback is integrated.
 
 - [ ] **Step 3: Commit**
 
@@ -3203,7 +3203,7 @@ git commit -m "docs: phase 1 demo runbook"
 - §4.4 classify → task 8
 - §4.5 map → task 9
 - §4.6 propose (with change-record JSON) → tasks 10, 15
-- §5 synthetic Credio repo → task 7
+- §5 synthetic Acme Pay repo → task 7
 - §5.3 sequential branches → task 11
 - §5.4 PDF rendering → task 12, wired in task 22
 - §6.1 timeline → task 17
@@ -3215,7 +3215,7 @@ git commit -m "docs: phase 1 demo runbook"
 - §10 config → tasks 1, 2
 - §11 success criteria → task 24 explicit checklist
 - §12 risk on `redlines` quality → smoke test step 4 of task 23 spot-checks; if it breaks, follow-up task is implied
-- §13 out of scope → respected throughout (no GitHub, no real Credio code)
+- §13 out of scope → respected throughout (no GitHub, no real Acme Pay code)
 
 **Placeholder scan:** No "TBD"/"TODO"/"implement later" wording in steps. Task 7 lists 7 policy folders by name + topic + thresholds — this is concrete enough to author from. The "drop stale branches" line in Task 24 is a real shell loop, not a placeholder.
 

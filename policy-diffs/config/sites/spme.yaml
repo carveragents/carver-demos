@@ -1,6 +1,6 @@
 # config/sites/spme.yaml
 #
-# Site/artifact configuration for the Halyard Pay · Mastercard SPME demo.
+# Site/artifact configuration for the Acme Pay · Mastercard SPME demo.
 # All client-facing strings flow from this file. To prep a new client or
 # artifact (Phase 2 = Mastercard Rules, Phase 3 = Chargeback Guide, or any
 # new client), copy this file to config/sites/<slug>.yaml and edit.
@@ -11,10 +11,10 @@
 # Brand: shown in the site header, footer, and page <title> tags.
 # ──────────────────────────────────────────────────────────────────────
 brand:
-  client: Halyard Pay
+  client: Acme Pay
   product: Policy Updates
   tagline: Powered by Carver Agents
-  footer_note: "Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review"
+  footer_note: "Generated from Mastercard SPME proposals · Subject to Acme Pay compliance review"
 
 # ──────────────────────────────────────────────────────────────────────
 # Artifact: the source publication being analyzed.
@@ -32,9 +32,9 @@ artifact:
 # ──────────────────────────────────────────────────────────────────────
 overview:
   hero_eyebrow: "Carver Agents · demo"
-  hero_title: "Compliance review of Mastercard SPME → Halyard Pay policy updates"
+  hero_title: "Compliance review of Mastercard SPME → Acme Pay policy updates"
   artifact_intro: "The <strong>SPME</strong> (Security Rules and Procedures — Merchant Edition) is Mastercard's primary compliance publication for acquirers and merchants. Mastercard refreshes it roughly every 6–12 months. The following published versions were reviewed:"
-  policies_intro: "These represent the eight policy areas a hypothetical Halyard Pay compliance program would maintain to satisfy Mastercard's published rules. <strong>These are synthetic v1 baseline policies — they do not reflect any production Halyard Pay policy</strong> and exist solely to demonstrate how the agent surfaces and proposes edits."
+  policies_intro: "These represent the eight policy areas a hypothetical Acme Pay compliance program would maintain to satisfy Mastercard's published rules. <strong>These are synthetic v1 baseline policies — they do not reflect any production Acme Pay policy</strong> and exist solely to demonstrate how the agent surfaces and proposes edits."
   provenance_note: "Source: archived from Mastercard's public publications via the Internet Archive Wayback Machine. PDFs are bundled with this demo for offline review."
 
 # Pipeline-step descriptions on overview. Three steps required.
@@ -42,7 +42,7 @@ pipeline_steps:
   - title: Detect
     body: "Extract text from each SPME PDF, identify every numbered section, and compare consecutive versions to surface added, removed, and modified sections."
   - title: "Classify & map"
-    body: "For each detected change, an LLM assigns a materiality grade (breaking → cosmetic) and identifies which Halyard Pay policy areas are affected by the new Mastercard text."
+    body: "For each detected change, an LLM assigns a materiality grade (breaking → cosmetic) and identifies which Acme Pay policy areas are affected by the new Mastercard text."
   - title: Propose
     body: "Draft updated <code>rules.yaml</code> and <code>policy.md</code> for each affected policy, emit a change record with side-by-side redlines, and link back to the cited SPME section."
 
@@ -53,12 +53,12 @@ navigation:
     - title: By release
       body: 'The <a href="timeline/index.html">Timeline</a> page shows all SPME release-to-release transitions in chronological order, with the materiality breakdown of each release. Click into a release to see the full list of proposed changes grouped by severity; click a change to review the proposed edit side-by-side against the cited Mastercard section.'
     - title: By policy
-      body: 'The <a href="policies/index.html">Policies</a> page shows each Halyard Pay policy with its current text. Each policy detail page includes a mini-timeline of every proposed change touching it across releases — useful for spotting a single policy that''s being repeatedly revised.'
+      body: 'The <a href="policies/index.html">Policies</a> page shows each Acme Pay policy with its current text. Each policy detail page includes a mini-timeline of every proposed change touching it across releases — useful for spotting a single policy that''s being repeatedly revised.'
 
 # Disclaimers shown on overview. <strong>...</strong> HTML allowed.
 disclaimers:
-  - "The Halyard Pay policies shown here are <strong>synthetic v1 baselines</strong> built for this demo. They do not reflect any production policy."
-  - "All proposed edits are <strong>agent-generated</strong> and have not been reviewed or approved by Halyard Pay Compliance."
+  - "The Acme Pay policies shown here are <strong>synthetic v1 baselines</strong> built for this demo. They do not reflect any production policy."
+  - "All proposed edits are <strong>agent-generated</strong> and have not been reviewed or approved by Acme Pay Compliance."
   - "This site is for <strong>review feedback</strong>; nothing here is binding, legal advice, or a recommended course of action."
   - "Mastercard publications are republished here under fair-use review purposes from publicly archived versions. Always consult the current authoritative Mastercard publication for compliance decisions."
 

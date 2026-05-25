@@ -2,7 +2,7 @@
 
 Acquirers processing transactions on the Mastercard network are required to perform
 Know Your Business (KYB) due diligence on merchants before onboarding and on a
-recurring basis thereafter. Halyard Pay, as an acquirer, must collect and verify a
+recurring basis thereafter. Acme Pay, as an acquirer, must collect and verify a
 minimum set of documents for each merchant to establish business legitimacy, confirm
 beneficial ownership, and satisfy anti-money laundering screening requirements.
 

@@ -10,7 +10,7 @@ We built a demo of what this looks like when an AI agent does the first pass.
 
 ## What we built
 
-Five Mastercard SPME releases, from June 2022 through May 2025. For each pair of consecutive releases, the agent does three things. It detects every section that changed. It assigns each change a materiality grade: breaking, substantive, clarifying, or cosmetic. And it drafts a corresponding edit to the payment processor's internal policies. The processor here is fictional; we called it Halyard Pay and gave it synthetic baseline policies, so the proposals you'll see are illustrative, not legally meaningful.
+Five Mastercard SPME releases, from June 2022 through May 2025. For each pair of consecutive releases, the agent does three things. It detects every section that changed. It assigns each change a materiality grade: breaking, substantive, clarifying, or cosmetic. And it drafts a corresponding edit to the payment processor's internal policies. The processor here is fictional; we called it Acme Pay and gave it synthetic baseline policies, so the proposals you'll see are illustrative, not legally meaningful.
 
 Across the full timeline the agent produced 214 proposed revisions, 15 of them flagged as breaking, touching 8 policy areas. Those numbers are specific because the demo is. In a real compliance estate the totals would be different on day one and they'd shift every quarter.
 

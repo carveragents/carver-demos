@@ -2,7 +2,7 @@
 
 Account-takeover fraud occurs when a malicious actor gains unauthorized access to
 a cardholder's account and initiates transactions without the cardholder's consent.
-Halyard Pay implements real-time risk scoring on authentication events and enforces a
+Acme Pay implements real-time risk scoring on authentication events and enforces a
 mandatory 3DS (3-D Secure) challenge for any session where the computed risk score
 meets or exceeds the defined threshold.
 

@@ -1,16 +1,16 @@
 # Policy-diffs POC — Design
 
 **Date:** 2026-05-07
-**Audience:** Internal team building the POC; Credio is the customer who will see the demo.
+**Audience:** Internal team building the POC; Acme Pay is the customer who will see the demo.
 **Status:** Approved design. Implementation plan to follow.
 
 ## 1. Problem
 
-Credio (https://credio.xyz) sells AI agents that run risk and compliance operations for payment processors and fintechs. Their agents enforce card-network rules on behalf of those customers. When Mastercard updates its rulebooks, Credio's internal policy library — which the agents reference — must be updated. Today this is a manual, slow process; missing or late updates create compliance exposure.
+Acme Pay sells AI agents that run risk and compliance operations for payment processors and fintechs. Their agents enforce card-network rules on behalf of those customers. When Mastercard updates its rulebooks, Acme Pay's internal policy library — which the agents reference — must be updated. Today this is a manual, slow process; missing or late updates create compliance exposure.
 
-This POC automates the workflow: detect what changed in a Mastercard B2B artifact between published versions, map each change to the affected Credio policies, and present a structured proposal of the resulting policy updates. A timeline view stitches the proposals together so a Credio reviewer can see the evolution at a glance.
+This POC automates the workflow: detect what changed in a Mastercard B2B artifact between published versions, map each change to the affected Acme Pay policies, and present a structured proposal of the resulting policy updates. A timeline view stitches the proposals together so a Acme Pay reviewer can see the evolution at a glance.
 
-The POC's purpose is **customer feedback**. The customer-facing surface is a static, browser-based reviewer — not raw `git diff` — so non-technical compliance reviewers can react to: (a) is the change detection right; (b) is the impact mapping plausible; (c) does the proposed Credio edit look like something they would accept. The proposed updates live inside per-change JSON records under `artifacts/spme/.../changes/`; the policy files in `credio-policies/policies/` stay pinned to the v1 baseline. No git branches, no PR substrate — the timeline view is the only customer surface.
+The POC's purpose is **customer feedback**. The customer-facing surface is a static, browser-based reviewer — not raw `git diff` — so non-technical compliance reviewers can react to: (a) is the change detection right; (b) is the impact mapping plausible; (c) does the proposed Acme Pay edit look like something they would accept. The proposed updates live inside per-change JSON records under `artifacts/spme/.../changes/`; the policy files in `credio-policies/policies/` stay pinned to the v1 baseline. No git branches, no PR substrate — the timeline view is the only customer surface.
 
 ## 2. Phased rollout
 
@@ -18,9 +18,9 @@ Three phases, each anchored on a different Mastercard B2B artifact. Each phase r
 
 | Phase | Artifact | Why this order |
 |------|----------|----------------|
-| 1 | **Security Rules and Procedures – Merchant Edition (SPME)** | Tightest fit to Credio's fraud/risk/BRAM agent surfaces. Smaller doc (~250 pages), yearly clean refreshes. Lets us validate the pipeline before scaling. |
+| 1 | **Security Rules and Procedures – Merchant Edition (SPME)** | Tightest fit to Acme Pay's fraud/risk/BRAM agent surfaces. Smaller doc (~250 pages), yearly clean refreshes. Lets us validate the pipeline before scaling. |
 | 2 | **Mastercard Rules** | The flagship rulebook. Broader scope (acquirer obligations, ECP/EFM, service providers). Stresses the pipeline — wider mappings, more sections. |
-| 3 | **Chargeback Guide** | Narrow but deep on dispute resolution. Maps to Credio's disputes/chargebacks agent (their +35% win-rate claim). Largest doc (~1,100 pages). |
+| 3 | **Chargeback Guide** | Narrow but deep on dispute resolution. Maps to Acme Pay's disputes/chargebacks agent (their +35% win-rate claim). Largest doc (~1,100 pages). |
 
 Quality bar must be met on phase N before phase N+1 starts.
 
@@ -28,7 +28,7 @@ Quality bar must be met on phase N before phase N+1 starts.
 
 - All 5 SPME version transitions covered end-to-end (6 distinct content versions on Wayback, 2022-06 → 2025-07, 5 transitions).
 - For each transition: per-section LLM classification + mapping + per-file proposed edits, captured as `ChangeRecord` JSONs.
-- Sequential cumulative state: transition N's proposer sees the Credio files as transition N-1's edits left them (tracked in-memory across one phase run). The working-tree policy files stay pinned to the v1 baseline.
+- Sequential cumulative state: transition N's proposer sees the Acme Pay files as transition N-1's edits left them (tracked in-memory across one phase run). The working-tree policy files stay pinned to the v1 baseline.
 - Static HTML timeline as the demo entry point, with drill-downs into per-transition feeds and per-change detail pages.
 - A reusable cache of intermediate artifacts (extracted markdown, per-section diffs, classification summaries, mapping rationales, change records) — these are explicit outputs, not throwaways.
 
@@ -52,7 +52,7 @@ Six stages, deterministic upstream, LLM downstream.
 ```
 1. Fetch     →  2. Extract   →  3. Diff       →  4. Classify  →  5. Map      →  6. Propose
 [curl]          [pymupdf +      [per-section    [LLM:           [LLM: which   [LLM: emit
-[Wayback]       pdfplumber]     text diff]      summarize +     Credio        policy.md /
+[Wayback]       pdfplumber]     text diff]      summarize +     Acme Pay        policy.md /
                                                 materiality]    policies      rules.yaml
                                                                 affected]     edits as patch]
 ```
@@ -77,22 +77,22 @@ Six stages, deterministic upstream, LLM downstream.
 
 ### 4.4 Classify
 - For each changed section, one LLM call: summarise the change in one paragraph; score *materiality* on a fixed scale (none / cosmetic / clarifying / substantive / breaking).
-- Cosmetic changes (whitespace, typo fixes) are dropped from the downstream pipeline — they don't generate Credio noise but stay in the partials cache.
+- Cosmetic changes (whitespace, typo fixes) are dropped from the downstream pipeline — they don't generate Acme Pay noise but stay in the partials cache.
 - Output: `artifacts/<artifact>/<from>_to_<to>/classified.jsonl`.
 
 ### 4.5 Map
-- For each *substantive* or *breaking* section diff, one LLM call: list which Credio policy files are affected, with rationale and the specific Mastercard section IDs cited.
-- The Credio policy repo is sent in the prompt so the LLM has the full target surface. Stable content is placed at the prompt prefix to benefit from OpenAI prompt caching.
+- For each *substantive* or *breaking* section diff, one LLM call: list which Acme Pay policy files are affected, with rationale and the specific Mastercard section IDs cited.
+- The Acme Pay policy repo is sent in the prompt so the LLM has the full target surface. Stable content is placed at the prompt prefix to benefit from OpenAI prompt caching.
 - Output: `artifacts/<artifact>/<from>_to_<to>/mapping.jsonl`.
 
 ### 4.6 Propose
-- For each affected Credio policy file, one LLM call: emit the new full contents of the file (format-aware — yaml or markdown), with retry + safe-fallback if YAML output fails to parse.
+- For each affected Acme Pay policy file, one LLM call: emit the new full contents of the file (format-aware — yaml or markdown), with retry + safe-fallback if YAML output fails to parse.
 - The proposed `new_contents` updates the orchestrator's in-memory cumulative state so the next transition's proposer sees the file as the prior transition left it. The on-disk policy file stays pinned to the v1 baseline.
-- A structured **change record** (JSON) is written for each change: title, materiality, plain-English summary, Mastercard section refs and quoted before/after, list of affected Credio files with their before/after content, and rationale. The presentation layer (§6) renders entirely from these records.
+- A structured **change record** (JSON) is written for each change: title, materiality, plain-English summary, Mastercard section refs and quoted before/after, list of affected Acme Pay files with their before/after content, and rationale. The presentation layer (§6) renders entirely from these records.
 
-## 5. Synthetic Credio policy library
+## 5. Synthetic Acme Pay policy library
 
-A tracked subdirectory `credio-policies/` within the main repo, representing what we believe Credio's internal compliance library looks like. The directory holds the v1 baseline (2022-06) and is never mutated by the pipeline — proposed updates live in change records, not in the working tree.
+A tracked subdirectory `credio-policies/` within the main repo, representing what we believe Acme Pay's internal compliance library looks like. The directory holds the v1 baseline (2022-06) and is never mutated by the pipeline — proposed updates live in change records, not in the working tree.
 
 ### 5.1 Layout
 
@@ -136,7 +136,7 @@ credio-policies/
 - The orchestrator holds an in-memory `policy_path -> current_contents` map across one phase run.
 - Transition N's proposer reads from this map (or the v1 baseline on disk for first sight), so it sees the file as transition N-1's edits left it.
 - After each proposal, the map is updated. The on-disk file is never mutated.
-- Effect: the Credio side evolves cumulatively year-over-year for the LLM calls and the change records, while the tracked baseline stays clean for reviewers browsing the repo.
+- Effect: the Acme Pay side evolves cumulatively year-over-year for the LLM calls and the change records, while the tracked baseline stays clean for reviewers browsing the repo.
 
 ### 5.4 Rendered PDFs
 - `policy.md` is canonical (clean text diffs feed the redline view). On the `render-pdfs` CLI command, `pandoc` regenerates `dist/policies/<policy>.pdf` from the v1 baseline `policy.md`. The PDF is what compliance teams distribute internally; including it makes the demo feel authentic.
@@ -152,7 +152,7 @@ The demo entry point. Vertical timeline of all transitions (5 in phase 1). Each 
 - Date range (`2024-09 → 2025-05`)
 - Mastercard artifact + version label (e.g. *SPME 2025 yearly refresh*)
 - Materiality summary (counts of breaking / substantive / clarifying changes)
-- Number of Credio policies affected
+- Number of Acme Pay policies affected
 - Click → opens the corresponding transition page
 
 Audience: exec / overview reviewers. Should be readable in under 30 seconds.
@@ -163,7 +163,7 @@ For one transition, a feed of cards, one per non-cosmetic change. Each card show
 - Plain-English title and summary of the change
 - Materiality badge (colour-coded: breaking red, substantive orange, clarifying yellow)
 - Cited Mastercard sections (e.g. `SPME §10.2`)
-- Affected Credio policy folders
+- Affected Acme Pay policy folders
 - Click → opens the corresponding detail page
 
 Audience: compliance reviewers wanting to scan the impact set quickly.
@@ -172,9 +172,9 @@ Audience: compliance reviewers wanting to scan the impact set quickly.
 
 Tabbed view, three tabs:
 
-**Tab 1: Side-by-side (default)** — Two columns. Left: the Mastercard SPME section, with word-level redline showing what changed. Right: the affected Credio file(s), each shown in its native format (markdown for `policy.md`, monospaced YAML for `rules.yaml`) with the corresponding redline. Multiple Credio files affected by one Mastercard change appear stacked on the right. Below both columns: a "Why these edits?" footer explaining the chain of reasoning.
+**Tab 1: Side-by-side (default)** — Two columns. Left: the Mastercard SPME section, with word-level redline showing what changed. Right: the affected Acme Pay file(s), each shown in its native format (markdown for `policy.md`, monospaced YAML for `rules.yaml`) with the corresponding redline. Multiple Acme Pay files affected by one Mastercard change appear stacked on the right. Below both columns: a "Why these edits?" footer explaining the chain of reasoning.
 
-**Tab 2: Redline (compliance view)** — The resulting Credio `policy.md` rendered as a Word-style track-changes document. Most familiar metaphor for compliance and legal reviewers. Citation footer at the bottom links to the Mastercard source.
+**Tab 2: Redline (compliance view)** — The resulting Acme Pay `policy.md` rendered as a Word-style track-changes document. Most familiar metaphor for compliance and legal reviewers. Citation footer at the bottom links to the Mastercard source.
 
 **Tab 3: Raw diff** — Unified diff of the patch for engineers. Generated by `diff2html` (loaded from CDN) or a styled `<pre>` block. Provided for completeness; expected to be the least-used tab during a customer demo.
 
@@ -194,7 +194,7 @@ No additional LLM calls are made at render time — the presentation is a determ
 | Output | Description |
 |--------|-------------|
 | **A. Presentation layer (primary)** | The static HTML site at `credio-policies/dist/`, tracked in the repo. The customer opens `dist/timeline.html` and drills in. This is the surface that drives the demo conversation. |
-| **B. Change records** | Per-change JSON files under `artifacts/spme/<from>_to_<to>/changes/`. The durable audit trail of "what would change in which Credio file and why," anchored to a specific Mastercard SPME section. Drives the presentation layer; can be ingested into other downstream tools. |
+| **B. Change records** | Per-change JSON files under `artifacts/spme/<from>_to_<to>/changes/`. The durable audit trail of "what would change in which Acme Pay file and why," anchored to a specific Mastercard SPME section. Drives the presentation layer; can be ingested into other downstream tools. |
 | **C. Reusable partials** | Per-section markdown chunks, per-section diffs, classification summaries, mapping rationales — all cached under `artifacts/`. Each is independently reusable for future products (Mastercard rule search, change-feed, etc.). |
 
 ## 8. Repo layout (this project)
@@ -218,7 +218,7 @@ policy-diffs/
 - **PDF extraction:** `pymupdf` for body + headings; `pdfplumber` for tables. Both behind an `Extractor` adapter interface.
 - **LLM provider:** OpenAI via the official `openai` SDK.
 - **LLM models:** Config-driven per stage (default model: `gpt-5.4-mini`). Model can be overridden per stage in `config/models.yaml`; e.g., a heavier model for mapping/proposal, a cheaper one for classification. Env vars override config for CI/local.
-- **Prompt caching:** Stable prompt prefixes (Credio policy repo content, baseline SPME chunks) placed first to benefit from OpenAI's automatic prompt caching.
+- **Prompt caching:** Stable prompt prefixes (Acme Pay policy repo content, baseline SPME chunks) placed first to benefit from OpenAI's automatic prompt caching.
 - **Presentation rendering:**
   - `jinja2` for HTML templating across all three layers.
   - `redlines` (Python) for word-level prose redline → `<ins>`/`<del>` markup.
@@ -227,7 +227,7 @@ policy-diffs/
   - `difflib` (stdlib) for YAML-level diffs.
   - `diff2html` via CDN for the "Raw diff" tab — fallback to a styled `<pre>` if offline demos are required.
   - Plain handwritten CSS in `dist/assets/style.css`. No JS framework, no build step. Pages open from `file://`.
-- **PDF rendering for Credio policies:** `pandoc` (markdown → PDF).
+- **PDF rendering for Acme Pay policies:** `pandoc` (markdown → PDF).
 
 ## 10. Configuration
 
@@ -250,13 +250,13 @@ Stage-specific model and prompt selection lets us tune cost vs quality without c
 
 ## 11. Phase 1 success criteria
 
-- All 5 SPME transitions produce a passing, review-ready proposal: clean redline on at least one Credio file, valid YAML, no orphan citations, no TODOs.
+- All 5 SPME transitions produce a passing, review-ready proposal: clean redline on at least one Acme Pay file, valid YAML, no orphan citations, no TODOs.
 - Each detail page cites specific Mastercard SPME section IDs and quotes the relevant Mastercard delta.
 - Timeline page renders all 5 transitions with materiality counts and dates; clicking through the layers (timeline → cards → detail tabs) works without dead ends.
 - Side-by-side and redline tabs render correctly for at least one example of each materiality class (clarifying / substantive / breaking).
 - Pipeline + render runs end-to-end from a clean clone in under 15 minutes (with PDFs already cached) or under 30 minutes (cold).
-- One internal demo dry-run with feedback before showing Credio.
-- Non-cosmetic Mastercard section diffs covered: at least 80% mapped to a Credio policy (or explicitly marked "no Credio surface affected").
+- One internal demo dry-run with feedback before showing Acme Pay.
+- Non-cosmetic Mastercard section diffs covered: at least 80% mapped to a Acme Pay policy (or explicitly marked "no Acme Pay surface affected").
 
 ## 12. Risks & mitigations
 
@@ -264,21 +264,21 @@ Stage-specific model and prompt selection lets us tune cost vs quality without c
 |------|-----------|
 | pymupdf/pdfplumber mangle SPME tables | Adapter interface lets us swap to LlamaParse / vision extractors without touching the pipeline. Spot-check one table per version on first run. |
 | LLM hallucinates section IDs in mappings | Mapping prompt receives the actual extracted markdown for the diffed section — section IDs are echoed back from input. Validation step rejects mappings where cited section ID doesn't exist in the source. |
-| Synthetic Credio policies are unconvincing | Hand-edit baseline by human reviewer before phase 1 demo. Customer feedback in phase 1 informs polish for phase 2. |
-| OpenAI cost on full pipeline run | Materiality filter drops cosmetic changes before LLM mapping/proposal. Prompt caching on stable Credio repo prefix. Cached partials avoid re-running classification on the same diffs. |
+| Synthetic Acme Pay policies are unconvincing | Hand-edit baseline by human reviewer before phase 1 demo. Customer feedback in phase 1 informs polish for phase 2. |
+| OpenAI cost on full pipeline run | Materiality filter drops cosmetic changes before LLM mapping/proposal. Prompt caching on stable Acme Pay repo prefix. Cached partials avoid re-running classification on the same diffs. |
 | Wayback unavailability mid-run | Fetched PDFs cached locally on first hit; subsequent runs use the cache. |
 | `redlines` produces ugly markup on real markdown (lists, headings, code) | One-hour spike against a sample policy before locking. Post-process with a small wrapper that handles block boundaries; fall back to per-block diffing if word-level breaks down. |
-| Side-by-side detail layout breaks for changes that affect many Credio files | Stack the right column; cap visible files at 3 with a "show more" disclosure. |
+| Side-by-side detail layout breaks for changes that affect many Acme Pay files | Stack the right column; cap visible files at 3 with a "show more" disclosure. |
 
 ## 13. Out of scope
 
 - Phase 2 (Mastercard Rules) and Phase 3 (Chargeback Guide). Pipeline is artifact-agnostic but each phase brings new test cases and tuning.
 - Real GitHub integration (any push-based PR creation, repo hosting, webhook automation).
 - Re-introducing per-transition branches or PR substrate — replaced by the change-record + timeline model.
-- Bidirectional sync (e.g., detecting when a Credio policy update implies a Mastercard rule we should re-check).
+- Bidirectional sync (e.g., detecting when a Acme Pay policy update implies a Mastercard rule we should re-check).
 - Cross-network coverage (Visa rules, Amex, etc.).
 - Production-grade observability, retries, queue infrastructure.
-- A real Credio code base — the synthetic repo is for the demo only.
+- A real Acme Pay code base — the synthetic repo is for the demo only.
 - Server-rendered or interactive presentation (e.g. live filtering, search). Phase 1 ships a fully static site.
 
 ## 14. Open future-use ideas (the partials)
@@ -286,9 +286,9 @@ Stage-specific model and prompt selection lets us tune cost vs quality without c
 The cached intermediate artifacts have value beyond this POC:
 
 - **Mastercard rule search** — the per-section markdown is a clean, searchable corpus. Could power a small RAG-backed assistant for compliance teams.
-- **Change-feed product** — the per-version classification stream is a Mastercard "release notes" feed Credio could resell or expose to its customers.
-- **Audit trail** — the mapping rationales are a paper trail of *why* a Credio policy was changed, anchored to a Mastercard source. Useful for SOC 2 / ISO 42001 audits.
-- **Policy gap detector** — invert the mapping: for any new Mastercard section, flag Credio surfaces that have no policy coverage at all.
+- **Change-feed product** — the per-version classification stream is a Mastercard "release notes" feed Acme Pay could resell or expose to its customers.
+- **Audit trail** — the mapping rationales are a paper trail of *why* a Acme Pay policy was changed, anchored to a Mastercard source. Useful for SOC 2 / ISO 42001 audits.
+- **Policy gap detector** — invert the mapping: for any new Mastercard section, flag Acme Pay surfaces that have no policy coverage at all.
 - **Cross-network expansion** — the same pipeline shape works for Visa Core Rules, Amex network agreements, Discover etc.
 - **Programmatic API/PR surface** — for engineering customers, an opt-in flow that materialises each transition as a real GitHub PR (with the presentation layer attached as a PR-comment summary). Not how Phase 1 ships, but the change-record JSONs are the substrate that would drive it.
 

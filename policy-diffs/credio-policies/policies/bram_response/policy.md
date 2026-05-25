@@ -11,6 +11,6 @@ of receipt of the notice.
 2. Compile and submit an evidence package containing:
    - Transaction monitoring records covering the prior 180 days.
    - A written corrective action plan.
-3. Notify the Halyard Pay Compliance lead within 24 hours of receipt.
+3. Notify the Acme Pay Compliance lead within 24 hours of receipt.
 
 Source authority: Mastercard SPME §10.2.

@@ -36,7 +36,7 @@ def test_map_delta_handles_empty_affected(mocker):
     mock_llm.complete_json.return_value = {
         "section_id": "99.9",
         "affected_policies": [],
-        "rationale": "Section concerns physical card embossing; no Credio surface.",
+        "rationale": "Section concerns physical card embossing; no Acme Pay surface.",
     }
 
     catalog = [PolicyCatalogEntry(name="x", description="", cited_sections=[])]

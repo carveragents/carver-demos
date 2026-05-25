@@ -5,7 +5,7 @@
 **Tone**: Third-person, calm, explanatory
 **Tool**: Loom (Chrome browser extension)
 **Pace**: ~140 wpm — calm. Each narration block below targets the segment duration.
-**Subject**: AI-driven compliance policy review pipeline by **Carver Agents**, applied to **Mastercard SPME** publications, generating proposed updates to **Halyard Pay** (a hypothetical payment processor)
+**Subject**: AI-driven compliance policy review pipeline by **Carver Agents**, applied to **Mastercard SPME** publications, generating proposed updates to **Acme Pay** (a hypothetical payment processor)
 
 ---
 
@@ -21,7 +21,7 @@ In Chrome:
 2. **Hide bookmarks bar** (`⌘⇧B`) if visible.
 3. **Set window size to 1440×900** — use a window-resize extension or drag manually.
 4. Confirm the Loom extension icon is in the top right.
-5. Open `http://localhost:8080/index.html`. Wait for fonts to load (the "Halyard Pay · Policy Updates" header should be in Poppins, not the system serif).
+5. Open `http://localhost:8080/index.html`. Wait for fonts to load (the "Acme Pay · Policy Updates" header should be in Poppins, not the system serif).
 6. Loom settings: **Screen + Camera**, **HD 1080p**, camera bubble in bottom-right or off.
 7. Click **Start recording**.
 
@@ -31,7 +31,7 @@ In Chrome:
 
 | Term | Pronounce as | Notes |
 |---|---|---|
-| Halyard Pay | HAL-yard pay | The hypothetical payment processor (made-up, not a real brand) |
+| Acme Pay | HAL-yard pay | The hypothetical payment processor (made-up, not a real brand) |
 | SPME | "S-P-M-E" (initialism) | Mastercard's Security Rules and Procedures, Merchant Edition |
 | BRAM | "bram" (rhymes with jam) | Business Risk Assessment and Mitigation |
 | ECP | "E-C-P" | Excessive Chargeback Program |
@@ -68,7 +68,7 @@ In Chrome:
 
 **Narration**:
 
-> "This is an AI-generated review of how Mastercard's Security Rules and Procedures publication — abbreviated S-P-M-E — has evolved across five releases between 2022 and 2025. The agent reads each successive version of the publication, identifies every section that changed, classifies the severity of each change, and proposes corresponding updates to the internal policies of Halyard Pay — a hypothetical payment processor used here to demonstrate the workflow. The source documents are public Mastercard publications, archived via the Internet Archive Wayback Machine. They're bundled with this demo so reviewers can verify every proposal directly against the source. Halyard Pay's policies shown here are synthetic baselines — not real production text. The pipeline runs three stages: detect, classify, propose. Each change gets a materiality grade — breaking, substantive, clarifying, or cosmetic — depending on whether it alters a real compliance obligation."
+> "This is an AI-generated review of how Mastercard's Security Rules and Procedures publication — abbreviated S-P-M-E — has evolved across five releases between 2022 and 2025. The agent reads each successive version of the publication, identifies every section that changed, classifies the severity of each change, and proposes corresponding updates to the internal policies of Acme Pay — a hypothetical payment processor used here to demonstrate the workflow. The source documents are public Mastercard publications, archived via the Internet Archive Wayback Machine. They're bundled with this demo so reviewers can verify every proposal directly against the source. Acme Pay's policies shown here are synthetic baselines — not real production text. The pipeline runs three stages: detect, classify, propose. Each change gets a materiality grade — breaking, substantive, clarifying, or cosmetic — depending on whether it alters a real compliance obligation."
 
 ---
 
@@ -88,7 +88,7 @@ In Chrome:
 
 **Narration**:
 
-> "The timeline view shows all five Mastercard S-P-M-E release transitions in chronological order. Each row shows the date range, how many revisions were proposed in that release, and a colored severity bar showing the materiality breakdown. Across the full timeline, the agent flagged 15 changes as breaking and 199 as substantive, affecting all eight Halyard Pay policy areas."
+> "The timeline view shows all five Mastercard S-P-M-E release transitions in chronological order. Each row shows the date range, how many revisions were proposed in that release, and a colored severity bar showing the materiality breakdown. Across the full timeline, the agent flagged 15 changes as breaking and 199 as substantive, affecting all eight Acme Pay policy areas."
 
 ---
 
@@ -115,11 +115,11 @@ In Chrome:
 
 **Narration**:
 
-> "Drilling into one release — September 2024 to May 2025 — every detected change appears as a card, grouped by materiality with breaking changes first. A search box and filter pills let reviewers narrow by section ID, policy, or severity. Each card cites the specific S-P-M-E section number and lists the affected Halyard Pay policies.
+> "Drilling into one release — September 2024 to May 2025 — every detected change appears as a card, grouped by materiality with breaking changes first. A search box and filter pills let reviewers narrow by section ID, policy, or severity. Each card cites the specific S-P-M-E section number and lists the affected Acme Pay policies.
 >
 > Clicking into a change opens the detail page. The Sources row at the top links directly to both Mastercard PDFs — and crucially, with a page-number anchor that opens the source document at the exact page where the cited section appears. One click and the reviewer is staring at the original Mastercard text.
 >
-> The Side-by-side tab shows the original S-P-M-E section on the left with word-level redlines, and the proposed Halyard Pay policy edits on the right. The Raw diff tab provides the underlying unified diff for engineers, while the Redline tab renders the proposed policy as the document will read after the change is accepted."
+> The Side-by-side tab shows the original S-P-M-E section on the left with word-level redlines, and the proposed Acme Pay policy edits on the right. The Raw diff tab provides the underlying unified diff for engineers, while the Redline tab renders the proposed policy as the document will read after the change is accepted."
 
 ---
 
@@ -143,7 +143,7 @@ In Chrome:
 
 **Narration**:
 
-> "This is a verified example — section 7.2, Ongoing Monitoring, in the May to September 2023 release. The agent's summary states that Mastercard added new obligations: acquirers must regularly review e-commerce merchants' websites and verify their business activities. The 'Why these edits?' callout at the top explains the reasoning in plain English. Clicking through to the source PDF confirms the new language word-for-word. The pipeline proposes adding the new requirement to Halyard Pay's Fraud Monitoring policy. The Redline tab shows what the policy will read like after the change is accepted — same content as the side-by-side, but laid out as a track-changes document for compliance review."
+> "This is a verified example — section 7.2, Ongoing Monitoring, in the May to September 2023 release. The agent's summary states that Mastercard added new obligations: acquirers must regularly review e-commerce merchants' websites and verify their business activities. The 'Why these edits?' callout at the top explains the reasoning in plain English. Clicking through to the source PDF confirms the new language word-for-word. The pipeline proposes adding the new requirement to Acme Pay's Fraud Monitoring policy. The Redline tab shows what the policy will read like after the change is accepted — same content as the side-by-side, but laid out as a track-changes document for compliance review."
 
 ---
 
@@ -213,7 +213,7 @@ End recording.
 - Trim head and tail; aim for ≤ 5:00 final.
 - Keep camera bubble (or remove if it's distracting).
 - Export 1080p, mp4 (Loom does this by default).
-- File name suggestion: `halyard-pay-spme-demo-v1.mp4`.
+- File name suggestion: `acme-pay-spme-demo-v1.mp4`.
 
 ## 5 · Reference: silent walkthrough video
 

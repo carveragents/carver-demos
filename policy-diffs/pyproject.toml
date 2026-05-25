@@ -1,7 +1,7 @@
 [project]
 name = "policy-diffs"
 version = "0.1.0"
-description = "Mastercard B2B rule-change → Credio policy diff POC"
+description = "Mastercard B2B rule-change → Acme Pay policy diff POC"
 requires-python = ">=3.12"
 dependencies = [
   "pymupdf>=1.24",

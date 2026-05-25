@@ -1,6 +1,6 @@
 # Fraud Monitoring
 
-Halyard Pay monitors merchant fraud activity on a monthly basis to detect patterns that
+Acme Pay monitors merchant fraud activity on a monthly basis to detect patterns that
 exceed Mastercard's acceptable fraud-to-sales thresholds. A merchant whose rolling
 monthly fraud-to-sales ratio meets or exceeds 1.5% (0.015) and whose fraud count
 reaches at least 100 transactions in that same month triggers mandatory escalation
@@ -8,7 +8,7 @@ under this policy.
 
 ## When this policy applies
 
-This policy applies to all merchants processed through Halyard Pay's acquiring platform
+This policy applies to all merchants processed through Acme Pay's acquiring platform
 where Mastercard is the applicable card network. It governs both card-present and
 card-not-present transaction streams.
 

@@ -1,6 +1,6 @@
 # Chargeback Handling
 
-Chargebacks are cardholder-initiated disputes against a transaction. Halyard Pay, as the
+Chargebacks are cardholder-initiated disputes against a transaction. Acme Pay, as the
 acquirer, is responsible for managing the full dispute lifecycle on behalf of its
 merchants from initial first presentment through arbitration. Each stage of the
 lifecycle has specific evidence requirements and strict response deadlines imposed

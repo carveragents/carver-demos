@@ -30,7 +30,7 @@ def cmd_run_phase(args):
         download(s, pdf_path)
         sections_by_version.append((s, extract_sections(pdf_path)))
 
-    # One Orchestrator instance per phase: it accumulates cumulative Credio
+    # One Orchestrator instance per phase: it accumulates cumulative Acme Pay
     # state in-memory across transitions so each subsequent transition's
     # proposer sees the policies as the prior transition left them.
     orch = Orchestrator(cfg=cfg, credio_repo=credio_repo, artifacts_dir=artifacts, llm=llm)

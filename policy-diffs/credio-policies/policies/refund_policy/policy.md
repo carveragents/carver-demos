@@ -1,7 +1,7 @@
 # Refund Policy
 
 Merchants processing transactions on the Mastercard network must maintain and honor
-a clearly defined refund policy. Halyard Pay requires that merchants process refunds
+a clearly defined refund policy. Acme Pay requires that merchants process refunds
 within 30 days of a valid refund request and that cardholders are notified when a
 refund has been initiated or declined.
 

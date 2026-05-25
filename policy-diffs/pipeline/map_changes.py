@@ -61,7 +61,7 @@ def map_delta(
     llm: LLMClient,
 ) -> MappingRecord:
     user = (
-        "Credio policy catalog:\n"
+        "Acme Pay policy catalog:\n"
         + json.dumps([c.__dict__ for c in catalog], indent=2)
         + "\n\nMastercard SPME diff:\n"
         f"section_id: {classification.section_id}\n"

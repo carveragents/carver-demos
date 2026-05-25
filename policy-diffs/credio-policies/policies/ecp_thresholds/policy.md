@@ -1,7 +1,7 @@
 # Excessive Chargeback Program (ECP) Thresholds
 
 Mastercard's Excessive Chargeback Program (ECP) identifies merchants whose chargeback
-activity exceeds defined monthly ratios relative to their transaction volume. Halyard Pay
+activity exceeds defined monthly ratios relative to their transaction volume. Acme Pay
 monitors merchant chargeback-to-transaction ratios on a monthly basis and escalates
 merchants that breach program tiers to the appropriate remediation track.
 
