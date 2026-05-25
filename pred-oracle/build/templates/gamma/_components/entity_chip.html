@@ -1,0 +1,9 @@
+{% set role_cls = {
+  'regulator': 'bg-blue-50 text-blue-700 border-blue-200',
+  'company': 'bg-slate-50 text-slate-700 border-slate-200',
+  'individual': 'bg-violet-50 text-violet-700 border-violet-200',
+}[entity.role] if entity.role in ('regulator','company','individual') else 'bg-slate-50 text-slate-700 border-slate-200' %}
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded {{ role_cls }}" title="{{ entity.role }}">
+  <span class="font-medium">{{ entity.name }}</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">{{ entity.role }}</span>
+</span>

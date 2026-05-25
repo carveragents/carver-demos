@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nResolution criteria: If the Federal Reserve does a Cut of 25bps on January 26, 2028, then the market resolves to Yes.\nSettlement entities: ['Federal Open Market Committee', 'Federal Reserve System', 'Federal Reserve Board of Governors', 'Jerome Powell', 'Department of the Treasury', 'Bureau of Labor Statistics']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "FOMC 25 bps cut on Jan 26, 2028",
+        "summary": "On Jan 26, 2028, the FOMC announces an exact 25 bp reduction in the federal funds rate target range (both bounds down 0.25 pp vs prior), per official Federal Reserve release."
+      }
+    ]
+  }
+}

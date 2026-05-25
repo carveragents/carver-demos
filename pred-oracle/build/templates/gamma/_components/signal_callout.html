@@ -1,0 +1,6 @@
+{% if callout and callout.days_ahead %}
+<span class="inline-flex items-center gap-1 text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded">
+  ⚡ <span class="font-medium">Pred-Oracle signal preceded news by {{ callout.days_ahead }} days</span>
+  {% if callout.news_url %}<a href="{{ callout.news_url }}" target="_blank" rel="noopener noreferrer" class="underline">news</a>{% endif %}
+</span>
+{% endif %}

@@ -1,0 +1,10 @@
+{% set tier_class = {
+  'critical': 'bg-red-50 text-red-700 border-red-200',
+  'high': 'bg-orange-50 text-orange-700 border-orange-200',
+  'medium': 'bg-yellow-50 text-yellow-700 border-yellow-200',
+  'low': 'bg-slate-50 text-slate-600 border-slate-200',
+}[tier] %}
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded {{ tier_class }}" title="{{ tier }}">
+  <span class="font-bold">{{ score|round(0)|int }}</span>
+  <span class="opacity-70">{{ label }}</span>
+</span>

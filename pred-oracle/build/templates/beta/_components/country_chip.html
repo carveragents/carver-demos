@@ -1,0 +1,12 @@
+{% set role = member.role|default('other') %}
+{% set cls_map = {
+  'operating':   'border-blue-500 bg-blue-50 text-blue-800',
+  'considering': 'border-blue-400 border-dashed bg-blue-50/50 text-blue-700',
+  'closed':      'border-rose-400 bg-rose-50 text-rose-800 line-through',
+  'other':       'border-slate-200 bg-slate-50 text-slate-700',
+} %}
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded {{ cls_map[role] }}"
+      title="{{ member.code }} · {{ member.label }} · {{ role }}">
+  <span class="font-medium">{{ member.label|default(member.code) }}</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">{{ role }}</span>
+</span>

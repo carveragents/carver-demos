@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>May 2023 → Sep 2023 — proposed Halyard Pay updates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <span class="current">May 2023 → Sep 2023</span>
+</nav>
+
+<p class="eyebrow">Mastercard SPME release</p>
+<h1>May 2023 → Sep 2023</h1>
+
+<p class="lede"><strong>3 breaking</strong> and <strong>63 substantive</strong> revisions proposed, affecting <strong>8 policies</strong>.
+</p>
+
+<div class="filter-bar">
+  <div class="filter-row">
+    <input type="search" id="q" class="search-input" placeholder="Search section ID, summary, or policy…" autocomplete="off">
+    <span class="match-count" id="match-count">66 of 66</span>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Materiality</span>
+    <div class="filter-chips">
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="breaking" checked>Breaking</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="substantive" checked>Substantive</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="clarifying" checked>Clarifying</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="cosmetic" checked>Cosmetic</label>
+    </div>
+  </div>
+  
+  <div class="filter-row">
+    <span class="filter-label">Policy</span>
+    <div class="filter-chips">
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="ato_detection" checked>ATO Detection</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="bram_response" checked>BRAM Response</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="chargeback_handling" checked>Chargeback Handling</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="content_moderation" checked>Content Moderation</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="ecp_thresholds" checked>ECP Thresholds</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="fraud_monitoring" checked>Fraud Monitoring</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="kyb_acquirer" checked>KYB Acquirer</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="refund_policy" checked>Refund Policy</label>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<section class="mat-group" data-mat="breaking">
+  <div class="mat-group-header">
+    <span class="materiality breaking">breaking</span>
+    <span class="count">3 revisions</span>
+  </div>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.4.html"
+     data-materiality="breaking"
+     data-policies="ecp_thresholds"
+     data-search-text="merchant removal from match the entire content of the &#39;merchant removal from match&#39; section has been removed, deleting previous details on reasons and procedures for removing a merchant listing from match. 11.4 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">Merchant Removal from MATCH</div>
+    <div class="summary">The entire content of the &#39;Merchant Removal from MATCH&#39; section has been removed, deleting previous details on reasons and procedures for removing a Merchant listing from MATCH.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.4</span>
+      <span class="chip policy">ECP Thresholds</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.7.html"
+     data-materiality="breaking"
+     data-policies="fraud_monitoring"
+     data-search-text="terminal security standards the section was updated to prohibit declining transactions based on bin/iin validation or pan-related data checks, ensuring no card is disqualified from interchange system processing due to these validations. it also references pin security requirements in another section. 4.7 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Terminal Security Standards</div>
+    <div class="summary">The section was updated to prohibit declining transactions based on BIN/IIN validation or PAN-related data checks, ensuring no card is disqualified from Interchange System processing due to these validations. It also references PIN security requirements in another section.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.7</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.6.7.html"
+     data-materiality="breaking"
+     data-policies="kyb_acquirer"
+     data-search-text="franchise management program (fmp) questionnaire-based review the previous content about completing a coercion program fmp questionnaire based on identifications was completely removed and replaced by detailed definitions concerning incomplete, invalid, or inappropriate mccs and criteria for qualifying brazil-based merchants or operators based on transaction volume and use of such mccs. 8.6.7 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Franchise Management Program (FMP) Questionnaire-based Review</div>
+    <div class="summary">The previous content about completing a Coercion Program FMP questionnaire based on identifications was completely removed and replaced by detailed definitions concerning Incomplete, Invalid, or Inappropriate MCCs and criteria for qualifying Brazil-based merchants or operators based on transaction volume and use of such MCCs.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.6.7</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+</section>
+
+<section class="mat-group" data-mat="substantive">
+  <div class="mat-group-header">
+    <span class="materiality substantive">substantive</span>
+    <span class="count">63 revisions</span>
+  </div>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_1.4.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="connecting to mastercard—physical and logical security the updated section emphasizes the requirement for customers and their agents to prove to mastercard that they have effective physical and logical security controls in place for any device connecting their processing systems to the mastercard network, covering all related components. 1.4 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Connecting to Mastercard—Physical and Logical Security</div>
+    <div class="summary">The updated section emphasizes the requirement for customers and their agents to prove to Mastercard that they have effective physical and logical security controls in place for any device connecting their processing systems to the Mastercard Network, covering all related components.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §1.4</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_1.4.1.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="minimum security requirements additional specifications were added clarifying that cabinets housing service delivery point equipment must be locked both in front and rear at all times, with keys stored securely. 1.4.1 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Minimum Security Requirements</div>
+    <div class="summary">Additional specifications were added clarifying that cabinets housing Service Delivery Point Equipment must be locked both in front and rear at all times, with keys stored securely.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §1.4.1</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_1.5.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="data protection the section was updated to specify that mastercard and each customer must comply with applicable data protection laws and appendix d privacy standards when processing personal data specifically related to account data compromise events and high-risk customer obligations, highlighting legal compliance requirements. 1.5 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Data Protection</div>
+    <div class="summary">The section was updated to specify that Mastercard and each Customer must comply with applicable data protection laws and Appendix D privacy standards when processing personal data specifically related to account data compromise events and high-risk customer obligations, highlighting legal compliance requirements.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §1.5</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_1.5.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="compliance with privacy, data protection and information security requirements the section was replaced with new introductory text for chapter 2 on cybersecurity standards and programs, expanding scope to include all customers, merchants, service providers, and agents handling payment data, removing prior specific obligations regarding compliance with data protection laws. 1.5.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Compliance with Privacy, Data Protection and Information Security Requirements</div>
+    <div class="summary">The section was replaced with new introductory text for Chapter 2 on Cybersecurity Standards and Programs, expanding scope to include all Customers, Merchants, Service Providers, and agents handling payment data, removing prior specific obligations regarding compliance with data protection laws.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §1.5.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="should the responsible customer cause a pfi to conduct an examination, the responsible the updated section requires the responsible customer to notify mastercard within 24 hours when engaging a pfi for an investigation, with noncompliance penalties for failure. alternatively, the customer may investigate themselves if certain criteria are met, and must report findings, containment, and pci dss compliance within 20 business days. mastercard may review and require remediation if risks persist. 10 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">Should the responsible Customer cause a PFI to conduct an examination, the responsible</div>
+    <div class="summary">The updated section requires the responsible Customer to notify Mastercard within 24 hours when engaging a PFI for an investigation, with noncompliance penalties for failure. Alternatively, the Customer may investigate themselves if certain criteria are met, and must report findings, containment, and PCI DSS compliance within 20 business days. Mastercard may review and require remediation if risks persist.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10</span>
+      <span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.2.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="policy concerning account data compromise events and potential account data the updated section clarifies mastercard&#39;s authority over account data compromise (adc) events, emphasizing that mastercard has the final say on adc occurrences, can impose assessments, recover costs, and enforce standards. it also details how multiple related breaches might be considered a single adc event and advises customers to seek guidance if uncertain. 10.2 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">Policy Concerning Account Data Compromise Events and Potential Account Data</div>
+    <div class="summary">The updated section clarifies Mastercard&#39;s authority over Account Data Compromise (ADC) Events, emphasizing that Mastercard has the final say on ADC occurrences, can impose assessments, recover costs, and enforce standards. It also details how multiple related breaches might be considered a single ADC event and advises customers to seek guidance if uncertain.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.2</span>
+      <span class="chip policy">BRAM Response</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.3.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="responsibilities in connection with adc events and potential adc events the section was expanded to clarify that a customer&#39;s failure to cooperate with mastercard investigations, including withholding information or delaying responses without good cause, may result in adverse inferences against the customer. mastercard must notify customers before doing so and allows opportunities to justify noncompliance. this emphasizes cooperation requirements and potential consequences. 10.3 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Responsibilities in Connection with ADC Events and Potential ADC Events</div>
+    <div class="summary">The section was expanded to clarify that a Customer&#39;s failure to cooperate with Mastercard investigations, including withholding information or delaying responses without good cause, may result in adverse inferences against the Customer. Mastercard must notify Customers before doing so and allows opportunities to justify noncompliance. This emphasizes cooperation requirements and potential consequences.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.3</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.3.1.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="time-specific procedures for adc events and potential adc events the procedures now require the payment forensic investigator (pfi) to submit preliminary and final forensic reports within specified timeframes, prohibit customers from interfering with the independence and integrity of the investigation, and allow mastercard to engage a pfi directly at the customer&#39;s expense to expedite investigations. 10.3.1 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Time-Specific Procedures for ADC Events and Potential ADC Events</div>
+    <div class="summary">The procedures now require the Payment Forensic Investigator (PFI) to submit preliminary and final forensic reports within specified timeframes, prohibit Customers from interfering with the independence and integrity of the investigation, and allow Mastercard to engage a PFI directly at the Customer&#39;s expense to expedite investigations.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.3.1</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.3.2.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="ongoing procedures for adc events and potential adc events the updated section adds a new requirement for entities to consent and cooperate with mastercard-led investigations if the customer fails in their responsibilities, in addition to the existing obligations for remediation planning and monitoring. 10.3.2 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Ongoing Procedures for ADC Events and Potential ADC Events</div>
+    <div class="summary">The updated section adds a new requirement for entities to consent and cooperate with Mastercard-led investigations if the customer fails in their responsibilities, in addition to the existing obligations for remediation planning and monitoring.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.3.2</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.6.2.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="potential reduction of financial responsibility the updated section introduces specific criteria for terminal servicer-related adc events, adding detailed reporting and investigation timing requirements, plus mandatory registration and compliance confirmations. it establishes responsibilities for terminal servicers distinct from general customers and emphasizes timely notification and cooperation with mastercard and law enforcement. 10.6.2 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Potential Reduction of Financial Responsibility</div>
+    <div class="summary">The updated section introduces specific criteria for Terminal Servicer-related ADC Events, adding detailed reporting and investigation timing requirements, plus mandatory registration and compliance confirmations. It establishes responsibilities for Terminal Servicers distinct from general customers and emphasizes timely notification and cooperation with Mastercard and law enforcement.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.6.2</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.6.5.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="determination of fraud recovery (fr) the updated text clarifies when mastercard will not assess fraud recovery for compromised u.s. merchants using hybrid pos terminals, adding an effective date (1 october 2015) and specifying that this applies if certain transaction and event criteria are met. the calculation method for annual transaction count and rules for other regions remain largely unchanged. 10.6.5 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Determination of Fraud Recovery (FR)</div>
+    <div class="summary">The updated text clarifies when Mastercard will not assess fraud recovery for compromised U.S. Merchants using Hybrid POS Terminals, adding an effective date (1 October 2015) and specifying that this applies if certain transaction and event criteria are met. The calculation method for annual transaction count and rules for other regions remain largely unchanged.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.6.5</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_10.7.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling refund_policy"
+     data-search-text="assessments and/or disqualification for noncompliance the updated section adds specific references to sections 10.3 and 10.4, emphasizing ongoing customer obligations to submit required information during investigations. it also states that if a customer fails to provide required documents during the investigation, mastercard will not consider such information during an appeal. 10.7 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md policies/refund_policy/rules.yaml policies/refund_policy/policy.md chargeback_handling refund_policy chargeback handling refund policy">
+    <div class="title">Assessments and/or Disqualification for Noncompliance</div>
+    <div class="summary">The updated section adds specific references to sections 10.3 and 10.4, emphasizing ongoing customer obligations to submit required information during investigations. It also states that if a customer fails to provide required documents during the investigation, Mastercard will not consider such information during an appeal.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10.7</span>
+      <span class="chip policy">Chargeback Handling</span><span class="chip policy">Refund Policy</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="match overview the update expands and clarifies the match system&#39;s definition and categorization of possible matches, detailing exact and phonetic match criteria with specific fields and conditions, adds retroactive match procedures, and emphasizes acquirers must include merchant url for e-commerce inquiries. 11.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">MATCH Overview</div>
+    <div class="summary">The update expands and clarifies the MATCH system&#39;s definition and categorization of possible matches, detailing exact and phonetic match criteria with specific fields and conditions, adds retroactive match procedures, and emphasizes acquirers must include Merchant URL for e-commerce inquiries.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.1.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="how does match search when conducting an inquiry? the detailed tables and examples explaining exact and phonetic match search criteria were removed. instead, the section now briefly states that match searches for matches based on data from the past five years and inquires from the past 360 days, covering exact and phonetic matches without specifics. 11.1.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">How does MATCH search when conducting an inquiry?</div>
+    <div class="summary">The detailed tables and examples explaining exact and phonetic MATCH search criteria were removed. Instead, the section now briefly states that MATCH searches for matches based on data from the past five years and inquires from the past 360 days, covering exact and phonetic matches without specifics.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.1.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.2.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="certification the updated section mandates that acquirers must be officially certified by mastercard to access and use the match system, detailing the certification process and consequences of noncompliance, including penalties and fees, whereas previously only failure to enter a merchant into match was addressed. 11.2.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Certification</div>
+    <div class="summary">The updated section mandates that Acquirers must be officially certified by Mastercard to access and use the MATCH system, detailing the certification process and consequences of noncompliance, including penalties and fees, whereas previously only failure to enter a Merchant into MATCH was addressed.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.2.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.2.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="inquiring about a merchant the updated rule mandates acquirers to check the match system before signing a merchant agreement or enabling transaction acceptance. failure to do so under the correct member id/ica number can lead to compliance violations and assessments, emphasizing stricter enforcement and reporting accuracy. 11.2.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Inquiring about a Merchant</div>
+    <div class="summary">The updated rule mandates Acquirers to check the MATCH system before signing a Merchant Agreement or enabling transaction acceptance. Failure to do so under the correct Member ID/ICA Number can lead to compliance violations and assessments, emphasizing stricter enforcement and reporting accuracy.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.2.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.5.html"
+     data-materiality="substantive"
+     data-policies="ecp_thresholds"
+     data-search-text="match reason codes the match reason codes have been significantly revised: some previous codes were removed (e.g., account data compromise, cpp, laundering, excessive chargebacks/fraud), and new codes were added, including violation of standards, merchant collusion, pci data security standard noncompliance, illegal transactions, and identity theft, expanding the reasons for merchant listing. 11.5 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">MATCH Reason Codes</div>
+    <div class="summary">The MATCH reason codes have been significantly revised: some previous codes were removed (e.g., Account Data Compromise, CPP, Laundering, Excessive Chargebacks/Fraud), and new codes were added, including Violation of Standards, Merchant Collusion, PCI Data Security Standard Noncompliance, Illegal Transactions, and Identity Theft, expanding the reasons for merchant listing.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.5</span>
+      <span class="chip policy">ECP Thresholds</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_11.5.1.html"
+     data-materiality="substantive"
+     data-policies="ecp_thresholds"
+     data-search-text="reason codes for merchants listed by the acquirer the section replaces general violation reasons with specific, detailed match reason codes including account data compromise, common point of purchase, laundering, excessive chargebacks, excessive fraud, and others, providing defined thresholds for chargebacks and fraud reporting. 11.5.1 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">Reason Codes for Merchants Listed by the Acquirer</div>
+    <div class="summary">The section replaces general violation reasons with specific, detailed MATCH reason codes including account data compromise, common point of purchase, laundering, excessive chargebacks, excessive fraud, and others, providing defined thresholds for chargebacks and fraud reporting.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.5.1</span>
+      <span class="chip policy">ECP Thresholds</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_13.1.2.html"
+     data-materiality="substantive"
+     data-policies="ecp_thresholds"
+     data-search-text="service provider risk management program the update extensively revises the covered programs privacy and data protection standards appendix, adding detailed obligations for customers and the corporation regarding eu data protection law compliance, data transfer mechanisms, security measures, breach notifications, audits, liabilities, and termination. it clarifies roles, legal bases for processing, data accuracy, and introduces detailed annexes with terms and technical security controls. 13.1.2 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">Service Provider Risk Management Program</div>
+    <div class="summary">The update extensively revises the Covered Programs Privacy and Data Protection Standards appendix, adding detailed obligations for Customers and the Corporation regarding EU Data Protection Law compliance, data transfer mechanisms, security measures, breach notifications, audits, liabilities, and termination. It clarifies roles, legal bases for processing, data accuracy, and introduces detailed annexes with terms and technical security controls.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §13.1.2</span>
+      <span class="chip policy">ECP Thresholds</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="cleared, meaning the acquirer transferred the transaction data within the the entire section titled &#39;cleared, meaning the acquirer transferred the transaction data within the&#39; has been removed in the latest version of the mastercard spme document. this appears to be a complete deletion of content rather than an amendment or addition. 2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Cleared, meaning the Acquirer transferred the Transaction Data within the</div>
+    <div class="summary">The entire section titled &#39;Cleared, meaning the Acquirer transferred the Transaction Data within the&#39; has been removed in the latest version of the Mastercard SPME document. This appears to be a complete deletion of content rather than an amendment or addition.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.1.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="payment card industry (pci) security standards the updated section removes all references to pci pin security requirements, pin transaction security, forensic investigator program guide, and focuses solely on pci software security framework standards, emphasizing compliance and recommendations related only to software security for merchants and service providers. 2.1.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Payment Card Industry (PCI) Security Standards</div>
+    <div class="summary">The updated section removes all references to PCI PIN Security Requirements, PIN Transaction Security, Forensic Investigator Program Guide, and focuses solely on PCI Software Security Framework standards, emphasizing compliance and recommendations related only to software security for merchants and service providers.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.1.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="mastercard site data protection (sdp) program the update defines detailed compliance and reporting responsibilities for issuers and acquirers concerning level 1-4 merchants and service providers under the mastercard sdp program, specifying submission deadlines, validation methods like pci dss and saqs, risk management requirements for acquirers, and potential cost reductions after account data compromise events. 2.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Mastercard Site Data Protection (SDP) Program</div>
+    <div class="summary">The update defines detailed compliance and reporting responsibilities for Issuers and Acquirers concerning Level 1-4 Merchants and Service Providers under the Mastercard SDP Program, specifying submission deadlines, validation methods like PCI DSS and SAQs, risk management requirements for Acquirers, and potential cost reductions after Account Data Compromise Events.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.2.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="merchant compliance requirements the update adds a requirement that acquirers ensure merchants transitioning between pci levels achieve compliance with the new level within one year. it also mandates level 1-3 merchants using third-party payment software to validate their software&#39;s pci compliance via the pci ssc website. other recommendations remain unchanged. 2.2.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Merchant Compliance Requirements</div>
+    <div class="summary">The update adds a requirement that Acquirers ensure Merchants transitioning between PCI levels achieve compliance with the new level within one year. It also mandates Level 1-3 Merchants using third-party payment software to validate their software&#39;s PCI compliance via the PCI SSC website. Other recommendations remain unchanged.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.2.4.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="mastercard cybersecurity incentive program (csip) the section has been extensively revised to introduce the mastercard cybersecurity incentive program (csip), which offers eligible merchants reduced pci compliance validation or exemption through secure technologies like emv, p2pe, or tokenization. it replaces and expands former rules with detailed certification requirements and thresholds based on transaction types and regions. 2.2.4 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Mastercard Cybersecurity Incentive Program (CSIP)</div>
+    <div class="summary">The section has been extensively revised to introduce the Mastercard Cybersecurity Incentive Program (CSIP), which offers eligible merchants reduced PCI compliance validation or exemption through secure technologies like EMV, P2PE, or tokenization. It replaces and expands former rules with detailed certification requirements and thresholds based on transaction types and regions.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.4</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.2.5.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="sdp program noncompliance assessments the updated section adds detailed requirements for compromised entities to complete a site data protection account data compromise information form within 30 days, and sets specific pci dss compliance deadlines with required evidence submission to mastercard by email. it specifies different deadlines and evidence types based on entity classification (service provider, level 1/2 merchants, level 3/4 merchants). 2.2.5 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">SDP Program Noncompliance Assessments</div>
+    <div class="summary">The updated section adds detailed requirements for compromised entities to complete a Site Data Protection Account Data Compromise Information Form within 30 days, and sets specific PCI DSS compliance deadlines with required evidence submission to Mastercard by email. It specifies different deadlines and evidence types based on entity classification (Service Provider, Level 1/2 Merchants, Level 3/4 Merchants).</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.5</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.2.6.html"
+     data-materiality="substantive"
+     data-policies="ato_detection bram_response"
+     data-search-text="mandatory compliance requirements for compromised entities the update adds that merchants with a confirmed account data compromise (adc) event may be reclassified as level 1 and must follow related compliance and noncompliance rules. it clarifies noncompliance consequences for service providers, including reclassification and delisting, and states that extension requests for pci dss deadlines will not be approved. 2.2.6 policies/ato_detection/rules.yaml policies/ato_detection/policy.md policies/bram_response/rules.yaml policies/bram_response/policy.md ato_detection bram_response ato detection bram response">
+    <div class="title">Mandatory Compliance Requirements for Compromised Entities</div>
+    <div class="summary">The update adds that merchants with a confirmed Account Data Compromise (ADC) event may be reclassified as Level 1 and must follow related compliance and noncompliance rules. It clarifies noncompliance consequences for Service Providers, including reclassification and delisting, and states that extension requests for PCI DSS deadlines will not be approved.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.6</span>
+      <span class="chip policy">ATO Detection</span><span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="card production security standards the updated section adds details about the gvcp certification process for vendor facilities, including annual security assessments, issuance of compliance certifications, and a publicly available list of certified vendors. existing terms about vendor agreements and data safeguarding remain unchanged. 2.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Card Production Security Standards</div>
+    <div class="summary">The updated section adds details about the GVCP certification process for vendor facilities, including annual security assessments, issuance of compliance certifications, and a publicly available list of certified vendors. Existing terms about vendor agreements and data safeguarding remain unchanged.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_2.4.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="pin entry devices (peds) and encrypting pin pads (epps) the updated section adds explicit requirements for acquirers to manage ped and epp inventories by identifying device types and locations and having trained staff conduct inspections. it also introduces mastercard’s authority to mandate risk mitigation actions, including device model sunsetting in case of security threats, prohibiting use after a sunset date. 2.4.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">PIN Entry Devices (PEDs) and Encrypting PIN Pads (EPPs)</div>
+    <div class="summary">The updated section adds explicit requirements for Acquirers to manage PED and EPP inventories by identifying device types and locations and having trained staff conduct inspections. It also introduces Mastercard’s authority to mandate risk mitigation actions, including device model sunsetting in case of security threats, prohibiting use after a sunset date.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.4.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_3.11.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="consumer device cardholder verification methods the update adds new requirements for connected consumer devices (requiring consent on the device used), mandates strong device integrity checks during cdcvm use, and allows optional suppression of cdcvm for contactless transit transactions identified via specific mcc codes or authorization message data. 3.11 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Consumer Device Cardholder Verification Methods</div>
+    <div class="summary">The update adds new requirements for Connected Consumer Devices (requiring consent on the device used), mandates strong device integrity checks during CDCVM use, and allows optional suppression of CDCVM for contactless transit transactions identified via specific MCC codes or authorization message data.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §3.11</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_3.11.3.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="persistent authentication the updated section now explicitly requires the device used in persistent authentication to prompt the cardholder for explicit consent before a transaction, and mandates compliance with mastercard standards for consumer authentication technology, adding specific compliance and consent obligations. 3.11.3 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Persistent Authentication</div>
+    <div class="summary">The updated section now explicitly requires the device used in persistent authentication to prompt the cardholder for explicit consent before a transaction, and mandates compliance with Mastercard Standards for consumer authentication technology, adding specific compliance and consent obligations.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §3.11.3</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_3.11.7.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="use of a vendor the text has changed from detailing specific transaction authentication requirements to emphasizing that any agreement with a vendor providing cdcvm services must ensure the vendor agrees to protect personal information and comply with all relevant standards. 3.11.7 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Use of a Vendor</div>
+    <div class="summary">The text has changed from detailing specific transaction authentication requirements to emphasizing that any agreement with a vendor providing CDCVM services must ensure the vendor agrees to protect personal information and comply with all relevant standards.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §3.11.7</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_3.13.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="acquirer information the section now requires acquirers to ensure hybrid terminals do not reject transactions solely due to service codes on the magnetic stripe, with specific conditions for certain codes and regions. authorization must be obtained for magnetic stripe-read transactions in europe when certain service codes are present. 3.13.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Acquirer Information</div>
+    <div class="summary">The section now requires acquirers to ensure Hybrid Terminals do not reject transactions solely due to service codes on the magnetic stripe, with specific conditions for certain codes and regions. Authorization must be obtained for magnetic stripe-read transactions in Europe when certain service codes are present.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §3.13.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.1.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="personal identification numbers (pins) the updated section removes the initial general compliance statement and adds explicit requirements that all pin encryption, translation, and decryption must be performed using hardware encryption only, prohibiting software-based methods. additionally, it advises issuers to consult issuer pin security guidelines for comprehensive pin management practices. 4.1 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Personal Identification Numbers (PINs)</div>
+    <div class="summary">The updated section removes the initial general compliance statement and adds explicit requirements that all PIN encryption, translation, and decryption must be performed using hardware encryption only, prohibiting software-based methods. Additionally, it advises Issuers to consult Issuer PIN Security Guidelines for comprehensive PIN management practices.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.1</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.10.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="multi-factor authentication methods for remote commerce token transactions the updated section adds requirements for security evaluation and qualification of mfa methods as high or low assurance, mandates mastercard approval for low assurance methods, and specifies audit requirements under psd2 rts and uk standards, impacting issuer reliance on fraud deterrence. 4.10 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Multi-Factor Authentication Methods for Remote Commerce Token Transactions</div>
+    <div class="summary">The updated section adds requirements for security evaluation and qualification of MFA methods as high or low assurance, mandates Mastercard approval for low assurance methods, and specifies audit requirements under PSD2 RTS and UK Standards, impacting issuer reliance on fraud deterrence.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.10</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.10.2.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="multi-factor authentication method functionality the updated section expands mfa requirements by mandating that both authentication and explicit consent occur before a transaction, details timing options for authentication, adds requirements for device integrity protections, and specifies measures for failed authentication attempts, including limits, blocks, notification, and re-verification processes. 4.10.2 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Multi-Factor Authentication Method Functionality</div>
+    <div class="summary">The updated section expands MFA requirements by mandating that both authentication and explicit consent occur before a transaction, details timing options for authentication, adds requirements for device integrity protections, and specifies measures for failed authentication attempts, including limits, blocks, notification, and re-verification processes.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.10.2</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.10.4.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="prolonged authentication the requirement that a successful prolonged authentication depends on an initial mfa authentication before cardholder access to stored credentials has been removed, focusing the rules solely on testing consent, authentication factor, and a five-minute open period. 4.10.4 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Prolonged Authentication</div>
+    <div class="summary">The requirement that a successful Prolonged Authentication depends on an initial MFA authentication before cardholder access to stored credentials has been removed, focusing the rules solely on testing consent, authentication factor, and a five-minute open period.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.10.4</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_4.9.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="triple des standards the section was extensively rewritten to mandate triple des encryption for all newly installed payment entry devices (peds) and host systems, require compliance for atm encrypting pin pads (epps), and transactions routed to interchange. it also allows mastercard-approved alternate encryption methods, replacing prior unrelated text on authentication factors. 4.9 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Triple DES Standards</div>
+    <div class="summary">The section was extensively rewritten to mandate Triple DES encryption for all newly installed payment entry devices (PEDs) and host systems, require compliance for ATM encrypting PIN pads (EPPs), and transactions routed to Interchange. It also allows Mastercard-approved alternate encryption methods, replacing prior unrelated text on authentication factors.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §4.9</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_5.1.1.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="card retention by merchants the updated section adds detailed procedures for returning recovered cards, including mandatory destruction of the card by cutting it vertically, a five-day return deadline with an accompanying recovery form, and specific handling instructions for cards inadvertently left by cardholders or counterfeit cards. 5.1.1 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Card Retention by Merchants</div>
+    <div class="summary">The updated section adds detailed procedures for returning recovered cards, including mandatory destruction of the card by cutting it vertically, a five-day return deadline with an accompanying recovery form, and specific handling instructions for cards inadvertently left by cardholders or counterfeit cards.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §5.1.1</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_5.1.2.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="atm card retention the section adds detailed procedures for handling retained atm cards, including logging, destruction, optional retention of suspected fraudulent cards, and conditions for returning cards to cardholders. it introduces explicit requirements on documentation, security, notifications to issuers, and prohibits fees to issuers for card retention or return. 5.1.2 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">ATM Card Retention</div>
+    <div class="summary">The section adds detailed procedures for handling retained ATM cards, including logging, destruction, optional retention of suspected fraudulent cards, and conditions for returning cards to cardholders. It introduces explicit requirements on documentation, security, notifications to issuers, and prohibits fees to issuers for card retention or return.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §5.1.2</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_5.1.3.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="payment of rewards the section changed from a general statement about optional reward payments to detailed rules about administrative fees for processing captured cards, specific fee amounts for usd and eur zones, procedures for fee reimbursement using fee collection messages, and conditions for reward payment chargebacks. 5.1.3 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Payment of Rewards</div>
+    <div class="summary">The section changed from a general statement about optional reward payments to detailed rules about administrative fees for processing captured cards, specific fee amounts for USD and EUR zones, procedures for fee reimbursement using Fee Collection messages, and conditions for reward payment chargebacks.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §5.1.3</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_5.11.7.html"
+     data-materiality="substantive"
+     data-policies="content_moderation"
+     data-search-text="of the mastercard rules manual (“the illegal or brand-damaging transactions rule”). the section 5.11.7 was added to the manual, introducing content about mastercard&#39;s illegal or brand-damaging transactions rule where there was none before. 5.11.7 policies/content_moderation/rules.yaml policies/content_moderation/policy.md content_moderation content moderation">
+    <div class="title">of the Mastercard Rules manual (“the Illegal or Brand-damaging Transactions Rule”).</div>
+    <div class="summary">The section 5.11.7 was added to the manual, introducing content about Mastercard&#39;s Illegal or Brand-damaging Transactions Rule where there was none before.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §5.11.7</span>
+      <span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_6.2.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="mastercard fraud loss control program standards the update clarifies that several fraud control measures are recommended but not always mandatory. it introduces specific thresholds and detailed monitoring requirements, especially regarding bin attacks, atm fraud, negative option billing, 3-d secure monitoring, and ongoing fraud and transaction monitoring. additional recommended tools and policies for acquirers are also detailed. 6.2 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Mastercard Fraud Loss Control Program Standards</div>
+    <div class="summary">The update clarifies that several fraud control measures are recommended but not always mandatory. It introduces specific thresholds and detailed monitoring requirements, especially regarding BIN attacks, ATM fraud, negative option billing, 3-D Secure monitoring, and ongoing fraud and transaction monitoring. Additional recommended tools and policies for acquirers are also detailed.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §6.2</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_6.2.2.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="acquirer fraud loss control programs the section updates the title and adds a new requirement effective 13 october 2023 for europe region acquirers (with specific country exclusions) mandating strong authentication (emv 3ds authentication or equivalent sca) at credential storage, wallet/token creation, or the first post card-add transaction. 6.2.2 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Acquirer Fraud Loss Control Programs</div>
+    <div class="summary">The section updates the title and adds a new requirement effective 13 October 2023 for Europe Region Acquirers (with specific country exclusions) mandating strong authentication (EMV 3DS authentication or equivalent SCA) at Credential storage, wallet/token creation, or the first post Card-add transaction.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §6.2.2</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_7.1.3.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="assessments for noncompliance with screening procedures the revised section adds a recommendation for acquirers in specific european countries to ensure wallets detect fraud signals, such as many top-ups or cryptocurrency purchases, and limit the number of cards that can top-up an account. the existing requirements for re-performing onboarding screening procedures remain unchanged. 7.1.3 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Assessments for Noncompliance with Screening Procedures</div>
+    <div class="summary">The revised section adds a recommendation for Acquirers in specific European countries to ensure wallets detect fraud signals, such as many top-ups or cryptocurrency purchases, and limit the number of cards that can top-up an account. The existing requirements for re-performing onboarding screening procedures remain unchanged.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §7.1.3</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_7.2.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="ongoing monitoring the updated section adds requirements for acquirers to regularly review e-commerce merchants&#39; websites and business activities to ensure compliance with standards and recommends using monitoring solutions to prevent illegal or harmful transactions. it also clarifies that monitoring includes fraud loss controls related to deposits and authorizations per section 6.2.2. 7.2 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Ongoing Monitoring</div>
+    <div class="summary">The updated section adds requirements for Acquirers to regularly review e-commerce Merchants&#39; websites and business activities to ensure compliance with Standards and recommends using monitoring solutions to prevent illegal or harmful transactions. It also clarifies that monitoring includes fraud loss controls related to deposits and authorizations per section 6.2.2.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §7.2</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.3.4.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="additional ecm and hecm requirements the updated section removes the detailed criteria for defining linked accounts and questionable merchants, replacing it with a new provision allowing mastercard to advise acquirers on risk mitigation or require a franchise management program customer risk review after a merchant has been classified as ecm/hecm for six months. 8.3.4 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Additional ECM and HECM Requirements</div>
+    <div class="summary">The updated section removes the detailed criteria for defining linked accounts and Questionable Merchants, replacing it with a new provision allowing Mastercard to advise Acquirers on risk mitigation or require a Franchise Management Program Customer Risk Review after a Merchant has been classified as ECM/HECM for six months.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.3.4</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="questionable merchant audit program (qmap) the updated qmap section replaces the previous general description with specific, detailed criteria to identify a questionable merchant, including transaction volume thresholds, number of transactions, and detailed fraud metrics. it defines the case scope period and clarifies mastercard&#39;s sole discretion in designating a merchant as questionable. 8.4 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Questionable Merchant Audit Program (QMAP)</div>
+    <div class="summary">The updated QMAP section replaces the previous general description with specific, detailed criteria to identify a Questionable Merchant, including transaction volume thresholds, number of transactions, and detailed fraud metrics. It defines the Case Scope Period and clarifies Mastercard&#39;s sole discretion in designating a merchant as questionable.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.1.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="qmap definitions the section changed from describing general criteria for identifying a questionable merchant to providing detailed definitions of &#39;cardholder bust-out account&#39; including specific conditions and indicators linking accounts to potential fraud and merchant investigation triggers. 8.4.1 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">QMAP Definitions</div>
+    <div class="summary">The section changed from describing general criteria for identifying a Questionable Merchant to providing detailed definitions of &#39;Cardholder bust-out account&#39; including specific conditions and indicators linking accounts to potential fraud and merchant investigation triggers.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4.1</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.2.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="mastercard commencement of an investigation the updated section specifies procedures for issuers to notify mastercard via a web-based form if a merchant is deemed questionable, detailing required information to be provided. it also introduces the possibility of a filing fee for issuer notifications and requires acquirers to promptly notify mastercard if acquiring for a questionable merchant. 8.4.2 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">Mastercard Commencement of an Investigation</div>
+    <div class="summary">The updated section specifies procedures for Issuers to notify Mastercard via a web-based form if a Merchant is deemed questionable, detailing required information to be provided. It also introduces the possibility of a filing fee for Issuer notifications and requires Acquirers to promptly notify Mastercard if acquiring for a Questionable Merchant.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4.2</span>
+      <span class="chip policy">BRAM Response</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.4.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="mastercard notification to acquirers mastercard will notify acquirers by email if a merchant meets criteria as a questionable merchant based on fraud reports. acquirers have 15 days to contest and must provide supplemental information. mastercard may audit acquirer records and request additional information. documentation must be submitted via a specified email. 8.4.4 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Mastercard Notification to Acquirers</div>
+    <div class="summary">Mastercard will notify Acquirers by email if a Merchant meets criteria as a Questionable Merchant based on fraud reports. Acquirers have 15 days to contest and must provide supplemental information. Mastercard may audit Acquirer records and request additional information. Documentation must be submitted via a specified email.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4.4</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.6.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="mastercard determination the section was expanded to specify conditions under which mastercard evaluates fraudulent transactions at questionable merchants, detailing thresholds for issuer fraud volume, recovery through existing remedies, and card functionality. it also clarifies mastercard&#39;s rights regarding information requests, payment limits, and the processing of fraud recoveries between acquirers and issuers. 8.4.6 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Mastercard Determination</div>
+    <div class="summary">The section was expanded to specify conditions under which Mastercard evaluates fraudulent transactions at Questionable Merchants, detailing thresholds for issuer fraud volume, recovery through existing remedies, and card functionality. It also clarifies Mastercard&#39;s rights regarding information requests, payment limits, and the processing of fraud recoveries between Acquirers and Issuers.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4.6</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.4.7.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="chargeback responsibility the updated rules specify that when mastercard identifies a questionable merchant, the acquirer is responsible for valid chargebacks with reason code 4849 for at least one year after announcement. issuers have 120 days from the announcement to charge back fraudulent transactions within this period, and mastercard may extend this responsibility period. 8.4.7 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Chargeback Responsibility</div>
+    <div class="summary">The updated rules specify that when Mastercard identifies a Questionable Merchant, the Acquirer is responsible for valid chargebacks with reason code 4849 for at least one year after announcement. Issuers have 120 days from the announcement to charge back fraudulent transactions within this period, and Mastercard may extend this responsibility period.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.4.7</span>
+      <span class="chip policy">Chargeback Handling</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.6.2.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="investigation process the updated text adds a requirement that issuers must notify cardholders within 10 days of notification to provide a police report or explanation if unavailable, enhancing issuer follow-up procedures in alleged coercion investigations. 8.6.2 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Investigation Process</div>
+    <div class="summary">The updated text adds a requirement that issuers must notify cardholders within 10 days of notification to provide a police report or explanation if unavailable, enhancing issuer follow-up procedures in alleged coercion investigations.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.6.2</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.6.6.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="match reporting the rules now specify that merchants meeting the coercion program criteria are added to match under reason code 24 (illegal transactions). subsequent coercion claims within 12 months lead to updating or deleting match records based on claim confirmation. 8.6.6 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">MATCH Reporting</div>
+    <div class="summary">The rules now specify that merchants meeting the Coercion Program criteria are added to MATCH under reason code 24 (Illegal Transactions). Subsequent coercion claims within 12 months lead to updating or deleting MATCH records based on claim confirmation.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.6.6</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.7.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="mastercard notification to acquirers the section was replaced with detailed tables outlining non-performance assessments for acquirers based on brazil gcms domestic transaction volume and the number of violations within twelve months. it also added mitigation options for assessments and introduced issuer interchange recovery procedures related to mcc miscoding cases. 8.7.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Mastercard Notification to Acquirers</div>
+    <div class="summary">The section was replaced with detailed tables outlining non-performance assessments for acquirers based on Brazil GCMS domestic transaction volume and the number of violations within twelve months. It also added mitigation options for assessments and introduced issuer interchange recovery procedures related to MCC miscoding cases.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.7.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.7.4.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="mastercard determination the notification from mastercard to issuers and acquirers now specifies whether the issuer&#39;s claim was substantiated or not, including details on associated fees and recovery amounts, rather than only stating that the investigation is closed and the issuer&#39;s claim status. 8.7.4 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">Mastercard Determination</div>
+    <div class="summary">The notification from Mastercard to issuers and acquirers now specifies whether the issuer&#39;s claim was substantiated or not, including details on associated fees and recovery amounts, rather than only stating that the investigation is closed and the issuer&#39;s claim status.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.7.4</span>
+      <span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_8.7.5.html"
+     data-materiality="substantive"
+     data-policies="chargeback_handling"
+     data-search-text="assessments, recovery amounts, and fees the section was revised to remove detailed penalty tiers for acquirers and mitigation guidelines, replacing them with a high-level overview of three fee components and adding a new issuer filing fee for unsubstantiated claims. it simplifies and restructures the content, eliminating specific penalty amounts and procedures for assessments and recovery. 8.7.5 policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md chargeback_handling chargeback handling">
+    <div class="title">Assessments, Recovery Amounts, and Fees</div>
+    <div class="summary">The section was revised to remove detailed penalty tiers for acquirers and mitigation guidelines, replacing them with a high-level overview of three fee components and adding a new issuer filing fee for unsubstantiated claims. It simplifies and restructures the content, eliminating specific penalty amounts and procedures for assessments and recovery.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.7.5</span>
+      <span class="chip policy">Chargeback Handling</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="general registration requirements the updated rules introduce financial penalties for acquirers who fail to register merchants or sponsored merchants as required, including initial fines up to $10,000 and escalating monthly fines for continued non-compliance after a 10-day notice period, emphasizing prompt correction and adherence to mastercard rules. 9.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">General Registration Requirements</div>
+    <div class="summary">The updated rules introduce financial penalties for Acquirers who fail to register Merchants or Sponsored Merchants as required, including initial fines up to $10,000 and escalating monthly fines for continued non-compliance after a 10-day notice period, emphasizing prompt correction and adherence to Mastercard rules.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.3.html"
+     data-materiality="substantive"
+     data-policies="content_moderation"
+     data-search-text="general monitoring requirements the revised section replaces general monitoring rules for risky transactions with detailed registration and content control requirements specifically for adult content merchants, including agreements with content providers, verification of age and identity, content review, and complaint handling processes. 9.3 policies/content_moderation/rules.yaml policies/content_moderation/policy.md content_moderation content moderation">
+    <div class="title">General Monitoring Requirements</div>
+    <div class="summary">The revised section replaces general monitoring rules for risky transactions with detailed registration and content control requirements specifically for adult content merchants, including agreements with content providers, verification of age and identity, content review, and complaint handling processes.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.3</span>
+      <span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.4.1.html"
+     data-materiality="substantive"
+     data-policies="content_moderation"
+     data-search-text="non-face-to-face adult content and services merchants the updated rules require merchants to allow individuals depicted in content to appeal for its removal and establish consent. merchants must report flagged content and complaints monthly to acquirers, who share with mastercard. merchants must not use illegal adult content to attract users, implement anti-trafficking policies, and provide acquirers temporary site access for review upon request. 9.4.1 policies/content_moderation/rules.yaml policies/content_moderation/policy.md content_moderation content moderation">
+    <div class="title">Non-face-to-face Adult Content and Services Merchants</div>
+    <div class="summary">The updated rules require Merchants to allow individuals depicted in content to appeal for its removal and establish consent. Merchants must report flagged content and complaints monthly to Acquirers, who share with Mastercard. Merchants must not use illegal adult content to attract users, implement anti-trafficking policies, and provide Acquirers temporary site access for review upon request.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.1</span>
+      <span class="chip policy">Content Moderation</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.4.5.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="skill games merchants the update emphasizes that the acquirer must explicitly confirm it will not submit restricted transactions from the merchant and requires mastercard approval before processing any skill games transactions for the merchant or related entities. 9.4.5 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Skill Games Merchants</div>
+    <div class="summary">The update emphasizes that the Acquirer must explicitly confirm it will not submit Restricted Transactions from the Merchant and requires Mastercard approval before processing any skill games transactions for the Merchant or related entities.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.5</span>
+      <span class="chip policy">KYB Acquirer</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.4.8.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="high-risk securities merchants the updated rules require acquirers to ensure merchants maintain lawful status, keep permits valid, provide third-party certification on system controls, promptly notify mastercard of changes, and affirm they won&#39;t submit restricted transactions. additionally, certain regulated non-face-to-face securities activities must be registered as gambling merchants. 9.4.8 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">High-Risk Securities Merchants</div>
+    <div class="summary">The updated rules require Acquirers to ensure Merchants maintain lawful status, keep permits valid, provide third-party certification on system controls, promptly notify Mastercard of changes, and affirm they won&#39;t submit restricted transactions. Additionally, certain regulated non-face-to-face securities activities must be registered as gambling merchants.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.8</span>
+      <span class="chip policy">KYB Acquirer</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2023-05_to_2023-09_9.4.9.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="cryptocurrency merchants the updated section adds requirements for acquirers to identify cryptocurrency transactions with specific codes and mandates verification of full compliance with all relevant laws, supported by legal opinions or third-party accreditation, upon registering crypto merchants. the original requirement to maintain such verification and provide documentation upon request remains. 9.4.9 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Cryptocurrency Merchants</div>
+    <div class="summary">The updated section adds requirements for Acquirers to identify cryptocurrency transactions with specific codes and mandates verification of full compliance with all relevant laws, supported by legal opinions or third-party accreditation, upon registering crypto merchants. The original requirement to maintain such verification and provide documentation upon request remains.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.9</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+</section>
+
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+<script>
+(function () {
+  const q = document.getElementById('q');
+  const matFilters = document.querySelectorAll('.mat-filter');
+  const polFilters = document.querySelectorAll('.policy-filter');
+  const cards = document.querySelectorAll('.change-card');
+  const counter = document.getElementById('match-count');
+  const total = cards.length;
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    const enabledMat = new Set(Array.from(matFilters).filter(c => c.checked).map(c => c.value));
+    const enabledPol = polFilters.length
+      ? new Set(Array.from(polFilters).filter(c => c.checked).map(c => c.value))
+      : null;
+    let n = 0;
+    cards.forEach(c => {
+      const matOk = enabledMat.has(c.dataset.materiality);
+      const polOk = !enabledPol || c.dataset.policies.split(' ').some(p => enabledPol.has(p));
+      const textOk = !term || c.dataset.searchText.includes(term);
+      const visible = matOk && polOk && textOk;
+      c.classList.toggle('hidden', !visible);
+      if (visible) n++;
+    });
+    counter.textContent = `${n} of ${total}`;
+  }
+
+  q.addEventListener('input', apply);
+  matFilters.forEach(c => c.addEventListener('change', apply));
+  polFilters.forEach(c => c.addEventListener('change', apply));
+})();
+</script>
+
+</body>
+</html>

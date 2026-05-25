@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Listing risk — Pred-Oracle{% endblock %}
+{% block content %}
+<section class="mb-8">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 of 3 · Listing</div>
+  <h1 class="text-2xl font-bold mt-1">Tuesday, 10:30 AM. You are the <span class="text-slate-900">Head of Listing</span>.</h1>
+  <p class="text-slate-600 mt-2 max-w-2xl text-sm">
+    The trading desk wants a new contract live by Friday. You need three things in the
+    next 20 minutes: a regulatory read on the proposed contract, the current heat on
+    your active book, and two retrospective sanity checks on how your existing
+    contracts have aged.
+  </p>
+</section>
+
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+  <a href="{{ base_url|default('') }}gamma/scan/" class="block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+    <div class="text-xs uppercase tracking-wider text-blue-600 font-semibold">A — Pre-listing scan</div>
+    <div class="text-xl font-bold mt-2">Run the proposed contract</div>
+    <p class="text-slate-600 mt-2 text-sm">Paste a title + resolution criteria. See its regulatory exposure before you list.</p>
+  </a>
+
+  <a href="{{ base_url|default('') }}gamma/dashboard/" class="block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+    <div class="text-xs uppercase tracking-wider text-blue-600 font-semibold">B — Watch the book</div>
+    <div class="text-xl font-bold mt-2">Active contracts by heat</div>
+    <p class="text-slate-600 mt-2 text-sm">Every active contract scored for live regulatory pressure. Catch the heat early.</p>
+  </a>
+
+  <a href="{{ base_url|default('') }}gamma/contracts/solana-etf-2025/" class="block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+    <div class="text-xs uppercase tracking-wider text-blue-600 font-semibold">C — Learn from the past</div>
+    <div class="text-xl font-bold mt-2">Solana-ETF retrospective</div>
+    <p class="text-slate-600 mt-2 text-sm">Reconstruct the 20-event regulatory timeline behind a real Kalshi/Polymarket contract — and see what Pred-Oracle would have surfaced first.</p>
+  </a>
+</section>
+
+<section class="mt-12 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('') }}alpha/audit-export/" class="text-sm text-slate-500 hover:text-slate-900">← Audit export</a>
+  <a href="{{ base_url|default('') }}gamma/scan/" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Start with the scan tool →</a>
+</section>
+{% endblock %}

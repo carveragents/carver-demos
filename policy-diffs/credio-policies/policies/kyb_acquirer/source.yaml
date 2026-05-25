@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "2.1"
+    title: Acquirer Obligations — Merchant Due Diligence
+    anchor_version: "2022-06"

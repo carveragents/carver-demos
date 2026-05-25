@@ -1,0 +1,39 @@
+schema_version: 1
+kind: "retrospective"
+platform: "kalshi"
+id: "kxfeddecision-26mar"
+
+title: "Federal Reserve rate decision — March 2026 FOMC meeting"
+resolution_criteria: |
+  Resolves to the outcome announced by the Federal Open Market Committee at the
+  conclusion of its March 17-18, 2026 meeting. Settlement is the official FOMC
+  statement on the federal funds target range published 2026-03-18.
+
+  Standard FOMC-decision outcome buckets cover changes of -50 bps, -25 bps,
+  0 bps (hold), +25 bps, +50 bps relative to the prior target range.
+
+listed_at: "2025-12-15"
+resolved_at: "2026-03-18"
+status: "resolved"
+resolution_outcome: "see_source"
+
+settlement_entities:
+  - "Federal Open Market Committee"
+  - "Federal Reserve System"
+  - "Federal Reserve Board of Governors"
+  - "Jerome Powell"
+  - "Department of the Treasury"
+  - "Bureau of Labor Statistics"
+
+source_urls:
+  - "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  - "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+
+source_retrieved_at: "2026-05-20"
+
+# Resolution context (for the retrospective template):
+# - The March 17-18, 2026 FOMC meeting is one of four 2026 meetings with a Summary
+#   of Economic Projections (SEP) update.
+# - Outcome resolved per the FOMC press release on 2026-03-18.
+# - Carver corpus events leading into this window include Treasury statements, BLS
+#   inflation prints, and regional Fed bank speeches, which is the density story.

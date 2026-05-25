@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mastercard Fraud Loss Control Program Standards — SPME §6.2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="wide">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="../transitions/2023-09_to_2024-02.html">Sep 2023 → Feb 2024</a>
+  <span class="sep">›</span>
+  <span class="current">§6.2</span>
+</nav>
+
+<header class="change-header">
+  <div>
+    <p class="eyebrow">Mastercard SPME §6.2 · Sep 2023 → Feb 2024</p>
+    <h1>Mastercard Fraud Loss Control Program Standards</h1>
+  </div>
+  <span class="materiality substantive">substantive</span>
+</header>
+
+
+
+<p class="lede" style="font-size: 16px;">The update refines fraud monitoring requirements, notably reducing the technical fallback rate threshold from 5% to 2% for merchant deposit monitoring, adds mandatory reversal of unauthorized refund transactions, and reclassifies some procedural recommendations. These changes strengthen fraud controls and verification processes without altering overall obligations drastically.</p>
+
+<div class="sources-row">
+  <span class="label">Sources</span>
+  
+  <a href="../sources/spme/20230907012045.pdf#page=61" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">Mastercard SPME · Sep 2023 · page 61</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  
+  
+  <a href="../sources/spme/20240213111520.pdf#page=59" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">Mastercard SPME · Feb 2024 · page 59</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  
+  
+  <a href="../policies/fraud_monitoring.html" class="source policy">
+    <svg class="icon"><use href="#icon-book"/></svg>
+    <span class="src-name">Fraud Monitoring</span>
+    <span class="ext">current</span>
+  </a>
+  
+</div>
+
+
+
+<div class="callout">
+  <strong>Why these edits?</strong> The reduction of the technical fallback rate threshold from 5% to 2% for merchant deposit monitoring tightens fraud detection controls requiring updates to fraud monitoring procedures. Additionally, the new mandatory reversal of unauthorized refund transactions adds a specific obligation to fraud monitoring and control policies.
+</div>
+
+<nav class="tabs">
+  <a href="#side-by-side">Side-by-side</a>
+  <a href="#redline">Redline</a>
+  <a href="#raw-diff">Raw diff</a>
+</nav>
+
+<section id="side-by-side" class="tab-panel">
+  <div class="side-by-side">
+    <div class="col">
+      <div class="label">Mastercard SPME §6.2</div>
+      
+      <div class="prose">Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 </del><ins class='ins'>6 February 2024 </ins>
+
+Recommendations 
+
+An Acquirer is recommended to implement the following with each of its Merchants and 
+
+Payment Facilitators: 
+
+• 
+
+The authentication recommendations listed in Mastercard Identity <del class='del'>Check™ </del><ins class='ins'>Check </ins>Program Guide 
+
+• 
+
+Implement MDES for Merchant (M4M) to replace real card data by tokenized and digitized 
+
+payment credentials (tokens) 
+
+• 
+
+EMV Chip Terminals with PIN Capability (<del class='del'>Please </del>refer to existing mandates in specific <del class='del'>¶ </del>countries) 
+
+The MCC submitted at the time of authentication should match the MCC submitted at the time 
+
+of the authorization except when a single authentication relates to multiple authorizations for 
+
+different merchants. 
+
+Addressing BIN Attacks 
+
+BIN attacks either detected by the Acquirer or communicated to the Acquirer by Mastercard, 
+
+must be mitigated by the Acquirer, its processor(s) or the concerned Merchant(s) within 72 
+
+hours (or within a timeframe approved by Mastercard) of detection by the Acquirer, its Service 
+
+Provider, the Merchant or notification by Mastercard. 
+
+By way of example, an attack will be qualified as a BIN attack when the following two 
+
+conditions are met: 
+
+1. 
+
+At least 100 authorization requests or authentication requests are sent within one hour for 
+
+the BIN or BIN Account range from one or more Merchants. 
+
+2. 
+
+The Issuer, its Service Provider, or Mastercard (using a network fraud detection tool) 
+
+declined fifty percent (50%) or more of the authorization requests or authentication 
+
+requests within one hour. 
+
+An Acquirer must also analyze each BIN or BIN Account range attack to identify its modus 
+
+operandi and implement corrective measures to prevent future attacks using the same 
+
+technique(s). 
+
+Suspicious ATM Activity 
+
+Each ATM Terminal Acquirer and its Service Providers or other agents acting on its behalf must 
+
+have sufficient controls, resources and monitoring systems for the prompt detection and 
+
+reporting of suspicious ATM activity as required by Mastercard Rule 1.2. 
+
+ATM Terminal Acquirers are obligated under Mastercard Rule 1.2 to monitor and report 
+
+suspicious ATM Transaction activity, regardless if the issuer has or has not reported the activity 
+
+as fraud. Suspicious money laundering activity may include, but is not limited to: 
+
+• 
+
+Out-of-pattern ATM withdrawal volume and/or velocity at an individual ATM or groups of 
+
+ATMs 
+
+• 
+
+Sequential or consecutive high volumes of ATM withdrawals at the same ATM(s) by multiple 
+
+cards from the same issuer 
+
+• 
+
+Significantly high volumes of repetitive ATM withdrawal amount consistently over time 
+
+<del class='del'>Fraud Loss Control Standards ¶ Addressing BIN Attacks ¶ Security Rules and Procedures—Merchant Edition • 1 August 2023 ¶ </del>• 
+
+Excessive ATM withdrawals at maximum Transaction limits of ATM in a short period of time 
+
+• 
+
+Out-of-pattern excessive or high volumes of ATM deposits <ins class='ins'></ins>
+
+<ins class='ins'>Fraud Loss Control Standards </ins>
+
+<ins class='ins'>Addressing BIN Attacks </ins>
+
+<ins class='ins'>Security Rules and Procedures—Merchant Edition • 6 February 2024 </ins>
+
+ATM Authorization Controls and Cash-out Attack Management 
+
+Each ATM Terminal Acquirer and its Service Providers must, upon detecting a cash-out attack or 
+
+receiving notification from Mastercard or a Mastercard solution (for example, Safety Net Alert) 
+
+of a confirmed cash-out attack: 
+
+• 
+
+Block acceptance of the BIN under attack at the ATM Terminal within five hours (unless 
+
+Mastercard notifies the Acquirer that Mastercard has taken action to stop the attack) 
+
+• 
+
+If requested by Mastercard, following issuer confirmation of an attack, acquirer is 
+
+recommended to contact law enforcement for initiating an investigation of the on-going 
+
+attack, including if possible, the detection and communication of ATM address in real-time 
+
+(or quasi-real time) to Law Enforcement. 
+
+• 
+
+If the ATMs are equipped with a camera, acquirers are recommended to safeguard the video 
+
+recording for sharing with Law Enforcement where legally allowed. 
+
+An Acquirer of ATM Transactions must ensure that each Service Provider acting on its behalf has 
+
+the capability, upon detection of suspected fraud, to adjust (typically reduce) the maximum 
+
+withdrawal amount per Transaction at individual ATM Terminals to mitigate potential losses. 
+
+<del class='del'>6.2.2.2.1 Additional </del><ins class='ins'>6.2.2.2 </ins>Acquirer Authorization Monitoring Requirements <ins class='ins'></ins>
+
+<ins class='ins'>An Acquirer must implement real-time or near-real time alerts to monitor Merchant </ins>
+
+<ins class='ins'>authorization messages on at least all of the following parameters: </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Number of authorization requests above a threshold set by the Acquirer for that Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>An authorization approval rate that falls below a threshold set by the Acquirer for that </ins>
+
+<ins class='ins'>Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Ratio of non-Card-read to Card-read Transactions that is above the threshold set by the </ins>
+
+<ins class='ins'>Acquirer for that Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>PAN key entry ratio that is above the threshold set by the Acquirer for that Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Repeated authorization requests for the same amount or the same Cardholder Account </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Ratio of technical fallback above a threshold set by the Acquirer for that Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Merchant authorization reversals that do not match a previous purchase Transaction </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Value of Merchant authorization refund that is above the threshold set by the Acquirer for </ins>
+
+<ins class='ins'>that Merchant </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Out-of-pattern Transaction volume and/or velocity at a Merchant, Payment Facilitator, or </ins>
+
+<ins class='ins'>ATM Terminal, including all of the following: </ins>
+
+<ins class='ins'>– Repeated authorization requests </ins>
+
+<ins class='ins'>– High velocity authorizations </ins>
+
+<ins class='ins'>– Technical fallback of chip to magnetic stripe </ins>
+
+<ins class='ins'>– High volume of Contactless Transactions </ins>
+
+<ins class='ins'>– Sequential Account generated attacks </ins>
+
+<ins class='ins'>– An abnormal increase in authorization requests received </ins>
+
+<ins class='ins'>– An abnormal increase in the average Transaction amount </ins>
+
+<ins class='ins'>– BIN attacks, defined as Account testing or highly unusual activity in connection with the </ins>
+
+<ins class='ins'>use of Cards or Accounts issued under one or more BINs </ins>
+
+<ins class='ins'>Fraud Loss Control Standards </ins>
+
+<ins class='ins'>ATM Authorization Controls and Cash-out Attack Management </ins>
+
+<ins class='ins'>Security Rules and Procedures—Merchant Edition • 6 February 2024 </ins>
+
+<ins class='ins'>– An abnormally high number of authorization request responses indicating invalid PAN, </ins>
+
+<ins class='ins'>CVC 1 or CVC 2 failure, invalid expiration date, incorrect PIN, Address Verification Service </ins>
+
+<ins class='ins'>(AVS) mismatch, invalid Authorization Request Cryptogram (ARQC), or invalid </ins>
+
+<ins class='ins'>Accountholder authentication value (AAV). </ins>
+
+<ins class='ins'>– Transaction decline rate: </ins>
+
+<ins class='ins'>– An excessive number of magnetic stripe Transactions occurring or attempted in a short </ins>
+
+<ins class='ins'>period of time </ins>
+
+<ins class='ins'>– An excessive number of ATM cash withdrawals occurring or attempted at the </ins>
+
+<ins class='ins'>maximum cash withdrawal Transaction limit for that ATM in a short period of time </ins>
+
+<ins class='ins'>Additional Requirements </ins>for Negative Option <del class='del'>¶ </del>Billing Merchants 
+
+<del class='del'>In addition to the Acquirer authorization monitoring requirements listed in section 6.2.2.2 of this ¶ manual, an </del><ins class='ins'>The </ins>Acquirer of a negative option billing Merchant must <ins class='ins'>additionally </ins>monitor authorization 
+
+Transaction messages to identify when the same Account number appears among different 
+
+negative option billing Merchant IDs in the Acquirer’s Portfolio within 60 calendar days. 
+
+When the Acquirer identifies such an Account, the Acquirer must take reasonable steps to verify 
+
+that each Transaction conducted by the valid Cardholder with the associated negative option 
+
+billing Merchant is a bona fide Transaction. This verification may include, but is not limited to, an 
+
+electronic copy or hard copy of the Transaction information document (TID). All such verification 
+
+information must be: 
+
+• 
+
+Retained by the Acquirer for a period of at least one year from the verification date; and 
+
+• 
+
+Made available to Mastercard upon request. 
+
+<del class='del'>6.2.2.2 Acquirer Authorization Monitoring Requirements ¶ An Acquirer must implement real-time or near-real time alerts to monitor Merchant ¶ authorization messages on at least all of the following parameters: ¶ • ¶ Number of authorization requests above a threshold set by the Acquirer for that Merchant ¶ • ¶ An authorization approval rate that falls below a threshold set by the Acquirer for that ¶ Merchant ¶ • ¶ Ratio of non-Card-read to Card-read Transactions that is above the threshold set by the ¶ Acquirer for that Merchant ¶ • ¶ PAN key entry ratio that is above the threshold set by the Acquirer for that Merchant ¶ Fraud Loss Control Standards ¶ ATM Authorization Controls and Cash-out Attack Management ¶ Security Rules and Procedures—Merchant Edition • 1 August 2023 ¶ • ¶ Repeated authorization requests for the same amount or the same Cardholder Account ¶ • ¶ Ratio of technical fallback above a threshold set by the Acquirer for that Merchant ¶ • ¶ Merchant authorization reversals that do not match a previous purchase Transaction ¶ • ¶ Value of Merchant authorization refund that is above the threshold set by the Acquirer for ¶ that Merchant ¶ • ¶ Out-of-pattern Transaction volume and/or velocity at a Merchant, Payment Facilitator, or ¶ ATM Terminal, including all of the following: ¶ – Repeated authorization requests ¶ – High velocity authorizations ¶ – Technical fallback of chip to magnetic stripe ¶ – High volume of Contactless Transactions ¶ – Sequential Account generated attacks ¶ – An abnormal increase in authorization requests received ¶ – An abnormal increase in the average Transaction amount ¶ – BIN attacks, defined as Account testing or highly unusual activity in connection with the ¶ use of Cards or Accounts issued under one or more BINs ¶ – An abnormally high number of authorization request responses indicating invalid PAN, ¶ CVC 1 or CVC 2 failure, invalid expiration date, incorrect PIN, Address Verification Service ¶ (AVS) mismatch, invalid Authorization Request Cryptogram (ARQC), or invalid ¶ Accountholder authentication value (AAV). ¶ – Transaction decline rate: ¶ – An excessive number of magnetic stripe Transactions occurring or attempted in a short ¶ period of time ¶ – An excessive number of ATM cash withdrawals occurring or attempted at the ¶ maximum cash withdrawal Transaction limit for that ATM in a short period of time ¶ </del>6.2.2.3 Acquirer Merchant Deposit Monitoring Requirements 
+
+A deposit is defined as a file of Transactions performed offline or online at a Merchant and 
+
+submitted to the <del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>Acquirer for payment. If deposit files are not used, the Acquirer 
+
+should still monitor the total payment made to each Merchant. 
+
+Daily reports or real-time alerts monitoring Merchant deposits must be generated at the latest 
+
+on the day following the deposit, and must be based on the following parameters: 
+
+• 
+
+Increases in Merchant deposit volume 
+
+• 
+
+Increase in a <del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>average ticket size and number of Transactions for each deposit 
+
+• 
+
+Change in frequency of deposits 
+
+• 
+
+Change in technical fallback rates, or a technical fallback rate that exceeds <del class='del'>five </del><ins class='ins'>two </ins>percent of a 
+
+<del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>total Transaction volume 
+
+NOTE: Any report generated by the Acquirer relating to the investigation of a Merchant whose rate 
+
+of technical fallback exceeds five percent of its total Transaction volume must be made available to 
+
+Mastercard upon request. 
+
+• 
+
+Force-posted Transactions (i.e., a Transaction that has been declined by the Issuer or the chip 
+
+or any Transaction for which authorization was required but not obtained) 
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Frequency of Transactions on the same Account, including credit (refund) Transactions </ins>
+
+<ins class='ins'>• </ins>
+
+<ins class='ins'>Unusual number of credits, or credit dollar volume, exceeding a level of sales dollar volume </ins>
+
+<ins class='ins'>appropriate to the Merchant category </ins>
+
+<ins class='ins'></ins>Fraud Loss Control Standards 
+
+<del class='del'>6.2.2.3 Acquirer Merchant Deposit Monitoring </del><ins class='ins'>Additional </ins>Requirements <ins class='ins'>for Negative Option Billing Merchants </ins>
+
+Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 ¶ • ¶ Frequency of Transactions on the same Account, including credit (refund) Transactions ¶ • ¶ Unusual number of credits, or credit dollar volume, exceeding a level of sales dollar volume ¶ appropriate to the Merchant category </del><ins class='ins'>6 February 2024 </ins>
+
+• 
+
+Large credit Transaction amounts, significantly greater than the average ticket size for the 
+
+<del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>sales 
+
+• 
+
+Credit (refund) Transaction volume that exceeds purchase Transaction volume 
+
+• 
+
+Credits issued by a Merchant subsequent to the <del class='del'>Acquirer’s </del><ins class='ins'>Acquirer's </ins>receipt of a chargeback with the 
+
+same PAN 
+
+• 
+
+Credits issued by a Merchant to a PAN not previously used to effect a Transaction at the 
+
+Merchant location 
+
+• 
+
+Increases in Merchant chargeback volume 
+
+90-day Rule: Monitoring of Merchant Daily Volumes 
+
+The Acquirer must monitor the daily Transaction count and value at each Merchant in view of 
+
+detecting abnormal or suspicious increase of Merchant activity. 
+
+To this effect, the daily Transactions count and value will be compared against the average daily 
+
+Transaction count and amount for a period of at least 90 days, to lessen the effect of normal 
+
+variances in a Merchant’s business. 
+
+For a new Merchant, the Acquirer should set monitoring parameters to detect significant 
+
+deviation from the <del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>expected turnover as detailed in its business plan. The Acquirer 
+
+may also compare the <del class='del'>Merchant’s </del><ins class='ins'>Merchant's </ins>average Transaction count and amount to those of other 
+
+Merchants within the same MCC. 
+
+In the event that suspicious credit or refund Transaction activity is identified, if appropriate, the 
+
+Acquirer should consider the suspension of Transactions pending further investigation. <ins class='ins'>If the </ins>
+
+<ins class='ins'>Acquirer determines that an authorized refund Transaction will not be cleared, whether due to </ins>
+
+<ins class='ins'>suspicious activity or any other reason, the Acquirer must reverse the refund Transaction </ins>
+
+<ins class='ins'>authorization request. </ins>
+
+6.2.2.4 Acquirer Channel Management Requirements 
+
+Mastercard requires Acquirers to monitor, on a regular basis, each parent Member ID/ICA 
+
+number, child Member ID/ICA number, and individual Merchant, Payment Facilitator, and Staged 
+
+Digital Wallet Operator in its Portfolio for the following: 
+
+• 
+
+Total Transaction fraud basis points 
+
+• 
+
+Domestic Transaction fraud basis points 
+
+• 
+
+Cross-border Transaction fraud basis points (both Intraregional Transactions and 
+
+Interregional Transactions) 
+
+• 
+
+Fraud basis points at the parent Member ID/ICA level for the following: 
+
+– Card-present Transactions 
+
+– POS 
+
+– Mobile POS (MPOS) 
+
+– Cardholder-activated Terminal (CAT) (for example, CAT 1, CAT 2, and CAT 3) 
+
+– Card-not-present (CNP) Transactions 
+
+– E-commerce, including separate monitoring of non-authenticated, attempted 
+
+authentication, and fully authenticated Transactions 
+
+Fraud Loss Control Standards 
+
+6.2.2.4 Acquirer Channel Management Requirements 
+
+Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 </del><ins class='ins'>6 February 2024 </ins>
+
+– Mail order/telephone order (MO/TO) 
+
+– Recurring payment Transactions 
+
+6.2.2.5 3-D Secure Service Provider and Payment Gateway Monitoring 
+
+Requirements and Recommendations 
+
+Acquirers must implement fraud detection capabilities at any 3-D Secure Service Provider 
+
+providing access to a 3-D Secure (3DS) server or Third Party Processor (TPP) performing 
+
+payment gateway services to monitor all the following: 
+
+• 
+
+Fraudulent attempts to connect to a 3DS server or payment gateway as a Merchant or 
+
+Payment Facilitator (for example, a connection attempt from an unknown IP address or the 
+
+use of an invalid credential) 
+
+• 
+
+3DS server or payment gateway Denial of Service (DoS) attack 
+
+• 
+
+The authentication message flow indicating a PAN or BIN testing attack. This includes but is 
+
+not limited to detection of (and capability to block) bot attacks using captcha, behavioral 
+
+analytic tools or other available solutions. Bot attacks are defined as the use of automated 
+
+web requests to test PANs through a 3DS Server payment gateway or more generally 
+
+defined as web requests to manipulate, defraud, or disrupt a web site. 
+
+• 
+
+Ensure Merchant names used in authentication messages match registered Merchant names 
+
+• 
+
+Out-of-pattern number of single or multiple PAN Transactions associated to same customer 
+
+account identifier or originating source (for example, the same email, telephone number, 
+
+delivery address, browser fingerprint, or device identification number) 
+
+An Acquirer is recommended to implement fraud detection capabilities at 3DS Server payment 
+
+gateways to monitor all the following: 
+
+• 
+
+Receipt of confirmed fraud from Acquirers in view of creating a gray or negative listing of 
+
+related IP and delivery address 
+
+• 
+
+Additional monitoring recommendations and best practices as detailed in “Risk-based 
+
+Authentication” section of the Mastercard Identity <del class='del'>Check™ </del><ins class='ins'>Check </ins>Program Guide 
+
+Upon detection of a 3DS Server payment gateway fraud attack by the Acquirer or upon 
+
+notification from Mastercard of such an attack, the Acquirer must implement the necessary 
+
+controls at the 3DS Server payment gateway to stop the attack within 72 hours (or within a 
+
+timeframe approved by Mastercard) of detection or notification by Mastercard. 
+
+An Acquirer and its 3DS Server payment gateway must also analyze each attack to identify its 
+
+modus operandi and implement corrective measures to prevent future attacks using the same 
+
+technique(s). 
+
+6.2.2.6 Recommended Additional Acquirer Monitoring 
+
+Mastercard recommends that Acquirers additionally monitor the following parameters: 
+
+• 
+
+Mismatch of Merchant name, MCC, Merchant ID, and/or Terminal ID 
+
+• 
+
+Mismatch of e-commerce Merchant Internet Protocol (IP) addresses 
+
+• 
+
+Transactions conducted at Merchant, Sponsored Merchants, and other entities registered in 
+
+the Specialty Merchant Registration Program (refer to Chapter 9) 
+
+Fraud Loss Control Standards 
+
+6.2.2.5 3-D Secure Service Provider and Payment Gateway Monitoring 
+
+Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 </del><ins class='ins'>6 February 2024 </ins>
+
+• 
+
+Abnormal hours (i.e., outside of normal business hours) or seasons 
+
+• 
+
+Sudden start of activity by an inactive/dormant Merchant (i.e., a Merchant that has not yet 
+
+started to accept Cards or has ceased to accept Cards) 
+
+• 
+
+Inconsistent authorization and clearing data elements for the same Transactions 
+
+• 
+
+Mastercard SecureCode/Identity <del class='del'>Check™ </del><ins class='ins'>Check </ins>authentication rate 
+
+• 
+
+Any Merchant exceeding the Acquirer’s total Merchant average for fraud by 150 percent or 
+
+more 
+
+Geographic volume variances (i.e., abnormal increase of Merchant activity with some Issuer 
+
+countries) 
+
+• 
+
+Monitor the value, if any, returned in DE 48 subelement 84 (Merchant Advice Code) of 
+
+authorization request response messages. An Acquirer is recommended to cease resending 
+
+the same authorization request message when the MAC value is equal to 03 (Do Not Try 
+
+Again) or 21 (Payment Cancellation). 
+
+6.2.2.7 Recommended Fraud Detection Tool Implementation 
+
+An Acquirer is recommended to implement a fraud detection tool that appropriately 
+
+complements the fraud strategy deployed by the Acquirer. The combination of the authorization 
+
+requirements, Merchant deposit monitoring requirements, and fraud detection tool should 
+
+ensure that an Acquirer controls fraud to an acceptable level. 
+
+6.2.2.8 Ongoing Merchant Monitoring 
+
+An Acquirer must implement procedures for the conduct of periodic ongoing reviews of a 
+
+Merchant's, Payment Facilitator's, or Staged Digital Wallet Operator's Transaction activity, for 
+
+the purpose of detecting changes over time, including but not limited to: 
+
+• 
+
+Monthly Transaction volume with respect to: 
+
+– Total Transaction count and amount 
+
+– Number of credit (refund) Transactions 
+
+– Number of fraudulent Transactions 
+
+– Average ticket size 
+
+– Number of chargebacks and basis points 
+
+• 
+
+Activity inconsistent with the Merchant’s business model 
+
+• 
+
+Transaction laundering 
+
+• 
+
+Activity that is or may potentially be illegal or brand-damaging 
+
+As a best practice, Mastercard recommends that Acquirers use a Merchant monitoring solution 
+
+for e-commerce Merchant activity so as to avoid processing illegal or brand-damaging 
+
+Transactions. 
+
+For more information on ongoing Merchant monitoring requirements, refer to section 7.2. 
+
+6.2.2.9 Communicating Fraud and Chargeback Data to Merchants and Payment Facilitators 
+
+An Acquirer must be able, upon request from its Merchants and Payment Facilitators, to provide 
+
+them with their fraud and chargeback data on a regular basis and at least monthly. 
+
+Fraud Loss Control Standards 
+
+6.2.2.7 Recommended Fraud Detection Tool Implementation 
+
+Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 </del><ins class='ins'>6 February 2024 </ins>
+
+6.2.2.10 Fraud and Loss Control Internal Policies, Tracking, and Reporting Tools 
+
+Acquirers must establish internal policies, tracking and reporting tools covering all the following: 
+
+• 
+
+Identification of individual Merchants and Payment Facilitators having a monthly average 
+
+fraud, chargeback or decline rate exceeding thresholds set by the Acquirer, above which, an 
+
+investigation of Merchant activities should be conducted to identify and implement any 
+
+practices that require corrective actions. In all cases, these thresholds should be set to levels 
+
+that maintain Merchant and payment facilitator compliance with Mastercard programs. 
+
+• 
+
+Systematic investigation of any Standard violation by a Merchant, Payment Facilitator, 
+
+Stage Digital Wallet Operator or ATM owner, either identified by the Acquirer or 
+
+communicated by Mastercard. Each investigation must be followed by the identification and 
+
+timely implementation of corrective actions to re-establish compliance with the Standards. 
+
+An Acquirer is recommended (unless mandated by Mastercard for a specific program) to create 
+
+an internal report (the “investigation report”) for each of the above events or exceeded 
+
+thresholds and must include the following minimum information: 
+
+• 
+
+Investigation number 
+
+• 
+
+Investigation type 
+
+• 
+
+Investigation date 
+
+• 
+
+Detailed event description and analysis 
+
+• 
+
+Description of the corrective actions 
+
+• 
+
+Date the corrective action(s) was/were implemented 
+
+• 
+
+Name of responsible person 
+
+6.2.2.11 Acquirer Recommendation to Report Suspected Fraud 
+
+An Acquirer is recommended to report Transactions to the Fraud and Loss Database that the 
+
+Acquirer deems to be fraudulent as suspected fraud Transactions. 
+
+6.2.2.12 Acquirer Response to High Impact/Critical Fraud Alerts Raised by Issuers 
+
+An Acquirer approached by an Issuer with a High Impact/Critical Fraud management request is 
+
+recommended to collaborate with the Issuer to the best of its ability. 
+
+Fraud Loss Control Standards 
+
+6.2.2.10 Fraud and Loss Control Internal Policies, Tracking, and Reporting Tools 
+
+Security Rules and Procedures—Merchant Edition • <del class='del'>1 August 2023 </del><ins class='ins'>6 February 2024 </ins>
+
+Chapter 7  Merchant, Sponsored Merchant, and ATM 
+
+Owner Screening and Monitoring Standards 
+
+This chapter may be of particular interest to Customer personnel responsible for screening and 
+
+monitoring Merchants, Sponsored Merchants, and ATM owners.</div>
+      
+    </div>
+    <div class="col">
+      <div class="label">Halyard Pay · 2 files</div>
+      
+        <div class="file-panel">
+          <div style="margin-bottom: 8px;">
+            <a class="chip policy" href="../policies/fraud_monitoring.html">Fraud Monitoring · rules.yaml</a>
+          </div>
+          <pre class='yaml-diff'><div class='diff-line-equal'>program: Fraud Monitoring</div>
+<div class='diff-line-removed'>- authority: Mastercard SPME §3.7, §8.6.6, §11.1.1</div>
+<div class='diff-line-added'>+ authority: Mastercard SPME §3.7, §8.6.6, §11.1.1, §6.2.2.2, §6.2.2.3</div>
+<div class='diff-line-equal'>fraud_to_sales_ratio_threshold: 0.015</div>
+<div class='diff-line-equal'>min_count_per_month: 100</div>
+<div class='diff-line-equal'>monitoring_cadence: monthly</div>
+<div class='diff-line-equal'>escalation_actions:</div>
+<div class='diff-line-equal'>  - escalate_to_human_review</div>
+<div class='diff-line-equal'>  - notify_acquirer</div>
+<div class='diff-line-equal'>lookback_period_months: 1</div>
+<div class='diff-line-equal'>remediation_review_interval_days: 30</div>
+<div class='diff-line-equal'>agent_owner: fraud_ops_agent</div>
+<div class='diff-line-equal'>&nbsp;</div>
+<div class='diff-line-removed'>- # MATCH fraud detection features are limited to principal owners only; associate owners and Service Provider name reporting are removed per SPME §11.1.1.</div>
+<div class='diff-line-removed'>- # Acquirers may add and search for information on up to five principal owners per Merchant.</div>
+<div class='diff-line-removed'>- # Multiple data fields are used to determine matches; MATCH supports editing and error notification to reduce delays.</div>
+<div class='diff-line-removed'>- # Retroactive alert processing is supported for data up to 360 days old.</div>
+<div class='diff-line-removed'>- # Acquirers control receipt and detail of inquiry match information.</div>
+<div class='diff-line-removed'>- # Real-time access via MATCH Online and API, and batch operations remain available.</div>
+<div class='diff-line-removed'>- # Merchant URL information may be added and searched.</div>
+<div class='diff-line-removed'>- # After obtaining MATCH inquiry results, acquirers must assess whether further investigation or risk mitigation actions are warranted, per updated SPME requirements.</div>
+<div class='diff-line-removed'>- #</div>
+<div class='diff-line-removed'>- # New requirements under SPME §8.6.6 specify that Mastercard will add Merchants to MATCH using reason code 24 (Illegal Transactions) when Merchants meet Coercion Program criteria.</div>
+<div class='diff-line-removed'>- # Merchants subject to a subsequent claim of coercion within 12 months will be added with reason code 00 (Questionable Acquirer/Under Investigation).</div>
+<div class='diff-line-removed'>- # If the claim is confirmed to meet Coercion Program criteria, the MATCH record will be updated to reason code 24.</div>
+<div class='diff-line-removed'>- # If not confirmed, the MATCH record will be deleted.</div>
+<div class='diff-line-removed'>- # These provisions enhance fraud monitoring by requiring tracking of coercion-related transaction risks.</div>
+<div class='diff-line-added'>+ # MATCH fraud detection features remain focused on principal merchant owners only as per SPME §11.1.1.</div>
+<div class='diff-line-added'>+ # Reason codes for MATCH records include new coercion-related codes per §8.6.6, improving risk tracking.</div>
+<div class='diff-line-added'>+ # Acquirers must monitor fraud ratios and transaction volumes continuously, evaluate MATCH inquiry results carefully.</div>
+<div class='diff-line-added'>+ # Updates per SPME §6.2 incorporate tighter controls on transaction monitoring.</div>
+<div class='diff-line-added'>+ # Notably, the threshold for technical fallback rates triggering alerts has been lowered from 5% to 2% to enhance detection sensitivity.</div>
+<div class='diff-line-added'>+ # Additionally, reversal of unauthorized Merchant authorization refunds is now required to prevent Fraud Loss.</div>
+<div class='diff-line-added'>+ # These enhancements promote more proactive detection and mitigation of emerging fraud patterns in Merchant behavior.</div>
+<div class='diff-line-added'>+ # Acquirers must retain verification records of negative option billing transactions for at least one year, per §6.2.2.2.1.</div>
+<div class='diff-line-added'>+ # Fraud monitoring must include real-time or near-real-time alerts on multiple parameters such as authorization volumes, approval rates, and BIN attacks per §6.2.2.2.</div>
+<div class='diff-line-added'>+ # Merchant deposit monitoring alerts must be generated daily, tracking deposit volume changes, ticket sizes, frequency, and technical fallback rates with the updated 2% threshold per §6.2.2.3.</div>
+<div class='diff-line-added'>+ # The policy ensures compliance with Mastercard SPME&#x27;s strengthened fraud loss control standards including new merchant deposit and transaction reversal controls.</div></pre>
+        </div>
+      
+        <div class="file-panel">
+          <div style="margin-bottom: 8px;">
+            <a class="chip policy" href="../policies/fraud_monitoring.html">Fraud Monitoring · policy.md</a>
+          </div>
+          <h1>Fraud Monitoring</h1>
+<p>Halyard Pay monitors merchant fraud activity and leverages Mastercard's MATCH system for enhanced fraud risk assessment on merchants processed through our platform.</p>
+<h2>When this policy applies</h2>
+<p>This policy applies to all merchants processed by Halyard Pay where Mastercard is the applicable network, covering both card-present and card-not-present transactions.</p>
+<h2>Required actions</h2>
+<ol>
+<li>
+<p>Compute the merchant's rolling fraud-to-sales ratio each calendar month.</p>
+</li>
+<li>
+<p>If the ratio meets or exceeds 1.5% and the fraud count reaches at least 100 transactions in that month, escalate the merchant account to human review immediately.</p>
+</li>
+<li>
+<p>Utilize Mastercard's MATCH system data focusing on principal owners only, as per <del class='del'>the updated </del>Mastercard SPME guidelines. Do not consider associate owners or Service Provider names in fraud assessments.</p>
+</li>
+<li>
+<p>Maintain awareness of Mastercard's MATCH reason codes <del class='del'>related </del><ins class='ins'>relating </ins>to coercion programs: merchants may be added with reason code 24 for illegal transactions <del class='del'>upon meeting </del><ins class='ins'>when </ins>coercion <del class='del'>criteria, </del><ins class='ins'>criteria are met, </ins>or with code 00 if a subsequent coercion claim arises within 12 months; <ins class='ins'>update or delete </ins>records <del class='del'>must be updated or removed </del>based on <del class='del'>confirmation of these claims. </del><ins class='ins'>claim verification. </ins></p>
+</li>
+<li>
+<p>After accessing MATCH data, conduct a <ins class='ins'>thorough </ins>risk assessment to determine <del class='del'>whether </del><ins class='ins'>if </ins>further investigation or additional measures are <del class='del'>warranted. </del><ins class='ins'>required. </ins></p>
+</li>
+<li>
+<p><ins class='ins'>Monitor merchant authorization activity using real-time alerts for suspicious patterns, including BIN attacks, repeated authorization requests, abnormal increases in transaction volume or amount, high technical fallback rates above 2%, and unusually high refund volumes. </ins></p>
+</li>
+</ol>
+<p><ins class='ins'>7. For deposit monitoring, generate daily or real-time alerts to identify increases in merchant deposit volume, average ticket size, frequency of deposits, or technical fallback rates exceeding 2% of total transaction volume. </ins></p>
+<p><ins class='ins'>8. Identify and verify authorization transactions for negative option billing merchants when the same card account is used across multiple merchant IDs within 60 days, retaining verification documents for at least one year. </ins></p>
+<p><ins class='ins'>9. In cases of unauthorized authorization refund transactions, implement reversal procedures in compliance with Mastercard requirements. </ins></p>
+<p><ins class='ins'>10. </ins>Notify the acquiring compliance officer and document the case ID with supporting transaction data.</p>
+<p><del class='del'>7. </del><ins class='ins'>11. </ins>Track case progress until the account returns to threshold compliance or is terminated.</p>
+<p>Source authority: Mastercard SPME <del class='del'>§3.7, §8.6.6, and §11.1.1.</del><ins class='ins'>§§3.7, 6.2.2.2, 6.2.2.3, 8.6.6, and 11.1.1.</ins></p>
+
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<section id="redline" class="tab-panel">
+  
+  
+    
+      <div class="label-overline">policies/fraud_monitoring/policy.md — after applying change</div>
+      <div class="prose" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px; line-height: 1.7;">
+        <h1>Fraud Monitoring</h1>
+<p>Halyard Pay monitors merchant fraud activity and leverages Mastercard's MATCH system for enhanced fraud risk assessment on merchants processed through our platform.</p>
+<h2>When this policy applies</h2>
+<p>This policy applies to all merchants processed by Halyard Pay where Mastercard is the applicable network, covering both card-present and card-not-present transactions.</p>
+<h2>Required actions</h2>
+<ol>
+<li>
+<p>Compute the merchant's rolling fraud-to-sales ratio each calendar month.</p>
+</li>
+<li>
+<p>If the ratio meets or exceeds 1.5% and the fraud count reaches at least 100 transactions in that month, escalate the merchant account to human review immediately.</p>
+</li>
+<li>
+<p>Utilize Mastercard's MATCH system data focusing on principal owners only, as per <del class='del'>the updated </del>Mastercard SPME guidelines. Do not consider associate owners or Service Provider names in fraud assessments.</p>
+</li>
+<li>
+<p>Maintain awareness of Mastercard's MATCH reason codes <del class='del'>related </del><ins class='ins'>relating </ins>to coercion programs: merchants may be added with reason code 24 for illegal transactions <del class='del'>upon meeting </del><ins class='ins'>when </ins>coercion <del class='del'>criteria, </del><ins class='ins'>criteria are met, </ins>or with code 00 if a subsequent coercion claim arises within 12 months; <ins class='ins'>update or delete </ins>records <del class='del'>must be updated or removed </del>based on <del class='del'>confirmation of these claims. </del><ins class='ins'>claim verification. </ins></p>
+</li>
+<li>
+<p>After accessing MATCH data, conduct a <ins class='ins'>thorough </ins>risk assessment to determine <del class='del'>whether </del><ins class='ins'>if </ins>further investigation or additional measures are <del class='del'>warranted. </del><ins class='ins'>required. </ins></p>
+</li>
+<li>
+<p><ins class='ins'>Monitor merchant authorization activity using real-time alerts for suspicious patterns, including BIN attacks, repeated authorization requests, abnormal increases in transaction volume or amount, high technical fallback rates above 2%, and unusually high refund volumes. </ins></p>
+</li>
+</ol>
+<p><ins class='ins'>7. For deposit monitoring, generate daily or real-time alerts to identify increases in merchant deposit volume, average ticket size, frequency of deposits, or technical fallback rates exceeding 2% of total transaction volume. </ins></p>
+<p><ins class='ins'>8. Identify and verify authorization transactions for negative option billing merchants when the same card account is used across multiple merchant IDs within 60 days, retaining verification documents for at least one year. </ins></p>
+<p><ins class='ins'>9. In cases of unauthorized authorization refund transactions, implement reversal procedures in compliance with Mastercard requirements. </ins></p>
+<p><ins class='ins'>10. </ins>Notify the acquiring compliance officer and document the case ID with supporting transaction data.</p>
+<p><del class='del'>7. </del><ins class='ins'>11. </ins>Track case progress until the account returns to threshold compliance or is terminated.</p>
+<p>Source authority: Mastercard SPME <del class='del'>§3.7, §8.6.6, and §11.1.1.</del><ins class='ins'>§§3.7, 6.2.2.2, 6.2.2.3, 8.6.6, and 11.1.1.</ins></p>
+
+      </div>
+    
+    <p style="font-size: 12px; color: var(--ink-muted); margin-top: 16px;">Source authority: Mastercard SPME §6.2.</p>
+  
+</section>
+
+<section id="raw-diff" class="tab-panel">
+  <pre class="raw-diff">--- a/policies/fraud_monitoring/rules.yaml
++++ b/policies/fraud_monitoring/rules.yaml
+@@ -1,5 +1,5 @@
+ program: Fraud Monitoring
+-authority: Mastercard SPME §3.7, §8.6.6, §11.1.1
++authority: Mastercard SPME §3.7, §8.6.6, §11.1.1, §6.2.2.2, §6.2.2.3
+ fraud_to_sales_ratio_threshold: 0.015
+ min_count_per_month: 100
+ monitoring_cadence: monthly
+@@ -10,17 +10,14 @@
+ remediation_review_interval_days: 30
+ agent_owner: fraud_ops_agent
+ 
+-# MATCH fraud detection features are limited to principal owners only; associate owners and Service Provider name reporting are removed per SPME §11.1.1.
+-# Acquirers may add and search for information on up to five principal owners per Merchant.
+-# Multiple data fields are used to determine matches; MATCH supports editing and error notification to reduce delays.
+-# Retroactive alert processing is supported for data up to 360 days old.
+-# Acquirers control receipt and detail of inquiry match information.
+-# Real-time access via MATCH Online and API, and batch operations remain available.
+-# Merchant URL information may be added and searched.
+-# After obtaining MATCH inquiry results, acquirers must assess whether further investigation or risk mitigation actions are warranted, per updated SPME requirements.
+-#
+-# New requirements under SPME §8.6.6 specify that Mastercard will add Merchants to MATCH using reason code 24 (Illegal Transactions) when Merchants meet Coercion Program criteria.
+-# Merchants subject to a subsequent claim of coercion within 12 months will be added with reason code 00 (Questionable Acquirer/Under Investigation).
+-# If the claim is confirmed to meet Coercion Program criteria, the MATCH record will be updated to reason code 24.
+-# If not confirmed, the MATCH record will be deleted.
+-# These provisions enhance fraud monitoring by requiring tracking of coercion-related transaction risks.+# MATCH fraud detection features remain focused on principal merchant owners only as per SPME §11.1.1.
++# Reason codes for MATCH records include new coercion-related codes per §8.6.6, improving risk tracking.
++# Acquirers must monitor fraud ratios and transaction volumes continuously, evaluate MATCH inquiry results carefully.
++# Updates per SPME §6.2 incorporate tighter controls on transaction monitoring.
++# Notably, the threshold for technical fallback rates triggering alerts has been lowered from 5% to 2% to enhance detection sensitivity.
++# Additionally, reversal of unauthorized Merchant authorization refunds is now required to prevent Fraud Loss.
++# These enhancements promote more proactive detection and mitigation of emerging fraud patterns in Merchant behavior.
++# Acquirers must retain verification records of negative option billing transactions for at least one year, per §6.2.2.2.1.
++# Fraud monitoring must include real-time or near-real-time alerts on multiple parameters such as authorization volumes, approval rates, and BIN attacks per §6.2.2.2.
++# Merchant deposit monitoring alerts must be generated daily, tracking deposit volume changes, ticket sizes, frequency, and technical fallback rates with the updated 2% threshold per §6.2.2.3.
++# The policy ensures compliance with Mastercard SPME&#39;s strengthened fraud loss control standards including new merchant deposit and transaction reversal controls.
+
+--- a/policies/fraud_monitoring/policy.md
++++ b/policies/fraud_monitoring/policy.md
+@@ -10,10 +10,14 @@
+ 
+ 1. Compute the merchant&#39;s rolling fraud-to-sales ratio each calendar month.
+ 2. If the ratio meets or exceeds 1.5% and the fraud count reaches at least 100 transactions in that month, escalate the merchant account to human review immediately.
+-3. Utilize Mastercard&#39;s MATCH system data focusing on principal owners only, as per the updated Mastercard SPME guidelines. Do not consider associate owners or Service Provider names in fraud assessments.
+-4. Maintain awareness of Mastercard&#39;s MATCH reason codes related to coercion programs: merchants may be added with reason code 24 for illegal transactions upon meeting coercion criteria, or with code 00 if a subsequent coercion claim arises within 12 months; records must be updated or removed based on confirmation of these claims.
+-5. After accessing MATCH data, conduct a risk assessment to determine whether further investigation or additional measures are warranted.
+-6. Notify the acquiring compliance officer and document the case ID with supporting transaction data.
+-7. Track case progress until the account returns to threshold compliance or is terminated.
++3. Utilize Mastercard&#39;s MATCH system data focusing on principal owners only, as per Mastercard SPME guidelines. Do not consider associate owners or Service Provider names in fraud assessments.
++4. Maintain awareness of Mastercard&#39;s MATCH reason codes relating to coercion programs: merchants may be added with reason code 24 for illegal transactions when coercion criteria are met, or with code 00 if a subsequent coercion claim arises within 12 months; update or delete records based on claim verification.
++5. After accessing MATCH data, conduct a thorough risk assessment to determine if further investigation or additional measures are required.
++6. Monitor merchant authorization activity using real-time alerts for suspicious patterns, including BIN attacks, repeated authorization requests, abnormal increases in transaction volume or amount, high technical fallback rates above 2%, and unusually high refund volumes.
++7. For deposit monitoring, generate daily or real-time alerts to identify increases in merchant deposit volume, average ticket size, frequency of deposits, or technical fallback rates exceeding 2% of total transaction volume.
++8. Identify and verify authorization transactions for negative option billing merchants when the same card account is used across multiple merchant IDs within 60 days, retaining verification documents for at least one year.
++9. In cases of unauthorized authorization refund transactions, implement reversal procedures in compliance with Mastercard requirements.
++10. Notify the acquiring compliance officer and document the case ID with supporting transaction data.
++11. Track case progress until the account returns to threshold compliance or is terminated.
+ 
+-Source authority: Mastercard SPME §3.7, §8.6.6, and §11.1.1.
++Source authority: Mastercard SPME §§3.7, 6.2.2.2, 6.2.2.3, 8.6.6, and 11.1.1.</pre>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

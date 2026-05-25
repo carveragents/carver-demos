@@ -1,0 +1,13 @@
+program: Content Moderation (BRAM)
+authority: Mastercard SPME §10.5
+prohibited_categories:
+  - counterfeit_goods
+  - illegal_drugs
+  - adult_content_violations
+  - intellectual_property_violations
+  - gambling_in_restricted_jurisdictions
+review_cadence: weekly
+human_review_trigger_business_days: 1
+confirmed_violation_action: suspend_processing
+case_documentation_required: true
+agent_owner: content_mod_agent

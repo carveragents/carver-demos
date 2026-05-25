@@ -1,0 +1,50 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will the SEC approve a spot Solana ETF in 2025?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission approves at least one\nspot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)\nfor listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)\nwith an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.\n\nConditions:\n  A: SEC approves spot SOL ETF on NYSE Arca \u2014 By 2025-12-31, SEC issues an effective order approving a NYSE Arca rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\n  B: SEC approves spot SOL ETF on Cboe BZX \u2014 By 2025-12-31, SEC issues an effective order approving a Cboe BZX rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\n  C: SEC approves spot SOL ETF on NASDAQ \u2014 By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'NYSE Arca', 'Cboe BZX Exchange', 'NASDAQ Stock Market', 'BlackRock', 'Fidelity Investments', 'VanEck', 'Grayscale Investments', 'Bitwise Asset Management', '21Shares']\n\nRecord title: Regulators to Hold Outreach Event for Municipal Market Professionals\nRecord date: 2025-06-25\nRecord regulator: Financial Industry Regulatory Authority\nRecord topic: Financial Industry Regulatory Authority\nRecord entities: ['Dave Sanchez', 'Ernesto Lanza', 'Financial Industry Regulatory Authority', 'Michael Solomon', 'Municipal Securities Rulemaking Board', 'Securities and Exchange Commission']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Event concerns FINRA municipal-market outreach; unrelated to SEC rule-making on spot Solana ETFs and provides no information affecting approval likelihood.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

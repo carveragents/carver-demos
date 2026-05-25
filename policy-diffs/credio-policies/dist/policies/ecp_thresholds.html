@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECP Thresholds — Halyard Pay policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="index.html">Policies</a>
+  <span class="sep">›</span>
+  <span class="current">ECP Thresholds</span>
+</nav>
+
+<p class="eyebrow">Halyard Pay policy</p>
+<h1>ECP Thresholds</h1>
+
+<p class="lede"><strong>12 proposed revisions</strong> across <strong>5 of 5 reviewed releases</strong>, including <strong>1 breaking change</strong>.
+</p>
+
+<section class="policy-section">
+  <h2>Current policy</h2>
+
+  <div class="policy-tabs-row">
+    <h4 class="label-overline" style="border-bottom: none; padding-bottom: 0; margin-bottom: 12px;">policy.md</h4>
+  </div>
+  <div class="policy-prose"><h1>Excessive Chargeback Program (ECP) Thresholds</h1>
+<p>Mastercard's Excessive Chargeback Program (ECP) identifies merchants whose chargeback
+activity exceeds defined monthly ratios relative to their transaction volume. Halyard Pay
+monitors merchant chargeback-to-transaction ratios on a monthly basis and escalates
+merchants that breach program tiers to the appropriate remediation track.</p>
+<h2>Program tiers</h2>
+<p>Two tiers define the escalation ladder:</p>
+<ul>
+<li><strong>Standard</strong>: chargeback-to-transaction ratio of 1.5% (0.015) or greater and at
+least 100 chargebacks in the month.</li>
+<li><strong>Excessive</strong>: ratio of 3.0% (0.03) or greater in the same measurement period.</li>
+</ul>
+<h2>Required actions</h2>
+<ol>
+<li>Calculate each merchant's chargeback-to-transaction ratio at month close.</li>
+<li>Assign the merchant to the applicable tier if thresholds are met.</li>
+<li>Open an ECP case and notify the merchant within five business days.</li>
+<li>Track the merchant's progress on a monthly basis until they exit the program.</li>
+<li>Escalate to chargeback agent for automated case management.</li>
+</ol>
+<p>Source authority: Mastercard SPME §11.4.</p>
+</div>
+
+  <h4 class="label-overline" style="margin-top: 32px;">rules.yaml</h4>
+  <pre class="policy-code">program: ECP
+authority: Mastercard SPME §11.4
+chargeback_to_transaction_ratio_threshold: 0.015
+min_chargeback_count: 100
+program_tiers:
+  - standard
+  - excessive
+tier_thresholds:
+  standard: 0.015
+  excessive: 0.030
+merchant_notification_business_days: 5
+monitoring_cadence: monthly
+agent_owner: ecp_ops_agent
+</pre>
+
+  
+  <h4 class="label-overline" style="margin-top: 32px;">Authorized by</h4>
+  <div class="authorities">
+    <span class="chip section" title="Excessive Chargeback Program">SPME §11.4 — Excessive Chargeback Program</span>
+  </div>
+  
+</section>
+
+<section>
+  <h2 style="margin-bottom: 24px;">Proposed changes across releases</h2>
+
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Jun 2022 → May 2023</div>
+      <div class="count">2 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_11.4.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.4</span>
+          <span class="title">Merchant Removal from MATCH</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_11.5.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.5</span>
+          <span class="title">MATCH Reason Codes</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">May 2023 → Sep 2023</div>
+      <div class="count">4 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        <span class="seg-breaking" style="width: 25.0%"></span>
+        <span class="seg-substantive" style="width: 75.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_11.4.html">
+          <span class="materiality breaking">breaking</span>
+          <span class="section-id">§11.4</span>
+          <span class="title">Merchant Removal from MATCH</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_11.5.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.5</span>
+          <span class="title">MATCH Reason Codes</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_11.5.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.5.1</span>
+          <span class="title">Reason Codes for Merchants Listed by the Acquirer</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_13.1.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§13.1.2</span>
+          <span class="title">Service Provider Risk Management Program</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Sep 2023 → Feb 2024</div>
+      <div class="count">3 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2023-09_to_2024-02_1.5.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§1.5</span>
+          <span class="title">Data Protection</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-09_to_2024-02_11.5.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.5</span>
+          <span class="title">MATCH Reason Codes</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-09_to_2024-02_11.5.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.5.1</span>
+          <span class="title">Reason Codes for Merchants Listed by the Acquirer</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Feb 2024 → Sep 2024</div>
+      <div class="count">1 change</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-02_to_2024-09_8.3.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§8.3.1</span>
+          <span class="title">ECP Definitions</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Sep 2024 → May 2025</div>
+      <div class="count">2 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_11.14.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.14</span>
+          <span class="title">MATCH Pro Reason Codes</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_11.4.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.4</span>
+          <span class="title">Acquirer Requirements</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

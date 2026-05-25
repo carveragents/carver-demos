@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATO Detection — Halyard Pay policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="index.html">Policies</a>
+  <span class="sep">›</span>
+  <span class="current">ATO Detection</span>
+</nav>
+
+<p class="eyebrow">Halyard Pay policy</p>
+<h1>ATO Detection</h1>
+
+<p class="lede"><strong>16 proposed revisions</strong> across <strong>4 of 5 reviewed releases</strong>.
+</p>
+
+<section class="policy-section">
+  <h2>Current policy</h2>
+
+  <div class="policy-tabs-row">
+    <h4 class="label-overline" style="border-bottom: none; padding-bottom: 0; margin-bottom: 12px;">policy.md</h4>
+  </div>
+  <div class="policy-prose"><h1>Account-Takeover (ATO) Detection</h1>
+<p>Account-takeover fraud occurs when a malicious actor gains unauthorized access to
+a cardholder's account and initiates transactions without the cardholder's consent.
+Halyard Pay implements real-time risk scoring on authentication events and enforces a
+mandatory 3DS (3-D Secure) challenge for any session where the computed risk score
+meets or exceeds the defined threshold.</p>
+<h2>Detection signals</h2>
+<p>The risk model incorporates multiple behavioral signals: geographic anomalies
+inconsistent with a cardholder's established pattern, changes to device fingerprint,
+transaction velocity breaches, and indicators of credential-stuffing activity.</p>
+<h2>Required actions</h2>
+<ol>
+<li>Evaluate each authentication event against the defined signal list in real time.</li>
+<li>Compute a normalized risk score between 0.0 and 1.0.</li>
+<li>If the risk score is 0.5 or greater, trigger a mandatory 3DS challenge before
+authorizing the transaction.</li>
+<li>Log all ATO signals and outcomes in the case management system.</li>
+<li>Escalate persistent high-risk accounts to the ATO response team for manual review.</li>
+</ol>
+<p>Source authority: Mastercard SPME §6.2.</p>
+</div>
+
+  <h4 class="label-overline" style="margin-top: 32px;">rules.yaml</h4>
+  <pre class="policy-code">program: ATO Detection
+authority: Mastercard SPME §6.2
+risk_threshold_for_3ds_challenge: 0.5
+risk_score_range: [0.0, 1.0]
+signals:
+  - geo_anomaly
+  - device_fingerprint_change
+  - velocity_breach
+  - credential_stuffing
+challenge_method: 3ds_v2
+persistent_risk_escalation_threshold: 3
+persistent_risk_lookback_days: 7
+agent_owner: ato_agent
+</pre>
+
+  
+  <h4 class="label-overline" style="margin-top: 32px;">Authorized by</h4>
+  <div class="authorities">
+    <span class="chip section" title="Account-Takeover Prevention and 3-D Secure Requirements">SPME §6.2 — Account-Takeover Prevention and 3-D Secure Requirements</span>
+  </div>
+  
+</section>
+
+<section>
+  <h2 style="margin-bottom: 24px;">Proposed changes across releases</h2>
+
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Jun 2022 → May 2023</div>
+      <div class="count">4 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_10.6.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§10.6.1</span>
+          <span class="title">Assessments for PCI Violations in Connection with ADC Events</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_6.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6</span>
+          <span class="title">Control of instructions</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_6.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6.2</span>
+          <span class="title">Mastercard Fraud Loss Control Program Standards</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_6.2.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6.2.2</span>
+          <span class="title">Acquirer Fraud Loss Control Programs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">May 2023 → Sep 2023</div>
+      <div class="count">5 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_10.6.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§10.6.2</span>
+          <span class="title">Potential Reduction of Financial Responsibility</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_2.2.6.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§2.2.6</span>
+          <span class="title">Mandatory Compliance Requirements for Compromised Entities</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_5.1.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§5.1.1</span>
+          <span class="title">Card Retention by Merchants</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_6.2.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6.2.2</span>
+          <span class="title">Acquirer Fraud Loss Control Programs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_8.6.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§8.6.2</span>
+          <span class="title">Investigation Process</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release empty">
+    <div class="date-col">
+      <div class="date-range">Sep 2023 → Feb 2024</div>
+      <div class="count">0 changes</div>
+      
+    </div>
+    <div class="changes-col">
+      
+        <span class="no-changes">No proposed revisions in this release.</span>
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Feb 2024 → Sep 2024</div>
+      <div class="count">3 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-02_to_2024-09_10.6.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§10.6</span>
+          <span class="title">Mastercard Determination of ADC Event or Potential ADC Event</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-02_to_2024-09_10.6.4.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§10.6.4</span>
+          <span class="title">Determination of Operational Reimbursement (OR)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-02_to_2024-09_6.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6.2</span>
+          <span class="title">Mastercard Fraud Loss Control Program Standards</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Sep 2024 → May 2025</div>
+      <div class="count">4 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_11.10.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.10</span>
+          <span class="title">MATCH Pro Record Retention</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_11.14.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§11.14.1</span>
+          <span class="title">Reason Codes for MATCH Merchants Listed by an Authorized User</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_13.1.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§13.1.2</span>
+          <span class="title">Service Provider Risk Management Program</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_6.2.2.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§6.2.2</span>
+          <span class="title">Acquirer Fraud Loss Control Programs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,8 @@
+mastercard_artifact: SPME
+sections:
+  - id: "10.1"
+    title: Chargeback — Dispute Lifecycle and Processing
+    anchor_version: "2022-06"
+  - id: "10.3"
+    title: Second Presentment and Pre-Arbitration
+    anchor_version: "2022-06"

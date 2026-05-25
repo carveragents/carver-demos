@@ -1,0 +1,50 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nResolution criteria: Resolves to the outcome announced by the Federal Open Market Committee at the\nconclusion of its March 17-18, 2026 meeting. Settlement is the official FOMC\nstatement on the federal funds target range published 2026-03-18.\n\nStandard FOMC-decision outcome buckets cover changes of -50 bps, -25 bps,\n0 bps (hold), +25 bps, +50 bps relative to the prior target range.\n\nConditions:\n  A: Official FOMC statement (2026-03-18) \u2014 Use the official FOMC statement published 2026-03-18. Compare the announced federal funds target range to the range in effect before the meeting. If the change equals this market\u2019s bucket, resolve YES.\n  B: Fed Implementation Note/press release \u2014 If no usable statement, use the Fed\u2019s Implementation Note or FOMC press release dated 2026-03-18 that sets the target range. If the change vs the prior range matches this market\u2019s bucket, YES.\n  C: Delayed/canceled meeting fallback \u2014 If the Mar 17-18 meeting is delayed/canceled or the statement is later, use the first official FOMC/Board release for the March 2026 decision. If the change vs prior matches this market\u2019s bucket, YES.\nSettlement entities: ['Federal Open Market Committee', 'Federal Reserve System', 'Federal Reserve Board of Governors', 'Jerome Powell', 'Department of the Treasury', 'Bureau of Labor Statistics']\n\nRecord title: Request for Information: Streamlining the Call Report RIN 3064\u2013ZA51 Request for information and comment Comment Period End: January 30, 2026\nRecord date: 2025-12-01\nRecord regulator: Office of the Comptroller of the Currency\nRecord topic: Federal Deposit Insurance Corporation\nRecord entities: ['Benjamin W. McDonough', 'Board of Governors of the Federal Reserve System', 'Bryan Jonasson', 'Cady Codding', 'Federal Deposit Insurance Corporation', 'Federal Reserve', 'Jane Terry', 'Jennifer M. Jones', 'Kevin Korzeniewski', 'Kevin Littler', 'Michelle Shore', 'Office of the Comptroller of the Currency', 'Kimberly Yeh']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "OCC RFI on Call Report streamlining is an administrative bank-reporting matter, not about the FOMC\u2019s target rate or March 18, 2026 decision.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

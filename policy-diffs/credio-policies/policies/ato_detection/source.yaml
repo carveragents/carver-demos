@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "6.2"
+    title: Account-Takeover Prevention and 3-D Secure Requirements
+    anchor_version: "2022-06"

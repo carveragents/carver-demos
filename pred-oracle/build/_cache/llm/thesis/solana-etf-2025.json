@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will the SEC approve a spot Solana ETF in 2025?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission approves at least one\nspot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)\nfor listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)\nwith an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.\n\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'NYSE Arca', 'Cboe BZX Exchange', 'NASDAQ Stock Market', 'BlackRock', 'Fidelity Investments', 'VanEck', 'Grayscale Investments', 'Bitwise Asset Management', '21Shares']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "SEC approves spot SOL ETF on NYSE Arca",
+        "summary": "By 2025-12-31, SEC issues an effective order approving a NYSE Arca rule change to list and trade a spot Solana ETF (holding SOL directly, not futures)."
+      },
+      {
+        "id": "B",
+        "label": "SEC approves spot SOL ETF on Cboe BZX",
+        "summary": "By 2025-12-31, SEC issues an effective order approving a Cboe BZX rule change to list and trade a spot Solana ETF (holding SOL directly, not futures)."
+      },
+      {
+        "id": "C",
+        "label": "SEC approves spot SOL ETF on NASDAQ",
+        "summary": "By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures)."
+      }
+    ]
+  }
+}

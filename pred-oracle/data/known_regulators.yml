@@ -1,0 +1,143 @@
+# Known regulators catalog for the pred-oracle annotation pipeline.
+# Each entry MUST have a `canonical_name`. `aliases` is optional but recommended.
+# Sections (informal, ordered alphabetically inside each block):
+#   1. US federal agencies / bodies
+#   2. US state gambling / gaming regulators
+#   3. US tribal gaming regulators
+#   4. International gambling regulators
+#   5. International securities / financial regulators
+#   6. Multilateral / standards bodies
+
+# --- US federal -------------------------------------------------------------
+- canonical_name: Commodity Futures Trading Commission
+  aliases: [CFTC]
+- canonical_name: Committee on Foreign Investment in the United States
+  aliases: [CFIUS]
+- canonical_name: Consumer Financial Protection Bureau
+  aliases: [CFPB]
+- canonical_name: Department of Commerce
+  aliases: [Commerce, DoC]
+- canonical_name: Department of Justice
+  aliases: [DOJ]
+- canonical_name: Department of the Treasury
+  aliases: [Treasury, US Treasury]
+- canonical_name: Federal Communications Commission
+  aliases: [FCC]
+- canonical_name: Federal Reserve
+  aliases: [Fed, Board of Governors, FOMC, Federal Open Market Committee]
+- canonical_name: Federal Trade Commission
+  aliases: [FTC]
+- canonical_name: Financial Crimes Enforcement Network
+  aliases: [FinCEN]
+- canonical_name: Office of Foreign Assets Control
+  aliases: [OFAC]
+- canonical_name: Securities and Exchange Commission
+  aliases: [SEC]
+
+# --- US state gambling / gaming regulators ----------------------------------
+- canonical_name: Arizona Department of Gaming
+  aliases: [AZ DG]
+- canonical_name: Colorado Division of Gaming
+  aliases: [CO DOG, Colorado Gaming]
+- canonical_name: Connecticut Department of Consumer Protection
+  aliases: [CT DCP]
+- canonical_name: Illinois Gaming Board
+  aliases: [IGB]
+- canonical_name: Indiana Gaming Commission
+  aliases: [IGC, Indiana GC]
+- canonical_name: Iowa Racing and Gaming Commission
+  aliases: [IRGC]
+- canonical_name: Kentucky Horse Racing Commission
+  aliases: [KHRC]
+- canonical_name: Louisiana Gaming Control Board
+  aliases: [LGCB]
+- canonical_name: Maryland Lottery and Gaming Control Agency
+  aliases: [MLGCA]
+- canonical_name: Massachusetts Gaming Commission
+  aliases: [MGC, Mass Gaming]
+- canonical_name: Michigan Gaming Control Board
+  aliases: [MGCB]
+- canonical_name: Mississippi Gaming Commission
+  aliases: [MS Gaming]
+- canonical_name: Montana Gambling Control Division
+  aliases: [MT GCD]
+- canonical_name: Nevada Gaming Control Board
+  aliases: [NGCB, Nevada GCB]
+- canonical_name: New Jersey Division of Gaming Enforcement
+  aliases: [NJ DGE]
+- canonical_name: New York State Gaming Commission
+  aliases: [NYSGC]
+- canonical_name: North Dakota Attorney General Gaming Division
+  aliases: [ND Gaming]
+- canonical_name: Ohio Casino Control Commission
+  aliases: [OCCC]
+- canonical_name: Oregon Department of Justice Gaming Division
+  aliases: [OR Gaming]
+- canonical_name: Pennsylvania Gaming Control Board
+  aliases: [PGCB]
+- canonical_name: Tennessee Sports Wagering Council
+  aliases: [TN SWC]
+- canonical_name: West Virginia Lottery Commission
+  aliases: [WV Lottery]
+- canonical_name: Wisconsin Department of Administration Division of Gaming
+  aliases: [WI Gaming]
+
+# --- US tribal --------------------------------------------------------------
+- canonical_name: National Indian Gaming Commission
+  aliases: [NIGC]
+
+# --- International gambling regulators --------------------------------------
+- canonical_name: Alcohol and Gaming Commission of Ontario
+  aliases: [AGCO]
+- canonical_name: Anti-Money Laundering Office Thailand
+  aliases: [AMLO, Thailand AMLO]
+- canonical_name: Autorité Nationale des Jeux
+  aliases: [ANJ, France ANJ]
+- canonical_name: Belgium Gaming Commission
+  aliases: [BGC, Kansspelcommissie]
+- canonical_name: Gambling Regulatory Authority of Singapore
+  aliases: [GRA, GRA Singapore]
+- canonical_name: Hungarian Gambling Authority
+  aliases: [SZRH]
+- canonical_name: Kansspelautoriteit
+  aliases: [KSA, Netherlands KSA]
+- canonical_name: Malta Gaming Authority
+  aliases: [MGA]
+- canonical_name: Secretaria de Prêmios e Apostas
+  aliases: [SECAP, SPA, Brazil SECAP, Secretaria de Avaliação Planejamento Energia e Loteria]
+- canonical_name: Spelinspektionen
+  aliases: [Sweden Spelinspektionen, Swedish Gambling Authority]
+- canonical_name: UK Gambling Commission
+  aliases: [UKGC]
+
+# --- International securities / financial regulators ------------------------
+- canonical_name: Australian Transaction Reports and Analysis Centre
+  aliases: [AUSTRAC]
+- canonical_name: Autorité des Marchés Financiers
+  aliases: [AMF, AMF France]
+- canonical_name: Bundesanstalt für Finanzdienstleistungsaufsicht
+  aliases: [BaFin, BaFin Germany]
+- canonical_name: Comisión Nacional del Mercado de Valores
+  aliases: [CNMV, CNMV Spain]
+- canonical_name: Commissione Nazionale per le Società e la Borsa
+  aliases: [CONSOB, CONSOB Italy]
+- canonical_name: Securities and Exchange Board of India
+  aliases: [SEBI]
+
+# --- Multilateral / standards bodies ---------------------------------------
+- canonical_name: Bank for International Settlements
+  aliases: [BIS]
+- canonical_name: Basel Committee on Banking Supervision
+  aliases: [BCBS]
+- canonical_name: European Commission
+  aliases: [EC]
+- canonical_name: European Securities and Markets Authority
+  aliases: [ESMA]
+- canonical_name: Financial Action Task Force
+  aliases: [FATF]
+- canonical_name: G20
+  aliases: [Group of Twenty]
+- canonical_name: International Organization of Securities Commissions
+  aliases: [IOSCO]
+- canonical_name: Organisation for Economic Co-operation and Development
+  aliases: [OECD]

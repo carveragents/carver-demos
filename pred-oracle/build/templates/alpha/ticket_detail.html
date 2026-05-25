@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}{{ ticket.title }} — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  {# scene.back_href is in the slice but the link is hardcoded to alpha/ for now;
+     parametric paths would go through scene.back_href. #}
+  <a href="{{ base_url|default('') }}alpha/" class="text-slate-500 hover:text-slate-900">{{ scene.back_label }}</a>
+</nav>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+  <article class="lg:col-span-3">
+    <header class="mb-4">
+      <div class="text-xs uppercase tracking-wider text-slate-500">{{ ticket.regulator.name }}{% if ticket.regulator.division %} · {{ ticket.regulator.division }}{% endif %}</div>
+      <h1 class="text-2xl font-bold mt-1">{{ ticket.title }}</h1>
+      <p class="mt-2">
+        {% set url = ticket.link %}
+        {% set label = "View primary source" %}
+        {% include "alpha/_components/source_badge.html" %}
+      </p>
+    </header>
+
+    <section class="flex flex-wrap gap-x-6 gap-y-2 text-sm mb-6 text-slate-700">
+      <div><span class="text-xs uppercase tracking-wider text-slate-500 block">Published</span>{{ ticket.pub_date }}</div>
+      {% if ticket.effective_date %}<div><span class="text-xs uppercase tracking-wider text-slate-500 block">Effective</span>{{ ticket.effective_date }}</div>{% endif %}
+      {% if ticket.compliance_date %}<div><span class="text-xs uppercase tracking-wider text-slate-500 block">Compliance</span>{{ ticket.compliance_date }}</div>{% endif %}
+      {% if ticket.comment_deadline %}<div><span class="text-xs uppercase tracking-wider text-slate-500 block">Comment deadline</span>{{ ticket.comment_deadline }}</div>{% endif %}
+      <div><span class="text-xs uppercase tracking-wider text-slate-500 block">Type</span>{{ ticket.update_type }}{% if ticket.update_subtype %} / {{ ticket.update_subtype }}{% endif %}</div>
+      {% if ticket.jurisdictions %}
+      <div><span class="text-xs uppercase tracking-wider text-slate-500 block">Jurisdictions</span>{{ ticket.jurisdictions|join(', ') }}</div>
+      {% endif %}
+    </section>
+
+    {% if ticket.what_changed %}
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">What changed</h2>
+      <p class="text-slate-800">{{ ticket.what_changed }}</p>
+    </section>
+    {% endif %}
+
+    {% if ticket.why_it_matters %}
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Why it matters</h2>
+      <p class="text-slate-800">{{ ticket.why_it_matters }}</p>
+    </section>
+    {% endif %}
+
+    {% if ticket.key_requirements %}
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Key requirements</h2>
+      <ul class="list-disc list-inside text-slate-800 space-y-1">
+        {% for r in ticket.key_requirements %}<li>{{ r }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if ticket.penalties_consequences %}
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Penalties / consequences</h2>
+      <ul class="list-disc list-inside text-slate-800 space-y-1">
+        {% for p in ticket.penalties_consequences %}<li>{{ p }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if ticket.reg_references.statutes or ticket.reg_references.rules or ticket.reg_references.past_release or ticket.reg_references.precedents %}
+    <section class="mb-6">
+      <details>
+        <summary class="cursor-pointer text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory references</summary>
+        <div class="mt-2 text-sm text-slate-700 space-y-1">
+          {% for s in ticket.reg_references.statutes %}<div>📜 {{ s }}</div>{% endfor %}
+          {% for r in ticket.reg_references.rules %}<div>📋 {{ r }}</div>{% endfor %}
+          {% for p in ticket.reg_references.personnel %}<div>👤 {{ p }}</div>{% endfor %}
+          {% for p in ticket.reg_references.past_release %}<div>🗞️ {{ p }}</div>{% endfor %}
+          {% for p in ticket.reg_references.precedents %}<div>⚖️ {{ p }}</div>{% endfor %}
+        </div>
+      </details>
+    </section>
+    {% endif %}
+
+    {% if ticket.entities %}
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Entities mentioned</h2>
+      <div class="flex flex-wrap gap-1.5">
+        {% for e in ticket.entities %}<span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">{{ e }}</span>{% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <details class="mt-8 border border-slate-200 rounded p-3 text-sm">
+      <summary class="cursor-pointer text-slate-500">View raw annotation (Carver JSON)</summary>
+      <pre class="mt-3 text-xs overflow-x-auto text-slate-700">{{ raw_annotation|tojson(indent=2) }}</pre>
+    </details>
+  </article>
+
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Workflow</h2>
+        {% include "alpha/_components/demo_badge.html" %}
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">{{ workflow.assignee.initials }}</span>
+          <div>
+            <div class="text-sm font-medium">{{ workflow.assignee.name }} <span class="text-xs text-slate-500 font-normal">({{ workflow.assignee.role }})</span></div>
+            <div class="text-xs text-slate-500">Due {{ workflow.due_date }}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-sm">
+          <div><span class="text-xs uppercase tracking-wider text-slate-500 block">Priority</span><span class="text-2xl font-bold">{{ workflow.priority }}</span></div>
+          <div><span class="text-xs uppercase tracking-wider text-slate-500 block">Status</span><span class="capitalize text-slate-800">{{ workflow.status|replace('_', ' ') }}</span></div>
+        </div>
+
+        <div>
+          <span class="text-xs uppercase tracking-wider text-slate-500 block mb-2">Scores</span>
+          {% set score = ticket.scores.urgency.score|float %}
+          {% set tier = 'critical' if score >= 8 else ('high' if score >= 6.5 else ('medium' if score >= 4 else 'low')) %}
+          {% set label = ticket.scores.urgency.label %}
+          {% include "alpha/_components/urgency_pill.html" %}
+          <span class="ml-2 text-xs text-slate-600">urgency</span>
+          <div class="mt-1 text-sm text-slate-700">Impact <span class="font-medium">{{ ticket.scores.impact.score }}</span> · Relevance <span class="font-medium">{{ ticket.scores.relevance.score }}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-slate-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Activity</h2>
+        {% include "alpha/_components/demo_badge.html" %}
+      </div>
+      <ul class="space-y-3 text-sm">
+        {% for t in workflow.transitions %}
+        <li class="flex gap-3"><span class="text-slate-400">{{ t.timestamp[:10] }}</span><span class="text-slate-800">{{ t.from or '(start)' }} → <span class="font-medium">{{ t.to }}</span> · {{ t.by }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="border border-slate-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Discussion</h2>
+        {% include "alpha/_components/demo_badge.html" %}
+      </div>
+      <ul class="space-y-3 text-sm">
+        {% for c in workflow.comments %}
+        <li>
+          <div class="text-xs text-slate-500">{{ c.author }} · <span class="capitalize">{{ c.role }}</span> · {{ c.timestamp[:16]|replace('T', ' ') }}</div>
+          <div class="text-slate-800 mt-1">{{ c.text }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+# Kalshi platform-relevant entity catalog.
+# Roles:
+#   self        - Kalshi itself
+#   staff       - named Kalshi personnel (MUST include `source` URL + `retrieved` date)
+#   competitor  - competing or adjacent event-contract / prediction venues
+#   regulator   - regulators of particular importance to Kalshi
+#   other       - upstream / adjacent organizations
+
+# --- self -------------------------------------------------------------------
+- canonical_name: Kalshi
+  aliases: [KalshiEX, KalshiEX LLC, Kalshi Inc.]
+  role: self
+
+# --- staff (real, public-source verified) -----------------------------------
+- canonical_name: Tarek Mansour
+  aliases: [Tarek Monsour, T. Mansour]
+  role: staff
+  title: CEO
+  source: https://kalshi.com/about
+  retrieved: 2026-05-19
+- canonical_name: Luana Lopes Lara
+  aliases: [Lopes Lara]
+  role: staff
+  title: Co-founder
+  source: https://kalshi.com/about
+  retrieved: 2026-05-19
+
+# --- competitors / adjacent venues ------------------------------------------
+- canonical_name: Cantor Fitzgerald
+  aliases: [Cantor]
+  role: competitor
+- canonical_name: CME Group
+  aliases: [CME, Chicago Mercantile Exchange]
+  role: competitor
+- canonical_name: DraftKings
+  aliases: [DK]
+  role: competitor
+- canonical_name: FanDuel
+  aliases: [FD]
+  role: competitor
+- canonical_name: Intercontinental Exchange
+  aliases: [ICE]
+  role: competitor
+- canonical_name: Manifold Markets
+  aliases: [Manifold]
+  role: competitor
+- canonical_name: Polymarket
+  aliases: [Polymarket Limited]
+  role: competitor
+- canonical_name: PredictIt
+  aliases: [Victoria University PredictIt]
+  role: competitor
+- canonical_name: Robinhood Markets
+  aliases: [Robinhood, HOOD]
+  role: competitor
+- canonical_name: Webull
+  aliases: [Webull Financial]
+  role: competitor
+
+# --- regulators relevant to Kalshi -----------------------------------------
+- canonical_name: Commodity Futures Trading Commission
+  aliases: [CFTC]
+  role: regulator
+- canonical_name: Nevada Gaming Control Board
+  aliases: [NGCB, Nevada GCB]
+  role: regulator
+- canonical_name: New Jersey Division of Gaming Enforcement
+  aliases: [NJ DGE]
+  role: regulator

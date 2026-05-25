@@ -1,0 +1,32 @@
+{# Inline pressure-over-time chart. Expects buckets (list of ints,
+   oldest-first), optional callouts ({week_index, label, date?}),
+   optional width/height. Callouts render as vertical landmarks on the
+   chart plus a numbered legend below so text never overlaps. #}
+{% set _w = width|default(480) %}
+{% set _h = height|default(120) %}
+{% set _n = buckets|length %}
+{% set _max = (buckets|max) if buckets else 0 %}
+{% set _max = _max if _max > 0 else 1 %}
+{% set _step = _w / (_n - 1) if _n > 1 else _w %}
+<svg viewBox="0 0 {{ _w }} {{ _h }}" width="{{ _w }}" height="{{ _h }}"
+     class="w-full max-w-full">
+  <polyline fill="none" stroke="#1e40af" stroke-width="1.5"
+    points="{% for v in buckets %}{{ (loop.index0 * _step)|round(2) }},{{ (_h - (v / _max) * (_h - 8) - 4)|round(2) }} {% endfor %}" />
+  {% for c in callouts|default([]) %}
+    {% set x = (c.week_index * _step)|round(2) %}
+    <line x1="{{ x }}" y1="0" x2="{{ x }}" y2="{{ _h }}"
+          stroke="#dc2626" stroke-width="0.5" stroke-dasharray="2,2" />
+    <circle cx="{{ x }}" cy="10" r="8" fill="#dc2626" />
+    <text x="{{ x }}" y="13" font-size="9" font-weight="600" fill="#fff" text-anchor="middle">{{ loop.index }}</text>
+  {% endfor %}
+</svg>
+{% if callouts %}
+<ol class="mt-3 text-xs text-slate-600 space-y-1 list-decimal list-inside marker:text-rose-600 marker:font-semibold">
+  {% for c in callouts %}
+  <li>
+    {% if c.date %}<span class="text-slate-400 tabular-nums mr-1">{{ c.date }}</span>{% endif %}
+    <span class="text-slate-800">{{ c.label }}</span>
+  </li>
+  {% endfor %}
+</ol>
+{% endif %}

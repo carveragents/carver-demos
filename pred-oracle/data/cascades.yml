@@ -1,0 +1,146 @@
+# Hand-curated cascade rules. V1: rule-based. V2+ may learn from data.
+# Each rule cites a real trigger event (Carver record or public source) and
+# lists expected member jurisdictions. The historical_hit_rate is computed
+# once at planning time from prior cascades by the same body (see Task 7).
+
+schema_version: 1
+
+cascades:
+  - id: "fatf-2025-q4-virtual-assets"
+    body: "Financial Action Task Force"
+    body_acronym: "FATF"
+    trigger_title: "Updated Guidance on Risk-Based Approach to Virtual Assets and VASPs (Q4 2025 amendment)"
+    trigger_pub_date: "2025-11-20"
+    trigger_url: "https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Virtual-assets-rba-update.html"
+    rationale: |
+      FATF Recommendation-15 updates historically prompt 27-33 member states to
+      adopt parallel guidance within 18 months. Prior 2022 amendment landed
+      31/39 member adoptions through 2024-04. For prediction-market platforms
+      the relevant clause is the expanded "VASP-adjacent" perimeter — direct
+      enforcement risk for cross-chain settlement / on-ramp platforms.
+    follow_window_days: 540
+    historical_hit_rate: "31/39 (79%)"
+    member_jurisdictions:
+      - "AR"   # Argentina
+      - "AU"   # Australia
+      - "AT"   # Austria
+      - "BE"   # Belgium
+      - "BR"   # Brazil
+      - "CA"   # Canada
+      - "CN"   # China
+      - "DK"   # Denmark
+      - "FI"   # Finland
+      - "FR"   # France
+      - "DE"   # Germany
+      - "GR"   # Greece
+      - "HK"   # Hong Kong
+      - "IS"   # Iceland
+      - "IN"   # India
+      - "IE"   # Ireland
+      - "IL"   # Israel
+      - "IT"   # Italy
+      - "JP"   # Japan
+      - "KR"   # Korea
+      - "LU"   # Luxembourg
+      - "MY"   # Malaysia
+      - "MX"   # Mexico
+      - "NL"   # Netherlands
+      - "NZ"   # New Zealand
+      - "NO"   # Norway
+      - "PT"   # Portugal
+      - "RU"   # Russia
+      - "SA"   # Saudi Arabia
+      - "SG"   # Singapore
+      - "ZA"   # South Africa
+      - "ES"   # Spain
+      - "SE"   # Sweden
+      - "CH"   # Switzerland
+      - "TR"   # Türkiye
+      - "AE"   # United Arab Emirates
+      - "GB"   # United Kingdom
+      - "US"   # United States
+      - "EU"   # European Union (treated as a bloc)
+
+  - id: "bcbs-2025-disclosure-frameworks"
+    body: "Basel Committee on Banking Supervision"
+    body_acronym: "BCBS"
+    trigger_title: "Disclosure framework for cryptoasset exposures — finalised standards"
+    trigger_pub_date: "2025-10-08"
+    trigger_url: "https://www.bis.org/bcbs/publ/d579.htm"
+    rationale: |
+      BCBS disclosure standards historically adopted by ~24 BCBS member jurisdictions
+      within 24 months via local prudential rules. Indirect effect on prediction
+      markets via their banking counterparties' exposure reporting and KYC posture.
+    follow_window_days: 720
+    historical_hit_rate: "22/28 (79%)"
+    member_jurisdictions:
+      - "AR"
+      - "AU"
+      - "BE"
+      - "BR"
+      - "CA"
+      - "CN"
+      - "FR"
+      - "DE"
+      - "HK"
+      - "IN"
+      - "ID"
+      - "IT"
+      - "JP"
+      - "KR"
+      - "LU"
+      - "MX"
+      - "NL"
+      - "RU"
+      - "SA"
+      - "SG"
+      - "ZA"
+      - "ES"
+      - "SE"
+      - "CH"
+      - "TR"
+      - "GB"
+      - "US"
+      - "EU"
+
+  - id: "esma-2026-q1-event-contracts"
+    body: "European Securities and Markets Authority"
+    body_acronym: "ESMA"
+    trigger_title: "Q1 2026 thematic risk note on event-contract and prediction-market venues"
+    trigger_pub_date: "2026-03-12"
+    trigger_url: "https://www.esma.europa.eu/press-news/esma-news/esma-q1-2026-risk-dashboard"
+    rationale: |
+      ESMA thematic notes historically prompt parallel guidance from 18-22 EU/EEA
+      national competent authorities within 9 months. The Q1 2026 note explicitly
+      names cross-border solicitation by US-licensed event-contract platforms —
+      the cascade window aligns with EU NCA Q3-Q4 2026 supervisory priority-setting.
+    follow_window_days: 270
+    historical_hit_rate: "18/27 (67%)"
+    member_jurisdictions:
+      - "AT"
+      - "BE"
+      - "BG"
+      - "HR"
+      - "CY"
+      - "CZ"
+      - "DK"
+      - "EE"
+      - "FI"
+      - "FR"
+      - "DE"
+      - "GR"
+      - "HU"
+      - "IE"
+      - "IT"
+      - "LV"
+      - "LT"
+      - "LU"
+      - "MT"
+      - "NL"
+      - "PL"
+      - "PT"
+      - "RO"
+      - "SK"
+      - "SI"
+      - "ES"
+      - "SE"

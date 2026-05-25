@@ -1,0 +1,11 @@
+program: Fraud Monitoring
+authority: Mastercard SPME §3.7
+fraud_to_sales_ratio_threshold: 0.015
+min_count_per_month: 100
+monitoring_cadence: monthly
+escalation_actions:
+  - escalate_to_human_review
+  - notify_acquirer
+lookback_period_months: 1
+remediation_review_interval_days: 30
+agent_owner: fraud_ops_agent

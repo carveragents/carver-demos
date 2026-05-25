@@ -1,0 +1,56 @@
+# Kalshi curated contract pick-list. Each pick's `id` is the slug used in
+# /gamma/contracts/{id}/ URLs and Task 3's refresh writes the `cached` block
+# from the live API. If upstream 404s on refresh, the cached block is left
+# intact and `stale: true` plus `stale_reason` are set instead of overwriting.
+#
+# IMPORTANT: `cached.settlement_entities` is hand-curated. The live Kalshi
+# `/markets` API only returns `settlement_source` (a single source identifier)
+# and not the full set of regulators / corporations / individuals named in
+# resolution criteria. We populate `settlement_entities` manually so heat
+# scoring has real entities to match against the Carver corpus. A future
+# `--mode=fresh` pull will overwrite the rest of the `cached` block but
+# should leave `settlement_entities` alone if non-empty — see Stage 4 polish.
+
+schema_version: 1
+picks:
+- id: kxfeddecision-28jan
+  source_lookup:
+    event_ticker: KXFEDDECISION-28JAN
+  notes: Live Fed-decision contract — anchors the cross-platform Fed-rate comparison.
+  cached:
+    title: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?
+    subtitle: Cut 25bps
+    resolution_criteria: If the Federal Reserve does a Cut of 25bps on January 26, 2028, then the market resolves to Yes.
+    ticker: KXFEDDECISION-28JAN-C25
+    status: active
+    listed_at: '2025-10-06T14:00:00Z'
+    expires_at: '2028-01-26T18:59:00Z'
+    settlement_entities:
+      - "Federal Open Market Committee"
+      - "Federal Reserve System"
+      - "Federal Reserve Board of Governors"
+      - "Jerome Powell"
+      - "Department of the Treasury"
+      - "Bureau of Labor Statistics"
+  last_pulled_at: '2026-05-20T16:04:21Z'
+
+- id: kxbtc-maxprice-2026
+  source_lookup:
+    series_ticker: KXBTCMAXY
+  notes: Live BTC max-price-2026 series — fastest-rising heat candidate.
+  cached:
+    title: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?
+    subtitle: ''
+    resolution_criteria: If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.
+    ticker: KXBTCMAXY-26DEC31-109999.99
+    status: active
+    listed_at: '2026-01-02T23:00:00Z'
+    expires_at: '2027-01-01T04:59:00Z'
+    settlement_entities:
+      - "U.S. Securities and Exchange Commission"
+      - "Commodity Futures Trading Commission"
+      - "Federal Reserve System"
+      - "BlackRock"
+      - "Fidelity Investments"
+      - "Coinbase"
+  last_pulled_at: '2026-05-20T16:04:21Z'

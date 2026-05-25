@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nKind: retrospective\nTimeline (7 events):\n- 2026-03-18 [background] Treasury International Capital Data for January \u2014 TIC data show capital flows that can modestly shift financial\u2011conditions and thus slightly tweak odds of an FOMC rate move, but are not determinative.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 BIS-hosted remarks by a Fed-affiliated official about labor-market interpretation may slightly shift market expectations ahead of the March FOMC but don't determine the official decision.\n- 2026-02-18 [background] Treasury International Capital Data for December \u2014 TIC capital-flow data can slightly shift market expectations about Fed policy ahead of the March meeting but does not determine the official FOMC statement.\n- 2026-01-13 [background] Treasury and State Departments Designate Muslim Brotherhood Branches as Terrorist Organizations \u2014 OFAC terrorist designations are foreign-policy actions with negligible direct impact on U.S. policy rates; only a very small indirect macro/risk premium link to FOMC decisions.\n- 2026-01-06 [background] Secretary Scott Bessent Announces Working Families Tax Cuts: Ushering in a New Golden Age \u2014 Significant Jan 2026 Treasury tax cuts could boost demand/inflation and modestly raise odds of a March rate hike, but effect is indirect and distant.\n- 2025-11-20 [background] Christopher J Waller: The case for continuing rate cuts \u2014 Waller's Nov 2025 speech advocating continued rate cuts nudges probability of a March 2026 cut but is nonbinding and months before the meeting.\n- 2025-11-20 [background] Philip N Jefferson: Economic outlook and monetary policy \u2014 Governor Jefferson\u2019s Nov 20, 2025 speech provides background on outlook and may slightly shift market expectations for March 2026, but does not determine the official FOMC decision.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Expectations shifted mainly on Fed communications and data: Waller and Jefferson\u2019s Nov 2025 remarks and Dec\u2013Jan TIC flows nudged odds; Jan 2026 tax cuts modestly lifted hike risk, while OFAC terror designations had negligible effect. The March 2026 FOMC announced its rate decision, and the market resolved to that outcome. Overall, these signals exerted little direct pressure on the final call."
+  }
+}

@@ -1,0 +1,13 @@
+# Demo personas for Kalshi. All names are fictional placeholders used only for
+# the demo narrative; they are never claimed as real Kalshi employees.
+gc:
+  display_name: "Sara Chen"
+  role: General Counsel
+  page_urgency_threshold: 8
+  digest_cadence: daily
+listing_lead:
+  display_name: "Marcus Vega"
+  role: Head of Listing
+international_lead:
+  display_name: "(unused for Kalshi)"
+  role: Head of International

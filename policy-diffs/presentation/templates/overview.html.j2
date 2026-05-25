@@ -1,0 +1,121 @@
+{% extends "_base.html.j2" %}
+{% block title %}{{ config.brand.client }} {{ config.brand.product }} — overview{% endblock %}
+{% block content %}
+
+<p class="eyebrow">{{ config.overview.hero_eyebrow }}</p>
+<h1>{{ config.overview.hero_title }}</h1>
+
+<p class="lede">
+  This site presents an AI agent's analysis of <strong>{{ release_count }} {{ config.artifact.long }} release{% if release_count != 1 %}s{% endif %}</strong>
+  spanning <strong>{{ start_date_label }} to {{ end_date_label }}</strong>, with proposed updates to
+  <strong>{{ total_policies }} {{ config.brand.client }} polic{% if total_policies != 1 %}ies{% else %}y{% endif %}</strong>.
+</p>
+
+<div class="stats">
+  <div class="stat"><span class="num">{{ release_count }}</span><span class="label">releases reviewed</span></div>
+  <div class="stat"><span class="num">{{ total_changes }}</span><span class="label">proposed revisions</span></div>
+  <div class="stat"><span class="num">{{ total_breaking }}</span><span class="label">breaking changes</span></div>
+  <div class="stat"><span class="num">{{ total_policies }}</span><span class="label">policies affected</span></div>
+</div>
+
+<a href="timeline/index.html" class="cta-primary">
+  Begin review
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+</a>
+
+<section class="overview-section">
+  <p class="section-num">01 · How it works</p>
+  <h2>What the agent did</h2>
+  <p class="section-intro">
+    A three-stage agent reads each {{ config.artifact.long }} release, identifies what changed since the previous version, and proposes corresponding edits to {{ config.brand.client }}'s internal compliance policies.
+  </p>
+  <div class="step-flow">
+    {% for step in config.pipeline_steps %}
+    <div class="step">
+      <span class="step-number">{{ '%02d' | format(loop.index) }}</span>
+      <h3>{{ step.title }}</h3>
+      <p>{{ step.body | safe }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">02 · Inputs</p>
+  <h2>{{ config.artifact.publisher }} input documents</h2>
+  <p class="section-intro">{{ config.overview.artifact_intro | safe }}</p>
+  <ul class="source-list">
+    {% for v in pdf_versions %}
+    <li>
+      <a href="sources/{{ config.artifact.sources_subdir }}/{{ v.filename }}" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>{{ config.artifact.citation }} · {{ v.label }}</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="provenance">{{ config.overview.provenance_note }}</p>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">03 · Outputs</p>
+  <h2>{{ config.brand.client }} policies evaluated</h2>
+  <p class="section-intro">{{ config.overview.policies_intro | safe }}</p>
+  <div class="policies-mini-grid">
+    {% for p in policies %}
+    <a href="policies/{{ p.slug }}.html" class="policy-mini-card">
+      <div class="name">{{ p.name }}</div>
+      <div class="desc">{{ p.description }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">04 · Vocabulary</p>
+  <h2>Glossary</h2>
+  <p class="section-intro">Acronyms used throughout the site, plus the four materiality grades the classifier assigns.</p>
+  <dl class="glossary">
+    {% for g in config.glossary %}
+    <dt>{{ g.term }}</dt><dd>{{ g.definition }}</dd>
+    {% endfor %}
+    <dt class="dt-group">Materiality grades</dt><dd class="dd-group"></dd>
+    <dt><span class="materiality breaking">Breaking</span></dt><dd>Alters an obligation, threshold, or required behavior. A policy revision is required to remain compliant.</dd>
+    <dt><span class="materiality substantive">Substantive</span></dt><dd>Adds meaningful new context, references, or examples without altering an obligation. A policy update is recommended.</dd>
+    <dt><span class="materiality clarifying">Clarifying</span></dt><dd>Restates an existing rule in different language. No policy change required, but cross-references may need updating.</dd>
+    <dt><span class="materiality cosmetic">Cosmetic</span></dt><dd>Formatting, typo, or section reordering with no semantic impact. No action required.</dd>
+  </dl>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">05 · Navigation</p>
+  <h2>How to read this demo</h2>
+  <p class="section-intro">{{ config.navigation.intro }}</p>
+  <div class="nav-paths">
+    {% for path in config.navigation.paths %}
+    <div class="nav-path">
+      <h3>{{ path.title }}</h3>
+      <p>{{ path.body | safe }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">06 · Disclaimers</p>
+  <h2>What this is not</h2>
+  <ul class="disclaimer">
+    {% for d in config.disclaimers %}
+    <li>{{ d | safe }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<a href="timeline/index.html" class="cta-primary cta-bottom">
+  Begin review
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+</a>
+
+{% endblock %}

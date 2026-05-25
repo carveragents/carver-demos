@@ -1,0 +1,10 @@
+{# Inline 14-point sparkline. Expects `values` (list of ints). #}
+{% set max_v = (values|max) if values else 0 %}
+{% set max_v = max_v if max_v > 0 else 1 %}
+{% set width = 80 %}
+{% set height = 24 %}
+{% set step = width / (values|length - 1) if (values|length > 1) else width %}
+<svg viewBox="0 0 {{ width }} {{ height }}" width="{{ width }}" height="{{ height }}" class="inline-block align-middle">
+  <polyline fill="none" stroke="#2563eb" stroke-width="1.5"
+    points="{% for v in values %}{{ (loop.index0 * step)|round(2) }},{{ (height - (v / max_v) * (height - 2) - 1)|round(2) }} {% endfor %}" />
+</svg>

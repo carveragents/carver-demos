@@ -1,0 +1,148 @@
+{% extends "_base.html.j2" %}
+{% block title %}{{ change.title }} — {{ config.artifact.short }} §{{ change.section_id }}{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+
+<nav class="breadcrumb">
+  <a href="{{ assets_prefix }}timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="{{ assets_prefix }}transitions/{{ change.transition_slug }}.html">{{ change.transition_label }}</a>
+  <span class="sep">›</span>
+  <span class="current">§{{ change.section_id }}</span>
+</nav>
+
+<header class="change-header">
+  <div>
+    <p class="eyebrow">{{ config.artifact.citation }} §{{ change.section_id }} · {{ change.transition_label }}</p>
+    <h1>{{ change.title }}</h1>
+  </div>
+  <span class="materiality {{ change.materiality }}">{{ change.materiality }}</span>
+</header>
+
+{% if change.suspicious_extraction %}
+<div class="extraction-warning">
+  <strong>⚠ Extraction warning — review against source PDF.</strong>
+  One side of the {{ config.artifact.citation }} text below appears to contain only the page-running header, not body content. This usually means the section heading fell on a page boundary and the body was attributed to a neighbouring section in the source PDF. The AI summary and proposed edit below may be misleading.
+  {% if change.from_pdf_url or change.to_pdf_url %}
+  Verify in:
+  {% if change.from_pdf_url %}<a href="{{ change.from_pdf_url }}" target="_blank" rel="noopener">{{ change.transition_from_label }}{% if change.from_page %} · page {{ change.from_page }}{% endif %} ↗</a>{% endif %}{% if change.from_pdf_url and change.to_pdf_url %} · {% endif %}{% if change.to_pdf_url %}<a href="{{ change.to_pdf_url }}" target="_blank" rel="noopener">{{ change.transition_to_label }}{% if change.to_page %} · page {{ change.to_page }}{% endif %} ↗</a>{% endif %}.
+  {% endif %}
+</div>
+{% endif %}
+
+<p class="lede" style="font-size: 16px;">{{ change.summary }}</p>
+
+<div class="sources-row">
+  <span class="label">Sources</span>
+  {% if change.from_pdf_url %}
+  <a href="{{ change.from_pdf_url }}" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">{{ config.artifact.citation }} · {{ change.transition_from_label }}{% if change.from_page %} · page {{ change.from_page }}{% endif %}</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  {% endif %}
+  {% if change.to_pdf_url %}
+  <a href="{{ change.to_pdf_url }}" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">{{ config.artifact.citation }} · {{ change.transition_to_label }}{% if change.to_page %} · page {{ change.to_page }}{% endif %}</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  {% endif %}
+  {% for p in change.affected_policies %}
+  <a href="{{ assets_prefix }}policies/{{ p.slug }}.html" class="source policy">
+    <svg class="icon"><use href="#icon-book"/></svg>
+    <span class="src-name">{{ p.name }}</span>
+    <span class="ext">current</span>
+  </a>
+  {% endfor %}
+</div>
+
+{% if change.siblings %}
+<div class="context-row">
+  <span class="label">Also in §{{ change.section_family }}.x this release</span>
+  {% for s in change.siblings %}
+  <a href="{{ assets_prefix }}changes/{{ s.change_id }}.html" class="sibling-chip">
+    <span class="materiality {{ s.materiality }}">{{ s.materiality }}</span>
+    <span class="sec">§{{ s.section_id }}</span>
+    {% if s.title %}<span class="sibling-title">{{ s.title }}</span>{% endif %}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="callout">
+  <strong>Why these edits?</strong> {{ change.rationale }}
+</div>
+
+<nav class="tabs">
+  <a href="#side-by-side">Side-by-side</a>
+  <a href="#redline">Redline</a>
+  <a href="#raw-diff">Raw diff</a>
+</nav>
+
+<section id="side-by-side" class="tab-panel">
+  <div class="side-by-side">
+    <div class="col">
+      <div class="label">{{ config.artifact.citation }} §{{ change.section_id }}</div>
+      {% if change.section_compare.mode == 'redline' %}
+      <div class="prose">{{ change.section_compare.html | safe }}</div>
+      {% else %}
+      <div class="prose-note">
+        This section was substantively restructured between versions ({{ (change.section_compare.similarity * 100) | int }}% text overlap). Compare the texts directly below.
+      </div>
+      <div class="prose-block prose-before">
+        <div class="prose-label">
+          Before · {{ change.transition_from_label }}
+          {% if change.from_pdf_url and change.from_page %}
+          · <a href="{{ change.from_pdf_url }}" target="_blank" rel="noopener" class="page-link">page {{ change.from_page }} <svg class="icon-ext-tiny"><use href="#icon-external"/></svg></a>
+          {% endif %}
+        </div>
+        <div class="prose">{{ change.section_compare.before_html | safe }}</div>
+      </div>
+      <div class="prose-block prose-after">
+        <div class="prose-label">
+          After · {{ change.transition_to_label }}
+          {% if change.to_pdf_url and change.to_page %}
+          · <a href="{{ change.to_pdf_url }}" target="_blank" rel="noopener" class="page-link">page {{ change.to_page }} <svg class="icon-ext-tiny"><use href="#icon-external"/></svg></a>
+          {% endif %}
+        </div>
+        <div class="prose">{{ change.section_compare.after_html | safe }}</div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="col">
+      <div class="label">{{ config.brand.client }} · {{ change.affected_files | length }} file{% if change.affected_files|length != 1 %}s{% endif %}</div>
+      {% for f in change.affected_files %}
+        <div class="file-panel">
+          <div style="margin-bottom: 8px;">
+            <a class="chip policy" href="{{ assets_prefix }}policies/{{ f.policy_slug }}.html">{{ f.policy_name }} · {{ f.filename }}</a>
+          </div>
+          {{ f.diff_html | safe }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="redline" class="tab-panel">
+  {% set markdown_files = change.affected_files | selectattr("kind", "equalto", "markdown") | list %}
+  {% if markdown_files %}
+    {% for f in markdown_files %}
+      <div class="label-overline">{{ f.path }} — after applying change</div>
+      <div class="prose" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px; line-height: 1.7;">
+        {{ f.full_redline_html | safe }}
+      </div>
+    {% endfor %}
+    <p style="font-size: 12px; color: var(--ink-muted); margin-top: 16px;">Source authority: {{ config.artifact.citation }} §{{ change.section_id }}.</p>
+  {% else %}
+    <p style="color: var(--ink-muted);">This change affects YAML rules only — see the side-by-side or raw diff tabs.</p>
+  {% endif %}
+</section>
+
+<section id="raw-diff" class="tab-panel">
+  <pre class="raw-diff">{{ change.unified_diff }}</pre>
+</section>
+
+{% endblock %}

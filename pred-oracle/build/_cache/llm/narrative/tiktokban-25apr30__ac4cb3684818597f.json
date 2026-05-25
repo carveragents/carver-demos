@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will TikTok be banned in the United States by April 30, 2025?\nKind: retrospective\nTimeline (5 events):\n- 2025-02-25 [background] D25-03 - Steven House - Amended Stipulated Agreement and Order \u2014 State insurance enforcement action (Alaska Division of Insurance) unrelated to TikTok, app-store availability, or federal PAFACA orders; no bearing on resolution.\n- 2025-01-31 [background] Regulatory Board Disciplinary Actions Archive \u2014 Tennessee disciplinary archive concerns local businesses and individuals, unrelated to TikTok, app\u2011store availability, or federal PAFACA action, so no impact.\n- 2025-01-24 [background] Bulletin B25-05 \u2014 Alaska state insurance bulletin is unrelated to app-store availability or federal PAFACA enforcement and doesn't affect TikTok ban odds.\n- 2025-01-24 [background] Bulletin B25-04 \u2014 Alaska Division of Insurance bulletin unrelated to TikTok, app store availability, or any federal PAFACA enforcement; not relevant to resolution.\n- 2024-09-19 [background] Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data \u2014 CFPB remarks on data misuse raise general regulatory pressure on tech but do not directly affect App Store/Play removals or a PAFACA enforcement order.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Broader scrutiny followed CFPB remarks in Sept 2024, but the 2025 entries were unrelated state insurance/disciplinary actions with no bearing on TikTok. With no federal PAFACA enforcement or app\u2011store removals before the deadline, TikTok was not banned by April 30, 2025, and the contract resolved No."
+  }
+}

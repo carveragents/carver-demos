@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nKind: retrospective\nTimeline (12 events):\n- 2026-03-18 [background] Treasury International Capital Data for January \u2014 TIC data show capital flows that can modestly shift financial\u2011conditions and thus slightly tweak odds of an FOMC rate move, but are not determinative.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 BIS-hosted remarks by a Fed-affiliated official about labor-market interpretation may slightly shift market expectations ahead of the March FOMC but don't determine the official decision.\n- 2026-02-18 [background] Treasury International Capital Data for December \u2014 TIC capital-flow data can slightly shift market expectations about Fed policy ahead of the March meeting but does not determine the official FOMC statement.\n- 2026-02-01 [background] Factors Affecting Regional Bank Health and Supervisory Rating: An Exploration \u2014 Federal Reserve Cleveland analysis on regional bank health is background; it may slightly influence FOMC risk assessment but doesn't determine the official Mar 18 rate decision.\n- 2025-12-17 [background] Secretary Bessent Orders Sanctions Against Violent Mexican Cartel \u2014 OFAC sanctions could affect Pemex/oil flows and financial conditions, modestly shifting Fed tightening/hold odds but are indirect background information.\n- 2025-12-11 [background] READOUT: Financial Stability Oversight Council Meeting on December 11, 2025 \u2014 FSOC readout mentions the Fed and Powell and discusses financial-stability views (Dec 2025); provides background that may slightly nudge rate-expectation odds, not decisive.\n- 2025-11-20 [background] Christopher J Waller: The case for continuing rate cuts \u2014 Governor Waller's Nov 2025 call for continued rate cuts raises the odds the FOMC will cut by March 2026, but it's opinionated and not determinative.\n- 2025-11-20 [background] Philip N Jefferson: Economic outlook and monetary policy \u2014 Nov 2025 Fed governor speech provides background on policy outlook, slightly shifting odds for March 2026 but not determinative.\n- 2025-11-20 [background] Treasury Tightens Sanctions on Iran\u2019s Oil Network Supporting its Military \u2014 OFAC sanctions on Iran's oil could modestly raise oil prices and inflation, slightly affecting odds the FOMC changes rates, but are indirect and non-determinative.\n- 2025-11-18 [background] Rescission of Principles for Climate Related Financial Risk Management for Large Financial Institutions RIN 3064\u2013ZA32 Rescission of final interagency guidance \u2014 Rescinding climate-risk guidance affects bank regulation and supervision, not the FOMC\u2019s target-rate decision; it has negligible direct impact on March 2026 rate outcome.\n- 2025-11-14 [background] Stephen I Miran: A global stablecoin glut - implications for monetary policy \u2014 BIS analysis on a global stablecoin glut may slightly inform Fed thinking on monetary policy but is background commentary and not determinative of the March 18, 2026 decision.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 OFAC sanctions could push oil prices and inflation expectations, slightly shifting odds for March 2026 Fed policy but do not determine the official FOMC statement.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "From late 2025 to March 2026, only background signals\u2014Fed speeches, TIC flows, FSOC notes, and sanctions affecting oil\u2014modestly nudged odds without imposing direct regulatory pressure on policy. The FOMC\u2019s March 18, 2026 statement set the target range and resolved the market; ancillary supervisory and sanctions actions proved immaterial to the final rate decision."
+  }
+}

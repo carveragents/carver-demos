@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Pre-listing scan — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('') }}gamma/" class="text-slate-500 hover:text-slate-900">← Listing risk overview</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 · Listing</div>
+  <h1 class="text-2xl font-bold mt-1">Pre-listing scan — proposed contract</h1>
+  <p class="text-slate-600 mt-1 text-sm">Drop a contract title + resolution criteria. See its regulatory exposure before you list.</p>
+</header>
+
+<div x-data="{ active: '{{ scans[0].id }}' }"
+     class="grid grid-cols-1 lg:grid-cols-[18rem_1fr] gap-6">
+  <!-- Scenario picker -->
+  <aside>
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Pick a scenario</div>
+    <div class="space-y-2">
+      {% for s in scans %}
+      <button @click="active = '{{ s.id }}'"
+              :class="active === '{{ s.id }}' ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-slate-200 hover:border-slate-300 bg-white'"
+              class="block w-full text-left border rounded-lg p-3 transition">
+        <div class="text-xs uppercase tracking-wider"
+             :class="active === '{{ s.id }}' ? 'text-blue-600 font-semibold' : 'text-slate-500'">
+          Scenario {{ loop.index }}
+        </div>
+        <div class="text-sm mt-1 font-medium text-slate-900 leading-snug">{{ s.title }}</div>
+      </button>
+      {% endfor %}
+    </div>
+  </aside>
+
+  <!-- Scenario content -->
+  <div>
+  {% for s in scans %}
+  <section x-show="active === '{{ s.id }}'"
+           x-data="{ ran: false, running: false, run() { if (this.ran || this.running) return; this.running = true; setTimeout(() => { this.running = false; this.ran = true; }, 900); } }"
+           class="space-y-6">
+    <!-- Input card -->
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Proposed contract title</label>
+      <textarea readonly rows="2" class="w-full font-medium text-slate-900 bg-transparent resize-none focus:outline-none">{{ s.title }}</textarea>
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mt-3 mb-1">Resolution criteria</label>
+      <textarea readonly rows="3" class="w-full text-sm text-slate-700 bg-transparent resize-none focus:outline-none">{{ s.resolution_criteria }}</textarea>
+      <button @click="run()"
+              :disabled="running || ran"
+              :class="ran ? 'bg-emerald-600 cursor-default' : (running ? 'bg-blue-500 cursor-wait' : 'bg-blue-600 hover:bg-blue-700')"
+              class="mt-3 inline-flex items-center gap-2 text-white px-3 py-1.5 rounded text-sm font-medium transition"
+              title="Production deployment runs this synchronously against live Carver data.">
+        <span x-show="!running && !ran">Run scan</span>
+        <span x-show="running" class="flex items-center gap-2">
+          <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          Analysing 49,735 events…
+        </span>
+        <span x-show="ran" class="flex items-center gap-2">✓ Scan complete</span>
+      </button>
+    </div>
+
+    <!-- Results (hidden until Run scan is pressed) -->
+    <div x-show="ran"
+         x-cloak
+         x-transition:enter="transition ease-out duration-400"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Severity</div>
+        <div class="text-4xl font-bold {{ 'text-red-600' if s.severity >= 8 else ('text-orange-600' if s.severity >= 5 else 'text-slate-700') }}">{{ s.severity }}</div>
+        <div class="text-xs text-slate-500 mt-1">out of 10</div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Breakdown</div>
+        <div class="text-sm space-y-1">
+          <div><span class="text-slate-500">Matches:</span> <span class="font-medium">{{ s.severity_breakdown.matching_events_count }}</span></div>
+          <div><span class="text-slate-500">Top entity:</span> <span class="font-medium">{{ s.severity_breakdown.top_entity }}</span></div>
+        </div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Extracted entities</div>
+        <div class="flex flex-wrap gap-1">
+          {% for e in s.extracted_entities %}
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">{{ e.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent events -->
+    <div class="border border-slate-200 rounded-lg overflow-hidden">
+      <header class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Recent regulatory activity ({{ s.recent_events|length }})</h2>
+      </header>
+      {% if s.recent_events %}
+      <ul class="divide-y divide-slate-100">
+        {% for ev in s.recent_events %}
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="{{ ev.link }}" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">{{ ev.title }}</a>
+              <div class="text-xs text-slate-500 mt-0.5">{{ ev.regulator }} · {{ ev.pub_date }} · matched <span class="font-medium">{{ ev.matched_entity }}</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg {{ ev.urgency|round(0)|int }}</div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="px-4 py-6 text-sm text-slate-500 italic">No matching recent events in the corpus.</div>
+      {% endif %}
+    </div>
+
+    {% if s.warnings %}
+    <div class="border border-amber-200 bg-amber-50 rounded-lg p-3 text-sm text-amber-800">
+      {% for w in s.warnings %}<div>⚠ {{ w }}</div>{% endfor %}
+    </div>
+    {% endif %}
+    </div><!-- /results -->
+  </section>
+  {% endfor %}
+  </div><!-- /scenario content -->
+</div>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('') }}gamma/" class="text-sm text-slate-500 hover:text-slate-900">← Listing risk overview</a>
+  <a href="{{ base_url|default('') }}gamma/dashboard/" class="text-sm text-blue-600 hover:text-blue-800">Open contract-watch board →</a>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will the US enter a recession in 2026?\nResolution criteria: Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise.\nConditions:\n  A: NBER 2026-peak recession by 2026-12-31 \u2014 The NBER Business Cycle Dating Committee publicly announces that the U.S. entered a recession with the peak month occurring in 2026, and this announcement is made on or before 2026-12-31.\nSettlement entities: ['National Bureau of Economic Research', 'Federal Reserve System', 'Federal Open Market Committee', 'Department of the Treasury', 'Bureau of Labor Statistics', 'Bureau of Economic Analysis', 'Council of Economic Advisers']\n\nRecord title: Real Estate Lending Escrow Accounts: Final Rule\nRecord date: 2026-05-15\nRecord regulator: Office of the Comptroller of the Currency\nRecord topic: Office of the Comptroller of the Currency\nRecord entities: ['Adam J. Cohen', 'Department of the Treasury', 'Federal Savings Associations', 'Graham Bannon', 'Karen McSweeney', 'National Banks', 'Office of the Comptroller of the Currency', 'Priscilla Benner', 'United States']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 2,
+    "one_line_why": "OCC final rule on real-estate escrow accounts may modestly affect bank lending and housing conditions but has only a minor, indirect impact on likelihood of an NBER 2026 peak.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

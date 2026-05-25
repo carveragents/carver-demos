@@ -1,0 +1,78 @@
+{% extends "_base.html.j2" %}
+{% block title %}{{ policy.name }} — {{ config.brand.client }} policy{% endblock %}
+{% block content %}
+
+<nav class="breadcrumb">
+  <a href="{{ assets_prefix }}timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="index.html">Policies</a>
+  <span class="sep">›</span>
+  <span class="current">{{ policy.name }}</span>
+</nav>
+
+<p class="eyebrow">{{ config.brand.client }} policy</p>
+<h1>{{ policy.name }}</h1>
+
+<p class="lede">
+{%- if total_changes -%}
+<strong>{{ total_changes }} proposed revision{% if total_changes != 1 %}s{% endif %}</strong> across <strong>{{ release_count }} of {{ total_releases }} reviewed release{% if total_releases != 1 %}s{% endif %}</strong>{% if total_breaking %}, including <strong>{{ total_breaking }} breaking change{% if total_breaking != 1 %}s{% endif %}</strong>{% endif %}.
+{%- else -%}
+No proposed revisions across {{ total_releases }} reviewed release{% if total_releases != 1 %}s{% endif %}.
+{%- endif %}
+</p>
+
+<section class="policy-section">
+  <h2>Current policy</h2>
+
+  <div class="policy-tabs-row">
+    <h4 class="label-overline" style="border-bottom: none; padding-bottom: 0; margin-bottom: 12px;">policy.md</h4>
+  </div>
+  <div class="policy-prose">{{ policy.policy_html | safe }}</div>
+
+  <h4 class="label-overline" style="margin-top: 32px;">rules.yaml</h4>
+  <pre class="policy-code">{{ policy.rules_yaml }}</pre>
+
+  {% if policy.authorities %}
+  <h4 class="label-overline" style="margin-top: 32px;">Authorized by</h4>
+  <div class="authorities">
+    {% for a in policy.authorities %}<span class="chip section" title="{{ a.title }}">{{ config.artifact.short }} §{{ a.id }}{% if a.title %} — {{ a.title }}{% endif %}</span>{% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section>
+  <h2 style="margin-bottom: 24px;">Proposed changes across releases</h2>
+
+  {% for h in history %}
+  <div class="policy-release {% if not h.changes %}empty{% endif %}">
+    <div class="date-col">
+      <div class="date-range">{{ h.from_date_label }} → {{ h.to_date_label }}</div>
+      <div class="count">{{ h.change_count }} change{% if h.change_count != 1 %}s{% endif %}</div>
+      {% if h.changes %}
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        {% if h.materiality_counts.breaking %}<span class="seg-breaking" style="width: {{ h.pct.breaking }}%"></span>{% endif %}
+        {% if h.materiality_counts.substantive %}<span class="seg-substantive" style="width: {{ h.pct.substantive }}%"></span>{% endif %}
+        {% if h.materiality_counts.clarifying %}<span class="seg-clarifying" style="width: {{ h.pct.clarifying }}%"></span>{% endif %}
+        {% if h.materiality_counts.cosmetic %}<span class="seg-cosmetic" style="width: {{ h.pct.cosmetic }}%"></span>{% endif %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="changes-col">
+      {% if h.changes %}
+        {% for c in h.changes %}
+        <a class="change-card-mini" href="{{ assets_prefix }}changes/{{ c.change_id }}.html">
+          <span class="materiality {{ c.materiality }}">{{ c.materiality }}</span>
+          <span class="section-id">§{{ c.section_id }}</span>
+          <span class="title">{{ c.title }}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        {% endfor %}
+      {% else %}
+        <span class="no-changes">No proposed revisions in this release.</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

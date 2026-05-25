@@ -1,0 +1,11 @@
+program: Refund Policy
+authority: Mastercard SPME §10.4
+refund_window_days: 30
+partial_refund_allowed: true
+notification_required_to_cardholder: true
+notification_channels:
+  - email
+  - in_app
+record_retention_months: 18
+non_returnable_goods_refund_exception: false
+agent_owner: refunds_agent

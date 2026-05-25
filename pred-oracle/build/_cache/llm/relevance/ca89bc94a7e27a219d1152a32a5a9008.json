@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: New Rihanna Album before GTA VI?\nResolution criteria: This market will resolve to \"Yes\" if Rihanna officially releases a new album before Grand Theft Auto VI is officially released in the US. Otherwise, this market will resolve to \"No\".\nConditions:\n  A: Rihanna album before GTA VI (US) \u2014 YES if Rihanna officially releases a new album (e.g., via Rihanna, Spotify, or Apple Music) at a time earlier than GTA VI\u2019s official US release in the US per Rockstar Games/Take\u2011Two.\nSettlement entities: ['Rockstar Games', 'Take-Two Interactive', 'Spotify', 'Apple Music', 'Rihanna']\n\nRecord title: FTC Begins Enforcing the TAKE IT DOWN Act\nRecord date: 2026-05-19\nRecord regulator: Federal Trade Commission\nRecord topic: Federal Trade Commission\nRecord entities: ['Alphabet', 'Amazon', 'Apple', 'Automattic', 'Bumble', 'Discord', 'Federal Trade Commission', 'FTC Chairman Andrew N. Ferguson', 'Match Group', 'Meta', 'Melania Trump', 'Microsoft', 'Pinterest', 'Reddit', 'SmugMug', 'Snapchat', 'TikTok', 'X']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "FTC enforcement of the TAKE IT DOWN Act concerns platform moderation and major tech firms and does not affect Rihanna's album release or GTA VI US release timing.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

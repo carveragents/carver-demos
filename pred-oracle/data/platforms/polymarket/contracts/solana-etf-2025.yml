@@ -1,0 +1,44 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "solana-etf-2025"
+
+title: "Will the SEC approve a spot Solana ETF in 2025?"
+resolution_criteria: |
+  Resolves YES if the U.S. Securities and Exchange Commission approves at least one
+  spot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)
+  for listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)
+  with an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.
+
+listed_at: "2024-06-01"
+resolved_at: "2025-12-31"
+status: "resolved"
+resolution_outcome: "YES"
+
+settlement_entities:
+  - "U.S. Securities and Exchange Commission"
+  - "Division of Trading and Markets"
+  - "NYSE Arca"
+  - "Cboe BZX Exchange"
+  - "NASDAQ Stock Market"
+  - "BlackRock"
+  - "Fidelity Investments"
+  - "VanEck"
+  - "Grayscale Investments"
+  - "Bitwise Asset Management"
+  - "21Shares"
+
+source_urls:
+  - "https://www.sec.gov/about/divisions-offices/division-trading-markets"
+  - "https://en.wikipedia.org/wiki/Solana_(blockchain_platform)"
+
+source_retrieved_at: "2026-05-20"
+
+# Resolution context (for the retrospective template):
+# - Multiple issuers filed S-1 / 19b-4 amendments for spot Solana ETFs through
+#   2024 and 2025 (Bitwise, VanEck, 21Shares, Canary, Grayscale, Franklin Templeton).
+# - Approvals issued in late 2025; the contract resolved YES.
+# - The retrospective wow per Stage 2 plan §5 is the temporal-precedence math:
+#   Carver-annotated SEC dockets and 19b-4 amendments leading the news cycle by
+#   N days. No price-history overlay (the Polymarket Gamma API does not serve
+#   resolved markets, verified during Stage 2 planning).

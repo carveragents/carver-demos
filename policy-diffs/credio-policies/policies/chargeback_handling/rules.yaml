@@ -1,0 +1,27 @@
+program: Chargeback Handling
+authority: Mastercard SPME §10.1
+acknowledgement_business_days: 1
+lifecycle_states:
+  - first_presentment
+  - chargeback
+  - second_presentment
+  - pre_arbitration
+  - arbitration
+evidence_requirements:
+  first_presentment:
+    - transaction_receipt
+    - authorization_record
+  chargeback:
+    - merchant_rebuttal_letter
+    - delivery_confirmation
+    - customer_communication
+  second_presentment:
+    - compelling_evidence
+    - signed_cardholder_agreement
+  pre_arbitration:
+    - full_dispute_record
+    - prior_correspondence
+  arbitration:
+    - full_dispute_record
+    - arbitration_filing
+agent_owner: chargeback_agent

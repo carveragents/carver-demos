@@ -1,0 +1,1655 @@
+{
+  "timestamp": "2026-05-20T02:21:32.588129",
+  "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+  "results": [
+    {
+      "label": "A (baseline, no pagination)",
+      "params": {},
+      "status": 200,
+      "elapsed_s": 1.411,
+      "response_type": "list",
+      "count": 670,
+      "first_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+      "headers": {},
+      "response_sample": [
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "urgency": {
+                "basis": "past_deadline",
+                "label": "medium",
+                "score": 5,
+                "confidence": 0.9
+              },
+              "relevance": {
+                "label": "high",
+                "score": 9.0,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "c83abf6a-ebc7-4c97-addc-40e8324ef8c8",
+            "metadata": {
+              "tags": [
+                "Alberta Securities Commission",
+                "Enforcement",
+                "Crowdfunding",
+                "Prospectus Exemption",
+                "Securities Act",
+                "Illegal Distribution",
+                "Hearing Notice",
+                "Compliance"
+              ],
+              "entities": [
+                "2307755 Alberta Ltd.",
+                "Alberta Securities Commission",
+                "Daniel Rodolfo Astete",
+                "Samir Sabharwal"
+              ],
+              "actionables": {
+                "other_change": "Respondents must prepare for and attend regulatory hearings",
+                "policy_change": "",
+                "status_change": "Inability to rely on crowdfunding exemption due to payment to principal",
+                "process_change": "Ensure strict adherence to prospectus and exemption filing requirements",
+                "training_change": "",
+                "reporting_change": "File accurate and compliant reports of exempt distribution",
+                "tech_data_change": ""
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2023-11",
+                    "calendar": "gregorian",
+                    "description": "Relevant Period when 2307755 raised funds"
+                  },
+                  {
+                    "date": "2023-12-09",
+                    "calendar": "gregorian",
+                    "description": "Incorporation date of 2307755 Alberta Ltd."
+                  },
+                  {
+                    "date": "2023-12-18",
+                    "calendar": "gregorian",
+                    "description": "Date when payment of $21,000 was made to Astete"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-04-08",
+                "compliance_date": "",
+                "comment_deadline": "",
+                "pub_date_content": "2026-02-25",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To notify the respondent of a hearing regarding alleged illegal securities distributions and breaches of the Securities Act.",
+                "risk_impact": "Non-compliance risks include enforcement actions, potential orders against principals and issuers, and reputational damage.",
+                "what_changed": "The Alberta Securities Commission is initiating enforcement proceedings against 2307755 Alberta Ltd. and its principal for distributing securities without a prospectus or valid exemption.",
+                "why_it_matters": "This update highlights regulatory enforcement on crowdfunding exemptions and prospectus requirements, emphasizing compliance risks for issuers and principals in securities offerings.",
+                "key_requirements": [
+                  "Issuers must comply with prospectus requirements or valid exemptions when distributing securities.",
+                  "No commission or similar payments to principals or employees are allowed under crowdfunding exemptions.",
+                  "Respondents must attend hearings or risk orders being made in their absence."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Commission Rule 15-501 \u2013 Rules of Practice and Procedure for Commission Proceedings",
+                  "National Instrument 45-110 \u2013 Start-Up Crowdfunding Registration and Prospectus Exemptions",
+                  "National Instrument 45-106 Prospectus Exemptions"
+                ],
+                "statutes": [
+                  "Securities Act, RSA 2000, c. S-4"
+                ],
+                "other_ref": [],
+                "personnel": [
+                  "Samir Sabharwal, Executive Director"
+                ],
+                "precedents": [],
+                "past_release": []
+              },
+              "impacted_business": {
+                "size": [
+                  "Small (<$1B)"
+                ],
+                "type": [
+                  "Issuer",
+                  "Director",
+                  "Officer"
+                ],
+                "industry": [
+                  "Banking"
+                ],
+                "other_notes": [
+                  "Real estate crowdfunding platform issuer"
+                ],
+                "jurisdiction": [
+                  "CA-AB"
+                ]
+              },
+              "impacted_functions": [
+                "Legal",
+                "Compliance",
+                "Risk Management",
+                "Operations"
+              ],
+              "penalties_consequences": [
+                "Potential orders under sections 198, 199 and 202 of the Securities Act",
+                "Enforcement actions may proceed in absence of respondent",
+                "Reputational and financial consequences from illegal securities distribution"
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "Notice Of Hearing",
+                "summary": "Notice of hearing regarding alleged securities violations by Daniel Rodolfo Astete and 2307755 Alberta Ltd.",
+                "base_url": "asc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": []
+              },
+              "update_type": "enforcement",
+              "update_subtype": "enforcement_agency",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Alberta Securities Commission is a provincial regulator in Canada, which is a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Alberta Securities Commission",
+                "other_agency": [],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-25",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        },
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 8,
+                "confidence": 0.9
+              },
+              "urgency": {
+                "basis": "future_deadline",
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "relevance": {
+                "label": "high",
+                "score": 8.5,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "825099d4-b189-4e0a-a9c2-6d921d597486",
+            "metadata": {
+              "tags": [
+                "Designated Benchmarks",
+                "Benchmark Administrator",
+                "Assurance Report",
+                "Multilateral Instrument 25-102",
+                "Canadian Securities Administrators",
+                "Regulatory Amendments",
+                "Compliance",
+                "Benchmark Contributor",
+                "Interest Rate Benchmark",
+                "Critical Benchmark",
+                "Commodity Benchmark"
+              ],
+              "entities": [
+                "Alberta Securities Commission",
+                "Autorit\u00e9 des march\u00e9s financiers",
+                "British Columbia Securities Commission",
+                "Canadian Securities Administrators",
+                "Darren Sutherland",
+                "Financial and Consumer Services Commission (New Brunswick)",
+                "Harvey Steblyk",
+                "Janice Cherniak",
+                "Marie-Andr\u00e9e Beaulieu",
+                "Michael Bennett",
+                "Michael Brady",
+                "Nova Scotia Securities Commission",
+                "Ontario Securities Commission",
+                "Roland Geiling",
+                "Serge Boisvert",
+                "Yukon Government",
+                "Justice Department Northwest Territories",
+                "Faisal Kirmani"
+              ],
+              "actionables": {
+                "other_change": "Implement transition provisions for benchmarks designated before the effective date.",
+                "policy_change": "Update internal policies to align with revised assurance report requirements and timing.",
+                "status_change": "",
+                "process_change": "Adjust processes to ensure assurance reports are prepared and submitted within specified timelines and applicable periods.",
+                "training_change": "Train relevant staff on new assurance report requirements and timelines.",
+                "reporting_change": "Modify reporting schedules to comply with new fixed dates and 90-day submission deadlines for assurance reports.",
+                "tech_data_change": "Update systems to track designation dates, applicable periods, and reporting deadlines for assurance reports."
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2024-05-30",
+                    "calendar": "gregorian",
+                    "description": "Publication date of CSA Notice and Request for Comment on proposed amendments"
+                  },
+                  {
+                    "date": "2024-06-28",
+                    "calendar": "gregorian",
+                    "description": "Final publication date of CDOR benchmark"
+                  },
+                  {
+                    "date": "2024-07-18",
+                    "calendar": "gregorian",
+                    "description": "Date of OSC revocation order for CDOR and RBSL"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-05-05",
+                "compliance_date": "",
+                "comment_deadline": "2024-08-28",
+                "pub_date_content": "2026-02-19",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "gregorian",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To amend MI 25-102 and Companion Policy 25-102 to revise assurance report requirements for designated benchmarks and their administrators, addressing technical issues and providing greater certainty.",
+                "risk_impact": "Reduces uncertainty and potential compliance risk related to assurance reporting; mitigates operational and reputational risks for benchmark administrators and contributors.",
+                "what_changed": "Revised assurance report requirements for designated critical, interest rate, commodity, and other benchmarks; introduced new section 13.1 for other designated benchmarks; simplified language on timing and applicable periods for assurance reports; added transition provisions for pre-existing designations.",
+                "why_it_matters": "Ensures clarity and consistency in assurance reporting obligations, addressing prior technical issues encountered by accounting firms, thereby reducing regulatory risk and enhancing oversight effectiveness.",
+                "key_requirements": [
+                  "First reasonable assurance report to be provided on a fixed date after benchmark designation.",
+                  "Applicable period for each assurance report specified, with first report having a 3-month look-back period.",
+                  "Assurance reports to be provided no later than 90 days after the end of the applicable period.",
+                  "References to code of conduct for benchmark contributors included in assurance report requirements.",
+                  "Transition provisions for interest rate benchmarks designated before effective date without benchmark contributors."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators (MI 25-102) (https://www.osc.ca/en/securities-law/instruments-rules-policies/25-102-designated-benchmarks-and-benchmark-administrators)"
+                ],
+                "statutes": [],
+                "other_ref": [
+                  "OSC revocation order for CDOR and RBSL (https://www.osc.ca/sites/default/files/2024-07/ord_20240718_refinitiv-benchmark-services.pdf)",
+                  "AMF revocation order for CDOR and RBSL (https://lautorite.qc.ca/fileadmin/lautorite/professionnels/structures-marche/indice-reference/2024-PDG-0044.pdf)",
+                  "Memorandum of Understanding respecting oversight of designated benchmarks (https://www.osc.ca/sites/default/files/2021-05/mou_20210527_designated-benchmarks.pdf)"
+                ],
+                "personnel": [
+                  "Michael Bennett, Senior Legal Counsel, Corporate Finance, Ontario Securities Commission",
+                  "Darren Sutherland, Senior Accountant, Corporate Finance, Ontario Securities Commission",
+                  "Serge Boisvert, Senior Policy Coordinator, Autorit\u00e9 des march\u00e9s financiers",
+                  "Roland Geiling, Derivatives Product Analyst, Autorit\u00e9 des march\u00e9s financiers",
+                  "Marie-Andr\u00e9e Beaulieu, Senior Policy Advisor, Autorit\u00e9 des march\u00e9s financiers",
+                  "Harvey Steblyk, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Janice Cherniak, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Michael Brady, Deputy Director, Capital Markets Regulation, British Columbia Securities Commission",
+                  "Faisal Kirmani, Senior Analyst, Derivatives, British Columbia Securities Commission"
+                ],
+                "precedents": [],
+                "past_release": [
+                  "CSA Notice and Request for Comment on Proposed Amendments to MI 25-102 and Companion Policy 25-102 dated May 30, 2024 (https://www.osc.ca/sites/default/files/2024-05/57CF8315CC3A43DF9004451E86F98398.ashx)"
+                ]
+              },
+              "impacted_business": {
+                "size": [
+                  "All"
+                ],
+                "type": [
+                  "Benchmark Administrators",
+                  "Banks",
+                  "Securities Regulators"
+                ],
+                "industry": [
+                  "Banking",
+                  "Capital Markets"
+                ],
+                "other_notes": [
+                  "Includes designated benchmark administrators and benchmark contributors",
+                  "Applies to designated critical benchmarks, interest rate benchmarks, commodity benchmarks, and other designated benchmarks"
+                ],
+                "jurisdiction": [
+                  "CA-BC",
+                  "CA-AB",
+                  "CA-SK",
+                  "CA-ON",
+                  "CA-QC",
+                  "CA-NB",
+                  "CA-NS",
+                  "CA-YT",
+                  "CA-NT"
+                ]
+              },
+              "impacted_functions": [
+                "Compliance",
+                "Risk Management",
+                "Legal",
+                "Finance",
+                "Regulatory Reporting"
+              ],
+              "penalties_consequences": [
+                "Non-compliance may result in regulatory sanctions including fines and reputational damage.",
+                "Failure to provide timely and accurate assurance reports could lead to enforcement actions by securities regulators."
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "CSA Notice of Amendments to Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators and Changes to Companion Policy 25-102 Designated Benchmarks and Benchmark Administrators",
+                "summary": "CSA adopts amendments to MI 25-102 and changes to Companion Policy effective May 5, 2026",
+                "base_url": "osc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": [
+                  "partial extraction",
+                  "no paywall",
+                  "official CSA notice"
+                ]
+              },
+              "update_type": "final rule",
+              "update_subtype": "regulatory_body",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Canadian Securities Administrators is a national Canadian regulatory umbrella organization overseeing provincial securities commissions, thus a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Canadian Securities Administrators",
+                "other_agency": [
+                  "Ontario Securities Commission",
+                  "Autorit\u00e9 des march\u00e9s financiers",
+                  "Alberta Securities Commission",
+                  "British Columbia Securities Commission",
+                  "Nova Scotia Securities Commission",
+                  "Financial and Consumer Services Commission (New Brunswick)",
+                  "Yukon Government",
+                  "Justice Department Northwest Territories"
+                ],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-19",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "842d0af6-ac30-41f1-9384-3c02f6a4965f",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        }
+      ]
+    },
+    {
+      "label": "B (small limit: 10)",
+      "params": {
+        "limit": 10,
+        "offset": 0
+      },
+      "status": 200,
+      "elapsed_s": 1.361,
+      "response_type": "list",
+      "count": 670,
+      "first_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+      "headers": {},
+      "response_sample": [
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "urgency": {
+                "basis": "past_deadline",
+                "label": "medium",
+                "score": 5,
+                "confidence": 0.9
+              },
+              "relevance": {
+                "label": "high",
+                "score": 9.0,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "c83abf6a-ebc7-4c97-addc-40e8324ef8c8",
+            "metadata": {
+              "tags": [
+                "Alberta Securities Commission",
+                "Enforcement",
+                "Crowdfunding",
+                "Prospectus Exemption",
+                "Securities Act",
+                "Illegal Distribution",
+                "Hearing Notice",
+                "Compliance"
+              ],
+              "entities": [
+                "2307755 Alberta Ltd.",
+                "Alberta Securities Commission",
+                "Daniel Rodolfo Astete",
+                "Samir Sabharwal"
+              ],
+              "actionables": {
+                "other_change": "Respondents must prepare for and attend regulatory hearings",
+                "policy_change": "",
+                "status_change": "Inability to rely on crowdfunding exemption due to payment to principal",
+                "process_change": "Ensure strict adherence to prospectus and exemption filing requirements",
+                "training_change": "",
+                "reporting_change": "File accurate and compliant reports of exempt distribution",
+                "tech_data_change": ""
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2023-11",
+                    "calendar": "gregorian",
+                    "description": "Relevant Period when 2307755 raised funds"
+                  },
+                  {
+                    "date": "2023-12-09",
+                    "calendar": "gregorian",
+                    "description": "Incorporation date of 2307755 Alberta Ltd."
+                  },
+                  {
+                    "date": "2023-12-18",
+                    "calendar": "gregorian",
+                    "description": "Date when payment of $21,000 was made to Astete"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-04-08",
+                "compliance_date": "",
+                "comment_deadline": "",
+                "pub_date_content": "2026-02-25",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To notify the respondent of a hearing regarding alleged illegal securities distributions and breaches of the Securities Act.",
+                "risk_impact": "Non-compliance risks include enforcement actions, potential orders against principals and issuers, and reputational damage.",
+                "what_changed": "The Alberta Securities Commission is initiating enforcement proceedings against 2307755 Alberta Ltd. and its principal for distributing securities without a prospectus or valid exemption.",
+                "why_it_matters": "This update highlights regulatory enforcement on crowdfunding exemptions and prospectus requirements, emphasizing compliance risks for issuers and principals in securities offerings.",
+                "key_requirements": [
+                  "Issuers must comply with prospectus requirements or valid exemptions when distributing securities.",
+                  "No commission or similar payments to principals or employees are allowed under crowdfunding exemptions.",
+                  "Respondents must attend hearings or risk orders being made in their absence."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Commission Rule 15-501 \u2013 Rules of Practice and Procedure for Commission Proceedings",
+                  "National Instrument 45-110 \u2013 Start-Up Crowdfunding Registration and Prospectus Exemptions",
+                  "National Instrument 45-106 Prospectus Exemptions"
+                ],
+                "statutes": [
+                  "Securities Act, RSA 2000, c. S-4"
+                ],
+                "other_ref": [],
+                "personnel": [
+                  "Samir Sabharwal, Executive Director"
+                ],
+                "precedents": [],
+                "past_release": []
+              },
+              "impacted_business": {
+                "size": [
+                  "Small (<$1B)"
+                ],
+                "type": [
+                  "Issuer",
+                  "Director",
+                  "Officer"
+                ],
+                "industry": [
+                  "Banking"
+                ],
+                "other_notes": [
+                  "Real estate crowdfunding platform issuer"
+                ],
+                "jurisdiction": [
+                  "CA-AB"
+                ]
+              },
+              "impacted_functions": [
+                "Legal",
+                "Compliance",
+                "Risk Management",
+                "Operations"
+              ],
+              "penalties_consequences": [
+                "Potential orders under sections 198, 199 and 202 of the Securities Act",
+                "Enforcement actions may proceed in absence of respondent",
+                "Reputational and financial consequences from illegal securities distribution"
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "Notice Of Hearing",
+                "summary": "Notice of hearing regarding alleged securities violations by Daniel Rodolfo Astete and 2307755 Alberta Ltd.",
+                "base_url": "asc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": []
+              },
+              "update_type": "enforcement",
+              "update_subtype": "enforcement_agency",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Alberta Securities Commission is a provincial regulator in Canada, which is a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Alberta Securities Commission",
+                "other_agency": [],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-25",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        },
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 8,
+                "confidence": 0.9
+              },
+              "urgency": {
+                "basis": "future_deadline",
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "relevance": {
+                "label": "high",
+                "score": 8.5,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "825099d4-b189-4e0a-a9c2-6d921d597486",
+            "metadata": {
+              "tags": [
+                "Designated Benchmarks",
+                "Benchmark Administrator",
+                "Assurance Report",
+                "Multilateral Instrument 25-102",
+                "Canadian Securities Administrators",
+                "Regulatory Amendments",
+                "Compliance",
+                "Benchmark Contributor",
+                "Interest Rate Benchmark",
+                "Critical Benchmark",
+                "Commodity Benchmark"
+              ],
+              "entities": [
+                "Alberta Securities Commission",
+                "Autorit\u00e9 des march\u00e9s financiers",
+                "British Columbia Securities Commission",
+                "Canadian Securities Administrators",
+                "Darren Sutherland",
+                "Financial and Consumer Services Commission (New Brunswick)",
+                "Harvey Steblyk",
+                "Janice Cherniak",
+                "Marie-Andr\u00e9e Beaulieu",
+                "Michael Bennett",
+                "Michael Brady",
+                "Nova Scotia Securities Commission",
+                "Ontario Securities Commission",
+                "Roland Geiling",
+                "Serge Boisvert",
+                "Yukon Government",
+                "Justice Department Northwest Territories",
+                "Faisal Kirmani"
+              ],
+              "actionables": {
+                "other_change": "Implement transition provisions for benchmarks designated before the effective date.",
+                "policy_change": "Update internal policies to align with revised assurance report requirements and timing.",
+                "status_change": "",
+                "process_change": "Adjust processes to ensure assurance reports are prepared and submitted within specified timelines and applicable periods.",
+                "training_change": "Train relevant staff on new assurance report requirements and timelines.",
+                "reporting_change": "Modify reporting schedules to comply with new fixed dates and 90-day submission deadlines for assurance reports.",
+                "tech_data_change": "Update systems to track designation dates, applicable periods, and reporting deadlines for assurance reports."
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2024-05-30",
+                    "calendar": "gregorian",
+                    "description": "Publication date of CSA Notice and Request for Comment on proposed amendments"
+                  },
+                  {
+                    "date": "2024-06-28",
+                    "calendar": "gregorian",
+                    "description": "Final publication date of CDOR benchmark"
+                  },
+                  {
+                    "date": "2024-07-18",
+                    "calendar": "gregorian",
+                    "description": "Date of OSC revocation order for CDOR and RBSL"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-05-05",
+                "compliance_date": "",
+                "comment_deadline": "2024-08-28",
+                "pub_date_content": "2026-02-19",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "gregorian",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To amend MI 25-102 and Companion Policy 25-102 to revise assurance report requirements for designated benchmarks and their administrators, addressing technical issues and providing greater certainty.",
+                "risk_impact": "Reduces uncertainty and potential compliance risk related to assurance reporting; mitigates operational and reputational risks for benchmark administrators and contributors.",
+                "what_changed": "Revised assurance report requirements for designated critical, interest rate, commodity, and other benchmarks; introduced new section 13.1 for other designated benchmarks; simplified language on timing and applicable periods for assurance reports; added transition provisions for pre-existing designations.",
+                "why_it_matters": "Ensures clarity and consistency in assurance reporting obligations, addressing prior technical issues encountered by accounting firms, thereby reducing regulatory risk and enhancing oversight effectiveness.",
+                "key_requirements": [
+                  "First reasonable assurance report to be provided on a fixed date after benchmark designation.",
+                  "Applicable period for each assurance report specified, with first report having a 3-month look-back period.",
+                  "Assurance reports to be provided no later than 90 days after the end of the applicable period.",
+                  "References to code of conduct for benchmark contributors included in assurance report requirements.",
+                  "Transition provisions for interest rate benchmarks designated before effective date without benchmark contributors."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators (MI 25-102) (https://www.osc.ca/en/securities-law/instruments-rules-policies/25-102-designated-benchmarks-and-benchmark-administrators)"
+                ],
+                "statutes": [],
+                "other_ref": [
+                  "OSC revocation order for CDOR and RBSL (https://www.osc.ca/sites/default/files/2024-07/ord_20240718_refinitiv-benchmark-services.pdf)",
+                  "AMF revocation order for CDOR and RBSL (https://lautorite.qc.ca/fileadmin/lautorite/professionnels/structures-marche/indice-reference/2024-PDG-0044.pdf)",
+                  "Memorandum of Understanding respecting oversight of designated benchmarks (https://www.osc.ca/sites/default/files/2021-05/mou_20210527_designated-benchmarks.pdf)"
+                ],
+                "personnel": [
+                  "Michael Bennett, Senior Legal Counsel, Corporate Finance, Ontario Securities Commission",
+                  "Darren Sutherland, Senior Accountant, Corporate Finance, Ontario Securities Commission",
+                  "Serge Boisvert, Senior Policy Coordinator, Autorit\u00e9 des march\u00e9s financiers",
+                  "Roland Geiling, Derivatives Product Analyst, Autorit\u00e9 des march\u00e9s financiers",
+                  "Marie-Andr\u00e9e Beaulieu, Senior Policy Advisor, Autorit\u00e9 des march\u00e9s financiers",
+                  "Harvey Steblyk, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Janice Cherniak, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Michael Brady, Deputy Director, Capital Markets Regulation, British Columbia Securities Commission",
+                  "Faisal Kirmani, Senior Analyst, Derivatives, British Columbia Securities Commission"
+                ],
+                "precedents": [],
+                "past_release": [
+                  "CSA Notice and Request for Comment on Proposed Amendments to MI 25-102 and Companion Policy 25-102 dated May 30, 2024 (https://www.osc.ca/sites/default/files/2024-05/57CF8315CC3A43DF9004451E86F98398.ashx)"
+                ]
+              },
+              "impacted_business": {
+                "size": [
+                  "All"
+                ],
+                "type": [
+                  "Benchmark Administrators",
+                  "Banks",
+                  "Securities Regulators"
+                ],
+                "industry": [
+                  "Banking",
+                  "Capital Markets"
+                ],
+                "other_notes": [
+                  "Includes designated benchmark administrators and benchmark contributors",
+                  "Applies to designated critical benchmarks, interest rate benchmarks, commodity benchmarks, and other designated benchmarks"
+                ],
+                "jurisdiction": [
+                  "CA-BC",
+                  "CA-AB",
+                  "CA-SK",
+                  "CA-ON",
+                  "CA-QC",
+                  "CA-NB",
+                  "CA-NS",
+                  "CA-YT",
+                  "CA-NT"
+                ]
+              },
+              "impacted_functions": [
+                "Compliance",
+                "Risk Management",
+                "Legal",
+                "Finance",
+                "Regulatory Reporting"
+              ],
+              "penalties_consequences": [
+                "Non-compliance may result in regulatory sanctions including fines and reputational damage.",
+                "Failure to provide timely and accurate assurance reports could lead to enforcement actions by securities regulators."
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "CSA Notice of Amendments to Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators and Changes to Companion Policy 25-102 Designated Benchmarks and Benchmark Administrators",
+                "summary": "CSA adopts amendments to MI 25-102 and changes to Companion Policy effective May 5, 2026",
+                "base_url": "osc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": [
+                  "partial extraction",
+                  "no paywall",
+                  "official CSA notice"
+                ]
+              },
+              "update_type": "final rule",
+              "update_subtype": "regulatory_body",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Canadian Securities Administrators is a national Canadian regulatory umbrella organization overseeing provincial securities commissions, thus a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Canadian Securities Administrators",
+                "other_agency": [
+                  "Ontario Securities Commission",
+                  "Autorit\u00e9 des march\u00e9s financiers",
+                  "Alberta Securities Commission",
+                  "British Columbia Securities Commission",
+                  "Nova Scotia Securities Commission",
+                  "Financial and Consumer Services Commission (New Brunswick)",
+                  "Yukon Government",
+                  "Justice Department Northwest Territories"
+                ],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-19",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "842d0af6-ac30-41f1-9384-3c02f6a4965f",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        }
+      ]
+    },
+    {
+      "label": "C (next page: offset 10)",
+      "params": {
+        "limit": 10,
+        "offset": 10
+      },
+      "status": 200,
+      "elapsed_s": 1.295,
+      "response_type": "list",
+      "count": 670,
+      "first_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+      "headers": {},
+      "response_sample": [
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "urgency": {
+                "basis": "past_deadline",
+                "label": "medium",
+                "score": 5,
+                "confidence": 0.9
+              },
+              "relevance": {
+                "label": "high",
+                "score": 9.0,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "c83abf6a-ebc7-4c97-addc-40e8324ef8c8",
+            "metadata": {
+              "tags": [
+                "Alberta Securities Commission",
+                "Enforcement",
+                "Crowdfunding",
+                "Prospectus Exemption",
+                "Securities Act",
+                "Illegal Distribution",
+                "Hearing Notice",
+                "Compliance"
+              ],
+              "entities": [
+                "2307755 Alberta Ltd.",
+                "Alberta Securities Commission",
+                "Daniel Rodolfo Astete",
+                "Samir Sabharwal"
+              ],
+              "actionables": {
+                "other_change": "Respondents must prepare for and attend regulatory hearings",
+                "policy_change": "",
+                "status_change": "Inability to rely on crowdfunding exemption due to payment to principal",
+                "process_change": "Ensure strict adherence to prospectus and exemption filing requirements",
+                "training_change": "",
+                "reporting_change": "File accurate and compliant reports of exempt distribution",
+                "tech_data_change": ""
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2023-11",
+                    "calendar": "gregorian",
+                    "description": "Relevant Period when 2307755 raised funds"
+                  },
+                  {
+                    "date": "2023-12-09",
+                    "calendar": "gregorian",
+                    "description": "Incorporation date of 2307755 Alberta Ltd."
+                  },
+                  {
+                    "date": "2023-12-18",
+                    "calendar": "gregorian",
+                    "description": "Date when payment of $21,000 was made to Astete"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-04-08",
+                "compliance_date": "",
+                "comment_deadline": "",
+                "pub_date_content": "2026-02-25",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To notify the respondent of a hearing regarding alleged illegal securities distributions and breaches of the Securities Act.",
+                "risk_impact": "Non-compliance risks include enforcement actions, potential orders against principals and issuers, and reputational damage.",
+                "what_changed": "The Alberta Securities Commission is initiating enforcement proceedings against 2307755 Alberta Ltd. and its principal for distributing securities without a prospectus or valid exemption.",
+                "why_it_matters": "This update highlights regulatory enforcement on crowdfunding exemptions and prospectus requirements, emphasizing compliance risks for issuers and principals in securities offerings.",
+                "key_requirements": [
+                  "Issuers must comply with prospectus requirements or valid exemptions when distributing securities.",
+                  "No commission or similar payments to principals or employees are allowed under crowdfunding exemptions.",
+                  "Respondents must attend hearings or risk orders being made in their absence."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Commission Rule 15-501 \u2013 Rules of Practice and Procedure for Commission Proceedings",
+                  "National Instrument 45-110 \u2013 Start-Up Crowdfunding Registration and Prospectus Exemptions",
+                  "National Instrument 45-106 Prospectus Exemptions"
+                ],
+                "statutes": [
+                  "Securities Act, RSA 2000, c. S-4"
+                ],
+                "other_ref": [],
+                "personnel": [
+                  "Samir Sabharwal, Executive Director"
+                ],
+                "precedents": [],
+                "past_release": []
+              },
+              "impacted_business": {
+                "size": [
+                  "Small (<$1B)"
+                ],
+                "type": [
+                  "Issuer",
+                  "Director",
+                  "Officer"
+                ],
+                "industry": [
+                  "Banking"
+                ],
+                "other_notes": [
+                  "Real estate crowdfunding platform issuer"
+                ],
+                "jurisdiction": [
+                  "CA-AB"
+                ]
+              },
+              "impacted_functions": [
+                "Legal",
+                "Compliance",
+                "Risk Management",
+                "Operations"
+              ],
+              "penalties_consequences": [
+                "Potential orders under sections 198, 199 and 202 of the Securities Act",
+                "Enforcement actions may proceed in absence of respondent",
+                "Reputational and financial consequences from illegal securities distribution"
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "Notice Of Hearing",
+                "summary": "Notice of hearing regarding alleged securities violations by Daniel Rodolfo Astete and 2307755 Alberta Ltd.",
+                "base_url": "asc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": []
+              },
+              "update_type": "enforcement",
+              "update_subtype": "enforcement_agency",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Alberta Securities Commission is a provincial regulator in Canada, which is a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Alberta Securities Commission",
+                "other_agency": [],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-25",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        },
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 8,
+                "confidence": 0.9
+              },
+              "urgency": {
+                "basis": "future_deadline",
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "relevance": {
+                "label": "high",
+                "score": 8.5,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "825099d4-b189-4e0a-a9c2-6d921d597486",
+            "metadata": {
+              "tags": [
+                "Designated Benchmarks",
+                "Benchmark Administrator",
+                "Assurance Report",
+                "Multilateral Instrument 25-102",
+                "Canadian Securities Administrators",
+                "Regulatory Amendments",
+                "Compliance",
+                "Benchmark Contributor",
+                "Interest Rate Benchmark",
+                "Critical Benchmark",
+                "Commodity Benchmark"
+              ],
+              "entities": [
+                "Alberta Securities Commission",
+                "Autorit\u00e9 des march\u00e9s financiers",
+                "British Columbia Securities Commission",
+                "Canadian Securities Administrators",
+                "Darren Sutherland",
+                "Financial and Consumer Services Commission (New Brunswick)",
+                "Harvey Steblyk",
+                "Janice Cherniak",
+                "Marie-Andr\u00e9e Beaulieu",
+                "Michael Bennett",
+                "Michael Brady",
+                "Nova Scotia Securities Commission",
+                "Ontario Securities Commission",
+                "Roland Geiling",
+                "Serge Boisvert",
+                "Yukon Government",
+                "Justice Department Northwest Territories",
+                "Faisal Kirmani"
+              ],
+              "actionables": {
+                "other_change": "Implement transition provisions for benchmarks designated before the effective date.",
+                "policy_change": "Update internal policies to align with revised assurance report requirements and timing.",
+                "status_change": "",
+                "process_change": "Adjust processes to ensure assurance reports are prepared and submitted within specified timelines and applicable periods.",
+                "training_change": "Train relevant staff on new assurance report requirements and timelines.",
+                "reporting_change": "Modify reporting schedules to comply with new fixed dates and 90-day submission deadlines for assurance reports.",
+                "tech_data_change": "Update systems to track designation dates, applicable periods, and reporting deadlines for assurance reports."
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2024-05-30",
+                    "calendar": "gregorian",
+                    "description": "Publication date of CSA Notice and Request for Comment on proposed amendments"
+                  },
+                  {
+                    "date": "2024-06-28",
+                    "calendar": "gregorian",
+                    "description": "Final publication date of CDOR benchmark"
+                  },
+                  {
+                    "date": "2024-07-18",
+                    "calendar": "gregorian",
+                    "description": "Date of OSC revocation order for CDOR and RBSL"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-05-05",
+                "compliance_date": "",
+                "comment_deadline": "2024-08-28",
+                "pub_date_content": "2026-02-19",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "gregorian",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To amend MI 25-102 and Companion Policy 25-102 to revise assurance report requirements for designated benchmarks and their administrators, addressing technical issues and providing greater certainty.",
+                "risk_impact": "Reduces uncertainty and potential compliance risk related to assurance reporting; mitigates operational and reputational risks for benchmark administrators and contributors.",
+                "what_changed": "Revised assurance report requirements for designated critical, interest rate, commodity, and other benchmarks; introduced new section 13.1 for other designated benchmarks; simplified language on timing and applicable periods for assurance reports; added transition provisions for pre-existing designations.",
+                "why_it_matters": "Ensures clarity and consistency in assurance reporting obligations, addressing prior technical issues encountered by accounting firms, thereby reducing regulatory risk and enhancing oversight effectiveness.",
+                "key_requirements": [
+                  "First reasonable assurance report to be provided on a fixed date after benchmark designation.",
+                  "Applicable period for each assurance report specified, with first report having a 3-month look-back period.",
+                  "Assurance reports to be provided no later than 90 days after the end of the applicable period.",
+                  "References to code of conduct for benchmark contributors included in assurance report requirements.",
+                  "Transition provisions for interest rate benchmarks designated before effective date without benchmark contributors."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators (MI 25-102) (https://www.osc.ca/en/securities-law/instruments-rules-policies/25-102-designated-benchmarks-and-benchmark-administrators)"
+                ],
+                "statutes": [],
+                "other_ref": [
+                  "OSC revocation order for CDOR and RBSL (https://www.osc.ca/sites/default/files/2024-07/ord_20240718_refinitiv-benchmark-services.pdf)",
+                  "AMF revocation order for CDOR and RBSL (https://lautorite.qc.ca/fileadmin/lautorite/professionnels/structures-marche/indice-reference/2024-PDG-0044.pdf)",
+                  "Memorandum of Understanding respecting oversight of designated benchmarks (https://www.osc.ca/sites/default/files/2021-05/mou_20210527_designated-benchmarks.pdf)"
+                ],
+                "personnel": [
+                  "Michael Bennett, Senior Legal Counsel, Corporate Finance, Ontario Securities Commission",
+                  "Darren Sutherland, Senior Accountant, Corporate Finance, Ontario Securities Commission",
+                  "Serge Boisvert, Senior Policy Coordinator, Autorit\u00e9 des march\u00e9s financiers",
+                  "Roland Geiling, Derivatives Product Analyst, Autorit\u00e9 des march\u00e9s financiers",
+                  "Marie-Andr\u00e9e Beaulieu, Senior Policy Advisor, Autorit\u00e9 des march\u00e9s financiers",
+                  "Harvey Steblyk, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Janice Cherniak, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Michael Brady, Deputy Director, Capital Markets Regulation, British Columbia Securities Commission",
+                  "Faisal Kirmani, Senior Analyst, Derivatives, British Columbia Securities Commission"
+                ],
+                "precedents": [],
+                "past_release": [
+                  "CSA Notice and Request for Comment on Proposed Amendments to MI 25-102 and Companion Policy 25-102 dated May 30, 2024 (https://www.osc.ca/sites/default/files/2024-05/57CF8315CC3A43DF9004451E86F98398.ashx)"
+                ]
+              },
+              "impacted_business": {
+                "size": [
+                  "All"
+                ],
+                "type": [
+                  "Benchmark Administrators",
+                  "Banks",
+                  "Securities Regulators"
+                ],
+                "industry": [
+                  "Banking",
+                  "Capital Markets"
+                ],
+                "other_notes": [
+                  "Includes designated benchmark administrators and benchmark contributors",
+                  "Applies to designated critical benchmarks, interest rate benchmarks, commodity benchmarks, and other designated benchmarks"
+                ],
+                "jurisdiction": [
+                  "CA-BC",
+                  "CA-AB",
+                  "CA-SK",
+                  "CA-ON",
+                  "CA-QC",
+                  "CA-NB",
+                  "CA-NS",
+                  "CA-YT",
+                  "CA-NT"
+                ]
+              },
+              "impacted_functions": [
+                "Compliance",
+                "Risk Management",
+                "Legal",
+                "Finance",
+                "Regulatory Reporting"
+              ],
+              "penalties_consequences": [
+                "Non-compliance may result in regulatory sanctions including fines and reputational damage.",
+                "Failure to provide timely and accurate assurance reports could lead to enforcement actions by securities regulators."
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "CSA Notice of Amendments to Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators and Changes to Companion Policy 25-102 Designated Benchmarks and Benchmark Administrators",
+                "summary": "CSA adopts amendments to MI 25-102 and changes to Companion Policy effective May 5, 2026",
+                "base_url": "osc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": [
+                  "partial extraction",
+                  "no paywall",
+                  "official CSA notice"
+                ]
+              },
+              "update_type": "final rule",
+              "update_subtype": "regulatory_body",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Canadian Securities Administrators is a national Canadian regulatory umbrella organization overseeing provincial securities commissions, thus a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Canadian Securities Administrators",
+                "other_agency": [
+                  "Ontario Securities Commission",
+                  "Autorit\u00e9 des march\u00e9s financiers",
+                  "Alberta Securities Commission",
+                  "British Columbia Securities Commission",
+                  "Nova Scotia Securities Commission",
+                  "Financial and Consumer Services Commission (New Brunswick)",
+                  "Yukon Government",
+                  "Justice Department Northwest Territories"
+                ],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-19",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "842d0af6-ac30-41f1-9384-3c02f6a4965f",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        }
+      ]
+    },
+    {
+      "label": "D (large limit: 10000)",
+      "params": {
+        "limit": 10000,
+        "offset": 0
+      },
+      "status": 200,
+      "elapsed_s": 1.707,
+      "response_type": "list",
+      "count": 670,
+      "first_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+      "headers": {},
+      "response_sample": [
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "urgency": {
+                "basis": "past_deadline",
+                "label": "medium",
+                "score": 5,
+                "confidence": 0.9
+              },
+              "relevance": {
+                "label": "high",
+                "score": 9.0,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "c83abf6a-ebc7-4c97-addc-40e8324ef8c8",
+            "metadata": {
+              "tags": [
+                "Alberta Securities Commission",
+                "Enforcement",
+                "Crowdfunding",
+                "Prospectus Exemption",
+                "Securities Act",
+                "Illegal Distribution",
+                "Hearing Notice",
+                "Compliance"
+              ],
+              "entities": [
+                "2307755 Alberta Ltd.",
+                "Alberta Securities Commission",
+                "Daniel Rodolfo Astete",
+                "Samir Sabharwal"
+              ],
+              "actionables": {
+                "other_change": "Respondents must prepare for and attend regulatory hearings",
+                "policy_change": "",
+                "status_change": "Inability to rely on crowdfunding exemption due to payment to principal",
+                "process_change": "Ensure strict adherence to prospectus and exemption filing requirements",
+                "training_change": "",
+                "reporting_change": "File accurate and compliant reports of exempt distribution",
+                "tech_data_change": ""
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2023-11",
+                    "calendar": "gregorian",
+                    "description": "Relevant Period when 2307755 raised funds"
+                  },
+                  {
+                    "date": "2023-12-09",
+                    "calendar": "gregorian",
+                    "description": "Incorporation date of 2307755 Alberta Ltd."
+                  },
+                  {
+                    "date": "2023-12-18",
+                    "calendar": "gregorian",
+                    "description": "Date when payment of $21,000 was made to Astete"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-04-08",
+                "compliance_date": "",
+                "comment_deadline": "",
+                "pub_date_content": "2026-02-25",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To notify the respondent of a hearing regarding alleged illegal securities distributions and breaches of the Securities Act.",
+                "risk_impact": "Non-compliance risks include enforcement actions, potential orders against principals and issuers, and reputational damage.",
+                "what_changed": "The Alberta Securities Commission is initiating enforcement proceedings against 2307755 Alberta Ltd. and its principal for distributing securities without a prospectus or valid exemption.",
+                "why_it_matters": "This update highlights regulatory enforcement on crowdfunding exemptions and prospectus requirements, emphasizing compliance risks for issuers and principals in securities offerings.",
+                "key_requirements": [
+                  "Issuers must comply with prospectus requirements or valid exemptions when distributing securities.",
+                  "No commission or similar payments to principals or employees are allowed under crowdfunding exemptions.",
+                  "Respondents must attend hearings or risk orders being made in their absence."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Commission Rule 15-501 \u2013 Rules of Practice and Procedure for Commission Proceedings",
+                  "National Instrument 45-110 \u2013 Start-Up Crowdfunding Registration and Prospectus Exemptions",
+                  "National Instrument 45-106 Prospectus Exemptions"
+                ],
+                "statutes": [
+                  "Securities Act, RSA 2000, c. S-4"
+                ],
+                "other_ref": [],
+                "personnel": [
+                  "Samir Sabharwal, Executive Director"
+                ],
+                "precedents": [],
+                "past_release": []
+              },
+              "impacted_business": {
+                "size": [
+                  "Small (<$1B)"
+                ],
+                "type": [
+                  "Issuer",
+                  "Director",
+                  "Officer"
+                ],
+                "industry": [
+                  "Banking"
+                ],
+                "other_notes": [
+                  "Real estate crowdfunding platform issuer"
+                ],
+                "jurisdiction": [
+                  "CA-AB"
+                ]
+              },
+              "impacted_functions": [
+                "Legal",
+                "Compliance",
+                "Risk Management",
+                "Operations"
+              ],
+              "penalties_consequences": [
+                "Potential orders under sections 198, 199 and 202 of the Securities Act",
+                "Enforcement actions may proceed in absence of respondent",
+                "Reputational and financial consequences from illegal securities distribution"
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "Notice Of Hearing",
+                "summary": "Notice of hearing regarding alleged securities violations by Daniel Rodolfo Astete and 2307755 Alberta Ltd.",
+                "base_url": "asc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": []
+              },
+              "update_type": "enforcement",
+              "update_subtype": "enforcement_agency",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Alberta Securities Commission is a provincial regulator in Canada, which is a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Alberta Securities Commission",
+                "other_agency": [],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-25",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "9dedd0d3-3419-4f9d-b1df-725dbc56bf1e",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        },
+        {
+          "annotation": {
+            "scores": {
+              "impact": {
+                "label": "high",
+                "score": 8,
+                "confidence": 0.9
+              },
+              "urgency": {
+                "basis": "future_deadline",
+                "label": "high",
+                "score": 9,
+                "confidence": 0.95
+              },
+              "relevance": {
+                "label": "high",
+                "score": 8.5,
+                "confidence": 0.925
+              }
+            },
+            "entry_id": "825099d4-b189-4e0a-a9c2-6d921d597486",
+            "metadata": {
+              "tags": [
+                "Designated Benchmarks",
+                "Benchmark Administrator",
+                "Assurance Report",
+                "Multilateral Instrument 25-102",
+                "Canadian Securities Administrators",
+                "Regulatory Amendments",
+                "Compliance",
+                "Benchmark Contributor",
+                "Interest Rate Benchmark",
+                "Critical Benchmark",
+                "Commodity Benchmark"
+              ],
+              "entities": [
+                "Alberta Securities Commission",
+                "Autorit\u00e9 des march\u00e9s financiers",
+                "British Columbia Securities Commission",
+                "Canadian Securities Administrators",
+                "Darren Sutherland",
+                "Financial and Consumer Services Commission (New Brunswick)",
+                "Harvey Steblyk",
+                "Janice Cherniak",
+                "Marie-Andr\u00e9e Beaulieu",
+                "Michael Bennett",
+                "Michael Brady",
+                "Nova Scotia Securities Commission",
+                "Ontario Securities Commission",
+                "Roland Geiling",
+                "Serge Boisvert",
+                "Yukon Government",
+                "Justice Department Northwest Territories",
+                "Faisal Kirmani"
+              ],
+              "actionables": {
+                "other_change": "Implement transition provisions for benchmarks designated before the effective date.",
+                "policy_change": "Update internal policies to align with revised assurance report requirements and timing.",
+                "status_change": "",
+                "process_change": "Adjust processes to ensure assurance reports are prepared and submitted within specified timelines and applicable periods.",
+                "training_change": "Train relevant staff on new assurance report requirements and timelines.",
+                "reporting_change": "Modify reporting schedules to comply with new fixed dates and 90-day submission deadlines for assurance reports.",
+                "tech_data_change": "Update systems to track designation dates, applicable periods, and reporting deadlines for assurance reports."
+              },
+              "critical_dates": {
+                "other_dates": [
+                  {
+                    "date": "2024-05-30",
+                    "calendar": "gregorian",
+                    "description": "Publication date of CSA Notice and Request for Comment on proposed amendments"
+                  },
+                  {
+                    "date": "2024-06-28",
+                    "calendar": "gregorian",
+                    "description": "Final publication date of CDOR benchmark"
+                  },
+                  {
+                    "date": "2024-07-18",
+                    "calendar": "gregorian",
+                    "description": "Date of OSC revocation order for CDOR and RBSL"
+                  }
+                ],
+                "updated_date": "",
+                "effective_date": "2026-05-05",
+                "compliance_date": "",
+                "comment_deadline": "2024-08-28",
+                "pub_date_content": "2026-02-19",
+                "pub_date_calendar": "gregorian",
+                "early_adoption_date": "",
+                "updated_date_calendar": "",
+                "effective_date_calendar": "gregorian",
+                "compliance_date_calendar": "",
+                "comment_deadline_calendar": "gregorian",
+                "early_adoption_date_calendar": ""
+              },
+              "impact_summary": {
+                "objective": "To amend MI 25-102 and Companion Policy 25-102 to revise assurance report requirements for designated benchmarks and their administrators, addressing technical issues and providing greater certainty.",
+                "risk_impact": "Reduces uncertainty and potential compliance risk related to assurance reporting; mitigates operational and reputational risks for benchmark administrators and contributors.",
+                "what_changed": "Revised assurance report requirements for designated critical, interest rate, commodity, and other benchmarks; introduced new section 13.1 for other designated benchmarks; simplified language on timing and applicable periods for assurance reports; added transition provisions for pre-existing designations.",
+                "why_it_matters": "Ensures clarity and consistency in assurance reporting obligations, addressing prior technical issues encountered by accounting firms, thereby reducing regulatory risk and enhancing oversight effectiveness.",
+                "key_requirements": [
+                  "First reasonable assurance report to be provided on a fixed date after benchmark designation.",
+                  "Applicable period for each assurance report specified, with first report having a 3-month look-back period.",
+                  "Assurance reports to be provided no later than 90 days after the end of the applicable period.",
+                  "References to code of conduct for benchmark contributors included in assurance report requirements.",
+                  "Transition provisions for interest rate benchmarks designated before effective date without benchmark contributors."
+                ]
+              },
+              "reg_references": {
+                "rules": [
+                  "Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators (MI 25-102) (https://www.osc.ca/en/securities-law/instruments-rules-policies/25-102-designated-benchmarks-and-benchmark-administrators)"
+                ],
+                "statutes": [],
+                "other_ref": [
+                  "OSC revocation order for CDOR and RBSL (https://www.osc.ca/sites/default/files/2024-07/ord_20240718_refinitiv-benchmark-services.pdf)",
+                  "AMF revocation order for CDOR and RBSL (https://lautorite.qc.ca/fileadmin/lautorite/professionnels/structures-marche/indice-reference/2024-PDG-0044.pdf)",
+                  "Memorandum of Understanding respecting oversight of designated benchmarks (https://www.osc.ca/sites/default/files/2021-05/mou_20210527_designated-benchmarks.pdf)"
+                ],
+                "personnel": [
+                  "Michael Bennett, Senior Legal Counsel, Corporate Finance, Ontario Securities Commission",
+                  "Darren Sutherland, Senior Accountant, Corporate Finance, Ontario Securities Commission",
+                  "Serge Boisvert, Senior Policy Coordinator, Autorit\u00e9 des march\u00e9s financiers",
+                  "Roland Geiling, Derivatives Product Analyst, Autorit\u00e9 des march\u00e9s financiers",
+                  "Marie-Andr\u00e9e Beaulieu, Senior Policy Advisor, Autorit\u00e9 des march\u00e9s financiers",
+                  "Harvey Steblyk, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Janice Cherniak, Senior Legal Counsel, Market Regulation, Alberta Securities Commission",
+                  "Michael Brady, Deputy Director, Capital Markets Regulation, British Columbia Securities Commission",
+                  "Faisal Kirmani, Senior Analyst, Derivatives, British Columbia Securities Commission"
+                ],
+                "precedents": [],
+                "past_release": [
+                  "CSA Notice and Request for Comment on Proposed Amendments to MI 25-102 and Companion Policy 25-102 dated May 30, 2024 (https://www.osc.ca/sites/default/files/2024-05/57CF8315CC3A43DF9004451E86F98398.ashx)"
+                ]
+              },
+              "impacted_business": {
+                "size": [
+                  "All"
+                ],
+                "type": [
+                  "Benchmark Administrators",
+                  "Banks",
+                  "Securities Regulators"
+                ],
+                "industry": [
+                  "Banking",
+                  "Capital Markets"
+                ],
+                "other_notes": [
+                  "Includes designated benchmark administrators and benchmark contributors",
+                  "Applies to designated critical benchmarks, interest rate benchmarks, commodity benchmarks, and other designated benchmarks"
+                ],
+                "jurisdiction": [
+                  "CA-BC",
+                  "CA-AB",
+                  "CA-SK",
+                  "CA-ON",
+                  "CA-QC",
+                  "CA-NB",
+                  "CA-NS",
+                  "CA-YT",
+                  "CA-NT"
+                ]
+              },
+              "impacted_functions": [
+                "Compliance",
+                "Risk Management",
+                "Legal",
+                "Finance",
+                "Regulatory Reporting"
+              ],
+              "penalties_consequences": [
+                "Non-compliance may result in regulatory sanctions including fines and reputational damage.",
+                "Failure to provide timely and accurate assurance reports could lead to enforcement actions by securities regulators."
+              ]
+            },
+            "classification": {
+              "metadata": {
+                "title": "CSA Notice of Amendments to Multilateral Instrument 25-102 Designated Benchmarks and Benchmark Administrators and Changes to Companion Policy 25-102 Designated Benchmarks and Benchmark Administrators",
+                "summary": "CSA adopts amendments to MI 25-102 and changes to Companion Policy effective May 5, 2026",
+                "base_url": "osc.ca",
+                "feed_url": "",
+                "language": [
+                  "en"
+                ],
+                "extraction_note": [
+                  "partial extraction",
+                  "no paywall",
+                  "official CSA notice"
+                ]
+              },
+              "update_type": "final rule",
+              "update_subtype": "regulatory_body",
+              "jurisdiction_tier": {
+                "tier": 2,
+                "label": "international",
+                "reasoning": "The Canadian Securities Administrators is a national Canadian regulatory umbrella organization overseeing provincial securities commissions, thus a non-US country-level regulator."
+              },
+              "regulatory_source": {
+                "name": "Canadian Securities Administrators",
+                "other_agency": [
+                  "Ontario Securities Commission",
+                  "Autorit\u00e9 des march\u00e9s financiers",
+                  "Alberta Securities Commission",
+                  "British Columbia Securities Commission",
+                  "Nova Scotia Securities Commission",
+                  "Financial and Consumer Services Commission (New Brunswick)",
+                  "Yukon Government",
+                  "Justice Department Northwest Territories"
+                ],
+                "division_office": ""
+              }
+            },
+            "reconciled_published_date": {
+              "date": "2026-02-19",
+              "valid": true,
+              "source": "LLM",
+              "converted": false,
+              "original_date": null,
+              "original_calendar": "gregorian"
+            }
+          },
+          "feed_entry_id": "842d0af6-ac30-41f1-9384-3c02f6a4965f",
+          "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+          "user_id": null
+        }
+      ]
+    }
+  ]
+}

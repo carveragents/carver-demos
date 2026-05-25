@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will the US enter a recession in 2026?\nResolution criteria: Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise.\nSettlement entities: ['National Bureau of Economic Research', 'Federal Reserve System', 'Federal Open Market Committee', 'Department of the Treasury', 'Bureau of Labor Statistics', 'Bureau of Economic Analysis', 'Council of Economic Advisers']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "NBER 2026-peak recession by 2026-12-31",
+        "summary": "The NBER Business Cycle Dating Committee publicly announces that the U.S. entered a recession with the peak month occurring in 2026, and this announcement is made on or before 2026-12-31."
+      }
+    ]
+  }
+}

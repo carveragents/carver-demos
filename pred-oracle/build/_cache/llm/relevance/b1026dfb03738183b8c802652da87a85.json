@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will Elon Musk visit Mars before Aug 1, 2099?\nResolution criteria: If Elon Musk visits Mars before the earlier of his death or Aug 1, 2099, then the market resolves to Yes.\nConditions:\n  A: Musk visits Mars by earlier-of deadline \u2014 Elon Musk visits Mars before whichever is earlier: his death or Aug 1, 2099.\nSettlement entities: ['National Aeronautics and Space Administration', 'SpaceX', 'Federal Aviation Administration', 'Elon Musk']\n\nRecord title: February 13, 2025 - Notice on internal control over financial reporting\nRecord date: 2025-02-13\nRecord regulator: Farm Credit Administration\nRecord topic: Farm Credit Administration\nRecord entities: ['Aaron M. Livernois', 'Ashley Waldron', 'Andra Grossman', 'Farm Credit Administration', 'Federal Aviation Administration']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Off-topic Farm Credit Administration internal-control notice; nothing about Elon Musk, SpaceX, Mars, or flight/mission activity to affect visit probability.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

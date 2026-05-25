@@ -1,0 +1,174 @@
+{
+  "model": "gpt-4o-mini-tts",
+  "voice": "cedar",
+  "beats": [
+    {
+      "id": "01_overview_hero",
+      "chars": 270,
+      "duration_seconds": 21.25,
+      "wav_path": "credio-policies/dist/_voiceover/01_overview_hero.wav"
+    },
+    {
+      "id": "02_overview_pipeline",
+      "chars": 279,
+      "duration_seconds": 16.6,
+      "wav_path": "credio-policies/dist/_voiceover/02_overview_pipeline.wav"
+    },
+    {
+      "id": "03_overview_inputs",
+      "chars": 199,
+      "duration_seconds": 11.7,
+      "wav_path": "credio-policies/dist/_voiceover/03_overview_inputs.wav"
+    },
+    {
+      "id": "04_overview_outputs",
+      "chars": 172,
+      "duration_seconds": 9.85,
+      "wav_path": "credio-policies/dist/_voiceover/04_overview_outputs.wav"
+    },
+    {
+      "id": "05_overview_glossary",
+      "chars": 158,
+      "duration_seconds": 10.45,
+      "wav_path": "credio-policies/dist/_voiceover/05_overview_glossary.wav"
+    },
+    {
+      "id": "06_timeline_top",
+      "chars": 95,
+      "duration_seconds": 7.2,
+      "wav_path": "credio-policies/dist/_voiceover/06_timeline_top.wav"
+    },
+    {
+      "id": "07_timeline_rows",
+      "chars": 173,
+      "duration_seconds": 10.0,
+      "wav_path": "credio-policies/dist/_voiceover/07_timeline_rows.wav"
+    },
+    {
+      "id": "08_timeline_hover",
+      "chars": 226,
+      "duration_seconds": 14.45,
+      "wav_path": "credio-policies/dist/_voiceover/08_timeline_hover.wav"
+    },
+    {
+      "id": "09_transition_top",
+      "chars": 157,
+      "duration_seconds": 12.15,
+      "wav_path": "credio-policies/dist/_voiceover/09_transition_top.wav"
+    },
+    {
+      "id": "10_transition_search",
+      "chars": 111,
+      "duration_seconds": 7.95,
+      "wav_path": "credio-policies/dist/_voiceover/10_transition_search.wav"
+    },
+    {
+      "id": "11_transition_cards",
+      "chars": 108,
+      "duration_seconds": 7.05,
+      "wav_path": "credio-policies/dist/_voiceover/11_transition_cards.wav"
+    },
+    {
+      "id": "12_change_header",
+      "chars": 172,
+      "duration_seconds": 10.35,
+      "wav_path": "credio-policies/dist/_voiceover/12_change_header.wav"
+    },
+    {
+      "id": "13_change_pdf",
+      "chars": 165,
+      "duration_seconds": 9.2,
+      "wav_path": "credio-policies/dist/_voiceover/13_change_pdf.wav"
+    },
+    {
+      "id": "14_change_back_sbs",
+      "chars": 174,
+      "duration_seconds": 11.8,
+      "wav_path": "credio-policies/dist/_voiceover/14_change_back_sbs.wav"
+    },
+    {
+      "id": "15_change_raw_diff",
+      "chars": 101,
+      "duration_seconds": 6.7,
+      "wav_path": "credio-policies/dist/_voiceover/15_change_raw_diff.wav"
+    },
+    {
+      "id": "16_change_back_to_sbs",
+      "chars": 107,
+      "duration_seconds": 6.65,
+      "wav_path": "credio-policies/dist/_voiceover/16_change_back_to_sbs.wav"
+    },
+    {
+      "id": "17_s72_header",
+      "chars": 100,
+      "duration_seconds": 8.65,
+      "wav_path": "credio-policies/dist/_voiceover/17_s72_header.wav"
+    },
+    {
+      "id": "18_s72_callout",
+      "chars": 200,
+      "duration_seconds": 12.05,
+      "wav_path": "credio-policies/dist/_voiceover/18_s72_callout.wav"
+    },
+    {
+      "id": "19_s72_sbs",
+      "chars": 144,
+      "duration_seconds": 8.8,
+      "wav_path": "credio-policies/dist/_voiceover/19_s72_sbs.wav"
+    },
+    {
+      "id": "20_s72_redline",
+      "chars": 148,
+      "duration_seconds": 8.55,
+      "wav_path": "credio-policies/dist/_voiceover/20_s72_redline.wav"
+    },
+    {
+      "id": "21_s223_header",
+      "chars": 120,
+      "duration_seconds": 9.2,
+      "wav_path": "credio-policies/dist/_voiceover/21_s223_header.wav"
+    },
+    {
+      "id": "22_s223_yaml_diff",
+      "chars": 310,
+      "duration_seconds": 19.0,
+      "wav_path": "credio-policies/dist/_voiceover/22_s223_yaml_diff.wav"
+    },
+    {
+      "id": "23_s223_chip",
+      "chars": 55,
+      "duration_seconds": 4.05,
+      "wav_path": "credio-policies/dist/_voiceover/23_s223_chip.wav"
+    },
+    {
+      "id": "24_s223_policy_page",
+      "chars": 241,
+      "duration_seconds": 13.9,
+      "wav_path": "credio-policies/dist/_voiceover/24_s223_policy_page.wav"
+    },
+    {
+      "id": "25_s865_warning",
+      "chars": 264,
+      "duration_seconds": 16.25,
+      "wav_path": "credio-policies/dist/_voiceover/25_s865_warning.wav"
+    },
+    {
+      "id": "26_s865_explanation",
+      "chars": 206,
+      "duration_seconds": 10.85,
+      "wav_path": "credio-policies/dist/_voiceover/26_s865_explanation.wav"
+    },
+    {
+      "id": "27_s865_sbs",
+      "chars": 110,
+      "duration_seconds": 7.25,
+      "wav_path": "credio-policies/dist/_voiceover/27_s865_sbs.wav"
+    },
+    {
+      "id": "28_closing",
+      "chars": 286,
+      "duration_seconds": 17.65,
+      "wav_path": "credio-policies/dist/_voiceover/28_closing.wav"
+    }
+  ]
+}
