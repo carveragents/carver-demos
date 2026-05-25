@@ -214,6 +214,98 @@ def main() -> None:
     elif corpus.exists():
         print(f"WARN: {gamma_curation.relative_to(REPO)} missing — skipping gamma slices")
 
+    # Trader dashboard — uses trader-curation.yml + contracts.yml + retrospective YAMLs
+    trader_curation = REPO / "data" / "trader-curation.yml"
+
+    if trader_curation.exists() and corpus.exists():
+        cur_t = yaml.safe_load(trader_curation.read_text())
+        bd_t = cur_t.get("build_date")
+        today_t = _dt.date.fromisoformat(bd_t) if bd_t else _dt.date.today()
+
+        from build.trader_contract import generate as gen_trader_contract
+        from build import trader_contract_enrich
+
+        trader_contract_paths = gen_trader_contract(
+            corpus_path=corpus,
+            trader_curation_path=trader_curation,
+            kalshi_contracts_path=kalshi_contracts,
+            polymarket_contracts_path=polymarket_contracts,
+            retrospectives_root=retrospectives_root,
+            out_dir=pd / "trader" / "contracts",
+            today=today_t,
+        )
+        print(
+            f"trader (build_date={today_t.isoformat()}): "
+            f"{len(trader_contract_paths)} contract details"
+        )
+
+        # Trader contract enrichment
+        trader_corpus: list[dict[str, Any]] = []
+        if corpus.exists():
+            with corpus.open() as _f:
+                for _line in _f:
+                    _line = _line.strip()
+                    if _line:
+                        trader_corpus.append(json.loads(_line))
+
+        # Peer heats from all trader contracts
+        trader_contracts_dir = pd / "trader" / "contracts"
+        trader_peer_heats = []
+        if trader_contracts_dir.exists():
+            for p in trader_contracts_dir.glob("*.json"):
+                doc = json.loads(p.read_text())
+                trader_peer_heats.append(doc.get("contract", {}).get("heat", 0))
+
+        if trader_contracts_dir.exists():
+            trader_contract_enrich.enrich_all(
+                slice_dir=trader_contracts_dir,
+                corpus=trader_corpus,
+                peer_heats=trader_peer_heats,
+                today=today_t,
+            )
+            print(f"  enriched {len(list(trader_contracts_dir.glob('*.json')))} trader contract slices")
+
+        # Portfolio + calendar aggregation
+        from build._portfolio import build_portfolio
+        from build._calendar import extract_calendar_events, calendar_month
+
+        enriched_slices = []
+        for p in sorted(trader_contracts_dir.glob("*.json")):
+            enriched_slices.append(json.loads(p.read_text()))
+
+        portfolio_data = build_portfolio(enriched_slices, today=today_t.isoformat())
+        (pd / "trader" / "portfolio.json").parent.mkdir(parents=True, exist_ok=True)
+        (pd / "trader" / "portfolio.json").write_text(json.dumps(portfolio_data, indent=2))
+
+        all_cal_events = extract_calendar_events(enriched_slices)
+        cal_months = []
+        for offset in [-1, 0, 1]:
+            m = today_t.month + offset
+            y = today_t.year
+            if m < 1:
+                m += 12
+                y -= 1
+            elif m > 12:
+                m -= 12
+                y += 1
+            cal_months.append(calendar_month(y, m, all_cal_events))
+        cal_data = {"months": cal_months, "events": all_cal_events, "today": today_t.isoformat()}
+        (pd / "trader" / "calendar.json").write_text(json.dumps(cal_data, indent=2))
+
+        # Retrospective slices (reuse gamma enriched data if available)
+        retro_dir = pd / "trader" / "retrospectives"
+        retro_dir.mkdir(parents=True, exist_ok=True)
+        for retro in cur_t.get("retrospectives", []):
+            gamma_slice = pd / "gamma" / "contracts" / f"{retro['id']}.json"
+            if gamma_slice.exists():
+                import shutil
+                shutil.copy(gamma_slice, retro_dir / f"{retro['id']}.json")
+
+        print(f"  portfolio.json + calendar.json + {len(cur_t.get('retrospectives', []))} retrospectives")
+
+    elif trader_curation.exists():
+        print(f"WARN: corpus {corpus.relative_to(REPO)} missing — skipping trader slices")
+
     # β — heat-map + cascades + quarterly report
     beta_curation = REPO / "data" / "beta-curation.yml"
     cascades_yml = REPO / "data" / "cascades.yml"
