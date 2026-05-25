@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: dormant\nHeat: 0.0\nDelta_7d: 0.0\nTop records:\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "No recorded transactions or trades",
+      "No alerts or flagged events",
+      "No matching records in the recent period"
+    ],
+    "explainer": "No activity or matching records this week; the contract remains dormant with zero alerts, trades, or data changes."
+  }
+}

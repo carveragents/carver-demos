@@ -128,6 +128,8 @@ def _project_timeline_fields(judged: list[dict[str, Any]]) -> list[dict[str, Any
             "magnitude": rec.get("magnitude", "low"),
             "timeline_shift": rec.get("timeline_shift", "none"),
             "mechanism": _mechanism.classify(rec.get("update_type", "")),
+            "effective_date": (rec.get("critical_dates") or {}).get("effective_date", ""),
+            "comment_deadline": (rec.get("critical_dates") or {}).get("comment_deadline", ""),
         })
     return out
 

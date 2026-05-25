@@ -74,6 +74,7 @@ def portfolio_row(slice_doc: dict[str, Any], *, today: str = "") -> dict[str, An
 def build_portfolio(
     slice_docs: list[dict[str, Any]], *, today: str = "",
 ) -> list[dict[str, Any]]:
-    rows = [portfolio_row(doc, today=today) for doc in slice_docs]
+    active = [doc for doc in slice_docs if doc.get("contract", {}).get("kind") != "retrospective"]
+    rows = [portfolio_row(doc, today=today) for doc in active]
     rows.sort(key=lambda r: r["heat_value"], reverse=True)
     return rows
