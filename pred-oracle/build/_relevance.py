@@ -19,6 +19,7 @@ SYSTEM_PROMPT = (
     "off-topic, 10 = directly determinative). Return JSON matching the "
     "schema. one_line_why should be ≤160 chars and explain how this record "
     "moves resolution probability."
+    " Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?"
 )
 
 
@@ -52,9 +53,22 @@ def build_schema(conditions: list[dict[str, str]]) -> dict[str, Any]:
             "one_line_why": {"type": "string"},
             "condition_tag": {"type": "string", "enum": condition_ids + ["background"]},
             "high_impact": {"type": "boolean"},
+            "direction": {
+                "type": "string",
+                "enum": ["bullish", "bearish", "neutral"],
+            },
+            "magnitude": {
+                "type": "string",
+                "enum": ["high", "medium", "low"],
+            },
+            "timeline_shift": {
+                "type": "string",
+                "enum": ["sooner", "later", "none"],
+            },
         },
         "required": ["relevant", "relevance_score", "one_line_why",
-                     "condition_tag", "high_impact"],
+                     "condition_tag", "high_impact",
+                     "direction", "magnitude", "timeline_shift"],
     }
 
 
@@ -70,6 +84,9 @@ def _heuristic_judgment(rec: dict[str, Any]) -> dict[str, Any]:
         "one_line_why": why,
         "condition_tag": "background",
         "high_impact": _fields.urgency_score(rec) >= 7,
+        "direction": "neutral",
+        "magnitude": "low",
+        "timeline_shift": "none",
     }
 
 
