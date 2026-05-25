@@ -111,6 +111,42 @@ def _load_gamma_scan_bundle(repo_root: Path) -> dict[str, Any]:
     return {"scans": scans}
 
 
+def _render_trader_briefings(
+    repo_root: Path,
+    env: Environment,
+    site_root: Path,
+    base_url: str,
+    slice_dir_relative: str,
+    site_subpath: str,
+) -> int:
+    """Render trader/briefing.html once per slice, injecting price data from cache.
+
+    Output: site_root/<site_subpath>/<slice_stem>/index.html.
+    Returns count of pages written.
+    """
+    pd_dir = repo_root / "build" / "page_data" / slice_dir_relative
+    prices_dir = repo_root / "build" / "_cache" / "prices"
+    if not pd_dir.exists():
+        return 0
+    tpl = env.get_template("trader/briefing.html")
+    written = 0
+    for slice_path in sorted(pd_dir.glob("*.json")):
+        ctx = json.loads(slice_path.read_text())
+        ctx["base_url"] = base_url
+        # Inject price data keyed by contract id
+        contract_id = ctx.get("contract", {}).get("id", slice_path.stem)
+        price_file = prices_dir / f"{contract_id}.json"
+        if price_file.exists():
+            ctx["prices"] = json.loads(price_file.read_text())
+        else:
+            ctx["prices"] = {"series": []}
+        out_dir = site_root / site_subpath / slice_path.stem
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "index.html").write_text(tpl.render(**ctx))
+        written += 1
+    return written
+
+
 # Explicit overrides: templates that should land at a non-default route.
 # Used to make alpha/inbox.html the scene entry point (alpha/index.html)
 # while keeping semantic naming for the template file.
@@ -122,6 +158,9 @@ _EXPLICIT_ROUTES: dict[str, str] = {
     "beta/heatmap.html": "beta/heatmap/index.html",
     "beta/cascades.html": "beta/cascades/index.html",
     "beta/report.html": "beta/report/index.html",
+    "trader/list.html": "trader/index.html",
+    "trader/calendar.html": "trader/calendar/index.html",
+    "trader/retrospectives.html": "trader/retrospectives/index.html",
 }
 
 
@@ -194,13 +233,54 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
         if rel == Path("base.html"):
             continue
         # Skip parametric templates; rendered separately below
-        if rel == Path("alpha/ticket_detail.html") or rel == Path("gamma/contract_detail.html"):
+        if rel in {Path("alpha/ticket_detail.html"), Path("gamma/contract_detail.html"), Path("trader/briefing.html")}:
             continue
         ctx = _load_slice(repo_root, rel)
         # γ scan needs all 3 scan slices simultaneously (Alpine tab UI),
         # not the single JSON the default loader would pick.
         if rel == Path("gamma/scan.html"):
             ctx = _load_gamma_scan_bundle(repo_root)
+
+        if rel == Path("trader/list.html"):
+            portfolio_path = repo_root / "build" / "page_data" / "trader" / "portfolio.json"
+            if portfolio_path.exists():
+                rows = json.loads(portfolio_path.read_text())
+                # Add price placeholders for each row (actual prices come from cache)
+                prices_dir = repo_root / "build" / "_cache" / "prices"
+                for row in rows:
+                    price_file = prices_dir / f"{row['contract_id']}.json"
+                    if price_file.exists():
+                        pd = json.loads(price_file.read_text())
+                        series = pd.get("series", [])
+                        if series:
+                            last_p = series[-1].get("p", 0.5)
+                            row["yes_price"] = round(last_p * 100)
+                            row["no_price"] = 100 - round(last_p * 100)
+                        else:
+                            row["yes_price"] = 50
+                            row["no_price"] = 50
+                    else:
+                        row["yes_price"] = 50
+                        row["no_price"] = 50
+                ctx = {"rows": rows}
+            else:
+                ctx = {"rows": []}
+
+        if rel == Path("trader/calendar.html"):
+            cal_path = repo_root / "build" / "page_data" / "trader" / "calendar.json"
+            if cal_path.exists():
+                ctx = json.loads(cal_path.read_text())
+            else:
+                ctx = {"months": [], "events": [], "today": ""}
+
+        if rel == Path("trader/retrospectives.html"):
+            retro_dir = repo_root / "build" / "page_data" / "trader" / "retrospectives"
+            retros = []
+            if retro_dir.exists():
+                for p in sorted(retro_dir.glob("*.json")):
+                    retros.append(json.loads(p.read_text()))
+            ctx = {"retrospectives": retros}
+
         # If the slice file is required but missing, skip this template's render
         # entirely. This handles CI builds without the corpus committed.
         if rel in ALPHA_TEMPLATES_REQUIRING_SLICE and not ctx:
@@ -226,6 +306,22 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
         site_subpath="gamma/contracts",
     )
     print(f"gamma/contracts: rendered {n_contracts} pages")
+
+    # Trader contract briefing pages
+    n_trader = _render_trader_briefings(
+        repo_root, env, out_dir, base_url,
+        slice_dir_relative="trader/contracts",
+        site_subpath="trader/contracts",
+    )
+    print(f"trader/contracts: rendered {n_trader} pages")
+
+    # Trader retrospective pages
+    n_retro = _render_trader_briefings(
+        repo_root, env, out_dir, base_url,
+        slice_dir_relative="trader/retrospectives",
+        site_subpath="trader/retrospectives",
+    )
+    print(f"trader/retrospectives: rendered {n_retro} pages")
 
     # Copy static dir
     shutil.copytree(static_dir, out_dir / "static", dirs_exist_ok=True)
