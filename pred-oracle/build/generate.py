@@ -219,10 +219,15 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
     # Alpha templates that require a populated slice to render correctly.
     # If the slice JSON is missing (e.g. CI build without corpus), skip them
     # gracefully rather than crashing on undefined variables.
-    ALPHA_TEMPLATES_REQUIRING_SLICE = {
+    TEMPLATES_REQUIRING_SLICE = {
         Path("alpha/inbox.html"),
         Path("alpha/dashboard.html"),
         Path("alpha/audit_export.html"),
+        Path("beta/heatmap.html"),
+        Path("beta/cascades.html"),
+        Path("beta/report.html"),
+        Path("gamma/scan.html"),
+        Path("gamma/dashboard.html"),
     }
 
     for tpl_path in sorted(templates_dir.rglob("*.html")):
@@ -240,6 +245,9 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
         # not the single JSON the default loader would pick.
         if rel == Path("gamma/scan.html"):
             ctx = _load_gamma_scan_bundle(repo_root)
+            if not ctx.get("scans"):
+                print(f"  skip {rel}: no scan data")
+                continue
 
         if rel == Path("trader/list.html"):
             portfolio_path = repo_root / "build" / "page_data" / "trader" / "portfolio.json"
@@ -270,8 +278,9 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
             cal_path = repo_root / "build" / "page_data" / "trader" / "calendar.json"
             if cal_path.exists():
                 ctx = json.loads(cal_path.read_text())
+                ctx["all_events"] = ctx.pop("events", [])
             else:
-                ctx = {"months": [], "events": [], "today": ""}
+                ctx = {"months": [], "all_events": [], "today": ""}
 
         if rel == Path("trader/retrospectives.html"):
             retro_dir = repo_root / "build" / "page_data" / "trader" / "retrospectives"
@@ -283,7 +292,7 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
 
         # If the slice file is required but missing, skip this template's render
         # entirely. This handles CI builds without the corpus committed.
-        if rel in ALPHA_TEMPLATES_REQUIRING_SLICE and not ctx:
+        if rel in TEMPLATES_REQUIRING_SLICE and not ctx:
             print(f"  skip {rel}: slice missing")
             continue
         ctx["base_url"] = base_url  # inject for every template

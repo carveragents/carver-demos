@@ -359,7 +359,7 @@ def test_trader_briefing_price_chart_script_injected() -> None:
         timeline=[],
         heat_panel=_make_heat_panel(),
         position=None,
-        prices={"series": [[("2026-01-01", 55), ("2026-02-01", 60)]]},
+        prices={"series": [{"t": 1704067200, "p": 0.55}, {"t": 1706745600, "p": 0.60}]},
     )
     assert "price-chart" in html
     assert "echarts" in html or "price-chart" in html

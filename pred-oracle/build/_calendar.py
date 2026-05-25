@@ -81,4 +81,10 @@ def calendar_month(
                     "busy": len(day_events) >= 3,
                 })
         weeks.append(week_data)
-    return {"year": year, "month": month, "weeks": weeks}
+    month_names = [
+        "", "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December",
+    ]
+    label = f"{month_names[month]} {year}"
+    all_days = [d for w in weeks for d in w if d is not None]
+    return {"year": year, "month": month, "label": label, "weeks": weeks, "days": all_days}

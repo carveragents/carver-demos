@@ -63,19 +63,24 @@
 {% endif %}
 
 {# Price buttons + position row #}
+{% if prices and prices.series %}
+  {% set yes_cents = (prices.series[-1].p * 100)|round(0)|int %}
+{% else %}
+  {% set yes_cents = 50 %}
+{% endif %}
+{% set no_cents = 100 - yes_cents %}
+{% set yes_payout = (10000 / yes_cents)|round(0)|int if yes_cents > 0 else 0 %}
+{% set no_payout = (10000 / no_cents)|round(0)|int if no_cents > 0 else 0 %}
 <div class="flex flex-wrap items-center gap-3 mb-6">
-  {% if prices and prices.series %}
-    {% set latest_yes = prices.series[-1] if prices.series else None %}
-  {% endif %}
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">YES</span>
-    <span class="text-xl font-bold tabular-nums">{{ contract.get('yes_price', 50) }}¢</span>
-    <span class="text-[10px] text-emerald-200">payout ${{ (100 / contract.get('yes_price', 50) * 100)|round(0)|int if contract.get('yes_price') else '—' }}/$100</span>
+    <span class="text-xl font-bold tabular-nums">{{ yes_cents }}¢</span>
+    <span class="text-[10px] text-emerald-200">payout ${{ yes_payout }}/$100</span>
   </button>
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">NO</span>
-    <span class="text-xl font-bold tabular-nums">{{ contract.get('no_price', 50) }}¢</span>
-    <span class="text-[10px] text-rose-200">payout ${{ (100 / contract.get('no_price', 50) * 100)|round(0)|int if contract.get('no_price') else '—' }}/$100</span>
+    <span class="text-xl font-bold tabular-nums">{{ no_cents }}¢</span>
+    <span class="text-[10px] text-rose-200">payout ${{ no_payout }}/$100</span>
   </button>
 
   {% if position %}
@@ -90,12 +95,16 @@
 </div>
 
 {# Price chart #}
-{% if prices and prices.series %}
 <div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
   <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  {% if prices and prices.series %}
   <div id="price-chart" class="h-64"></div>
+  {% else %}
+  <div class="h-64 flex items-center justify-center text-sm text-slate-400 italic">
+    Price data not yet available. Run <code class="bg-slate-100 px-1 rounded">make pull-prices</code> to fetch.
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
 {# ===== BELOW THE FOLD: two-column grid ===== #}
 <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -353,30 +362,36 @@
     </div>
     {% endif %}
 
-    {# Upcoming catalysts #}
-    {% if contract.get('upcoming_catalysts') %}
+    {# Upcoming catalysts — computed from timeline events with future dates #}
+    {% set catalysts = [] %}
+    {% for ev in timeline %}
+      {% if ev.effective_date is defined and ev.effective_date and ev.effective_date > today|default('2026-05-25') %}
+        {% set _ = catalysts.append({"date": ev.effective_date, "type": "Effective date", "title": ev.title, "direction": ev.direction|default("neutral"), "magnitude": ev.magnitude|default("low")}) %}
+      {% endif %}
+      {% if ev.comment_deadline is defined and ev.comment_deadline and ev.comment_deadline > today|default('2026-05-25') %}
+        {% set _ = catalysts.append({"date": ev.comment_deadline, "type": "Comment deadline", "title": ev.title, "direction": ev.direction|default("neutral"), "magnitude": ev.magnitude|default("low")}) %}
+      {% endif %}
+    {% endfor %}
     <div class="border border-slate-200 rounded-lg p-4">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      {% if catalysts %}
       <ul class="space-y-3">
-        {% for cat in contract.upcoming_catalysts %}
+        {% for cat in catalysts|sort(attribute='date') %}
         <li class="flex items-start gap-2 text-sm">
           <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div>
             <div class="font-medium text-slate-800">{{ cat.title }}</div>
-            {% if cat.date %}
-            <div class="text-xs text-slate-400 mt-0.5">{{ cat.date }}</div>
-            {% endif %}
-            {% if cat.description %}
-            <div class="text-xs text-slate-600 mt-0.5">{{ cat.description }}</div>
-            {% endif %}
+            <div class="text-xs text-slate-400 mt-0.5">{{ cat.date }} · {{ cat.type }}</div>
           </div>
         </li>
         {% endfor %}
       </ul>
+      {% else %}
+      <p class="text-sm text-slate-400 italic">No upcoming regulatory dates on record</p>
+      {% endif %}
     </div>
-    {% endif %}
 
   </aside>
 
@@ -391,45 +406,52 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!chartEl || typeof echarts === 'undefined') return;
   var chart = echarts.init(chartEl);
 
-  var seriesData = {{ prices.series | tojson }};
-  var events = {{ (timeline | map(attribute='pub_date') | list) | tojson }};
+  var raw = {{ prices.series | tojson }};
+  var timelineEvents = {{ timeline | tojson }};
 
-  var markLines = events.map(function(d) {
-    return { xAxis: d, lineStyle: { color: '#94a3b8', type: 'dashed', width: 1 } };
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var values = raw.map(function(p) { return Math.round(p.p * 100); });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'solid', width: 1.5 },
+      label: { show: false }
+    };
   });
 
   chart.setOption({
-    grid: { top: 8, right: 8, bottom: 24, left: 40 },
+    grid: { top: 12, right: 16, bottom: 28, left: 44 },
     xAxis: {
       type: 'category',
-      data: seriesData.map(function(p) { return p[0] || p.date || ''; }),
-      axisLabel: { fontSize: 10, color: '#94a3b8' },
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
       axisLine: { lineStyle: { color: '#e2e8f0' } },
     },
     yAxis: {
       type: 'value',
       min: 0,
       max: 100,
-      axisLabel: { formatter: '{value}¢', fontSize: 10, color: '#94a3b8' },
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
       splitLine: { lineStyle: { color: '#f1f5f9' } },
     },
     series: [{
       type: 'line',
-      data: seriesData.map(function(p) { return p[1] || p.value || p; }),
+      data: values,
       smooth: true,
       lineStyle: { color: '#059669', width: 2 },
       areaStyle: { color: 'rgba(5,150,105,0.08)' },
       symbol: 'none',
-      markLine: {
-        silent: true,
-        symbol: 'none',
-        data: markLines,
-      },
+      markLine: { silent: true, symbol: 'none', data: markLines },
     }],
     tooltip: {
       trigger: 'axis',
       formatter: function(params) {
-        return params[0].axisValue + ': ' + params[0].value + '¢';
+        return params[0].axisValue + ': ' + params[0].value + '%';
       },
     },
   });
