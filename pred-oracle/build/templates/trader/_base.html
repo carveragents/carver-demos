@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Carver Trader — {% block page_title %}Portfolio{% endblock %}{% endblock %}
+{% block meta_description %}Carver-enhanced regulatory intelligence for prediction market traders.{% endblock %}
+
+{% block content %}
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="{{ base_url|default('/') }}trader/"
+       class="text-sm font-medium {% if active_nav == 'list' or active_nav == 'calendar' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
+      Portfolio
+    </a>
+    <a href="{{ base_url|default('/') }}trader/retrospectives/"
+       class="text-sm font-medium {% if active_nav == 'retrospectives' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+{% block trader_content %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,441 @@
+{% extends "trader/_base.html" %}
+
+{% block page_title %}{{ contract.title }}{% endblock %}
+
+{% block trader_content %}
+{# Determine platform + heat colors #}
+{% if contract.platform == 'kalshi' %}
+  {% set platform_badge = 'bg-emerald-50 text-emerald-700 ring-emerald-200' %}
+{% else %}
+  {% set platform_badge = 'bg-blue-50 text-blue-700 ring-blue-200' %}
+{% endif %}
+
+{% if contract.kind == 'critical' or (heat_panel and heat_panel.tier == 'critical') %}
+  {% set heat_tier_label = heat_panel.tier if heat_panel else contract.kind %}
+  {% set heat_color = 'text-rose-700' %}
+  {% set heat_bg = 'bg-rose-50' %}
+  {% set heat_badge = 'bg-rose-100 text-rose-800' %}
+{% elif contract.kind == 'active' or (heat_panel and heat_panel.tier == 'active') %}
+  {% set heat_tier_label = heat_panel.tier if heat_panel else contract.kind %}
+  {% set heat_color = 'text-orange-700' %}
+  {% set heat_bg = 'bg-orange-50' %}
+  {% set heat_badge = 'bg-orange-100 text-orange-800' %}
+{% elif heat_panel and heat_panel.tier == 'watch' %}
+  {% set heat_tier_label = 'watch' %}
+  {% set heat_color = 'text-amber-700' %}
+  {% set heat_bg = 'bg-amber-50' %}
+  {% set heat_badge = 'bg-amber-100 text-amber-800' %}
+{% else %}
+  {% set heat_tier_label = heat_panel.tier if heat_panel else 'dormant' %}
+  {% set heat_color = 'text-slate-600' %}
+  {% set heat_bg = 'bg-slate-50' %}
+  {% set heat_badge = 'bg-slate-100 text-slate-700' %}
+{% endif %}
+
+{# Back link #}
+<nav class="mb-5 text-sm">
+  <a href="{{ base_url|default('/') }}trader/" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+{# ===== ABOVE THE FOLD ===== #}
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 {{ platform_badge }} capitalize">{{ contract.platform }}</span>
+    <span class="text-xs px-2 py-0.5 rounded {{ heat_badge }} uppercase tracking-wide font-medium">{{ heat_tier_label }}</span>
+    {% if contract.kind == 'retrospective' %}
+    <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 uppercase tracking-wide">retrospective</span>
+    {% endif %}
+    {% if contract.expires_at %}
+    <span class="text-xs text-slate-400">expires {{ contract.expires_at[:10] }}</span>
+    {% endif %}
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">{{ contract.title }}</h1>
+</header>
+
+{# Resolution banner (retrospectives only) #}
+{% if contract.kind == 'retrospective' and contract.get('resolved_at') %}
+<div class="mb-5 flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 text-sm text-emerald-800">
+  <svg class="w-4 h-4 flex-shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  <span><span class="font-semibold">Resolved YES</span> on {{ contract.resolved_at[:10] }}</span>
+</div>
+{% endif %}
+
+{# Price buttons + position row #}
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  {% if prices and prices.series %}
+    {% set latest_yes = prices.series[-1] if prices.series else None %}
+  {% endif %}
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">{{ contract.get('yes_price', 50) }}¢</span>
+    <span class="text-[10px] text-emerald-200">payout ${{ (100 / contract.get('yes_price', 50) * 100)|round(0)|int if contract.get('yes_price') else '—' }}/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">{{ contract.get('no_price', 50) }}¢</span>
+    <span class="text-[10px] text-rose-200">payout ${{ (100 / contract.get('no_price', 50) * 100)|round(0)|int if contract.get('no_price') else '—' }}/$100</span>
+  </button>
+
+  {% if position %}
+  <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
+    <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
+    <span class="text-slate-700">Your position:</span>
+    <span class="font-semibold">{{ position.side }}</span>
+    <span class="text-slate-500">{{ position.size }} contracts</span>
+    <span class="text-slate-400">@ {{ (position.entry_price * 100)|round(0)|int }}¢ avg</span>
+  </div>
+  {% endif %}
+</div>
+
+{# Price chart #}
+{% if prices and prices.series %}
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  <div id="price-chart" class="h-64"></div>
+</div>
+{% endif %}
+
+{# ===== BELOW THE FOLD: two-column grid ===== #}
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  {# ---- LEFT: Thesis + Timeline + Narrative ---- #}
+  <article class="lg:col-span-3 space-y-8">
+
+    {# Thesis tracker #}
+    {% if contract.conditions %}
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        {% for cond in contract.conditions %}
+        {# Derive condition color #}
+        {% if loop.index == 1 %}
+          {% set cond_bg = 'bg-indigo-600' %}
+          {% set cond_bar = 'bg-indigo-500' %}
+          {% set cond_dot_color = 'bg-indigo-500' %}
+        {% elif loop.index == 2 %}
+          {% set cond_bg = 'bg-emerald-600' %}
+          {% set cond_bar = 'bg-emerald-500' %}
+          {% set cond_dot_color = 'bg-emerald-500' %}
+        {% else %}
+          {% set cond_bg = 'bg-violet-600' %}
+          {% set cond_bar = 'bg-violet-500' %}
+          {% set cond_dot_color = 'bg-violet-500' %}
+        {% endif %}
+        {% set cond_progress = cond.get('progress', 50) %}
+        {% set cond_sentiment = cond.get('sentiment', 'neutral') %}
+        {% if cond_sentiment == 'bullish' %}
+          {% set bar_color = 'bg-emerald-500' %}
+        {% elif cond_sentiment == 'bearish' %}
+          {% set bar_color = 'bg-rose-500' %}
+        {% else %}
+          {% set bar_color = 'bg-slate-400' %}
+        {% endif %}
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full {{ cond_bg }} text-white text-xs font-bold flex-shrink-0 mt-0.5">{{ cond.id }}</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">{{ cond.label }}</span>
+              {% if cond_progress is not none %}
+              <span class="text-xs text-slate-500 tabular-nums">{{ cond_progress }}%</span>
+              {% endif %}
+            </div>
+            {% if cond_progress is not none %}
+            <div class="w-full bg-slate-100 rounded-full h-1.5">
+              <div class="{{ bar_color }} rounded-full h-1.5" style="width: {{ cond_progress }}%"></div>
+            </div>
+            {% endif %}
+            {% if cond.summary %}
+            <p class="text-xs text-slate-600 mt-1.5">{{ cond.summary }}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endif %}
+
+    {# Regulatory timeline #}
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline ({{ timeline|length }})</h2>
+        {% if contract.conditions and contract.conditions|length > 1 %}
+        <div class="flex gap-1 text-xs">
+          <button @click="filter='all'"
+                  :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">All</button>
+          {% for c in contract.conditions %}
+          <button @click="filter='{{ c.id }}'"
+                  :class="filter==='{{ c.id }}' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">{{ c.id }}</button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {% if timeline %}
+      <ol class="relative space-y-0">
+        {% for ev in timeline %}
+        {# Direction badge #}
+        {% if ev.direction == 'bullish' %}
+          {% set dir_badge = 'bg-emerald-100 text-emerald-800' %}
+          {% set dir_label = '↑ bullish' %}
+        {% elif ev.direction == 'bearish' %}
+          {% set dir_badge = 'bg-rose-100 text-rose-800' %}
+          {% set dir_label = '↓ bearish' %}
+        {% else %}
+          {% set dir_badge = 'bg-slate-100 text-slate-700' %}
+          {% set dir_label = '→ neutral' %}
+        {% endif %}
+
+        {# Condition dot color #}
+        {% if ev.condition_tag == 'A' %}
+          {% set dot_color = 'bg-indigo-600' %}
+        {% elif ev.condition_tag == 'B' %}
+          {% set dot_color = 'bg-emerald-600' %}
+        {% elif ev.condition_tag == 'C' %}
+          {% set dot_color = 'bg-violet-600' %}
+        {% else %}
+          {% set dot_color = 'bg-slate-400' %}
+        {% endif %}
+
+        {# Magnitude indicator #}
+        {% if ev.magnitude == 'high' %}
+          {% set mag_label = '●' %}
+          {% set mag_title = 'High impact' %}
+        {% elif ev.magnitude == 'medium' %}
+          {% set mag_label = '◑' %}
+          {% set mag_title = 'Medium impact' %}
+        {% else %}
+          {% set mag_label = '○' %}
+          {% set mag_title = 'Low impact' %}
+        {% endif %}
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && '{{ ev.condition_tag|default('background') }}' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">{{ ev.pub_date[:10] }}</span>
+            <span class="block text-[10px] text-slate-400 uppercase">{{ ev.regulator }}</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full {{ dot_color }} flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded {{ dir_badge }} font-medium">{{ dir_label }}</span>
+              <span class="text-xs text-slate-400" title="{{ mag_title }}">{{ mag_label }}</span>
+              {% if ev.mechanism %}
+              <span class="text-xs text-slate-500">{{ ev.mechanism }}</span>
+              {% endif %}
+              {% if ev.timeline_shift and ev.timeline_shift != 'none' %}
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {% if ev.timeline_shift == 'sooner' %}Sooner{% else %}Later{% endif %}
+              </span>
+              {% endif %}
+            </div>
+            <a href="{{ ev.url }}" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">{{ ev.title }}</a>
+            {% if ev.one_line_why %}
+            <p class="text-xs text-slate-600 mt-1">{{ ev.one_line_why }}</p>
+            {% endif %}
+          </article>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="text-sm text-slate-500 italic">No matching Carver events found for this contract's settlement entities.</p>
+      {% endif %}
+    </section>
+
+    {# Narrative #}
+    {% if contract.narrative %}
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Analyst narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        {{ contract.narrative }}
+      </blockquote>
+    </section>
+    {% endif %}
+
+    {# Resolution criteria #}
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">{{ contract.resolution_criteria }}</p>
+    </section>
+
+    {# Settlement entities #}
+    {% if contract.settlement_entities %}
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        {% for entity in contract.settlement_entities %}
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          {{ entity.name }}
+          {% if entity.role %}<span class="text-slate-400">· {{ entity.role }}</span>{% endif %}
+        </span>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </article>
+
+  {# ---- RIGHT: Momentum panel + catalysts ---- #}
+  <aside class="lg:col-span-2 space-y-5">
+
+    {# Momentum / heat panel #}
+    {% if heat_panel %}
+    <div class="border border-slate-200 rounded-lg p-4 {{ heat_bg }}">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-baseline gap-2 mb-1">
+        <span class="text-3xl font-bold {{ heat_color }} tabular-nums">{{ heat_panel.value|round(0)|int }}</span>
+        <span class="text-sm {{ heat_color }} font-semibold uppercase tracking-wide">{{ heat_panel.tier }}</span>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3 tabular-nums">
+        {% if heat_panel.delta_7d > 0 %}
+          <span class="text-rose-600">+{{ heat_panel.delta_7d|round(1) }} / 7d</span>
+        {% elif heat_panel.delta_7d < 0 %}
+          <span class="text-emerald-600">{{ heat_panel.delta_7d|round(1) }} / 7d</span>
+        {% else %}
+          <span class="text-slate-400">±0 / 7d</span>
+        {% endif %}
+        {% if heat_panel.peer_percentile %}
+        <span class="text-slate-400">·</span>
+        <span>top {{ 100 - heat_panel.peer_percentile }}% of peers</span>
+        {% endif %}
+      </div>
+
+      {# Sparkline #}
+      {% if heat_panel.urgency_weighted_sparkline %}
+      <div class="mb-3">
+        {% set values = heat_panel.urgency_weighted_sparkline %}
+        {% set max_v = (values|max) if values else 0 %}
+        {% set max_v = max_v if max_v > 0 else 1 %}
+        {% set width = 120 %}
+        {% set height = 28 %}
+        {% set step = width / (values|length - 1) if (values|length > 1) else width %}
+        <svg viewBox="0 0 {{ width }} {{ height }}" width="{{ width }}" height="{{ height }}" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="{% for v in values %}{{ (loop.index0 * step)|round(2) }},{{ (height - (v / max_v) * (height - 4) - 2)|round(2) }} {% endfor %}" />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: {{ width }}px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      {% endif %}
+
+      {# Primary drivers #}
+      {% if heat_panel.primary_drivers %}
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          {% for driver in heat_panel.primary_drivers %}
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            {{ driver }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if heat_panel.explainer %}
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">{{ heat_panel.explainer }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {# Upcoming catalysts #}
+    {% if contract.get('upcoming_catalysts') %}
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      <ul class="space-y-3">
+        {% for cat in contract.upcoming_catalysts %}
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">{{ cat.title }}</div>
+            {% if cat.date %}
+            <div class="text-xs text-slate-400 mt-0.5">{{ cat.date }}</div>
+            {% endif %}
+            {% if cat.description %}
+            <div class="text-xs text-slate-600 mt-0.5">{{ cat.description }}</div>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+  </aside>
+
+</div>
+{% endblock %}
+
+{% block extra_body %}
+{% if prices and prices.series %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var seriesData = {{ prices.series | tojson }};
+  var events = {{ (timeline | map(attribute='pub_date') | list) | tojson }};
+
+  var markLines = events.map(function(d) {
+    return { xAxis: d, lineStyle: { color: '#94a3b8', type: 'dashed', width: 1 } };
+  });
+
+  chart.setOption({
+    grid: { top: 8, right: 8, bottom: 24, left: 40 },
+    xAxis: {
+      type: 'category',
+      data: seriesData.map(function(p) { return p[0] || p.date || ''; }),
+      axisLabel: { fontSize: 10, color: '#94a3b8' },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}¢', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [{
+      type: 'line',
+      data: seriesData.map(function(p) { return p[1] || p.value || p; }),
+      smooth: true,
+      lineStyle: { color: '#059669', width: 2 },
+      areaStyle: { color: 'rgba(5,150,105,0.08)' },
+      symbol: 'none',
+      markLine: {
+        silent: true,
+        symbol: 'none',
+        data: markLines,
+      },
+    }],
+    tooltip: {
+      trigger: 'axis',
+      formatter: function(params) {
+        return params[0].axisValue + ': ' + params[0].value + '¢';
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+});
+</script>
+{% endif %}
+{% endblock %}
