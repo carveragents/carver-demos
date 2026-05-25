@@ -1,0 +1,34 @@
+schema_version: 1
+build_date: "2026-05-25"
+
+portfolio:
+  - id: kxbtc-maxprice-2026
+    platform: kalshi
+    kind: active
+    position: {side: "YES", size: 200, entry_price: 0.54}
+  - id: kxfeddecision-28jan
+    platform: kalshi
+    kind: active
+    position: {side: "NO", size: 100, entry_price: 0.71}
+  - id: us-recession-in-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 500, entry_price: 0.18}
+  - id: sec-eth-security-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 150, entry_price: 0.33}
+  - id: kxuschina-tariffs-2026
+    platform: kalshi
+    kind: active
+    position: {side: "YES", size: 300, entry_price: 0.47}
+  - id: fatf-travel-rule-2027
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 100, entry_price: 0.61}
+
+retrospectives:
+  - id: solana-etf-2025
+    platform: polymarket
+  - id: tiktokban-25apr30
+    platform: kalshi

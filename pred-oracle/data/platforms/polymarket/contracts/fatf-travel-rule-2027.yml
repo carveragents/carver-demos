@@ -1,0 +1,28 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "fatf-travel-rule-2027"
+
+title: "Will 25+ FATF member states formally adopt updated VASP Travel Rule guidance by 2027-06-30?"
+resolution_criteria: |
+  Resolves YES if 25 or more of the 39 FATF full-member jurisdictions have
+  officially transposed the Q4 2025 FATF Recommendation-15 update (expanded
+  VASP-adjacent perimeter) into domestic law, regulation, or supervisory
+  guidance, as confirmed by FATF's own mutual evaluation or implementation
+  monitoring report, by 2027-06-30.
+
+listed_at: "2025-12-01"
+expires_at: "2027-06-30"
+status: "active"
+
+settlement_entities:
+  - "Financial Action Task Force"
+  - "European Securities and Markets Authority"
+  - "European Commission"
+  - "Financial Crimes Enforcement Network"
+  - "Bank for International Settlements"
+
+source_urls:
+  - "https://www.fatf-gafi.org/"
+
+source_retrieved_at: "2026-05-25"

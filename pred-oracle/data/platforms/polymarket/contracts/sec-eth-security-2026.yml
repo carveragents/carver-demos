@@ -1,0 +1,27 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "sec-eth-security-2026"
+
+title: "Will the SEC officially classify Ether as a security by 2026-12-31?"
+resolution_criteria: |
+  Resolves YES if the U.S. Securities and Exchange Commission issues a formal
+  order, final rule, or sustained civil enforcement judgment concluding that
+  Ether (ETH) is a security under the Securities Act of 1933 or the Securities
+  Exchange Act of 1934, on or before 2026-12-31.
+
+listed_at: "2025-06-01"
+expires_at: "2026-12-31"
+status: "active"
+
+settlement_entities:
+  - "U.S. Securities and Exchange Commission"
+  - "Commodity Futures Trading Commission"
+  - "Coinbase"
+  - "Consensys"
+  - "Ethereum Foundation"
+
+source_urls:
+  - "https://www.sec.gov/"
+
+source_retrieved_at: "2026-05-25"
