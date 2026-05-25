@@ -1,0 +1,38 @@
+schema_version: 1
+kind: "retrospective"
+platform: "kalshi"
+id: "tiktokban-25apr30"
+
+title: "Will TikTok be banned in the United States by April 30, 2025?"
+resolution_criteria: |
+  Resolves YES if, on or before 2025-04-30, TikTok is unavailable in the United States
+  via the Apple App Store or the Google Play Store, OR a federal directive (PAFACA
+  enforcement order from the Department of Commerce / Department of Justice) takes
+  effect requiring a divestiture or shutdown. Resolves NO otherwise.
+
+listed_at: "2024-04-24"
+resolved_at: "2025-04-30"
+status: "resolved"
+resolution_outcome: "NO"
+
+settlement_entities:
+  - "Federal Communications Commission"
+  - "Committee on Foreign Investment in the United States"
+  - "Department of Commerce"
+  - "ByteDance"
+  - "TikTok"
+
+source_urls:
+  - "https://en.wikipedia.org/wiki/Restrictions_on_TikTok_in_the_United_States"
+  - "https://www.congress.gov/bill/118th-congress/house-bill/7521"
+
+source_retrieved_at: "2026-05-20"
+
+# Resolution context (for the retrospective template):
+# - PAFACA signed 2024-04-24; original divestment deadline 2025-01-19.
+# - 2025-01-18: TikTok voluntarily went dark in US.
+# - 2025-01-19: Service restored after Trump assurances.
+# - 2025-01-20: First executive order extended enforcement deadline 75 days to 2025-04-05.
+# - 2025-04-04: Second executive order extended to 2025-06-19.
+# As of 2025-04-30, the platform was still operational under enforcement delay,
+# so this contract resolved NO. The divestiture ultimately completed 2026-01-22.

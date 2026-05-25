@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halyard Pay Policy Updates — overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="index.html">Overview</a>
+        <a href="timeline/index.html">Timeline</a>
+        <a href="policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<p class="eyebrow">Carver Agents · demo</p>
+<h1>Compliance review of Mastercard SPME → Halyard Pay policy updates</h1>
+
+<p class="lede">
+  This site presents an AI agent's analysis of <strong>5 Mastercard SPME releases</strong>
+  spanning <strong>Jun 2022 to May 2025</strong>, with proposed updates to
+  <strong>8 Halyard Pay policies</strong>.
+</p>
+
+<div class="stats">
+  <div class="stat"><span class="num">5</span><span class="label">releases reviewed</span></div>
+  <div class="stat"><span class="num">214</span><span class="label">proposed revisions</span></div>
+  <div class="stat"><span class="num">15</span><span class="label">breaking changes</span></div>
+  <div class="stat"><span class="num">8</span><span class="label">policies affected</span></div>
+</div>
+
+<a href="timeline/index.html" class="cta-primary">
+  Begin review
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+</a>
+
+<section class="overview-section">
+  <p class="section-num">01 · How it works</p>
+  <h2>What the agent did</h2>
+  <p class="section-intro">
+    A three-stage agent reads each Mastercard SPME release, identifies what changed since the previous version, and proposes corresponding edits to Halyard Pay's internal compliance policies.
+  </p>
+  <div class="step-flow">
+    
+    <div class="step">
+      <span class="step-number">01</span>
+      <h3>Detect</h3>
+      <p>Extract text from each SPME PDF, identify every numbered section, and compare consecutive versions to surface added, removed, and modified sections.</p>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">02</span>
+      <h3>Classify &amp; map</h3>
+      <p>For each detected change, an LLM assigns a materiality grade (breaking → cosmetic) and identifies which Halyard Pay policy areas are affected by the new Mastercard text.</p>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">03</span>
+      <h3>Propose</h3>
+      <p>Draft updated <code>rules.yaml</code> and <code>policy.md</code> for each affected policy, emit a change record with side-by-side redlines, and link back to the cited SPME section.</p>
+    </div>
+    
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">02 · Inputs</p>
+  <h2>Mastercard input documents</h2>
+  <p class="section-intro">The <strong>SPME</strong> (Security Rules and Procedures — Merchant Edition) is Mastercard's primary compliance publication for acquirers and merchants. Mastercard refreshes it roughly every 6–12 months. The following published versions were reviewed:</p>
+  <ul class="source-list">
+    
+    <li>
+      <a href="sources/spme/20220628210349.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · Jun 2022</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+    <li>
+      <a href="sources/spme/20230516183156.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · May 2023</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+    <li>
+      <a href="sources/spme/20230907012045.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · Sep 2023</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+    <li>
+      <a href="sources/spme/20240213111520.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · Feb 2024</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+    <li>
+      <a href="sources/spme/20240901001027.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · Sep 2024</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+    <li>
+      <a href="sources/spme/20250524042807.pdf" target="_blank" rel="noopener">
+        <svg class="icon"><use href="#icon-doc"/></svg>
+        <span>Mastercard SPME · May 2025</span>
+        <span class="ext">PDF</span>
+        <svg class="icon-ext"><use href="#icon-external"/></svg>
+      </a>
+    </li>
+    
+  </ul>
+  <p class="provenance">Source: archived from Mastercard&#39;s public publications via the Internet Archive Wayback Machine. PDFs are bundled with this demo for offline review.</p>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">03 · Outputs</p>
+  <h2>Halyard Pay policies evaluated</h2>
+  <p class="section-intro">These represent the eight policy areas a hypothetical Halyard Pay compliance program would maintain to satisfy Mastercard's published rules. <strong>These are synthetic v1 baseline policies — they do not reflect any production Halyard Pay policy</strong> and exist solely to demonstrate how the agent surfaces and proposes edits.</p>
+  <div class="policies-mini-grid">
+    
+    <a href="policies/ato_detection.html" class="policy-mini-card">
+      <div class="name">ATO Detection</div>
+      <div class="desc">Account-takeover fraud occurs when a malicious actor gains unauthorized access to a cardholder&#39;s account and initiates transactions without the cardholder&#39;s consent. Halyard Pay implements real-time risk scoring on authentication events and enforces a mandatory 3DS (3-D Secure) challenge for any session where the computed risk score meets or exceeds the defined threshold.</div>
+    </a>
+    
+    <a href="policies/bram_response.html" class="policy-mini-card">
+      <div class="name">BRAM Response</div>
+      <div class="desc">When Mastercard issues a Business Risk Assessment and Mitigation (BRAM) investigation notice for one of our merchants, the acquirer must halt new merchant onboarding immediately and submit an evidence package within one hundred eighty (180) days of receipt of the notice.</div>
+    </a>
+    
+    <a href="policies/chargeback_handling.html" class="policy-mini-card">
+      <div class="name">Chargeback Handling</div>
+      <div class="desc">Chargebacks are cardholder-initiated disputes against a transaction. Halyard Pay, as the acquirer, is responsible for managing the full dispute lifecycle on behalf of its merchants from initial first presentment through arbitration. Each stage of the lifecycle has specific evidence requirements and strict response deadlines imposed by Mastercard network rules.</div>
+    </a>
+    
+    <a href="policies/content_moderation.html" class="policy-mini-card">
+      <div class="name">Content Moderation</div>
+      <div class="desc">Mastercard&#39;s Business Risk Assessment and Mitigation (BRAM) program includes specific brand-integrity provisions that prohibit acquirers from processing transactions for merchants engaged in activities that violate Mastercard&#39;s acceptable use standards. Halyard Pay conducts ongoing content monitoring of merchant storefronts and transaction data to identify and remediate prohibited content.</div>
+    </a>
+    
+    <a href="policies/ecp_thresholds.html" class="policy-mini-card">
+      <div class="name">ECP Thresholds</div>
+      <div class="desc">Mastercard&#39;s Excessive Chargeback Program (ECP) identifies merchants whose chargeback activity exceeds defined monthly ratios relative to their transaction volume. Halyard Pay monitors merchant chargeback-to-transaction ratios on a monthly basis and escalates merchants that breach program tiers to the appropriate remediation track.</div>
+    </a>
+    
+    <a href="policies/fraud_monitoring.html" class="policy-mini-card">
+      <div class="name">Fraud Monitoring</div>
+      <div class="desc">Halyard Pay monitors merchant fraud activity on a monthly basis to detect patterns that exceed Mastercard&#39;s acceptable fraud-to-sales thresholds. A merchant whose rolling monthly fraud-to-sales ratio meets or exceeds 1.5% (0.015) and whose fraud count reaches at least 100 transactions in that same month triggers mandatory escalation under this policy.</div>
+    </a>
+    
+    <a href="policies/kyb_acquirer.html" class="policy-mini-card">
+      <div class="name">KYB Acquirer</div>
+      <div class="desc">Acquirers processing transactions on the Mastercard network are required to perform Know Your Business (KYB) due diligence on merchants before onboarding and on a recurring basis thereafter. Halyard Pay, as an acquirer, must collect and verify a minimum set of documents for each merchant to establish business legitimacy, confirm beneficial ownership, and satisfy anti-money laundering screening requirements.</div>
+    </a>
+    
+    <a href="policies/refund_policy.html" class="policy-mini-card">
+      <div class="name">Refund Policy</div>
+      <div class="desc">Merchants processing transactions on the Mastercard network must maintain and honor a clearly defined refund policy. Halyard Pay requires that merchants process refunds within 30 days of a valid refund request and that cardholders are notified when a refund has been initiated or declined.</div>
+    </a>
+    
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">04 · Vocabulary</p>
+  <h2>Glossary</h2>
+  <p class="section-intro">Acronyms used throughout the site, plus the four materiality grades the classifier assigns.</p>
+  <dl class="glossary">
+    
+    <dt>SPME</dt><dd>Security Rules and Procedures — Merchant Edition. Mastercard&#39;s primary B2B compliance document for acquirers and merchants.</dd>
+    
+    <dt>BRAM</dt><dd>Business Risk Assessment and Mitigation. A Mastercard investigation process triggered when a merchant is suspected of brand-damaging activity.</dd>
+    
+    <dt>ECP</dt><dd>Excessive Chargeback Program. Mastercard&#39;s framework for monitoring merchants whose chargeback rate exceeds defined thresholds.</dd>
+    
+    <dt>KYB</dt><dd>Know Your Business. The acquirer&#39;s obligation to verify and document the identity and legitimacy of merchants it onboards.</dd>
+    
+    <dt>ATO</dt><dd>Account Takeover. Fraud pattern where an attacker gains unauthorized control of a cardholder&#39;s account.</dd>
+    
+    <dt>MATCH</dt><dd>Member Alert To Control High-Risk Merchants. Mastercard&#39;s shared registry of terminated merchants used by acquirers during onboarding.</dd>
+    
+    <dt>PCI DSS</dt><dd>Payment Card Industry Data Security Standard. The cross-network security baseline that acquirers and merchants must satisfy.</dd>
+    
+    <dt class="dt-group">Materiality grades</dt><dd class="dd-group"></dd>
+    <dt><span class="materiality breaking">Breaking</span></dt><dd>Alters an obligation, threshold, or required behavior. A policy revision is required to remain compliant.</dd>
+    <dt><span class="materiality substantive">Substantive</span></dt><dd>Adds meaningful new context, references, or examples without altering an obligation. A policy update is recommended.</dd>
+    <dt><span class="materiality clarifying">Clarifying</span></dt><dd>Restates an existing rule in different language. No policy change required, but cross-references may need updating.</dd>
+    <dt><span class="materiality cosmetic">Cosmetic</span></dt><dd>Formatting, typo, or section reordering with no semantic impact. No action required.</dd>
+  </dl>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">05 · Navigation</p>
+  <h2>How to read this demo</h2>
+  <p class="section-intro">There are two complementary ways to navigate.</p>
+  <div class="nav-paths">
+    
+    <div class="nav-path">
+      <h3>By release</h3>
+      <p>The <a href="timeline/index.html">Timeline</a> page shows all SPME release-to-release transitions in chronological order, with the materiality breakdown of each release. Click into a release to see the full list of proposed changes grouped by severity; click a change to review the proposed edit side-by-side against the cited Mastercard section.</p>
+    </div>
+    
+    <div class="nav-path">
+      <h3>By policy</h3>
+      <p>The <a href="policies/index.html">Policies</a> page shows each Halyard Pay policy with its current text. Each policy detail page includes a mini-timeline of every proposed change touching it across releases — useful for spotting a single policy that's being repeatedly revised.</p>
+    </div>
+    
+  </div>
+</section>
+
+<section class="overview-section">
+  <p class="section-num">06 · Disclaimers</p>
+  <h2>What this is not</h2>
+  <ul class="disclaimer">
+    
+    <li>The Halyard Pay policies shown here are <strong>synthetic v1 baselines</strong> built for this demo. They do not reflect any production policy.</li>
+    
+    <li>All proposed edits are <strong>agent-generated</strong> and have not been reviewed or approved by Halyard Pay Compliance.</li>
+    
+    <li>This site is for <strong>review feedback</strong>; nothing here is binding, legal advice, or a recommended course of action.</li>
+    
+    <li>Mastercard publications are republished here under fair-use review purposes from publicly archived versions. Always consult the current authoritative Mastercard publication for compliance decisions.</li>
+    
+  </ul>
+</section>
+
+<a href="timeline/index.html" class="cta-primary cta-bottom">
+  Begin review
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+</a>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

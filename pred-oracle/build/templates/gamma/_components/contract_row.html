@@ -1,0 +1,44 @@
+<tr class="border-b border-slate-100 hover:bg-slate-50 {% if row.is_stale %}opacity-60{% endif %}">
+  <td class="px-3 py-2 align-top">
+    <div class="flex items-center gap-2">
+      {% set tier_color = {
+        'dormant': 'bg-slate-400',
+        'watch':    'bg-sky-600',
+        'active':   'bg-amber-600',
+        'critical': 'bg-rose-600',
+      }[row.tier] %}
+      <span class="inline-block w-2 h-2 rounded-full {{ tier_color }}"
+            title="{{ row.tier }}"></span>
+      <span class="text-xl font-bold tabular-nums">{{ row.heat|round(0)|int }}</span>
+      {% set values = row.sparkline %}
+      {% include "gamma/_components/sparkline.html" %}
+    </div>
+    <div class="text-[10px] uppercase tracking-wider text-slate-400 mt-0.5">
+      {{ row.heat_window_label }}
+    </div>
+    {% if row.heat_delta_7d != 0 %}
+    <div class="text-xs {{ 'text-rose-600' if row.heat_delta_7d > 0 else 'text-slate-500' }}">
+      {{ '+' if row.heat_delta_7d > 0 }}{{ row.heat_delta_7d|round(1) }} / 7d
+    </div>
+    {% endif %}
+  </td>
+  <td class="px-3 py-2 align-top">
+    <a href="{{ base_url|default('') }}gamma/{{ row.detail_href }}" class="font-medium text-slate-900 hover:text-blue-700">{{ row.title }}</a>
+    {% if row.is_stale %}<span class="ml-2 text-xs bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">stale</span>{% endif %}
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="text-xs uppercase tracking-wider {{ 'text-emerald-700' if row.status == 'active' else 'text-slate-500' }}">{{ row.status }}</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    {% for e in row.settlement_entities[:3] %}
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">{{ e }}</span>
+    {% endfor %}
+    {% if row.settlement_entities|length > 3 %}<span class="text-xs text-slate-400">+{{ row.settlement_entities|length - 3 }}</span>{% endif %}
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">{{ row.last_event_pub_date }}</td>
+  <td class="px-3 py-2 align-top">
+    {% if row.open_tickets_count > 0 %}
+    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">{{ row.open_tickets_count }}</span>
+    {% endif %}
+  </td>
+</tr>

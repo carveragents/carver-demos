@@ -1,0 +1,11 @@
+{
+  "request": {"model": "gpt-5", "system": "...", "user": "..."},
+  "response": {
+    "conditions": [
+      {"id": "A", "label": "App-store unavailability",
+       "summary": "TikTok unavailable in US Apple/Google stores by 2025-04-30."},
+      {"id": "B", "label": "Federal divestiture order",
+       "summary": "PAFACA enforcement order from DoC/DoJ in effect by 2025-04-30."}
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+program: ECP
+authority: Mastercard SPME §11.4
+chargeback_to_transaction_ratio_threshold: 0.015
+min_chargeback_count: 100
+program_tiers:
+  - standard
+  - excessive
+tier_thresholds:
+  standard: 0.015
+  excessive: 0.030
+merchant_notification_business_days: 5
+monitoring_cadence: monthly
+agent_owner: ecp_ops_agent

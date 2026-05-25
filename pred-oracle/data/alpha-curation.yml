@@ -1,0 +1,49 @@
+# α-scene curation. Edited by hand; consumed by build/alpha_*.py generators.
+#
+# Pick rules (see docs/specs/30-alpha-walkthrough.md §6):
+#   - wow_ticket_id: the row that appears top of /alpha/ inbox. Must be a
+#     recent (≤14 days), high-urgency, real "act today" item that names a
+#     prediction-market platform or regulator.
+#   - supporting_ticket_ids: 4 additional ids for which we pre-render ticket
+#     detail pages. Mix federal + state + types to make the inbox feel dense.
+#   - dashboard_window_days: window for the /alpha/dashboard/ aggregation.
+#     90 confirmed by A9' analysis (54 states, 15+ with 100+ events).
+#   - inbox_top_n: number of rows shown in /alpha/ inbox.
+
+schema_version: 1
+
+# The "now" of the demo. Locked at curation time so make-build is deterministic
+# across days and the curated wow ticket stays eligible (see STAGE_1_NOTES §7).
+# Update when the corpus is re-pulled and curation refreshed.
+build_date: "2026-05-20"
+
+wow_ticket_id: "e519db6e-499e-47d5-bd65-2b45752fb6bd"
+
+supporting_ticket_ids:
+  - "fd954992-3ce2-4a28-97e3-a0b472850d7b"     # DFPI crypto kiosk
+  - "47d30176-f4a4-4ed5-aaf3-632f14ec65a8"    # SEC David Goldman
+  - "ff637c5e-300e-40d8-9db9-d212940da728"    # CFTC vs Wisconsin
+  - "48b578d5-84fc-4c9c-b098-c8740780663b"    # CA DOJ proposed rule
+
+dashboard_window_days: 90
+inbox_top_n: 15
+
+persona_key: "gc"
+
+synthetic_assignees:
+  - name: "General Counsel"
+    role: "General Counsel"
+    initials: "GC"
+  - name: "Associate Counsel"
+    role: "Associate Counsel"
+    initials: "AC"
+
+synthetic_comment_templates:
+  - author: "General Counsel"
+    role: "GC"
+    text: "Routing to outside counsel for the {regulator} angle. Need a memo by EOD."
+    timestamp_offset_hours: -4
+  - author: "Associate Counsel"
+    role: "Associate Counsel"
+    text: "Pulling the precedents. Will flag if there's anything cross-jurisdictional."
+    timestamp_offset_hours: -2

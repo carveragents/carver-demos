@@ -1,0 +1,112 @@
+# Polymarket jurisdiction catalog.
+# `code`   - ISO 3166-1 alpha-2 country or `US-XX` state subdivision
+# `status` - one of: operating | considering | closed | excluded
+# `notes`  - free-form context (e.g., regulator-driven closure)
+
+# --- US federal -------------------------------------------------------------
+- code: US
+  status: operating
+  notes: DCM operating since Nov 2025 via QCEX acquisition
+
+# --- US states (alphabetical by code) ---------------------------------------
+- code: US-AL
+  status: operating
+- code: US-AK
+  status: operating
+- code: US-AZ
+  status: operating
+- code: US-CA
+  status: operating
+- code: US-CO
+  status: operating
+- code: US-CT
+  status: operating
+- code: US-FL
+  status: operating
+- code: US-GA
+  status: operating
+- code: US-IL
+  status: operating
+- code: US-IN
+  status: operating
+- code: US-MA
+  status: operating
+- code: US-MD
+  status: closed
+- code: US-MI
+  status: operating
+- code: US-MT
+  status: operating
+- code: US-NC
+  status: operating
+- code: US-ND
+  status: operating
+- code: US-NJ
+  status: closed
+- code: US-NV
+  status: closed
+- code: US-NY
+  status: operating
+- code: US-OH
+  status: operating
+- code: US-OR
+  status: operating
+- code: US-PA
+  status: operating
+- code: US-TX
+  status: operating
+- code: US-VA
+  status: operating
+- code: US-WA
+  status: operating
+
+# --- International - explicitly closed (regulator-driven) -------------------
+- code: FR
+  status: closed
+  notes: ANJ enforcement action
+- code: SG
+  status: closed
+  notes: GRA Singapore enforcement
+- code: TH
+  status: closed
+  notes: AMLO enforcement
+- code: GB
+  status: closed
+  notes: UKGC enforcement
+- code: NL
+  status: closed
+  notes: KSA enforcement
+
+# --- International - other ---------------------------------------------------
+- code: CA
+  status: operating
+- code: AU
+  status: considering
+- code: NZ
+  status: considering
+- code: JP
+  status: excluded
+- code: KR
+  status: excluded
+- code: BR
+  status: considering
+- code: MX
+  status: operating
+- code: IN
+  status: excluded
+- code: DE
+  status: considering
+- code: IT
+  status: considering
+- code: ES
+  status: considering
+- code: PT
+  status: operating
+- code: IE
+  status: considering
+- code: AE
+  status: excluded
+- code: ZA
+  status: considering
+- code: AR
+  status: operating

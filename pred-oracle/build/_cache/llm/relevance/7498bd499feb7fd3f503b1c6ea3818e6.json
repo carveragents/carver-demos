@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: New Rihanna Album before GTA VI?\nResolution criteria: This market will resolve to \"Yes\" if Rihanna officially releases a new album before Grand Theft Auto VI is officially released in the US. Otherwise, this market will resolve to \"No\".\nConditions:\n  A: Rihanna album before GTA VI (US) \u2014 YES if Rihanna officially releases a new album (e.g., via Rihanna, Spotify, or Apple Music) at a time earlier than GTA VI\u2019s official US release in the US per Rockstar Games/Take\u2011Two.\nSettlement entities: ['Rockstar Games', 'Take-Two Interactive', 'Spotify', 'Apple Music', 'Rihanna']\n\nRecord title: Prepared Remarks of CFPB Director Rohit Chopra on the Goldman Sachs and Apple Enforcement Press Call\nRecord date: 2024-10-23\nRecord regulator: Consumer Financial Protection Bureau\nRecord topic: Consumer Financial Protection Bureau\nRecord entities: ['Apple', 'Consumer Financial Protection Bureau', 'Goldman Sachs', 'Rohit Chopra']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "CFPB remarks concern Apple/Goldman Sachs financial enforcement, not music release timing or Rockstar/Take\u2011Two release plans\u2014no impact on album vs GTA VI.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

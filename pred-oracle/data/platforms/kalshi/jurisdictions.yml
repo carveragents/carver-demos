@@ -1,0 +1,75 @@
+# Kalshi jurisdiction catalog.
+# `code`   - ISO 3166-1 alpha-2 country or `US-XX` state subdivision
+# `status` - one of: operating | considering | closed | excluded
+# `notes`  - free-form context (e.g., litigation, cease-and-desist)
+
+# --- US federal -------------------------------------------------------------
+- code: US
+  status: operating
+  notes: CFTC-licensed DCM; federal operating base
+
+# --- US states (alphabetical by code) ---------------------------------------
+- code: US-AL
+  status: operating
+- code: US-AK
+  status: operating
+- code: US-AZ
+  status: operating
+- code: US-CA
+  status: operating
+- code: US-CO
+  status: operating
+- code: US-CT
+  status: operating
+- code: US-FL
+  status: operating
+- code: US-GA
+  status: operating
+- code: US-HI
+  status: operating
+- code: US-IL
+  status: operating
+- code: US-IN
+  status: operating
+- code: US-MA
+  status: operating
+  notes: Cease and desist litigated
+- code: US-MD
+  status: closed
+- code: US-MI
+  status: operating
+- code: US-MT
+  status: operating
+- code: US-NC
+  status: operating
+- code: US-ND
+  status: operating
+- code: US-NJ
+  status: closed
+- code: US-NV
+  status: closed
+  notes: Active state cease and desist; 2024-2026 litigation
+- code: US-NY
+  status: operating
+- code: US-OH
+  status: operating
+- code: US-OR
+  status: operating
+- code: US-PA
+  status: operating
+- code: US-TX
+  status: operating
+- code: US-VA
+  status: operating
+- code: US-WA
+  status: operating
+- code: US-WI
+  status: operating
+
+# --- International ---------------------------------------------------------
+- code: CA
+  status: considering
+- code: GB
+  status: considering
+- code: AU
+  status: considering

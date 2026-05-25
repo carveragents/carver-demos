@@ -1,0 +1,90 @@
+# config/sites/spme.yaml
+#
+# Site/artifact configuration for the Halyard Pay · Mastercard SPME demo.
+# All client-facing strings flow from this file. To prep a new client or
+# artifact (Phase 2 = Mastercard Rules, Phase 3 = Chargeback Guide, or any
+# new client), copy this file to config/sites/<slug>.yaml and edit.
+#
+# Loaded by presentation.render.load_site_config().
+
+# ──────────────────────────────────────────────────────────────────────
+# Brand: shown in the site header, footer, and page <title> tags.
+# ──────────────────────────────────────────────────────────────────────
+brand:
+  client: Halyard Pay
+  product: Policy Updates
+  tagline: Powered by Carver Agents
+  footer_note: "Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review"
+
+# ──────────────────────────────────────────────────────────────────────
+# Artifact: the source publication being analyzed.
+# ──────────────────────────────────────────────────────────────────────
+artifact:
+  short: SPME                                       # eyebrow + IDs
+  long: Mastercard SPME                             # lede + headings
+  full_name: "Security Rules and Procedures — Merchant Edition"
+  publisher: Mastercard                             # publishing body
+  citation: "Mastercard SPME"                       # used as "Mastercard SPME §11.2"
+  sources_subdir: spme                              # dist/sources/<subdir>/
+
+# ──────────────────────────────────────────────────────────────────────
+# Overview page: prose for the landing-page sections.
+# ──────────────────────────────────────────────────────────────────────
+overview:
+  hero_eyebrow: "Carver Agents · demo"
+  hero_title: "Compliance review of Mastercard SPME → Halyard Pay policy updates"
+  artifact_intro: "The <strong>SPME</strong> (Security Rules and Procedures — Merchant Edition) is Mastercard's primary compliance publication for acquirers and merchants. Mastercard refreshes it roughly every 6–12 months. The following published versions were reviewed:"
+  policies_intro: "These represent the eight policy areas a hypothetical Halyard Pay compliance program would maintain to satisfy Mastercard's published rules. <strong>These are synthetic v1 baseline policies — they do not reflect any production Halyard Pay policy</strong> and exist solely to demonstrate how the agent surfaces and proposes edits."
+  provenance_note: "Source: archived from Mastercard's public publications via the Internet Archive Wayback Machine. PDFs are bundled with this demo for offline review."
+
+# Pipeline-step descriptions on overview. Three steps required.
+pipeline_steps:
+  - title: Detect
+    body: "Extract text from each SPME PDF, identify every numbered section, and compare consecutive versions to surface added, removed, and modified sections."
+  - title: "Classify & map"
+    body: "For each detected change, an LLM assigns a materiality grade (breaking → cosmetic) and identifies which Halyard Pay policy areas are affected by the new Mastercard text."
+  - title: Propose
+    body: "Draft updated <code>rules.yaml</code> and <code>policy.md</code> for each affected policy, emit a change record with side-by-side redlines, and link back to the cited SPME section."
+
+# Navigation-path cards on overview (HTML allowed; rendered with | safe).
+navigation:
+  intro: There are two complementary ways to navigate.
+  paths:
+    - title: By release
+      body: 'The <a href="timeline/index.html">Timeline</a> page shows all SPME release-to-release transitions in chronological order, with the materiality breakdown of each release. Click into a release to see the full list of proposed changes grouped by severity; click a change to review the proposed edit side-by-side against the cited Mastercard section.'
+    - title: By policy
+      body: 'The <a href="policies/index.html">Policies</a> page shows each Halyard Pay policy with its current text. Each policy detail page includes a mini-timeline of every proposed change touching it across releases — useful for spotting a single policy that''s being repeatedly revised.'
+
+# Disclaimers shown on overview. <strong>...</strong> HTML allowed.
+disclaimers:
+  - "The Halyard Pay policies shown here are <strong>synthetic v1 baselines</strong> built for this demo. They do not reflect any production policy."
+  - "All proposed edits are <strong>agent-generated</strong> and have not been reviewed or approved by Halyard Pay Compliance."
+  - "This site is for <strong>review feedback</strong>; nothing here is binding, legal advice, or a recommended course of action."
+  - "Mastercard publications are republished here under fair-use review purposes from publicly archived versions. Always consult the current authoritative Mastercard publication for compliance decisions."
+
+# ──────────────────────────────────────────────────────────────────────
+# Acronyms: stay UPPERCASE when displaying policy folder slugs.
+# `bram_response` → `BRAM Response` (BRAM is listed; "response" → Title).
+# ──────────────────────────────────────────────────────────────────────
+acronyms: [bram, ecp, kyb, ato, kyc, id, spme, ach, mid, pci, adc]
+
+# ──────────────────────────────────────────────────────────────────────
+# Glossary: domain acronyms shown on overview.
+# The four materiality grades (Breaking → Cosmetic) are appended by the
+# template automatically; only add domain-specific terms here.
+# ──────────────────────────────────────────────────────────────────────
+glossary:
+  - term: SPME
+    definition: "Security Rules and Procedures — Merchant Edition. Mastercard's primary B2B compliance document for acquirers and merchants."
+  - term: BRAM
+    definition: "Business Risk Assessment and Mitigation. A Mastercard investigation process triggered when a merchant is suspected of brand-damaging activity."
+  - term: ECP
+    definition: "Excessive Chargeback Program. Mastercard's framework for monitoring merchants whose chargeback rate exceeds defined thresholds."
+  - term: KYB
+    definition: "Know Your Business. The acquirer's obligation to verify and document the identity and legitimacy of merchants it onboards."
+  - term: ATO
+    definition: "Account Takeover. Fraud pattern where an attacker gains unauthorized control of a cardholder's account."
+  - term: MATCH
+    definition: "Member Alert To Control High-Risk Merchants. Mastercard's shared registry of terminated merchants used by acquirers during onboarding."
+  - term: PCI DSS
+    definition: "Payment Card Industry Data Security Standard. The cross-network security baseline that acquirers and merchants must satisfy."

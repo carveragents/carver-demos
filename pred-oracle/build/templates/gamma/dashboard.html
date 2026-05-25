@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Contract watch — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('') }}gamma/" class="text-slate-500 hover:text-slate-900">← Listing risk overview</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 · Listing</div>
+  <h1 class="text-2xl font-bold mt-1">Active contracts by regulatory heat</h1>
+  <p class="text-slate-600 mt-1 text-sm">{{ contracts|length }} contracts · window: last {{ window_days }} days · sorted heat descending.</p>
+</header>
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+  <section class="lg:col-span-3 border border-slate-200 rounded-lg overflow-hidden">
+    <header class="px-4 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between flex-wrap gap-2">
+      <div class="flex gap-2">
+        {% for chip in filter_chips %}
+        <span class="text-xs px-2 py-1 rounded border {{ 'bg-slate-900 text-white border-slate-900' if chip.active else 'bg-white text-slate-600 border-slate-200' }}">{{ chip.label }}</span>
+        {% endfor %}
+      </div>
+    </header>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-white border-b border-slate-100">
+          <tr class="text-left text-xs uppercase tracking-wider text-slate-500">
+            <th class="px-3 py-2 font-medium">Heat (14d)</th>
+            <th class="px-3 py-2 font-medium">Contract</th>
+            <th class="px-3 py-2 font-medium">Status</th>
+            <th class="px-3 py-2 font-medium">Settlement entities</th>
+            <th class="px-3 py-2 font-medium">Last event</th>
+            <th class="px-3 py-2 font-medium">Tickets</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set active_rows = contracts | selectattr('kind', 'equalto', 'active') | list %}
+          {% set retro_rows  = contracts | selectattr('kind', 'equalto', 'retrospective') | list %}
+
+          {% for row in active_rows %}
+            {% include "gamma/_components/contract_row.html" %}
+          {% endfor %}
+
+          {% if retro_rows %}
+          <tr class="bg-slate-50 border-y border-slate-200">
+            <td colspan="6" class="px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">
+              Resolved (retrospective)
+            </td>
+          </tr>
+          {% endif %}
+
+          {% for row in retro_rows %}
+            {% include "gamma/_components/contract_row.html" %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="lg:col-span-1 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">What's heating up?</h2>
+      <p class="text-sm text-slate-700">{{ rising_narrative }}</p>
+    </div>
+    <div class="border border-slate-200 rounded-lg p-4 text-xs text-slate-500">
+      Heat = Σ severity × exp(−age/14d) over Carver events whose entities match the contract's settlement entities. 90-day window.
+    </div>
+  </aside>
+</div>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('') }}gamma/scan/" class="text-sm text-slate-500 hover:text-slate-900">← Pre-listing scan</a>
+  {% if contracts %}
+  <a href="{{ base_url|default('') }}gamma/{{ contracts[0].detail_href }}" class="text-sm text-blue-600 hover:text-blue-800">Open top contract → {{ contracts[0].title[:40] }}{% if contracts[0].title|length > 40 %}…{% endif %}</a>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,70 @@
+# Polymarket platform-relevant entity catalog.
+# Roles:
+#   self        - Polymarket itself
+#   staff       - named Polymarket personnel (MUST include `source` URL + `retrieved` date)
+#   competitor  - competing or adjacent event-contract / prediction venues
+#   regulator   - regulators of particular importance to Polymarket
+#   other       - upstream / adjacent organizations
+
+# --- self -------------------------------------------------------------------
+- canonical_name: Polymarket
+  aliases: [Polymarket Limited]
+  role: self
+
+# --- staff (real, public-source verified) -----------------------------------
+- canonical_name: Shayne Coplan
+  aliases: [S. Coplan]
+  role: staff
+  title: CEO
+  source: https://polymarket.com/about
+  retrieved: 2026-05-19
+
+# --- competitors / adjacent venues ------------------------------------------
+- canonical_name: Cantor Fitzgerald
+  aliases: [Cantor]
+  role: competitor
+- canonical_name: Kalshi
+  aliases: [KalshiEX, KalshiEX LLC]
+  role: competitor
+- canonical_name: Manifold Markets
+  aliases: [Manifold]
+  role: competitor
+- canonical_name: PredictIt
+  aliases: [Victoria University PredictIt]
+  role: competitor
+
+# --- other / adjacent organisations ----------------------------------------
+- canonical_name: Drift Protocol
+  aliases: [Drift]
+  role: other
+- canonical_name: Intercontinental Exchange
+  aliases: [ICE]
+  role: other
+  notes: Strategic investor / partner
+- canonical_name: QCEX
+  aliases: [QC Exchange, QCX]
+  role: other
+  notes: DCM acquired by Polymarket
+- canonical_name: Risk Labs
+  aliases: [Risk Labs Foundation]
+  role: other
+- canonical_name: UMA Protocol
+  aliases: [UMA, Universal Market Access]
+  role: other
+
+# --- regulators relevant to Polymarket -------------------------------------
+- canonical_name: Autorité Nationale des Jeux
+  aliases: [ANJ, France ANJ]
+  role: regulator
+- canonical_name: Commodity Futures Trading Commission
+  aliases: [CFTC]
+  role: regulator
+- canonical_name: Gambling Regulatory Authority of Singapore
+  aliases: [GRA, GRA Singapore]
+  role: regulator
+- canonical_name: Kansspelautoriteit
+  aliases: [KSA, Netherlands KSA]
+  role: regulator
+- canonical_name: UK Gambling Commission
+  aliases: [UKGC]
+  role: regulator

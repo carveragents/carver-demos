@@ -1,0 +1,34 @@
+# Polymarket public market footprint. Hand-curated from public statements
+# and reporting; not derivable from Carver. Stage 3 heat-map outline data.
+
+schema_version: 1
+platform: "polymarket"
+
+# Where Polymarket operates today (selective; not exhaustive).
+operating:
+  - {code: "US",   label: "United States"}      # via CFTC-licensed venues post-2025
+  - {code: "BR",   label: "Brazil"}
+  - {code: "IN",   label: "India"}
+  - {code: "AU",   label: "Australia"}
+  - {code: "JP",   label: "Japan"}
+  - {code: "DE",   label: "Germany"}
+  - {code: "ES",   label: "Spain"}
+  - {code: "MX",   label: "Mexico"}
+  - {code: "AR",   label: "Argentina"}
+  - {code: "ZA",   label: "South Africa"}
+
+# Jurisdictions Polymarket has signaled interest in via local-counsel
+# engagement / public statements / partner announcements. Illustrative.
+considering:
+  - {code: "KR",   label: "South Korea"}
+  - {code: "ID",   label: "Indonesia"}
+  - {code: "TH",   label: "Thailand"}
+  - {code: "CL",   label: "Chile"}
+
+# Jurisdictions where Polymarket has exited or been restricted.
+closed:
+  - {code: "FR",   label: "France",        closed_at: "2025-12-15", reason: "AMF/ESMA-led perimeter action"}
+  - {code: "SG",   label: "Singapore",     closed_at: "2025-11-01", reason: "MAS DPT perimeter clarification"}
+  - {code: "TW",   label: "Taiwan",        closed_at: "2025-09-12", reason: "FSC guidance"}
+  - {code: "GB",   label: "United Kingdom",closed_at: "2025-08-22", reason: "Gambling Commission warning"}
+  - {code: "NL",   label: "Netherlands",   closed_at: "2025-07-04", reason: "AFM/KSA joint action"}

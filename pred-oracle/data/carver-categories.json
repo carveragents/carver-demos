@@ -1,0 +1,41 @@
+[
+  {
+    "id": "381bc241-6a40-4433-a267-b63a34b4a00c",
+    "name": "Data protection and cybersecurity",
+    "slug": "ai-regulations",
+    "description": "",
+    "color": "#7c3aed",
+    "is_active": true,
+    "topic_count": 54,
+    "created_at": "2026-02-23 05:59:51.946539+00:00",
+    "updated_at": "2026-02-23 06:26:36.440389+00:00",
+    "organization_id": null,
+    "created_by_id": "f9f1e7cf-95da-462f-99a1-e3cdbc3d3ed9"
+  },
+  {
+    "id": "57bb3aa9-44a8-4a84-9585-1d4067e75888",
+    "name": "Finance",
+    "slug": "",
+    "description": "Financial services, banking, and finance-related regulatory topics",
+    "color": "#0066cc",
+    "is_active": true,
+    "topic_count": 626,
+    "created_at": "2026-02-19 10:52:29.200196+00:00",
+    "updated_at": "2026-02-19 10:52:29.200224+00:00",
+    "organization_id": null,
+    "created_by_id": null
+  },
+  {
+    "id": "e7763f83-ee27-4570-a791-9cf601f4a2a7",
+    "name": "Medical Devices",
+    "slug": "medical-devices",
+    "description": "",
+    "color": "#16a34a",
+    "is_active": true,
+    "topic_count": 24,
+    "created_at": "2026-02-19 10:54:01.001877+00:00",
+    "updated_at": "2026-02-19 10:54:01.001911+00:00",
+    "organization_id": null,
+    "created_by_id": "f9f1e7cf-95da-462f-99a1-e3cdbc3d3ed9"
+  }
+]

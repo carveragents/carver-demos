@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "10.2"
+    title: BRAM Investigation Process
+    anchor_version: "2022-06"

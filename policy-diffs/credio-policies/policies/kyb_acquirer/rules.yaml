@@ -1,0 +1,14 @@
+program: Acquirer KYB
+authority: Mastercard SPME §2.1
+required_documents:
+  - incorporation
+  - beneficial_ownership
+  - aml_screen
+  - license_verification
+min_review_cycle_days: 365
+suspension_trigger: document_collection_failure
+record_retention_years: 7
+aml_watchlist_sources:
+  - ofac_sdn
+  - eu_consolidated
+agent_owner: kyb_agent

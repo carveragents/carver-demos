@@ -1,0 +1,50 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will the SEC approve a spot Solana ETF in 2025?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission approves at least one\nspot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)\nfor listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)\nwith an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.\n\nConditions:\n  A: SEC okays spot SOL ETF on NYSE Arca \u2014 By 2025-12-31, the SEC issues an effective approval order for NYSE Arca to list/trade shares of at least one spot Solana ETF (holding SOL directly, not futures-based).\n  B: SEC okays spot SOL ETF on Cboe BZX \u2014 By 2025-12-31, the SEC issues an effective approval order for Cboe BZX to list/trade shares of at least one spot Solana ETF (holding SOL directly, not futures-based).\n  C: SEC okays spot SOL ETF on NASDAQ \u2014 By 2025-12-31, the SEC issues an effective approval order for NASDAQ to list/trade shares of at least one spot Solana ETF (holding SOL directly, not futures-based).\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'NYSE Arca', 'Cboe BZX Exchange', 'NASDAQ Stock Market', 'BlackRock', 'Fidelity Investments', 'VanEck', 'Grayscale Investments', 'Bitwise Asset Management', '21Shares']\n\nRecord title: MaxsMaking Inc.\nRecord date: 2025-11-14\nRecord regulator: Securities and Exchange Commission\nRecord topic: U.S. Securities and Exchange Commission\nRecord entities: ['MaxsMaking Inc.', 'Nasdaq', 'Securities and Exchange Commission', 'Vanessa A. Countryman']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "No mention of Solana, SOL, spot ETFs, or an exchange approval; appears unrelated to spot Solana ETF approvals and doesn't change probability.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

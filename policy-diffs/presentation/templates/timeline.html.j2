@@ -1,0 +1,54 @@
+{% extends "_base.html.j2" %}
+{% block title %}{{ config.brand.client }} {{ config.brand.product }} — {{ config.artifact.long }} timeline{% endblock %}
+{% block content %}
+
+<p class="eyebrow">{{ config.artifact.short }}</p>
+<h1>Policy update review</h1>
+
+<p class="lede">
+  {% if total_breaking %}<strong>{{ total_breaking }} breaking revision{% if total_breaking != 1 %}s{% endif %}</strong> require compliance approval across <strong>{{ total_policies }} polic{% if total_policies != 1 %}ies{% else %}y{% endif %}</strong>,
+  spanning <strong>{{ transitions|length }} {{ config.artifact.publisher }} release{% if transitions|length != 1 %}s{% endif %}</strong>
+  from {{ start_date_label }} to {{ end_date_label }}.
+  {% else %}<strong>{{ total_changes }} proposed revision{% if total_changes != 1 %}s{% endif %}</strong> across <strong>{{ total_policies }} polic{% if total_policies != 1 %}ies{% else %}y{% endif %}</strong>,
+  spanning <strong>{{ transitions|length }} {{ config.artifact.publisher }} release{% if transitions|length != 1 %}s{% endif %}</strong>
+  from {{ start_date_label }} to {{ end_date_label }}.
+  {% endif %}
+</p>
+
+<div class="stats">
+  <div class="stat"><span class="num">{{ transitions|length }}</span><span class="label">releases reviewed</span></div>
+  <div class="stat"><span class="num">{{ total_changes }}</span><span class="label">proposed revisions</span></div>
+  <div class="stat"><span class="num">{{ total_breaking }}</span><span class="label">breaking changes</span></div>
+  <div class="stat"><span class="num">{{ total_policies }}</span><span class="label">policies affected</span></div>
+</div>
+
+<h2 style="margin-bottom: 24px;">Releases</h2>
+
+<div class="timeline">
+{% for t in transitions %}
+<div class="timeline-item">
+  <a class="timeline-card" href="{{ assets_prefix }}transitions/{{ t.slug }}.html">
+    <div class="date-range">{{ t.from_date_label }} → {{ t.to_date_label }}</div>
+    <div class="meta">
+      {{ t.change_count }} proposed revision{% if t.change_count != 1 %}s{% endif %} ·
+      {{ t.affected_policy_count }} polic{% if t.affected_policy_count != 1 %}ies{% else %}y{% endif %} affected
+    </div>
+    <div class="severity-bar" aria-hidden="true">
+      {% if t.materiality_counts.breaking %}<span class="seg-breaking" style="width: {{ t.pct.breaking }}%"></span>{% endif %}
+      {% if t.materiality_counts.substantive %}<span class="seg-substantive" style="width: {{ t.pct.substantive }}%"></span>{% endif %}
+      {% if t.materiality_counts.clarifying %}<span class="seg-clarifying" style="width: {{ t.pct.clarifying }}%"></span>{% endif %}
+      {% if t.materiality_counts.cosmetic %}<span class="seg-cosmetic" style="width: {{ t.pct.cosmetic }}%"></span>{% endif %}
+    </div>
+    <div class="severity-legend">
+      <span class="key"><span class="dot breaking"></span>{{ t.materiality_counts.breaking }} breaking</span>
+      <span class="key"><span class="dot substantive"></span>{{ t.materiality_counts.substantive }} substantive</span>
+      <span class="key"><span class="dot clarifying"></span>{{ t.materiality_counts.clarifying }} clarifying</span>
+      <span class="key"><span class="dot cosmetic"></span>{{ t.materiality_counts.cosmetic }} cosmetic</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

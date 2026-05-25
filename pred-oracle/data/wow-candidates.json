@@ -1,0 +1,904 @@
+[
+  {
+    "artifact_id": "f2387689-1501-4ea4-9636-bc48ec7d17cf",
+    "feed_entry_id": "fd954992-3ce2-4a28-97e3-a0b472850d7b",
+    "topic_id": "a288d81d-324e-417d-9f1d-dd1f031b50e4",
+    "topic_name": "California Department of Financial Protection and Innovation",
+    "title": "DFPI Shuts Down Crypto Kiosk Operator for Cheating Consumers and Violating State Laws",
+    "link": "https://dfpi.ca.gov/press_release/dfpi-shuts-down-crypto-kiosk-operator-for-cheating-consumers-and-violating-state-laws/",
+    "regulator_name": "Department of Financial Protection and Innovation",
+    "pub_date": "2026-05-18",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US-CA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-CA"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 10.0,
+    "relevance_score": 10.0,
+    "total_score": 9.0,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 10.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "DFPI ordered Anh Management LLC (Hermes Bitcoin) to cease all digital financial asset kiosk operations in California due to violations including excessive fees, transaction limits breaches, inadequate disclosures, and AML program failures.",
+    "entities_top5": [
+      "Anh Management LLC",
+      "Coinme, Inc",
+      "DFPI",
+      "Hermes Bitcoin",
+      "KC Mohseni"
+    ]
+  },
+  {
+    "artifact_id": "5cf4eab9-eea7-4024-9512-d1cd7064449a",
+    "feed_entry_id": "8370eb25-863e-4c09-a743-18d4bd0ce5ee",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "05.01.2026 - Amendments to Market Maker Program - FEX",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60682",
+    "regulator_name": "U.S. Commodity Futures Trading Commission",
+    "pub_date": "2026-05-01",
+    "update_type": "proposed rule",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.5,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 8,
+      "update_type": 8,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "Changes to quoting obligations under the Market Maker program affecting ForecastEx LLC as a designated contract market and clearinghouse.",
+    "entities_top5": [
+      "Commodity Futures Trading Commission",
+      "ForecastEx LLC",
+      "Graham Deese",
+      "U.S. Commodity Futures Trading Commission"
+    ]
+  },
+  {
+    "artifact_id": "bda38acd-47d5-49ff-812a-fcbe13e87de6",
+    "feed_entry_id": "e9d1e5ef-b6dc-451d-9333-d386210aa113",
+    "topic_id": "040540e0-cfbd-4cac-a382-3106130a66d1",
+    "topic_name": "Massachusetts Office of the Attorney General Consumer Advocacy & Response Division",
+    "title": "Governor Healey Announces Final Regs That Eliminate Prior Authorization Requirements for Routine and Essential Health Care",
+    "link": "https://www.mass.gov/news/governor-healey-announces-final-regs-that-eliminate-prior-authorization-requirements-for-routine-and-essential-health-care",
+    "regulator_name": "Division of Insurance",
+    "pub_date": "2026-05-14",
+    "update_type": "final rule",
+    "topic_jurisdiction_code": "US-MA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-MA"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 8.5,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Finalized regulations remove prior authorization for cancer scans, medications for chronic conditions, radiology imaging after cancer diagnosis, and other essential services, impacting insurers, providers, and patients.",
+    "entities_top5": [
+      "Dana-Farber Cancer Institute",
+      "Division of Insurance",
+      "Fallon Health",
+      "Health Care for All",
+      "Health Law Advocates"
+    ]
+  },
+  {
+    "artifact_id": "a5000dfd-cf39-40d4-a43d-ff9b356259ef",
+    "feed_entry_id": "e519db6e-499e-47d5-bd65-2b45752fb6bd",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "CFTC Sues Minnesota to Block State Law",
+    "link": "https://www.cftc.gov/PressRoom/PressReleases/9233-26",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-05-19",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US",
+      "MN",
+      "AZ",
+      "CT",
+      "IL",
+      "NY",
+      "MA"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 8.3,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "The CFTC filed a lawsuit seeking to prevent Minnesota's law from taking effect on August 1, 2026, which would criminalize prediction market activities as felonies.",
+    "entities_top5": [
+      "Arizona",
+      "Connecticut",
+      "Commodity Futures Trading Commission",
+      "Illinois",
+      "Massachusetts"
+    ]
+  },
+  {
+    "artifact_id": "d9276ab6-55d1-446b-90d8-f49516d9cafe",
+    "feed_entry_id": "47a8c5bb-ab46-4e67-982a-83e8c2421d83",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "ETRON | ElectronX is self-certifying its MISO & CAISO Core Liquidity Provider Program | [3]",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60808",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-05-15",
+    "update_type": "bulletin",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.2,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 10,
+      "update_type": 4,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "ElectronX self-certifies its MISO and CAISO Core Liquidity Provider Program effective June 1, 2026, introducing eligibility criteria, obligations, incentives, and monitoring for participants.",
+    "entities_top5": [
+      "Christopher J. Kirkpatrick",
+      "Commodity Futures Trading Commission",
+      "Dan Hoban",
+      "Electron Exchange DCM, LLC",
+      "ElectronX"
+    ]
+  },
+  {
+    "artifact_id": "1412a96e-54ed-4138-b465-dee833848a9e",
+    "feed_entry_id": "67d7f888-0e65-43c1-b869-5a18f818d7e3",
+    "topic_id": "4712080e-036e-4d7c-a99e-7c528c824453",
+    "topic_name": "New Jersey Department of Banking and Insurance",
+    "title": "2026-05-05 - NJDOL Adopts Clear Rules on Worker Classification to Protect Workers\u2019 Rights, Level the Playing Field for Businesses",
+    "link": "https://www.nj.gov/labor/lwdhome/press/2026/20260505_ABC.shtml",
+    "regulator_name": "New Jersey Department of Labor and Workforce Development",
+    "pub_date": "2026-05-05",
+    "update_type": "final rule",
+    "topic_jurisdiction_code": "US-NJ",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-NJ"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 8.2,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Adoption of new regulations clarifying the ABC test for determining independent contractor versus employee status, incorporating public feedback and court precedents.",
+    "entities_top5": [
+      "American Automobile Association Clubs of New Jersey",
+      "American Bakers Association",
+      "American Securities Association",
+      "Amalgamated Transit Union",
+      "Assured Partners"
+    ]
+  },
+  {
+    "artifact_id": "52a96c78-a0e9-4825-a2d4-335f8dfb87f4",
+    "feed_entry_id": "b96f4819-b591-43c5-946a-46e53ef076a6",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "04.30.2026 - Updated Rulebook - REX",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60661",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-04-30",
+    "update_type": "bulletin",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 8.1,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 4,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "Adoption of Chapter 4 governing market maker programs, rules for affiliated market participants, Request for Quote functionality, updated operating hours, domicile, and organizational documents.",
+    "entities_top5": [
+      "Christopher J. Kirkpatrick",
+      "Commodity Futures Trading Commission",
+      "Miles Saffran",
+      "Railbird Exchange, LLC",
+      "REX"
+    ]
+  },
+  {
+    "artifact_id": "3012cb2d-1e59-4ce4-b1a8-68f95d7a78b0",
+    "feed_entry_id": "83c5bdc8-d8ce-4d76-8c13-775ce9970c44",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "CBOT | Issuance of CME Group Market RegulationAdvisory Notices RA2603-5 Regarding CME, CBOT, NYMEX/COMEX Rule 526.(\"Block Trades\") and RA2604-5 Regarding CME, CBOT, NYMEX/COMEX Rule 538.(\"Exchange for Related Positions\"). | [1]",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60769",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-05-13",
+    "update_type": "final rule",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.1,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Removal of references to specific CME ClearPort availability hours to accommodate extended trading hours on CME Globex; clarification on submission timing for block trades negotiated when CME Direct or ClearPort are closed; clarification on negotiation and execution of block trades at minimum price ",
+    "entities_top5": [
+      "Chicago Mercantile Exchange Inc.",
+      "Commodity Exchange, Inc.",
+      "Commodity Futures Trading Commission",
+      "Christopher J. Kirkpatrick",
+      "Maureen Guilfoile"
+    ]
+  },
+  {
+    "artifact_id": "d9f1e679-f0f3-47cf-b239-1c45d1fe0e15",
+    "feed_entry_id": "3d3610f6-2a0e-4d2b-8605-20e9d54b7abb",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "COMEX | Issuance of CME Group MarketRegulation Advisory Notices RA2603-5 Regarding CME, CBOT, NYMEX/COMEX Rule526. (\"Block Trades\") and RA2604-5 Regarding CME, CBOT, NYMEX/COMEX Rule 538.(\"Exchange for Related Positions\") | [1]",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60771",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-05-13",
+    "update_type": "final rule",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.1,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "The rule amendments clarify that block trades and Exchange for Related Position transactions negotiated when CME Direct or CME ClearPort are closed must be submitted within 5 or 15 minutes after reopening. References to specific ClearPort hours were removed to accommodate varying product trading hou",
+    "entities_top5": [
+      "CBOT",
+      "Chicago Mercantile Exchange Inc.",
+      "CME",
+      "CME Group",
+      "Commodity Exchange, Inc."
+    ]
+  },
+  {
+    "artifact_id": "53c6956c-4719-4ff4-8a5b-88eb522c96fa",
+    "feed_entry_id": "637415fe-6cb6-46bc-89e3-1fbcf5815866",
+    "topic_id": "a288d81d-324e-417d-9f1d-dd1f031b50e4",
+    "topic_name": "California Department of Financial Protection and Innovation",
+    "title": "UMETEACA Inc.",
+    "link": "https://dfpi.ca.gov/enforcement_action/umeteaca-inc/",
+    "regulator_name": "Department of Financial Protection and Innovation",
+    "pub_date": "2026-04-17",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US-CA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-CA"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.5,
+    "total_score": 8.05,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 9.0,
+      "recency": 5,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "UMETEACA Inc. is ordered to desist and refrain from violations of the Franchise Investment Law including unregistered franchise sales, failure to maintain required records, failure to provide Franchise Disclosure Documents timely, and making untrue statements in filings.",
+    "entities_top5": [
+      "Colleen Monahan",
+      "Department of Financial Protection and Innovation",
+      "Khalil Mohseni",
+      "Marisa I. Urteaga-Watkins",
+      "Theresa Leets"
+    ]
+  },
+  {
+    "artifact_id": "9569055f-2329-4b2f-8938-1cc76a5c28c4",
+    "feed_entry_id": "7b6239b5-ed34-4645-9996-0d88f917f963",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "05.01.2026 - Issuance of CME Group Market Regulation Advisory Notice RA2602-5 Regarding CME, CBOT, NYMEX/COMEX Rule 575. (\"Disruptive Practices Prohibited\"). - CBOT",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60678",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-05-01",
+    "update_type": "final rule",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 8.0,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "The update adds a new Q&A clarifying the ability to satisfy financial obligations for orders, provides an additional example of prohibited activity, and renumbers existing Q&As. It impacts market participants trading on CME, CBOT, NYMEX, and COMEX.",
+    "entities_top5": [
+      "Aaron Smith",
+      "CBOT",
+      "Chicago Mercantile Exchange Inc.",
+      "Christopher J. Kirkpatrick",
+      "CME Group"
+    ]
+  },
+  {
+    "artifact_id": "2a8b9d87-dcf9-4f6f-962c-c9849a972309",
+    "feed_entry_id": "48b578d5-84fc-4c9c-b098-c8740780663b",
+    "topic_id": "9060d526-ecd2-40a3-951f-a415606a8b1b",
+    "topic_name": "Office of the Attorney General, California Department of Justice",
+    "title": "California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations - 14.05.2026",
+    "link": "https://oag.ca.gov/news/press-releases/california-department-justice-releases-proposed-protecting-our-kids-social-media",
+    "regulator_name": "California Department of Justice",
+    "pub_date": "2026-05-14",
+    "update_type": "proposed rule",
+    "topic_jurisdiction_code": "US-CA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-CA"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.0,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 10,
+      "update_type": 8,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Proposed regulations require age assurance and parental consent mechanisms on social media platforms targeting minors, with a public comment period and hearing to solicit feedback.",
+    "entities_top5": [
+      "California Department of Justice"
+    ]
+  },
+  {
+    "artifact_id": "51b0eb12-2fc4-4040-9dd1-b5149ccae554",
+    "feed_entry_id": "b607ea6f-0c3a-4467-9b17-5ae36f0f6310",
+    "topic_id": "9060d526-ecd2-40a3-951f-a415606a8b1b",
+    "topic_name": "Office of the Attorney General, California Department of Justice",
+    "title": "California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations",
+    "link": "https://www.oag.ca.gov/news/press-releases/california-department-justice-releases-proposed-protecting-our-kids-social-media",
+    "regulator_name": "California Department of Justice",
+    "pub_date": "2026-05-14",
+    "update_type": "proposed rule",
+    "topic_jurisdiction_code": "US-CA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-CA"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 8.0,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 10,
+      "update_type": 8,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Proposed regulations require age assurance and parental consent mechanisms on social media platforms targeting minors, with a public comment period and hearing to solicit feedback.",
+    "entities_top5": [
+      "California Department of Justice"
+    ]
+  },
+  {
+    "artifact_id": "150754af-5e63-4f2f-b011-2d739c72ad9a",
+    "feed_entry_id": "47d30176-f4a4-4ed5-aaf3-632f14ec65a8",
+    "topic_id": "0364883a-c054-41d8-9168-1f9a983ceca9",
+    "topic_name": "U.S. Securities and Exchange Commission",
+    "title": "David H. Goldman",
+    "link": "https://www.sec.gov/files/litigation/admin/2026/34-105471.pdf",
+    "regulator_name": "Securities and Exchange Commission",
+    "pub_date": "2026-05-13",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 8.0,
+    "impact_score": 9.0,
+    "relevance_score": 8.5,
+    "total_score": 8.0,
+    "score_components": {
+      "urgency": 8.0,
+      "impact": 9.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "David H. Goldman is suspended from association with any broker, dealer, investment adviser, municipal securities dealer, municipal advisor, transfer agent, or nationally recognized statistical rating organization for twelve months effective immediately.",
+    "entities_top5": [
+      "David H. Goldman",
+      "DG Marketing, Inc.",
+      "Securities and Exchange Commission",
+      "Vanessa A. Countryman",
+      "Woodbridge Group of Companies, LLC"
+    ]
+  },
+  {
+    "artifact_id": "0205513c-696b-4cea-aedf-776054806d07",
+    "feed_entry_id": "ce03cc62-97b3-4548-a48b-b36d155726d8",
+    "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+    "topic_name": "Alberta Securities Commission",
+    "title": "NU E Power Corp.",
+    "link": "https://asc.ca/-/media/ASC-Documents-part-1/Notices-Decisions-Orders-Rulings/Issuers/2026/05/20260501-NU-E-Power-Corp-MCTO.pdf",
+    "regulator_name": "Alberta Securities Commission",
+    "pub_date": "2026-05-01",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "CA-AB",
+    "jurisdiction_tier_label": "international",
+    "impacted_business_jurisdiction": [
+      "CA-AB"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.5,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 4,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "A management cease trade order was issued against John Meekison and Broderick Gunning prohibiting trading in or purchasing securities of NU E Power Corp. until required filings are made.",
+    "entities_top5": [
+      "Alberta Securities Commission",
+      "Broderick Gunning",
+      "Jan Mazur",
+      "John Meekison",
+      "NU E Power Corp."
+    ]
+  },
+  {
+    "artifact_id": "f61647ed-7e25-458d-8c4c-d70e8f01682e",
+    "feed_entry_id": "f1ebba24-406c-49ba-b74a-c906b61b78a3",
+    "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+    "topic_name": "Alberta Securities Commission",
+    "title": "Saba Energy Ltd.",
+    "link": "https://asc.ca/-/media/ASC-Documents-part-1/Notices-Decisions-Orders-Rulings/Issuers/2026/05/20260501-Saba-Energy-Ltd-MCTO.pdf",
+    "regulator_name": "Alberta Securities Commission",
+    "pub_date": "2026-05-01",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "CA-AB",
+    "jurisdiction_tier_label": "international",
+    "impacted_business_jurisdiction": [
+      "CA-AB"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.5,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 4,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "A management cease trade order (MCTO) was issued against Saba Energy Ltd. and two individuals prohibiting trading in or purchasing the company's securities until filing deficiencies are remedied.",
+    "entities_top5": [
+      "Alberta Securities Commission",
+      "Jan Mazur",
+      "Mohammad Fazil",
+      "Saba Energy Ltd.",
+      "Tariq Chaudhary"
+    ]
+  },
+  {
+    "artifact_id": "a87b0af0-6709-4fa7-ba35-c1a4a48e3e19",
+    "feed_entry_id": "0642801f-0683-4aba-8b73-82573b2ecdeb",
+    "topic_id": "4d27ba32-9110-4ced-841d-ec168a99f886",
+    "topic_name": "Alberta Securities Commission",
+    "title": "Seegnal Inc.",
+    "link": "https://asc.ca/-/media/ASC-Documents-part-1/Notices-Decisions-Orders-Rulings/Issuers/2026/05/20260508-Seegnal-IncMCTO.pdf",
+    "regulator_name": "Alberta Securities Commission",
+    "pub_date": "2026-05-08",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "CA-AB",
+    "jurisdiction_tier_label": "international",
+    "impacted_business_jurisdiction": [
+      "CA-AB"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.5,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 4,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Seegnal Inc. failed to file required annual audited financial statements and related disclosures for the year ended 31 December 2025, resulting in a cease trade order against two named individuals prohibiting trading in the company's securities until filings are made.",
+    "entities_top5": [
+      "Alberta Securities Commission",
+      "Elad Bibi-Aviv",
+      "Gadi Levin",
+      "Jan Mazur",
+      "Seegnal Inc."
+    ]
+  },
+  {
+    "artifact_id": "835ce214-05c6-4759-8488-7ea1c40b4380",
+    "feed_entry_id": "ff637c5e-300e-40d8-9db9-d212940da728",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets",
+    "link": "https://www.cftc.gov/PressRoom/PressReleases/9220-26",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-04-28",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US-WI",
+      "US-NY",
+      "US-AZ",
+      "US-CT",
+      "US-IL",
+      "US-MA"
+    ],
+    "urgency_score": 6.0,
+    "impact_score": 8.0,
+    "relevance_score": 7.0,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 6.0,
+      "impact": 8.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "The CFTC filed a lawsuit against Wisconsin to block state lawsuits against certain CFTC-regulated prediction markets, reinforcing federal preemption over state gambling laws in this area.",
+    "entities_top5": [
+      "CFTC",
+      "Kalshi",
+      "Polymarket",
+      "Crypto.com",
+      "Robinhood"
+    ]
+  },
+  {
+    "artifact_id": "a2dd230e-6e24-4a93-a562-22a8c1ba31a6",
+    "feed_entry_id": "0bf6dd16-712a-4e75-973f-c9e4095f7cfa",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "04.30.2026 - Filed under Chapter 4 of Rulebook - REX",
+    "link": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60662",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-04-30",
+    "update_type": "bulletin",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 8.0,
+    "relevance_score": 8.5,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 8.0,
+      "recency": 8,
+      "update_type": 4,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "Introduction of a Market Maker Program with defined terms, eligibility criteria, obligations, incentives, and monitoring by DKeX.",
+    "entities_top5": [
+      "Christopher J. Kirkpatrick",
+      "Commodity Futures Trading Commission",
+      "DKeX",
+      "Kari S. Larsen",
+      "Miles Saffran"
+    ]
+  },
+  {
+    "artifact_id": "d3326920-d51e-48a1-9d85-291d1d4417c8",
+    "feed_entry_id": "ae2b0f41-a939-4c3e-b06f-269c0f33f7b3",
+    "topic_id": "cecde8ed-9453-41fd-9340-c8d549e51e60",
+    "topic_name": "Financial Conduct Authority",
+    "title": "Sapia agrees to pay more than \u00a319m to WealthTek clients after failing to protect client money",
+    "link": "https://www.fca.org.uk/news/press-releases/sapia-agrees-pay-more-than-19m-to-wealthtek-clients",
+    "regulator_name": "Financial Conduct Authority",
+    "pub_date": "2026-04-23",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "GB",
+    "jurisdiction_tier_label": "international",
+    "impacted_business_jurisdiction": [
+      "GB"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.5,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 4,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Sapia was publicly censured and agreed to make a voluntary payment of \u00a319,637,950 to WealthTek clients due to inadequate safeguards around client money. The FCA found Sapia failed to properly segregate roles related to client money management, increasing risk of loss.",
+    "entities_top5": [
+      "Barclays Bank UK PLC",
+      "Financial Conduct Authority",
+      "Financial Services Compensation Scheme",
+      "John Dance",
+      "Sapia Partners LLP"
+    ]
+  },
+  {
+    "artifact_id": "45276b55-8a63-4d9f-8240-7bb9bb9b9bd5",
+    "feed_entry_id": "896de751-4eff-4615-a172-65051a92a0aa",
+    "topic_id": "989bbc4f-bbba-4767-96bc-66572bf71e80",
+    "topic_name": "Montana State Auditor's Office Securities Department",
+    "title": "2027 Form, Rate, & Network Adequacy Filing Requirements Including Qualified Health Plan Certification",
+    "link": "https://csimt.gov/wp-content/uploads/2026/04/2026-04-22-PY2027-Form-Rate-Network-Adequacy-Filing-Requirements-Including-Qualified-Health-Plan-Certification-Advisory-Memo_FIXED-1.pdf",
+    "regulator_name": "Montana State Auditor, Commissioner of Securities and Insurance",
+    "pub_date": "2026-04-22",
+    "update_type": "advisory",
+    "topic_jurisdiction_code": "US-MT",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-MT"
+    ],
+    "urgency_score": 9.0,
+    "impact_score": 9.0,
+    "relevance_score": 9.0,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 9.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 8,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "Updated timelines and requirements for 2027 filings; new actuarial value calculator; expanded defrayal of state mandated benefits; removal of standardized plan options requirement; changes to catastrophic and bronze plans; requirement for submission of model support checklist for complex statistical",
+    "entities_top5": [
+      "Centers for Medicare & Medicaid Services",
+      "Center for Consumer Information and Insurance Oversight",
+      "Commissioner of Securities and Insurance",
+      "Healthcare Co-Ops",
+      "James Brown"
+    ]
+  },
+  {
+    "artifact_id": "1dbcf4c7-0b77-4c75-b0e4-bb45fc572810",
+    "feed_entry_id": "abaf0f5e-3d5a-45cd-9573-a6f12d9fa897",
+    "topic_id": "9060d526-ecd2-40a3-951f-a415606a8b1b",
+    "topic_name": "Office of the Attorney General, California Department of Justice",
+    "title": "Time to Pay the Piper: Attorney General Bonta and Governor Newsom Secure Financial Penalties Against Huntington Beach in Housing Lawsuit - 15.05.2026",
+    "link": "https://oag.ca.gov/news/press-releases/time-pay-piper-attorney-general-bonta-and-governor-newsom-secure-financial",
+    "regulator_name": "California Department of Justice",
+    "pub_date": "2026-05-15",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US-CA",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-CA"
+    ],
+    "urgency_score": 7.0,
+    "impact_score": 9.0,
+    "relevance_score": 8.0,
+    "total_score": 7.9,
+    "score_components": {
+      "urgency": 7.0,
+      "impact": 9.0,
+      "recency": 10,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "The San Diego Superior Court imposed civil penalties starting at $10,000 per month from January 2025, escalating to $50,000 per month from June 2026, until Huntington Beach cures its violation of state housing law.",
+    "entities_top5": [
+      "California Attorney General Rob Bonta",
+      "California Department of Housing and Community Development",
+      "California Department of Justice",
+      "Gavin Newsom",
+      "Governor Gavin Newsom"
+    ]
+  },
+  {
+    "artifact_id": "59b069dc-2ac5-42b1-9db8-3052f6be3822",
+    "feed_entry_id": "00040688-bb72-4829-883f-70c2704e344d",
+    "topic_id": "0d49b70d-3c76-4bd9-83cc-59f1bc15ef62",
+    "topic_name": "Vermont Department of Financial Regulation",
+    "title": "Default Judgment and Order in re Austin Franco License No. 3003611956",
+    "link": "https://dfr.vermont.gov/content/default-judgment-and-order-re-austin-franco-license-no-3003611956",
+    "regulator_name": "Vermont Department of Financial Regulation",
+    "pub_date": "2026-03-24",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US-VT",
+    "jurisdiction_tier_label": "domestic",
+    "impacted_business_jurisdiction": [
+      "US-VT",
+      "US-ME"
+    ],
+    "urgency_score": 10.0,
+    "impact_score": 8.0,
+    "relevance_score": 9.0,
+    "total_score": 7.85,
+    "score_components": {
+      "urgency": 10.0,
+      "impact": 8.0,
+      "recency": 5,
+      "update_type": 10,
+      "jurisdiction": 10,
+      "recognition": 0
+    },
+    "impact_summary_what_changed": "The Vermont Department of Financial Regulation entered a default judgment revoking the non-resident insurance producer license of Austin Lee Franco effective immediately.",
+    "entities_top5": [
+      "Austin Lee Franco",
+      "K. Jamison",
+      "Maine Department of Professional and Financial Regulation",
+      "Vermont Department of Financial Regulation"
+    ]
+  },
+  {
+    "artifact_id": "f2845698-5200-4f04-8dca-ce766bb2d087",
+    "feed_entry_id": "75ba2e51-d994-4be6-a007-dd0f91b99a16",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "9217-26 - 04/23/2026 - CFTC Charges U.S. Service Member with Insider Trading in Nicol\u00e1s Maduro-Related Event Contracts",
+    "link": "https://www.cftc.gov/PressRoom/PressReleases/9217-26",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-04-23",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 5.0,
+    "impact_score": 9.0,
+    "relevance_score": 7.0,
+    "total_score": 7.8,
+    "score_components": {
+      "urgency": 5.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "The CFTC charged an active-duty U.S. service member with insider trading on event contracts using classified information, marking the first use of the 'Eddie Murphy Rule' for government information misuse in this context.",
+    "entities_top5": [
+      "Commodity Futures Trading Commission",
+      "David I. Miller",
+      "Gannon Ken Van Dyke",
+      "Michael S. Selig",
+      "Polymarket.com"
+    ]
+  },
+  {
+    "artifact_id": "2055d06f-fad5-483f-8eec-74a864290260",
+    "feed_entry_id": "498c3666-9d80-477e-85d5-7c6c8fe316b0",
+    "topic_id": "6559f9b0-5add-4ad4-a94e-80f9e035e372",
+    "topic_name": "Commodity Futures Trading Commission",
+    "title": "Complaint: Gannon Ken Van Dyke",
+    "link": "https://www.cftc.gov/media/13761/EnfGannonKenVanDykeComplaint042326/download",
+    "regulator_name": "Commodity Futures Trading Commission",
+    "pub_date": "2026-04-23",
+    "update_type": "enforcement",
+    "topic_jurisdiction_code": "US",
+    "jurisdiction_tier_label": "us_federal",
+    "impacted_business_jurisdiction": [
+      "US"
+    ],
+    "urgency_score": 5.0,
+    "impact_score": 9.0,
+    "relevance_score": 7.0,
+    "total_score": 7.8,
+    "score_components": {
+      "urgency": 5.0,
+      "impact": 9.0,
+      "recency": 8,
+      "update_type": 10,
+      "jurisdiction": 8,
+      "recognition": 10
+    },
+    "impact_summary_what_changed": "The CFTC filed a civil complaint against an individual for insider trading on a decentralized prediction market using misappropriated sensitive military information, highlighting enforcement of insider trading prohibitions under the Commodity Exchange Act.",
+    "entities_top5": [
+      "Adventure One QSS Inc.",
+      "Blockratize, Inc.",
+      "Commodity Futures Trading Commission",
+      "Gannon Ken Van Dyke",
+      "Nicol\u00e1s Maduro"
+    ]
+  }
+]

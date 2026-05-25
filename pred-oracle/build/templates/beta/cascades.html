@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Cascade signals — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('/') }}beta/" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+</nav>
+
+<header class="mb-6 max-w-3xl">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
+  <h1 class="text-2xl font-bold mt-1">Active regulatory cascades</h1>
+  <p class="text-slate-600 mt-2 text-sm">
+    When an international body publishes guidance, its member states historically follow.
+    Pred-Oracle tracks these patterns and names the jurisdictions next.
+  </p>
+</header>
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
+  <section class="lg:col-span-3 space-y-6">
+    {% for card in cascades %}
+      {% include "beta/_components/cascade_card.html" %}
+    {% endfor %}
+  </section>
+  <aside class="lg:col-span-1 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">How cascade rules work</h2>
+      <p class="text-sm text-slate-700">
+        Each card lists a standards body, its trigger guidance, and the member jurisdictions historically expected to act within the follow-window. Hit-rates are computed against prior cascades by the same body.
+      </p>
+    </div>
+    <div class="border border-slate-200 rounded-lg p-4 text-xs text-slate-500">
+      V1: rule-based. Learned models replace rules in V2+ as more cascades accumulate.
+    </div>
+  </aside>
+</div>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('/') }}beta/heatmap/" class="text-sm text-slate-500 hover:text-slate-900">← Heat-map</a>
+  <a href="{{ base_url|default('/') }}beta/report/" class="text-sm text-blue-600 hover:text-blue-800">Read the Q2 2026 report →</a>
+</section>
+{% endblock %}

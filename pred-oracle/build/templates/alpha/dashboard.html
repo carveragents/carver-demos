@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('') }}alpha/" class="text-slate-500 hover:text-slate-900">← Back to inbox</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene {{ scene.number }} · Radar</div>
+  <h1 class="text-2xl font-bold mt-1">Where's the pressure?</h1>
+  <p class="text-slate-600 mt-1 text-sm">Activity by jurisdiction in the {{ window.label }}, scoped to prediction-market-relevant updates.</p>
+</header>
+
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+  <div class="lg:col-span-2 border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">United States</h2>
+    <div id="us-states-map" style="height: 380px;"></div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Update types</h2>
+    <div id="update-types-chart" style="height: 380px;"></div>
+  </div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+  <div class="border border-slate-200 rounded-lg overflow-hidden">
+    <h2 class="px-4 py-3 text-sm font-semibold uppercase tracking-wider text-slate-500 border-b border-slate-100">Top 10 US states</h2>
+    <table class="w-full text-sm">
+      <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+        <tr><th class="text-left px-4 py-2">State</th><th class="text-right px-4 py-2">Count</th><th class="text-right px-4 py-2">Avg urgency</th><th class="text-right px-4 py-2">Max</th></tr>
+      </thead>
+      <tbody>
+        {% for r in top_10 %}
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">{{ r.label }}</td>
+          <td class="text-right px-4 py-2 font-medium">{{ r.count }}</td>
+          <td class="text-right px-4 py-2 text-slate-600">{{ r.avg_urgency }}</td>
+          <td class="text-right px-4 py-2 text-slate-600">{{ r.max_urgency }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">International activity</h2>
+    <div class="flex flex-wrap gap-2">
+      {% for c in international %}
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">{{ c.label }}</span>
+          <span class="text-xs text-slate-500">{{ c.count }}</span>
+        </span>
+      {% endfor %}
+    </div>
+    <div class="mt-4 text-xs text-slate-500">
+      Federal US: {{ totals.us_federal }} · State-level: {{ totals.us_state_sum }} · International: {{ totals.international }}
+    </div>
+  </div>
+</section>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="{{ base_url|default('') }}alpha/" class="text-sm text-slate-500 hover:text-slate-900">← Inbox</a>
+  <a href="{{ base_url|default('') }}alpha/audit-export/" class="text-sm text-blue-600 hover:text-blue-800">Audit export →</a>
+</section>
+
+<script>
+  // ECharts data baked in at build time — no runtime fetches.
+  const US_STATES_DATA = {{ us_states|tojson }};
+  const UPDATE_TYPES_DATA = {{ update_types|tojson }};
+
+  (function () {
+    function initCharts() {
+      if (typeof echarts === 'undefined') {
+        setTimeout(initCharts, 50);
+        return;
+      }
+      fetch('{{ base_url|default("/") }}static/js/usa-states.json')
+        .then(r => r.ok ? r.json() : null)
+        .then(geo => {
+          const map = echarts.init(document.getElementById('us-states-map'));
+          if (geo) {
+            echarts.registerMap('USA', geo);
+            map.setOption({
+              tooltip: { trigger: 'item', formatter: p =>
+                `<b>${p.name}</b><br/>events: ${p.value || 0}` },
+              visualMap: {
+                min: 0, max: Math.max(1, ...US_STATES_DATA.map(d => d.count)),
+                left: 'left', bottom: 0, calculable: true,
+                inRange: { color: ['#eff6ff', '#1e40af'] },
+                text: ['high', 'low'],
+              },
+              series: [{
+                type: 'map', map: 'USA', roam: false,
+                label: { show: false },
+                data: US_STATES_DATA.map(d => ({ name: d.label, value: d.count })),
+              }],
+            });
+          } else {
+            // Fallback bar chart if map JSON fails to load
+            map.setOption({
+              tooltip: { trigger: 'axis' },
+              xAxis: { type: 'category',
+                       data: US_STATES_DATA.slice(0, 15).map(d => d.label),
+                       axisLabel: { rotate: 45 } },
+              yAxis: { type: 'value' },
+              series: [{ type: 'bar',
+                         data: US_STATES_DATA.slice(0, 15).map(d => d.count),
+                         itemStyle: { color: '#2563eb' } }],
+            });
+          }
+        });
+
+      const ut = echarts.init(document.getElementById('update-types-chart'));
+      ut.setOption({
+        tooltip: { trigger: 'item' },
+        series: [{
+          type: 'pie', radius: ['40%', '70%'],
+          label: { show: true, formatter: '{b}\n{c}' },
+          data: UPDATE_TYPES_DATA.map(t => ({ name: t.label, value: t.count })),
+        }],
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCharts);
+    } else {
+      initCharts();
+    }
+  })();
+</script>
+{% endblock %}

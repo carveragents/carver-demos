@@ -1,0 +1,35 @@
+# Polymarket curated contract pick-list. `id` is the slug used in
+# /gamma/contracts/{id}/ URLs; same stale-on-refresh policy as Kalshi.
+#
+# `cached.settlement_entities` is hand-curated for the same reason as the
+# Kalshi pick-list (the Gamma API doesn't return regulators/corporations
+# referenced in resolution criteria). The `us-recession-in-2026` cached
+# block is hand-curated entirely because the live slug 404s; we treat it
+# as the demo's reference active Polymarket contract per gamma-curation.yml
+# contract_detail_picks.
+
+schema_version: 1
+picks:
+- id: us-recession-in-2026
+  source_lookup:
+    slug: us-recession-in-2026
+  notes: Active macro contract; high entity intersection with Carver Fed/Treasury events.
+  cached:
+    title: "Will the US enter a recession in 2026?"
+    subtitle: ''
+    resolution_criteria: "Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise."
+    external_id: 'POLY-RECESSION-2026'
+    slug: us-recession-in-2026
+    condition_id: ''
+    status: active
+    listed_at: '2025-01-15T00:00:00Z'
+    expires_at: '2026-12-31T23:59:00Z'
+    settlement_entities:
+      - "National Bureau of Economic Research"
+      - "Federal Reserve System"
+      - "Federal Open Market Committee"
+      - "Department of the Treasury"
+      - "Bureau of Labor Statistics"
+      - "Bureau of Economic Analysis"
+      - "Council of Economic Advisers"
+  last_pulled_at: '2026-05-20T16:04:27Z'

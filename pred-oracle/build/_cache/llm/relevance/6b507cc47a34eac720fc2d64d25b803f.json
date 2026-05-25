@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?\nResolution criteria: If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\nConditions:\n  A: BTC > $109,999.99 on CF RT Index \u2014 YES if, at any moment from Jan 2, 2026 6:00 PM ET (inclusive) to before Dec 31, 2026 11:59 PM ET, the CF Bitcoin Real-Time Index spot price is strictly > $109,999.99 USD.\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Commodity Futures Trading Commission', 'Federal Reserve System', 'BlackRock', 'Fidelity Investments', 'Coinbase']\n\nRecord title: Treasury Launches Cybersecurity Information Sharing Initiative for the Digital Asset Industry\nRecord date: 2026-04-09\nRecord regulator: U.S. Department of the Treasury \u2014 Office of Cybersecurity and Critical Infrastructure Protection\nRecord topic: United States Department of the Treasury\nRecord entities: ['Commodity Futures Trading Commission', 'Department of Commerce', 'Department of Homeland Security', 'Department of Justice', 'National Economic Council', 'Office of Cybersecurity and Critical Infrastructure Protection', 'Office of Management and Budget', 'Office of the Comptroller of the Currency', 'Securities and Exchange Commission', 'U.S. Department of the Treasury', 'Andrew Rittenhouse', 'Brigitte Weyls', 'Carroline Phamm', 'Chris DeLorenz', 'Chris Netram', 'Cory Wilson', 'David Sacks', 'Dr. Mark Calabria', 'Emily Underwood', 'Frank Sensenbrenner', 'Harry Jung', 'Howard Lutnick', 'Jeff Wrase', 'Jonathan Hurowitz', 'Joseph Alm', 'Kristi Noem', 'Luke Pettit', 'Marco Rubio', 'Meghan Tente', 'Michael Selig', 'Pam Bondi', 'Paul Attkisson', 'Philip Raimondi', 'Robert \u201cBoo\u201d Hiness', 'Robbin Collwell', 'Russell Vought', 'Scott Bessent', 'Stephen Miller', 'Taylor Asher', 'Thomas Weidner', 'Tyler Williams']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": true,
+    "relevance_score": 3,
+    "one_line_why": "Info\u2011sharing initiative could modestly raise market confidence and crypto security, slightly increasing odds BTC breaches $109,999.99 but is indirect.",
+    "condition_tag": "A",
+    "high_impact": false
+  }
+}

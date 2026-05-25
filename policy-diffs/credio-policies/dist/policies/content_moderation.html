@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content Moderation — Halyard Pay policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="index.html">Policies</a>
+  <span class="sep">›</span>
+  <span class="current">Content Moderation</span>
+</nav>
+
+<p class="eyebrow">Halyard Pay policy</p>
+<h1>Content Moderation</h1>
+
+<p class="lede"><strong>11 proposed revisions</strong> across <strong>5 of 5 reviewed releases</strong>, including <strong>2 breaking changes</strong>.
+</p>
+
+<section class="policy-section">
+  <h2>Current policy</h2>
+
+  <div class="policy-tabs-row">
+    <h4 class="label-overline" style="border-bottom: none; padding-bottom: 0; margin-bottom: 12px;">policy.md</h4>
+  </div>
+  <div class="policy-prose"><h1>Content Moderation (BRAM Brand Integrity)</h1>
+<p>Mastercard's Business Risk Assessment and Mitigation (BRAM) program includes specific
+brand-integrity provisions that prohibit acquirers from processing transactions for
+merchants engaged in activities that violate Mastercard's acceptable use standards.
+Halyard Pay conducts ongoing content monitoring of merchant storefronts and transaction
+data to identify and remediate prohibited content.</p>
+<h2>Prohibited categories</h2>
+<p>Merchants found to be selling or facilitating counterfeit goods, illegal drugs, adult
+content that violates applicable law, goods or services that infringe intellectual
+property rights, or gambling services in jurisdictions where such services are
+restricted are subject to immediate review and, where confirmed, merchant suspension.</p>
+<h2>Required actions</h2>
+<ol>
+<li>Review merchant storefront content on a weekly cadence using automated scanning
+combined with periodic manual sampling.</li>
+<li>Flag any merchant whose content matches a prohibited category for human review
+within one business day.</li>
+<li>Suspend the merchant's processing privileges pending investigation if prohibited
+content is confirmed.</li>
+<li>Document all findings and remediation actions in the BRAM case file.</li>
+</ol>
+<p>Source authority: Mastercard SPME §10.5.</p>
+</div>
+
+  <h4 class="label-overline" style="margin-top: 32px;">rules.yaml</h4>
+  <pre class="policy-code">program: Content Moderation (BRAM)
+authority: Mastercard SPME §10.5
+prohibited_categories:
+  - counterfeit_goods
+  - illegal_drugs
+  - adult_content_violations
+  - intellectual_property_violations
+  - gambling_in_restricted_jurisdictions
+review_cadence: weekly
+human_review_trigger_business_days: 1
+confirmed_violation_action: suspend_processing
+case_documentation_required: true
+agent_owner: content_mod_agent
+</pre>
+
+  
+  <h4 class="label-overline" style="margin-top: 32px;">Authorized by</h4>
+  <div class="authorities">
+    <span class="chip section" title="BRAM Brand Integrity and Prohibited Merchant Content">SPME §10.5 — BRAM Brand Integrity and Prohibited Merchant Content</span>
+  </div>
+  
+</section>
+
+<section>
+  <h2 style="margin-bottom: 24px;">Proposed changes across releases</h2>
+
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Jun 2022 → May 2023</div>
+      <div class="count">1 change</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        <span class="seg-breaking" style="width: 100.0%"></span>
+        
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2022-06_to_2023-05_9.4.1.html">
+          <span class="materiality breaking">breaking</span>
+          <span class="section-id">§9.4.1</span>
+          <span class="title">Non-face-to-face Adult Content and Services Merchants</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">May 2023 → Sep 2023</div>
+      <div class="count">3 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_5.11.7.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§5.11.7</span>
+          <span class="title">of the Mastercard Rules manual (“the Illegal or Brand-damaging Transactions Rule”).</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_9.3.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§9.3</span>
+          <span class="title">General Monitoring Requirements</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2023-05_to_2023-09_9.4.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§9.4.1</span>
+          <span class="title">Non-face-to-face Adult Content and Services Merchants</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Sep 2023 → Feb 2024</div>
+      <div class="count">1 change</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2023-09_to_2024-02_8.9.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§8.9.1</span>
+          <span class="title">MMP Participation Requirements</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Feb 2024 → Sep 2024</div>
+      <div class="count">1 change</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        <span class="seg-breaking" style="width: 100.0%"></span>
+        
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-02_to_2024-09_10.5.html">
+          <span class="materiality breaking">breaking</span>
+          <span class="section-id">§10.5</span>
+          <span class="title">Alternative Acquirer Investigation (AAI) Standards</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+  <div class="policy-release ">
+    <div class="date-col">
+      <div class="date-range">Sep 2024 → May 2025</div>
+      <div class="count">5 changes</div>
+      
+      <div class="severity-bar" style="margin-top: 8px;" aria-hidden="true">
+        
+        <span class="seg-substantive" style="width: 100.0%"></span>
+        
+        
+      </div>
+      
+    </div>
+    <div class="changes-col">
+      
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_10.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§10</span>
+          <span class="title">Not use, or allow the use of, any type of technology or other organization measures that</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_8.8.4.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§8.8.4</span>
+          <span class="title">Noncompliance Assessment Mitigation</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_8.9.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§8.9.1</span>
+          <span class="title">MMP Participation Requirements</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_9.3.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§9.3</span>
+          <span class="title">General Monitoring Requirements</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+        <a class="change-card-mini" href="../changes/2024-09_to_2025-05_9.4.1.html">
+          <span class="materiality substantive">substantive</span>
+          <span class="section-id">§9.4.1</span>
+          <span class="title">Non-face-to-face Adult Content and Services Merchants</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ink-faint); flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        
+      
+    </div>
+  </div>
+  
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

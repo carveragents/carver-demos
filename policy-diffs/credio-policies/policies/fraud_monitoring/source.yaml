@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "3.7"
+    title: Fraud Monitoring Program
+    anchor_version: "2022-06"

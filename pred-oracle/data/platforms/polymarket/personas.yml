@@ -1,0 +1,11 @@
+# Demo personas for Polymarket. All names are fictional placeholders used only
+# for the demo narrative; they are never claimed as real Polymarket employees.
+gc:
+  display_name: "Devon Ashford"
+  role: General Counsel
+listing_lead:
+  display_name: "Renata Okafor"
+  role: Head of Listing
+international_lead:
+  display_name: "Priya Kapur"
+  role: Head of International

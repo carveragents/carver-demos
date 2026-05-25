@@ -1,0 +1,96 @@
+# γ-scene curation. Hand-edited; consumed by build/gamma_*.py generators.
+# See docs/specs/40-gamma-walkthrough.md for narrative context.
+
+schema_version: 1
+build_date: "2026-05-20"
+
+# Active contracts to feature on the dashboard. Pulled live by
+# build/pull_*_curated.py. Identifiers verified against the public API
+# at curation time (2026-05-20).
+featured_kalshi:
+  - event_ticker: "KXFEDDECISION-28JAN"
+  - event_ticker: "KXFEDDECISION-26MAR"   # part of the active set; ALSO used as retrospective base
+  - event_ticker: "KXBTC-MAXPRICE2026"
+
+featured_polymarket:
+  - slug: "us-recession-in-2026"
+
+# Pre-listing scans — exactly 3 per spec §2.2 table.
+pre_listing_scans:
+  - id: "tiktokban"
+    title: "Will TikTok be banned in the United States by 2026-12-31?"
+    resolution_criteria: |
+      Resolves YES if TikTok is unavailable in the US Apple/Google app stores OR
+      if the Department of Commerce issues a ban directive by 2026-12-31.
+    platform_hint: "kalshi"
+    settlement_entities:
+      - "Federal Communications Commission"
+      - "Committee on Foreign Investment in the United States"
+      - "Department of Commerce"
+      - "ByteDance"
+      - "TikTok"
+    severity_hint: 8
+  - id: "solana_etf_2027"
+    title: "Will the SEC approve a spot Solana ETF in 2027?"
+    resolution_criteria: |
+      Resolves YES if the SEC approves a spot Solana ETF for trading on a US
+      national securities exchange by 2027-12-31.
+    platform_hint: "polymarket"
+    settlement_entities:
+      - "U.S. Securities and Exchange Commission"
+      - "BlackRock"
+      - "Fidelity"
+      - "VanEck"
+    severity_hint: 7
+  - id: "state_kalshi_action"
+    title: "Will a 12th US state issue a cease-and-desist against a major event-contract platform by 2026-12-31?"
+    resolution_criteria: |
+      Resolves YES if a 12th US state-level gambling or securities regulator
+      issues an enforcement action naming a CFTC-licensed event-contract
+      platform by 2026-12-31.
+    platform_hint: "kalshi"
+    settlement_entities:
+      - "Nevada Gaming Control Board"
+      - "New Jersey Division of Gaming Enforcement"
+      - "Maryland Lottery and Gaming Control Agency"
+      - "Massachusetts Gaming Commission"
+      - "New Jersey Bureau of Securities"
+      - "California Department of Financial Protection and Innovation"
+    severity_hint: 9
+
+# 5 contract-detail pages. The kind="retrospective" entries reference
+# hand-curated YAML files under data/platforms/<platform>/contracts/<id>.yml.
+contract_detail_picks:
+  # Retrospectives (hand-curated from Wayback / news sources)
+  - id: "tiktokban-25apr30"
+    platform: "kalshi"
+    kind: "retrospective"
+  - id: "kxfeddecision-26mar"
+    platform: "kalshi"
+    kind: "retrospective"
+  - id: "solana-etf-2025"
+    platform: "polymarket"
+    kind: "retrospective"
+  # Active picks — must match data/platforms/{kalshi,polymarket}/contracts.yml
+  # so every dashboard row has a clickable detail page.
+  - id: "kxfeddecision-28jan"
+    platform: "kalshi"
+    kind: "active"
+  - id: "kxbtc-maxprice-2026"
+    platform: "kalshi"
+    kind: "active"
+  - id: "us-recession-in-2026"
+    platform: "polymarket"
+    kind: "active"
+
+# Synthetic listing-risk tickets shown on contract-detail pages. Each
+# contract gets ≤2 tickets. Labelled with demo_badge downstream.
+synthetic_listing_risk_tickets:
+  - contract_id: "tiktokban-25apr30"
+    summary: "Escalating CFIUS activity on ByteDance — listing review needed before EOW"
+    severity: "high"
+    assignee_initials: "MV"
+  - contract_id: "kxfeddecision-26mar"
+    summary: "Fed speech cadence elevated; consider widening expiry tier"
+    severity: "medium"
+    assignee_initials: "MV"

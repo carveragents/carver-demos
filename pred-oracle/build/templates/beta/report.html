@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}{{ report_window.label }} report — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('/') }}beta/" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+</nav>
+
+<header class="mb-6 max-w-3xl">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">{{ report_window.label }} · Regulatory Expansion Intelligence <span class="text-slate-400 normal-case">(illustrative)</span></div>
+  <h1 class="text-2xl font-bold mt-1">Quarterly intelligence report</h1>
+  <div class="text-xs text-slate-500 mt-1">
+    Generated {{ generated_at }} · Source: Pred-Oracle (built on Carver regulatory annotations)
+    · Window {{ report_window.start }} → {{ report_window.end }}
+  </div>
+  <a href="{{ base_url|default('/') }}{{ pdf_href }}" target="_blank" rel="noopener noreferrer"
+     class="inline-block mt-3 bg-slate-900 hover:bg-slate-700 text-white px-4 py-2 rounded text-sm font-medium">
+    Download PDF
+  </a>
+</header>
+
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Events in window</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">{{ headline_stats.events_in_window }}</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Jurisdictions</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">{{ headline_stats.jurisdictions_with_activity }}</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">High-urgency (≥8)</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">{{ headline_stats.high_urgency_events }}</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Active cascades</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">{{ headline_stats.active_cascades }}</div>
+  </div>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-lg font-semibold mb-3">Pressure rising</h2>
+  <ul class="space-y-3">
+    {% for row in pressure_rising %}
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">{{ row.label }}</span>
+          <span class="text-xs text-slate-500 ml-1">({{ row.role }})</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+{{ row.delta }}</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">{{ row.narrative }}</p>
+      {% if row.top_events %}
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        {% for ev in row.top_events %}<li>· <a href="{{ ev.link }}" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">{{ ev.title }}</a> — {{ ev.regulator }} ({{ ev.pub_date }})</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-lg font-semibold mb-3">Pressure easing</h2>
+  <ul class="space-y-2">
+    {% for row in pressure_easing %}
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">{{ row.label }}</span>
+      <span class="text-xs text-slate-500">({{ row.role }})</span>
+      <span class="text-emerald-700 tabular-nums ml-2">{{ row.delta }}</span>
+      <span class="text-slate-500"> — {{ row.narrative }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="mb-10 border-t border-slate-200 pt-8">
+  <h2 class="text-xl font-bold mb-2">Watch list — 3 jurisdictions that look like France did 12 months ago</h2>
+  <p class="text-xs text-slate-500 mb-4">{{ watch_list_disclaimer }}</p>
+  <div class="space-y-4">
+    {% for item in watch_list %}
+      {% include "beta/_components/watchlist_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+{% if gamma_touchpoints %}
+<aside class="mb-10 border border-slate-200 rounded-lg p-4 bg-slate-50/40">
+  <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Contract touchpoints — active contracts correlated with watch-list jurisdictions</h2>
+  <ul class="text-sm space-y-1">
+    {% for t in gamma_touchpoints %}
+    <li>
+      <a href="{{ base_url|default('/') }}{{ t.detail_href }}" class="text-slate-900 hover:text-blue-700">{{ t.title }}</a>
+      <span class="text-xs text-slate-500">— heat {{ t.heat|round(0)|int }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
+
+<section class="mb-10 border-t border-slate-200 pt-6">
+  <h2 class="text-lg font-semibold mb-2">Appendix · Active cascade signals</h2>
+  <ul class="text-sm space-y-1">
+    {% for c in featured_cascades %}
+    <li><span class="font-medium">{{ c.body_acronym }}</span> — {{ c.trigger_title }} <span class="text-xs text-slate-500">({{ c.trigger_pub_date }} · {{ c.historical_hit_rate }})</span></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<footer class="border-t border-slate-200 pt-6 text-xs text-slate-500 space-y-2">
+  <p><span class="font-semibold text-slate-700">Method.</span> {{ method_notes }}</p>
+  <p><span class="font-semibold text-slate-700">Coverage.</span> {{ coverage_caveat }}</p>
+  <p>{{ v1_footer }}</p>
+</footer>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('/') }}beta/cascades/" class="text-sm text-slate-500 hover:text-slate-900">← Cascade signals</a>
+  <a href="{{ base_url|default('/') }}close.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Finish demo →</a>
+</section>
+{% endblock %}

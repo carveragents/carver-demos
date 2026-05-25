@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Inbox — Pred-Oracle{% endblock %}
+{% block content %}
+<section class="mb-6">
+  <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+    <div>
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene {{ scene.number }} of 3 · Radar</div>
+      <h1 class="text-2xl font-bold mt-1">{{ scene.headline }}</h1>
+      <p class="text-slate-600 mt-1 text-sm">{{ scene.subhead }}</p>
+    </div>
+    <a href="{{ base_url|default('') }}alpha/{{ scene.next_href }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">{{ scene.next_label }}</a>
+  </div>
+</section>
+
+<section class="border border-slate-200 rounded-lg overflow-hidden">
+  <header class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50 flex-wrap gap-2">
+    <div>
+      <h2 class="font-semibold">Regulatory triage queue</h2>
+      <p class="text-xs text-slate-500 mt-0.5">{{ stats.active_items }} active items · {{ stats.above_threshold }} above your paging threshold ({{ stats.threshold }})</p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      {% for chip in filter_chips %}
+      <span class="text-xs px-2 py-1 rounded border {{ 'bg-slate-900 text-white border-slate-900' if chip.active else 'bg-white text-slate-600 border-slate-200' }}">{{ chip.label }}</span>
+      {% endfor %}
+    </div>
+  </header>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-white border-b border-slate-100">
+        <tr class="text-left text-xs uppercase tracking-wider text-slate-500">
+          <th class="px-3 py-2 font-medium">Urgency</th>
+          <th class="px-3 py-2 font-medium">Title</th>
+          <th class="px-3 py-2 font-medium">Source</th>
+          <th class="px-3 py-2 font-medium">Jurisdictions</th>
+          <th class="px-3 py-2 font-medium">Type</th>
+          <th class="px-3 py-2 font-medium">Status</th>
+          <th class="px-3 py-2 font-medium">Assignee</th>
+          <th class="px-3 py-2 font-medium">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          {% include "alpha/_components/ticket_row.html" %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<aside class="mt-6 max-w-2xl text-sm text-slate-600">
+  <details open class="border border-slate-200 rounded-lg">
+    <summary class="cursor-pointer px-4 py-3 font-medium text-slate-800">How this works</summary>
+    <div class="px-4 pb-4">
+      Every row is a real regulatory event ingested by Carver's annotation pipeline,
+      scored for urgency and impact, then matched against this platform's saved filters.
+      Click into any item to see the underlying structured data.
+      <div class="mt-3 text-xs text-slate-500">
+        Comments, assignees, and status transitions on the detail page are synthetic demo data.
+      </div>
+    </div>
+  </details>
+</aside>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="{{ base_url|default('') }}" class="text-sm text-slate-500 hover:text-slate-900">← Back to landing</a>
+  <a href="{{ base_url|default('') }}alpha/dashboard/" class="text-sm text-blue-600 hover:text-blue-800">Skip to dashboard →</a>
+</section>
+{% endblock %}

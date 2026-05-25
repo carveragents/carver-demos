@@ -1,0 +1,10 @@
+program: BRAM
+authority: Mastercard SPME §10.2
+response_window_days: 180
+required_evidence:
+  - transaction_monitoring_records
+  - corrective_action_plan
+halt_actions:
+  - halt_new_merchant_onboarding
+internal_notification_hours: 24
+agent_owner: bram_response_agent

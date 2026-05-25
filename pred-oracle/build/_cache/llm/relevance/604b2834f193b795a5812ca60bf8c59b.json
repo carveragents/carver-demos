@@ -1,0 +1,49 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will TikTok be banned in the United States by April 30, 2025?\nResolution criteria: Resolves YES if, on or before 2025-04-30, TikTok is unavailable in the United States\nvia the Apple App Store or the Google Play Store, OR a federal directive (PAFACA\nenforcement order from the Department of Commerce / Department of Justice) takes\neffect requiring a divestiture or shutdown. Resolves NO otherwise.\n\nConditions:\n  A: Unavailable on U.S. app stores \u2014 By 2025-04-30, TikTok is not available for download in the U.S. via either the Apple App Store or the Google Play Store.\n  B: PAFACA order mandates divest/shutdown \u2014 By 2025-04-30, a DoC or DoJ PAFACA enforcement order takes effect requiring TikTok/ByteDance to divest TikTok or shut it down in the U.S.\nSettlement entities: ['Federal Communications Commission', 'Committee on Foreign Investment in the United States', 'Department of Commerce', 'ByteDance', 'TikTok']\n\nRecord title: Bulletin B25-02\nRecord date: 2025-01-13\nRecord regulator: Department of Commerce, Community, and Economic Development, Division of Insurance \u2014 Anchorage Office\nRecord topic: Department of Commerce, Community, and Economic Development\nRecord entities: ['Alaska', 'Department of Commerce, Community, and Economic Development, Division of Insurance', 'Independent Adjusters', 'Insurance Companies', 'Kayla Erickson', 'Lori Wing-Heier']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Alaska state insurance bulletin unrelated to TikTok, app store availability, or federal PAFACA/divestiture actions \u2014 no bearing on contract outcome.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

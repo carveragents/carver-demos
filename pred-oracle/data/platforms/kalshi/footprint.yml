@@ -1,0 +1,27 @@
+# Kalshi public market footprint. As a CFTC-DCM the operating set is
+# primarily US + international users-via-OFAC-screening. Closed/restricted
+# at the state level (the eleven cease-and-desists referenced in α + γ).
+
+schema_version: 1
+platform: "kalshi"
+
+operating:
+  - {code: "US",   label: "United States"}
+
+# State-level fights. Kalshi's federal preemption argument is in play; we
+# treat these as "considering" rather than "closed" because the platform
+# continues to argue jurisdiction.
+considering:
+  - {code: "US-CA", label: "California"}
+  - {code: "US-NY", label: "New York"}
+  - {code: "US-MA", label: "Massachusetts"}
+  - {code: "US-NJ", label: "New Jersey"}
+  - {code: "US-NV", label: "Nevada"}
+  - {code: "US-MD", label: "Maryland"}
+  - {code: "US-IL", label: "Illinois"}
+  - {code: "US-OH", label: "Ohio"}
+  - {code: "US-CO", label: "Colorado"}
+
+closed:
+  - {code: "MN",   label: "Minnesota state law restriction",
+     closed_at: "2026-05-19", reason: "State criminalisation law (subject of CFTC suit)"}

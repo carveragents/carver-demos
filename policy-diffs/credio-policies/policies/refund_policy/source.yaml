@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "10.4"
+    title: Refunds and Credits — Merchant Obligations
+    anchor_version: "2022-06"

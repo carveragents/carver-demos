@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Pred-Oracle — Regulatory Intelligence for Prediction Markets{% endblock %}
+
+{% block content %}
+<section class="mb-16 max-w-3xl">
+  <h1 class="text-4xl font-bold tracking-tight leading-tight">
+    Your business sits at the intersection of the CFTC, 50 state gambling commissions,
+    the SEC, and every foreign regulator that touches event contracts.
+  </h1>
+  <p class="mt-6 text-xl text-slate-600">
+    Pred-Oracle is the regulatory-intelligence layer built for that intersection.
+  </p>
+  <dl class="mt-10 flex flex-wrap items-start gap-x-12 gap-y-6">
+    <div>
+      <dt class="sr-only">Annotated regulatory events</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">{{ '{:,}'.format(events_count|default(0)) }}</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Annotated events</div>
+    </div>
+    <div>
+      <dt class="sr-only">Jurisdictions covered</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">{{ '{:,}'.format(jurisdictions_count|default(0)) }}</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Jurisdictions</div>
+    </div>
+    {% if unique_regulators_count and unique_regulators_count > 0 %}
+    <div>
+      <dt class="sr-only">Regulatory bodies tracked</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">{{ '{:,}'.format(unique_regulators_count|default(0)) }}</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Regulatory bodies</div>
+    </div>
+    {% endif %}
+  </dl>
+  {% if earliest_pub_date and latest_pub_date %}
+  <p class="mt-5 text-xs text-slate-400 tabular-nums">
+    Coverage window {{ earliest_pub_date }} <span class="text-slate-300">→</span> {{ latest_pub_date }}
+  </p>
+  {% endif %}
+</section>
+
+<section>
+  <h2 class="text-sm uppercase tracking-wider text-slate-500 mb-4">
+    Walk three scenes
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="{{ base_url|default('/') }}alpha/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 · Radar</div>
+      <div class="text-xl font-bold mt-2">The GC&#39;s Monday morning</div>
+      <p class="text-slate-600 mt-2 text-sm">Triage real regulatory signals before they hit the news cycle.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="{{ base_url|default('/') }}gamma/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 · Listing</div>
+      <div class="text-xl font-bold mt-2">Before you list, look</div>
+      <p class="text-slate-600 mt-2 text-sm">Pre-listing scan plus the regulatory timeline behind a real contract.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="{{ base_url|default('/') }}beta/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
+      <div class="text-xl font-bold mt-2">Q3 planning, without the surprise</div>
+      <p class="text-slate-600 mt-2 text-sm">Heat-map and quarterly intelligence for jurisdictional strategy.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+  </div>
+</section>
+{% endblock %}

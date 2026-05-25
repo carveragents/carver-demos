@@ -1,0 +1,13 @@
+program: ATO Detection
+authority: Mastercard SPME §6.2
+risk_threshold_for_3ds_challenge: 0.5
+risk_score_range: [0.0, 1.0]
+signals:
+  - geo_anomaly
+  - device_fingerprint_change
+  - velocity_breach
+  - credential_stuffing
+challenge_method: 3ds_v2
+persistent_risk_escalation_threshold: 3
+persistent_risk_lookback_days: 7
+agent_owner: ato_agent

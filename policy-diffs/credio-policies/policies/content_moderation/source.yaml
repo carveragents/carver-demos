@@ -1,0 +1,5 @@
+mastercard_artifact: SPME
+sections:
+  - id: "10.5"
+    title: BRAM Brand Integrity and Prohibited Merchant Content
+    anchor_version: "2022-06"

@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sep 2024 → May 2025 — proposed Halyard Pay updates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <span class="current">Sep 2024 → May 2025</span>
+</nav>
+
+<p class="eyebrow">Mastercard SPME release</p>
+<h1>Sep 2024 → May 2025</h1>
+
+<p class="lede"><strong>1 breaking</strong> and <strong>38 substantive</strong> revisions proposed, affecting <strong>8 policies</strong>.
+</p>
+
+<div class="filter-bar">
+  <div class="filter-row">
+    <input type="search" id="q" class="search-input" placeholder="Search section ID, summary, or policy…" autocomplete="off">
+    <span class="match-count" id="match-count">39 of 39</span>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Materiality</span>
+    <div class="filter-chips">
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="breaking" checked>Breaking</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="substantive" checked>Substantive</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="clarifying" checked>Clarifying</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="cosmetic" checked>Cosmetic</label>
+    </div>
+  </div>
+  
+  <div class="filter-row">
+    <span class="filter-label">Policy</span>
+    <div class="filter-chips">
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="ato_detection" checked>ATO Detection</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="bram_response" checked>BRAM Response</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="chargeback_handling" checked>Chargeback Handling</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="content_moderation" checked>Content Moderation</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="ecp_thresholds" checked>ECP Thresholds</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="fraud_monitoring" checked>Fraud Monitoring</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="kyb_acquirer" checked>KYB Acquirer</label>
+      
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="refund_policy" checked>Refund Policy</label>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<section class="mat-group" data-mat="breaking">
+  <div class="mat-group-header">
+    <span class="materiality breaking">breaking</span>
+    <span class="count">1 revision</span>
+  </div>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.2.3.html"
+     data-materiality="breaking"
+     data-policies="bram_response"
+     data-search-text="&#34;inquiring about a merchant&#34; (regarding the use of match pro) the section was fully replaced, removing the prior process for removing merchant listings from match due to pci compliance, and adding new penalties for acquirers violating bram rules or submitting illegal/brand-damaging transactions, including significant fines and documentation requirements for approved urls for transactions. 11.2.3 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">&#34;Inquiring about a Merchant&#34; (regarding the use of MATCH Pro)</div>
+    <div class="summary">The section was fully replaced, removing the prior process for removing Merchant listings from MATCH due to PCI compliance, and adding new penalties for Acquirers violating BRAM Rules or submitting illegal/brand-damaging Transactions, including significant fines and documentation requirements for approved URLs for Transactions.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.2.3</span>
+      <span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+</section>
+
+<section class="mat-group" data-mat="substantive">
+  <div class="mat-group-header">
+    <span class="materiality substantive">substantive</span>
+    <span class="count">38 revisions</span>
+  </div>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_1.5.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="compliance with privacy, data protection and information security requirements the original text requiring compliance with applicable data protection laws for processing personal data was replaced with a new reference to chapter 2 on cybersecurity standards, broadening scope to all customers, merchants, service providers, and agents handling account or transaction data. 1.5.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Compliance with Privacy, Data Protection and Information Security Requirements</div>
+    <div class="summary">The original text requiring compliance with applicable data protection laws for processing personal data was replaced with a new reference to Chapter 2 on Cybersecurity Standards, broadening scope to all customers, merchants, service providers, and agents handling account or transaction data.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §1.5.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_10.html"
+     data-materiality="substantive"
+     data-policies="bram_response chargeback_handling content_moderation refund_policy"
+     data-search-text="not use, or allow the use of, any type of technology or other organization measures that the entire previous content regarding notification timelines and investigation procedures was replaced with detailed new standards about handling, processing, transferring, and securing personal information under ccpa and eu data protection laws within the match pro system, including roles, responsibilities, security measures, and breach notification protocols. 10 policies/bram_response/rules.yaml policies/bram_response/policy.md policies/chargeback_handling/rules.yaml policies/chargeback_handling/policy.md policies/content_moderation/rules.yaml policies/content_moderation/policy.md policies/refund_policy/policy.md bram_response chargeback_handling content_moderation refund_policy bram response chargeback handling content moderation refund policy">
+    <div class="title">Not use, or allow the use of, any type of technology or other organization measures that</div>
+    <div class="summary">The entire previous content regarding notification timelines and investigation procedures was replaced with detailed new standards about handling, processing, transferring, and securing Personal Information under CCPA and EU Data Protection laws within the MATCH Pro system, including roles, responsibilities, security measures, and breach notification protocols.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §10</span>
+      <span class="chip policy">BRAM Response</span><span class="chip policy">Chargeback Handling</span><span class="chip policy">Content Moderation</span><span class="chip policy">Refund Policy</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="it is the acquirer&#39;s obligation to confirm that the results from match pro are relevant to the the section was expanded to specify that when onboarding a match merchant flagged for reason code 14 identity theft, the acquirer should conduct additional due diligence to verify the legitimacy of the person or entity, noting that the legitimate party might be unaware their identity was previously misused. 11 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">It is the Acquirer&#39;s obligation to confirm that the results from MATCH Pro are relevant to the</div>
+    <div class="summary">The section was expanded to specify that when onboarding a MATCH Merchant flagged for reason code 14 Identity Theft, the Acquirer should conduct additional due diligence to verify the legitimacy of the person or entity, noting that the legitimate party might be unaware their identity was previously misused.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.1.1.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="system features the entire section describing match system features and options for acquirers has been removed, eliminating detailed information on fraud detection capabilities and how acquirers interact with the match database. 11.1.1 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">System Features</div>
+    <div class="summary">The entire section describing MATCH system features and options for Acquirers has been removed, eliminating detailed information on fraud detection capabilities and how Acquirers interact with the MATCH database.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.1.1</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.10.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="match pro record retention new requirements added for removing a match merchant listed under reason code 12, mandating an acquirer&#39;s attestation of pci dss compliance and a certified forensic examiner&#39;s validation letter. merchants can also request removal if the acquirer does not. 11.10 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">MATCH Pro Record Retention</div>
+    <div class="summary">New requirements added for removing a MATCH Merchant listed under reason code 12, mandating an acquirer&#39;s attestation of PCI DSS compliance and a certified forensic examiner&#39;s validation letter. Merchants can also request removal if the acquirer does not.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.10</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.13.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="match merchant removal from match pro this new section defines specific conditions and procedures under which mastercard can remove a match merchant listing from match pro, including error reports by authorized users and removal of listings for pci dss noncompliance once the merchant is compliant, requiring a formal written request with detailed information. 11.13 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">MATCH Merchant Removal from MATCH Pro</div>
+    <div class="summary">This new section defines specific conditions and procedures under which Mastercard can remove a MATCH Merchant listing from MATCH Pro, including error reports by Authorized Users and removal of listings for PCI DSS noncompliance once the merchant is compliant, requiring a formal written request with detailed information.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.13</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.14.html"
+     data-materiality="substantive"
+     data-policies="ecp_thresholds"
+     data-search-text="match pro reason codes the section introduces new detailed match pro reason codes outlining conditions under which merchants can be reported for excessive chargebacks, excessive fraud, coercion, questionable audits, insolvency, and violation of standards, including both mastercard and american express specific criteria. 11.14 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">MATCH Pro Reason Codes</div>
+    <div class="summary">The section introduces new detailed MATCH Pro Reason Codes outlining conditions under which merchants can be reported for excessive chargebacks, excessive fraud, coercion, questionable audits, insolvency, and violation of standards, including both Mastercard and American Express specific criteria.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.14</span>
+      <span class="chip policy">ECP Thresholds</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.14.1.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="reason codes for match merchants listed by an authorized user new reason codes for match listings were added, including pci noncompliance, illegal transactions, and identity theft, providing additional clarity on grounds for listing merchants in match. 11.14.1 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Reason Codes for MATCH Merchants Listed by an Authorized User</div>
+    <div class="summary">New reason codes for MATCH listings were added, including PCI noncompliance, illegal transactions, and identity theft, providing additional clarity on grounds for listing merchants in MATCH.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.14.1</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="match pro standards new rules for acquirers regarding the match pro system have been added. they must respond to inquiries within seven days, include suite or box numbers for registered agents, maintain accuracy of data in us ascii, manage changes of control with inquiries within 90 days, retain merchant reference numbers, comply diligently, not misuse match pro as a collection tool for minor issues, and face penalties for noncompliance. 11.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">MATCH Pro Standards</div>
+    <div class="summary">New rules for Acquirers regarding the MATCH Pro system have been added. They must respond to inquiries within seven days, include suite or box numbers for registered agents, maintain accuracy of data in US ASCII, manage changes of control with inquiries within 90 days, retain Merchant Reference Numbers, comply diligently, not misuse MATCH Pro as a collection tool for minor issues, and face penalties for noncompliance.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.4.html"
+     data-materiality="substantive"
+     data-policies="ecp_thresholds"
+     data-search-text="acquirer requirements the reference to reasons for removing a merchant listing from match was removed and replaced with a new requirement that a contact profile must include either a shared mailbox email or multiple individual email addresses. 11.4 policies/ecp_thresholds/rules.yaml policies/ecp_thresholds/policy.md ecp_thresholds ecp thresholds">
+    <div class="title">Acquirer Requirements</div>
+    <div class="summary">The reference to reasons for removing a merchant listing from MATCH was removed and replaced with a new requirement that a contact profile must include either a shared mailbox email or multiple individual email addresses.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.4</span>
+      <span class="chip policy">ECP Thresholds</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.5.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="when to add a merchant to match pro the updated section emphasizes that acquirers must conduct match inquiries using the correct ica number tied to the processing entity. failure to add terminated merchants or to use the proper ica number for inquiries can lead to compliance violations and mastercard assessments. 11.5 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">When to Add a Merchant to MATCH Pro</div>
+    <div class="summary">The updated section emphasizes that acquirers must conduct MATCH inquiries using the correct ICA Number tied to the processing entity. Failure to add terminated merchants or to use the proper ICA Number for inquiries can lead to compliance violations and Mastercard assessments.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.5</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.5.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="acquirer responsibility: requests for removal from match pro the updated section removes the match reason codes and instead provides clear instructions that any match merchant can request removal from match pro without legal counsel and specifies the required information for such requests, including merchant name, address, principal owner&#39;s name, and website url. 11.5.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Acquirer Responsibility: Requests for Removal from MATCH Pro</div>
+    <div class="summary">The updated section removes the MATCH reason codes and instead provides clear instructions that any MATCH merchant can request removal from MATCH Pro without legal counsel and specifies the required information for such requests, including merchant name, address, principal owner&#39;s name, and website URL.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.5.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.6.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="inquiring about a match merchant new rules require acquirers to check match pro before signing agreements with or enabling merchants to accept transactions, retain inquiry reference numbers, and warn that failing to inquire may lead to unfavorable compliance rulings. 11.6 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Inquiring about a MATCH Merchant</div>
+    <div class="summary">New rules require Acquirers to check MATCH Pro before signing agreements with or enabling Merchants to accept Transactions, retain inquiry reference numbers, and warn that failing to inquire may lead to unfavorable compliance rulings.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.6</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.6.1.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="how does match pro search when conducting an inquiry? the added section details the specific data fields match pro uses in searches, varying by country, and emphasizes the requirement for using correct iso codes in queries via api or ui to ensure accurate matching results. 11.6.1 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">How does MATCH Pro search when conducting an inquiry?</div>
+    <div class="summary">The added section details the specific data fields MATCH Pro uses in searches, varying by country, and emphasizes the requirement for using correct ISO codes in queries via API or UI to ensure accurate matching results.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.6.1</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_11.6.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="phonetic possible matches the section introduces criteria for phonetic matching in merchant verification, specifying various combinations of fields (e.g., merchant url with owner&#39;s name and address) to establish matches. it clarifies country-specific matching rules for us vs. non-us merchants in the match pro system. 11.6.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Phonetic Possible Matches</div>
+    <div class="summary">The section introduces criteria for phonetic matching in merchant verification, specifying various combinations of fields (e.g., merchant URL with owner&#39;s name and address) to establish matches. It clarifies country-specific matching rules for US vs. non-US merchants in the MATCH Pro system.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §11.6.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_12.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="the acquirer is responsible for ensuring that accurate data is entered into match pro. the the change specifies that data in match pro must match onboarding information and introduces potential noncompliance assessments if errors by the acquirer or authorized user are not timely corrected, replacing prior guidance about investigation responses and escalation procedures. 12 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">The Acquirer is responsible for ensuring that accurate data is entered into MATCH Pro. The</div>
+    <div class="summary">The change specifies that data in MATCH Pro must match onboarding information and introduces potential noncompliance assessments if errors by the Acquirer or authorized user are not timely corrected, replacing prior guidance about investigation responses and escalation procedures.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §12</span>
+      <span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_13.1.2.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="service provider risk management program the appendix d privacy and data protection standards for covered programs have been updated to exclude match and introduce a new appendix f covering privacy/data protections specifically for match pro, with obligations realigned under applicable laws. this includes updated roles, obligations, and definitions for processing personal data and information. 13.1.2 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Service Provider Risk Management Program</div>
+    <div class="summary">The appendix D privacy and data protection standards for Covered Programs have been updated to exclude MATCH and introduce a new Appendix F covering privacy/data protections specifically for MATCH Pro, with obligations realigned under applicable laws. This includes updated roles, obligations, and definitions for processing personal data and information.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §13.1.2</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_2.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="mastercard site data protection (sdp) program the updated section broadens the scope to include more types of service providers under the sdp program, requires compliance with pci dss or iso/iec 27001 for issuers and acquirers, and clarifies that mastercard has sole discretion over enforcing the program. level 1 and 2 merchants and all service providers must validate compliance to be deemed compliant. 2.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Mastercard Site Data Protection (SDP) Program</div>
+    <div class="summary">The updated section broadens the scope to include more types of Service Providers under the SDP Program, requires compliance with PCI DSS or ISO/IEC 27001 for Issuers and Acquirers, and clarifies that Mastercard has sole discretion over enforcing the program. Level 1 and 2 Merchants and all Service Providers must validate compliance to be deemed compliant.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_2.2.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="customer compliance requirements the updated section adds specific reporting deadlines for submission periods and introduces a requirement for acquirers to have a risk management program managing payment security risks for level 3 and level 4 merchants. it also details potential cost reductions for customers compliant with the sdp program impacted by adc events, alongside clarifications on service provider validation and submission processes. 2.2.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Customer Compliance Requirements</div>
+    <div class="summary">The updated section adds specific reporting deadlines for submission periods and introduces a requirement for Acquirers to have a risk management program managing payment security risks for Level 3 and Level 4 merchants. It also details potential cost reductions for Customers compliant with the SDP Program impacted by ADC Events, alongside clarifications on service provider validation and submission processes.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_2.2.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="service provider compliance requirements added bpsp category to level 1 and level 2 service provider lists, with updated service provider classifications note. minor formatting changes occurred, but no changes to validation requirements or thresholds. 2.2.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Service Provider Compliance Requirements</div>
+    <div class="summary">Added BPSP category to Level 1 and Level 2 Service Provider lists, with updated service provider classifications note. Minor formatting changes occurred, but no changes to validation requirements or thresholds.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_2.2.5.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="sdp program noncompliance assessments the section was replaced with a new table detailing financial penalties and additional consequences for failing to comply with the sdp program, including escalating fines for violations based on merchant or service provider level and potential termination or deregistration. penalties now also apply for late or missing compliance reporting submissions. 2.2.5 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">SDP Program Noncompliance Assessments</div>
+    <div class="summary">The section was replaced with a new table detailing financial penalties and additional consequences for failing to comply with the SDP Program, including escalating fines for violations based on merchant or service provider level and potential termination or deregistration. Penalties now also apply for late or missing compliance reporting submissions.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §2.2.5</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_6.2.2.html"
+     data-materiality="substantive"
+     data-policies="ato_detection"
+     data-search-text="acquirer fraud loss control programs the compliance date for europe-region acquirers&#39; strong authentication was extended to 8 october 2024 (1 april 2025 in serbia) from 13 october 2023. the requirement was reworded to specify that merchants or digital wallet operators must complete emv 3ds authentication or another successful sca method when adding stored credentials, wallets, or tokenized cards, or by the first subsequent transaction. 6.2.2 policies/ato_detection/rules.yaml policies/ato_detection/policy.md ato_detection ato detection">
+    <div class="title">Acquirer Fraud Loss Control Programs</div>
+    <div class="summary">The compliance date for Europe-region Acquirers&#39; strong authentication was extended to 8 October 2024 (1 April 2025 in Serbia) from 13 October 2023. The requirement was reworded to specify that Merchants or Digital Wallet Operators must complete EMV 3DS authentication or another successful SCA method when adding Stored Credentials, wallets, or tokenized cards, or by the first subsequent transaction.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §6.2.2</span>
+      <span class="chip policy">ATO Detection</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_7.1.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="screening new merchants, sponsored merchants, and atm owners the requirement now specifies participation in the match pro system instead of the match system, and it adds a clear rule that if a merchant or sponsored merchant is terminated for listed reasons, the acquirer must add them to match pro. 7.1 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Screening New Merchants, Sponsored Merchants, and ATM Owners</div>
+    <div class="summary">The requirement now specifies participation in the MATCH Pro system instead of the MATCH system, and it adds a clear rule that if a Merchant or Sponsored Merchant is terminated for listed reasons, the Acquirer must add them to MATCH Pro.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §7.1</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_8.6.2.html"
+     data-materiality="substantive"
+     data-policies="fraud_monitoring"
+     data-search-text="investigation process the timeframe for investigating alleged coercion claims is now clearly defined as 60 days before and 60 days after the first alleged coerced transaction, with mastercard able to extend this period at its discretion, ensuring more flexibility in investigation timing. 8.6.2 policies/fraud_monitoring/rules.yaml policies/fraud_monitoring/policy.md fraud_monitoring fraud monitoring">
+    <div class="title">Investigation Process</div>
+    <div class="summary">The timeframe for investigating alleged coercion claims is now clearly defined as 60 days before and 60 days after the first alleged coerced transaction, with Mastercard able to extend this period at its discretion, ensuring more flexibility in investigation timing.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.6.2</span>
+      <span class="chip policy">Fraud Monitoring</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_8.6.8.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="coercion program performance assessments the section clarifies referenced sections by adding quotation marks and changes the term &#34;match&#34; to &#34;match pro&#34; for acquirer inquiry requirements when signing a merchant, specifying a particular version of the match service. 8.6.8 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Coercion Program Performance Assessments</div>
+    <div class="summary">The section clarifies referenced sections by adding quotation marks and changes the term &#34;MATCH&#34; to &#34;MATCH Pro&#34; for acquirer inquiry requirements when signing a merchant, specifying a particular version of the MATCH service.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.6.8</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_8.8.4.html"
+     data-materiality="substantive"
+     data-policies="bram_response content_moderation"
+     data-search-text="noncompliance assessment mitigation the updated rules require mmsps to monitor merchants persistently, including member-only website areas, with a focus on bram and transaction laundering. reporting to mastercard must be unaltered copies from mmsps, and incident reports for bram notifications must also be mmsp-authored and unmodified. the match standards referenced have been updated to match pro standards. 8.8.4 policies/bram_response/rules.yaml policies/bram_response/policy.md policies/content_moderation/rules.yaml policies/content_moderation/policy.md bram_response content_moderation bram response content moderation">
+    <div class="title">Noncompliance Assessment Mitigation</div>
+    <div class="summary">The updated rules require MMSPs to monitor merchants persistently, including member-only website areas, with a focus on BRAM and transaction laundering. Reporting to Mastercard must be unaltered copies from MMSPs, and incident reports for BRAM notifications must also be MMSP-authored and unmodified. The MATCH standards referenced have been updated to MATCH Pro standards.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.8.4</span>
+      <span class="chip policy">BRAM Response</span><span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_8.9.1.html"
+     data-materiality="substantive"
+     data-policies="bram_response content_moderation"
+     data-search-text="mmp participation requirements the requirements for acquirers to participate in the merchant monitoring program now include confirming that the mmsp is approved by mastercard for bram monitoring and/or merchant transaction laundering detection before registration and data submission. 8.9.1 policies/bram_response/rules.yaml policies/bram_response/policy.md policies/content_moderation/rules.yaml policies/content_moderation/policy.md bram_response content_moderation bram response content moderation">
+    <div class="title">MMP Participation Requirements</div>
+    <div class="summary">The requirements for Acquirers to participate in the Merchant Monitoring Program now include confirming that the MMSP is approved by Mastercard for BRAM monitoring and/or Merchant Transaction laundering detection before registration and data submission.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.9.1</span>
+      <span class="chip policy">BRAM Response</span><span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_8.9.2.html"
+     data-materiality="substantive"
+     data-policies="bram_response"
+     data-search-text="mmp monthly reporting format and submission the reporting requirements were expanded to include detailed merchant information and violations, with new fields such as merchant url, mcc, violation type, dates of reporting, and resolution details. a standardized file naming convention using the acquirer ica and other identifiers was also introduced, while existing submission and file requirements remained. 8.9.2 policies/bram_response/rules.yaml policies/bram_response/policy.md bram_response bram response">
+    <div class="title">MMP Monthly Reporting Format and Submission</div>
+    <div class="summary">The reporting requirements were expanded to include detailed merchant information and violations, with new fields such as Merchant URL, MCC, violation type, dates of reporting, and resolution details. A standardized file naming convention using the Acquirer ICA and other identifiers was also introduced, while existing submission and file requirements remained.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §8.9.2</span>
+      <span class="chip policy">BRAM Response</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="general registration requirements the updated section adds specific registration requirements for u.s. region and territories merchants, including submitting various intake forms and legal opinions for certain gambling and sweepstakes merchants. it also clarifies the process for modifying registration information, distinguishing between changes acquirers can make themselves and those that require mastercard intervention. 9.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">General Registration Requirements</div>
+    <div class="summary">The updated section adds specific registration requirements for U.S. region and territories Merchants, including submitting various intake forms and legal opinions for certain gambling and sweepstakes Merchants. It also clarifies the process for modifying registration information, distinguishing between changes Acquirers can make themselves and those that require Mastercard intervention.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.3.html"
+     data-materiality="substantive"
+     data-policies="content_moderation"
+     data-search-text="general monitoring requirements the updated rules add two new obligations for merchants: they must resolve reported complaints about potentially illegal content within seven business days, removing illegal content immediately, and must provide a process allowing individuals depicted in content to appeal for its removal if consent is invalid. 9.3 policies/content_moderation/rules.yaml policies/content_moderation/policy.md content_moderation content moderation">
+    <div class="title">General Monitoring Requirements</div>
+    <div class="summary">The updated rules add two new obligations for merchants: they must resolve reported complaints about potentially illegal content within seven business days, removing illegal content immediately, and must provide a process allowing individuals depicted in content to appeal for its removal if consent is invalid.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.3</span>
+      <span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.1.html"
+     data-materiality="substantive"
+     data-policies="content_moderation"
+     data-search-text="non-face-to-face adult content and services merchants the updated section removes the initial requirement for reported complaints within seven business days and the mandate for immediate removal of illegal content found in such reviews, but retains all other provisions unchanged. 9.4.1 policies/content_moderation/rules.yaml policies/content_moderation/policy.md content_moderation content moderation">
+    <div class="title">Non-face-to-face Adult Content and Services Merchants</div>
+    <div class="summary">The updated section removes the initial requirement for reported complaints within seven business days and the mandate for immediate removal of illegal content found in such reviews, but retains all other provisions unchanged.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.1</span>
+      <span class="chip policy">Content Moderation</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.2.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="non-face-to-face gambling merchants the update clarifies that acquirers must notify mastercard within 30 days of any changes to information provided, including legal opinions and certifications. it also mandates acquirers to affirm they will not submit restricted transactions and requires mastercard approval before processing non-face-to-face gambling transactions in the us and its territories. 9.4.2 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Non-face-to-face Gambling Merchants</div>
+    <div class="summary">The update clarifies that Acquirers must notify Mastercard within 30 days of any changes to information provided, including legal opinions and certifications. It also mandates Acquirers to affirm they will not submit restricted transactions and requires Mastercard approval before processing non-face-to-face gambling transactions in the US and its territories.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.2</span>
+      <span class="chip policy">KYB Acquirer</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.3.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="pharmaceutical and tobacco product merchants the update adds a requirement that acquirers must annually verify and maintain documentation proving that registered merchants comply with applicable laws and must provide this documentation to mastercard upon request. 9.4.3 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Pharmaceutical and Tobacco Product Merchants</div>
+    <div class="summary">The update adds a requirement that Acquirers must annually verify and maintain documentation proving that registered Merchants comply with applicable laws and must provide this documentation to Mastercard upon request.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.3</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.4.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="government-owned lottery merchants the update details new requirements for acquirers of government-owned lottery merchants, including providing mastercard with a legal opinion, obtaining independent third-party certification on controls like age verification, notifying mastercard of any changes within 30 days, and affirming rejection of restricted transactions. mastercard approval is now mandatory before processing transactions. 9.4.4 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Government-owned Lottery Merchants</div>
+    <div class="summary">The update details new requirements for Acquirers of government-owned lottery merchants, including providing Mastercard with a legal opinion, obtaining independent third-party certification on controls like age verification, notifying Mastercard of any changes within 30 days, and affirming rejection of restricted transactions. Mastercard approval is now mandatory before processing transactions.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.4</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.5.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="skill games merchants the new requirements now mandate acquirers to obtain an independent third-party certification verifying effective age and location controls for skill games merchants, notify mastercard of any material changes within 30 days, and continue affirming no submission of restricted transactions. previously, only an acquirer affirmation and mastercard approval were required. 9.4.5 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Skill Games Merchants</div>
+    <div class="summary">The new requirements now mandate acquirers to obtain an independent third-party certification verifying effective age and location controls for skill games merchants, notify Mastercard of any material changes within 30 days, and continue affirming no submission of restricted transactions. Previously, only an acquirer affirmation and Mastercard approval were required.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.5</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.7.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="recreational cannabis merchants (canada region only) the updated rules specify that acquirers must obtain and keep a copy of the merchant&#39;s provincial retail license for recreational cannabis sales, provide it to mastercard upon request, promptly notify mastercard of any license or information changes within 10 business days, and stop licensed merchants from accepting mastercard payments if they lose their license, notifying mastercard immediately. 9.4.7 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Recreational Cannabis Merchants (Canada Region Only)</div>
+    <div class="summary">The updated rules specify that acquirers must obtain and keep a copy of the merchant&#39;s provincial retail license for recreational cannabis sales, provide it to Mastercard upon request, promptly notify Mastercard of any license or information changes within 10 business days, and stop licensed merchants from accepting Mastercard payments if they lose their license, notifying Mastercard immediately.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.7</span>
+      <span class="chip policy">KYB Acquirer</span>
+      <span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.8.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="high-risk securities merchants the updated rules add requirements for acquirers to obtain and provide updated licenses before expiration and to cease processing if licenses are not updated. it also mandates obtaining a reasoned legal opinion detailing laws applicable to merchants and cardholders, ensuring full compliance with relevant laws. 9.4.8 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">High-Risk Securities Merchants</div>
+    <div class="summary">The updated rules add requirements for Acquirers to obtain and provide updated licenses before expiration and to cease processing if licenses are not updated. It also mandates obtaining a reasoned legal opinion detailing laws applicable to Merchants and Cardholders, ensuring full compliance with relevant laws.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.8</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+  <a class="change-card"
+     href="../changes/2024-09_to_2025-05_9.4.9.html"
+     data-materiality="substantive"
+     data-policies="kyb_acquirer"
+     data-search-text="cryptocurrency merchants the updated section clarifies definitions around cryptocurrency, explicitly excluding government-issued virtual currencies, and introduces a formal registration requirement with mastercard before processing cryptocurrency transactions. acquirers must obtain appropriate licenses or registrations from merchants and conduct ongoing compliance verification at least annually or upon legal changes. 9.4.9 policies/kyb_acquirer/rules.yaml policies/kyb_acquirer/policy.md kyb_acquirer kyb acquirer">
+    <div class="title">Cryptocurrency Merchants</div>
+    <div class="summary">The updated section clarifies definitions around cryptocurrency, explicitly excluding government-issued virtual currencies, and introduces a formal registration requirement with Mastercard before processing cryptocurrency transactions. Acquirers must obtain appropriate licenses or registrations from merchants and conduct ongoing compliance verification at least annually or upon legal changes.</div>
+    <div class="meta-chips">
+      <span class="chip section">SPME §9.4.9</span>
+      <span class="chip policy">KYB Acquirer</span>
+      
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  
+</section>
+
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+<script>
+(function () {
+  const q = document.getElementById('q');
+  const matFilters = document.querySelectorAll('.mat-filter');
+  const polFilters = document.querySelectorAll('.policy-filter');
+  const cards = document.querySelectorAll('.change-card');
+  const counter = document.getElementById('match-count');
+  const total = cards.length;
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    const enabledMat = new Set(Array.from(matFilters).filter(c => c.checked).map(c => c.value));
+    const enabledPol = polFilters.length
+      ? new Set(Array.from(polFilters).filter(c => c.checked).map(c => c.value))
+      : null;
+    let n = 0;
+    cards.forEach(c => {
+      const matOk = enabledMat.has(c.dataset.materiality);
+      const polOk = !enabledPol || c.dataset.policies.split(' ').some(p => enabledPol.has(p));
+      const textOk = !term || c.dataset.searchText.includes(term);
+      const visible = matOk && polOk && textOk;
+      c.classList.toggle('hidden', !visible);
+      if (visible) n++;
+    });
+    counter.textContent = `${n} of ${total}`;
+  }
+
+  q.addEventListener('input', apply);
+  matFilters.forEach(c => c.addEventListener('change', apply));
+  polFilters.forEach(c => c.addEventListener('change', apply));
+})();
+</script>
+
+</body>
+</html>

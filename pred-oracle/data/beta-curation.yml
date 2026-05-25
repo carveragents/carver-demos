@@ -1,0 +1,81 @@
+# β-scene curation. Hand-edited; consumed by build/beta_*.py generators.
+# See docs/specs/50-beta-walkthrough.md for narrative context.
+
+schema_version: 1
+build_date: "2026-05-20"
+
+# Drives the highlighted footprint outline on the world map and which set
+# is referenced in the cascade highlight chips. Switch to "kalshi" to flip
+# the entire scene to the other platform.
+platform_footprint: "polymarket"
+
+# Retrospective drilldown — the wow on /beta/heatmap/. France was banned
+# in Dec 2025; the corpus has 1,481 FR records (2020-2026) showing the
+# escalating AMF/ESMA pressure leading to the action. ANJ (gambling
+# regulator) is not in the Carver catalog, so the framing uses
+# "escalating French regulatory pressure" (AMF + ESMA + EU Commission).
+retrospective_focus:
+  country_code: "FR"
+  title: "France — 13 months of regulatory pressure before the December 2025 exit"
+  narrative_window_months: 18
+  annotation_callouts:
+    - date: "2024-11-15"
+      label: "AMF opens dossier on prediction-market activity (illustrative date)"
+    - date: "2025-03-01"
+      label: "ESMA Q1 2025 risk dashboard cites unregulated event-contract venues"
+    - date: "2025-07-15"
+      label: "AMF guidance on financial product perimeter (covers binary outcomes)"
+    - date: "2025-10-20"
+      label: "Enforcement notices against unauthorised platforms"
+    - date: "2025-12-15"
+      label: "Public restriction announced; operator exits French market"
+
+featured_cascade_ids:
+  - "fatf-2025-q4-virtual-assets"
+  - "bcbs-2025-disclosure-frameworks"
+  - "esma-2026-q1-event-contracts"
+
+# 3 watch-list jurisdictions for the Q2 2026 quarterly report.
+# Selected from corpus coverage (≥100 records each) and current public
+# reporting consistent with Stage 3 spec § 7 BW2.
+watch_list_picks:
+  - country_code: "BR"
+    label: "Brazil"
+    rationale: |
+      SECAP scrutiny of fixed-odds platforms has intensified through Q1-Q2 2026.
+      Pattern resembles French regulatory escalation 12 months out: bulletins,
+      then guidance, then perimeter clarification. Three driving events in window.
+    recommended_actions:
+      - "Engage local counsel on SECAP perimeter interpretation"
+      - "Prepare geofencing playbook for São Paulo/Rio routing"
+      - "Monitor monthly; escalate if guidance ≥ 'enforcement' tier emerges"
+
+  - country_code: "SG"
+    label: "Singapore"
+    rationale: |
+      MAS guidance cadence on digital payment tokens has spilled into
+      event-contract platforms via remote-gaming references. The 2025 reviews
+      cite cross-border solicitation language consistent with the French
+      AMF posture 14 months pre-action.
+    recommended_actions:
+      - "Audit MAS RNC notifications for the past 90 days"
+      - "Confirm whether the platform's payment rails meet DPT Act perimeter"
+      - "Bring posture review to next board meeting"
+
+  - country_code: "AU"
+    label: "Australia"
+    rationale: |
+      AUSTRAC + ACMA combined posture has tightened through 2026 Q1. Carver
+      tagged 480 AU records, with a clear uptick in advisory and guidance
+      tiers Q4 2025 onward — the same composition curve France showed.
+    recommended_actions:
+      - "Map AUSTRAC reporting-entity obligations for event-contract products"
+      - "Review ACMA enforcement bulletins quarterly"
+      - "Flag in next board international-strategy slide"
+
+# The window the quarterly report covers. The report compares this window
+# against the immediately preceding equivalent window.
+report_window:
+  start: "2026-04-01"
+  end:   "2026-06-30"
+  label: "Q2 2026"

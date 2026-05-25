@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acquirer Fraud Loss Control Programs — SPME §6.2.2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="wide">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">Halyard Pay <span class="sep">·</span> Policy Updates</a>
+      <nav class="site-nav">
+        <a href="../index.html">Overview</a>
+        <a href="../timeline/index.html">Timeline</a>
+        <a href="../policies/index.html">Policies</a>
+      </nav>
+      <span class="site-tagline">Powered by Carver Agents</span>
+    </div>
+  </header>
+  <main class="container">
+    
+
+<nav class="breadcrumb">
+  <a href="../timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <a href="../transitions/2024-09_to_2025-05.html">Sep 2024 → May 2025</a>
+  <span class="sep">›</span>
+  <span class="current">§6.2.2</span>
+</nav>
+
+<header class="change-header">
+  <div>
+    <p class="eyebrow">Mastercard SPME §6.2.2 · Sep 2024 → May 2025</p>
+    <h1>Acquirer Fraud Loss Control Programs</h1>
+  </div>
+  <span class="materiality substantive">substantive</span>
+</header>
+
+
+
+<p class="lede" style="font-size: 16px;">The compliance date for Europe-region Acquirers&#39; strong authentication was extended to 8 October 2024 (1 April 2025 in Serbia) from 13 October 2023. The requirement was reworded to specify that Merchants or Digital Wallet Operators must complete EMV 3DS authentication or another successful SCA method when adding Stored Credentials, wallets, or tokenized cards, or by the first subsequent transaction.</p>
+
+<div class="sources-row">
+  <span class="label">Sources</span>
+  
+  <a href="../sources/spme/20240901001027.pdf#page=60" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">Mastercard SPME · Sep 2024 · page 60</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  
+  
+  <a href="../sources/spme/20250524042807.pdf#page=62" target="_blank" rel="noopener" class="source pdf">
+    <svg class="icon"><use href="#icon-doc"/></svg>
+    <span class="src-name">Mastercard SPME · May 2025 · page 62</span>
+    <span class="ext">PDF</span>
+    <svg class="icon-ext"><use href="#icon-external"/></svg>
+  </a>
+  
+  
+  <a href="../policies/ato_detection.html" class="source policy">
+    <svg class="icon"><use href="#icon-book"/></svg>
+    <span class="src-name">ATO Detection</span>
+    <span class="ext">current</span>
+  </a>
+  
+</div>
+
+
+
+<div class="callout">
+  <strong>Why these edits?</strong> The extension of the compliance date and the rewording of the Acquirer Authentication Strategy requiring Merchants or Digital Wallet Operators to complete EMV 3DS authentication or another successful SCA method when adding stored credentials or tokenized cards directly affects the Account-Takeover Detection controls outlined in this policy.
+</div>
+
+<nav class="tabs">
+  <a href="#side-by-side">Side-by-side</a>
+  <a href="#redline">Redline</a>
+  <a href="#raw-diff">Raw diff</a>
+</nav>
+
+<section id="side-by-side" class="tab-panel">
+  <div class="side-by-side">
+    <div class="col">
+      <div class="label">Mastercard SPME §6.2.2</div>
+      
+      <div class="prose">An Acquirer must establish, and ensure that each of its Service Providers, ATM owners, and 
+
+other agents implement, a fraud loss control program that meets the following minimum 
+
+requirements, and preferably will include the recommended additional parameters. 
+
+The program must automatically generate daily fraud monitoring reports and real-time or near- 
+
+real-time alerts. 
+
+An Acquirer must have the capability to stop the authorization flow related to fraudulent 
+
+Transactions, in case of major fraud attack, emergency situations or at Mastercard’s request. 
+
+The Acquirer or its Service Provider must have staff trained to write fraud detection rules and 
+
+manage fraud cases. 
+
+Alerts and Daily fraud monitoring reports must be analyzed by trained staff within 24 hours and 
+
+measures be implemented to mitigate fraud as soon as possible and at the latest within 72 
+
+hours following the Transactions time. 
+
+6.2.2.1 Acquirer Authentication Strategy 
+
+Requirements 
+
+An Acquirer and its Service Providers must comply with the relevant authentication 
+
+requirements set forth in the Standards, including but not limited to: 
+
+• 
+
+Mastercard Identity Check Program Guide 
+
+• 
+
+Mastercard Identity Check Compliance Program Guide 
+
+• 
+
+Authentication Guide for Europe (applicable to Europe Region Acquirers only) 
+
+An Acquirer must implement strong authentication controls (ideally two factors) to ensure that 
+
+only the Acquirer, its Service Providers (for example, any 3-D Secure Service Provider operating a 
+
+3-D Secure server, Third Party Processor, or Payment Facilitator) <ins class='ins'>, </ins>and its Merchants can initiate 
+
+Transactions on its platform. 
+
+Effective <del class='del'>13 </del><ins class='ins'>8 </ins>October <del class='del'>2023, </del><ins class='ins'>2024 (1 April 2025 in Serbia), </ins>an Acquirer in the Europe Region, excluding <ins class='ins'></ins>
+
+<ins class='ins'></ins>Armenia, Azerbaijan, <del class='del'>¶ </del>Belarus, Georgia, Kazakhstan, Kyrgyzstan, Moldova, <del class='del'>Serbia, </del>Tajikistan, Turkey, <ins class='ins'></ins>
+
+<ins class='ins'></ins>Turkmenistan, <del class='del'>¶ </del>Ukraine, and Uzbekistan, must comply with the following additional requirement: 
+
+<del class='del'>At the time of storing a Credential on file or in a wallet or Tokenizing a </del><ins class='ins'>An Acquirer must ensure that while adding a Card as a Stored </ins>Credential, <ins class='ins'>Digital Wallet, or </ins>
+
+<ins class='ins'>similar, including through Tokenization, </ins>or at the <del class='del'>¶ </del>latest during the first <del class='del'>Transaction following Card-add, the Acquirer must ensure that the ¶ Acceptor </del><ins class='ins'>subsequent Transaction, </ins>
+
+<ins class='ins'>the Merchant or Digital Wallet Operator must </ins>either successfully <del class='del'>completes </del><ins class='ins'>complete (resulting in RReq=Y) </ins>
+
+<ins class='ins'></ins>an EMV <ins class='ins'>3-D Secure (</ins>3DS <ins class='ins'>) </ins>authentication <del class='del'>(i.e., challenge IND = ¶ 04/SCA mandated, and RREQ = Y) or applies </del><ins class='ins'>with Challenge Indicator=04/SCA mandated or apply </ins>
+
+<ins class='ins'></ins>another method that results in <ins class='ins'>a successfully </ins>completed <ins class='ins'>SCA. If </ins>SCA <del class='del'>¶ with Issuer step-up. </del><ins class='ins'>was successfully </ins>
+
+Fraud Loss Control Standards</div>
+      
+    </div>
+    <div class="col">
+      <div class="label">Halyard Pay · 2 files</div>
+      
+        <div class="file-panel">
+          <div style="margin-bottom: 8px;">
+            <a class="chip policy" href="../policies/ato_detection.html">ATO Detection · rules.yaml</a>
+          </div>
+          <pre class='yaml-diff'><div class='diff-line-equal'>program: ATO Detection</div>
+<div class='diff-line-removed'>- authority: Mastercard SPME 10.6.2.1, 10.6.4</div>
+<div class='diff-line-added'>+ authority: Mastercard SPME 10.6.2.1, 10.6.4, 6.2.2</div>
+<div class='diff-line-equal'>risk_threshold_for_3ds_challenge: 0.5</div>
+<div class='diff-line-equal'>risk_score_range: [0.0, 1.0]</div>
+<div class='diff-line-equal'>signals:</div>
+<div class='diff-line-equal'>  - geo_anomaly</div>
+<div class='diff-line-equal'>  - device_fingerprint_change</div>
+<div class='diff-line-equal'>  - velocity_breach</div>
+<div class='diff-line-equal'>  - credential_stuffing</div>
+<div class='diff-line-equal'>challenge_method: 3ds_v2</div>
+<div class='diff-line-equal'>persistent_risk_escalation_threshold: 3</div>
+<div class='diff-line-equal'>persistent_risk_lookback_days: 7</div>
+<div class='diff-line-equal'>agent_owner: ato_agent</div>
+<div class='diff-line-equal'>&nbsp;</div>
+<div class='diff-line-removed'>- # This ATO Detection policy incorporates Mastercard SPME .6.4 updates that affect Account Data Compromise (ADC) event mitigation. It adjusts risk evaluation processes by recognizing that merchants in the U.S. and Canada with high tokenization rates and e-commerce transaction volumes may benefit from reduced or waived reimbursement requirements during such events. This complements detection signal thresholds by informing downstream operational decisions on ADC events, ensuring alignment with Mastercard&#x27;s revised criteria for operational reimbursement and event assessment.</div>
+<div class='diff-line-added'>+ # This ATO Detection policy reflects updates from Mastercard SPME §§6.2.2 and 10.6.4.</div>
+<div class='diff-line-added'>+ # It incorporates enhanced authentication requirements for Acquirers and Merchants in the Europe Region to strengthen Stored Credential and Tokenization transaction security.</div>
+<div class='diff-line-added'>+ # Effective 8 October 2024 (or 1 April 2025 in Serbia), Merchants and Digital Wallet Operators must satisfy EMV 3DS challenge requirements or complete a strong customer authentication (SCA) alternative when adding or using stored credentials.</div>
+<div class='diff-line-added'>+ # These controls support mitigation of account takeover by ensuring robust verification at credential enrollment or first use, aligning detection thresholds and operational responses with Mastercard&#x27;s evolving fraud prevention standards.</div></pre>
+        </div>
+      
+        <div class="file-panel">
+          <div style="margin-bottom: 8px;">
+            <a class="chip policy" href="../policies/ato_detection.html">ATO Detection · policy.md</a>
+          </div>
+          <h1>Account-Takeover (ATO) Detection</h1>
+<p>Account-takeover fraud occurs when a malicious actor gains unauthorized access to a cardholder's account and initiates transactions without the cardholder's consent. Halyard Pay <del class='del'>implements </del><ins class='ins'>enforces </ins>real-time risk scoring on authentication events and <del class='del'>enforces </del>a mandatory 3DS <del class='del'>(3-D Secure) </del>challenge for <del class='del'>any session </del><ins class='ins'>sessions </ins>where the <del class='del'>computed </del>risk score meets or exceeds the defined threshold.</p>
+<h2>Detection signals</h2>
+<p>The risk model <del class='del'>incorporates multiple </del><ins class='ins'>evaluates </ins>behavioral <del class='del'>signals: </del><ins class='ins'>indicators such as </ins>geographic <del class='del'>anomalies inconsistent with a cardholder's established pattern, changes to </del><ins class='ins'>anomalies, </ins>device <del class='del'>fingerprint, </del><ins class='ins'>fingerprint changes, </ins>transaction <del class='del'>velocity breaches, and indicators </del><ins class='ins'>velocity, and signs </ins>of credential-stuffing <del class='del'>activity. </del><ins class='ins'>attacks. </ins></p>
+<h2>Required actions</h2>
+<ol>
+<li>
+<p>Evaluate each authentication event <del class='del'>against the defined signal list </del><ins class='ins'>using the specified signals </ins>in real time.</p>
+</li>
+<li>
+<p>Compute a normalized risk score between 0.0 and 1.0.</p>
+</li>
+<li>
+<p><del class='del'>If the risk score is </del><ins class='ins'>For risk scores of </ins>0.5 or greater, <del class='del'>trigger a mandatory </del><ins class='ins'>require a </ins>3DS challenge <del class='del'>before authorizing the transaction. </del><ins class='ins'>prior to transaction authorization. </ins></p>
+</li>
+<li>
+<p>Log all ATO signals and outcomes in the case management system.</p>
+</li>
+<li>
+<p>Escalate persistent high-risk accounts <del class='del'>to </del><ins class='ins'>for manual review by </ins>the ATO response <del class='del'>team for manual review. </del><ins class='ins'>team. </ins></p>
+</li>
+<li>
+<p><del class='del'>In the event of an </del><ins class='ins'>Upon </ins>Account Data Compromise (ADC), ensure <del class='del'>that </del>any <ins class='ins'>involved </ins>Terminal Servicer <del class='del'>(TS) involved promptly </del>initiates <del class='del'>a forensic investigation by </del>a PCI Forensic Investigator (PFI) <ins class='ins'>investigation </ins>within 72 <del class='del'>hours, </del><ins class='ins'>hours </ins>and completes it as soon as <del class='del'>practical. </del><ins class='ins'>practicable. </ins></p>
+</li>
+<li>
+<p>Confirm <del class='del'>that all involved </del>Terminal Servicers revalidate PCI DSS compliance within 90 calendar days <del class='del'>after the conclusion of </del><ins class='ins'>following </ins>the forensic investigation and <del class='del'>demonstrate compliance with the </del><ins class='ins'>meet </ins>PCI DSS Data Encryption and Software Validation <del class='del'>(DESV) </del>appendix <ins class='ins'>requirements </ins>within 12 months, per Mastercard SPME §10.6.2.1.</p>
+</li>
+<li>
+<p><del class='del'>Assure registration of any </del><ins class='ins'>Register involved </ins>Terminal Servicer(s) <del class='del'>associated with the ADC Event </del>through Mastercard Connect within 10 calendar days of <del class='del'>awareness, and confirm </del><ins class='ins'>ADC awareness and ensure </ins>full cooperation with Mastercard and law <del class='del'>enforcement authorities. </del><ins class='ins'>enforcement. </ins></p>
+</li>
+<li>
+<p>Verify timely <del class='del'>receipt by </del><ins class='ins'>delivery to </ins>Mastercard of unedited forensic examination findings.</p>
+</li>
+<li>
+<p><ins class='ins'>Complete all containment measures identified in forensic reports. </ins></p>
+</li>
+</ol>
+<p><ins class='ins'>11. </ins>Ensure <ins class='ins'>Acquirers and Service Providers implement strong authentication controls per Mastercard Identity Check guidelines and regional Authentication Guides. </ins></p>
+<p><ins class='ins'>12. For Acquirers in the Europe Region effective 8 October 2024 (1 April 2025 in Serbia), verify </ins>that <del class='del'>all required containment actions identified in forensic reports are completed by the Terminal Servicers involved. </del><ins class='ins'>when storing credentials or tokenizing cards, Merchants or Digital Wallet Operators complete EMV 3-D Secure authentication with Challenge Indicator=04/SCA mandated or an equivalent successful Strong Customer Authentication method, consistent with Mastercard SPME §6.2.2.1. </ins></p>
+<p>These <del class='del'>enhanced controls reinforce </del><ins class='ins'>measures maintain </ins>Halyard Pay’s <del class='del'>adherence to </del><ins class='ins'>compliance with </ins>Mastercard’s <del class='del'>strengthened ADC event protocols, supporting minimized risk and financial exposure through compliance and </del><ins class='ins'>updated fraud control and authentication standards, reducing risk from account-takeover and ensuring </ins>timely <ins class='ins'>incident response and </ins>remediation.</p>
+<p>Source authority: Mastercard SPME §6.2, <ins class='ins'>§6.2.2.1, </ins>§10.6.2.1.</p>
+
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<section id="redline" class="tab-panel">
+  
+  
+    
+      <div class="label-overline">policies/ato_detection/policy.md — after applying change</div>
+      <div class="prose" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 24px; line-height: 1.7;">
+        <h1>Account-Takeover (ATO) Detection</h1>
+<p>Account-takeover fraud occurs when a malicious actor gains unauthorized access to a cardholder's account and initiates transactions without the cardholder's consent. Halyard Pay <del class='del'>implements </del><ins class='ins'>enforces </ins>real-time risk scoring on authentication events and <del class='del'>enforces </del>a mandatory 3DS <del class='del'>(3-D Secure) </del>challenge for <del class='del'>any session </del><ins class='ins'>sessions </ins>where the <del class='del'>computed </del>risk score meets or exceeds the defined threshold.</p>
+<h2>Detection signals</h2>
+<p>The risk model <del class='del'>incorporates multiple </del><ins class='ins'>evaluates </ins>behavioral <del class='del'>signals: </del><ins class='ins'>indicators such as </ins>geographic <del class='del'>anomalies inconsistent with a cardholder's established pattern, changes to </del><ins class='ins'>anomalies, </ins>device <del class='del'>fingerprint, </del><ins class='ins'>fingerprint changes, </ins>transaction <del class='del'>velocity breaches, and indicators </del><ins class='ins'>velocity, and signs </ins>of credential-stuffing <del class='del'>activity. </del><ins class='ins'>attacks. </ins></p>
+<h2>Required actions</h2>
+<ol>
+<li>
+<p>Evaluate each authentication event <del class='del'>against the defined signal list </del><ins class='ins'>using the specified signals </ins>in real time.</p>
+</li>
+<li>
+<p>Compute a normalized risk score between 0.0 and 1.0.</p>
+</li>
+<li>
+<p><del class='del'>If the risk score is </del><ins class='ins'>For risk scores of </ins>0.5 or greater, <del class='del'>trigger a mandatory </del><ins class='ins'>require a </ins>3DS challenge <del class='del'>before authorizing the transaction. </del><ins class='ins'>prior to transaction authorization. </ins></p>
+</li>
+<li>
+<p>Log all ATO signals and outcomes in the case management system.</p>
+</li>
+<li>
+<p>Escalate persistent high-risk accounts <del class='del'>to </del><ins class='ins'>for manual review by </ins>the ATO response <del class='del'>team for manual review. </del><ins class='ins'>team. </ins></p>
+</li>
+<li>
+<p><del class='del'>In the event of an </del><ins class='ins'>Upon </ins>Account Data Compromise (ADC), ensure <del class='del'>that </del>any <ins class='ins'>involved </ins>Terminal Servicer <del class='del'>(TS) involved promptly </del>initiates <del class='del'>a forensic investigation by </del>a PCI Forensic Investigator (PFI) <ins class='ins'>investigation </ins>within 72 <del class='del'>hours, </del><ins class='ins'>hours </ins>and completes it as soon as <del class='del'>practical. </del><ins class='ins'>practicable. </ins></p>
+</li>
+<li>
+<p>Confirm <del class='del'>that all involved </del>Terminal Servicers revalidate PCI DSS compliance within 90 calendar days <del class='del'>after the conclusion of </del><ins class='ins'>following </ins>the forensic investigation and <del class='del'>demonstrate compliance with the </del><ins class='ins'>meet </ins>PCI DSS Data Encryption and Software Validation <del class='del'>(DESV) </del>appendix <ins class='ins'>requirements </ins>within 12 months, per Mastercard SPME §10.6.2.1.</p>
+</li>
+<li>
+<p><del class='del'>Assure registration of any </del><ins class='ins'>Register involved </ins>Terminal Servicer(s) <del class='del'>associated with the ADC Event </del>through Mastercard Connect within 10 calendar days of <del class='del'>awareness, and confirm </del><ins class='ins'>ADC awareness and ensure </ins>full cooperation with Mastercard and law <del class='del'>enforcement authorities. </del><ins class='ins'>enforcement. </ins></p>
+</li>
+<li>
+<p>Verify timely <del class='del'>receipt by </del><ins class='ins'>delivery to </ins>Mastercard of unedited forensic examination findings.</p>
+</li>
+<li>
+<p><ins class='ins'>Complete all containment measures identified in forensic reports. </ins></p>
+</li>
+</ol>
+<p><ins class='ins'>11. </ins>Ensure <ins class='ins'>Acquirers and Service Providers implement strong authentication controls per Mastercard Identity Check guidelines and regional Authentication Guides. </ins></p>
+<p><ins class='ins'>12. For Acquirers in the Europe Region effective 8 October 2024 (1 April 2025 in Serbia), verify </ins>that <del class='del'>all required containment actions identified in forensic reports are completed by the Terminal Servicers involved. </del><ins class='ins'>when storing credentials or tokenizing cards, Merchants or Digital Wallet Operators complete EMV 3-D Secure authentication with Challenge Indicator=04/SCA mandated or an equivalent successful Strong Customer Authentication method, consistent with Mastercard SPME §6.2.2.1. </ins></p>
+<p>These <del class='del'>enhanced controls reinforce </del><ins class='ins'>measures maintain </ins>Halyard Pay’s <del class='del'>adherence to </del><ins class='ins'>compliance with </ins>Mastercard’s <del class='del'>strengthened ADC event protocols, supporting minimized risk and financial exposure through compliance and </del><ins class='ins'>updated fraud control and authentication standards, reducing risk from account-takeover and ensuring </ins>timely <ins class='ins'>incident response and </ins>remediation.</p>
+<p>Source authority: Mastercard SPME §6.2, <ins class='ins'>§6.2.2.1, </ins>§10.6.2.1.</p>
+
+      </div>
+    
+    <p style="font-size: 12px; color: var(--ink-muted); margin-top: 16px;">Source authority: Mastercard SPME §6.2.2.</p>
+  
+</section>
+
+<section id="raw-diff" class="tab-panel">
+  <pre class="raw-diff">--- a/policies/ato_detection/rules.yaml
++++ b/policies/ato_detection/rules.yaml
+@@ -1,5 +1,5 @@
+ program: ATO Detection
+-authority: Mastercard SPME 10.6.2.1, 10.6.4
++authority: Mastercard SPME 10.6.2.1, 10.6.4, 6.2.2
+ risk_threshold_for_3ds_challenge: 0.5
+ risk_score_range: [0.0, 1.0]
+ signals:
+@@ -12,4 +12,7 @@
+ persistent_risk_lookback_days: 7
+ agent_owner: ato_agent
+ 
+-# This ATO Detection policy incorporates Mastercard SPME .6.4 updates that affect Account Data Compromise (ADC) event mitigation. It adjusts risk evaluation processes by recognizing that merchants in the U.S. and Canada with high tokenization rates and e-commerce transaction volumes may benefit from reduced or waived reimbursement requirements during such events. This complements detection signal thresholds by informing downstream operational decisions on ADC events, ensuring alignment with Mastercard&#39;s revised criteria for operational reimbursement and event assessment.+# This ATO Detection policy reflects updates from Mastercard SPME §§6.2.2 and 10.6.4.
++# It incorporates enhanced authentication requirements for Acquirers and Merchants in the Europe Region to strengthen Stored Credential and Tokenization transaction security.
++# Effective 8 October 2024 (or 1 April 2025 in Serbia), Merchants and Digital Wallet Operators must satisfy EMV 3DS challenge requirements or complete a strong customer authentication (SCA) alternative when adding or using stored credentials.
++# These controls support mitigation of account takeover by ensuring robust verification at credential enrollment or first use, aligning detection thresholds and operational responses with Mastercard&#39;s evolving fraud prevention standards.
+
+--- a/policies/ato_detection/policy.md
++++ b/policies/ato_detection/policy.md
+@@ -1,24 +1,26 @@
+ # Account-Takeover (ATO) Detection
+ 
+-Account-takeover fraud occurs when a malicious actor gains unauthorized access to a cardholder&#39;s account and initiates transactions without the cardholder&#39;s consent. Halyard Pay implements real-time risk scoring on authentication events and enforces a mandatory 3DS (3-D Secure) challenge for any session where the computed risk score meets or exceeds the defined threshold.
++Account-takeover fraud occurs when a malicious actor gains unauthorized access to a cardholder&#39;s account and initiates transactions without the cardholder&#39;s consent. Halyard Pay enforces real-time risk scoring on authentication events and a mandatory 3DS challenge for sessions where the risk score meets or exceeds the defined threshold.
+ 
+ ## Detection signals
+ 
+-The risk model incorporates multiple behavioral signals: geographic anomalies inconsistent with a cardholder&#39;s established pattern, changes to device fingerprint, transaction velocity breaches, and indicators of credential-stuffing activity.
++The risk model evaluates behavioral indicators such as geographic anomalies, device fingerprint changes, transaction velocity, and signs of credential-stuffing attacks.
+ 
+ ## Required actions
+ 
+-1. Evaluate each authentication event against the defined signal list in real time.
++1. Evaluate each authentication event using the specified signals in real time.
+ 2. Compute a normalized risk score between 0.0 and 1.0.
+-3. If the risk score is 0.5 or greater, trigger a mandatory 3DS challenge before authorizing the transaction.
++3. For risk scores of 0.5 or greater, require a 3DS challenge prior to transaction authorization.
+ 4. Log all ATO signals and outcomes in the case management system.
+-5. Escalate persistent high-risk accounts to the ATO response team for manual review.
+-6. In the event of an Account Data Compromise (ADC), ensure that any Terminal Servicer (TS) involved promptly initiates a forensic investigation by a PCI Forensic Investigator (PFI) within 72 hours, and completes it as soon as practical.
+-7. Confirm that all involved Terminal Servicers revalidate PCI DSS compliance within 90 calendar days after the conclusion of the forensic investigation and demonstrate compliance with the PCI DSS Data Encryption and Software Validation (DESV) appendix within 12 months, per Mastercard SPME §10.6.2.1.
+-8. Assure registration of any Terminal Servicer(s) associated with the ADC Event through Mastercard Connect within 10 calendar days of awareness, and confirm full cooperation with Mastercard and law enforcement authorities.
+-9. Verify timely receipt by Mastercard of unedited forensic examination findings.
+-10. Ensure that all required containment actions identified in forensic reports are completed by the Terminal Servicers involved.
++5. Escalate persistent high-risk accounts for manual review by the ATO response team.
++6. Upon Account Data Compromise (ADC), ensure any involved Terminal Servicer initiates a PCI Forensic Investigator (PFI) investigation within 72 hours and completes it as soon as practicable.
++7. Confirm Terminal Servicers revalidate PCI DSS compliance within 90 calendar days following the forensic investigation and meet PCI DSS Data Encryption and Software Validation appendix requirements within 12 months, per Mastercard SPME §10.6.2.1.
++8. Register involved Terminal Servicer(s) through Mastercard Connect within 10 calendar days of ADC awareness and ensure full cooperation with Mastercard and law enforcement.
++9. Verify timely delivery to Mastercard of unedited forensic examination findings.
++10. Complete all containment measures identified in forensic reports.
++11. Ensure Acquirers and Service Providers implement strong authentication controls per Mastercard Identity Check guidelines and regional Authentication Guides.
++12. For Acquirers in the Europe Region effective 8 October 2024 (1 April 2025 in Serbia), verify that when storing credentials or tokenizing cards, Merchants or Digital Wallet Operators complete EMV 3-D Secure authentication with Challenge Indicator=04/SCA mandated or an equivalent successful Strong Customer Authentication method, consistent with Mastercard SPME §6.2.2.1.
+ 
+-These enhanced controls reinforce Halyard Pay’s adherence to Mastercard’s strengthened ADC event protocols, supporting minimized risk and financial exposure through compliance and timely remediation.
++These measures maintain Halyard Pay’s compliance with Mastercard’s updated fraud control and authentication standards, reducing risk from account-takeover and ensuring timely incident response and remediation.
+ 
+-Source authority: Mastercard SPME §6.2, §10.6.2.1.+Source authority: Mastercard SPME §6.2, §6.2.2.1, §10.6.2.1.</pre>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      Generated from Mastercard SPME proposals · Subject to Halyard Pay compliance review
+    </div>
+  </footer>
+  
+</body>
+</html>

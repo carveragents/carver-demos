@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Heat-map — Pred-Oracle{% endblock %}
+{% block content %}
+<nav class="mb-4 text-sm">
+  <a href="{{ base_url|default('/') }}beta/" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+</nav>
+
+<header class="mb-8">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
+  <h1 class="text-2xl font-bold mt-1">Reading regulatory pressure</h1>
+  <p class="text-slate-600 mt-1 text-sm max-w-3xl">
+    Calibrate on France's 13-month pre-exit pattern, then apply that lens to
+    where heat is building right now. Two views, one underlying data spine.
+  </p>
+</header>
+
+<section class="mb-10" id="step-1-calibrate">
+  <div class="flex items-baseline gap-3 mb-2">
+    <div class="text-xs uppercase tracking-[0.18em] font-semibold text-blue-600">Step 1 · Calibrate</div>
+    <div class="text-xs text-slate-400">What an exit looks like 13 months out.</div>
+  </div>
+  <h2 class="text-xl font-bold mb-1">{{ retrospective_focus.title }}</h2>
+  <p class="text-xs text-slate-500 mb-4">{{ retrospective_focus.anj_disclosure }}</p>
+  <div class="border border-slate-200 rounded-lg p-4 mb-4 bg-white">
+    {% set buckets = retrospective_focus.weekly_buckets %}
+    {% set callouts = retrospective_focus.annotation_callouts %}
+    {% include "beta/_components/pressure_chart.html" %}
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <ul class="space-y-2 text-sm">
+      {% for ev in retrospective_focus.top_events %}
+      <li>
+        <a href="{{ ev.link }}" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">{{ ev.title }}</a>
+        <div class="text-xs text-slate-500">{{ ev.regulator }} · {{ ev.pub_date }} · urg {{ ev.urgency|round(0)|int }}</div>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="text-sm border border-amber-200 bg-amber-50/60 rounded p-3 self-start">
+      <div class="text-xs uppercase tracking-wider text-amber-800 mb-1">Honest framing</div>
+      <p class="text-slate-800">The Carver catalog tags AMF (securities) and ESMA (EU-level) events, not ANJ (gambling). The 13-month slope above is drawn from the available public regulatory record on France.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mb-10 border-t border-slate-200 pt-8" id="step-2-apply">
+  <div class="flex items-baseline gap-3 mb-2">
+    <div class="text-xs uppercase tracking-[0.18em] font-semibold text-blue-600">Step 2 · Apply</div>
+    <div class="text-xs text-slate-400">Where heat is building today, through that lens.</div>
+  </div>
+  <h2 class="text-xl font-bold mb-1">Jurisdictional regulatory pressure — last {{ window_days }} days</h2>
+  <p class="text-slate-600 mt-1 mb-4 text-sm">
+    {{ world_aggregates|length }} jurisdictions with activity. {{ anomaly_note }}
+  </p>
+
+  <div id="world-map" style="width: 100%; height: 480px;" class="mb-6 border border-slate-200 rounded-lg bg-slate-50/40"></div>
+
+  <details class="mt-4" open>
+    <summary class="cursor-pointer text-sm uppercase tracking-wider text-slate-500 mb-2">US-states drilldown</summary>
+    <div id="us-states-map" style="width: 100%; height: 360px;" class="mt-3 border border-slate-200 rounded-lg bg-slate-50/40"></div>
+  </details>
+</section>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="{{ base_url|default('/') }}beta/" class="text-sm text-slate-500 hover:text-slate-900">← International strategy</a>
+  <a href="{{ base_url|default('/') }}beta/cascades/" class="text-sm text-blue-600 hover:text-blue-800">Open cascade signals →</a>
+</section>
+
+<script>
+  const WORLD_DATA = {{ world_aggregates | tojson }};
+  const STATE_DATA = {{ us_state_aggregates | tojson }};
+  const FOOTPRINT = {{ platform_footprint | tojson }};
+  (function () {
+    function initWorld() {
+      if (typeof echarts === 'undefined') { setTimeout(initWorld, 50); return; }
+      fetch('{{ base_url|default("/") }}static/js/world.geo.json')
+        .then(r => r.ok ? r.json() : null)
+        .then(geo => {
+          const map = echarts.init(document.getElementById('world-map'));
+          if (geo) {
+            echarts.registerMap('world', geo);
+            const closedCodes = new Set(FOOTPRINT.closed.map(e => e.code));
+            const operatingCodes = new Set(FOOTPRINT.operating.map(e => e.code));
+            map.setOption({
+              tooltip: { trigger: 'item',
+                formatter: p => `<b>${p.name}</b><br/>events: ${p.data ? p.data.count : 0}<br/>avg urgency: ${p.data ? p.data.avg_urgency.toFixed(1) : 0}<br/>pressure: ${p.value || 0}` },
+              visualMap: { min: 0, max: 100, left: 'left', bottom: 0, calculable: true,
+                inRange: { color: ['#dcfce7', '#fef9c3', '#fed7aa', '#fca5a5', '#dc2626'] },
+                text: ['high', 'low'] },
+              series: [{
+                type: 'map', map: 'world', roam: true,
+                emphasis: { label: { show: false } },
+                data: WORLD_DATA.map(d => ({
+                  name: d.label, value: d.pressure, count: d.count,
+                  avg_urgency: d.avg_urgency,
+                  itemStyle: closedCodes.has(d.code)
+                    ? { borderColor: '#dc2626', borderWidth: 2 }
+                    : (operatingCodes.has(d.code) ? { borderColor: '#1e40af', borderWidth: 1.5 } : {}),
+                })),
+              }],
+            });
+          } else {
+            document.getElementById('world-map').innerHTML =
+              '<div class="p-6 text-sm text-slate-500">World GeoJSON unavailable. ' +
+              'Top jurisdictions: ' + WORLD_DATA.slice(0, 10).map(d => d.label + ' (' + d.pressure + ')').join(', ') + '.</div>';
+          }
+        });
+    }
+    function initStates() {
+      if (typeof echarts === 'undefined') { setTimeout(initStates, 50); return; }
+      fetch('{{ base_url|default("/") }}static/js/usa-states.json')
+        .then(r => r.ok ? r.json() : null)
+        .then(geo => {
+          const map = echarts.init(document.getElementById('us-states-map'));
+          if (geo) {
+            echarts.registerMap('USA', geo);
+            map.setOption({
+              tooltip: { trigger: 'item', formatter: p =>
+                `<b>${p.name}</b><br/>pressure: ${p.value || 0}` },
+              visualMap: { min: 0,
+                max: Math.max(1, ...STATE_DATA.map(d => d.pressure)),
+                left: 'left', bottom: 0, calculable: true,
+                inRange: { color: ['#eff6ff', '#1e40af'] } },
+              series: [{ type: 'map', map: 'USA', roam: false,
+                data: STATE_DATA.map(d => ({ name: d.label, value: d.pressure })) }],
+            });
+          } else {
+            document.getElementById('us-states-map').innerHTML =
+              '<div class="p-6 text-sm text-slate-500">US states GeoJSON missing.</div>';
+          }
+        });
+    }
+    initWorld();
+    initStates();
+  })();
+</script>
+{% endblock %}

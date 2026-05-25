@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nResolution criteria: If the Federal Reserve does a Cut of 25bps on January 26, 2028, then the market resolves to Yes.\nConditions:\n  A: FOMC 25 bps cut on Jan 26, 2028 \u2014 On Jan 26, 2028, the FOMC announces an exact 25 bp reduction in the federal funds rate target range (both bounds down 0.25 pp vs prior), per official Federal Reserve release.\nSettlement entities: ['Federal Open Market Committee', 'Federal Reserve System', 'Federal Reserve Board of Governors', 'Jerome Powell', 'Department of the Treasury', 'Bureau of Labor Statistics']\n\nRecord title: Treasury, IRS provide penalty relief for tax year 2025 for information reporting on tips and overtime under the One, Big, Beautiful Bill\nRecord date: 2025-11-05\nRecord regulator: Department of the Treasury and the Internal Revenue Service\nRecord topic: Internal Revenue Service\nRecord entities: ['Department of the Treasury', 'Internal Revenue Service', 'IRS']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Tax penalty relief from Treasury/IRS concerns 2025 reporting and is unrelated to FOMC interest-rate decisions, so it doesn't affect a Jan 26, 2028 cut.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}

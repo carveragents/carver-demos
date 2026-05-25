@@ -1,0 +1,111 @@
+{% extends "_base.html.j2" %}
+{% block title %}{{ from_date_label }} → {{ to_date_label }} — proposed {{ config.brand.client }} updates{% endblock %}
+{% block content %}
+
+<nav class="breadcrumb">
+  <a href="{{ assets_prefix }}timeline/index.html">Timeline</a>
+  <span class="sep">›</span>
+  <span class="current">{{ from_date_label }} → {{ to_date_label }}</span>
+</nav>
+
+<p class="eyebrow">{{ config.artifact.long }} release</p>
+<h1>{{ from_date_label }} → {{ to_date_label }}</h1>
+
+<p class="lede">
+{%- if breaking %}<strong>{{ breaking }} breaking</strong>{% endif -%}
+{%- if breaking and substantive %} and {% endif -%}
+{%- if substantive %}<strong>{{ substantive }} substantive</strong>{% endif -%}
+{%- if breaking or substantive %} revision{% if (breaking + substantive) != 1 %}s{% endif %} proposed{% endif -%}
+{%- if (clarifying + cosmetic) -%}
+  {% if breaking or substantive %}, with {% else %}This release proposes {% endif -%}
+  <strong>{{ clarifying + cosmetic }} smaller update{% if (clarifying + cosmetic) != 1 %}s{% endif %}</strong>
+{%- endif -%}
+, affecting <strong>{{ policy_count }} polic{% if policy_count != 1 %}ies{% else %}y{% endif %}</strong>.
+</p>
+
+<div class="filter-bar">
+  <div class="filter-row">
+    <input type="search" id="q" class="search-input" placeholder="Search section ID, summary, or policy…" autocomplete="off">
+    <span class="match-count" id="match-count">{{ changes|length }} of {{ changes|length }}</span>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Materiality</span>
+    <div class="filter-chips">
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="breaking" checked>Breaking</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="substantive" checked>Substantive</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="clarifying" checked>Clarifying</label>
+      <label class="chip-toggle"><input type="checkbox" class="mat-filter" value="cosmetic" checked>Cosmetic</label>
+    </div>
+  </div>
+  {% if policies|length > 1 %}
+  <div class="filter-row">
+    <span class="filter-label">Policy</span>
+    <div class="filter-chips">
+      {% for p in policies %}
+      <label class="chip-toggle"><input type="checkbox" class="policy-filter" value="{{ p.slug }}" checked>{{ p.name }}</label>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% for grp in groups %}
+<section class="mat-group" data-mat="{{ grp.materiality }}">
+  <div class="mat-group-header">
+    <span class="materiality {{ grp.materiality }}">{{ grp.materiality }}</span>
+    <span class="count">{{ grp.changes|length }} revision{% if grp.changes|length != 1 %}s{% endif %}</span>
+  </div>
+  {% for c in grp.changes %}
+  <a class="change-card"
+     href="{{ assets_prefix }}changes/{{ c.change_id }}.html"
+     data-materiality="{{ c.materiality }}"
+     data-policies="{{ c.policy_keys|join(' ') }}"
+     data-search-text="{{ c.search_text }}">
+    <div class="title">{{ c.title }}</div>
+    <div class="summary">{{ c.summary }}</div>
+    <div class="meta-chips">
+      <span class="chip section">{{ config.artifact.short }} §{{ c.section_id }}</span>
+      {% for p in c.policy_display %}<span class="chip policy">{{ p.name }}</span>{% endfor %}
+      {% if c.suspicious_extraction %}<span class="warn-badge" title="Possible extraction issue — verify against source PDF">⚠ verify source</span>{% endif %}
+    </div>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+  {% endfor %}
+</section>
+{% endfor %}
+
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  const q = document.getElementById('q');
+  const matFilters = document.querySelectorAll('.mat-filter');
+  const polFilters = document.querySelectorAll('.policy-filter');
+  const cards = document.querySelectorAll('.change-card');
+  const counter = document.getElementById('match-count');
+  const total = cards.length;
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    const enabledMat = new Set(Array.from(matFilters).filter(c => c.checked).map(c => c.value));
+    const enabledPol = polFilters.length
+      ? new Set(Array.from(polFilters).filter(c => c.checked).map(c => c.value))
+      : null;
+    let n = 0;
+    cards.forEach(c => {
+      const matOk = enabledMat.has(c.dataset.materiality);
+      const polOk = !enabledPol || c.dataset.policies.split(' ').some(p => enabledPol.has(p));
+      const textOk = !term || c.dataset.searchText.includes(term);
+      const visible = matOk && polOk && textOk;
+      c.classList.toggle('hidden', !visible);
+      if (visible) n++;
+    });
+    counter.textContent = `${n} of ${total}`;
+  }
+
+  q.addEventListener('input', apply);
+  matFilters.forEach(c => c.addEventListener('change', apply));
+  polFilters.forEach(c => c.addEventListener('change', apply));
+})();
+</script>
+{% endblock %}

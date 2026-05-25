@@ -1,0 +1,48 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.",
+    "user": "Contract title: Will Elon Musk visit Mars before Aug 1, 2099?\nResolution criteria: If Elon Musk visits Mars before the earlier of his death or Aug 1, 2099, then the market resolves to Yes.\nConditions:\n  A: Musk visits Mars by earlier-of deadline \u2014 Elon Musk visits Mars before whichever is earlier: his death or Aug 1, 2099.\nSettlement entities: ['National Aeronautics and Space Administration', 'SpaceX', 'Federal Aviation Administration', 'Elon Musk']\n\nRecord title: 74 - 05.26 - Sales and Use Tax Exemption for Aircraft Being Repaired or Remanufactured\nRecord date: 2026-05-01\nRecord regulator: Indiana Department of Revenue\nRecord topic: Indiana Department of Financial Institutions\nRecord entities: ['Federal Aviation Administration', 'Indiana Department of Revenue', 'M. Kevin Gulley']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 1,
+    "one_line_why": "Indiana sales-tax exemption for aircraft repairs affects local aerospace costs but has no direct link to Elon Musk visiting Mars and is not determinative.",
+    "condition_tag": "background",
+    "high_impact": false
+  }
+}
