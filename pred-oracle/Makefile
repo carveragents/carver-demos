@@ -1,7 +1,7 @@
-.PHONY: pull pull-carver pull-kalshi pull-polymarket slice build serve clean test lint
+.PHONY: pull pull-carver pull-kalshi pull-polymarket pull-prices slice build serve clean test lint
 
 # Pull all data sources (run rarely; outputs are checked in)
-pull: pull-carver pull-kalshi pull-polymarket
+pull: pull-carver pull-kalshi pull-polymarket pull-prices
 
 pull-carver:
 	uv run python build/pull_carver.py
@@ -11,6 +11,9 @@ pull-kalshi:
 
 pull-polymarket:
 	uv run python build/pull_polymarket.py
+
+pull-prices:
+	uv run python build/pull_prices.py
 
 # Compute page slices from data/ (run after data/ edits)
 slice:
