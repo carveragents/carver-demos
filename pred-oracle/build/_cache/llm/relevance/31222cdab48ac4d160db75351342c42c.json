@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?\nResolution criteria: If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\nConditions:\n  A: BTC > $109,999.99 on CF RT Index \u2014 YES if, at any moment from Jan 2, 2026 6:00 PM ET (inclusive) to before Dec 31, 2026 11:59 PM ET, the CF Bitcoin Real-Time Index spot price is strictly > $109,999.99 USD.\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Commodity Futures Trading Commission', 'Federal Reserve System', 'BlackRock', 'Fidelity Investments', 'Coinbase']\n\nRecord title: Statement on Proposing Releases for Enhancement of Emerging Growth Company Accommodations and Simplification of Filer Status for Reporting Companies, and Registered Offering Reform\nRecord date: 2026-05-19\nRecord regulator: Securities and Exchange Commission\nRecord topic: U.S. Securities and Exchange Commission\nRecord entities: ['Andrea Willette', 'Angela Huang', 'Angela Mokodean', 'Anna Abramson', 'Arthur Sandel', 'Barry Morris', 'Blair Burnett', 'Bradley Gude', 'Brian Daly', 'Brian Johnson', 'Bryant Morris', 'Carol McGee', 'Charles Woodworth', 'Chris Stauffer', 'Christina DiAngelo Fettig', 'Caryn Kauffman', 'Charles Woodworth', 'Cynthia Bien', 'David Garcia', 'David Russo', 'Dennis Hermreck', 'Donial Dastgir', 'Dorothy McCuaig', 'Dorrie Yale', 'Duc Dang', 'Eduardo Aleman', 'Elena Stojic', 'Erin Nelson', 'Gabriel Eckstein', 'Heather Rosenberger', 'Hughes Bates', 'Isabel Rivera', 'J. Russell McGranahan', 'Jack Hickman', 'Jamie Selway', 'Jeff Gabor', 'Jessica Ansart', 'Jessica Barberich', 'Jessica Kane', 'Johanna Losert', 'Jonathan Duersch', 'Joseph Luckett', 'Josephine Tao', 'Joshua Gorsky', 'Joshua White', 'Julie Riggs', 'Kurt Hohl', 'Luba Dinits', 'Lauren Moore', 'Lauren Yates', 'Laurita Finch', 'Luna Bloom', 'Mark Green', 'Mark Jacoby', 'Mark Saltzburg', 'Mary Beth Breslin', 'Matt McNair', 'Matt Pacino', 'Meghan Ryan', 'Michael Coco', 'Michael Pessin', 'Michael Reedich', 'Michael Seaman', 'Michal Dusza', 'Monica Lilly', 'Nabeel Cheema', 'Natalie Shioji', 'Olga Itenberg', 'Oliver Richard', 'Pamela Ellis', 'Pamela Long', 'Paul S. Atkins', 'Rebecca Orban', 'Richard Correa', 'Robert Bagnall', 'Robert Errett', 'Rosemary Filou', 'Ryan Milne', 'Sarah ten Siethoff', 'Sebastian Gomez Abero', 'Shaz Niazi', 'Stephanie Sullivan', 'Steven Hearne', 'Taylor Pross', 'Ted Yu', 'Timothy Dodd', 'Tyler Raimo', 'Valian Afshar', 'Wei Liu', 'William Pacino', 'Joshua White', 'Securities and Exchange Commission', 'Division of Corporation Finance', 'Division of Economic and Risk Analysis', 'Division of Investment Management', 'Division of Trading and Markets', 'EDGAR Business Office', 'Office of Financial Management', 'Office of General Counsel', 'Office of the Chief Accountant']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "SEC filing and EGC accommodation proposals concern corporate reporting/offerings, not Bitcoin spot-market drivers, so negligible direct impact on BTC> $109,999.99.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

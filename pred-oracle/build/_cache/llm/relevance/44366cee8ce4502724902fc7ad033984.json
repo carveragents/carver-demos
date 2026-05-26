@@ -1,0 +1,80 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will TikTok be banned in the United States by April 30, 2025?\nResolution criteria: Resolves YES if, on or before 2025-04-30, TikTok is unavailable in the United States\nvia the Apple App Store or the Google Play Store, OR a federal directive (PAFACA\nenforcement order from the Department of Commerce / Department of Justice) takes\neffect requiring a divestiture or shutdown. Resolves NO otherwise.\n\nConditions:\n  A: TikTok absent in US Apple App Store \u2014 On or before 2025-04-30, TikTok is not available to US users in the Apple App Store (unlisted/blocked in the US storefront).\n  B: TikTok absent in US Google Play \u2014 On or before 2025-04-30, TikTok is not available to US users in the Google Play Store (unlisted/blocked in the US storefront).\n  C: Federal PAFACA order takes effect \u2014 On or before 2025-04-30, a DOC or DOJ PAFACA enforcement order takes effect requiring TikTok/ByteDance to divest or shut down US operations.\nSettlement entities: ['Federal Communications Commission', 'Committee on Foreign Investment in the United States', 'Department of Commerce', 'ByteDance', 'TikTok']\n\nRecord title: Regulatory Board Disciplinary Actions Archive\nRecord date: 2025-01-31\nRecord regulator: Tennessee Department of Commerce and Insurance\nRecord topic: Tennessee Department of Financial Institutions\nRecord entities: ['Ahmed Eesa', 'Amsher Collection Services', 'Balav Abdul Maseeky', 'Beaman Toyota', 'Binh Do', 'Blackwell Innovations', 'Blue Home Concepts', 'Burial Services New Park Cemetery, Inc.', 'Carlos L. Turner', 'C&R Construction', 'Clutch Construction', 'Cordell Miller', 'Cuong Hoang Vu', \"Dalila's Salon\", 'Elusive Studio', 'Executive Beauty and Barber', 'Faruk Obeid', 'Ford of Elizabethton', 'Grayson Custom Homes', 'Hall Funeral Home, LLC', 'Hang Ngoc Nguyen', 'Heritage Automotive Center Inc', 'Holly Michelle Andraca', 'Jaquaila Dashe Kirk', 'Jamie Marie Reis', 'Jerry Martinez', 'John J. Griswold', 'Justin Bell', 'Kevin Walters', 'Kiser - Rose Hill Funeral Home', 'Lebella Nails & Spa', 'Mena Abdelmalak', 'Michael Raymond Fishbaugh', 'Mustache Barber Shop', 'Nhi Thuy Vu', 'New Nails', 'Orchid Nails and Spa', 'Premier Sharp Funeral Home', 'Rachel Gayle Orlando', \"Razor's Edge\", 'Robert Jason Nicewarner', 'Shawna Monique Harrison', 'Stacy Leanne Hurd', 'Sumner Funeral & Cremation Lakeside', 'Tesla Motors TN, Inc.', 'Top of The Line Nails', 'True Nails LLC', 'Tennessee Department of Commerce and Insurance', 'Upscale Construction', 'Viva Nail Spa', 'VSL Nail Spa', 'Wann Funeral & Cremation Center', 'Wilkinson & Wiseman Funeral Home']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "State disciplinary actions list has no connection to TikTok, ByteDance, app-store availability, or federal PAFACA orders, so it doesn't affect resolution.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

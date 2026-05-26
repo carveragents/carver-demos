@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?\nResolution criteria: If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.\nConditions:\n  A: BTC > $109,999.99 on CF RT Index \u2014 YES if, at any moment from Jan 2, 2026 6:00 PM ET (inclusive) to before Dec 31, 2026 11:59 PM ET, the CF Bitcoin Real-Time Index spot price is strictly > $109,999.99 USD.\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Commodity Futures Trading Commission', 'Federal Reserve System', 'BlackRock', 'Fidelity Investments', 'Coinbase']\n\nRecord title: COIN | Crypto Market Maker Program - 04/16/2026\nRecord date: 2026-04-16\nRecord regulator: Commodity Futures Trading Commission\nRecord topic: Commodity Futures Trading Commission\nRecord entities: ['Christopher J. Kirkpatrick', 'Coinbase Derivatives, LLC', 'COIN', 'Commodity Futures Trading Commission', 'Jane Downey', 'U.S. Commodity Futures Trading Commission']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": true,
+    "relevance_score": 3,
+    "one_line_why": "CFTC note on Coinbase market\u2011maker program could modestly boost liquidity/derivatives flow on an index provider venue, slightly raising odds BTC > $110k.",
+    "condition_tag": "A",
+    "high_impact": false,
+    "direction": "bullish",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

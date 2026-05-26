@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the US enter a recession in 2026?\nResolution criteria: Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise.\nConditions:\n  A: NBER 2026-peak recession by 2026-12-31 \u2014 The NBER Business Cycle Dating Committee publicly announces that the U.S. entered a recession with the peak month occurring in 2026, and this announcement is made on or before 2026-12-31.\nSettlement entities: ['National Bureau of Economic Research', 'Federal Reserve System', 'Federal Open Market Committee', 'Department of the Treasury', 'Bureau of Labor Statistics', 'Bureau of Economic Analysis', 'Council of Economic Advisers']\n\nRecord title: Michelle W Bowman: When regulation reshapes markets - the migration of corporate lending\nRecord date: 2026-05-12\nRecord regulator: Board of Governors of the Federal Reserve System\nRecord topic: Bank for International Settlements\nRecord entities: ['Board of Governors of the Federal Reserve System', 'Business Development Companies', 'Federal Reserve', 'Hoover Institution', 'Michelle W Bowman', 'Private Credit Funds']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": true,
+    "relevance_score": 3,
+    "one_line_why": "Fed speech on migration of corporate lending to private credit suggests tighter/less stable credit availability, modestly raising 2026 recession odds.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "bearish",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

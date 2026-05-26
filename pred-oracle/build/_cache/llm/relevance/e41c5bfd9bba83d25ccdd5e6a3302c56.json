@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nResolution criteria: If the Federal Reserve does a Cut of 25bps on January 26, 2028, then the market resolves to Yes.\nConditions:\n  A: FOMC 25 bps cut on Jan 26, 2028 \u2014 On Jan 26, 2028, the FOMC announces an exact 25 bp reduction in the federal funds rate target range (both bounds down 0.25 pp vs prior), per official Federal Reserve release.\nSettlement entities: ['Federal Open Market Committee', 'Federal Reserve System', 'Federal Reserve Board of Governors', 'Jerome Powell', 'Department of the Treasury', 'Bureau of Labor Statistics']\n\nRecord title: Readout from the Financial Literacy and Education Commission 2026 Public Meeting\nRecord date: 2026-02-06\nRecord regulator: U.S. Department of the Treasury\nRecord topic: United States Department of the Treasury\nRecord entities: ['Chris Caltabiano', 'Council for Economic Education', 'Financial Industry Regulatory Authority (FINRA) Investor Education Foundation', 'Frank Bisignano', 'Frank Cassidy', 'Gerri Walsh', 'John Moses', 'Jonathan Gould', 'Kyle Hauptman', 'Lori Chavez-DeRemer', 'Matt Garber', 'Melanie Mortimer', 'Office of the Comptroller of the Currency', 'Scott Bessent', 'Securities and Exchange Commission', 'Securities Industry and Financial Markets Association (SIFMA) Foundation', 'Social Security Administration', 'U.S. Department of Housing and Urban Development', 'U.S. Department of Labor', 'U.S. Department of the Treasury', 'Internal Revenue Service']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "A 2026 financial literacy meeting readout does not pertain to FOMC policy or the Jan 26, 2028 rate decision and thus doesn't change cut odds.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}
