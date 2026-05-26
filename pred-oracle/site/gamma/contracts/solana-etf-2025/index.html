@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Will the SEC approve a spot Solana ETF in 2025? — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="/gamma/dashboard/" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+</nav>
+
+<header class="mb-6">
+  <div class="flex items-baseline gap-2 mb-1">
+    <span class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Listed contract</span>
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 text-slate-700">resolved</span>
+    
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-violet-100 text-violet-800">retrospective</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold">
+    
+    <a href="https://www.sec.gov/about/divisions-offices/division-trading-markets" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Will the SEC approve a spot Solana ETF in 2025?</a>
+    
+  </h1>
+  <div class="text-xs text-slate-500 mt-1">listed 2024-06-01 · resolved 2025-12-31</div>
+</header>
+
+
+<aside class="mb-6 border-l-4 border-violet-400 bg-violet-50/40 px-4 py-3 text-sm text-slate-700 max-w-3xl">
+  <span class="font-medium">Retrospective.</span>
+  If your team had been running Pred-Oracle while this contract was live, here's what you would have seen.
+  Sources:
+  <a href="https://www.sec.gov/about/divisions-offices/division-trading-markets" target="_blank" rel="noopener noreferrer" class="text-violet-700 underline">[1]</a><a href="https://en.wikipedia.org/wiki/Solana_(blockchain_platform)" target="_blank" rel="noopener noreferrer" class="text-violet-700 underline">[2]</a>
+</aside>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
+  <article class="lg:col-span-3">
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-slate-800 whitespace-pre-line">Resolves YES if the U.S. Securities and Exchange Commission approves at least one
+spot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)
+for listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)
+with an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.
+</p>
+    </section>
+
+    
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Conditions for YES</h2>
+      <ol class="space-y-2 text-sm">
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0">A</span>
+          <div>
+            <div class="font-medium text-slate-900">SEC approves spot SOL ETF on NYSE Arca</div>
+            <div class="text-slate-600">By 2025-12-31, SEC issues an effective order approving a NYSE Arca rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).</div>
+          </div>
+        </li>
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0">B</span>
+          <div>
+            <div class="font-medium text-slate-900">SEC approves spot SOL ETF on Cboe BZX</div>
+            <div class="text-slate-600">By 2025-12-31, SEC issues an effective order approving a Cboe BZX rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).</div>
+          </div>
+        </li>
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-violet-600 text-white text-xs font-bold flex-shrink-0">C</span>
+          <div>
+            <div class="font-medium text-slate-900">SEC approves spot SOL ETF on NASDAQ</div>
+            <div class="text-slate-600">By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).</div>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">U.S. Securities and Exchange Commission</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Division of Trading and Markets</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">NYSE Arca</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Cboe BZX Exchange</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">NASDAQ Stock Market</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">BlackRock</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Fidelity Investments</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">VanEck</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Grayscale Investments</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Bitwise Asset Management</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">21Shares</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+      </div>
+    </section>
+
+    
+    <section class="mb-6">
+      <blockquote class="border-l-4 border-blue-400 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 italic">
+        Regulatory signals were mixed: custody no‑action relief, SEC–CFTC harmonization, and generic listing standards modestly eased paths, but OIG management warnings, staffing churn, and procedural backlogs weighed against speed. Despite late‑year delegation of IM authority, the SEC issued no approval order. The contract resolved No—no spot Solana ETF was approved in 2025.
+      </blockquote>
+    </section>
+    
+
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+        <div role="tablist" class="flex gap-1 text-xs">
+          <button @click="filter='all'" :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'" :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">A only</button>
+          
+          <button @click="filter='B'" :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">B only</button>
+          
+          <button @click="filter='C'" :class="filter==='C' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">C only</button>
+          
+        </div>
+        
+      </div>
+
+      
+      <div class="mb-4 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
+        <span class="font-medium">Condition:</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-600"></span>A: SEC approves spot SOL ETF on NYSE Arca</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span>B: SEC approves spot SOL ETF on Cboe BZX</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-violet-600"></span>C: SEC approves spot SOL ETF on NASDAQ</span>
+        
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Background</span>
+        <span class="ml-4 font-medium">Urgency:</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-1 ring-slate-500"></span>low</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-2 ring-slate-500"></span>med</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-[3px] ring-slate-500"></span>high</span>
+      </div>
+
+      <ol class="relative">
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-29</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/rules-regulations/2025/12/delegation-authority-director-division-investment-management#IA-6934final" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Final Rule Delegation of Authority to the Director of the Division of Investment Management IA-6934</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Delegating IM authority can slightly speed/enable fund approval actions but does not itself approve a spot SOL ETF—mild procedural bullish signal.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission — Division of Investment Management · matched <span class="font-medium"></span> · urg 6</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-04</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-remarks-meeting-sec-investor-advisory-committee-120425" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Iceboxes and Soapboxes: Remarks at the Meeting of the SEC Investor Advisory Committee</a>
+            
+            <p class="text-sm text-slate-700 mt-1">General SEC Investor Advisory Committee remarks may signal regulator tone (esp. crypto-friendly members) but don&#39;t directly determine a Solana spot-ETF order.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-04</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/sec-oig-mpc-2025.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">The Inspector General’s Statement on the SEC’s Management and Performance Challenges, December 2025</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OIG statement flags SEC management/performance issues, modestly reducing odds and suggesting possible delays for year‑end ETF approvals.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission — Office of the Inspector General · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-10-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/litigation/opinions/2025/33-11392.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Pending Administrative Proceedings</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Generic SEC notice of pending administrative proceedings implies procedural backlog, slightly lowering odds a spot SOL ETF clears by year-end.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/speeches-statements/crenshaw-093025-poking-holes-statement-response-no-action-relief-state-trust-companies-acting-crypto" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Poking Holes: Statement in Response to No-Action Relief for State Trust Companies Acting as Crypto Asset Custodians</a>
+            
+            <p class="text-sm text-slate-700 mt-1">No-action relief for state trust crypto custodians eases SOL custody hurdles, raising approval probability and likely speeding timing.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-093025-cultivating-confidence-role-custody-institutional-confidence-public-trust-oversight" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Cultivating Confidence: The Role of Custody in Institutional Confidence – Public Trust and Oversight; Remarks before the Digital Assets Summit Singapore</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC public remarks on custody signal the agency is engaging on custody frameworks for digital-asset ETFs, modestly raising approval odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-24</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9131-25" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Agenda, Panelists for SEC-CFTC Roundtable on Regulatory Harmonization Efforts Announced</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC–CFTC harmonization roundtable signals improved inter-agency coordination on crypto rulemaking, modestly increasing chance of a spot SOL ETF but not decisive.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-19</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.federalregister.gov/d/2025-18238" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">_Federal Register_ version</a>
+            
+            <p class="text-sm text-slate-700 mt-1">A Federal Register posting can signal formal SEC action (e.g., rule/order publication) but this entry gives no Solana/ETF specifics, so only marginally informative.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 5</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-17</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-121-sec-approves-generic-listing-standards-commodity-based-trust-shares" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">SEC Approves Generic Listing Standards for Commodity-Based Trust Shares</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Generic SEC listing standards for commodity-based trusts lower regulatory barriers, increasing chance a spot SOL ETF can be approved/listed in 2025.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission — Division of Trading and Markets · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC</a>
+            
+            <p class="text-sm text-slate-700 mt-1">A joint SEC–CFTC statement on crypto jurisdiction/cooperation could modestly affect SEC policy toward crypto ETFs, slightly altering approval odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9115-25" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Interagency harmonization between the SEC and CFTC may modestly reduce crypto regulatory uncertainty, slightly raising odds and speeding approval timing.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-08-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-102-road-sec-crypto-task-force-host-series-roundtables-across-us" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">On the Road: SEC Crypto Task Force to Host a Series of Roundtables Across the U.S.</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC-hosted crypto roundtables show continued regulatory engagement with digital-asset issues but provide only an indirect, small signal about a Solana spot ETF approval.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-30</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9102-25" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC praise of Presidential Working Group crypto recommendations signals a friendlier US regulatory stance, modestly raising odds of SEC approving a spot SOL ETF.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-10</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-83-sec-resume-processing-registration-applications-swiss-based-investment-advisers" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Resuming SEC registration for Swiss advisers marginally eases US market access for Swiss issuers (e.g., 21Shares), slightly raising approval odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-10</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-84-natasha-vij-greiner-will-conclude-her-tenure-director-investment-management" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Investment Management director departure may slow SEC ETF review processes, modestly lowering likelihood of a spot Solana ETF approval in 2025.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission — Division of Investment Management · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-05-14</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/sec-oig-aud-fml-2025-01.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Final Management Letter: Audit of the SEC’s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OIG audit finds SEC recruitment/retention shortfalls, which could modestly slow or complicate ETF review timetables and slightly lower approval odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission — Office of Inspector General · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-04-16</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/rules-regulations/2025/04/s7-26-22" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Form N-PORT and Form N-CEN Reporting; Guidance on Open-End Fund Liquidity Risk Investment Management</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC guidance on open-end fund liquidity/reporting affects general ETF compliance burden but doesn&#39;t directly address spot SOL ETF approval timing or consent.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission — Division of Investment Management · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-03-14</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/rules-regulations/2025/03/s7-16-22" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Investment Company Names Investment Management</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Staffing/names update in the SEC&#39;s Investment Management division is peripheral to exchange rule approvals for a spot SOL ETF and barely moves approval odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission — Division of Investment Management · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2024-09-24</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/speeches-statements/testimony-securities-exchange-commission-united-states-house-representatives-committee-financial" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Testimony of the Securities and Exchange Commission Before the United States House of Representatives Committee on Financial Services</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Public testimony by SEC commissioners offers background on agency stance toward crypto/ETFs but does not directly cause an approval decision.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2024-09-12</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/litigation/admin/2024/34-101001.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Order - eToro</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC enforcement action against eToro signals regulatory scrutiny of crypto platforms, slightly reducing odds of SEC approving spot SOL ETFs.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission — Enforcement · matched <span class="font-medium"></span> · urg 6</p>
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+  </article>
+
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Heat</h2>
+      
+      <div class="text-3xl font-bold uppercase tracking-wide text-rose-700 leading-none">critical</div>
+      <div class="text-sm text-slate-600 mt-1 tabular-nums">
+        198
+         · -96.9 / 7d
+         · top 17%
+      </div>
+      
+      <p class="text-sm text-slate-700 mt-3">Critical heat is driven by high‑impact rulemaking and governance changes (Delegation to the Division of Investment), cross‑agency harmonization and commodity‑trust listing rules, plus IG scrutiny and enforcement activity.</p>
+      
+      <div class="mt-4">
+        
+        
+
+
+
+
+
+<svg viewBox="0 0 80 24" width="80" height="24" class="inline-block align-middle">
+  <polyline fill="none" stroke="#2563eb" stroke-width="1.5"
+    points="0.0,23.0 6.15,23.0 12.31,23.0 18.46,23.0 24.62,23.0 30.77,23.0 36.92,23.0 43.08,23.0 49.23,23.0 55.38,23.0 61.54,23.0 67.69,23.0 73.85,23.0 80.0,23.0 " />
+</svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-1">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+</div>
+
+<section class="flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="/gamma/dashboard/" class="text-sm text-slate-500 hover:text-slate-900">← Back to dashboard</a>
+  <a href="/beta/" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Next scene: International planning →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

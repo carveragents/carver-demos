@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Federal Reserve rate decision — March 2026 FOMC meeting — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="/gamma/dashboard/" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+</nav>
+
+<header class="mb-6">
+  <div class="flex items-baseline gap-2 mb-1">
+    <span class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Listed contract</span>
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 text-slate-700">resolved</span>
+    
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-violet-100 text-violet-800">retrospective</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold">
+    
+    <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Federal Reserve rate decision — March 2026 FOMC meeting</a>
+    
+  </h1>
+  <div class="text-xs text-slate-500 mt-1">listed 2025-12-15 · resolved 2026-03-18</div>
+</header>
+
+
+<aside class="mb-6 border-l-4 border-violet-400 bg-violet-50/40 px-4 py-3 text-sm text-slate-700 max-w-3xl">
+  <span class="font-medium">Retrospective.</span>
+  If your team had been running Pred-Oracle while this contract was live, here's what you would have seen.
+  Sources:
+  <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer" class="text-violet-700 underline">[1]</a><a href="https://www.federalreserve.gov/monetarypolicy/openmarket.htm" target="_blank" rel="noopener noreferrer" class="text-violet-700 underline">[2]</a>
+</aside>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
+  <article class="lg:col-span-3">
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-slate-800 whitespace-pre-line">Resolves to the outcome announced by the Federal Open Market Committee at the
+conclusion of its March 17-18, 2026 meeting. Settlement is the official FOMC
+statement on the federal funds target range published 2026-03-18.
+
+Standard FOMC-decision outcome buckets cover changes of -50 bps, -25 bps,
+0 bps (hold), +25 bps, +50 bps relative to the prior target range.
+</p>
+    </section>
+
+    
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Conditions for YES</h2>
+      <ol class="space-y-2 text-sm">
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0">A</span>
+          <div>
+            <div class="font-medium text-slate-900">Official FOMC statement (2026-03-18)</div>
+            <div class="text-slate-600">Use the official FOMC statement published 2026-03-18. Compare the announced federal funds target range to the range in effect before the meeting. If the change equals this market’s bucket, resolve YES.</div>
+          </div>
+        </li>
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0">B</span>
+          <div>
+            <div class="font-medium text-slate-900">Fed Implementation Note/press release</div>
+            <div class="text-slate-600">If no usable statement, use the Fed’s Implementation Note or FOMC press release dated 2026-03-18 that sets the target range. If the change vs the prior range matches this market’s bucket, YES.</div>
+          </div>
+        </li>
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-violet-600 text-white text-xs font-bold flex-shrink-0">C</span>
+          <div>
+            <div class="font-medium text-slate-900">Delayed/canceled meeting fallback</div>
+            <div class="text-slate-600">If the Mar 17-18 meeting is delayed/canceled or the statement is later, use the first official FOMC/Board release for the March 2026 decision. If the change vs prior matches this market’s bucket, YES.</div>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Open Market Committee</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Reserve System</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Reserve Board of Governors</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Jerome Powell</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Department of the Treasury</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Bureau of Labor Statistics</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+      </div>
+    </section>
+
+    
+    <section class="mb-6">
+      <blockquote class="border-l-4 border-blue-400 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 italic">
+        Leading into Mar 17–18, 2026, oil sanctions and tax cuts lifted inflation risk, while bank‑fragility concerns and Fed commentary tilted dovish. Odds coalesced around caution. The contract resolved to the FOMC&#39;s announced decision, aligning with that tenor rather than a renewed hike.
+      </blockquote>
+    </section>
+    
+
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (10)</h2>
+        
+        <div role="tablist" class="flex gap-1 text-xs">
+          <button @click="filter='all'" :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'" :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">A only</button>
+          
+          <button @click="filter='B'" :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">B only</button>
+          
+          <button @click="filter='C'" :class="filter==='C' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">C only</button>
+          
+        </div>
+        
+      </div>
+
+      
+      <div class="mb-4 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
+        <span class="font-medium">Condition:</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-600"></span>A: Official FOMC statement (2026-03-18)</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span>B: Fed Implementation Note/press release</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-violet-600"></span>C: Delayed/canceled meeting fallback</span>
+        
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Background</span>
+        <span class="ml-4 font-medium">Urgency:</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-1 ring-slate-500"></span>low</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-2 ring-slate-500"></span>med</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-[3px] ring-slate-500"></span>high</span>
+      </div>
+
+      <ol class="relative">
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-02</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.bis.org/review/r260225b.htm" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Christopher J Waller: Labor market data - signal or noise?</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Waller&#39;s BIS piece reveals a Fed policymaker&#39;s view on labor-market signals ahead of Mar 17–18, providing background for odds but not determinative.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Bank for International Settlements · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-05</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.bis.org/review/r260204a.htm" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Michelle W Bowman: Outlook for the economy and monetary policy</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Bowman’s Feb 5 policy outlook offers incremental guidance on FOMC views but is not an official rate decision.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Board of Governors of the Federal Reserve System — supervision · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.clevelandfed.org/-/media/project/clevelandfedtenant/clevelandfedsite/publications/working-papers/2026/wp2602.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Factors Affecting Regional Bank Health and Supervisory Rating: An Exploration</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Cleveland Fed paper highlighting regional bank fragility slightly raises downside risk to further tightening, modestly lowering odds of a March hike.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Federal Reserve Bank of Cleveland · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-21</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://home.treasury.gov/news/press-releases/sb0368" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Treasury Exposes and Disrupts Hamas’s Covert Support Network</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OFAC sanctions raise geopolitical risk and could modestly affect energy/inflation expectations, but only weakly and indirectly for the March FOMC decision.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Department of the Treasury — Office of Foreign Assets Control · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-06</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://home.treasury.gov/news/press-releases/sb0351" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Secretary Scott Bessent Announces Working Families Tax Cuts: Ushering in a New Golden Age</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Treasury’s Jan 6 expansionary tax-cut plan could boost growth/inflation and modestly raise odds of a March rate hike.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Department of the Treasury · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-25</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://fdic.gov/news/speeches/2025/final-rule-modify-enhanced-supplementary-leverage-ratio" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Final Rule to Modify the Enhanced Supplementary Leverage Ratio</a>
+            
+            <p class="text-sm text-slate-700 mt-1">FDIC’s eSLR rule change affects bank capital/lending conditions and thus Fed policy only indirectly and modestly, giving a small signal months before the meeting.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Federal Deposit Insurance Corporation · matched <span class="font-medium"></span> · urg 5</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-20</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.bis.org/review/r251118c.htm" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Christopher J Waller: The case for continuing rate cuts</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Fed Governor Waller argued for continuing rate cuts (Nov 2025), modestly raising odds of a March 2026 cut vs hold/raise.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Board of Governors of the Federal Reserve System · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-20</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.bis.org/review/r251118a.htm" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Philip N Jefferson: Economic outlook and monetary policy</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Fed Governor Jefferson’s Nov 2025 policy outlook offers an incremental signal on the Fed’s rate path, mildly adjusting March 2026 move odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Board of Governors of the Federal Reserve System · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-20</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://home.treasury.gov/news/press-releases/sb0322" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Treasury Tightens Sanctions on Iran’s Oil Network Supporting its Military</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OFAC sanctions could tighten Iranian oil supply, nudging oil prices and inflation slightly and thus modestly raising odds of a higher Fed funds target.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Department of the Treasury — Office of Foreign Assets Control · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-10-22</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://home.treasury.gov/news/press-releases/sb0290" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OFAC sanctions on major Russian oil firms could tighten supply and raise oil-driven inflation, slightly increasing odds of Fed holding/raising in Mar 2026.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Department of the Treasury — Office of Foreign Assets Control · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+  </article>
+
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Heat</h2>
+      
+      <div class="text-3xl font-bold uppercase tracking-wide text-rose-700 leading-none">critical</div>
+      <div class="text-sm text-slate-600 mt-1 tabular-nums">
+        113
+         · -48.7 / 7d
+         · top 17%
+      </div>
+      
+      <p class="text-sm text-slate-700 mt-3">Critical heat is driven by Fed officials’ high-profile speeches on labor and monetary policy together with bank-focused regulatory actions (ESLR, regional bank health) and Treasury sanctions/tax moves.</p>
+      
+      <div class="mt-4">
+        
+        
+
+
+
+
+
+<svg viewBox="0 0 80 24" width="80" height="24" class="inline-block align-middle">
+  <polyline fill="none" stroke="#2563eb" stroke-width="1.5"
+    points="0.0,23.0 6.15,23.0 12.31,23.0 18.46,23.0 24.62,23.0 30.77,23.0 36.92,23.0 43.08,23.0 49.23,23.0 55.38,23.0 61.54,23.0 67.69,23.0 73.85,23.0 80.0,23.0 " />
+</svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-1">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Open listing-risk tickets</h2>
+        <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider bg-amber-50 border border-amber-200 text-amber-800 px-2 py-0.5 rounded">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+  demo data
+</span>
+      </div>
+      <ul class="space-y-3 text-sm">
+        
+        <li class="flex items-start gap-3">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">MV</span>
+          <div class="flex-1">
+            <div class="text-slate-800">Fed speech cadence elevated; consider widening expiry tier</div>
+            <div class="text-xs text-slate-500 mt-0.5">severity: <span class="capitalize">medium</span></div>
+          </div>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </aside>
+</div>
+
+<section class="flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="/gamma/dashboard/" class="text-sm text-slate-500 hover:text-slate-900">← Back to dashboard</a>
+  <a href="/beta/" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Next scene: International planning →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

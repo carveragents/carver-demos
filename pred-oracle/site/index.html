@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Pred-Oracle — Regulatory Intelligence for Prediction Markets</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<section class="mb-16 max-w-3xl">
+  <h1 class="text-4xl font-bold tracking-tight leading-tight">
+    Your business sits at the intersection of the CFTC, 50 state gambling commissions,
+    the SEC, and every foreign regulator that touches event contracts.
+  </h1>
+  <p class="mt-6 text-xl text-slate-600">
+    Pred-Oracle is the regulatory-intelligence layer built for that intersection.
+  </p>
+  <dl class="mt-10 flex flex-wrap items-start gap-x-12 gap-y-6">
+    <div>
+      <dt class="sr-only">Annotated regulatory events</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">50,021</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Annotated events</div>
+    </div>
+    <div>
+      <dt class="sr-only">Jurisdictions covered</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">99</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Jurisdictions</div>
+    </div>
+    
+    <div>
+      <dt class="sr-only">Regulatory bodies tracked</dt>
+      <dd class="text-4xl sm:text-5xl font-bold tabular-nums text-ink leading-none tracking-tight">157</dd>
+      <div class="text-[10px] uppercase tracking-[0.18em] text-slate-500 mt-2">Regulatory bodies</div>
+    </div>
+    
+  </dl>
+  
+  <p class="mt-5 text-xs text-slate-400 tabular-nums">
+    Coverage window 2020-01-01 <span class="text-slate-300">→</span> 2026-05-26
+  </p>
+  
+</section>
+
+<section>
+  <h2 class="text-sm uppercase tracking-wider text-slate-500 mb-4">
+    Walk three scenes
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="/alpha/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 · Radar</div>
+      <div class="text-xl font-bold mt-2">The GC&#39;s Monday morning</div>
+      <p class="text-slate-600 mt-2 text-sm">Triage real regulatory signals before they hit the news cycle.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="/gamma/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 · Listing</div>
+      <div class="text-xl font-bold mt-2">Before you list, look</div>
+      <p class="text-slate-600 mt-2 text-sm">Pre-listing scan plus the regulatory timeline behind a real contract.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="/beta/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
+      <div class="text-xl font-bold mt-2">Q3 planning, without the surprise</div>
+      <p class="text-slate-600 mt-2 text-sm">Heat-map and quarterly intelligence for jurisdictional strategy.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

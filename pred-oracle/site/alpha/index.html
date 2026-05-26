@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Inbox — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<section class="mb-6">
+  <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+    <div>
+      <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 of 3 · Radar</div>
+      <h1 class="text-2xl font-bold mt-1">Monday, 9:00 AM. You are the General Counsel.</h1>
+      <p class="text-slate-600 mt-1 text-sm">Three days of regulatory activity hit while you were offline.</p>
+    </div>
+    <a href="/alpha/tickets/e519db6e-499e-47d5-bd65-2b45752fb6bd/" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Drill into top ticket →</a>
+  </div>
+</section>
+
+<section class="border border-slate-200 rounded-lg overflow-hidden">
+  <header class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50 flex-wrap gap-2">
+    <div>
+      <h2 class="font-semibold">Regulatory triage queue</h2>
+      <p class="text-xs text-slate-500 mt-0.5">3667 active items · 14 above your paging threshold (8)</p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      
+      <span class="text-xs px-2 py-1 rounded border bg-slate-900 text-white border-slate-900">All</span>
+      
+      <span class="text-xs px-2 py-1 rounded border bg-white text-slate-600 border-slate-200">New</span>
+      
+      <span class="text-xs px-2 py-1 rounded border bg-white text-slate-600 border-slate-200">In Review</span>
+      
+      <span class="text-xs px-2 py-1 rounded border bg-white text-slate-600 border-slate-200">Above threshold</span>
+      
+    </div>
+  </header>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-white border-b border-slate-100">
+        <tr class="text-left text-xs uppercase tracking-wider text-slate-500">
+          <th class="px-3 py-2 font-medium">Urgency</th>
+          <th class="px-3 py-2 font-medium">Title</th>
+          <th class="px-3 py-2 font-medium">Source</th>
+          <th class="px-3 py-2 font-medium">Jurisdictions</th>
+          <th class="px-3 py-2 font-medium">Type</th>
+          <th class="px-3 py-2 font-medium">Status</th>
+          <th class="px-3 py-2 font-medium">Assignee</th>
+          <th class="px-3 py-2 font-medium">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 bg-amber-50/30">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <a href="/alpha/tickets/e519db6e-499e-47d5-bd65-2b45752fb6bd/" class="text-slate-900 font-medium hover:text-blue-700">CFTC Sues Minnesota to Block State Law</a>
+    
+    
+      <span class="ml-2 text-xs uppercase tracking-wider text-amber-700 font-semibold">⚡ Priority</span>
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">MN</span>
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">AZ</span>
+    
+    <span class="text-xs text-slate-400">+4</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">enforcement</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-19<br><span class="text-xs">1d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">10</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <a href="/alpha/tickets/fd954992-3ce2-4a28-97e3-a0b472850d7b/" class="text-slate-900 font-medium hover:text-blue-700">DFPI Shuts Down Crypto Kiosk Operator for Cheating Consumers and Violating State Laws</a>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Department of Financial Protection and Innovation</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-CA</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">enforcement</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">in review</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-18<br><span class="text-xs">2d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">Governor Healey Announces Final Regs That Eliminate Prior Authorization Requirements for Routine and Essential Health Care</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Division of Insurance</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-MA</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">final rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">acknowledged</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-14<br><span class="text-xs">6d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">05.01.2026 - Amendments to Market Maker Program - FEX</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">U.S. Commodity Futures Trading Commission — Division of Market Oversight</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">proposed rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-01<br><span class="text-xs">19d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">ETRON | ElectronX is self-certifying its MISO &amp; CAISO Core Liquidity Provider Program | [3]</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">bulletin</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">drafted</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-15<br><span class="text-xs">5d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">2026-05-05 - NJDOL Adopts Clear Rules on Worker Classification to Protect Workers’ Rights, Level the Playing Field for Businesses</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">New Jersey Department of Labor and Workforce Development</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-NJ</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">final rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-05<br><span class="text-xs">15d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-yellow-50 text-yellow-700 border-yellow-200" title="medium">
+  <span class="font-bold">5</span>
+  <span class="opacity-70">medium</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Platforms in New York</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">New York Attorney General — Investor Protection Bureau</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-NY</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">enforcement</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">in review</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-04-21<br><span class="text-xs">29d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">CBOT | Issuance of CME Group Market RegulationAdvisory Notices RA2603-5 Regarding CME, CBOT, NYMEX/COMEX Rule 526.(&#34;Block Trades&#34;) and RA2604-5 Regarding CME, CBOT, NYMEX/COMEX Rule 538.(&#34;Exchange for Related Positions&#34;). | [1]</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">final rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">acknowledged</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-13<br><span class="text-xs">7d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">COMEX | Issuance of CME Group MarketRegulation Advisory Notices RA2603-5 Regarding CME, CBOT, NYMEX/COMEX Rule526. (&#34;Block Trades&#34;) and RA2604-5 Regarding CME, CBOT, NYMEX/COMEX Rule 538.(&#34;Exchange for Related Positions&#34;) | [1]</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">final rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-13<br><span class="text-xs">7d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">ROTHDCM - General rulebook revision - 05/05/2026</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">bulletin</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">drafted</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-05<br><span class="text-xs">15d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">04.30.2026 - Updated Rulebook - REX</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Commodity Futures Trading Commission — Office of the Secretariat</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">bulletin</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-04-30<br><span class="text-xs">20d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">10</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">UMETEACA Inc.</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Department of Financial Protection and Innovation</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-CA</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">enforcement</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">in review</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-04-17<br><span class="text-xs">33d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <a href="/alpha/tickets/48b578d5-84fc-4c9c-b098-c8740780663b/" class="text-slate-900 font-medium hover:text-blue-700">California Department of Justice Releases Proposed &#34;Protecting Our Kids from Social Media Addiction Act (SB 976)” Regulations - 14.05.2026</a>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">California Department of Justice — Consumer Protection Section</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-CA</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">proposed rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">acknowledged</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-14<br><span class="text-xs">6d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">9</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="text-slate-700">California Department of Justice Releases Proposed &#34;Protecting Our Kids from Social Media Addiction Act (SB 976)” Regulations</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">California Department of Justice — Consumer Protection Section</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US-CA</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">proposed rule</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">new</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="Associate Counsel">AC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-14<br><span class="text-xs">6d ago</span></td>
+</tr>
+        
+          <tr class="border-b border-slate-100 hover:bg-slate-50 ">
+  <td class="px-3 py-2 align-top">
+    
+    
+    
+    
+<span class="inline-flex items-center gap-1 text-xs font-medium border px-2 py-0.5 rounded bg-red-50 text-red-700 border-red-200" title="critical">
+  <span class="font-bold">8</span>
+  <span class="opacity-70">high</span>
+</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    
+      <a href="/alpha/tickets/47d30176-f4a4-4ed5-aaf3-632f14ec65a8/" class="text-slate-900 font-medium hover:text-blue-700">David H. Goldman</a>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-700">Securities and Exchange Commission</td>
+  <td class="px-3 py-2 align-top">
+    
+      <span class="inline-block text-xs bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">US</span>
+    
+    
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="capitalize text-slate-700">enforcement</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm">
+    <span class="text-xs uppercase tracking-wider text-slate-500">drafted</span>
+  </td>
+  <td class="px-3 py-2 align-top">
+    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold" title="General Counsel">GC</span>
+  </td>
+  <td class="px-3 py-2 align-top text-sm text-slate-500 whitespace-nowrap">2026-05-13<br><span class="text-xs">7d ago</span></td>
+</tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<aside class="mt-6 max-w-2xl text-sm text-slate-600">
+  <details open class="border border-slate-200 rounded-lg">
+    <summary class="cursor-pointer px-4 py-3 font-medium text-slate-800">How this works</summary>
+    <div class="px-4 pb-4">
+      Every row is a real regulatory event ingested by Carver's annotation pipeline,
+      scored for urgency and impact, then matched against this platform's saved filters.
+      Click into any item to see the underlying structured data.
+      <div class="mt-3 text-xs text-slate-500">
+        Comments, assignees, and status transitions on the detail page are synthetic demo data.
+      </div>
+    </div>
+  </details>
+</aside>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="/" class="text-sm text-slate-500 hover:text-slate-900">← Back to landing</a>
+  <a href="/alpha/dashboard/" class="text-sm text-blue-600 hover:text-blue-800">Skip to dashboard →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

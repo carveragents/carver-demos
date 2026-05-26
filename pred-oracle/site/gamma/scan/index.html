@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Pre-listing scan — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="/gamma/" class="text-slate-500 hover:text-slate-900">← Listing risk overview</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 2 · Listing</div>
+  <h1 class="text-2xl font-bold mt-1">Pre-listing scan — proposed contract</h1>
+  <p class="text-slate-600 mt-1 text-sm">Drop a contract title + resolution criteria. See its regulatory exposure before you list.</p>
+</header>
+
+<div x-data="{ active: 'tiktokban' }"
+     class="grid grid-cols-1 lg:grid-cols-[18rem_1fr] gap-6">
+  <!-- Scenario picker -->
+  <aside>
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Pick a scenario</div>
+    <div class="space-y-2">
+      
+      <button @click="active = 'tiktokban'"
+              :class="active === 'tiktokban' ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-slate-200 hover:border-slate-300 bg-white'"
+              class="block w-full text-left border rounded-lg p-3 transition">
+        <div class="text-xs uppercase tracking-wider"
+             :class="active === 'tiktokban' ? 'text-blue-600 font-semibold' : 'text-slate-500'">
+          Scenario 1
+        </div>
+        <div class="text-sm mt-1 font-medium text-slate-900 leading-snug">Will TikTok be banned in the United States by 2026-12-31?</div>
+      </button>
+      
+      <button @click="active = 'solana_etf_2027'"
+              :class="active === 'solana_etf_2027' ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-slate-200 hover:border-slate-300 bg-white'"
+              class="block w-full text-left border rounded-lg p-3 transition">
+        <div class="text-xs uppercase tracking-wider"
+             :class="active === 'solana_etf_2027' ? 'text-blue-600 font-semibold' : 'text-slate-500'">
+          Scenario 2
+        </div>
+        <div class="text-sm mt-1 font-medium text-slate-900 leading-snug">Will the SEC approve a spot Solana ETF in 2027?</div>
+      </button>
+      
+      <button @click="active = 'state_kalshi_action'"
+              :class="active === 'state_kalshi_action' ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-slate-200 hover:border-slate-300 bg-white'"
+              class="block w-full text-left border rounded-lg p-3 transition">
+        <div class="text-xs uppercase tracking-wider"
+             :class="active === 'state_kalshi_action' ? 'text-blue-600 font-semibold' : 'text-slate-500'">
+          Scenario 3
+        </div>
+        <div class="text-sm mt-1 font-medium text-slate-900 leading-snug">Will a 12th US state issue a cease-and-desist against a major event-contract platform by 2026-12-31?</div>
+      </button>
+      
+    </div>
+  </aside>
+
+  <!-- Scenario content -->
+  <div>
+  
+  <section x-show="active === 'tiktokban'"
+           x-data="{ ran: false, running: false, run() { if (this.ran || this.running) return; this.running = true; setTimeout(() => { this.running = false; this.ran = true; }, 900); } }"
+           class="space-y-6">
+    <!-- Input card -->
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Proposed contract title</label>
+      <textarea readonly rows="2" class="w-full font-medium text-slate-900 bg-transparent resize-none focus:outline-none">Will TikTok be banned in the United States by 2026-12-31?</textarea>
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mt-3 mb-1">Resolution criteria</label>
+      <textarea readonly rows="3" class="w-full text-sm text-slate-700 bg-transparent resize-none focus:outline-none">Resolves YES if TikTok is unavailable in the US Apple/Google app stores OR
+if the Department of Commerce issues a ban directive by 2026-12-31.
+</textarea>
+      <button @click="run()"
+              :disabled="running || ran"
+              :class="ran ? 'bg-emerald-600 cursor-default' : (running ? 'bg-blue-500 cursor-wait' : 'bg-blue-600 hover:bg-blue-700')"
+              class="mt-3 inline-flex items-center gap-2 text-white px-3 py-1.5 rounded text-sm font-medium transition"
+              title="Production deployment runs this synchronously against live Carver data.">
+        <span x-show="!running && !ran">Run scan</span>
+        <span x-show="running" class="flex items-center gap-2">
+          <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          Analysing 49,735 events…
+        </span>
+        <span x-show="ran" class="flex items-center gap-2">✓ Scan complete</span>
+      </button>
+    </div>
+
+    <!-- Results (hidden until Run scan is pressed) -->
+    <div x-show="ran"
+         x-cloak
+         x-transition:enter="transition ease-out duration-400"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Severity</div>
+        <div class="text-4xl font-bold text-red-600">8</div>
+        <div class="text-xs text-slate-500 mt-1">out of 10</div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Breakdown</div>
+        <div class="text-sm space-y-1">
+          <div><span class="text-slate-500">Matches:</span> <span class="font-medium">37</span></div>
+          <div><span class="text-slate-500">Top entity:</span> <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+        </div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Extracted entities</div>
+        <div class="flex flex-wrap gap-1">
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Federal Communications Commission</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Committee on Foreign Investment in the United States</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Department of Commerce</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">ByteDance</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">TikTok</span>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent events -->
+    <div class="border border-slate-200 rounded-lg overflow-hidden">
+      <header class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Recent regulatory activity (10)</h2>
+      </header>
+      
+      <ul class="divide-y divide-slate-100">
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-chairman-ferguson-advises-companies-comply-take-it-down-act" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">FTC Chairman Ferguson Advises Companies to Comply with the Take It Down Act</a>
+              <div class="text-xs text-slate-500 mt-0.5">Federal Trade Commission — Office of the Chairman · 2026-05-11 · matched <span class="font-medium">TikTok</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 10</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.occ.treas.gov/news-events/newsroom/news-issuances-by-year/bulletins/index-bulletin" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">View Bulletins</a>
+              <div class="text-xs text-slate-500 mt-0.5">Office of the Comptroller of the Currency · 2026-05-18 · matched <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-20.html" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Real Estate Lending Escrow Accounts: Final Rule</a>
+              <div class="text-xs text-slate-500 mt-0.5">Office of the Comptroller of the Currency · 2026-05-15 · matched <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.mass.gov/news/ag-campbell-launches-500000-phone-free-school-support-grant" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">AG Campbell Launches $500,000 Phone-Free School Support Grant</a>
+              <div class="text-xs text-slate-500 mt-0.5">Office of the Attorney General · 2026-05-08 · matched <span class="font-medium">TikTok</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.occ.treas.gov/news-issuances/news-releases/2026/nr-occ-2026-37.html" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">OCC Issues Two Final Rules on Preemption of State Interest-on-Escrow Laws</a>
+              <div class="text-xs text-slate-500 mt-0.5">Office of the Comptroller of the Currency · 2026-05-15 · matched <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.ohioattorneygeneral.gov/Media/News-Releases/May-2026/Fifth-Defendant-Pleads-Guilty-in-Decade-long-Ponzi" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Fifth Defendant Pleads Guilty in Decade-long Ponzi Scheme</a>
+              <div class="text-xs text-slate-500 mt-0.5">Ohio Attorney General — Special Prosecutions Section · 2026-05-04 · matched <span class="font-medium">Department of Commerce</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 10</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/newsroom/press-releases/2026-46-sec-proposes-transformative-reforms-help-public-companies-conduct-registered-offerings-simplify" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">SEC Proposes Transformative Reforms to Help Public Companies Conduct Registered Offerings and Simplify Reporting Requirements</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission · 2026-05-19 · matched <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 3</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.osc.ca/en/securities-law/instruments-rules-policies/3/33-510/notice-general-order-ontario-instrument-33-510-exemptions-requirements-submit-certain-personal" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Notice of General Order – Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information</a>
+              <div class="text-xs text-slate-500 mt-0.5">Ontario Securities Commission · 2026-04-30 · matched <span class="font-medium">Federal Communications Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.osc.ca/en/news-events/news/jimmy-delinis-pleads-guilty-13-million-investment-scheme" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Jimmy Delinis pleads guilty in $1.3 million investment scheme</a>
+              <div class="text-xs text-slate-500 mt-0.5">Ontario Securities Commission — Enforcement Division · 2026-05-01 · matched <span class="font-medium">Committee on Foreign Investment in the United States</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 8</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-moves-permanently-block-president-trump%E2%80%99s-executive-order" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Attorney General Bonta Moves to Permanently Block President Trump’s Executive Order Restricting Mail Voting, Exerting Control over Elections</a>
+              <div class="text-xs text-slate-500 mt-0.5">California Attorney General · 2026-04-24 · matched <span class="font-medium">Department of Commerce</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+    
+    </div><!-- /results -->
+  </section>
+  
+  <section x-show="active === 'solana_etf_2027'"
+           x-data="{ ran: false, running: false, run() { if (this.ran || this.running) return; this.running = true; setTimeout(() => { this.running = false; this.ran = true; }, 900); } }"
+           class="space-y-6">
+    <!-- Input card -->
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Proposed contract title</label>
+      <textarea readonly rows="2" class="w-full font-medium text-slate-900 bg-transparent resize-none focus:outline-none">Will the SEC approve a spot Solana ETF in 2027?</textarea>
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mt-3 mb-1">Resolution criteria</label>
+      <textarea readonly rows="3" class="w-full text-sm text-slate-700 bg-transparent resize-none focus:outline-none">Resolves YES if the SEC approves a spot Solana ETF for trading on a US
+national securities exchange by 2027-12-31.
+</textarea>
+      <button @click="run()"
+              :disabled="running || ran"
+              :class="ran ? 'bg-emerald-600 cursor-default' : (running ? 'bg-blue-500 cursor-wait' : 'bg-blue-600 hover:bg-blue-700')"
+              class="mt-3 inline-flex items-center gap-2 text-white px-3 py-1.5 rounded text-sm font-medium transition"
+              title="Production deployment runs this synchronously against live Carver data.">
+        <span x-show="!running && !ran">Run scan</span>
+        <span x-show="running" class="flex items-center gap-2">
+          <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          Analysing 49,735 events…
+        </span>
+        <span x-show="ran" class="flex items-center gap-2">✓ Scan complete</span>
+      </button>
+    </div>
+
+    <!-- Results (hidden until Run scan is pressed) -->
+    <div x-show="ran"
+         x-cloak
+         x-transition:enter="transition ease-out duration-400"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Severity</div>
+        <div class="text-4xl font-bold text-orange-600">7</div>
+        <div class="text-xs text-slate-500 mt-1">out of 10</div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Breakdown</div>
+        <div class="text-sm space-y-1">
+          <div><span class="text-slate-500">Matches:</span> <span class="font-medium">215</span></div>
+          <div><span class="text-slate-500">Top entity:</span> <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+        </div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Extracted entities</div>
+        <div class="flex flex-wrap gap-1">
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">U.S. Securities and Exchange Commission</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">BlackRock</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Fidelity</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">VanEck</span>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent events -->
+    <div class="border border-slate-200 rounded-lg overflow-hidden">
+      <header class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Recent regulatory activity (10)</h2>
+      </header>
+      
+      <ul class="divide-y divide-slate-100">
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.iard.com/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">IARD</a>
+              <div class="text-xs text-slate-500 mt-0.5">Financial Industry Regulatory Authority · 2026-05-19 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://home.sec.gov.ng/for-investors/keep-track-of-circulars/transition-to-t1-settlement-cycle-in-the-nigerian-capital-market/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Transition To T+1 Settlement Cycle In The Nigerian Capital Market - 15.05.2026</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission · 2026-05-14 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://asc.ca/News-and-Publications/News-Releases/2026/05/14-CSA-publishes-proposed-amendments-and-changes-to-enhance-issuer-bid" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CSA publishes proposed amendments and changes to enhance issuer bid, take-over bid, and beneficial ownership reporting regimes</a>
+              <div class="text-xs text-slate-500 mt-0.5">Canadian Securities Administrators · 2026-05-14 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 8</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/enforcement-litigation/litigation-releases/lr-26556" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Oskar Elmgart; Raymond Leibman</a>
+              <div class="text-xs text-slate-500 mt-0.5">U.S. SECURITIES AND EXCHANGE COMMISSION — Division of Enforcement · 2026-05-18 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/rules-regulations/2026/05/33-11417" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Rescission of Policy Regarding Denials in Settlements of Enforcement Actions</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission · 2026-05-18 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/files/litigation/admin/2026/34-105471.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">David H. Goldman</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission · 2026-05-13 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 8</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/files/litigation/admin/2026/34-105508.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Nipun Kumar Jami</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission — Division of Enforcement · 2026-05-19 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.sec.gov/files/litigation/admin/2026/ia-6966.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Robert L. Murray, Jr.</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission — Division of Enforcement · 2026-05-19 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://home.sec.gov.ng/for-investors/keep-track-of-circulars/circular-on-mandatory-registration-of-collateral-management-companies-warehouse-operators-and-warehouses/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Circular on Mandatory Registration of Collateral Management Companies, Warehouse Operators and Warehouses - 11.05.2026</a>
+              <div class="text-xs text-slate-500 mt-0.5">Securities and Exchange Commission, Nigeria · 2026-05-11 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 7</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.msrb.org/sites/default/files/2026-05/MSRB-2026-02-Federal-Register.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Federal Register Notice of Immediately Effective Proposed Rule Change (May 07, 2026)</a>
+              <div class="text-xs text-slate-500 mt-0.5">Municipal Securities Rulemaking Board · 2026-05-07 · matched <span class="font-medium">U.S. Securities and Exchange Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+    
+    </div><!-- /results -->
+  </section>
+  
+  <section x-show="active === 'state_kalshi_action'"
+           x-data="{ ran: false, running: false, run() { if (this.ran || this.running) return; this.running = true; setTimeout(() => { this.running = false; this.ran = true; }, 900); } }"
+           class="space-y-6">
+    <!-- Input card -->
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mb-1">Proposed contract title</label>
+      <textarea readonly rows="2" class="w-full font-medium text-slate-900 bg-transparent resize-none focus:outline-none">Will a 12th US state issue a cease-and-desist against a major event-contract platform by 2026-12-31?</textarea>
+      <label class="block text-xs uppercase tracking-wider text-slate-500 mt-3 mb-1">Resolution criteria</label>
+      <textarea readonly rows="3" class="w-full text-sm text-slate-700 bg-transparent resize-none focus:outline-none">Resolves YES if a 12th US state-level gambling or securities regulator
+issues an enforcement action naming a CFTC-licensed event-contract
+platform by 2026-12-31.
+</textarea>
+      <button @click="run()"
+              :disabled="running || ran"
+              :class="ran ? 'bg-emerald-600 cursor-default' : (running ? 'bg-blue-500 cursor-wait' : 'bg-blue-600 hover:bg-blue-700')"
+              class="mt-3 inline-flex items-center gap-2 text-white px-3 py-1.5 rounded text-sm font-medium transition"
+              title="Production deployment runs this synchronously against live Carver data.">
+        <span x-show="!running && !ran">Run scan</span>
+        <span x-show="running" class="flex items-center gap-2">
+          <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          Analysing 49,735 events…
+        </span>
+        <span x-show="ran" class="flex items-center gap-2">✓ Scan complete</span>
+      </button>
+    </div>
+
+    <!-- Results (hidden until Run scan is pressed) -->
+    <div x-show="ran"
+         x-cloak
+         x-transition:enter="transition ease-out duration-400"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Severity</div>
+        <div class="text-4xl font-bold text-red-600">9</div>
+        <div class="text-xs text-slate-500 mt-1">out of 10</div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Breakdown</div>
+        <div class="text-sm space-y-1">
+          <div><span class="text-slate-500">Matches:</span> <span class="font-medium">100</span></div>
+          <div><span class="text-slate-500">Top entity:</span> <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+        </div>
+      </div>
+      <div class="border border-slate-200 rounded-lg p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Extracted entities</div>
+        <div class="flex flex-wrap gap-1">
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Nevada Gaming Control Board</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">New Jersey Division of Gaming Enforcement</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Maryland Lottery and Gaming Control Agency</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Massachusetts Gaming Commission</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">New Jersey Bureau of Securities</span>
+          
+          <span class="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">California Department of Financial Protection and Innovation</span>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent events -->
+    <div class="border border-slate-200 rounded-lg overflow-hidden">
+      <header class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Recent regulatory activity (10)</h2>
+      </header>
+      
+      <ul class="divide-y divide-slate-100">
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.cftc.gov/PressRoom/PressReleases/9233-26" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CFTC Sues Minnesota to Block State Law</a>
+              <div class="text-xs text-slate-500 mt-0.5">Commodity Futures Trading Commission · 2026-05-19 · matched <span class="font-medium">Massachusetts Gaming Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/regulated-industries/credit-unions/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Credit Unions</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-19 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 7</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/actions_and_orders/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Actions &amp; Orders</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-18 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/enforcement_action/rbc-capital-markets-llc/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">RBC Capital Markets, LLC</a>
+              <div class="text-xs text-slate-500 mt-0.5">California Department of Financial Protection and Innovation · 2026-05-15 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 7</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/enforcement_action/nations-reliable-lending-llc/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">NATIONS RELIABLE LENDING, LLC</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-18 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/enforcement_action/housemax-funding-llc/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">HOUSEMAX FUNDING, LLC</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-18 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/enforcement_action/grc-lending-llc/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">GRC Lending LLC</a>
+              <div class="text-xs text-slate-500 mt-0.5">California Department of Financial Protection and Innovation · 2026-05-18 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 5</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/enforcement_action/yotta-technologies-inc/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Yotta Technologies, Inc.</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-15 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 6</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://www.mass.gov/news/ag-campbell-launches-500000-phone-free-school-support-grant" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">AG Campbell Launches $500,000 Phone-Free School Support Grant</a>
+              <div class="text-xs text-slate-500 mt-0.5">Office of the Attorney General · 2026-05-08 · matched <span class="font-medium">Massachusetts Gaming Commission</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 9</div>
+          </div>
+        </li>
+        
+        <li class="px-4 py-3 text-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <a href="https://dfpi.ca.gov/regulated-industries/securities/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Securities</a>
+              <div class="text-xs text-slate-500 mt-0.5">Department of Financial Protection and Innovation · 2026-05-19 · matched <span class="font-medium">California Department of Financial Protection and Innovation</span></div>
+            </div>
+            <div class="text-xs text-slate-500 whitespace-nowrap">urg 4</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+    
+    </div><!-- /results -->
+  </section>
+  
+  </div><!-- /scenario content -->
+</div>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="/gamma/" class="text-sm text-slate-500 hover:text-slate-900">← Listing risk overview</a>
+  <a href="/gamma/dashboard/" class="text-sm text-blue-600 hover:text-blue-800">Open contract-watch board →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

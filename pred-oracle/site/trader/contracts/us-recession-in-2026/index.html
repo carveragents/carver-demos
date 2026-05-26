@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Will the US enter a recession in 2026?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="/trader/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="/trader/retrospectives/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="/trader/" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 uppercase tracking-wide font-medium">critical</span>
+    
+    
+    <span class="text-xs text-slate-400">expires 2026-12-31</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">Will the US enter a recession in 2026?</h1>
+</header>
+
+
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">22¢</span>
+    <span class="text-[10px] text-emerald-200">payout $455/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">78¢</span>
+    <span class="text-[10px] text-rose-200">payout $128/$100</span>
+  </button>
+
+  
+  <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
+    <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
+    <span class="text-slate-700">Your position:</span>
+    <span class="font-semibold">YES</span>
+    <span class="text-slate-500">500 contracts</span>
+    <span class="text-slate-400">@ 18¢ avg</span>
+  </div>
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">NBER 2026-peak recession by 2026-12-31</span>
+              
+              <span class="text-xs text-slate-500 tabular-nums">50%</span>
+              
+            </div>
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5">
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">The NBER Business Cycle Dating Committee publicly announces that the U.S. entered a recession with the peak month occurring in 2026, and this announcement is made on or before 2026-12-31.</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-21</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-40.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">OCC Announces Enforcement Actions for May 2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">OCC enforcement actions against several banks signal limited banking stress, slightly increasing recession odds but not directly tied to NBER dating.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Financial Institutions Examination Council</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://ncua.gov/newsroom/press-release/2026/agencies-request-comment-financial-institutions-rating-system" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Request Comment on Financial Institutions Rating System - 05/19/2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Interagency request on financial-institution ratings signals regulatory scrutiny of banking health, marginally increasing recession likelihood but is indirect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-04</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0486" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Policy Statements to TBAC: 2026 - 2nd Quarter​</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Treasury TBAC policy statements include official economic outlooks that slightly shift recession odds but do not directly determine an NBER 2026 peak.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/final-rule-revisions-community-bank-leverage-ratio-cblr" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">FDIC CBLR revisions modestly ease community bank capital constraints, slightly boosting lending and marginally reducing near‑term recession risk (low impact).</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/board-matters/2026/board-meeting-2026-04-23-3notation" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">April 23, 2026 - Notational Vote: Final Regulatory Capital Rule</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Final bank capital rule affects banks&#39; lending/resilience, giving a small ambiguous impact on recession odds but doesn&#39;t directly determine an NBER 2026 peak.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/press-releases/2026/agencies-finalize-changes-community-bank-leverage-ratio" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Finalize Changes to Community Bank Leverage Ratio</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Finalized changes to the community bank leverage ratio affect small‑bank capital and credit supply—small, indirect signal on recession risk, not decisive.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.occ.gov/news-issuances/news-releases/2026/nr-ia-2026-30.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Finalize Changes to Community Bank Leverage Ratio</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Finalized changes to community bank leverage rules slightly affect banking stability and credit supply—an indirect, small influence on recession odds in 2026.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-15.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Community Bank Leverage Ratio: Final Rule</a>
+            
+            <p class="text-xs text-slate-600 mt-1">OCC final rule on community bank leverage affects small banks&#39; capital and credit supply—an indirect, limited influence on recession odds for 2026.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-15</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury — Office of Public Affairs</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0448" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Treasury International Capital Data for February</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Monthly TIC capital‑flow release is peripheral financial data that offers only minor information about stress/flows and thus only slightly impacts recession odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-02</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation — Division of Risk Management Supervision</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/consolidated-reports-condition-and-income-first-quarter" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Consolidated Reports of Condition and Income for First Quarter 2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Routine release of Q1 Call Reports provides banking-sector data that may inform recession risk but doesn&#39;t directly determine NBER dating.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-regulatory-capital-and-standardized" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">New standardized risk-weighted capital rule likely tightens bank capital, marginally reducing lending and slightly increasing near-term recession probability.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Capital-rule changes affect bank lending and stability and thus recession risk indirectly, but are ambiguous and not determinative of an NBER 2026 peak.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-8.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital: Standardized Approach for Risk-Weighted Assets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">OCC capital-rule changes can modestly affect bank lending and macro risk, but are indirect and unlikely to determine NBER dating.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury — Office of Public Affairs</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0418" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Treasury International Capital Data for January</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Routine Treasury TIC January release is an indirect capital-flow datapoint that offers only a minor, non-decisive signal for NBER recession dating.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-10</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0414" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">President Trump’s Tax Cuts are Putting More Money Back into the Pockets of American Families and Workers</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Treasury press release touting tax-cut stimulus slightly reduces near-term recession odds, modestly lowering chance NBER finds a 2026 peak.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-06</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Department of the Treasury and Internal Revenue Service</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-for-trump-accounts-pilot-program-treasury-department-to-deposit-1000-into-the-account-of-each-eligible-child" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child</a>
+            
+            <p class="text-xs text-slate-600 mt-1">A modest $1,000 child deposit is small fiscal stimulus that slightly reduces odds of a 2026 NBER recession (makes YES less likely).</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-09</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation — Division of Risk Management Supervision</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/consolidated-reports-condition-and-income-fourth-quarter" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Consolidated Reports of Condition and Income for Fourth Quarter 2025</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Routine Q4 2025 bank condition reports provide incremental signals about financial stress but don&#39;t directly determine NBER recession dating.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency; Board of Governors of the Federal Reserve System; Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.govinfo.gov/content/pkg/FR-2025-12-01/pdf/2025-21626.pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital Rule: Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions; Total Loss-Absorbing Capacity and Long-Term Debt Requirements for U.S. Global Systemically Important Bank Holding Companies 12 CFR Part 324 RIN 3064–AG11 Final rule Effective Date: January 1, 2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Jan 1, 2026 GSIB enhanced SLR/TLAC rule changes could tighten lending and financial conditions, modestly raising the chance of a 2026 NBER recession.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-25</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.occ.gov/news-issuances/news-releases/2025/nr-ia-2025-112.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Changes to bank capital rules can modestly affect credit supply and thus 2026 recession odds, but the rule’s direction and magnitude for growth are unclear.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-04-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/press-releases/2025/fdic-announces-three-orders-against-discover-bank-greenwood-delaware" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">FDIC Announces Three Orders Against Discover Bank, Greenwood, Delaware</a>
+            
+            <p class="text-xs text-slate-600 mt-1">FDIC enforcement against Discover signals some banking-sector stress that slightly raises the chance of a 2026 NBER recession, but is indirect and limited.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Analyst narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Regulatory signals are mixed: late-2025 capital rule changes and 2026 risk-weighted asset rules tighten conditions, while CBLR easing and small fiscal measures (child deposits, tax-cut messaging) temper credit stress. OCC/FDIC enforcement actions and a new ratings-system review point to ongoing scrutiny, nudging odds up slightly. NBER’s 2026 recession call remains pending as banks adapt to capital rules and incoming data.
+      </blockquote>
+    </section>
+    
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise.</p>
+    </section>
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          National Bureau of Economic Research
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Federal Reserve System
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Federal Open Market Committee
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Department of the Treasury
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Bureau of Labor Statistics
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Bureau of Economic Analysis
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Council of Economic Advisers
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div class="border border-slate-200 rounded-lg p-4 bg-rose-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-baseline gap-2 mb-1">
+        <span class="text-3xl font-bold text-rose-700 tabular-nums">87</span>
+        <span class="text-sm text-rose-700 font-semibold uppercase tracking-wide">critical</span>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3 tabular-nums">
+        
+          <span class="text-emerald-600">-70.5 / 7d</span>
+        
+        
+        <span class="text-slate-400">·</span>
+        <span>top 60% of peers</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,2.0 64.62,26.0 73.85,5.43 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Final Community Bank Leverage Ratio and regulatory capital rules (Apr 23)
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            OCC enforcement actions published (May 21)
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Interagency request for comment on financial institutions rating system (May 19)
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">This week’s critical heat is driven by late‑April finalization of community bank leverage and capital rules, plus recent OCC enforcement actions and an interagency request for comment.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+        
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <ul class="space-y-3">
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital: Standardized Approach for Risk-Weighted Assets</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">April 23, 2026 - Notational Vote: Final Regulatory Capital Rule</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Finalize Changes to Community Bank Leverage Ratio</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Finalize Changes to Community Bank Leverage Ratio</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Community Bank Leverage Ratio: Final Rule</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-04 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Request Comment on Financial Institutions Rating System - 05/19/2026</div>
+            <div class="text-xs text-slate-400 mt-0.5">2026-08-17 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <div class="font-medium text-slate-800">Consolidated Reports of Condition and Income for Fourth Quarter 2025</div>
+            <div class="text-xs text-slate-400 mt-0.5">December 31, 2025 · Effective date</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.44, "t": 1759190407}, {"p": 0.46, "t": 1759233613}, {"p": 0.465, "t": 1759276804}, {"p": 0.39, "t": 1759320002}, {"p": 0.375, "t": 1759363209}, {"p": 0.38, "t": 1759406410}, {"p": 0.39, "t": 1759449603}, {"p": 0.405, "t": 1759492809}, {"p": 0.375, "t": 1759536005}, {"p": 0.385, "t": 1759579209}, {"p": 0.355, "t": 1759622409}, {"p": 0.365, "t": 1759665605}, {"p": 0.375, "t": 1759708809}, {"p": 0.36, "t": 1759752007}, {"p": 0.37, "t": 1759795205}, {"p": 0.375, "t": 1759838404}, {"p": 0.385, "t": 1759881611}, {"p": 0.385, "t": 1759924815}, {"p": 0.385, "t": 1759968008}, {"p": 0.385, "t": 1760011221}, {"p": 0.385, "t": 1760054404}, {"p": 0.38, "t": 1760097609}, {"p": 0.38, "t": 1760140805}, {"p": 0.355, "t": 1760184008}, {"p": 0.37, "t": 1760227208}, {"p": 0.37, "t": 1760270410}, {"p": 0.385, "t": 1760313602}, {"p": 0.375, "t": 1760356827}, {"p": 0.38, "t": 1760400007}, {"p": 0.38, "t": 1760443219}, {"p": 0.355, "t": 1760486415}, {"p": 0.35, "t": 1760529617}, {"p": 0.35, "t": 1760572820}, {"p": 0.355, "t": 1760616003}, {"p": 0.35, "t": 1760659207}, {"p": 0.35, "t": 1760702415}, {"p": 0.355, "t": 1760745619}, {"p": 0.37, "t": 1760788807}, {"p": 0.37, "t": 1760832018}, {"p": 0.37, "t": 1760875220}, {"p": 0.37, "t": 1760918423}, {"p": 0.37, "t": 1760961609}, {"p": 0.365, "t": 1761004813}, {"p": 0.375, "t": 1761048024}, {"p": 0.39, "t": 1761091224}, {"p": 0.39, "t": 1761134433}, {"p": 0.415, "t": 1761177612}, {"p": 0.405, "t": 1761220822}, {"p": 0.395, "t": 1761264020}, {"p": 0.395, "t": 1761307226}, {"p": 0.425, "t": 1761350418}, {"p": 0.455, "t": 1761393627}, {"p": 0.44, "t": 1761436822}, {"p": 0.445, "t": 1761480029}, {"p": 0.445, "t": 1761523219}, {"p": 0.445, "t": 1761566424}, {"p": 0.435, "t": 1761609623}, {"p": 0.45, "t": 1761652824}, {"p": 0.455, "t": 1761696022}, {"p": 0.385, "t": 1761782422}, {"p": 0.415, "t": 1761825627}, {"p": 0.435, "t": 1761868815}, {"p": 0.455, "t": 1761912026}, {"p": 0.4, "t": 1761955222}, {"p": 0.395, "t": 1761998430}, {"p": 0.375, "t": 1762041617}, {"p": 0.365, "t": 1762084826}, {"p": 0.37, "t": 1762128020}, {"p": 0.37, "t": 1762171226}, {"p": 0.365, "t": 1762214421}, {"p": 0.35, "t": 1762257629}, {"p": 0.35, "t": 1762300823}, {"p": 0.385, "t": 1762344030}, {"p": 0.385, "t": 1762387214}, {"p": 0.4, "t": 1762430432}, {"p": 0.4, "t": 1762473623}, {"p": 0.4, "t": 1762516831}, {"p": 0.4, "t": 1762560015}, {"p": 0.405, "t": 1762603242}, {"p": 0.41, "t": 1762646435}, {"p": 0.395, "t": 1762689627}, {"p": 0.4, "t": 1762732815}, {"p": 0.395, "t": 1762776026}, {"p": 0.39, "t": 1762819224}, {"p": 0.385, "t": 1762862443}, {"p": 0.385, "t": 1762905620}, {"p": 0.39, "t": 1762948831}, {"p": 0.385, "t": 1762992022}, {"p": 0.38, "t": 1763035233}, {"p": 0.375, "t": 1763078421}, {"p": 0.38, "t": 1763121634}, {"p": 0.375, "t": 1763164826}, {"p": 0.37, "t": 1763208034}, {"p": 0.37, "t": 1763251217}, {"p": 0.37, "t": 1763294429}, {"p": 0.365, "t": 1763337623}, {"p": 0.365, "t": 1763380828}, {"p": 0.365, "t": 1763424017}, {"p": 0.365, "t": 1763467230}, {"p": 0.365, "t": 1763510426}, {"p": 0.375, "t": 1763553633}, {"p": 0.35, "t": 1763596817}, {"p": 0.345, "t": 1763640018}, {"p": 0.35, "t": 1763683229}, {"p": 0.355, "t": 1763726419}, {"p": 0.355, "t": 1763769618}, {"p": 0.36, "t": 1763812818}, {"p": 0.36, "t": 1763856019}, {"p": 0.335, "t": 1763899217}, {"p": 0.345, "t": 1763942416}, {"p": 0.345, "t": 1763985612}, {"p": 0.35, "t": 1764028824}, {"p": 0.35, "t": 1764072032}, {"p": 0.355, "t": 1764115219}, {"p": 0.36, "t": 1764158447}, {"p": 0.36, "t": 1764201624}, {"p": 0.36, "t": 1764244838}, {"p": 0.355, "t": 1764288022}, {"p": 0.355, "t": 1764331237}, {"p": 0.365, "t": 1764374430}, {"p": 0.365, "t": 1764417638}, {"p": 0.37, "t": 1764460822}, {"p": 0.365, "t": 1764547227}, {"p": 0.36, "t": 1764590444}, {"p": 0.34, "t": 1764633617}, {"p": 0.31, "t": 1764676833}, {"p": 0.34, "t": 1764720027}, {"p": 0.335, "t": 1764763236}, {"p": 0.33, "t": 1764806417}, {"p": 0.325, "t": 1764849636}, {"p": 0.335, "t": 1764892819}, {"p": 0.31, "t": 1764936022}, {"p": 0.31, "t": 1764979220}, {"p": 0.31, "t": 1765022422}, {"p": 0.31, "t": 1765065633}, {"p": 0.31, "t": 1765108825}, {"p": 0.29, "t": 1765152032}, {"p": 0.325, "t": 1765195234}, {"p": 0.325, "t": 1765238430}, {"p": 0.315, "t": 1765281619}, {"p": 0.325, "t": 1765324817}, {"p": 0.33, "t": 1765368034}, {"p": 0.325, "t": 1765411217}, {"p": 0.315, "t": 1765454420}, {"p": 0.34, "t": 1765497618}, {"p": 0.325, "t": 1765540821}, {"p": 0.305, "t": 1765584021}, {"p": 0.295, "t": 1765627223}, {"p": 0.28, "t": 1765670422}, {"p": 0.27, "t": 1765713622}, {"p": 0.27, "t": 1765756825}, {"p": 0.275, "t": 1765800020}, {"p": 0.275, "t": 1765843220}, {"p": 0.275, "t": 1765886434}, {"p": 0.275, "t": 1765929617}, {"p": 0.275, "t": 1765929637}, {"p": 0.27, "t": 1765972831}, {"p": 0.275, "t": 1766016027}, {"p": 0.345, "t": 1766059219}, {"p": 0.31, "t": 1766102419}, {"p": 0.305, "t": 1766145621}, {"p": 0.28, "t": 1766188819}, {"p": 0.28, "t": 1766232023}, {"p": 0.3, "t": 1766275220}, {"p": 0.28, "t": 1766318419}, {"p": 0.27, "t": 1766361619}, {"p": 0.275, "t": 1766404819}, {"p": 0.275, "t": 1766448021}, {"p": 0.28, "t": 1766491225}, {"p": 0.28, "t": 1766534421}, {"p": 0.285, "t": 1766577621}, {"p": 0.275, "t": 1766620830}, {"p": 0.275, "t": 1766664022}, {"p": 0.27, "t": 1766707215}, {"p": 0.27, "t": 1766750419}, {"p": 0.265, "t": 1766793620}, {"p": 0.275, "t": 1766836820}, {"p": 0.28, "t": 1766880020}, {"p": 0.28, "t": 1766923220}, {"p": 0.275, "t": 1766966437}, {"p": 0.275, "t": 1767009621}, {"p": 0.27, "t": 1767052824}, {"p": 0.27, "t": 1767096024}, {"p": 0.27, "t": 1767139221}, {"p": 0.265, "t": 1767182421}, {"p": 0.27, "t": 1767225621}, {"p": 0.27, "t": 1767268823}, {"p": 0.255, "t": 1767312020}, {"p": 0.255, "t": 1767355220}, {"p": 0.23, "t": 1767398418}, {"p": 0.245, "t": 1767441621}, {"p": 0.235, "t": 1767484820}, {"p": 0.245, "t": 1767528023}, {"p": 0.24, "t": 1767571223}, {"p": 0.245, "t": 1767614420}, {"p": 0.24, "t": 1767657625}, {"p": 0.24, "t": 1767700823}, {"p": 0.25, "t": 1767744023}, {"p": 0.255, "t": 1767787227}, {"p": 0.255, "t": 1767830439}, {"p": 0.235, "t": 1767873645}, {"p": 0.235, "t": 1767916823}, {"p": 0.23, "t": 1767960037}, {"p": 0.235, "t": 1768003224}, {"p": 0.22, "t": 1768046427}, {"p": 0.235, "t": 1768089621}, {"p": 0.23, "t": 1768132820}, {"p": 0.225, "t": 1768176023}, {"p": 0.22, "t": 1768219228}, {"p": 0.23, "t": 1768262424}, {"p": 0.225, "t": 1768305628}, {"p": 0.22, "t": 1768348826}, {"p": 0.215, "t": 1768392027}, {"p": 0.215, "t": 1768435227}, {"p": 0.215, "t": 1768478427}, {"p": 0.215, "t": 1768521630}, {"p": 0.215, "t": 1768564828}, {"p": 0.215, "t": 1768608027}, {"p": 0.21, "t": 1768651244}, {"p": 0.215, "t": 1768694443}, {"p": 0.205, "t": 1768737643}, {"p": 0.21, "t": 1768780822}, {"p": 0.21, "t": 1768824027}, {"p": 0.21, "t": 1768867224}, {"p": 0.215, "t": 1768910426}, {"p": 0.225, "t": 1768953626}, {"p": 0.23, "t": 1768996851}, {"p": 0.23, "t": 1769040039}, {"p": 0.23, "t": 1769083257}, {"p": 0.225, "t": 1769126444}, {"p": 0.225, "t": 1769212841}, {"p": 0.225, "t": 1769256041}, {"p": 0.235, "t": 1769299246}, {"p": 0.24, "t": 1769385646}, {"p": 0.25, "t": 1769428840}, {"p": 0.255, "t": 1769472039}, {"p": 0.255, "t": 1769515226}, {"p": 0.255, "t": 1769558428}, {"p": 0.255, "t": 1769601630}, {"p": 0.26, "t": 1769644843}, {"p": 0.27, "t": 1769688034}, {"p": 0.27, "t": 1769731232}, {"p": 0.265, "t": 1769774448}, {"p": 0.265, "t": 1769817633}, {"p": 0.265, "t": 1769860839}, {"p": 0.27, "t": 1769904041}, {"p": 0.27, "t": 1769947236}, {"p": 0.275, "t": 1769990432}, {"p": 0.275, "t": 1770033636}, {"p": 0.275, "t": 1770076836}, {"p": 0.265, "t": 1770120042}, {"p": 0.26, "t": 1770163245}, {"p": 0.225, "t": 1770206436}, {"p": 0.23, "t": 1770249630}, {"p": 0.23, "t": 1770292842}, {"p": 0.24, "t": 1770336039}, {"p": 0.25, "t": 1770379242}, {"p": 0.255, "t": 1770422448}, {"p": 0.255, "t": 1770465645}, {"p": 0.26, "t": 1770508843}, {"p": 0.265, "t": 1770552056}, {"p": 0.265, "t": 1770595241}, {"p": 0.265, "t": 1770638459}, {"p": 0.245, "t": 1770681645}, {"p": 0.25, "t": 1770768053}, {"p": 0.25, "t": 1770811245}, {"p": 0.23, "t": 1770854453}, {"p": 0.23, "t": 1770897644}, {"p": 0.225, "t": 1770940845}, {"p": 0.235, "t": 1770984050}, {"p": 0.225, "t": 1771027250}, {"p": 0.235, "t": 1771070454}, {"p": 0.23, "t": 1771113650}, {"p": 0.23, "t": 1771156855}, {"p": 0.22, "t": 1771286453}, {"p": 0.23, "t": 1771372856}, {"p": 0.23, "t": 1771416055}, {"p": 0.24, "t": 1771459259}, {"p": 0.22, "t": 1771545654}, {"p": 0.225, "t": 1771588833}, {"p": 0.235, "t": 1771632036}, {"p": 0.225, "t": 1771675236}, {"p": 0.22, "t": 1771718436}, {"p": 0.23, "t": 1771761646}, {"p": 0.225, "t": 1771804843}, {"p": 0.225, "t": 1771848050}, {"p": 0.215, "t": 1771891244}, {"p": 0.21, "t": 1771934458}, {"p": 0.225, "t": 1771977651}, {"p": 0.215, "t": 1772020855}, {"p": 0.21, "t": 1772064045}, {"p": 0.22, "t": 1772150450}, {"p": 0.225, "t": 1772236848}, {"p": 0.235, "t": 1772366451}, {"p": 0.225, "t": 1772409659}, {"p": 0.22, "t": 1772452850}, {"p": 0.22, "t": 1772496054}, {"p": 0.22, "t": 1772539256}, {"p": 0.23, "t": 1772582454}, {"p": 0.23, "t": 1772625650}, {"p": 0.235, "t": 1772668851}, {"p": 0.24, "t": 1772755250}, {"p": 0.26, "t": 1772798451}, {"p": 0.32, "t": 1772841655}, {"p": 0.33, "t": 1772884855}, {"p": 0.315, "t": 1772928044}, {"p": 0.31, "t": 1772971243}, {"p": 0.365, "t": 1773014440}, {"p": 0.31, "t": 1773057639}, {"p": 0.285, "t": 1773100848}, {"p": 0.285, "t": 1773144052}, {"p": 0.285, "t": 1773187252}, {"p": 0.295, "t": 1773273654}, {"p": 0.325, "t": 1773403244}, {"p": 0.335, "t": 1773446444}, {"p": 0.345, "t": 1773489647}, {"p": 0.345, "t": 1773532846}, {"p": 0.335, "t": 1773576043}, {"p": 0.315, "t": 1773619257}, {"p": 0.305, "t": 1773662430}, {"p": 0.305, "t": 1773705637}, {"p": 0.305, "t": 1773748839}, {"p": 0.305, "t": 1773792038}, {"p": 0.305, "t": 1773835251}, {"p": 0.31, "t": 1773878449}, {"p": 0.315, "t": 1773921637}, {"p": 0.335, "t": 1773964843}, {"p": 0.345, "t": 1774008037}, {"p": 0.345, "t": 1774051241}, {"p": 0.345, "t": 1774094434}, {"p": 0.345, "t": 1774137638}, {"p": 0.355, "t": 1774180845}, {"p": 0.36, "t": 1774224032}, {"p": 0.345, "t": 1774267231}, {"p": 0.335, "t": 1774310429}, {"p": 0.345, "t": 1774353635}, {"p": 0.345, "t": 1774396830}, {"p": 0.35, "t": 1774440031}, {"p": 0.345, "t": 1774483233}, {"p": 0.355, "t": 1774526443}, {"p": 0.355, "t": 1774569647}, {"p": 0.355, "t": 1774612845}, {"p": 0.36, "t": 1774656050}, {"p": 0.36, "t": 1774699250}, {"p": 0.355, "t": 1774742455}, {"p": 0.335, "t": 1775649641}, {"p": 0.295, "t": 1775692830}, {"p": 0.25, "t": 1776470425}, {"p": 0.265, "t": 1776816017}, {"p": 0.265, "t": 1776859215}, {"p": 0.26, "t": 1776902421}, {"p": 0.255, "t": 1776945614}, {"p": 0.27, "t": 1776988834}, {"p": 0.26, "t": 1777032008}, {"p": 0.26, "t": 1777075216}, {"p": 0.255, "t": 1777118411}, {"p": 0.255, "t": 1777161609}, {"p": 0.255, "t": 1777204811}, {"p": 0.255, "t": 1777248011}, {"p": 0.255, "t": 1777291223}, {"p": 0.255, "t": 1777334413}, {"p": 0.255, "t": 1777377614}, {"p": 0.255, "t": 1777420811}, {"p": 0.255, "t": 1777464012}, {"p": 0.255, "t": 1777507215}, {"p": 0.255, "t": 1777550416}, {"p": 0.245, "t": 1777593619}, {"p": 0.235, "t": 1777636812}, {"p": 0.235, "t": 1777680013}, {"p": 0.24, "t": 1777723211}, {"p": 0.235, "t": 1777766407}, {"p": 0.235, "t": 1777809609}, {"p": 0.24, "t": 1777852806}, {"p": 0.25, "t": 1777896006}, {"p": 0.245, "t": 1777939220}, {"p": 0.245, "t": 1777982410}, {"p": 0.245, "t": 1778025611}, {"p": 0.245, "t": 1778068809}, {"p": 0.225, "t": 1778112010}, {"p": 0.22, "t": 1778155219}, {"p": 0.215, "t": 1778198408}, {"p": 0.225, "t": 1778241606}, {"p": 0.225, "t": 1778284825}, {"p": 0.225, "t": 1778328009}, {"p": 0.225, "t": 1778371211}, {"p": 0.215, "t": 1778414409}, {"p": 0.225, "t": 1778457612}, {"p": 0.225, "t": 1778500812}, {"p": 0.22, "t": 1778544017}, {"p": 0.225, "t": 1778587212}, {"p": 0.225, "t": 1778630415}, {"p": 0.215, "t": 1778673613}, {"p": 0.225, "t": 1778716821}, {"p": 0.225, "t": 1778760011}, {"p": 0.23, "t": 1778803212}, {"p": 0.235, "t": 1778846414}, {"p": 0.235, "t": 1778889619}, {"p": 0.235, "t": 1778932816}, {"p": 0.235, "t": 1778976030}, {"p": 0.225, "t": 1779019214}, {"p": 0.245, "t": 1779062413}, {"p": 0.265, "t": 1779105612}, {"p": 0.245, "t": 1779148810}, {"p": 0.245, "t": 1779192026}, {"p": 0.245, "t": 1779235215}, {"p": 0.235, "t": 1779278418}, {"p": 0.225, "t": 1779321616}, {"p": 0.22, "t": 1779364811}, {"p": 0.205, "t": 1779408024}, {"p": 0.215, "t": 1779451214}, {"p": 0.215, "t": 1779494413}, {"p": 0.215, "t": 1779537611}, {"p": 0.245, "t": 1779580808}, {"p": 0.215, "t": 1779624009}, {"p": 0.215, "t": 1779667208}, {"p": 0.215, "t": 1779710408}, {"p": 0.225, "t": 1779753608}, {"p": 0.23, "t": 1779796814}, {"p": 0.215, "t": 1779819484}];
+  var timelineEvents = [{"carver_feed_entry_id": "3ccc2b36-9e18-49d6-8695-16cf621203ad", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "OCC enforcement actions against several banks signal limited banking stress, slightly increasing recession odds but not directly tied to NBER dating.", "pub_date": "2026-05-21", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "OCC Announces Enforcement Actions for May 2026", "urgency": 6.0, "url": "https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-40.html"}, {"carver_feed_entry_id": "a90da518-5749-4c09-8555-0e787fa1fe1e", "comment_deadline": "2026-08-17", "condition_tag": "A", "direction": "bearish", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "Interagency request on financial-institution ratings signals regulatory scrutiny of banking health, marginally increasing recession likelihood but is indirect.", "pub_date": "2026-05-19", "regulator": "Federal Financial Institutions Examination Council", "relevance_score": 2, "timeline_shift": "none", "title": "Agencies Request Comment on Financial Institutions Rating System - 05/19/2026", "urgency": 7.0, "url": "https://ncua.gov/newsroom/press-release/2026/agencies-request-comment-financial-institutions-rating-system"}, {"carver_feed_entry_id": "a2218e45-266a-46c2-9106-e3d1c3fcbeca", "comment_deadline": "", "condition_tag": "A", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Treasury TBAC policy statements include official economic outlooks that slightly shift recession odds but do not directly determine an NBER 2026 peak.", "pub_date": "2026-05-04", "regulator": "U.S. Department of the Treasury", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b", "urgency": 7.0, "url": "https://home.treasury.gov/news/press-releases/sb0486"}, {"carver_feed_entry_id": "18ade97e-ea67-49a0-8057-319accec1de5", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "FDIC CBLR revisions modestly ease community bank capital constraints, slightly boosting lending and marginally reducing near\u2011term recession risk (low impact).", "pub_date": "2026-04-23", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026", "urgency": 9.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/final-rule-revisions-community-bank-leverage-ratio-cblr"}, {"carver_feed_entry_id": "4749b06e-71cc-411e-bcb9-d40643432441", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Final bank capital rule affects banks\u0027 lending/resilience, giving a small ambiguous impact on recession odds but doesn\u0027t directly determine an NBER 2026 peak.", "pub_date": "2026-04-23", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "April 23, 2026 - Notational Vote: Final Regulatory Capital Rule", "urgency": 9.0, "url": "https://www.fdic.gov/news/board-matters/2026/board-meeting-2026-04-23-3notation"}, {"carver_feed_entry_id": "423034e5-0535-445e-a159-3dd14bfa1d24", "comment_deadline": "", "condition_tag": "A", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Finalized changes to the community bank leverage ratio affect small\u2011bank capital and credit supply\u2014small, indirect signal on recession risk, not decisive.", "pub_date": "2026-04-23", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio", "urgency": 9.0, "url": "https://www.fdic.gov/news/press-releases/2026/agencies-finalize-changes-community-bank-leverage-ratio"}, {"carver_feed_entry_id": "00d505a6-1355-4049-9bc4-c271e5bc9902", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Finalized changes to community bank leverage rules slightly affect banking stability and credit supply\u2014an indirect, small influence on recession odds in 2026.", "pub_date": "2026-04-23", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Agencies Finalize Changes to Community Bank Leverage Ratio", "urgency": 9.0, "url": "https://www.occ.gov/news-issuances/news-releases/2026/nr-ia-2026-30.html"}, {"carver_feed_entry_id": "ef99a074-b288-411d-8687-0a8a2f1bee88", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "OCC final rule on community bank leverage affects small banks\u0027 capital and credit supply\u2014an indirect, limited influence on recession odds for 2026.", "pub_date": "2026-04-23", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Community Bank Leverage Ratio: Final Rule", "urgency": 9.0, "url": "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-15.html"}, {"carver_feed_entry_id": "55863363-447a-4de6-b953-0c509c691f0e", "comment_deadline": "", "condition_tag": "A", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Monthly TIC capital\u2011flow release is peripheral financial data that offers only minor information about stress/flows and thus only slightly impacts recession odds.", "pub_date": "2026-04-15", "regulator": "U.S. Department of the Treasury \u2014 Office of Public Affairs", "relevance_score": 2, "timeline_shift": "none", "title": "Treasury International Capital Data for February", "urgency": 8.0, "url": "https://home.treasury.gov/news/press-releases/sb0448"}, {"carver_feed_entry_id": "6fc12a2c-6875-4084-a2b2-2f0a23385b60", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-04-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Routine release of Q1 Call Reports provides banking-sector data that may inform recession risk but doesn\u0027t directly determine NBER dating.", "pub_date": "2026-04-02", "regulator": "Federal Deposit Insurance Corporation \u2014 Division of Risk Management Supervision", "relevance_score": 2, "timeline_shift": "none", "title": "Consolidated Reports of Condition and Income for First Quarter 2026", "urgency": 10.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/consolidated-reports-condition-and-income-first-quarter"}, {"carver_feed_entry_id": "43dbe778-0848-4f5f-af15-494b1b8bcea3", "comment_deadline": "2026-06-18", "condition_tag": "A", "direction": "bullish", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "New standardized risk-weighted capital rule likely tightens bank capital, marginally reducing lending and slightly increasing near-term recession probability.", "pub_date": "2026-03-19", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 3, "timeline_shift": "none", "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets", "urgency": 9.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-regulatory-capital-and-standardized"}, {"carver_feed_entry_id": "dc7f842e-05c6-4c40-9712-20e87fd0e42b", "comment_deadline": "2026-06-18", "condition_tag": "A", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "Capital-rule changes affect bank lending and stability and thus recession risk indirectly, but are ambiguous and not determinative of an NBER 2026 peak.", "pub_date": "2026-03-19", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 3, "timeline_shift": "none", "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations", "urgency": 9.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking"}, {"carver_feed_entry_id": "f2d712ea-47dd-4ce6-ad3a-db0876a56144", "comment_deadline": "2026-06-18", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "OCC capital-rule changes can modestly affect bank lending and macro risk, but are indirect and unlikely to determine NBER dating.", "pub_date": "2026-03-19", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets", "urgency": 8.0, "url": "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-8.html"}, {"carver_feed_entry_id": "6ea17263-be62-4719-b3a8-b5de9dd879af", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Routine Treasury TIC January release is an indirect capital-flow datapoint that offers only a minor, non-decisive signal for NBER recession dating.", "pub_date": "2026-03-18", "regulator": "U.S. Department of the Treasury \u2014 Office of Public Affairs", "relevance_score": 2, "timeline_shift": "none", "title": "Treasury International Capital Data for January", "urgency": 9.0, "url": "https://home.treasury.gov/news/press-releases/sb0418"}, {"carver_feed_entry_id": "a8e0411a-f13c-47cc-a2b9-d1dd07757a3d", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Treasury press release touting tax-cut stimulus slightly reduces near-term recession odds, modestly lowering chance NBER finds a 2026 peak.", "pub_date": "2026-03-10", "regulator": "U.S. Department of the Treasury", "relevance_score": 2, "timeline_shift": "later", "title": "President Trump\u2019s Tax Cuts are Putting More Money Back into the Pockets of American Families and Workers", "urgency": 9.0, "url": "https://home.treasury.gov/news/press-releases/sb0414"}, {"carver_feed_entry_id": "7ac69f82-cc3e-43c5-96f4-46037fa3efaa", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-07-04", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "A modest $1,000 child deposit is small fiscal stimulus that slightly reduces odds of a 2026 NBER recession (makes YES less likely).", "pub_date": "2026-03-06", "regulator": "Department of the Treasury and Internal Revenue Service", "relevance_score": 2, "timeline_shift": "later", "title": "Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child", "urgency": 9.0, "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-for-trump-accounts-pilot-program-treasury-department-to-deposit-1000-into-the-account-of-each-eligible-child"}, {"carver_feed_entry_id": "00a083e3-e472-49a0-8fe6-de03f1469915", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "December 31, 2025", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Routine Q4 2025 bank condition reports provide incremental signals about financial stress but don\u0027t directly determine NBER recession dating.", "pub_date": "2026-01-09", "regulator": "Federal Deposit Insurance Corporation \u2014 Division of Risk Management Supervision", "relevance_score": 2, "timeline_shift": "none", "title": "Consolidated Reports of Condition and Income for Fourth Quarter 2025", "urgency": 9.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/consolidated-reports-condition-and-income-fourth-quarter"}, {"carver_feed_entry_id": "a587a83c-e3cc-47c3-8b91-8812b1173238", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-04-01", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Jan 1, 2026 GSIB enhanced SLR/TLAC rule changes could tighten lending and financial conditions, modestly raising the chance of a 2026 NBER recession.", "pub_date": "2025-12-01", "regulator": "Office of the Comptroller of the Currency; Board of Governors of the Federal Reserve System; Federal Deposit Insurance Corporation", "relevance_score": 4, "timeline_shift": "sooner", "title": "Regulatory Capital Rule: Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions; Total Loss-Absorbing Capacity and Long-Term Debt Requirements for U.S. Global Systemically Important Bank Holding Companies 12 CFR Part 324 RIN 3064\u2013AG11 Final rule Effective Date: January 1, 2026", "urgency": 5.0, "url": "https://www.govinfo.gov/content/pkg/FR-2025-12-01/pdf/2025-21626.pdf"}, {"carver_feed_entry_id": "079648f8-4006-41b8-a1d2-d8bda52e3ab9", "comment_deadline": "", "condition_tag": "A", "direction": "neutral", "effective_date": "2026-04-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Changes to bank capital rules can modestly affect credit supply and thus 2026 recession odds, but the rule\u2019s direction and magnitude for growth are unclear.", "pub_date": "2025-11-25", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 3, "timeline_shift": "none", "title": "Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards", "urgency": 5.0, "url": "https://www.occ.gov/news-issuances/news-releases/2025/nr-ia-2025-112.html"}, {"carver_feed_entry_id": "0db51d69-9dba-4fdd-9618-d78ace563dcd", "comment_deadline": "", "condition_tag": "A", "direction": "bullish", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "FDIC enforcement against Discover signals some banking-sector stress that slightly raises the chance of a 2026 NBER recession, but is indirect and limited.", "pub_date": "2025-04-18", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 3, "timeline_shift": "none", "title": "FDIC Announces Three Orders Against Discover Bank, Greenwood, Delaware", "urgency": 5.0, "url": "https://www.fdic.gov/news/press-releases/2025/fdic-announces-three-orders-against-discover-bank-greenwood-delaware"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 1, opacity: 0.5 },
+      label: { show: false }
+    };
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        return date + '<br/><span style="color:#059669">YES ' + yes + '%</span><br/><span style="color:#e11d48">NO ' + no + '%</span>';
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+});
+</script>
+
+
+</body>
+</html>
