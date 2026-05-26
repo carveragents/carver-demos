@@ -27,11 +27,15 @@ class PriceData:
 
 
 def normalize_kalshi_candles(candles: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    return [
-        {"t": c["end_period_ts"], "p": float(c["price"]["close"])}
-        for c in candles
-        if "price" in c and "close" in c["price"]
-    ]
+    result = []
+    for c in candles:
+        price = c.get("price", {})
+        # Historical API uses "close"; active API uses "close_dollars"
+        close = price.get("close") or price.get("close_dollars")
+        if close is None:
+            continue
+        result.append({"t": c["end_period_ts"], "p": float(close)})
+    return result
 
 
 def normalize_polymarket_history(history: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -73,8 +77,16 @@ def fetch_kalshi(
 
 
 def fetch_polymarket(
-    *, slug: str, condition_id: str = "",
+    *, slug: str, condition_id: str = "", token_id: str = "",
 ) -> list[dict[str, Any]]:
+    if token_id:
+        price_resp = httpx.get(
+            f"{POLYMARKET_CLOB_BASE}/prices-history",
+            params={"market": token_id, "interval": "max", "fidelity": 720},
+            timeout=30,
+        )
+        price_resp.raise_for_status()
+        return price_resp.json().get("history", [])
     gamma_resp = httpx.get(
         f"{POLYMARKET_GAMMA_BASE}/markets",
         params={"slug": slug},
@@ -104,6 +116,7 @@ def fetch_and_cache(
     platform: str,
     ticker: str,
     slug: str = "",
+    token_id: str = "",
     start_ts: int = 0,
     end_ts: int = 0,
     is_historical: bool = False,
@@ -120,7 +133,7 @@ def fetch_and_cache(
         )
         series = normalize_kalshi_candles(raw)
     elif platform == "polymarket":
-        raw = fetch_polymarket(slug=slug or contract_id)
+        raw = fetch_polymarket(slug=slug or contract_id, token_id=token_id)
         series = normalize_polymarket_history(raw)
     else:
         series = []

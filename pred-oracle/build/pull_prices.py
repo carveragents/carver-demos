@@ -78,13 +78,27 @@ def main() -> None:
         elif platform == "polymarket":
             pick = poly_picks.get(cid)
             slug = cid
+            token_id = ""
             if pick:
                 slug = pick.get("source_lookup", {}).get("slug", cid)
+                cached = pick.get("cached", {})
+                clob_tokens = cached.get("clob_token_ids", [])
+                if clob_tokens:
+                    token_id = clob_tokens[0]
+            if not token_id:
+                retro_path = REPO / "data" / "platforms" / "polymarket" / "contracts" / f"{cid}.yml"
+                if retro_path.exists():
+                    retro = yaml.safe_load(retro_path.read_text())
+                    clob_tokens = retro.get("clob_token_ids", [])
+                    if clob_tokens:
+                        token_id = clob_tokens[0]
+                    slug = retro.get("polymarket_slug", slug)
             try:
                 data = fetch_and_cache(
                     contract_id=cid, platform="polymarket", ticker=slug, slug=slug,
+                    token_id=token_id,
                 )
-                print(f"  {cid}: {len(data.series)} price points")
+                print(f"  {cid}: {len(data.series)} price points (platform={data.platform})")
             except Exception as e:
                 print(f"  WARN: {cid} fetch failed: {e}")
         else:
