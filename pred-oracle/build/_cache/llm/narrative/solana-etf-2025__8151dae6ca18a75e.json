@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the SEC approve a spot Solana ETF in 2025?\nKind: retrospective\nTimeline (5 events):\n- 2025-12-17 [background] PDF Version \u2014 CFTC PDF mentions the SEC but provides no direct evidence about a spot Solana ETF approval, so it minimally affects YES probability.\n- 2025-09-24 [background] Agenda, Panelists for SEC-CFTC Roundtable on Regulatory Harmonization Efforts Announced \u2014 CFTC\u2011SEC roundtable on regulatory harmonization signals interagency coordination that modestly raises odds of an SEC spot SOL ETF approval, but is indirect.\n- 2025-09-17 [background] CFTC and SEC Extend Form PF Compliance Date to Oct. 1, 2026 \u2014 Form PF compliance date extension is unrelated to SEC spot\u2011ETF approval timing or Solana specifics and thus has negligible effect on 2025 outcome.\n- 2025-09-05 [background] CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts \u2014 SEC\u2013CFTC harmonization statement modestly raises odds of US spot-crypto ETF approvals (including SOL) but is non-specific and not decisive.\n- 2025-07-30 [background] Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S. \u2014 CFTC praise for PWG crypto recommendations signals a friendlier federal stance on crypto, slightly increasing odds of SEC approving spot SOL ETFs.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Interagency harmony signals in 2025 (CFTC praise of PWG crypto work, an SEC\u2013CFTC harmonization statement, and a roundtable announcement) modestly buoyed hopes for a spot SOL ETF, while a Form PF delay and a late\u2011year CFTC PDF mention had negligible impact. Ultimately, the SEC took no approving action on a Solana spot ETF by year\u2011end, and the market resolved NO."
+  }
+}

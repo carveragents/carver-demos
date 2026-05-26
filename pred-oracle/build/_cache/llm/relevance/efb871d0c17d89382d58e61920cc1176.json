@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will 25+ FATF member states formally adopt updated VASP Travel Rule guidance by 2027-06-30?\nResolution criteria: Resolves YES if 25 or more of the 39 FATF full-member jurisdictions have\nofficially transposed the Q4 2025 FATF Recommendation-15 update (expanded\nVASP-adjacent perimeter) into domestic law, regulation, or supervisory\nguidance, as confirmed by FATF's own mutual evaluation or implementation\nmonitoring report, by 2027-06-30.\n\nConditions:\n  A: 25+ via MER/FUR confirmations \u2014 By 2027-06-30, FATF MER/FUR reports confirm \u226525 of the 39 full members have transposed the Rec\u201115 (Q4\u20112025) update into domestic law, regulation, or supervisory guidance.\n  B: 25+ via implementation monitoring \u2014 By 2027-06-30, a FATF implementation monitoring report confirms \u226525 of the 39 full members have transposed the Rec\u201115 (Q4\u20112025) update into domestic law, regulation, or supervisory guidance.\nSettlement entities: ['Financial Action Task Force', 'European Securities and Markets Authority', 'European Commission', 'Financial Crimes Enforcement Network', 'Bank for International Settlements']\n\nRecord title: Commission proposes full resumption of EU-Syria Cooperation Agreement\nRecord date: 2026-04-20\nRecord regulator: European Commission \u2014 Directorate-General for Trade and Economic Security\nRecord topic: European Commission\nRecord entities: ['Directorate-General for Trade and Economic Security', 'European Commission', 'Syria', 'Syrian Transitional Authorities', 'Ursula von der Leyen']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Off-topic: EU\u2013Syria cooperation proposal does not affect FATF members' transposition of the Rec\u201115 VASP Travel Rule guidance.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

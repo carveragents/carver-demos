@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nKind: active\nTimeline (5 events):\n- 2026-05-11 [background] Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations \u2014 OFAC sanctions on Iran's oil operations could tighten supply and lift inflation, making a Jan\u201126\u20112028 25bp Fed cut somewhat less likely.\n- 2026-03-31 [background] Stephen I Miran: Prospects for shrinking the Federal Reserve Bank's balance sheet \u2014 Analysis of Fed balance-sheet shrinkage indirectly informs policy stance and thus modestly affects probability/timing of future rate cuts.\n- 2026-03-12 [background] Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI \u2014 BIS speech gives macro context on inflation and labor amid supply shocks/AI\u2014an indirect signal for Fed policy but not directly decisive for Jan 26, 2028 cut.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 Waller\u2019s BIS piece on reading labor-market data modestly shifts views on Fed rate path, so it slightly changes odds of a Jan\u201126, 2028 cut but doesn't decide it.\n- 2025-10-29 [background] FOMC Statement \u2014 FOMC statement provides forward guidance on policy and the economy, an early signal that can modestly shift odds of a Jan\u201126\u20112028 25bp cut (content not given).\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Signals to date modestly shape expectations for a Jan 2028 25 bp Fed cut. The Oct 2025 FOMC statement provides early guidance, while Fed balance\u2011sheet debates and BIS speeches on labor/inflation inform market read; fresh OFAC sanctions on Iran add supply\u2011driven inflation risk, pushing odds lower. The January 2028 FOMC decision is still pending."
+  }
+}

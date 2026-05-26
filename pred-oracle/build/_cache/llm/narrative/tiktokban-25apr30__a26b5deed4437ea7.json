@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will TikTok be banned in the United States by April 30, 2025?\nKind: retrospective\nTimeline (5 events):\n- 2025-01-20 [background] The Code of conduct on countering illegal hate speech online + \u2014 EU code mentions TikTok but does not affect US app store availability or a US federal PAFACA enforcement order; minimal impact on US ban odds.\n- 2024-12-17 [background] Commission opens formal proceedings against TikTok on election risks under the Digital Services Act \u2014 EU formal DSA proceedings raise regulatory pressure on TikTok slightly, marginally increasing chance of US enforcement but not directly determinative.\n- 2024-09-19 [background] Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data \u2014 CFPB director's comments increase general regulatory scrutiny over data-hungry apps, slightly raising odds of eventual action against TikTok.\n- 2024-03-07 [background] Designated gatekeepers must now comply with all obligations under the Digital Markets Act \u2014 EU Digital Markets Act changes app-store gatekeeper rules which may slightly reduce chances of app-store removals, but has little direct effect on US law.\n- 2024-03-01 [background] Booking, ByteDance and X notify their potential gatekeeper status to the Commission under the Digital Markets Act \u2014 ByteDance's EU DMA gatekeeper notification signals heightened regulatory scrutiny globally but is EU-specific and doesn't directly affect US app availability or PAFACA orders.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "EU DMA/DSA moves and the hate-speech code, plus U.S. data-privacy rhetoric (CFPB remarks), nudged scrutiny but stayed largely EU-specific. None produced a U.S. PAFACA enforcement order or app store removal, and TikTok remained available. Resolution: No\u2014TikTok was not banned in the U.S. by April 30, 2025."
+  }
+}

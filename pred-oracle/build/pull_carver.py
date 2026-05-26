@@ -140,7 +140,7 @@ def normalize_event(entry: dict[str, Any], annotation_payload: dict[str, Any]) -
         "description": entry.get("description") or "",
         # Annotation-surface fields (Appendix-A shape)
         "update_type": classification.get("update_type") or "",
-        "regulatory_source": metadata.get("regulatory_source") or {},
+        "regulatory_source": classification.get("regulatory_source") or metadata.get("regulatory_source") or {},
         "impacted_business": metadata.get("impacted_business") or {},
         "critical_dates": metadata.get("critical_dates") or {},
         "impact_summary": metadata.get("impact_summary") or {},

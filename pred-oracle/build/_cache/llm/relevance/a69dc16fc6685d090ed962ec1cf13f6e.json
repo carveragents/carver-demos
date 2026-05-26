@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability. Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will US tariffs on Chinese goods exceed 60% average effective rate in 2026?\nResolution criteria: Resolves YES if the Office of the United States Trade Representative publishes\nan official notice, or the Department of Commerce issues a Federal Register\ndetermination, establishing that the average effective US tariff rate on imports\nfrom China exceeds 60.0% at any point between 2026-01-01 and 2026-12-31.\n\nConditions:\n  A: USTR notice: avg China tariff >60% \u2014 The USTR publishes an official notice stating the average effective US tariff rate on imports from China strictly exceeds 60.0% at any time during 2026 (2026-01-01 to 2026-12-31).\n  B: Commerce FR: avg China tariff >60% \u2014 The Department of Commerce issues a Federal Register determination establishing the average effective US tariff rate on imports from China strictly exceeds 60.0% at any time during 2026.\nSettlement entities: ['Office of the United States Trade Representative', 'Department of Commerce', 'Bureau of Industry and Security', 'Office of Foreign Assets Control', 'Department of the Treasury']\n\nRecord title: File No. 3-22111 - 2026-05-01 - FirstEnergy Corp.\nRecord date: 2026-05-01\nRecord regulator: Securities and Exchange Commission \u2014 Division of Enforcement\nRecord topic: Securities and Exchange Commission\nRecord entities: ['FirstEnergy Corp.', 'Ilana Z. Sultan', 'Securities and Exchange Commission', 'Vanessa A. Countryman', 'U.S. Department of the Treasury']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "SEC enforcement action regarding FirstEnergy is unrelated to USTR/Commerce tariff determinations and gives no signal on China tariff rates.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}
