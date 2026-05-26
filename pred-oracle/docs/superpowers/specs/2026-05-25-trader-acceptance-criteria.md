@@ -2,23 +2,25 @@
 
 Criteria for verifying the trader dashboard demo is user-ready. Each criterion describes what the user sees or does, and the expected result. Test against a full build with real corpus data and cached prices.
 
+**Direction convention throughout:** "bullish" always means the event increases the probability of the contract resolving YES. "bearish" means it decreases that probability. This is a property of the event relative to the contract, not relative to any individual position.
+
 ---
 
 ## AC-1: Portfolio List View
 
 ### AC-1.1: Page loads with all contracts
 - Navigate to `/trader/`
-- **Expected:** Page title "Your Portfolio", 6 contract rows visible, subtitle shows "6 contracts"
+- **Expected:** Page title "Your Portfolio", 3 contract rows visible, subtitle shows "3 contracts"
 
 ### AC-1.2: Each contract row shows required signals
-- For each of the 6 rows, verify all of these are present:
+- For each of the 3 rows, verify all of these are present:
   - Heat tier badge (one of: CRITICAL red, ACTIVE orange, WATCH amber, DORMANT gray)
   - Platform chip (Kalshi or Polymarket)
   - Contract title
-  - Price display: "YES {price}c / NO {price}c" with non-placeholder values (not 50c/50c)
+  - Price display: "YES {price}c" and "NO {price}c" with non-placeholder, non-blank values
   - Net direction indicator: one of "Bullish" (green arrow up), "Bearish" (red arrow down), or "Mixed" (gray arrow right)
   - Heat score number + 7d delta (with + or - sign)
-  - Event count ("N events / 90d")
+  - Event count ("N key events") — label is "key events", not "events / 90d"
   - Latest event line: date + event title + direction badge
   - Position with DEMO badge (e.g., "YES 200 @ 54c")
 
@@ -33,15 +35,15 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 
 ### AC-1.5: Platform filter works
 - Click "Kalshi" filter
-- **Expected:** Only Kalshi contracts visible (3 rows). Polymarket rows hidden.
+- **Expected:** Only Kalshi contracts visible (2 rows). Polymarket rows hidden.
 - Click "All" filter
-- **Expected:** All 6 rows visible again
+- **Expected:** All 3 rows visible again
 
 ### AC-1.6: Tier filter works
-- Click "Critical" filter
-- **Expected:** Only critical-tier contracts visible
+- Click any active tier filter (e.g., "Critical")
+- **Expected:** Only contracts with that tier visible. Other rows hidden.
 - Click "All" filter
-- **Expected:** All 6 rows visible again
+- **Expected:** All 3 rows visible again
 
 ### AC-1.7: Contract row links to briefing
 - Click any contract row
@@ -52,7 +54,10 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 - **Expected:** Navigates to `/trader/calendar/`
 
 ### AC-1.9: At least one contract shows a "Next catalyst"
-- **Expected:** At least one of the 6 rows shows a future date with countdown (e.g., "Jun 15 — SEC crypto custody rule effective (in 21d)")
+- **Expected:** At least one of the 3 rows shows a future date with event title (e.g., "Next catalyst: CFTC custody rule effective · Jun 8")
+
+### AC-1.10: No personal names on the page
+- **Expected:** No first-name + last-name combinations appear as rendered text. Persona names ("Priya Kapur", "Marcus Vega", etc.) are configuration data only and must not appear in the UI.
 
 ---
 
@@ -88,7 +93,7 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 - **Expected:** An expanded panel appears below the calendar showing event details for that date (title, contract, direction)
 
 ### AC-2.7: Recent events ticker
-- **Expected:** A horizontal strip below the header shows 5 most recent events with direction arrows and event titles
+- **Expected:** A horizontal strip below the header shows recent events with direction arrows and event titles
 
 ### AC-2.8: List view toggle
 - Click "List view" link
@@ -106,7 +111,7 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 - **Expected:** Contract title as h1, platform chip, heat tier badge, expiry date
 
 ### AC-3.2: Price buttons display real prices
-- **Expected:** YES and NO price buttons show non-placeholder prices (not 50c/50c). Payout math shows a real number (e.g., "payout $161/$100")
+- **Expected:** YES and NO price buttons show non-placeholder, non-blank prices (not 50c/50c for active contracts). Payout math shows a real number (e.g., "payout $161/$100")
 
 ### AC-3.3: Position display
 - **Expected:** "Your position: {YES|NO} {N} contracts @ {price}c avg" with DEMO badge
@@ -126,23 +131,32 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 ### AC-3.7: Regulatory timeline
 - **Expected:** Section titled "Regulatory timeline (N)" with a vertical list of events, each showing:
   - Date + regulator name
-  - Event title (clickable, links to source URL)
+  - Event title (clickable, links to real source URL — not example.com)
   - Direction badge: "bullish" (green), "bearish" (red), or "neutral" (gray)
   - Magnitude icon: filled circle (high), half circle (medium), outline circle (low)
   - Mechanism label: "Binding Action", "Signal", or "Context"
   - Condition dot (colored to match thesis tracker)
   - One-line-why explanation text
 
-### AC-3.8: Timeline shift indicators
+### AC-3.8: Direction badge consistent with explanation
+- For each event in the timeline, the direction badge must not contradict the one-line-why:
+  - If one_line_why says "increases odds", "raises probability", or "boost": direction must be **bullish**
+  - If one_line_why says "decreases odds", "lowers probability", or "hinders": direction must be **bearish**
+  - **Expected:** Zero self-contradictions visible across all timeline events
+
+### AC-3.9: Low-relevance events show neutral
+- **Expected:** Events described as tangential, indirect, or background context always carry "neutral" direction — no bullish or bearish badge on events whose one_line_why indicates only weak or ambiguous relevance
+
+### AC-3.10: Timeline shift indicators
 - For events where timeline shift is not "none":
   - **Expected:** A clock icon with "Sooner" or "Later" label appears on the event
 - For events where timeline shift is "none":
   - **Expected:** No clock icon or shift label shown
 
-### AC-3.9: Narrative summary
+### AC-3.11: Narrative summary
 - **Expected:** A blockquote section titled "Analyst narrative" with 2-3 sentences of LLM-generated narrative
 
-### AC-3.10: Momentum panel (sidebar)
+### AC-3.12: Momentum panel (sidebar)
 - **Expected:** Right sidebar shows:
   - Heat score number + tier badge
   - 7d delta with directional sign
@@ -151,19 +165,19 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
   - Primary drivers (1-3 bullet points)
   - One-sentence explainer text
 
-### AC-3.11: Upcoming catalysts (sidebar)
+### AC-3.13: Upcoming catalysts (sidebar)
 - If the contract has events with future effective_date or comment_deadline:
   - **Expected:** "Upcoming catalysts" section shows the dates with countdown and event title
 - If no future dates exist:
   - **Expected:** Section shows "No upcoming regulatory dates on record"
 
-### AC-3.12: Back navigation
+### AC-3.14: Back navigation
 - Click "← Portfolio"
 - **Expected:** Navigates back to `/trader/`
 
-### AC-3.13: Resolution banner (retrospective only)
+### AC-3.15: Resolution banner (retrospective only)
 - Navigate to `/trader/retrospectives/{id}/`
-- **Expected:** A green banner at top shows "Resolved YES on {date}" (or appropriate outcome)
+- **Expected:** A banner at top shows the resolution outcome (e.g., "Resolved YES on {date}")
 
 ---
 
@@ -210,21 +224,31 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 
 ## AC-6: Data Integrity
 
-### AC-6.1: Six distinct contracts in portfolio
-- **Expected:** The 6 contracts cover 5 sectors: crypto price, monetary policy, macro, crypto regulatory, trade/intl, international regulatory
+### AC-6.1: Three distinct contracts in portfolio
+- **Expected:** The 3 active contracts cover distinct themes: crypto price (BTC max price), monetary policy (Fed decision), and macro risk (US recession)
 
-### AC-6.2: Three platforms each
-- **Expected:** 3 Kalshi contracts, 3 Polymarket contracts
+### AC-6.2: Platform spread
+- **Expected:** Active portfolio: 2 Kalshi contracts, 1 Polymarket contract. Retrospectives: 1 of each platform.
 
-### AC-6.3: Mixed heat tiers
-- **Expected:** At least one critical, one active, and one watch contract
+### AC-6.3: Heat tiers reflect regulatory activity
+- **Expected:** Each contract's heat tier is consistent with the volume and recency of its regulatory events. A contract with 15+ recent high-urgency events should not show "dormant". Heat tiers are data-driven, not manually set.
 
 ### AC-6.4: Demo data clearly labelled
-- **Expected:** Every synthetic element (positions, prices if synthetic) has a visible DEMO badge. No synthetic data presented without a badge.
+- **Expected:** Every synthetic element (positions) has a visible DEMO badge. No synthetic data presented without a badge.
 
-### AC-6.5: Real regulatory events
+### AC-6.5: Real regulatory event source URLs
 - Click any event title link in the timeline
-- **Expected:** Links to a real regulatory source URL (not example.com)
+- **Expected:** Links to a real regulatory source URL (CFTC, SEC, Federal Reserve, etc.) — not example.com and not a broken link
+
+### AC-6.6: Non-neutral event rate across portfolio
+- **Expected:** Across the combined timelines of all contracts, at least 15% of events carry a bullish or bearish direction. All-neutral across the full portfolio indicates the enrichment pipeline is not functioning. (Current baseline: ~22%)
+
+### AC-6.7: No personal names on any rendered page
+- Navigate all pages (portfolio list, calendar, briefings, retrospectives)
+- **Expected:** No first-name + last-name combinations appear. Persona names are internal configuration only.
+
+### AC-6.8: Prices are real and current
+- **Expected:** YES/NO prices on the portfolio list and briefing pages come from the Kalshi or Polymarket API (fetched within the last 7 days). No contract should show 50c/50c on the portfolio list unless it genuinely trades at that price.
 
 ---
 
@@ -233,17 +257,17 @@ Criteria for verifying the trader dashboard demo is user-ready. Each criterion d
 ### AC-7.1: Contract with no upcoming catalysts
 - **Expected:** "No upcoming regulatory dates on record" shown in sidebar, not a blank section or error
 
-### AC-7.2: Contract with dormant heat
-- If any contract has dormant tier:
-  - **Expected:** Gray badge, low heat number, flat sparkline. Page renders without errors.
+### AC-7.2: Contract with sparse event data
+- If any contract timeline has fewer than 5 events:
+  - **Expected:** The timeline renders without errors. The thesis tracker still renders (may show zero counts). No broken layout.
 
 ### AC-7.3: Empty calendar month
 - Navigate to a month with no events (use prev/next arrows)
 - **Expected:** Calendar renders an empty grid with day numbers. No errors or broken layout.
 
-### AC-7.4: All event types present across portfolio
-- Across all 6 contracts, verify at least one instance each of:
+### AC-7.4: Signal variety across portfolio
+- Across all 5 contracts (3 active + 2 retrospectives), verify at least one instance each of:
   - Direction: bullish, bearish, neutral
-  - Magnitude: high, medium, low
+  - Magnitude: medium, low (high-magnitude events are rare and may not always be present)
   - Mechanism: Binding Action, Signal, Context
-  - Timeline shift: sooner, later (at least one each across all events)
+  - Timeline shift: sooner, later (at least one of each, somewhere across all timelines)
