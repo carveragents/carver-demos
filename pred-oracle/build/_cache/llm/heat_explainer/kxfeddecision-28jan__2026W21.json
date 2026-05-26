@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 113.04\nDelta_7d: -48.66\nTop records:\n- 2026-05-18 Treasury International Capital Data for March\n- 2026-05-12 Isabel Schnabel: The quiet erosion of central bank independence\n- 2026-05-11 Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil \n- 2026-05-07 Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq\n- 2026-05-04 Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b\n- 2026-04-23 Agencies Finalize Changes to Community Bank Leverage Ratio\n- 2026-04-23 Community Bank Leverage Ratio: Final Rule\n- 2026-04-16 Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involvin\n- 2026-04-15 Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New T\n- 2026-03-31 Stephen I Miran: Prospects for shrinking the Federal Reserve Bank's balance shee\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Geopolitical shocks: Iran/IRGC and Iraq-linked attacks and sanctions on oil sector",
+      "Banking regulation: final Community Bank Leverage Ratio and related rule changes",
+      "Monetary signals: TIC capital flows, Fed balance-sheet debate and central bank independence concerns"
+    ],
+    "explainer": "Critical heat reflects convergence of oil-sector geopolitical shocks and sanctions, major banking-rule finalizations, and intensified monetary scrutiny from TIC data and central bank independence debates."
+  }
+}

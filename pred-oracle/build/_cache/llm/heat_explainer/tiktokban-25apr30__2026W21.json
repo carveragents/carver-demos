@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: active\nHeat: 60.25\nDelta_7d: -2.94\nTop records:\n- 2025-02-25 D25-03 - Steven House - Amended Stipulated Agreement and Order\n- 2025-01-31 Regulatory Board Disciplinary Actions Archive\n- 2025-01-24 Bulletin B25-05\n- 2024-09-19 Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on\n- 2024-04-30 Cooperation Agreements\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Amended stipulated agreement and order (Feb 25, 2025)",
+      "Updated regulatory disciplinary actions archive (Jan 31, 2025)",
+      "Issuance of Bulletin B25-05 (Jan 24, 2025)"
+    ],
+    "explainer": "Heat at 60.25 reflects heightened interest from recent enforcement and regulatory updates \u2014 chiefly a Feb 25 amended stipulated agreement, Jan 31 disciplinary archive update, and Jan 24 bulletin."
+  }
+}

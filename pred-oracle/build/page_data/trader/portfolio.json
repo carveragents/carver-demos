@@ -1,0 +1,92 @@
+[
+  {
+    "contract_id": "kxbtc-maxprice-2026",
+    "platform": "kalshi",
+    "title": "Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 300.8,
+    "heat_tier": "critical",
+    "heat_delta_7d": -270.61,
+    "peer_percentile": 100,
+    "net_direction": "Bullish",
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-05-29",
+      "field": "effective_date",
+      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-15",
+      "title": "CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 200,
+      "entry_price": 0.54
+    },
+    "detail_href": "contracts/kxbtc-maxprice-2026/"
+  },
+  {
+    "contract_id": "kxfeddecision-28jan",
+    "platform": "kalshi",
+    "title": "Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?",
+    "kind": "active",
+    "expires_at": "2028-01-26T18:59:00Z",
+    "heat_value": 88.03,
+    "heat_tier": "critical",
+    "heat_delta_7d": -71.8,
+    "peer_percentile": 60,
+    "net_direction": "Bearish",
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-06-18",
+      "field": "comment_deadline",
+      "title": "Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-18",
+      "title": "Treasury International Capital Data for March",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "NO",
+      "size": 100,
+      "entry_price": 0.71
+    },
+    "detail_href": "contracts/kxfeddecision-28jan/"
+  },
+  {
+    "contract_id": "us-recession-in-2026",
+    "platform": "polymarket",
+    "title": "Will the US enter a recession in 2026?",
+    "kind": "active",
+    "expires_at": "2026-12-31T23:59:00Z",
+    "heat_value": 86.66,
+    "heat_tier": "critical",
+    "heat_delta_7d": -70.51,
+    "peer_percentile": 40,
+    "net_direction": "Bearish",
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-06-18",
+      "field": "comment_deadline",
+      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-21",
+      "title": "OCC Announces Enforcement Actions for May 2026",
+      "direction": "bearish",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 500,
+      "entry_price": 0.18
+    },
+    "detail_href": "contracts/us-recession-in-2026/"
+  }
+]
