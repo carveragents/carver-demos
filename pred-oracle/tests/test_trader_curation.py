@@ -13,9 +13,9 @@ def test_trader_curation_loads():
     assert "retrospectives" in doc
 
 
-def test_portfolio_has_six_contracts():
+def test_portfolio_has_three_contracts():
     doc = yaml.safe_load(CURATION.read_text())
-    assert len(doc["portfolio"]) == 6
+    assert len(doc["portfolio"]) == 3
 
 
 def test_portfolio_entries_have_required_keys():
@@ -37,14 +37,29 @@ def test_retrospectives_has_two_entries():
     assert len(doc["retrospectives"]) == 2
 
 
-def test_new_contract_yamls_exist():
-    for path in [
-        REPO / "data" / "platforms" / "kalshi" / "contracts" / "kxuschina-tariffs-2026.yml",
-        REPO / "data" / "platforms" / "polymarket" / "contracts" / "sec-eth-security-2026.yml",
-        REPO / "data" / "platforms" / "polymarket" / "contracts" / "fatf-travel-rule-2027.yml",
-    ]:
-        assert path.exists(), f"Missing: {path}"
-        doc = yaml.safe_load(path.read_text())
-        assert doc["schema_version"] == 1
-        assert isinstance(doc["settlement_entities"], list)
-        assert len(doc["settlement_entities"]) >= 3
+def test_all_portfolio_contracts_exist_in_contracts_yml():
+    """Every active portfolio entry must exist in a contracts.yml picks list."""
+    doc = yaml.safe_load(CURATION.read_text())
+    kalshi = yaml.safe_load(
+        (REPO / "data" / "platforms" / "kalshi" / "contracts.yml").read_text()
+    )
+    poly = yaml.safe_load(
+        (REPO / "data" / "platforms" / "polymarket" / "contracts.yml").read_text()
+    )
+    pick_ids = set()
+    for p in kalshi.get("picks", []):
+        pick_ids.add(p["id"])
+    for p in poly.get("picks", []):
+        pick_ids.add(p["id"])
+    for entry in doc["portfolio"]:
+        assert entry["id"] in pick_ids, (
+            f"{entry['id']} not found in any contracts.yml — must be API-pulled"
+        )
+
+
+def test_retrospective_yamls_exist():
+    doc = yaml.safe_load(CURATION.read_text())
+    for entry in doc["retrospectives"]:
+        platform = entry["platform"]
+        path = REPO / "data" / "platforms" / platform / "contracts" / f"{entry['id']}.yml"
+        assert path.exists(), f"Missing retrospective YAML: {path}"
