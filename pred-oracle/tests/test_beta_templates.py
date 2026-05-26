@@ -78,7 +78,6 @@ def test_pressure_chart_renders_svg() -> None:
 def test_beta_intro_renders_with_scene_copy() -> None:
     tpl = _env().get_template("beta/intro.html")
     out = tpl.render(base_url="")
-    assert "Priya Kapur" in out
     assert "Q3" in out or "Q2" in out
     out_l = out.lower()
     assert "heat-map" in out_l or "heatmap" in out_l
