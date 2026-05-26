@@ -4,7 +4,24 @@
 {% block page_title %}Portfolio{% endblock %}
 
 {% block trader_content %}
-<div x-data="{ sort: 'heat', platform: 'all', tier: 'all' }">
+<div x-data="{
+  sort: 'heat',
+  platform: 'all',
+  tier: 'all',
+  doSort() {
+    const container = this.$refs.rows;
+    if (!container) return;
+    const items = Array.from(container.querySelectorAll('[data-heat]'));
+    const dirOrder = { Bullish: 0, Mixed: 1, Bearish: 2 };
+    items.sort((a, b) => {
+      if (this.sort === 'heat') return parseFloat(b.dataset.heat) - parseFloat(a.dataset.heat);
+      if (this.sort === 'direction') return (dirOrder[a.dataset.direction] ?? 1) - (dirOrder[b.dataset.direction] ?? 1);
+      if (this.sort === 'events') return parseInt(b.dataset.events) - parseInt(a.dataset.events);
+      return 0;
+    });
+    items.forEach(el => container.appendChild(el));
+  }
+}" x-effect="doSort()">
 
   {# Header + view toggle #}
   <div class="flex items-center justify-between mb-6">
@@ -66,7 +83,7 @@
   </div>
 
   {# Contract rows #}
-  <div class="space-y-3">
+  <div class="space-y-3" x-ref="rows">
     {% for row in rows %}
     {# Determine badge colors #}
     {% if row.heat_tier == 'critical' %}
