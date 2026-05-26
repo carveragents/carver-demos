@@ -413,19 +413,24 @@ document.addEventListener('DOMContentLoaded', function() {
     var d = new Date(p.t * 1000);
     return d.toISOString().slice(0, 10);
   });
-  var values = raw.map(function(p) { return Math.round(p.p * 100); });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
 
   var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
   var markLines = timelineEvents.map(function(ev) {
     return {
       xAxis: ev.pub_date,
-      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'solid', width: 1.5 },
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 1, opacity: 0.5 },
       label: { show: false }
     };
   });
 
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
   chart.setOption({
-    grid: { top: 12, right: 16, bottom: 28, left: 44 },
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
     xAxis: {
       type: 'category',
       data: dates,
@@ -439,19 +444,44 @@ document.addEventListener('DOMContentLoaded', function() {
       axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
       splitLine: { lineStyle: { color: '#f1f5f9' } },
     },
-    series: [{
-      type: 'line',
-      data: values,
-      smooth: true,
-      lineStyle: { color: '#059669', width: 2 },
-      areaStyle: { color: 'rgba(5,150,105,0.08)' },
-      symbol: 'none',
-      markLine: { silent: true, symbol: 'none', data: markLines },
-    }],
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
     tooltip: {
       trigger: 'axis',
       formatter: function(params) {
-        return params[0].axisValue + ': ' + params[0].value + '%';
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        return date + '<br/><span style="color:#059669">YES ' + yes + '%</span><br/><span style="color:#e11d48">NO ' + no + '%</span>';
       },
     },
   });
