@@ -2,7 +2,7 @@
   "request": {
     "model": "gpt-5-mini",
     "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
-    "user": "Tier: active\nHeat: 39.25\nDelta_7d: -35.51\nTop records:\n- 2025-02-25 D25-03 - Steven House - Amended Stipulated Agreement and Order\n- 2025-01-31 Regulatory Board Disciplinary Actions Archive\n- 2025-01-24 Bulletin B25-05\n- 2024-09-19 Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on\n- 2024-04-30 Cooperation Agreements\n",
+    "user": "Tier: active\nHeat: 39.25\nDelta_7d: -35.51\nTop records:\n- 2025-02-25 D25-03 - Steven House - Amended Stipulated Agreement and Order\n- 2025-01-31 Regulatory Board Disciplinary Actions Archive\n- 2025-01-24 Bulletin B25-05\n- 2025-01-24 Bulletin B25-04\n- 2024-09-19 Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on\n",
     "schema": {
       "type": "object",
       "additionalProperties": false,
@@ -27,10 +27,10 @@
   },
   "response": {
     "primary_drivers": [
-      "Recent amended stipulated agreement and order (D25-03 - Steven House) driving enforcement attention",
-      "Regulatory board disciplinary actions archive highlighting multiple enforcement cases",
-      "Policy bulletins (B25-05) and CFPB remarks signaling supervisory and cooperation focus"
+      "Amended stipulated agreement/order (Steven House, 2025-02-25)",
+      "Regulatory board disciplinary actions archive (2025-01-31)",
+      "January Bulletins B25-04 & B25-05 signaling guidance/enforcement (2025-01-24)"
     ],
-    "explainer": "Heat is driven by a recent amended stipulated agreement and concentrated attention to disciplinary records and regulatory bulletins, despite week-over-week cooling."
+    "explainer": "Active heat driven by an amended stipulated agreement/order and disciplinary-action postings plus January regulatory bulletins; overall attention has cooled this week."
   }
 }

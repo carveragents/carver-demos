@@ -101,7 +101,7 @@
         "summary": "By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures)."
       }
     ],
-    "narrative": "Regulatory signals were mixed: custody no\u2011action relief, SEC\u2013CFTC harmonization, and generic listing standards modestly eased paths, but OIG management warnings, staffing churn, and procedural backlogs weighed against speed. Despite late\u2011year delegation of IM authority, the SEC issued no approval order. The contract resolved No\u2014no spot Solana ETF was approved in 2025."
+    "narrative": "Through 2025, the SEC sent mixed signals: enforcement actions and custody cautions (e.g., Sept. 30 statements) dampened odds, while Sept. 17 approval of generic listing standards and inter\u2011agency harmonization modestly improved prospects. Procedural and personnel shifts in Investment Management offered little clarity. The year ended without a spot SOL ETF approval, so the market resolved No."
   },
   "timeline": [
     {
@@ -113,51 +113,9 @@
       "impact": 7.0,
       "matched_entity": "",
       "carver_feed_entry_id": "6c6f3ec8-2c9f-4798-81f2-71ed01347f9a",
-      "one_line_why": "Delegating IM authority can slightly speed/enable fund approval actions but does not itself approve a spot SOL ETF\u2014mild procedural bullish signal.",
+      "one_line_why": "Delegation lets the IM director act on fund registration/exemptive matters, slightly increasing odds a spot SOL ETF clears IM hurdles before 2025-12-31.",
       "condition_tag": "background",
       "relevance_score": 3,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-12-04",
-      "title": "Iceboxes and Soapboxes: Remarks at the Meeting of the SEC Investor Advisory Committee",
-      "regulator": "U.S. Securities and Exchange Commission",
-      "url": "https://www.sec.gov/newsroom/speeches-statements/peirce-remarks-meeting-sec-investor-advisory-committee-120425",
-      "urgency": 1.0,
-      "impact": 8.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "68b85362-975d-4daf-81f8-d904732e3cf5",
-      "one_line_why": "General SEC Investor Advisory Committee remarks may signal regulator tone (esp. crypto-friendly members) but don't directly determine a Solana spot-ETF order.",
-      "condition_tag": "background",
-      "relevance_score": 3,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-12-04",
-      "title": "The Inspector General\u2019s Statement on the SEC\u2019s Management and Performance Challenges, December 2025",
-      "regulator": "U.S. Securities and Exchange Commission \u2014 Office of the Inspector General",
-      "url": "https://www.sec.gov/files/sec-oig-mpc-2025.pdf",
-      "urgency": 1.0,
-      "impact": 9.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "80b09c14-a85f-46d7-b650-3c314ab73154",
-      "one_line_why": "OIG statement flags SEC management/performance issues, modestly reducing odds and suggesting possible delays for year\u2011end ETF approvals.",
-      "condition_tag": "background",
-      "relevance_score": 3,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-10-01",
-      "title": "Pending Administrative Proceedings",
-      "regulator": "Securities and Exchange Commission",
-      "url": "https://www.sec.gov/files/litigation/opinions/2025/33-11392.pdf",
-      "urgency": 7.0,
-      "impact": 7.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "54ab3311-8baf-4430-900f-725d3d1fd8af",
-      "one_line_why": "Generic SEC notice of pending administrative proceedings implies procedural backlog, slightly lowering odds a spot SOL ETF clears by year-end.",
-      "condition_tag": "background",
-      "relevance_score": 2,
       "high_impact": false
     },
     {
@@ -169,9 +127,9 @@
       "impact": 9.0,
       "matched_entity": "",
       "carver_feed_entry_id": "6fb3af4d-dcaf-4e32-a574-ee664f4ffd89",
-      "one_line_why": "No-action relief for state trust crypto custodians eases SOL custody hurdles, raising approval probability and likely speeding timing.",
+      "one_line_why": "SEC statement calling out problems with no-action custody relief signals regulatory caution on crypto custody, lowering odds of timely spot SOL ETF approval.",
       "condition_tag": "background",
-      "relevance_score": 7,
+      "relevance_score": 6,
       "high_impact": false
     },
     {
@@ -183,9 +141,9 @@
       "impact": 8.0,
       "matched_entity": "",
       "carver_feed_entry_id": "0354ab46-7488-4de7-8c1e-308cda3a966c",
-      "one_line_why": "SEC public remarks on custody signal the agency is engaging on custody frameworks for digital-asset ETFs, modestly raising approval odds.",
+      "one_line_why": "SEC speech emphasizing custody and institutional confidence reduces a key regulatory hurdle, modestly increasing odds of spot SOL ETF approval.",
       "condition_tag": "background",
-      "relevance_score": 6,
+      "relevance_score": 4,
       "high_impact": false
     },
     {
@@ -197,21 +155,21 @@
       "impact": 3.0,
       "matched_entity": "",
       "carver_feed_entry_id": "b1cf4ebf-9afc-4364-83be-a48558197366",
-      "one_line_why": "SEC\u2013CFTC harmonization roundtable signals improved inter-agency coordination on crypto rulemaking, modestly increasing chance of a spot SOL ETF but not decisive.",
+      "one_line_why": "CFTC\u2011SEC harmonization roundtable signals regulatory coordination but provides no direct indication that the SEC will approve a spot SOL ETF in 2025.",
       "condition_tag": "background",
-      "relevance_score": 3,
+      "relevance_score": 2,
       "high_impact": false
     },
     {
-      "pub_date": "2025-09-19",
-      "title": "_Federal Register_ version",
-      "regulator": "Securities and Exchange Commission",
-      "url": "https://www.federalregister.gov/d/2025-18238",
+      "pub_date": "2025-09-17",
+      "title": "CFTC and SEC Extend Form PF Compliance Date to Oct. 1, 2026",
+      "regulator": "Commodity Futures Trading Commission",
+      "url": "https://www.cftc.gov/PressRoom/PressReleases/9126-25",
       "urgency": 5.0,
-      "impact": 5.0,
+      "impact": 6.0,
       "matched_entity": "",
-      "carver_feed_entry_id": "ad2e83c5-6903-46ea-9663-0036dda63825",
-      "one_line_why": "A Federal Register posting can signal formal SEC action (e.g., rule/order publication) but this entry gives no Solana/ETF specifics, so only marginally informative.",
+      "carver_feed_entry_id": "4e78edc2-7609-48a2-b95d-abf139e3cec2",
+      "one_line_why": "Extending Form PF reporting to Oct 2026 affects private\u2011fund compliance timing but has minimal, indirect relevance to SEC approvals of a spot Solana ETF by end of 2025.",
       "condition_tag": "background",
       "relevance_score": 2,
       "high_impact": false
@@ -225,23 +183,9 @@
       "impact": 8.0,
       "matched_entity": "",
       "carver_feed_entry_id": "40e7973e-add1-4fcd-9c11-1d18c82fc8a0",
-      "one_line_why": "Generic SEC listing standards for commodity-based trusts lower regulatory barriers, increasing chance a spot SOL ETF can be approved/listed in 2025.",
-      "condition_tag": "background",
+      "one_line_why": "SEC approved generic listing standards for commodity-based trust shares, easing approval path and increasing odds (and speeding) of a Cboe-listed spot SOL ETF.",
+      "condition_tag": "B",
       "relevance_score": 7,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-09-05",
-      "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC",
-      "regulator": "U.S. Securities and Exchange Commission",
-      "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525",
-      "urgency": 1.0,
-      "impact": 8.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "64ecd867-93ef-44bf-b2be-442805a71feb",
-      "one_line_why": "A joint SEC\u2013CFTC statement on crypto jurisdiction/cooperation could modestly affect SEC policy toward crypto ETFs, slightly altering approval odds.",
-      "condition_tag": "background",
-      "relevance_score": 4,
       "high_impact": false
     },
     {
@@ -253,9 +197,37 @@
       "impact": 6.0,
       "matched_entity": "",
       "carver_feed_entry_id": "91ac6dfc-51b0-42f9-b4b8-7be7168c0a59",
-      "one_line_why": "Interagency harmonization between the SEC and CFTC may modestly reduce crypto regulatory uncertainty, slightly raising odds and speeding approval timing.",
+      "one_line_why": "Joint SEC\u2013CFTC harmonization reduces crypto regulatory uncertainty, modestly increasing odds the SEC will approve a spot SOL ETF in 2025.",
       "condition_tag": "background",
-      "relevance_score": 4,
+      "relevance_score": 6,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-09-05",
+      "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC",
+      "regulator": "U.S. Securities and Exchange Commission",
+      "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525",
+      "urgency": 1.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "64ecd867-93ef-44bf-b2be-442805a71feb",
+      "one_line_why": "Joint SEC/CFTC statement signals regulatory stance on crypto but contains no direct ETF approval action; ambiguous effect on SOL spot ETF odds.",
+      "condition_tag": "background",
+      "relevance_score": 3,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-09-05",
+      "title": "SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-Host Roundtable Sept. 29",
+      "regulator": "Securities and Exchange Commission",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-112-sec-cftc-issue-joint-statement-regulatory-harmonization-efforts-will-co-host-roundtable-sept-29",
+      "urgency": 1.0,
+      "impact": 7.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "349e1e34-56fb-4e03-bd72-3c9e94bbd1bd",
+      "one_line_why": "General SEC\u2013CFTC harmonization roundtable is background policy news and does not directly affect approval odds for a spot SOL ETF in 2025.",
+      "condition_tag": "background",
+      "relevance_score": 2,
       "high_impact": false
     },
     {
@@ -267,9 +239,9 @@
       "impact": 3.0,
       "matched_entity": "",
       "carver_feed_entry_id": "860ea837-5d6b-42e9-852a-f6caf0793a85",
-      "one_line_why": "SEC-hosted crypto roundtables show continued regulatory engagement with digital-asset issues but provide only an indirect, small signal about a Solana spot ETF approval.",
+      "one_line_why": "SEC crypto roundtables are general outreach and provide background on policy engagement but do not materially change odds of a spot SOL ETF approval.",
       "condition_tag": "background",
-      "relevance_score": 3,
+      "relevance_score": 2,
       "high_impact": false
     },
     {
@@ -281,9 +253,65 @@
       "impact": 8.0,
       "matched_entity": "",
       "carver_feed_entry_id": "cf3aab15-bb23-4a4a-adfb-961875e3880a",
-      "one_line_why": "CFTC praise of Presidential Working Group crypto recommendations signals a friendlier US regulatory stance, modestly raising odds of SEC approving a spot SOL ETF.",
+      "one_line_why": "CFTC praise of PWG pro-crypto recommendations modestly raises regulatory support for crypto, slightly increasing odds the SEC approves a spot SOL ETF.",
       "condition_tag": "background",
       "relevance_score": 4,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-06-18",
+      "title": "SEC Announces Departure of David Saltiel",
+      "regulator": "Securities and Exchange Commission \u2014 Division of Trading and Markets",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-91-sec-announces-departure-david-saltiel",
+      "urgency": 1.0,
+      "impact": 4.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "43c7a527-0cb2-4a8a-a63f-bd9187135710",
+      "one_line_why": "Departure of a Division of Trading and Markets official creates review uncertainty but gives no clear directional signal on a spot Solana ETF approval.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-06-16",
+      "title": "Policy Statement Concerning Agency Referrals for Potential Criminal Enforcement",
+      "regulator": "Securities and Exchange Commission \u2014 Division of Enforcement",
+      "url": "https://www.sec.gov/files/rules/policy/34-103277.pdf",
+      "urgency": 5.0,
+      "impact": 7.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "c934fcac-25de-49df-928b-5a4393f40404",
+      "one_line_why": "Criminal-referral policy increases enforcement risk for crypto issuers, slightly lowering the odds the SEC will approve a spot Solana ETF in 2025.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-06-13",
+      "title": "Brian Daly Named Director of Division of Investment Management",
+      "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-88-brian-daly-named-director-division-investment-management",
+      "urgency": 1.0,
+      "impact": 2.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "528462e9-129c-4fcd-9e93-ae9d5468a00d",
+      "one_line_why": "New Division of Investment Management director affects SEC fund oversight but gives no crypto/ETF stance, so it doesn't materially change spot SOL ETF odds.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false
+    },
+    {
+      "pub_date": "2025-06-12",
+      "title": "Safeguarding Advisory Client Assets Investment Management",
+      "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management",
+      "url": "https://www.sec.gov/rules-regulations/2025/06/safeguarding-advisory-client-assets",
+      "urgency": 5.0,
+      "impact": 2.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "5a30e1af-ff0a-4c8b-847f-34327ebd01ea",
+      "one_line_why": "SEC Investment Management guidance on safeguarding client assets is general and may only indirectly affect custody considerations for spot SOL ETFs.",
+      "condition_tag": "background",
+      "relevance_score": 2,
       "high_impact": false
     },
     {
@@ -295,7 +323,7 @@
       "impact": 7.0,
       "matched_entity": "",
       "carver_feed_entry_id": "9e0f8496-5d9b-4a14-9982-635730c90760",
-      "one_line_why": "Resuming SEC registration for Swiss advisers marginally eases US market access for Swiss issuers (e.g., 21Shares), slightly raising approval odds.",
+      "one_line_why": "Resuming Swiss adviser registrations reduces regulatory friction for Swiss sponsors (e.g., 21Shares), slightly increasing chance of a U.S. spot SOL ETF approval.",
       "condition_tag": "background",
       "relevance_score": 2,
       "high_impact": false
@@ -309,23 +337,9 @@
       "impact": 1.0,
       "matched_entity": "",
       "carver_feed_entry_id": "44bb5fde-a3f5-4803-ab1b-e283cb1793c8",
-      "one_line_why": "Investment Management director departure may slow SEC ETF review processes, modestly lowering likelihood of a spot Solana ETF approval in 2025.",
+      "one_line_why": "SEC Investment Management director leaving is a background personnel change; it gives no clear directional signal on approval of a spot Solana ETF.",
       "condition_tag": "background",
-      "relevance_score": 4,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-05-14",
-      "title": "Final Management Letter: Audit of the SEC\u2019s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges",
-      "regulator": "U.S. Securities and Exchange Commission \u2014 Office of Inspector General",
-      "url": "https://www.sec.gov/files/sec-oig-aud-fml-2025-01.pdf",
-      "urgency": 1.0,
-      "impact": 7.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "79678838-82c5-4785-8815-40f3fcfbd86c",
-      "one_line_why": "OIG audit finds SEC recruitment/retention shortfalls, which could modestly slow or complicate ETF review timetables and slightly lower approval odds.",
-      "condition_tag": "background",
-      "relevance_score": 3,
+      "relevance_score": 2,
       "high_impact": false
     },
     {
@@ -337,51 +351,37 @@
       "impact": 9.0,
       "matched_entity": "",
       "carver_feed_entry_id": "6c21e928-7a65-4481-86c4-bf4ae159b398",
-      "one_line_why": "SEC guidance on open-end fund liquidity/reporting affects general ETF compliance burden but doesn't directly address spot SOL ETF approval timing or consent.",
+      "one_line_why": "General guidance on fund reporting and liquidity risk is background regulatory context for ETFs but does not directly affect a spot SOL ETF approval decision.",
       "condition_tag": "background",
       "relevance_score": 2,
       "high_impact": false
     },
     {
-      "pub_date": "2025-03-14",
-      "title": "Investment Company Names Investment Management",
-      "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management",
-      "url": "https://www.sec.gov/rules-regulations/2025/03/s7-16-22",
-      "urgency": 7.0,
-      "impact": 9.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "ad76be53-aae1-46e0-be90-c07336c5f485",
-      "one_line_why": "Staffing/names update in the SEC's Investment Management division is peripheral to exchange rule approvals for a spot SOL ETF and barely moves approval odds.",
-      "condition_tag": "background",
-      "relevance_score": 2,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2024-09-24",
-      "title": "Testimony of the Securities and Exchange Commission Before the United States House of Representatives Committee on Financial Services",
-      "regulator": "Securities and Exchange Commission",
-      "url": "https://www.sec.gov/newsroom/speeches-statements/testimony-securities-exchange-commission-united-states-house-representatives-committee-financial",
+      "pub_date": "2025-02-04",
+      "title": "SEC Crypto Task Force Designation (PDF)",
+      "regulator": "U.S. Securities and Exchange Commission \u2014 Office of the Chairman",
+      "url": "https://www.sec.gov/files/crypto-task-force-designation-letter.pdf",
       "urgency": 1.0,
       "impact": 9.0,
       "matched_entity": "",
-      "carver_feed_entry_id": "4131ed28-fa54-4ef3-a63e-bd9e396a8082",
-      "one_line_why": "Public testimony by SEC commissioners offers background on agency stance toward crypto/ETFs but does not directly cause an approval decision.",
+      "carver_feed_entry_id": "50aa3570-efa4-4dc5-8d4b-79e00e3d3b78",
+      "one_line_why": "SEC crypto task-force designation is background organizational news and does not directly change odds of a spot Solana ETF approval.",
       "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false
     },
     {
       "pub_date": "2024-09-12",
-      "title": "Order - eToro",
-      "regulator": "Securities and Exchange Commission \u2014 Enforcement",
-      "url": "https://www.sec.gov/files/litigation/admin/2024/34-101001.pdf",
-      "urgency": 6.0,
-      "impact": 10.0,
+      "title": "eToro Reaches Settlement with SEC and Will Cease Trading Activity in Nearly All Crypto Assets",
+      "regulator": "Securities and Exchange Commission \u2014 Division of Enforcement",
+      "url": "https://www.sec.gov/newsroom/press-releases/2024-125",
+      "urgency": 1.0,
+      "impact": 9.0,
       "matched_entity": "",
-      "carver_feed_entry_id": "7b23891d-6e01-4d70-a4f9-d25aae7d9531",
-      "one_line_why": "SEC enforcement action against eToro signals regulatory scrutiny of crypto platforms, slightly reducing odds of SEC approving spot SOL ETFs.",
+      "carver_feed_entry_id": "590adcf0-2901-40a8-884e-8a85c35227ee",
+      "one_line_why": "SEC settlement with eToro signals stricter enforcement toward crypto, lowering odds the SEC will approve a spot SOL ETF.",
       "condition_tag": "background",
-      "relevance_score": 2,
+      "relevance_score": 4,
       "high_impact": false
     }
   ],
@@ -408,10 +408,10 @@
       0
     ],
     "primary_drivers": [
-      "Final rule delegating authority to the Division of Investment",
-      "SEC\u2013CFTC harmonization and new commodity\u2011based trust listing standards",
-      "IG scrutiny, pending administrative proceedings, and custody concerns"
+      "SEC-CFTC joint statements and regulatory harmonization roundtables",
+      "Final rule delegating authority and other high-impact rulemakings",
+      "Custody and commodity-trust listing decisions plus Form PF compliance extension"
     ],
-    "explainer": "Critical heat is driven by high\u2011impact rulemaking and governance changes (Delegation to the Division of Investment), cross\u2011agency harmonization and commodity\u2011trust listing rules, plus IG scrutiny and enforcement activity."
+    "explainer": "Heat is critical because a concentrated run of high-impact SEC and CFTC actions \u2014 joint harmonization statements, roundtables, a delegation final rule, custody/listing decisions, and a Form PF extension \u2014 keeps regulatory scrutiny elevated."
   }
 }

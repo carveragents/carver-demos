@@ -16,6 +16,16 @@
               {
                 "calendar_date": "2026-04-01",
                 "type": "effective_date",
+                "title": "CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-04-01",
+                "type": "effective_date",
                 "title": "Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards",
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
@@ -26,9 +36,9 @@
               {
                 "calendar_date": "2026-04-01",
                 "type": "effective_date",
-                "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
+                "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
                 "color": "purple",
                 "direction": "neutral",
                 "magnitude": "low"
@@ -40,8 +50,18 @@
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "purple",
-                "direction": "bearish",
-                "magnitude": "medium"
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-04-01",
+                "type": "effective_date",
+                "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+                "contract_id": "us-recession-in-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
               },
               {
                 "calendar_date": "2026-04-01",
@@ -59,20 +79,7 @@
           {
             "day": 2,
             "date": "2026-04-02",
-            "events": [
-              {
-                "calendar_date": "2026-04-02",
-                "type": "regulatory_event",
-                "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "amber",
-                "direction": "neutral",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -104,20 +111,7 @@
           {
             "day": 7,
             "date": "2026-04-07",
-            "events": [
-              {
-                "calendar_date": "2026-04-07",
-                "type": "regulatory_event",
-                "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "bearish",
-                "magnitude": "medium",
-                "high_impact": false,
-                "relevance_score": 4
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -129,26 +123,26 @@
           {
             "day": 9,
             "date": "2026-04-09",
-            "events": [
-              {
-                "calendar_date": "2026-04-09",
-                "type": "regulatory_event",
-                "title": "BTNL | Clearing Member Rules Update",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "bullish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 3
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
             "day": 10,
             "date": "2026-04-10",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-10",
+                "type": "regulatory_event",
+                "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              }
+            ],
             "busy": false
           },
           {
@@ -168,20 +162,7 @@
           {
             "day": 13,
             "date": "2026-04-13",
-            "events": [
-              {
-                "calendar_date": "2026-04-13",
-                "type": "regulatory_event",
-                "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "neutral",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 3
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -201,7 +182,7 @@
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bearish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 2
@@ -209,14 +190,14 @@
               {
                 "calendar_date": "2026-04-15",
                 "type": "regulatory_event",
-                "title": "Treasury International Capital Data for February",
+                "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "amber",
                 "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
-                "relevance_score": 2
+                "relevance_score": 3
               }
             ],
             "busy": false
@@ -240,39 +221,17 @@
               {
                 "calendar_date": "2026-04-16",
                 "type": "regulatory_event",
-                "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
+                "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bullish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 3
-              },
-              {
-                "calendar_date": "2026-04-16",
-                "type": "effective_date",
-                "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-                "contract_id": "kxfeddecision-28jan",
-                "platform": "kalshi",
-                "color": "purple",
-                "direction": "bullish",
-                "magnitude": "low"
-              },
-              {
-                "calendar_date": "2026-04-16",
-                "type": "regulatory_event",
-                "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-                "contract_id": "kxfeddecision-28jan",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "bullish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
               }
             ],
-            "busy": true
+            "busy": false
           },
           {
             "day": 17,
@@ -314,7 +273,7 @@
                 "direction": "bearish",
                 "magnitude": "medium",
                 "high_impact": false,
-                "relevance_score": 6
+                "relevance_score": 7
               }
             ],
             "busy": false
@@ -331,18 +290,8 @@
             "events": [
               {
                 "calendar_date": "2026-04-23",
-                "type": "effective_date",
-                "title": "BTNL | Clearing Member Rules Update",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "purple",
-                "direction": "bullish",
-                "magnitude": "low"
-              },
-              {
-                "calendar_date": "2026-04-23",
                 "type": "regulatory_event",
-                "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+                "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "amber",
@@ -358,27 +307,27 @@
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bullish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 2
+              },
+              {
+                "calendar_date": "2026-04-23",
+                "type": "regulatory_event",
+                "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+                "contract_id": "us-recession-in-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
               },
               {
                 "calendar_date": "2026-04-23",
                 "type": "regulatory_event",
                 "title": "Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "amber",
-                "direction": "bearish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              },
-              {
-                "calendar_date": "2026-04-23",
-                "type": "regulatory_event",
-                "title": "April 23, 2026 - Notational Vote: Final Regulatory Capital Rule",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "amber",
@@ -391,18 +340,6 @@
                 "calendar_date": "2026-04-23",
                 "type": "regulatory_event",
                 "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "amber",
-                "direction": "neutral",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              },
-              {
-                "calendar_date": "2026-04-23",
-                "type": "regulatory_event",
-                "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "amber",
@@ -429,7 +366,20 @@
           {
             "day": 24,
             "date": "2026-04-24",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-24",
+                "type": "regulatory_event",
+                "title": "Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              }
+            ],
             "busy": false
           },
           {
@@ -467,7 +417,32 @@
           {
             "day": 30,
             "date": "2026-04-30",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-30",
+                "type": "regulatory_event",
+                "title": "2026-04-30 - New Jersey Employment Report: March 2026",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 1
+              },
+              {
+                "calendar_date": "2026-04-30",
+                "type": "regulatory_event",
+                "title": "2026-04-30 - New Jersey Employment Report: March 2026",
+                "contract_id": "us-recession-in-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              }
+            ],
             "busy": false
           },
           null,
@@ -482,6 +457,16 @@
             {
               "calendar_date": "2026-04-01",
               "type": "effective_date",
+              "title": "CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-04-01",
+              "type": "effective_date",
               "title": "Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards",
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
@@ -492,9 +477,9 @@
             {
               "calendar_date": "2026-04-01",
               "type": "effective_date",
-              "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
+              "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
               "color": "purple",
               "direction": "neutral",
               "magnitude": "low"
@@ -506,8 +491,18 @@
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "purple",
-              "direction": "bearish",
-              "magnitude": "medium"
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-04-01",
+              "type": "effective_date",
+              "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+              "contract_id": "us-recession-in-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
             },
             {
               "calendar_date": "2026-04-01",
@@ -525,20 +520,7 @@
         {
           "day": 2,
           "date": "2026-04-02",
-          "events": [
-            {
-              "calendar_date": "2026-04-02",
-              "type": "regulatory_event",
-              "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "amber",
-              "direction": "neutral",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -568,20 +550,7 @@
         {
           "day": 7,
           "date": "2026-04-07",
-          "events": [
-            {
-              "calendar_date": "2026-04-07",
-              "type": "regulatory_event",
-              "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "bearish",
-              "magnitude": "medium",
-              "high_impact": false,
-              "relevance_score": 4
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -593,26 +562,26 @@
         {
           "day": 9,
           "date": "2026-04-09",
-          "events": [
-            {
-              "calendar_date": "2026-04-09",
-              "type": "regulatory_event",
-              "title": "BTNL | Clearing Member Rules Update",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "bullish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 3
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
           "day": 10,
           "date": "2026-04-10",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-10",
+              "type": "regulatory_event",
+              "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            }
+          ],
           "busy": false
         },
         {
@@ -630,20 +599,7 @@
         {
           "day": 13,
           "date": "2026-04-13",
-          "events": [
-            {
-              "calendar_date": "2026-04-13",
-              "type": "regulatory_event",
-              "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "neutral",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 3
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -663,7 +619,7 @@
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bearish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 2
@@ -671,14 +627,14 @@
             {
               "calendar_date": "2026-04-15",
               "type": "regulatory_event",
-              "title": "Treasury International Capital Data for February",
+              "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "amber",
               "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
-              "relevance_score": 2
+              "relevance_score": 3
             }
           ],
           "busy": false
@@ -702,39 +658,17 @@
             {
               "calendar_date": "2026-04-16",
               "type": "regulatory_event",
-              "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
+              "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bullish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 3
-            },
-            {
-              "calendar_date": "2026-04-16",
-              "type": "effective_date",
-              "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-              "contract_id": "kxfeddecision-28jan",
-              "platform": "kalshi",
-              "color": "purple",
-              "direction": "bullish",
-              "magnitude": "low"
-            },
-            {
-              "calendar_date": "2026-04-16",
-              "type": "regulatory_event",
-              "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-              "contract_id": "kxfeddecision-28jan",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "bullish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
             }
           ],
-          "busy": true
+          "busy": false
         },
         {
           "day": 17,
@@ -774,7 +708,7 @@
               "direction": "bearish",
               "magnitude": "medium",
               "high_impact": false,
-              "relevance_score": 6
+              "relevance_score": 7
             }
           ],
           "busy": false
@@ -791,18 +725,8 @@
           "events": [
             {
               "calendar_date": "2026-04-23",
-              "type": "effective_date",
-              "title": "BTNL | Clearing Member Rules Update",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "purple",
-              "direction": "bullish",
-              "magnitude": "low"
-            },
-            {
-              "calendar_date": "2026-04-23",
               "type": "regulatory_event",
-              "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+              "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "amber",
@@ -818,27 +742,27 @@
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bullish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 2
+            },
+            {
+              "calendar_date": "2026-04-23",
+              "type": "regulatory_event",
+              "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+              "contract_id": "us-recession-in-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
             },
             {
               "calendar_date": "2026-04-23",
               "type": "regulatory_event",
               "title": "Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "amber",
-              "direction": "bearish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            },
-            {
-              "calendar_date": "2026-04-23",
-              "type": "regulatory_event",
-              "title": "April 23, 2026 - Notational Vote: Final Regulatory Capital Rule",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "amber",
@@ -851,18 +775,6 @@
               "calendar_date": "2026-04-23",
               "type": "regulatory_event",
               "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "amber",
-              "direction": "neutral",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            },
-            {
-              "calendar_date": "2026-04-23",
-              "type": "regulatory_event",
-              "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "amber",
@@ -889,7 +801,20 @@
         {
           "day": 24,
           "date": "2026-04-24",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-24",
+              "type": "regulatory_event",
+              "title": "Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            }
+          ],
           "busy": false
         },
         {
@@ -925,7 +850,32 @@
         {
           "day": 30,
           "date": "2026-04-30",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-30",
+              "type": "regulatory_event",
+              "title": "2026-04-30 - New Jersey Employment Report: March 2026",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 1
+            },
+            {
+              "calendar_date": "2026-04-30",
+              "type": "regulatory_event",
+              "title": "2026-04-30 - New Jersey Employment Report: March 2026",
+              "contract_id": "us-recession-in-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            }
+          ],
           "busy": false
         }
       ]
@@ -958,17 +908,7 @@
               {
                 "calendar_date": "2026-05-01",
                 "type": "effective_date",
-                "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "purple",
-                "direction": "bullish",
-                "magnitude": "low"
-              },
-              {
-                "calendar_date": "2026-05-01",
-                "type": "effective_date",
-                "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
+                "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "purple",
@@ -976,7 +916,7 @@
                 "magnitude": "low"
               }
             ],
-            "busy": true
+            "busy": false
           },
           {
             "day": 2,
@@ -1000,25 +940,13 @@
                 "calendar_date": "2026-05-04",
                 "type": "regulatory_event",
                 "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b",
-                "contract_id": "kxfeddecision-28jan",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "neutral",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              },
-              {
-                "calendar_date": "2026-05-04",
-                "type": "regulatory_event",
-                "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "amber",
                 "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
-                "relevance_score": 3
+                "relevance_score": 2
               }
             ],
             "busy": false
@@ -1046,7 +974,7 @@
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bearish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 3
@@ -1068,7 +996,7 @@
                 "direction": "bullish",
                 "magnitude": "medium",
                 "high_impact": false,
-                "relevance_score": 6
+                "relevance_score": 7
               }
             ],
             "busy": false
@@ -1098,7 +1026,7 @@
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bearish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 3
@@ -1109,20 +1037,7 @@
           {
             "day": 12,
             "date": "2026-05-12",
-            "events": [
-              {
-                "calendar_date": "2026-05-12",
-                "type": "regulatory_event",
-                "title": "Isabel Schnabel: The quiet erosion of central bank independence",
-                "contract_id": "kxfeddecision-28jan",
-                "platform": "kalshi",
-                "color": "amber",
-                "direction": "bullish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 3
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -1132,14 +1047,26 @@
               {
                 "calendar_date": "2026-05-13",
                 "type": "regulatory_event",
+                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "bullish",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 5
+              },
+              {
+                "calendar_date": "2026-05-13",
+                "type": "regulatory_event",
                 "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "amber",
                 "direction": "bullish",
-                "magnitude": "medium",
+                "magnitude": "low",
                 "high_impact": false,
-                "relevance_score": 6
+                "relevance_score": 4
               },
               {
                 "calendar_date": "2026-05-13",
@@ -1152,11 +1079,18 @@
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 4
-              },
+              }
+            ],
+            "busy": true
+          },
+          {
+            "day": 14,
+            "date": "2026-05-14",
+            "events": [
               {
-                "calendar_date": "2026-05-13",
+                "calendar_date": "2026-05-14",
                 "type": "regulatory_event",
-                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+                "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "amber",
@@ -1166,12 +1100,6 @@
                 "relevance_score": 3
               }
             ],
-            "busy": true
-          },
-          {
-            "day": 14,
-            "date": "2026-05-14",
-            "events": [],
             "busy": false
           },
           {
@@ -1185,10 +1113,10 @@
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "amber",
-                "direction": "bullish",
+                "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
-                "relevance_score": 4
+                "relevance_score": 3
               }
             ],
             "busy": false
@@ -1215,13 +1143,13 @@
                 "calendar_date": "2026-05-18",
                 "type": "regulatory_event",
                 "title": "Treasury International Capital Data for March",
-                "contract_id": "kxfeddecision-28jan",
-                "platform": "kalshi",
+                "contract_id": "us-recession-in-2026",
+                "platform": "polymarket",
                 "color": "amber",
                 "direction": "neutral",
                 "magnitude": "low",
                 "high_impact": false,
-                "relevance_score": 1
+                "relevance_score": 2
               }
             ],
             "busy": false
@@ -1229,20 +1157,7 @@
           {
             "day": 19,
             "date": "2026-05-19",
-            "events": [
-              {
-                "calendar_date": "2026-05-19",
-                "type": "regulatory_event",
-                "title": "Agencies Request Comment on Financial Institutions Rating System - 05/19/2026",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "amber",
-                "direction": "bearish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -1254,20 +1169,7 @@
           {
             "day": 21,
             "date": "2026-05-21",
-            "events": [
-              {
-                "calendar_date": "2026-05-21",
-                "type": "regulatory_event",
-                "title": "OCC Announces Enforcement Actions for May 2026",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "amber",
-                "direction": "bearish",
-                "magnitude": "low",
-                "high_impact": false,
-                "relevance_score": 2
-              }
-            ],
+            "events": [],
             "busy": false
           },
           {
@@ -1321,17 +1223,7 @@
               {
                 "calendar_date": "2026-05-29",
                 "type": "effective_date",
-                "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
-                "contract_id": "kxbtc-maxprice-2026",
-                "platform": "kalshi",
-                "color": "purple",
-                "direction": "bullish",
-                "magnitude": "medium"
-              },
-              {
-                "calendar_date": "2026-05-29",
-                "type": "effective_date",
-                "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "purple",
@@ -1341,11 +1233,21 @@
               {
                 "calendar_date": "2026-05-29",
                 "type": "effective_date",
-                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+                "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "purple",
-                "direction": "neutral",
+                "direction": "bullish",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-29",
+                "type": "effective_date",
+                "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "purple",
+                "direction": "bullish",
                 "magnitude": "low"
               }
             ],
@@ -1391,17 +1293,7 @@
             {
               "calendar_date": "2026-05-01",
               "type": "effective_date",
-              "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "purple",
-              "direction": "bullish",
-              "magnitude": "low"
-            },
-            {
-              "calendar_date": "2026-05-01",
-              "type": "effective_date",
-              "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
+              "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "purple",
@@ -1409,7 +1301,7 @@
               "magnitude": "low"
             }
           ],
-          "busy": true
+          "busy": false
         },
         {
           "day": 2,
@@ -1431,25 +1323,13 @@
               "calendar_date": "2026-05-04",
               "type": "regulatory_event",
               "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b",
-              "contract_id": "kxfeddecision-28jan",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "neutral",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            },
-            {
-              "calendar_date": "2026-05-04",
-              "type": "regulatory_event",
-              "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "amber",
               "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
-              "relevance_score": 3
+              "relevance_score": 2
             }
           ],
           "busy": false
@@ -1477,7 +1357,7 @@
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bearish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 3
@@ -1499,7 +1379,7 @@
               "direction": "bullish",
               "magnitude": "medium",
               "high_impact": false,
-              "relevance_score": 6
+              "relevance_score": 7
             }
           ],
           "busy": false
@@ -1527,7 +1407,7 @@
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bearish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 3
@@ -1538,20 +1418,7 @@
         {
           "day": 12,
           "date": "2026-05-12",
-          "events": [
-            {
-              "calendar_date": "2026-05-12",
-              "type": "regulatory_event",
-              "title": "Isabel Schnabel: The quiet erosion of central bank independence",
-              "contract_id": "kxfeddecision-28jan",
-              "platform": "kalshi",
-              "color": "amber",
-              "direction": "bullish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 3
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -1561,14 +1428,26 @@
             {
               "calendar_date": "2026-05-13",
               "type": "regulatory_event",
+              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "bullish",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 5
+            },
+            {
+              "calendar_date": "2026-05-13",
+              "type": "regulatory_event",
               "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "amber",
               "direction": "bullish",
-              "magnitude": "medium",
+              "magnitude": "low",
               "high_impact": false,
-              "relevance_score": 6
+              "relevance_score": 4
             },
             {
               "calendar_date": "2026-05-13",
@@ -1581,11 +1460,18 @@
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 4
-            },
+            }
+          ],
+          "busy": true
+        },
+        {
+          "day": 14,
+          "date": "2026-05-14",
+          "events": [
             {
-              "calendar_date": "2026-05-13",
+              "calendar_date": "2026-05-14",
               "type": "regulatory_event",
-              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+              "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "amber",
@@ -1595,12 +1481,6 @@
               "relevance_score": 3
             }
           ],
-          "busy": true
-        },
-        {
-          "day": 14,
-          "date": "2026-05-14",
-          "events": [],
           "busy": false
         },
         {
@@ -1614,10 +1494,10 @@
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "amber",
-              "direction": "bullish",
+              "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
-              "relevance_score": 4
+              "relevance_score": 3
             }
           ],
           "busy": false
@@ -1642,13 +1522,13 @@
               "calendar_date": "2026-05-18",
               "type": "regulatory_event",
               "title": "Treasury International Capital Data for March",
-              "contract_id": "kxfeddecision-28jan",
-              "platform": "kalshi",
+              "contract_id": "us-recession-in-2026",
+              "platform": "polymarket",
               "color": "amber",
               "direction": "neutral",
               "magnitude": "low",
               "high_impact": false,
-              "relevance_score": 1
+              "relevance_score": 2
             }
           ],
           "busy": false
@@ -1656,20 +1536,7 @@
         {
           "day": 19,
           "date": "2026-05-19",
-          "events": [
-            {
-              "calendar_date": "2026-05-19",
-              "type": "regulatory_event",
-              "title": "Agencies Request Comment on Financial Institutions Rating System - 05/19/2026",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "amber",
-              "direction": "bearish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -1681,20 +1548,7 @@
         {
           "day": 21,
           "date": "2026-05-21",
-          "events": [
-            {
-              "calendar_date": "2026-05-21",
-              "type": "regulatory_event",
-              "title": "OCC Announces Enforcement Actions for May 2026",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "amber",
-              "direction": "bearish",
-              "magnitude": "low",
-              "high_impact": false,
-              "relevance_score": 2
-            }
-          ],
+          "events": [],
           "busy": false
         },
         {
@@ -1746,17 +1600,7 @@
             {
               "calendar_date": "2026-05-29",
               "type": "effective_date",
-              "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
-              "contract_id": "kxbtc-maxprice-2026",
-              "platform": "kalshi",
-              "color": "purple",
-              "direction": "bullish",
-              "magnitude": "medium"
-            },
-            {
-              "calendar_date": "2026-05-29",
-              "type": "effective_date",
-              "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "purple",
@@ -1766,11 +1610,21 @@
             {
               "calendar_date": "2026-05-29",
               "type": "effective_date",
-              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+              "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "purple",
-              "direction": "neutral",
+              "direction": "bullish",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-29",
+              "type": "effective_date",
+              "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "purple",
+              "direction": "bullish",
               "magnitude": "low"
             }
           ],
@@ -1800,7 +1654,18 @@
           {
             "day": 1,
             "date": "2026-06-01",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-06-01",
+                "type": "effective_date",
+                "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              }
+            ],
             "busy": false
           },
           {
@@ -1852,7 +1717,7 @@
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "purple",
-                "direction": "bullish",
+                "direction": "neutral",
                 "magnitude": "low"
               }
             ],
@@ -1865,12 +1730,12 @@
               {
                 "calendar_date": "2026-06-09",
                 "type": "comment_deadline",
-                "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
+                "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "green",
-                "direction": "bearish",
-                "magnitude": "medium"
+                "direction": "neutral",
+                "magnitude": "low"
               }
             ],
             "busy": false
@@ -1932,7 +1797,7 @@
               {
                 "calendar_date": "2026-06-18",
                 "type": "comment_deadline",
-                "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+                "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "green",
@@ -1942,11 +1807,21 @@
               {
                 "calendar_date": "2026-06-18",
                 "type": "comment_deadline",
-                "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+                "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
                 "contract_id": "kxbtc-maxprice-2026",
                 "platform": "kalshi",
                 "color": "green",
-                "direction": "bearish",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-06-18",
+                "type": "comment_deadline",
+                "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
+                "color": "green",
+                "direction": "neutral",
                 "magnitude": "low"
               },
               {
@@ -1956,7 +1831,7 @@
                 "contract_id": "kxfeddecision-28jan",
                 "platform": "kalshi",
                 "color": "green",
-                "direction": "bearish",
+                "direction": "neutral",
                 "magnitude": "low"
               },
               {
@@ -1977,16 +1852,6 @@
                 "platform": "kalshi",
                 "color": "green",
                 "direction": "neutral",
-                "magnitude": "low"
-              },
-              {
-                "calendar_date": "2026-06-18",
-                "type": "comment_deadline",
-                "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
-                "contract_id": "us-recession-in-2026",
-                "platform": "polymarket",
-                "color": "green",
-                "direction": "bullish",
                 "magnitude": "low"
               },
               {
@@ -2002,7 +1867,17 @@
               {
                 "calendar_date": "2026-06-18",
                 "type": "comment_deadline",
-                "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+                "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
+                "contract_id": "us-recession-in-2026",
+                "platform": "polymarket",
+                "color": "green",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-06-18",
+                "type": "comment_deadline",
+                "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
                 "color": "green",
@@ -2098,7 +1973,18 @@
         {
           "day": 1,
           "date": "2026-06-01",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-06-01",
+              "type": "effective_date",
+              "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            }
+          ],
           "busy": false
         },
         {
@@ -2148,7 +2034,7 @@
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "purple",
-              "direction": "bullish",
+              "direction": "neutral",
               "magnitude": "low"
             }
           ],
@@ -2161,12 +2047,12 @@
             {
               "calendar_date": "2026-06-09",
               "type": "comment_deadline",
-              "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
+              "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "green",
-              "direction": "bearish",
-              "magnitude": "medium"
+              "direction": "neutral",
+              "magnitude": "low"
             }
           ],
           "busy": false
@@ -2226,7 +2112,7 @@
             {
               "calendar_date": "2026-06-18",
               "type": "comment_deadline",
-              "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+              "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "green",
@@ -2236,11 +2122,21 @@
             {
               "calendar_date": "2026-06-18",
               "type": "comment_deadline",
-              "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+              "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
               "color": "green",
-              "direction": "bearish",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-06-18",
+              "type": "comment_deadline",
+              "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
+              "color": "green",
+              "direction": "neutral",
               "magnitude": "low"
             },
             {
@@ -2250,7 +2146,7 @@
               "contract_id": "kxfeddecision-28jan",
               "platform": "kalshi",
               "color": "green",
-              "direction": "bearish",
+              "direction": "neutral",
               "magnitude": "low"
             },
             {
@@ -2271,16 +2167,6 @@
               "platform": "kalshi",
               "color": "green",
               "direction": "neutral",
-              "magnitude": "low"
-            },
-            {
-              "calendar_date": "2026-06-18",
-              "type": "comment_deadline",
-              "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
-              "contract_id": "us-recession-in-2026",
-              "platform": "polymarket",
-              "color": "green",
-              "direction": "bullish",
               "magnitude": "low"
             },
             {
@@ -2296,7 +2182,17 @@
             {
               "calendar_date": "2026-06-18",
               "type": "comment_deadline",
-              "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+              "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
+              "contract_id": "us-recession-in-2026",
+              "platform": "polymarket",
+              "color": "green",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-06-18",
+              "type": "comment_deadline",
+              "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
               "color": "green",
@@ -2397,7 +2293,7 @@
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -2407,59 +2303,15 @@
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
+      "relevance_score": 3
     },
     {
-      "calendar_date": "2026-05-29",
+      "calendar_date": "2026-06-01",
       "type": "effective_date",
-      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "bullish",
-      "magnitude": "medium"
-    },
-    {
-      "calendar_date": "2026-05-13",
-      "type": "regulatory_event",
-      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
-      "magnitude": "medium",
-      "high_impact": false,
-      "relevance_score": 6
-    },
-    {
-      "calendar_date": "2026-05-29",
-      "type": "effective_date",
-      "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "bullish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-05-13",
-      "type": "regulatory_event",
-      "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 4
-    },
-    {
-      "calendar_date": "2026-05-29",
-      "type": "effective_date",
-      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "purple",
@@ -2467,9 +2319,9 @@
       "magnitude": "low"
     },
     {
-      "calendar_date": "2026-05-13",
+      "calendar_date": "2026-05-14",
       "type": "regulatory_event",
-      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "title": "CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
@@ -2477,6 +2329,72 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-05-29",
+      "type": "effective_date",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-13",
+      "type": "regulatory_event",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "2026-05-29",
+      "type": "effective_date",
+      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-13",
+      "type": "regulatory_event",
+      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "2026-05-29",
+      "type": "effective_date",
+      "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-13",
+      "type": "regulatory_event",
+      "title": "CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
     },
     {
       "calendar_date": "The Shares",
@@ -2498,7 +2416,7 @@
       "direction": "bullish",
       "magnitude": "medium",
       "high_impact": false,
-      "relevance_score": 6
+      "relevance_score": 7
     },
     {
       "calendar_date": "2026-04-21",
@@ -2510,7 +2428,7 @@
       "direction": "bearish",
       "magnitude": "medium",
       "high_impact": false,
-      "relevance_score": 6
+      "relevance_score": 7
     },
     {
       "calendar_date": "2026-05-01",
@@ -2537,39 +2455,17 @@
     {
       "calendar_date": "2026-05-01",
       "type": "effective_date",
-      "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
+      "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
       "calendar_date": "2026-04-16",
       "type": "regulatory_event",
-      "title": "COIN | Addition of a new Exchange functionality\u2026 - 04/16/2026",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
-    },
-    {
-      "calendar_date": "2026-05-01",
-      "type": "effective_date",
-      "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-13",
-      "type": "regulatory_event",
-      "title": "CME | Modifications to the FTIIE Futures Market Maker Program",
+      "title": "CME | Modifications to the Event Contract\u2026 - 04/16/2026",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
@@ -2579,31 +2475,41 @@
       "relevance_score": 3
     },
     {
-      "calendar_date": "2026-04-23",
+      "calendar_date": "2027-01-18",
       "type": "effective_date",
-      "title": "BTNL | Clearing Member Rules Update",
+      "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-09",
-      "type": "regulatory_event",
-      "title": "BTNL | Clearing Member Rules Update",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
     },
     {
       "calendar_date": "2026-06-09",
       "type": "comment_deadline",
-      "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
+      "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-10",
+      "type": "regulatory_event",
+      "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-06-18",
+      "type": "comment_deadline",
+      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "green",
@@ -2611,9 +2517,9 @@
       "magnitude": "medium"
     },
     {
-      "calendar_date": "2026-04-07",
+      "calendar_date": "2026-03-19",
       "type": "regulatory_event",
-      "title": "FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance",
+      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
@@ -2625,43 +2531,65 @@
     {
       "calendar_date": "2026-06-18",
       "type": "comment_deadline",
-      "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "green",
-      "direction": "bearish",
-      "magnitude": "medium"
-    },
-    {
-      "calendar_date": "2026-03-19",
-      "type": "regulatory_event",
-      "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bearish",
-      "magnitude": "medium",
-      "high_impact": false,
-      "relevance_score": 6
-    },
-    {
-      "calendar_date": "2026-06-18",
-      "type": "comment_deadline",
-      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "green",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
       "calendar_date": "2026-03-19",
       "type": "regulatory_event",
-      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-04-01",
+      "type": "effective_date",
+      "title": "CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-03-12",
+      "type": "regulatory_event",
+      "title": "CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-03-01",
+      "type": "effective_date",
+      "title": "CFE Cboe Bitcoin Continuous Futures Lead Market Maker Program Amendment [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-02-12",
+      "type": "regulatory_event",
+      "title": "CFE Cboe Bitcoin Continuous Futures Lead Market Maker Program Amendment [2]",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
@@ -2674,7 +2602,7 @@
       "platform": "kalshi",
       "color": "purple",
       "direction": "bullish",
-      "magnitude": "low"
+      "magnitude": "medium"
     },
     {
       "calendar_date": "2026-02-03",
@@ -2684,9 +2612,9 @@
       "platform": "kalshi",
       "color": "amber",
       "direction": "bullish",
-      "magnitude": "low",
+      "magnitude": "medium",
       "high_impact": false,
-      "relevance_score": 4
+      "relevance_score": 5
     },
     {
       "calendar_date": "2026-02-19",
@@ -2708,7 +2636,7 @@
       "direction": "bullish",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 4
     },
     {
       "calendar_date": "2025-07-21",
@@ -2730,34 +2658,12 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
-    },
-    {
-      "calendar_date": "2026-01-26",
-      "type": "effective_date",
-      "title": "COIN Modifications to the Non-Crypto Market Maker Program",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-01-08",
-      "type": "regulatory_event",
-      "title": "COIN Modifications to the Non-Crypto Market Maker Program",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
       "relevance_score": 3
     },
     {
       "calendar_date": "2026-02-01",
       "type": "effective_date",
-      "title": "CME - Modifications to the Cryptocurrency Options Market Maker Program",
+      "title": "CME - Modifications to the Bitcoin Friday Futures Market Maker Program",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "purple",
@@ -2767,7 +2673,7 @@
     {
       "calendar_date": "2025-12-17",
       "type": "regulatory_event",
-      "title": "CME - Modifications to the Cryptocurrency Options Market Maker Program",
+      "title": "CME - Modifications to the Bitcoin Friday Futures Market Maker Program",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
       "color": "amber",
@@ -2775,18 +2681,6 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
-    },
-    {
-      "calendar_date": "2025-12-12",
-      "type": "regulatory_event",
-      "title": "Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Management USA, LLC; Gray Digital Technologies, LLC",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bearish",
-      "magnitude": "medium",
-      "high_impact": false,
-      "relevance_score": 5
     },
     {
       "calendar_date": "effective ",
@@ -2811,6 +2705,28 @@
       "relevance_score": 6
     },
     {
+      "calendar_date": "2025-12-03",
+      "type": "effective_date",
+      "title": "Modifications to Position Limits",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-18",
+      "type": "regulatory_event",
+      "title": "Modifications to Position Limits",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
       "calendar_date": "2028-01-26",
       "type": "settlement",
       "title": "Settlement: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?",
@@ -2819,37 +2735,13 @@
       "color": "blue"
     },
     {
-      "calendar_date": "2026-05-18",
-      "type": "regulatory_event",
-      "title": "Treasury International Capital Data for March",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 1
-    },
-    {
-      "calendar_date": "2026-05-12",
-      "type": "regulatory_event",
-      "title": "Isabel Schnabel: The quiet erosion of central bank independence",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
-    },
-    {
       "calendar_date": "2026-05-11",
       "type": "regulatory_event",
       "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
@@ -2861,27 +2753,39 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
     },
     {
-      "calendar_date": "2026-05-04",
+      "calendar_date": "2026-04-30",
       "type": "regulatory_event",
-      "title": "Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b",
+      "title": "2026-04-30 - New Jersey Employment Report: March 2026",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 2
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "2026-04-24",
+      "type": "regulatory_event",
+      "title": "Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
     },
     {
       "calendar_date": "2026-07-01",
       "type": "effective_date",
-      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "purple",
@@ -2891,7 +2795,7 @@
     {
       "calendar_date": "2026-04-23",
       "type": "regulatory_event",
-      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
@@ -2907,7 +2811,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -2917,29 +2821,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-04-16",
-      "type": "effective_date",
-      "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "bullish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-16",
-      "type": "regulatory_event",
-      "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -2951,7 +2833,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -2961,7 +2843,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -2973,7 +2855,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -2983,7 +2865,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
@@ -2991,11 +2873,33 @@
     {
       "calendar_date": "2026-06-18",
       "type": "comment_deadline",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-03-19",
+      "type": "regulatory_event",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-06-18",
+      "type": "comment_deadline",
       "title": "Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "green",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3005,7 +2909,7 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -3053,6 +2957,18 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-03-12",
+      "type": "regulatory_event",
+      "title": "Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
     },
     {
       "calendar_date": "2026-03-10",
@@ -3061,32 +2977,34 @@
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
     },
     {
-      "calendar_date": "December 3",
-      "type": "effective_date",
-      "title": "Consolidated Reports of Condition and Income for Fourth Quarter 2025",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-01-09",
+      "calendar_date": "2026-03-02",
       "type": "regulatory_event",
-      "title": "Consolidated Reports of Condition and Income for Fourth Quarter 2025",
+      "title": "Christopher J Waller: Labor market data - signal or noise?",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 2
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-02-05",
+      "type": "regulatory_event",
+      "title": "Michelle W Bowman: Outlook for the economy and monetary policy",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 5
     },
     {
       "calendar_date": "2026-04-01",
@@ -3108,36 +3026,26 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 2
+      "relevance_score": 3
     },
     {
-      "calendar_date": "January 1,",
+      "calendar_date": "2026-04-01",
       "type": "effective_date",
-      "title": "Agencies Issue Proposal to Enhance Community Banks\u2019 Ability to Serve Their Communities While Maintaining Strong Capital Requirements",
+      "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "60 days af",
-      "type": "comment_deadline",
-      "title": "Agencies Issue Proposal to Enhance Community Banks\u2019 Ability to Serve Their Communities While Maintaining Strong Capital Requirements",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "green",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
       "calendar_date": "2025-11-25",
       "type": "regulatory_event",
-      "title": "Agencies Issue Proposal to Enhance Community Banks\u2019 Ability to Serve Their Communities While Maintaining Strong Capital Requirements",
+      "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -3150,7 +3058,7 @@
       "platform": "kalshi",
       "color": "purple",
       "direction": "bullish",
-      "magnitude": "medium"
+      "magnitude": "low"
     },
     {
       "calendar_date": "2025-11-20",
@@ -3160,73 +3068,21 @@
       "platform": "kalshi",
       "color": "amber",
       "direction": "bullish",
-      "magnitude": "medium",
+      "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 5
+      "relevance_score": 4
     },
     {
-      "calendar_date": "April 1, 2",
-      "type": "effective_date",
-      "title": "FDIC Approves Notice of Proposed Rulemaking to Rescind the 2023 Community Reinvestment Act Final Rule",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-08-18",
-      "type": "comment_deadline",
-      "title": "FDIC Approves Notice of Proposed Rulemaking to Rescind the 2023 Community Reinvestment Act Final Rule",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "green",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-07-16",
+      "calendar_date": "2025-11-20",
       "type": "regulatory_event",
-      "title": "FDIC Approves Notice of Proposed Rulemaking to Rescind the 2023 Community Reinvestment Act Final Rule",
+      "title": "Treasury Tightens Sanctions on Iran\u2019s Oil Network Supporting its Military",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
       "direction": "bearish",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "beginning ",
-      "type": "effective_date",
-      "title": "Notice of Proposed Rulemaking on Adjusting and Indexing Certain Regulatory Thresholds",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-09-26",
-      "type": "comment_deadline",
-      "title": "Notice of Proposed Rulemaking on Adjusting and Indexing Certain Regulatory Thresholds",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "green",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-07-15",
-      "type": "regulatory_event",
-      "title": "Notice of Proposed Rulemaking on Adjusting and Indexing Certain Regulatory Thresholds",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
+      "relevance_score": 4
     },
     {
       "calendar_date": "Date of Pu",
@@ -3235,7 +3091,7 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3245,66 +3101,10 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
-    },
-    {
-      "calendar_date": "2025-12-04",
-      "type": "regulatory_event",
-      "title": "Iceboxes and Soapboxes: Remarks at the Meeting of the SEC Investor Advisory Committee",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
-    },
-    {
-      "calendar_date": "Fiscal Yea",
-      "type": "effective_date",
-      "title": "The Inspector General\u2019s Statement on the SEC\u2019s Management and Performance Challenges, December 2025",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-12-04",
-      "type": "regulatory_event",
-      "title": "The Inspector General\u2019s Statement on the SEC\u2019s Management and Performance Challenges, December 2025",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "bearish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
-    },
-    {
-      "calendar_date": "immediatel",
-      "type": "effective_date",
-      "title": "Pending Administrative Proceedings",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-10-01",
-      "type": "regulatory_event",
-      "title": "Pending Administrative Proceedings",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "bearish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
     },
     {
       "calendar_date": "2025-09-18",
@@ -3313,7 +3113,7 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "green",
-      "direction": "bullish",
+      "direction": "bearish",
       "magnitude": "medium"
     },
     {
@@ -3323,10 +3123,10 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "bearish",
       "magnitude": "medium",
       "high_impact": false,
-      "relevance_score": 7
+      "relevance_score": 6
     },
     {
       "calendar_date": "2025-09-30",
@@ -3336,9 +3136,9 @@
       "platform": "polymarket",
       "color": "amber",
       "direction": "bullish",
-      "magnitude": "medium",
+      "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 6
+      "relevance_score": 4
     },
     {
       "calendar_date": "2025-09-29",
@@ -3347,7 +3147,7 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3357,25 +3157,15 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 2
     },
     {
-      "calendar_date": "2025-09-19",
-      "type": "effective_date",
-      "title": "_Federal Register_ version",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-09-19",
+      "calendar_date": "2025-09-17",
       "type": "regulatory_event",
-      "title": "_Federal Register_ version",
+      "title": "CFTC and SEC Extend Form PF Compliance Date to Oct. 1, 2026",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
@@ -3399,6 +3189,18 @@
     {
       "calendar_date": "2025-09-05",
       "type": "regulatory_event",
+      "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
       "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
@@ -3406,19 +3208,19 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
+      "relevance_score": 3
     },
     {
       "calendar_date": "2025-09-05",
       "type": "regulatory_event",
-      "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts",
+      "title": "SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-Host Roundtable Sept. 29",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
+      "relevance_score": 2
     },
     {
       "calendar_date": "2025-08-01",
@@ -3430,7 +3232,7 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 2
     },
     {
       "calendar_date": "2025-07-30",
@@ -3445,13 +3247,111 @@
       "relevance_score": 4
     },
     {
+      "calendar_date": "2025-07-04",
+      "type": "effective_date",
+      "title": "SEC Announces Departure of David Saltiel",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-18",
+      "type": "regulatory_event",
+      "title": "SEC Announces Departure of David Saltiel",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-06-20",
+      "type": "effective_date",
+      "title": "Policy Statement Concerning Agency Referrals for Potential Criminal Enforcement",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-16",
+      "type": "regulatory_event",
+      "title": "Policy Statement Concerning Agency Referrals for Potential Criminal Enforcement",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-07-08",
+      "type": "effective_date",
+      "title": "Brian Daly Named Director of Division of Investment Management",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-13",
+      "type": "regulatory_event",
+      "title": "Brian Daly Named Director of Division of Investment Management",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-06-17",
+      "type": "effective_date",
+      "title": "Safeguarding Advisory Client Assets Investment Management",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2023-10-30",
+      "type": "comment_deadline",
+      "title": "Safeguarding Advisory Client Assets Investment Management",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-12",
+      "type": "regulatory_event",
+      "title": "Safeguarding Advisory Client Assets Investment Management",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
       "calendar_date": "immediatel",
       "type": "effective_date",
       "title": "SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3461,7 +3361,7 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -3473,7 +3373,7 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3483,22 +3383,10 @@
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
-    },
-    {
-      "calendar_date": "2025-05-14",
-      "type": "regulatory_event",
-      "title": "Final Management Letter: Audit of the SEC\u2019s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "bearish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 2
     },
     {
       "calendar_date": "2025-11-17",
@@ -3523,41 +3411,9 @@
       "relevance_score": 2
     },
     {
-      "calendar_date": "2025-03-20",
-      "type": "effective_date",
-      "title": "Investment Company Names Investment Management",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2022-11-01",
-      "type": "comment_deadline",
-      "title": "Investment Company Names Investment Management",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "green",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-03-14",
+      "calendar_date": "2025-02-04",
       "type": "regulatory_event",
-      "title": "Investment Company Names Investment Management",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2024-09-24",
-      "type": "regulatory_event",
-      "title": "Testimony of the Securities and Exchange Commission Before the United States House of Representatives Committee on Financial Services",
+      "title": "SEC Crypto Task Force Designation (PDF)",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
@@ -3567,26 +3423,26 @@
       "relevance_score": 3
     },
     {
-      "calendar_date": "Date of th",
+      "calendar_date": "Within 187",
       "type": "effective_date",
-      "title": "Order - eToro",
+      "title": "eToro Reaches Settlement with SEC and Will Cease Trading Activity in Nearly All Crypto Assets",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "purple",
       "direction": "bearish",
-      "magnitude": "low"
+      "magnitude": "medium"
     },
     {
       "calendar_date": "2024-09-12",
       "type": "regulatory_event",
-      "title": "Order - eToro",
+      "title": "eToro Reaches Settlement with SEC and Will Cease Trading Activity in Nearly All Crypto Assets",
       "contract_id": "solana-etf-2025",
       "platform": "polymarket",
       "color": "amber",
       "direction": "bearish",
-      "magnitude": "low",
+      "magnitude": "medium",
       "high_impact": false,
-      "relevance_score": 2
+      "relevance_score": 4
     },
     {
       "calendar_date": "2025-02-25",
@@ -3625,13 +3481,35 @@
       "relevance_score": 0
     },
     {
+      "calendar_date": "May 1, 202",
+      "type": "effective_date",
+      "title": "Bulletin B25-04",
+      "contract_id": "tiktokban-25apr30",
+      "platform": "kalshi",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-01-24",
+      "type": "regulatory_event",
+      "title": "Bulletin B25-04",
+      "contract_id": "tiktokban-25apr30",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
       "calendar_date": "CFPB will ",
       "type": "effective_date",
       "title": "Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data",
       "contract_id": "tiktokban-25apr30",
       "platform": "kalshi",
       "color": "purple",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3641,32 +3519,10 @@
       "contract_id": "tiktokban-25apr30",
       "platform": "kalshi",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
-    },
-    {
-      "calendar_date": "Effective ",
-      "type": "effective_date",
-      "title": "Cooperation Agreements",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2024-04-30",
-      "type": "regulatory_event",
-      "title": "Cooperation Agreements",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 1
     },
     {
       "calendar_date": "2026-12-31",
@@ -3677,35 +3533,13 @@
       "color": "blue"
     },
     {
-      "calendar_date": "2026-05-21",
+      "calendar_date": "2026-05-18",
       "type": "regulatory_event",
-      "title": "OCC Announces Enforcement Actions for May 2026",
+      "title": "Treasury International Capital Data for March",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-08-17",
-      "type": "comment_deadline",
-      "title": "Agencies Request Comment on Financial Institutions Rating System - 05/19/2026",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "green",
-      "direction": "bearish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-05-19",
-      "type": "regulatory_event",
-      "title": "Agencies Request Comment on Financial Institutions Rating System - 05/19/2026",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -3720,6 +3554,40 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-04-30",
+      "type": "regulatory_event",
+      "title": "2026-04-30 - New Jersey Employment Report: March 2026",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-07-01",
+      "type": "effective_date",
+      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-23",
+      "type": "regulatory_event",
+      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
       "relevance_score": 3
     },
     {
@@ -3729,7 +3597,7 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
@@ -3739,28 +3607,6 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-07-01",
-      "type": "effective_date",
-      "title": "April 23, 2026 - Notational Vote: Final Regulatory Capital Rule",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-23",
-      "type": "regulatory_event",
-      "title": "April 23, 2026 - Notational Vote: Final Regulatory Capital Rule",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "amber",
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
@@ -3791,7 +3637,7 @@
     {
       "calendar_date": "2026-07-01",
       "type": "effective_date",
-      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "title": "Community Bank Leverage Ratio: Final Rule",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "purple",
@@ -3801,7 +3647,7 @@
     {
       "calendar_date": "2026-04-23",
       "type": "regulatory_event",
-      "title": "Agencies Finalize Changes to Community Bank Leverage Ratio",
+      "title": "Community Bank Leverage Ratio: Final Rule",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
@@ -3811,79 +3657,23 @@
       "relevance_score": 2
     },
     {
-      "calendar_date": "2026-07-01",
+      "calendar_date": "July 2025",
       "type": "effective_date",
-      "title": "Community Bank Leverage Ratio: Final Rule",
+      "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "purple",
       "direction": "neutral",
       "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-23",
-      "type": "regulatory_event",
-      "title": "Community Bank Leverage Ratio: Final Rule",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
     },
     {
       "calendar_date": "2026-04-15",
       "type": "regulatory_event",
-      "title": "Treasury International Capital Data for February",
+      "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
       "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-04-01",
-      "type": "effective_date",
-      "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-04-02",
-      "type": "regulatory_event",
-      "title": "Consolidated Reports of Condition and Income for First Quarter 2026",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-06-18",
-      "type": "comment_deadline",
-      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "green",
-      "direction": "bullish",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2026-03-19",
-      "type": "regulatory_event",
-      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
-      "contract_id": "us-recession-in-2026",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "bullish",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
@@ -3913,7 +3703,7 @@
     {
       "calendar_date": "2026-06-18",
       "type": "comment_deadline",
-      "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "green",
@@ -3923,7 +3713,29 @@
     {
       "calendar_date": "2026-03-19",
       "type": "regulatory_event",
-      "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets",
+      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-06-18",
+      "type": "comment_deadline",
+      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-03-19",
+      "type": "regulatory_event",
+      "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
@@ -3951,29 +3763,29 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
     },
     {
-      "calendar_date": "2026-07-04",
+      "calendar_date": "January 19",
       "type": "effective_date",
-      "title": "Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child",
+      "title": "Treasury, IRS issue guidance on the additional first year depreciation deduction amended as part of the One, Big, Beautiful Bill",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     {
-      "calendar_date": "2026-03-06",
+      "calendar_date": "2026-01-14",
       "type": "regulatory_event",
-      "title": "Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child",
+      "title": "Treasury, IRS issue guidance on the additional first year depreciation deduction amended as part of the One, Big, Beautiful Bill",
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
@@ -4007,8 +3819,8 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "purple",
-      "direction": "bearish",
-      "magnitude": "medium"
+      "direction": "neutral",
+      "magnitude": "low"
     },
     {
       "calendar_date": "2025-12-01",
@@ -4017,10 +3829,54 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bearish",
-      "magnitude": "medium",
+      "direction": "neutral",
+      "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 4
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-08-26",
+      "type": "comment_deadline",
+      "title": "Final Rule to Modify the Enhanced Supplementary Leverage Ratio",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-25",
+      "type": "regulatory_event",
+      "title": "Final Rule to Modify the Enhanced Supplementary Leverage Ratio",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-04-01",
+      "type": "effective_date",
+      "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-25",
+      "type": "regulatory_event",
+      "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule",
+      "contract_id": "us-recession-in-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
     },
     {
       "calendar_date": "2026-04-01",
@@ -4042,7 +3898,7 @@
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 2
     },
     {
       "calendar_date": "2025-04-18",
@@ -4051,10 +3907,10 @@
       "contract_id": "us-recession-in-2026",
       "platform": "polymarket",
       "color": "amber",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 3
+      "relevance_score": 2
     }
   ],
   "today": "2026-05-26"

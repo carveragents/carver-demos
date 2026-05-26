@@ -14,12 +14,12 @@
     "next_catalyst": {
       "date": "2026-05-29",
       "field": "effective_date",
-      "title": "CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]"
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"
     },
     "latest_event": {
       "pub_date": "2026-05-15",
       "title": "CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]",
-      "direction": "bullish",
+      "direction": "neutral",
       "magnitude": "low"
     },
     "position": {
@@ -39,16 +39,16 @@
     "heat_tier": "critical",
     "heat_delta_7d": -71.8,
     "peer_percentile": 60,
-    "net_direction": "Bearish",
+    "net_direction": "Mixed",
     "event_count_90d": 20,
     "next_catalyst": {
       "date": "2026-06-18",
       "field": "comment_deadline",
-      "title": "Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System"
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"
     },
     "latest_event": {
-      "pub_date": "2026-05-18",
-      "title": "Treasury International Capital Data for March",
+      "pub_date": "2026-05-11",
+      "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations",
       "direction": "neutral",
       "magnitude": "low"
     },
@@ -69,17 +69,17 @@
     "heat_tier": "critical",
     "heat_delta_7d": -70.51,
     "peer_percentile": 40,
-    "net_direction": "Bearish",
+    "net_direction": "Mixed",
     "event_count_90d": 20,
     "next_catalyst": {
       "date": "2026-06-18",
       "field": "comment_deadline",
-      "title": "Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets"
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"
     },
     "latest_event": {
-      "pub_date": "2026-05-21",
-      "title": "OCC Announces Enforcement Actions for May 2026",
-      "direction": "bearish",
+      "pub_date": "2026-05-18",
+      "title": "Treasury International Capital Data for March",
+      "direction": "neutral",
       "magnitude": "low"
     },
     "position": {

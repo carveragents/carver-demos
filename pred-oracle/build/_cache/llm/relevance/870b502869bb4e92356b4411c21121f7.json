@@ -1,0 +1,80 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the SEC approve a spot Solana ETF in 2025?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission approves at least one\nspot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)\nfor listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)\nwith an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.\n\nConditions:\n  A: SEC approves spot SOL ETF on NYSE Arca \u2014 By 2025-12-31, SEC issues an effective order approving a NYSE Arca rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\n  B: SEC approves spot SOL ETF on Cboe BZX \u2014 By 2025-12-31, SEC issues an effective order approving a Cboe BZX rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\n  C: SEC approves spot SOL ETF on NASDAQ \u2014 By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures).\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'NYSE Arca', 'Cboe BZX Exchange', 'NASDAQ Stock Market', 'BlackRock', 'Fidelity Investments', 'VanEck', 'Grayscale Investments', 'Bitwise Asset Management', '21Shares']\n\nRecord title: Etoiles Capital Group Co., Ltd\nRecord date: 2025-10-03\nRecord regulator: Securities and Exchange Commission\nRecord topic: U.S. Securities and Exchange Commission\nRecord entities: ['Etoiles Capital Group Co., Ltd', 'Securities and Exchange Commission', 'Vanessa A. Countryman']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "SEC item about Etoiles Capital appears unrelated to spot-SOL ETF rulemaking or approvals and provides no information changing YES odds.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

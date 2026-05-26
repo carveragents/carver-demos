@@ -2,7 +2,7 @@
   "request": {
     "model": "gpt-5-mini",
     "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
-    "user": "Tier: critical\nHeat: 86.66\nDelta_7d: -70.51\nTop records:\n- 2026-05-21 OCC Announces Enforcement Actions for May 2026\n- 2026-05-19 Agencies Request Comment on Financial Institutions Rating System - 05/19/2026\n- 2026-05-04 Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b\n- 2026-04-23 Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBL\n- 2026-04-23 April 23, 2026 - Notational Vote: Final Regulatory Capital Rule\n- 2026-04-23 Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio\n- 2026-04-23 Agencies Finalize Changes to Community Bank Leverage Ratio\n- 2026-04-23 Community Bank Leverage Ratio: Final Rule\n- 2026-04-15 Treasury International Capital Data for February\n- 2026-04-02 Consolidated Reports of Condition and Income for First Quarter 2026\n",
+    "user": "Tier: critical\nHeat: 86.66\nDelta_7d: -70.51\nTop records:\n- 2026-05-18 Treasury International Capital Data for March\n- 2026-05-04 Economic Policy Statements to TBAC: 2026 - 2nd Quarter\u200b\n- 2026-04-30 2026-04-30 - New Jersey Employment Report: March 2026\n- 2026-04-23 Agencies Finalize Changes to Community Bank Leverage Ratio\n- 2026-04-23 Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBL\n- 2026-04-23 Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio\n- 2026-04-23 Community Bank Leverage Ratio: Final Rule\n- 2026-04-15 Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New T\n- 2026-03-19 Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organi\n- 2026-03-19 Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-w\n",
     "schema": {
       "type": "object",
       "additionalProperties": false,
@@ -27,10 +27,10 @@
   },
   "response": {
     "primary_drivers": [
-      "Final Community Bank Leverage Ratio and regulatory capital rules (Apr 23)",
-      "OCC enforcement actions published (May 21)",
-      "Interagency request for comment on financial institutions rating system (May 19)"
+      "Final Community Bank Leverage Ratio (CBLR) rule",
+      "Regulatory Capital Rule revisions for Category I & II banks",
+      "Treasury International Capital data and recent employment reports"
     ],
-    "explainer": "This week\u2019s critical heat is driven by late\u2011April finalization of community bank leverage and capital rules, plus recent OCC enforcement actions and an interagency request for comment."
+    "explainer": "Critical heat driven by major banking rulemaking\u2014final CBLR and broad regulatory capital revisions\u2014amplified by TIC and employment releases; overall momentum eased this week."
   }
 }

@@ -19,7 +19,17 @@ SYSTEM_PROMPT = (
     "off-topic, 10 = directly determinative). Return JSON matching the "
     "schema. one_line_why should be ≤160 chars and explain how this record "
     "moves resolution probability."
-    " Also judge directionality: does this event make YES resolution more likely (bullish), less likely (bearish), or neither (neutral)? Judge magnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal. Judge timeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?"
+    "\n\nDirection: judge whether this event makes the contract MORE likely "
+    "to resolve YES (= bullish), LESS likely to resolve YES (= bearish), "
+    "or has no directional effect (= neutral). IMPORTANT: direction is "
+    "always relative to YES resolution. If your one_line_why says the event "
+    "'increases odds' or 'raises probability', direction MUST be bullish. "
+    "If it says 'decreases odds' or 'lowers probability', direction MUST be "
+    "bearish. Do not contradict yourself."
+    "\n\nMagnitude: high = materially changes probability, medium = notable "
+    "but not decisive, low = incremental signal."
+    "\n\nTimeline shift: does this event suggest resolution will come sooner "
+    "or later than expected, or no change (none)?"
 )
 
 
@@ -121,15 +131,26 @@ def judge_batch(
         )
         if verdict is None:
             verdict = _heuristic_judgment(rec)
+        rel_score = int(verdict.get("relevance_score", 0))
+        # Low-relevance events get forced to neutral — tangential records
+        # shouldn't carry directional weight in aggregations.
+        if rel_score < 4:
+            direction = "neutral"
+            magnitude = "low"
+            timeline_shift = "none"
+        else:
+            direction = verdict.get("direction", "neutral")
+            magnitude = verdict.get("magnitude", "low")
+            timeline_shift = verdict.get("timeline_shift", "none")
         enriched = {
             **rec,
             "one_line_why": verdict.get("one_line_why") or "",
             "condition_tag": verdict.get("condition_tag", "background"),
-            "relevance_score": int(verdict.get("relevance_score", 0)),
+            "relevance_score": rel_score,
             "high_impact": bool(verdict.get("high_impact", False)),
-            "direction": verdict.get("direction", "neutral"),
-            "magnitude": verdict.get("magnitude", "low"),
-            "timeline_shift": verdict.get("timeline_shift", "none"),
+            "direction": direction,
+            "magnitude": magnitude,
+            "timeline_shift": timeline_shift,
         }
         if verdict.get("relevant"):
             relevant.append(enriched)

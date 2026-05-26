@@ -92,3 +92,47 @@ def test_judge_batch_propagates_direction_from_verdict():
     assert rec["direction"] == "bearish"
     assert rec["magnitude"] == "high"
     assert rec["timeline_shift"] == "sooner"
+
+
+def test_low_relevance_forced_neutral():
+    """Events with relevance_score < 4 should have direction forced to neutral."""
+    contract = {
+        "id": "test",
+        "title": "Test",
+        "resolution_criteria": "Test",
+        "settlement_entities": ["SEC"],
+    }
+    conditions = [{"id": "A", "label": "test", "summary": "test"}]
+    candidate = {
+        "title": "Tangential filing",
+        "feed_entry_id": "rec-2",
+        "link": "https://example.com",
+        "scores": {"urgency": {"score": 5, "label": "medium"},
+                   "relevance": {"score": 5, "label": "medium"}},
+        "entities": ["SEC"],
+        "topic_name": "SEC",
+    }
+    fake_verdict = {
+        "relevant": True,
+        "relevance_score": 3,
+        "one_line_why": "Tangential",
+        "condition_tag": "background",
+        "high_impact": False,
+        "direction": "bullish",
+        "magnitude": "medium",
+        "timeline_shift": "sooner",
+    }
+    with patch("build._relevance._llm.cache_key_for", return_value="fake-key2"), \
+         patch("build._relevance._llm.complete_json", return_value=fake_verdict):
+        from build._relevance import judge_batch
+        results = judge_batch(
+            contract=contract,
+            conditions=conditions,
+            candidates=[candidate],
+        )
+    assert len(results) == 1
+    rec = results[0]
+    assert rec["relevance_score"] == 3
+    assert rec["direction"] == "neutral"
+    assert rec["magnitude"] == "low"
+    assert rec["timeline_shift"] == "none"
