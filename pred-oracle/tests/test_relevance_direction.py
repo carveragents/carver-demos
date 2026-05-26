@@ -46,3 +46,49 @@ def test_heuristic_includes_direction_fields():
     assert result["direction"] == "neutral"
     assert result["magnitude"] == "low"
     assert result["timeline_shift"] == "none"
+
+
+from unittest.mock import patch
+
+def test_judge_batch_propagates_direction_from_verdict():
+    """Regression: judge_batch must copy direction/magnitude/timeline_shift
+    from the LLM verdict into the enriched record dict."""
+    contract = {
+        "id": "test",
+        "title": "Test",
+        "resolution_criteria": "Test",
+        "settlement_entities": ["SEC"],
+    }
+    conditions = [{"id": "A", "label": "test", "summary": "test"}]
+    candidate = {
+        "title": "SEC enforcement action",
+        "feed_entry_id": "rec-1",
+        "link": "https://example.com",
+        "scores": {"urgency": {"score": 7, "label": "high"},
+                   "relevance": {"score": 6, "label": "medium"}},
+        "entities": ["SEC"],
+        "topic_name": "SEC",
+    }
+    fake_verdict = {
+        "relevant": True,
+        "relevance_score": 8,
+        "one_line_why": "Direct enforcement",
+        "condition_tag": "A",
+        "high_impact": True,
+        "direction": "bearish",
+        "magnitude": "high",
+        "timeline_shift": "sooner",
+    }
+    with patch("build._relevance._llm.cache_key_for", return_value="fake-key"), \
+         patch("build._relevance._llm.complete_json", return_value=fake_verdict):
+        from build._relevance import judge_batch
+        results = judge_batch(
+            contract=contract,
+            conditions=conditions,
+            candidates=[candidate],
+        )
+    assert len(results) == 1
+    rec = results[0]
+    assert rec["direction"] == "bearish"
+    assert rec["magnitude"] == "high"
+    assert rec["timeline_shift"] == "sooner"

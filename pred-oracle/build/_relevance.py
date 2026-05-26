@@ -127,6 +127,9 @@ def judge_batch(
             "condition_tag": verdict.get("condition_tag", "background"),
             "relevance_score": int(verdict.get("relevance_score", 0)),
             "high_impact": bool(verdict.get("high_impact", False)),
+            "direction": verdict.get("direction", "neutral"),
+            "magnitude": verdict.get("magnitude", "low"),
+            "timeline_shift": verdict.get("timeline_shift", "none"),
         }
         if verdict.get("relevant"):
             relevant.append(enriched)
