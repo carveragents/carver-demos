@@ -20,7 +20,10 @@ picks:
     resolution_criteria: "Resolves YES if the National Bureau of Economic Research (NBER) Business Cycle Dating Committee announces that the United States entered an economic recession with a peak month in 2026, on or before 2026-12-31. Resolves NO otherwise."
     external_id: 'POLY-RECESSION-2026'
     slug: us-recession-in-2026
-    condition_id: ''
+    condition_id: '0xfdc73f10edf0266756686f35b5712cffa828b0940fc015e0426c76c934c2105d'
+    clob_token_ids:
+      - '100379208559626151022751801118534484742123694725746262280150222742563282755057'
+      - '113732820231608904682346496304917888352004831436510840986547065248348999143469'
     status: active
     listed_at: '2025-01-15T00:00:00Z'
     expires_at: '2026-12-31T23:59:00Z'

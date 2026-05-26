@@ -1,5 +1,5 @@
 schema_version: 1
-build_date: "2026-05-25"
+build_date: "2026-05-26"
 
 portfolio:
   - id: kxbtc-maxprice-2026
@@ -14,18 +14,6 @@ portfolio:
     platform: polymarket
     kind: active
     position: {side: "YES", size: 500, entry_price: 0.18}
-  - id: sec-eth-security-2026
-    platform: polymarket
-    kind: active
-    position: {side: "YES", size: 150, entry_price: 0.33}
-  - id: kxuschina-tariffs-2026
-    platform: kalshi
-    kind: active
-    position: {side: "YES", size: 300, entry_price: 0.47}
-  - id: fatf-travel-rule-2027
-    platform: polymarket
-    kind: active
-    position: {side: "YES", size: 100, entry_price: 0.61}
 
 retrospectives:
   - id: solana-etf-2025
