@@ -68,7 +68,7 @@
         "sentiment": "bearish"
       }
     ],
-    "narrative": "Sanctions-led energy pressures dominate: repeated OFAC hits on Iran- and Iraq-linked oil trade add inflation risk, tilting odds away from a 25 bps cut, while tax-cut rhetoric and Bowman\u2019s hawkish tone reinforce caution. Capital/leverage rule tweaks are background. Waller\u2019s pro-cuts case offers a mild counter, but the call still awaits inflation/oil trends and upcoming FOMC signals into Jan 2028."
+    "narrative": "Fed signals are mixed: Waller (Nov 2025) argues for continued cuts, while Bowman (Feb 2026) stays hawkish, tilting odds lower; Iran oil sanctions add upside inflation risk. Regulatory capital tweaks and BIS/ECB analysis are background with limited direct impact. The Jan 2028 FOMC decision remains pending, hinging on inflation and labor data into 2027\u201328."
   },
   "position": {
     "side": "NO",
@@ -86,7 +86,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "745b5fd2-856d-4e38-bab8-32345dea5740",
       "one_line_why": "Department of the Treasury \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -106,7 +106,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "3f8f3706-a61a-470c-acc3-b609f9ccd6d9",
       "one_line_why": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",

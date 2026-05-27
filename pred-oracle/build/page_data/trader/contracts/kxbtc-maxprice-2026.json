@@ -68,7 +68,7 @@
         "sentiment": "bullish"
       }
     ],
-    "narrative": "Since late 2025, U.S. actions skew bullish: CME/ICE/CFE/Coinbase expand crypto futures, 24/7 market-maker programs and hours; Nasdaq files to list the iShares Bitcoin Premium Income ETF; CFTC tokenized-collateral pilots and FDIC stablecoin standards add clarity - together lifting odds BTC >$109,999.99 by end-2026. Headwinds: tighter bank capital rules and NY AG suits vs Coinbase/Gemini. Pending: SEC ETF approval and litigation outcomes."
+    "narrative": "Regulatory signals are mixed: CFTC and exchanges (CME, ICE, Coinbase, CFE) roll out 24/7 trading, market-maker and liquidity programs, and Nasdaq files to list BlackRock's iShares Bitcoin Premium Income ETF - steps that modestly boost liquidity and access. Offsetting are NY AG suits against Coinbase/Gemini and tighter bank capital/trading rules that may curb demand. Still pending: SEC action on the ETF, litigation outcomes, and implementation of bank rules."
   },
   "position": {
     "side": "YES",
@@ -86,7 +86,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "418cee8a-7c65-465b-bfa1-f4168e35efa6",
       "one_line_why": "Commodity Futures Trading Commission \u2014 Office of the Secretariat \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -266,7 +266,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "b99c8b3d-8d91-4cce-8cc2-bbd780595680",
       "one_line_why": "Federal Deposit Insurance Corporation \u2014 Division of Complex Institution Supervision and Resolution \u2014 Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -306,7 +306,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "dc7f842e-05c6-4c40-9712-20e87fd0e42b",
       "one_line_why": "Federal Deposit Insurance Corporation \u2014 Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -346,7 +346,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "ac6de2df-10c5-457a-b46c-182c8cbfcf50",
       "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -406,7 +406,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "4a11c190-60d1-4024-ae3d-f4543745127a",
       "one_line_why": "CFTC changes to Coinbase's perp futures market-maker program may only indirectly affect BTC liquidity/volatility, so no clear impact on >$109,999 outcome.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",

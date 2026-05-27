@@ -155,10 +155,13 @@ def judge_batch(
             magnitude = verdict.get("magnitude", "low")
             timeline_shift = verdict.get("timeline_shift", "none")
             one_line_why = verdict.get("one_line_why") or ""
+        # Low-relevance events are demoted to background — assigning a specific
+        # condition_tag to a tangential event contradicts the "no directional effect" why.
+        condition_tag = "background" if rel_score < 4 else verdict.get("condition_tag", "background")
         enriched = {
             **rec,
             "one_line_why": one_line_why,
-            "condition_tag": verdict.get("condition_tag", "background"),
+            "condition_tag": condition_tag,
             "relevance_score": rel_score,
             "high_impact": bool(verdict.get("high_impact", False)),
             "direction": direction,

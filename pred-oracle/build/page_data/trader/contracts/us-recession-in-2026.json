@@ -72,7 +72,7 @@
         "sentiment": "neutral"
       }
     ],
-    "narrative": "Regulatory signals are mixed: 2025-26 capital and leverage rule changes tighten large-bank standards (mildly raising recession risk) while April 2026 community-bank leverage relief and widely touted tax cuts/depreciation guidance add stimulus and ease credit. Isolated bank stress (FDIC orders vs. Discover) and routine TIC/TBAC data offer little directional pull. Resolution remains pending until 2026 macro data and the NBER's dating confirm or deny a 2026 peak."
+    "narrative": "Regulatory developments center on bank capital and leverage tweaks (eSLR, TLAC, CBLR) effective into 2026, which may nudge credit conditions but offer no clear recession signal. Routine TIC flows, Treasury statements, call reports, and state labor data provide only weak, indirect reads. The market awaits 2026 national macro releases and an eventual NBER dating decision to determine whether a 2026 recession occurs."
   },
   "position": {
     "side": "YES",
@@ -150,7 +150,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "00d505a6-1355-4049-9bc4-c271e5bc9902",
       "one_line_why": "Office of the Comptroller of the Currency \u2014 Office of the Comptroller of the Currency: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -230,7 +230,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "82a36402-48ad-41d5-bd9e-8b3cf75c9cd7",
       "one_line_why": "U.S. Department of the Treasury \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -250,7 +250,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "dc7f842e-05c6-4c40-9712-20e87fd0e42b",
       "one_line_why": "Federal Deposit Insurance Corporation \u2014 Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 3,
       "high_impact": false,
       "direction": "neutral",
@@ -330,7 +330,7 @@
       "matched_entity": "",
       "carver_feed_entry_id": "a8e0411a-f13c-47cc-a2b9-d1dd07757a3d",
       "one_line_why": "U.S. Department of the Treasury \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.",
-      "condition_tag": "A",
+      "condition_tag": "background",
       "relevance_score": 2,
       "high_impact": false,
       "direction": "neutral",

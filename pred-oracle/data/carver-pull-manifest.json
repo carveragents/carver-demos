@@ -1,0 +1,12 @@
+{
+  "pulled_at": "2026-05-25T18:21:47.629571",
+  "carver_sdk_version": "0.5.0",
+  "date_from": "2024-01-01",
+  "date_to": "2026-05-25",
+  "topics_scanned": 88,
+  "topics_date_filter_noops": 0,
+  "raw_count_before_filter": 10000,
+  "annotated_entry_count": 8813,
+  "kept_count": 623,
+  "dp1_case": "A-two-endpoint"
+}
