@@ -14,6 +14,26 @@ portfolio:
     platform: polymarket
     kind: active
     position: {side: "YES", size: 500, entry_price: 0.18}
+  - id: clarity-act-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 300, entry_price: 0.50}
+  - id: cannabis-dea-rescheduling-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 150, entry_price: 0.32}
+  - id: nrc-nuclear-reactor-2026
+    platform: polymarket
+    kind: active
+    position: {side: "NO", size: 200, entry_price: 0.78}
+  - id: fda-retatrutide-2026
+    platform: polymarket
+    kind: active
+    position: {side: "NO", size: 250, entry_price: 0.82}
+  - id: scotus-ftc-independence-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 500, entry_price: 0.90}
 
 retrospectives:
   - id: solana-etf-2025

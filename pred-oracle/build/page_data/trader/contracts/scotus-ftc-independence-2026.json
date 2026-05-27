@@ -1,0 +1,212 @@
+{
+  "contract": {
+    "id": "scotus-ftc-independence-2026",
+    "platform": "polymarket",
+    "kind": "active",
+    "title": "SCOTUS rules Trump can fire FTC commissioners?",
+    "subtitle": "",
+    "external_id": "scotus-ftc-independence-2026",
+    "status": "active",
+    "listed_at": "2026-01-15",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "resolved_at": "",
+    "resolution_criteria": "This market will resolve to 'Yes' if the U.S. Supreme Court rules in Trump v.\nSlaughter (or a consolidated companion case) that the President may remove Federal\nTrade Commission commissioners without cause, by December 31, 2026, 11:59 PM ET.\nResolution requires a majority opinion from the Supreme Court. Otherwise, this\nmarket will resolve to 'No'.\n\nBackground: President Trump fired FTC Commissioners Rebecca Kelly Slaughter and\nAlvaro Bedoya in early 2025. The case challenges the 1935 Humphrey's Executor\nprecedent, which prohibits presidents from removing commissioners of independent\nagencies without cause. A ruling for Trump would fundamentally restructure the\nFTC's independence from executive control and reshape antitrust enforcement authority.\n\nThe Supreme Court's term ends in June 2026; a decision is expected before then.\nMarket currently prices a 97% probability of YES.\n",
+    "resolution_outcome": "",
+    "settlement_entities": [
+      {
+        "name": "Supreme Court of the United States",
+        "role": "company"
+      },
+      {
+        "name": "Federal Trade Commission",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Justice",
+        "role": "regulator"
+      },
+      {
+        "name": "Office of the Solicitor General",
+        "role": "regulator"
+      }
+    ],
+    "source_urls": [
+      "https://polymarket.com/event/scotus-lets-trump-fire-ftc-commissioners-in-trump-v-slaughter",
+      "https://www.ftc.gov/about-ftc/commissioners"
+    ],
+    "primary_source_url": "https://polymarket.com/event/scotus-lets-trump-fire-ftc-commissioners-in-trump-v-slaughter",
+    "heat": 190.75,
+    "heat_history": [
+      11,
+      4,
+      14,
+      0,
+      0,
+      1,
+      5,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "conditions": [
+      {
+        "id": "A",
+        "label": "Majority in Trump v. Slaughter",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, SCOTUS issues a majority opinion in Trump v. Slaughter holding the President may remove FTC commissioners without cause.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      },
+      {
+        "id": "B",
+        "label": "Majority in consolidated companion",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, SCOTUS issues a majority opinion in a case consolidated with Trump v. Slaughter holding the President may remove FTC commissioners without cause.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      }
+    ],
+    "narrative": "Recent FTC activity\u2014consumer guidance, workshops, and rulemakings\u2014shows the agency operating normally and provides no signal on presidential removal power. None of the cited events materially affect odds that SCOTUS will permit at\u2011will firing of commissioners. The key determinant remains the pending Supreme Court case; a ruling is still outstanding."
+  },
+  "position": {
+    "side": "YES",
+    "size": 500,
+    "entry_price": 0.9
+  },
+  "timeline": [
+    {
+      "pub_date": "2026-05-11",
+      "title": "FTC Chairman Ferguson\u202fAdvises Companies to Comply with the Take It Down Act",
+      "regulator": "Federal Trade Commission \u2014 Office of the Chairman",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-chairman-ferguson-advises-companies-comply-take-it-down-act",
+      "urgency": 10.0,
+      "impact": 10.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "b5a28d8c-5c8e-4c8b-ae97-a750e3b773a2",
+      "one_line_why": "FTC chair advising compliance shows agency activity but gives no direct evidence that SCOTUS has ruled the President can remove FTC commissioners.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "May 19, 2026",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-04",
+      "title": "Protect your business from scams and online threats this National Small Business Week",
+      "regulator": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/blog/2026/05/protect-your-business-scams-online-threats-national-small-business-week",
+      "urgency": 10.0,
+      "impact": 4.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "e4bbb28e-b913-466d-9b88-524a39c12ec3",
+      "one_line_why": "FTC consumer guidance on scams is unrelated to the Supreme Court removal case and does not affect the chance of a pro\u2011Trump ruling.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-01",
+      "title": "FTC to Host Workshop on \u201cLitigate the Fix\u201d Merger Remedy Proposals",
+      "regulator": "Federal Trade Commission \u2014 Bureau of Competition",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-host-workshop-litigate-fix-merger-remedy-proposals",
+      "urgency": 9.0,
+      "impact": 7.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "2731007a-aa75-4839-88ef-f70aca813f0e",
+      "one_line_why": "FTC workshop on merger remedies is routine agency activity unrelated to the Supreme Court's removal\u2011power case; no material effect on YES odds.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2026-05-20",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-03-12",
+      "title": "Rule Concerning the Use of Prenotification Negative Option Plans",
+      "regulator": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/policy/public-comments/rule-concerning-use-prenotification-negative-option-plans-2",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "2abef73e-fa45-441e-899f-27aa3482a81a",
+      "one_line_why": "FTC issuing a rule shows the agency is operating but provides no meaningful evidence on whether SCOTUS will permit presidential removal of commissioners \u2014 neutral.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "",
+      "comment_deadline": "2026-04-13"
+    },
+    {
+      "pub_date": "2026-03-12",
+      "title": "Rule on Unfair or Deceptive Rental Housing Fee Practices",
+      "regulator": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/policy/public-comments/rule-unfair-or-deceptive-rental-housing-fee-practices",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "d397024a-7896-4a20-b452-c7e0f36ee0e5",
+      "one_line_why": "FTC rule on rental-housing fees is routine agency action and doesn't materially inform whether SCOTUS will allow at\u2011will removal of FTC commissioners.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "",
+      "comment_deadline": "2026-04-13"
+    }
+  ],
+  "heat_panel": {
+    "value": 190.75,
+    "tier": "critical",
+    "delta_7d": -256.76,
+    "peer_percentile": 80,
+    "urgency_weighted_sparkline": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "primary_drivers": [
+      "Sudden spike in high-severity matches",
+      "Multiple unresolved critical alerts/breaches",
+      "No top-record details available to further attribute"
+    ],
+    "explainer": "Critical heat (190.75) this week is driven by a sudden, large spike in high-severity matches and unresolved critical alerts; no top-record details are available for deeper attribution."
+  }
+}

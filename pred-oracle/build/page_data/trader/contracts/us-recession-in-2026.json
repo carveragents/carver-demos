@@ -485,7 +485,7 @@
     "value": 86.66,
     "tier": "critical",
     "delta_7d": -70.51,
-    "peer_percentile": 40,
+    "peer_percentile": 50,
     "urgency_weighted_sparkline": [
       0,
       0,

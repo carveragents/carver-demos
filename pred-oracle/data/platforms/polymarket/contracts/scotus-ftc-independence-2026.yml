@@ -1,0 +1,39 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "scotus-ftc-independence-2026"
+
+title: "SCOTUS rules Trump can fire FTC commissioners?"
+resolution_criteria: |
+  This market will resolve to 'Yes' if the U.S. Supreme Court rules in Trump v.
+  Slaughter (or a consolidated companion case) that the President may remove Federal
+  Trade Commission commissioners without cause, by December 31, 2026, 11:59 PM ET.
+  Resolution requires a majority opinion from the Supreme Court. Otherwise, this
+  market will resolve to 'No'.
+
+  Background: President Trump fired FTC Commissioners Rebecca Kelly Slaughter and
+  Alvaro Bedoya in early 2025. The case challenges the 1935 Humphrey's Executor
+  precedent, which prohibits presidents from removing commissioners of independent
+  agencies without cause. A ruling for Trump would fundamentally restructure the
+  FTC's independence from executive control and reshape antitrust enforcement authority.
+
+  The Supreme Court's term ends in June 2026; a decision is expected before then.
+  Market currently prices a 97% probability of YES.
+
+listed_at: "2026-01-15"
+expires_at: "2027-01-01T04:59:00Z"
+status: "active"
+
+polymarket_slug: "scotus-lets-trump-fire-ftc-commissioners-in-trump-v-slaughter"
+
+settlement_entities:
+  - "Supreme Court of the United States"
+  - "Federal Trade Commission"
+  - "Department of Justice"
+  - "Office of the Solicitor General"
+
+source_urls:
+  - "https://polymarket.com/event/scotus-lets-trump-fire-ftc-commissioners-in-trump-v-slaughter"
+  - "https://www.ftc.gov/about-ftc/commissioners"
+
+source_retrieved_at: "2026-05-26"

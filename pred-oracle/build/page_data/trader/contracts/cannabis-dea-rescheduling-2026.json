@@ -1,0 +1,216 @@
+{
+  "contract": {
+    "id": "cannabis-dea-rescheduling-2026",
+    "platform": "polymarket",
+    "kind": "active",
+    "title": "Marijuana rescheduled by December 31, 2026?",
+    "subtitle": "",
+    "external_id": "cannabis-dea-rescheduling-2026",
+    "status": "active",
+    "listed_at": "2026-02-07",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "resolved_at": "",
+    "resolution_criteria": "This market will resolve to 'Yes' if marijuana is rescheduled down from Schedule I\nto any other level (or is unscheduled completely) by the Drug Enforcement Agency of\nthe United States by December 31, 2026, 11:59 PM ET. Otherwise, this market will\nresolve to 'No'.\n\nThe primary resolution source will be official information from the U.S. government,\nhowever a consensus of credible reporting will also be used.\n\nNote: In April 2026, FDA-approved marijuana products and state-licensed medical\ncannabis were moved to Schedule III under President Trump's executive order. This\nmarket specifically tracks whether recreational marijuana (currently Schedule I) is\nrescheduled. If the DEA reschedules only specific cannabinoids or derivatives without\nreclassifying marijuana as a whole, that does not qualify.\n\nA DEA administrative hearing on full rescheduling is scheduled to begin June 29, 2026.\n",
+    "resolution_outcome": "",
+    "settlement_entities": [
+      {
+        "name": "Drug Enforcement Administration",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Health and Human Services",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Justice",
+        "role": "regulator"
+      },
+      {
+        "name": "Food and Drug Administration",
+        "role": "regulator"
+      },
+      {
+        "name": "White House Office of National Drug Control Policy",
+        "role": "regulator"
+      }
+    ],
+    "source_urls": [
+      "https://polymarket.com/event/weed-rescheduled-by-march-31",
+      "https://www.dea.gov/drug-information/drug-scheduling"
+    ],
+    "primary_source_url": "https://polymarket.com/event/weed-rescheduled-by-march-31",
+    "heat": 83.92,
+    "heat_history": [
+      3,
+      4,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "conditions": [
+      {
+        "id": "A",
+        "label": "DEA lowers 'marihuana' to II\u2013V",
+        "summary": "By Dec 31, 2026, DEA finalizes a rule/order moving the CSA entry covering recreational marijuana/marihuana (the plant as a whole) from Schedule I to II\u2013V. Actions limited to specific cannabinoids don\u2019t count.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      },
+      {
+        "id": "B",
+        "label": "DEA unschedules 'marihuana'",
+        "summary": "By Dec 31, 2026, DEA finalizes a rule/order removing the CSA entry covering recreational marijuana/marihuana (the plant as a whole) from the schedules (decontrolled/unscheduled).",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      }
+    ],
+    "narrative": "The timeline shows only unrelated state or territorial notices (CA social-media rules, PR insurance forms, CA voting guidance) and no federal scheduling steps. Rescheduling pressure rests with DEA/HHS rulemaking; a final DEA rule, OMB review, and potential litigation are still pending before Dec 31, 2026."
+  },
+  "position": {
+    "side": "YES",
+    "size": 150,
+    "entry_price": 0.32
+  },
+  "timeline": [
+    {
+      "pub_date": "2026-05-14",
+      "title": "California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations - 14.05.2026",
+      "regulator": "California Department of Justice \u2014 Consumer Protection Section",
+      "url": "https://oag.ca.gov/news/press-releases/california-department-justice-releases-proposed-protecting-our-kids-social-media",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "48b578d5-84fc-4c9c-b098-c8740780663b",
+      "one_line_why": "California social media regulations are unrelated to the federal DEA process and do not affect whether marijuana is rescheduled.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "",
+      "comment_deadline": "2026-06-30T17:00:00"
+    },
+    {
+      "pub_date": "2026-05-14",
+      "title": "California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations",
+      "regulator": "California Department of Justice \u2014 Consumer Protection Section",
+      "url": "https://www.oag.ca.gov/news/press-releases/california-department-justice-releases-proposed-protecting-our-kids-social-media",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "b607ea6f-0c3a-4467-9b17-5ae36f0f6310",
+      "one_line_why": "California social-media regulation proposal is unrelated to federal DEA marijuana scheduling and provides no information on DEA action.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "",
+      "comment_deadline": "2026-06-30T17:00:00"
+    },
+    {
+      "pub_date": "2026-05-12",
+      "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+      "regulator": "Oficina del Comisionado de Seguros de Puerto Rico",
+      "url": "https://docs.pr.gov/files/OCS/Asuntos_Legales/Cartas%20Normativas/2026/CN-2026-377-AS%20(Enmendada).pdf",
+      "urgency": 9.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "6fb83753-c348-471e-b523-84c267b2c027",
+      "one_line_why": "Puerto Rico insurance forms/fees rule is unrelated to DEA federal scheduling of marijuana and does not affect rescheduling odds.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "2027-01-01",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-05",
+      "title": "Attorney General Bonta and Secretary of State Weber: Vote Early in June Primary Election - May 5, 2026",
+      "regulator": "California Department of Justice",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-and-secretary-state-weber-sacramento-vote-early-june",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "632e54a7-a5d8-4843-b88c-dbefc856cff6",
+      "one_line_why": "California voting guidance for a June primary is unrelated to federal DEA rulemaking on marijuana rescheduling.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2026-06-02",
+      "comment_deadline": "2026-05-18"
+    },
+    {
+      "pub_date": "2026-05-05",
+      "title": "Attorney General Bonta and Secretary of State Weber in Sacramento: Vote Early in June Primary Election and Know Your Voting Rights",
+      "regulator": "California Department of Justice",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-and-secretary-state-weber-sacramento-vote-early-june",
+      "urgency": 9.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "083ec9b0-e7e2-4bbc-a7d7-2542a8e4bbd3",
+      "one_line_why": "California officials urging voters in a state primary is unrelated to the federal DEA rescheduling process and doesn't change rescheduling odds.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2026-06-02",
+      "comment_deadline": "2026-05-18"
+    }
+  ],
+  "heat_panel": {
+    "value": 83.92,
+    "tier": "critical",
+    "delta_7d": -81.8,
+    "peer_percentile": 40,
+    "urgency_weighted_sparkline": [
+      0,
+      18,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "primary_drivers": [
+      "Surge in newly detected critical issues",
+      "Multiple high-severity incidents opened this week",
+      "Sharp week-over-week increase in unresolved critical risk"
+    ],
+    "explainer": "Critical heat (83.92) is driven by a sudden influx of unresolved high-severity findings and multiple new incidents this week, causing a large week-over-week spike in risk exposure."
+  }
+}

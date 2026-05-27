@@ -194,7 +194,7 @@
     "value": 39.25,
     "tier": "active",
     "delta_7d": -35.51,
-    "peer_percentile": 20,
+    "peer_percentile": 30,
     "urgency_weighted_sparkline": [
       0,
       0,
