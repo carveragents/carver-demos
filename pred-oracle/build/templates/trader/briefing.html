@@ -147,13 +147,26 @@
           <div class="flex-1">
             <div class="flex items-baseline justify-between mb-1">
               <span class="font-medium text-slate-900 text-sm">{{ cond.label }}</span>
-              {% if cond_progress is not none %}
-              <span class="text-xs text-slate-500 tabular-nums">{{ cond_progress }}%</span>
-              {% endif %}
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                {% if cond.bullish_count is defined and cond.bearish_count is defined %}
+                <span class="text-emerald-600">↑ {{ cond.bullish_count }}</span>
+                <span class="text-rose-500">↓ {{ cond.bearish_count }}</span>
+                {% elif cond_progress is not none %}
+                <span class="text-slate-500">{{ cond_progress }}%</span>
+                {% endif %}
+              </span>
             </div>
             {% if cond_progress is not none %}
-            <div class="w-full bg-slate-100 rounded-full h-1.5">
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden">
+              {% set b_pct = cond.get('bullish_count', 0) %}
+              {% set r_pct = cond.get('bearish_count', 0) %}
+              {% set total_dir = b_pct + r_pct %}
+              {% if total_dir > 0 %}
+              <div class="bg-emerald-500 h-1.5" style="width: {{ (b_pct / total_dir * 100)|round|int }}%"></div>
+              <div class="bg-rose-500 h-1.5" style="width: {{ (r_pct / total_dir * 100)|round|int }}%"></div>
+              {% else %}
               <div class="{{ bar_color }} rounded-full h-1.5" style="width: {{ cond_progress }}%"></div>
+              {% endif %}
             </div>
             {% endif %}
             {% if cond.summary %}

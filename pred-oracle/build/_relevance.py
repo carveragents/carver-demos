@@ -138,13 +138,26 @@ def judge_batch(
             direction = "neutral"
             magnitude = "low"
             timeline_shift = "none"
+            # If the LLM returned a non-neutral direction, its why likely contains
+            # directional language that would contradict the forced neutral badge.
+            # Build a safe neutral why from the record's topic/regulator (no person names).
+            llm_direction = verdict.get("direction", "neutral")
+            if llm_direction != "neutral":
+                topic = (rec.get("topic_name") or "").strip()
+                regulator = _fields.regulator_display(rec)
+                parts = [p for p in (regulator, topic) if p]
+                context = " — ".join(parts) if parts else "Regulatory activity"
+                one_line_why = f"{context}: tangential to resolution, no directional effect."
+            else:
+                one_line_why = verdict.get("one_line_why") or ""
         else:
             direction = verdict.get("direction", "neutral")
             magnitude = verdict.get("magnitude", "low")
             timeline_shift = verdict.get("timeline_shift", "none")
+            one_line_why = verdict.get("one_line_why") or ""
         enriched = {
             **rec,
-            "one_line_why": verdict.get("one_line_why") or "",
+            "one_line_why": one_line_why,
             "condition_tag": verdict.get("condition_tag", "background"),
             "relevance_score": rel_score,
             "high_impact": bool(verdict.get("high_impact", False)),

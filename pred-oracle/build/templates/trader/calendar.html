@@ -128,7 +128,7 @@
             {% set dot_c = 'bg-amber-500' %}
           {% elif ev.color == 'blue' %}
             {% set dot_c = 'bg-blue-500' %}
-          {% elif ev.color == 'violet' %}
+          {% elif ev.color in ('violet', 'purple') %}
             {% set dot_c = 'bg-violet-500' %}
           {% else %}
             {% set dot_c = 'bg-slate-400' %}
@@ -196,6 +196,8 @@
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span>Bearish</span>
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Neutral</span>
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Watch</span>
+    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-violet-500"></span>Effective date</span>
+    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Settlement</span>
     <span class="ml-auto text-[10px] text-slate-400">
       Coverage: Carver entry annotations matched to your portfolio settlement entities.
       Events outside the annotation window not shown.

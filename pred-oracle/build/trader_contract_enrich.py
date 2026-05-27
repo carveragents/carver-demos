@@ -65,6 +65,9 @@ def enrich_slice(
     )
     slice_doc["timeline"] = _project_timeline_fields(judged)
 
+    # 2b. Annotate conditions with per-condition directional event counts.
+    contract["conditions"] = _annotate_conditions(conditions, slice_doc["timeline"])
+
     # 3. Heat panel (uses judged records for sparkline + explainer).
     heat_7d_ago = _heat.heat_score(
         {"settlement_entities": settle}, corpus, today=today - timedelta(days=7),
@@ -85,6 +88,40 @@ def enrich_slice(
     )
 
     return slice_doc
+
+
+def _annotate_conditions(
+    conditions: list[dict[str, Any]],
+    timeline: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Add bullish_count, bearish_count, progress, and sentiment to each condition."""
+    annotated = []
+    for cond in conditions:
+        cid = cond["id"]
+        bullish = sum(
+            1 for e in timeline
+            if e.get("condition_tag") == cid and e.get("direction") == "bullish"
+        )
+        bearish = sum(
+            1 for e in timeline
+            if e.get("condition_tag") == cid and e.get("direction") == "bearish"
+        )
+        total = bullish + bearish
+        progress = round(bullish / total * 100) if total > 0 else 50
+        if bullish > bearish:
+            sentiment = "bullish"
+        elif bearish > bullish:
+            sentiment = "bearish"
+        else:
+            sentiment = "neutral"
+        annotated.append({
+            **cond,
+            "bullish_count": bullish,
+            "bearish_count": bearish,
+            "progress": progress,
+            "sentiment": sentiment,
+        })
+    return annotated
 
 
 def _hydrate_candidates(
