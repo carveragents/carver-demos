@@ -1,0 +1,91 @@
+// Mock device data — replace with real JSON imports per country when available.
+// Fields: us = FDA MAUDE count, uk = MHRA count, ch = Swissmedic count
+
+export const DEVICES = [
+  {
+    id: 1,
+    name: "Implantable Cardioverter Defibrillator (non-CRT)",
+    manufacturer: "Medtronic",
+    gmdn: "—",
+    gmdnTerm: "Implantable cardioverter defibrillator (non-CRT)",
+    category: "cardiac",
+    equivalents: ["Zephyr DR", "Emblem MRI S-ICD"],
+    us: 1847, uk: 312, ch: 89,
+    highSev: 23, jurisdictions: 3, signal: 7.2,
+    trend: [4.1, 5.2, 6.8, 7.2],
+    issues: [
+      "Lead fracture (n=12)",
+      "Battery depletion premature (n=6)",
+      "Inappropriate shock delivery (n=5)",
+    ],
+    mitigation: [
+      { t: "Field safety corrective action – lead inspection protocol", s: "complete" },
+      { t: "Software update v4.1 – shock algorithm revision", s: "complete" },
+      { t: "Post-market clinical follow-up study (n=500)", s: "ongoing" },
+    ],
+  },
+  {
+    id: 2,
+    name: "Hip Replacement Prosthesis, Metal-on-Metal",
+    manufacturer: "DePuy Synthes",
+    gmdn: "—",
+    gmdnTerm: "Hip joint prosthesis, metal-on-metal",
+    category: "ortho",
+    equivalents: ["ASR XL", "Pinnacle MoM"],
+    us: 3201, uk: 892, ch: 441,
+    highSev: 67, jurisdictions: 3, signal: 8.9,
+    trend: [7.1, 7.8, 8.5, 8.9],
+    issues: [
+      "ARMD soft tissue reaction (n=41)",
+      "Elevated metal ion levels (n=18)",
+      "Aseptic loosening (n=8)",
+    ],
+    mitigation: [
+      { t: "Class II recall – enhanced surveillance protocol", s: "complete" },
+      { t: "Patient registry enrolment", s: "ongoing" },
+      { t: "Cobalt/chromium ion threshold monitoring", s: "ongoing" },
+      { t: "Design change – ceramic-on-ceramic alternative", s: "planned" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Continuous Glucose Monitor (CGM)",
+    manufacturer: "Abbott FreeStyle",
+    gmdn: "—",
+    gmdnTerm: "Continuous blood glucose monitor, wearable",
+    category: "diag",
+    equivalents: ["Dexcom G7", "Medtronic Guardian"],
+    us: 621, uk: 88, ch: 34,
+    highSev: 4, jurisdictions: 3, signal: 3.1,
+    trend: [2.8, 2.9, 3.1, 3.1],
+    issues: [
+      "Sensor calibration drift (n=3)",
+      "Adhesive skin reaction (n=1)",
+    ],
+    mitigation: [
+      { t: "Sensor batch recall – calibration correction", s: "complete" },
+      { t: "Updated IFU – application instructions", s: "complete" },
+    ],
+  },
+  {
+    id: 4,
+    name: "Neurostimulator, Spinal Cord, Implantable",
+    manufacturer: "Boston Scientific",
+    gmdn: "—",
+    gmdnTerm: "Spinal cord neurostimulator, implantable, non-rechargeable",
+    category: "neuro",
+    equivalents: ["Medtronic Intellis", "Abbott Proclaim"],
+    us: 944, uk: 201, ch: 67,
+    highSev: 14, jurisdictions: 3, signal: 5.4,
+    trend: [3.9, 4.5, 5.1, 5.4],
+    issues: [
+      "Lead migration (n=8)",
+      "Paresthesia changes (n=4)",
+      "Battery longevity below spec (n=2)",
+    ],
+    mitigation: [
+      { t: "Implant technique advisory issued", s: "complete" },
+      { t: "Battery performance monitoring protocol", s: "ongoing" },
+    ],
+  },
+]

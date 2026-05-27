@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-03-27T13:16:22.168538Z",
+  "total": 2056,
+  "by_source": {
+    "US": {
+      "count": 1000,
+      "severity": {
+        "malfunction": 467,
+        "serious": 261,
+        "near-miss": 265,
+        "death": 7
+      }
+    },
+    "UK": {
+      "count": 118,
+      "severity": {
+        "serious": 118
+      }
+    },
+    "CH": {
+      "count": 938,
+      "severity": {
+        "serious": 938
+      }
+    }
+  },
+  "severity_totals": {
+    "malfunction": 467,
+    "serious": 1317,
+    "near-miss": 265,
+    "death": 7
+  },
+  "recall_count": 0,
+  "death_count": 7,
+  "date_range": {
+    "earliest": "17.02.2025",
+    "latest": "September "
+  }
+}

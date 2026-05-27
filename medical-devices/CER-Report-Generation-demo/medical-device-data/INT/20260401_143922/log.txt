@@ -1,0 +1,4 @@
+Run completed for PubMed.
+Records: 2596 | Systematic reviews: 733 | RCTs: 1853
+File: data/INT/20260401_143922/articles.json
+SHA256: 7b7bc548a2a02f93d0792f9263ebaae22b01f7ff97e051fba6e12e4e3386b999

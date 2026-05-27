@@ -1,0 +1,11 @@
+{
+  "source": "FDA_PMA",
+  "authority": "FDADeviceClearances",
+  "country": "USA",
+  "endpoint_type": "pma",
+  "timestamp": "20260401_154517",
+  "records_count": 2771,
+  "search_query": "product_code:LWS",
+  "api_endpoint": "https://api.fda.gov/device/pma.json",
+  "sha256": "3a67cae81d900d8ab7cfe0a1d66d789428bc7c4af02fd63d1af67a0b57f584e4"
+}

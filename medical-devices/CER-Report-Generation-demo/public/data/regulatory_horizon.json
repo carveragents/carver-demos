@@ -1,0 +1,157 @@
+{
+  "generated_at": "2026-03-30T07:49:23.668378+00:00",
+  "source": "Carver Feeds (vectorized)",
+  "window_days": 90,
+  "items": [
+    {
+      "type": "STANDARD",
+      "tagClass": "tag-blue",
+      "title": "EU helpottaa vakiintuneiden l\u00e4\u00e4kinn\u00e4llisten laitteiden s\u00e4\u00e4ntely\u00e4",
+      "timeline": "20 days after publication in the Official Journal of the EU",
+      "impact": "Two new delegated EU regulations expand the lists of implantable and Class III devices exempt from clinical investigations and Class IIb implantable devices exempt from special technical documentation assessment, based on practical experience and stakeholder consultations.",
+      "detail": "This update reduces regulatory burden for manufacturers of certain established medical devices, facilitating market access and compliance while maintaining safety standards.",
+      "steps": [
+        "Adjust clinical evaluation and technical documentation processes to align with new exemption lists.",
+        "Modify regulatory reporting to reflect changes in clinical investigation requirements.",
+        "Update internal policies to reflect exemptions for certain device categories from clinical investigations and technical documentation assessments."
+      ],
+      "jurisdictions": [
+        "INT"
+      ],
+      "url": "https://fimea.fi/-/eu-helpottaa-vakiintuneiden-laakinnallisten-laitteiden-saantelya",
+      "score": 0.1946,
+      "_carver_id": "382afae2-df97-4500-98a8-e3643d61a3cc"
+    },
+    {
+      "type": "GUIDANCE",
+      "tagClass": "tag-green",
+      "title": "MU680_21_010d_WL FSCA Wirtschaftsakteure (PDF, 261 kB, 26.03.2026)",
+      "timeline": "2026-03-26",
+      "impact": "Clarifies the reporting obligations for FSCAs for products placed on the Swiss and Liechtenstein markets, the electronic submission process, and Swissmedic's role in assessment, publication, and monitoring of FSCAs.",
+      "detail": "Ensures timely and effective communication and management of safety corrective actions to protect public health and comply with Swiss and Liechtenstein regulatory requirements.",
+      "steps": [
+        "Implement timely reporting and follow-up processes for FSCAs using Swissmedic's electronic submission system.",
+        "Use Swissmedic's prescribed electronic form for FSCA notifications and include required documentation such as FSN and customer confirmation forms.",
+        "Update IT systems to support electronic, machine-readable FSCA submissions and tracking of customer acknowledgments."
+      ],
+      "jurisdictions": [
+        "CH"
+      ],
+      "url": "https://www.swissmedic.ch/dam/swissmedic/de/dokumente/medizinprodukte/mep_urr/mu680_21_010d_wl_mdv_fsca_hersteller_mepv.pdf.download.pdf/MU680_21_010d_WL%20FSCA%20Wirtschaftsakteure.pdf",
+      "score": 0.1539,
+      "_carver_id": "557b8c32-20bd-4447-a6c9-e9686f8c35a8"
+    },
+    {
+      "type": "REGULATION",
+      "tagClass": "tag-amber",
+      "title": "Medical device post-market monitoring and safety updates",
+      "timeline": "\u2014",
+      "impact": "Multiple post-market reviews and safety alerts have been published regarding various medical devices, highlighting safety concerns and ongoing regulatory monitoring.",
+      "detail": "Ensures that medical devices remain safe and effective for use, protecting public health and maintaining regulatory compliance.",
+      "steps": [
+        "Implement monitoring and reporting processes for medical device safety and adverse events.",
+        "Increase in incident reporting to TGA as per updates.",
+        "Update systems to track and manage post-market review data and safety alerts."
+      ],
+      "jurisdictions": [
+        "AU"
+      ],
+      "url": "https://www.tga.gov.au/safety/safety-monitoring-and-information/medical-device-post-market-monitoring-and-safety-updates",
+      "score": 0.1462,
+      "_carver_id": "891c8b2a-ff92-4b54-bab5-b847901e6578"
+    },
+    {
+      "type": "GUIDANCE",
+      "tagClass": "tag-green",
+      "title": "MU680_21_010e_WL FSCA economic operators (PDF, 300 kB, 26.03.2026)",
+      "timeline": "26.03.2026",
+      "impact": "Clarifies reporting obligations for FSCAs involving medical devices and in vitro diagnostic devices placed on the Swiss and Liechtenstein market under Customs Treaty law, including responsibilities, electronic submission, and monitoring by Swissmedic.",
+      "detail": "Ensures timely and effective communication and management of safety risks related to medical devices, reducing potential harm to patients and users and ensuring regulatory compliance.",
+      "steps": [
+        "Implement procedures for timely FSCA reporting, FSN distribution, and follow-up reminders to customers.",
+        "Use Swissmedic's electronic FSCA reporting form and submit FSNs for publication.",
+        "Ensure capability to submit FSCA reports electronically in machine-readable format and manage FSN documentation."
+      ],
+      "jurisdictions": [
+        "CH"
+      ],
+      "url": "https://www.swissmedic.ch/dam/swissmedic/en/dokumente/medizinprodukte/mep_urr/mu680_21_010d_wl_mdv_fsca_hersteller_mepv.pdf.download.pdf/MU680_21_010e_WL%20FSCA%20economic%20operator.pdf",
+      "score": 0.1449,
+      "_carver_id": "f909d819-95e6-4ce9-a92a-6fa3074536f4"
+    },
+    {
+      "type": "GUIDANCE",
+      "tagClass": "tag-green",
+      "title": "Medical device post-market reviews",
+      "timeline": "\u2014",
+      "impact": "The page was fully restructured and a new webpage on medical device post-market monitoring and safety updates was included.",
+      "detail": "Ensures that sponsors and manufacturers remain compliant with legal obligations and that medical devices remain safe and effective post-market.",
+      "steps": [
+        "Implement ongoing monitoring and compliance processes for post-market medical device reviews.",
+        "Maintain readiness to respond to post-market review findings and report adverse events.",
+        "Update systems to track and monitor post-market review data and compliance status."
+      ],
+      "jurisdictions": [
+        "AU"
+      ],
+      "url": "https://www.tga.gov.au/products/medical-devices/monitoring-and-compliance/medical-device-post-market-reviews",
+      "score": 0.1392,
+      "_carver_id": "ead33467-348d-4808-9e2c-b9db4813756a"
+    },
+    {
+      "type": "GUIDANCE",
+      "tagClass": "tag-green",
+      "title": "View closed consultations archive",
+      "timeline": "\u2014",
+      "impact": "Publication of updated documents and guidance on adverse event terminology, post-market surveillance, AI medical devices, regulatory review practices, cybersecurity, personalized medical devices, software as a medical device, unique device identification, and other related topics.",
+      "detail": "Ensures harmonization and clarity in regulatory terminology and practices across jurisdictions, facilitating compliance and improving patient safety.",
+      "steps": [
+        "Revise adverse event reporting and post-market surveillance processes according to new IMDRF documents.",
+        "Adopt new terminology and codes for adverse event reporting.",
+        "Update internal policies to align with IMDRF terminologies and guidance."
+      ],
+      "jurisdictions": [
+        "INT"
+      ],
+      "url": "https://www.imdrf.org/consultations/closed-consultations",
+      "score": 0.1278,
+      "_carver_id": "5579041e-b4c4-4267-9359-3a2e2656537b"
+    },
+    {
+      "type": "REGULATION",
+      "tagClass": "tag-amber",
+      "title": "Aortic Covered Stent System Approved for Marketing",
+      "timeline": "\u2014",
+      "impact": "The approval of a new medical device designed specifically for chimney techniques with a dual-layer stent design to reduce complications.",
+      "detail": "This approval introduces a novel device expected to improve patient outcomes and requires strengthened post-marketing surveillance to ensure safety.",
+      "steps": [
+        "Strengthen post-marketing surveillance processes for the approved device."
+      ],
+      "jurisdictions": [
+        "INT"
+      ],
+      "url": "https://english.nmpa.gov.cn/2025-06/11/c_1102161.htm",
+      "score": 0.0997,
+      "_carver_id": "ec6a7dc5-6115-47b3-8404-de8e1d360278"
+    },
+    {
+      "type": "GUIDANCE",
+      "tagClass": "tag-green",
+      "title": "MDs, IVDs & RPs Adverse Events Reporting Guideline",
+      "timeline": "2025-07",
+      "impact": "Introduction of mandatory adverse event reporting guidelines for manufacturers, MAHs, distributors, suppliers, agents, user facilities, donors, and end users of medical devices and related products under NAFDAC regulations effective July 2025.",
+      "detail": "Ensures timely and comprehensive reporting of adverse events to enhance patient safety and regulatory oversight, reducing risks associated with medical devices in the Nigerian market.",
+      "steps": [
+        "Implementation of adverse event reporting processes for all stakeholders including manufacturers, distributors, and user facilities.",
+        "Mandatory detailed and timely adverse event reporting by all relevant parties.",
+        "Adoption of new adverse event reporting policies aligned with NAFDAC regulations."
+      ],
+      "jurisdictions": [
+        "US"
+      ],
+      "url": "https://nafdac.gov.ng/wp-content/uploads/Files/Resources/Guidelines/PVG_GUIDELINES/MDs-IVDs-RPs-Adverse-Events-Reporting-Guideline.pdf",
+      "score": 0.0886,
+      "_carver_id": "ec3ec937-742c-499e-9d22-c137cae9d269"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Run completed for FDADeviceClearances (PMA).
+Records: 2771
+File: data/USA/pma/20260401_154517/clearances.json
+SHA256: 3a67cae81d900d8ab7cfe0a1d66d789428bc7c4af02fd63d1af67a0b57f584e4

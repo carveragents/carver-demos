@@ -1,0 +1,9 @@
+{
+  "source": "MHRA_ALERTS_FSN",
+  "authority": "MHRA",
+  "country": "UK",
+  "timestamp": "20260327_171112",
+  "records_count": 1905,
+  "api_endpoint": "https://www.gov.uk/api/search.json",
+  "sha256": "0115b9b1888391c515653083f5b4f9f09b57922810130c46e0bcc570778c67b4"
+}

@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-03-30T07:49:23.668123+00:00",
+  "source": "Carver Feeds (vectorized)",
+  "window_days": 90,
+  "items": [
+    {
+      "id": 101,
+      "severity": "critical",
+      "time": "just now",
+      "published_date": "2026-03-30T07:49:23.668045+00:00",
+      "sourceType": "regulatory",
+      "title": "Guidelines for Post-Market Surveillance and Reporting of Medical Devices and In Vitro Diagnostics (IVDs)",
+      "source": "National Agency for Food and Drug Administration and Control",
+      "why": "Enhances regulatory oversight and risk management of medical devices and IVDs post-market, reducing risks to patient safety and improving public confidence in regulated products.",
+      "jurisdictions": [
+        "US"
+      ],
+      "action": "Implementation of feedback collection, data analysis, risk classification, and corrective action processes.",
+      "deadline": "2025-08-19",
+      "category": "Trade & Tariff",
+      "url": "https://nafdac.gov.ng/wp-content/uploads/Files/Resources/Guidelines/PMS_Guidelines_2024/Guidelines-for-Post-Market-Surveillance-and-Reporting-of-Medical-Devices-and-In-Vitro-Diagnostics-IVDs-.pdf",
+      "score": 0.1837,
+      "_carver_id": "ba61bcc2-ea90-4e84-a273-2b42b28b8766"
+    },
+    {
+      "id": 102,
+      "severity": "high",
+      "time": "292d ago",
+      "published_date": "2025-06-11T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "Innovative Product TRUPULSE\u2122 Generator and Varipulse\u2122 Bi-directional Catheter Approved for Marketing",
+      "source": "National Medical Products Administration",
+      "why": "This approval introduces a novel non-thermal pulsed electric field technology for atrial fibrillation treatment, which may impact clinical practice and regulatory post-marketing surveillance.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Implement enhanced post-marketing surveillance processes for these devices.",
+      "deadline": "\u2014",
+      "category": "Regulatory Update",
+      "url": "https://english.nmpa.gov.cn/2025-06/11/c_1101549.htm",
+      "score": 0.1499,
+      "_carver_id": "8a21535f-2762-40c8-8232-15fc3be282cd"
+    },
+    {
+      "id": 103,
+      "severity": "critical",
+      "time": "18d ago",
+      "published_date": "2026-03-12T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "Understanding your post-market responsibilities for medical devices",
+      "source": "Therapeutic Goods Administration",
+      "why": "Ensures continuous monitoring and management of medical device safety and performance to protect public health and patient safety.",
+      "jurisdictions": [
+        "AU"
+      ],
+      "action": "Implement or update procedures for adverse event reporting, market actions, and conformity assessment notifications",
+      "deadline": "\u2014",
+      "category": "Guidance",
+      "url": "https://www.tga.gov.au/resources/guidance/understanding-your-post-market-responsibilities-medical-devices",
+      "score": 0.146,
+      "_carver_id": "8b665b0d-0c12-4d36-806e-fdfd4e3fc51b"
+    },
+    {
+      "id": 104,
+      "severity": "critical",
+      "time": "20d ago",
+      "published_date": "2026-03-10T00:00:00+00:00",
+      "sourceType": "vigilance",
+      "title": "Urgent Field Safety Notice for IntelliVue Patient Monitor by Philips Medizin Systeme B\u00f6blingen GmbH",
+      "source": "Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte",
+      "why": "This update is critical for patient safety and regulatory compliance in medical device monitoring and usage.",
+      "jurisdictions": [
+        "EU",
+        "DE"
+      ],
+      "action": "Implement safety measures as per manufacturer advisory.",
+      "deadline": "\u2014",
+      "category": "Regulatory Update",
+      "url": "https://www.bfarm.de/SharedDocs/Kundeninfos/EN/10/2026/52075-25_kundeninfo_en.html?nn=986784",
+      "score": 0.1286,
+      "_carver_id": "96a5b825-47de-4383-b799-de62c8e2d480"
+    },
+    {
+      "id": 105,
+      "severity": "critical",
+      "time": "2d ago",
+      "published_date": "2026-03-27T19:36:47.672000+00:00",
+      "sourceType": "vigilance",
+      "title": "Reino Unido. Medicines and Healthcare products Regulatory Agency (MHRA). Alertas, retiro de productos e informaci\u00f3n de seguridad: medicamentos y dispositivos m\u00e9dicos",
+      "source": "Direcci\u00f3n General de Medicamentos, Insumos y Drogas",
+      "why": "Ensures timely communication of safety risks and regulatory actions to healthcare providers and manufacturers to mitigate patient harm and maintain compliance.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Implement recall and safety notice procedures as per MHRA guidance.",
+      "deadline": "\u2014",
+      "category": "Recall / Safety Notice",
+      "url": "https://www.gov.uk/drug-device-alerts",
+      "score": 0.1238,
+      "_carver_id": "3c2bfc0b-6e45-4672-9733-383f8738a6c3"
+    },
+    {
+      "id": 106,
+      "severity": "critical",
+      "time": "223d ago",
+      "published_date": "2025-08-19T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "Regulatory Requirements of Artificial Intelligence and Machine Learning (AI/ML) Enabled Medical Devices",
+      "source": "South African Health Products Regulatory Authority",
+      "why": "The update addresses the rapid advancement of AI/ML technologies in healthcare, emphasizing the need for clear regulatory frameworks to mitigate risks and ensure safe integration into the healthcare system.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Implementation of clinical validation, risk management, and post-market surveillance processes specific to AI/ML devices.",
+      "deadline": "26 September 2025",
+      "category": "Regulatory Update",
+      "url": "https://www.sahpra.org.za/document/regulatory-requirements-of-artificial-intelligence-and-machine-learning-ai-ml-enabled-medical-devices/",
+      "score": 0.1237,
+      "_carver_id": "c4c8d1b8-f732-4d1a-a716-b2a4f5de178f"
+    },
+    {
+      "id": 107,
+      "severity": "high",
+      "time": "292d ago",
+      "published_date": "2025-06-11T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "Innovative Product TRUPULSE\u2122 Generator and Varipulse\u2122 Bi-directional Catheter Approved for Marketing",
+      "source": "National Medical Products Administration",
+      "why": "This approval introduces new non-thermal pulsed electric field technology for atrial fibrillation treatment, potentially improving patient safety and treatment outcomes.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Implement and maintain post-marketing surveillance processes for the approved devices.",
+      "deadline": "\u2014",
+      "category": "Regulatory Update",
+      "url": "https://english.nmpa.gov.cn/2025-06/11/c_1101522.htm",
+      "score": 0.1233,
+      "_carver_id": "b1dfb4b2-22bd-4a2c-b945-feca7375a0ec"
+    },
+    {
+      "id": 108,
+      "severity": "critical",
+      "time": "872d ago",
+      "published_date": "2023-11-08T08:57:15+00:00",
+      "sourceType": "vigilance",
+      "title": "Direct healthcare professional communication on the risk of atrial fibrillation associated with the use of medicinal products containing Omega-3-acid ethyl esters",
+      "source": "Hrvatska agencija za lijekove i medicinske proizvode",
+      "why": "This update highlights a dose-dependent risk of atrial fibrillation in patients with cardiovascular disease or risk factors, impacting patient safety and treatment decisions.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Implement procedures for healthcare professional communication and adverse event reporting.",
+      "deadline": "\u2014",
+      "category": "Adverse Event Signal",
+      "url": "http://www.halmed.hr/en/Novosti-i-edukacije/Novosti/2023/Direct-healthcare-professional-communication-on-the-risk-of-atrial-fibrillation-associated-with-the-use-of-medicinal-products-containing-Omega-3-acid-ethyl-esters/3209",
+      "score": 0.123,
+      "_carver_id": "fc28df38-ecaf-43e7-bef3-b18698852a5e"
+    },
+    {
+      "id": 109,
+      "severity": "high",
+      "time": "101d ago",
+      "published_date": "2025-12-19T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "Fimean selvitys: L\u00e4\u00e4kinn\u00e4llisin\u00e4 laitteina s\u00e4\u00e4nneltyj\u00e4 ohjelmistoja k\u00e4ytet\u00e4\u00e4n laajasti terveydenhuollossa",
+      "source": "L\u00e4\u00e4kealan turvallisuus- ja kehitt\u00e4miskeskus",
+      "why": "The widespread use of regulated software in healthcare underscores the importance of regulatory compliance to ensure patient safety and proper market functioning.",
+      "jurisdictions": [
+        "INT"
+      ],
+      "action": "Enhance processes for defining product intended use and regulatory classification.",
+      "deadline": "\u2014",
+      "category": "Guidance",
+      "url": "https://fimea.fi/-/fimean-selvitys-laakinnallisina-laitteina-saanneltyja-ohjelmistoja-kaytetaan-laajasti-terveydenhuollossa",
+      "score": 0.1208,
+      "_carver_id": "bd75171a-e773-469a-a546-d77df914524c"
+    },
+    {
+      "id": 110,
+      "severity": "critical",
+      "time": "18d ago",
+      "published_date": "2026-03-12T00:00:00+00:00",
+      "sourceType": "vigilance",
+      "title": "DE-1",
+      "source": "Swissmedic, Swiss Agency for Therapeutic Products",
+      "why": "The defect may prevent the guidewire from passing through the catheter hub, potentially delaying medical procedures, posing operational and patient safety risks.",
+      "jurisdictions": [
+        "CH"
+      ],
+      "action": "Implement immediate product withdrawal and notification procedures; manage product returns",
+      "deadline": "Sofort",
+      "category": "Recall / Safety Notice",
+      "url": "https://fsca.swissmedic.ch/mep/api/publications/Vk_20260305_041/documents/0",
+      "score": 0.1149,
+      "_carver_id": "b2dfd52a-9a3f-4e07-9cc2-625058893cb8"
+    },
+    {
+      "id": 111,
+      "severity": "critical",
+      "time": "17d ago",
+      "published_date": "2026-03-13T00:00:00+00:00",
+      "sourceType": "vigilance",
+      "title": "DE-1",
+      "source": "Swissmedic, Swiss Agency for Therapeutic Products",
+      "why": "The communication failure can lead to interruption in infusion delivery, potentially causing patient harm including serious injury or death, making immediate action critical.",
+      "jurisdictions": [
+        "CH"
+      ],
+      "action": "Implement immediate communication and notification processes to inform all affected users and departments; manage acknowledgment and reporting workflows.",
+      "deadline": "\u2014",
+      "category": "Recall / Safety Notice",
+      "url": "https://fsca.swissmedic.ch/mep/api/publications/Vk_20260312_018/documents/0",
+      "score": 0.1146,
+      "_carver_id": "be234a9d-8ba3-426e-9f9c-1c6394c2bd7f"
+    },
+    {
+      "id": 112,
+      "severity": "critical",
+      "time": "10d ago",
+      "published_date": "2026-03-20T00:00:00+00:00",
+      "sourceType": "regulatory",
+      "title": "MU600_00_006e_MB Procurement of medical devices in health institutions (PDF, 486 kB, 20.03.2026)",
+      "source": "Swissmedic, Swiss Agency for Therapeutic Products",
+      "why": "Ensures healthcare institutions comply with updated Swiss medical device regulations aligned with EU MDR and IVDR, mitigating risks related to device safety, traceability, and regulatory compliance.",
+      "jurisdictions": [
+        "CH"
+      ],
+      "action": "Implement processes to record and maintain UDI data for implantable class III devices; verify conformity markings on devices procured.",
+      "deadline": "2026-03-20",
+      "category": "Trade & Tariff",
+      "url": "https://www.swissmedic.ch/dam/swissmedic/en/dokumente/medizinprodukte/mep_urr/mu600_00_006d_mb_beschaffung_mep.pdf.download.pdf/MU600_00_006e_MB_Procurement_of_medical_devices_in_health_institutions.pdf",
+      "score": 0.1124,
+      "_carver_id": "d3a34a75-0c5e-4849-b22d-67e5b1896bf2"
+    }
+  ]
+}

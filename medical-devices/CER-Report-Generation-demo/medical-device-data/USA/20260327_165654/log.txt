@@ -1,0 +1,4 @@
+Run completed successfully for FDA in USA.
+Records parsed: 10000
+File saved: data/USA/20260327_165654/events.json
+Checksum (SHA256): c25d53fb14a3fbc611637ac92f59a236f3c413489743646c202b03b5be6af7be

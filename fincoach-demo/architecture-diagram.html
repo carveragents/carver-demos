@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meridian Pay — Architecture: Control Plane / Data Plane</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f172a;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    color: #1e293b;
+  }
+  .slide {
+    width: 100%; max-width: 1480px; aspect-ratio: 16 / 9;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    padding: 22px 28px 18px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hdr { display: flex; align-items: center; gap: 14px; }
+  .hdr-logo { font-size: 20px; font-weight: 800; letter-spacing: -.3px; color: #0f172a; }
+  .hdr-logo span { color: #6366f1; }
+  .hdr-sep { width: 1px; height: 22px; background: #dbe2ec; }
+  .hdr-title {
+    font-size: 12px; color: #64748b; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .hdr-pill {
+    margin-left: auto;
+    background: #ede9fe; color: #6d28d9;
+    border: 1px solid #c4b5fd;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+
+  .stage { width: 100%; height: 100%; }
+
+  .footer {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 11px; color: #64748b;
+    border-top: 1px solid #e2e8f0; padding-top: 8px;
+  }
+  .footer strong { color: #1e293b; }
+
+  /* SVG text styling */
+  svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- Header -->
+    <div class="hdr">
+      <div class="hdr-logo">Meridian<span>Pay</span></div>
+      <div class="hdr-sep"></div>
+      <div class="hdr-title">Architecture · Control Plane + Data Plane</div>
+      <div class="hdr-pill">Powered by Carver RegWatch</div>
+    </div>
+
+    <!-- Stage -->
+    <div class="stage">
+      <svg viewBox="0 0 1400 720" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- ─── Definitions ─────────────────────────────────────────── -->
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+          </marker>
+          <marker id="arrow-indigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#6366f1"/>
+          </marker>
+          <marker id="arrow-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8b5cf6"/>
+          </marker>
+          <linearGradient id="sdkGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"  stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+          </linearGradient>
+          <linearGradient id="cpGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f5f3ff"/>
+            <stop offset="100%" stop-color="#ede9fe"/>
+          </linearGradient>
+          <linearGradient id="dpGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#eff6ff"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+          <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.10"/>
+          </filter>
+        </defs>
+
+        <!-- ─── Regulators cloud ────────────────────────────────────── -->
+        <g transform="translate(700,60)" filter="url(#softShadow)">
+          <!-- cloud blob -->
+          <path d="
+            M -100,0
+            C -130,0 -135,-35 -105,-40
+            C -110,-65 -65,-72 -45,-55
+            C -25,-78  35,-78  55,-55
+            C 80,-72 130,-58 120,-30
+            C 145,-25 140,5 110,5
+            Z"
+            fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8"/>
+          <text x="0" y="-22" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a"
+                font-family="-apple-system, sans-serif">Regulators</text>
+          <text x="0" y="-4" text-anchor="middle" font-size="9.5" font-weight="600" fill="#64748b"
+                font-family="-apple-system, sans-serif">FTC · CFPB · FDIC · OCC · NYDFS · Fed</text>
+        </g>
+
+        <!-- arrow Regulators → SDK -->
+        <line x1="700" y1="85" x2="700" y2="130" stroke="#8b5cf6" stroke-width="2.2"
+              stroke-dasharray="6,4" marker-end="url(#arrow-violet)"/>
+        <text x="715" y="115" font-size="10" font-style="italic" fill="#7c3aed"
+              font-family="-apple-system, sans-serif">enforcement signals</text>
+
+        <!-- ─── Carver SDK bar ──────────────────────────────────────── -->
+        <g filter="url(#softShadow)">
+          <rect x="180" y="135" width="1040" height="60" rx="12" fill="url(#sdkGrad)"/>
+          <text x="700" y="162" text-anchor="middle" font-size="18" font-weight="800" fill="#ffffff"
+                font-family="-apple-system, sans-serif">⚡  Carver RegWatch SDK</text>
+          <text x="700" y="183" text-anchor="middle" font-size="11" fill="#e0e7ff"
+                font-family="-apple-system, sans-serif">
+            ingests live regulatory signals · maps each signal to the affected layers · generates v2 policy diffs
+          </text>
+        </g>
+
+        <!-- arrow SDK → Control plane -->
+        <line x1="700" y1="200" x2="700" y2="240" stroke="#6366f1" stroke-width="2.2"
+              marker-end="url(#arrow-indigo)"/>
+        <text x="715" y="225" font-size="10" font-style="italic" fill="#4338ca"
+              font-family="-apple-system, sans-serif">policy v2 updates</text>
+
+        <!-- ─── Control plane ───────────────────────────────────────── -->
+        <g filter="url(#softShadow)">
+          <ellipse cx="700" cy="320" rx="640" ry="80" fill="url(#cpGrad)" stroke="#a78bfa" stroke-width="2"/>
+          <text x="135" y="295" font-size="11" font-weight="800" fill="#6d28d9"
+                font-family="-apple-system, sans-serif" letter-spacing="1.5">CONTROL PLANE</text>
+          <text x="135" y="310" font-size="9.5" fill="#7c3aed"
+                font-family="-apple-system, sans-serif">governance policies</text>
+
+          <!-- 7 policy boxes -->
+          <g font-family="-apple-system, sans-serif">
+            <!-- 1 -->
+            <g transform="translate(220,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L1</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Input</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">validation rules</text>
+            </g>
+            <!-- 2 -->
+            <g transform="translate(360,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L2</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Topic Routing</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">allowed intents</text>
+            </g>
+            <!-- 3 -->
+            <g transform="translate(500,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L3</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Retrieval</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">vetted sources</text>
+            </g>
+            <!-- 4 -->
+            <g transform="translate(640,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L4</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">System Prompt</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">role + soft rules</text>
+            </g>
+            <!-- 5 -->
+            <g transform="translate(780,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L5</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Tool Gating</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">allowed actions</text>
+            </g>
+            <!-- 6 -->
+            <g transform="translate(920,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L6</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Output Validator</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">judge rules</text>
+            </g>
+            <!-- 7 -->
+            <g transform="translate(1060,295)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#6d28d9">POLICY · L7</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Post-Processor</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">redaction rules</text>
+            </g>
+          </g>
+        </g>
+
+        <!-- Vertical arrows: Control → Data (governs) -->
+        <g stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="4,3" fill="none">
+          <line x1="282.5" y1="395" x2="282.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="422.5" y1="395" x2="422.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="562.5" y1="395" x2="562.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="702.5" y1="395" x2="702.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="842.5" y1="395" x2="842.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="982.5" y1="395" x2="982.5" y2="495" marker-end="url(#arrow-violet)"/>
+          <line x1="1122.5" y1="395" x2="1122.5" y2="495" marker-end="url(#arrow-violet)"/>
+        </g>
+        <text x="730" y="450" font-size="10" font-style="italic" fill="#7c3aed"
+              font-family="-apple-system, sans-serif">governs ↓</text>
+
+        <!-- ─── Data plane ──────────────────────────────────────────── -->
+        <g filter="url(#softShadow)">
+          <ellipse cx="700" cy="540" rx="640" ry="80" fill="url(#dpGrad)" stroke="#60a5fa" stroke-width="2"/>
+          <text x="135" y="515" font-size="11" font-weight="800" fill="#1d4ed8"
+                font-family="-apple-system, sans-serif" letter-spacing="1.5">DATA PLANE</text>
+          <text x="135" y="530" font-size="9.5" fill="#2563eb"
+                font-family="-apple-system, sans-serif">runtime layers</text>
+
+          <!-- 7 layer boxes -->
+          <g font-family="-apple-system, sans-serif">
+            <g transform="translate(220,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 1</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Input Validator</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">PII · injection</text>
+            </g>
+            <g transform="translate(360,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 2</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Topic Router</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">intent classify</text>
+            </g>
+            <g transform="translate(500,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 3</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Retrieval</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">grounded KB</text>
+            </g>
+            <g transform="translate(640,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 4</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">LLM · Prompt</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">role + rules</text>
+            </g>
+            <g transform="translate(780,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 5</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Tool Gate</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">allowlist</text>
+            </g>
+            <g transform="translate(920,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 6</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Output Validator</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">LLM judge</text>
+            </g>
+            <g transform="translate(1060,515)">
+              <rect width="125" height="56" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="62.5" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8">LAYER · 7</text>
+              <text x="62.5" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">Output Cleaner</text>
+              <text x="62.5" y="48" text-anchor="middle" font-size="9" fill="#64748b">redact · disclose</text>
+            </g>
+
+            <!-- horizontal request flow arrows between layer boxes -->
+            <g stroke="#475569" stroke-width="1.4" fill="none">
+              <line x1="345" y1="543" x2="360" y2="543" marker-end="url(#arrow)"/>
+              <line x1="485" y1="543" x2="500" y2="543" marker-end="url(#arrow)"/>
+              <line x1="625" y1="543" x2="640" y2="543" marker-end="url(#arrow)"/>
+              <line x1="765" y1="543" x2="780" y2="543" marker-end="url(#arrow)"/>
+              <line x1="905" y1="543" x2="920" y2="543" marker-end="url(#arrow)"/>
+              <line x1="1045" y1="543" x2="1060" y2="543" marker-end="url(#arrow)"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- ─── Actors ──────────────────────────────────────────────── -->
+        <!-- Left actor (sends request) -->
+        <g transform="translate(80,540)" font-family="-apple-system, sans-serif">
+          <circle cx="0" cy="0" r="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="12" x2="0" y2="38" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="20" x2="-12" y2="32" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="20" x2="12" y2="32" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="38" x2="-10" y2="54" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="38" x2="10" y2="54" stroke="#64748b" stroke-width="1.6"/>
+          <text x="0" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Customer</text>
+          <text x="0" y="86" text-anchor="middle" font-size="9" fill="#64748b">sends message</text>
+        </g>
+
+        <!-- Right actor (receives response) -->
+        <g transform="translate(1320,540)" font-family="-apple-system, sans-serif">
+          <circle cx="0" cy="0" r="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="12" x2="0" y2="38" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="20" x2="-12" y2="32" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="20" x2="12" y2="32" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="38" x2="-10" y2="54" stroke="#64748b" stroke-width="1.6"/>
+          <line x1="0" y1="38" x2="10" y2="54" stroke="#64748b" stroke-width="1.6"/>
+          <text x="0" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">Customer</text>
+          <text x="0" y="86" text-anchor="middle" font-size="9" fill="#64748b">gets response</text>
+        </g>
+
+        <!-- Actor → first data box, and last data box → Actor -->
+        <line x1="95" y1="543" x2="218" y2="543" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+        <line x1="1186" y1="543" x2="1305" y2="543" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+        <!-- Legend -->
+        <g transform="translate(80,650)" font-family="-apple-system, sans-serif">
+          <rect width="1240" height="50" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+
+          <!-- Legend item 1 -->
+          <line x1="20" y1="20" x2="60" y2="20" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-violet)"/>
+          <text x="70" y="24" font-size="10.5" font-weight="700" fill="#0f172a">Governance flow</text>
+          <text x="70" y="38" font-size="9.5" fill="#64748b">Regulators → SDK → Control plane → Data plane policies</text>
+
+          <!-- Legend item 2 -->
+          <line x1="430" y1="20" x2="470" y2="20" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+          <text x="480" y="24" font-size="10.5" font-weight="700" fill="#0f172a">Request flow</text>
+          <text x="480" y="38" font-size="9.5" fill="#64748b">Customer → Data plane layers (left-to-right) → Customer</text>
+
+          <!-- Legend item 3 -->
+          <rect x="830" y="12" width="16" height="16" rx="3" fill="url(#cpGrad)" stroke="#a78bfa"/>
+          <text x="855" y="24" font-size="10.5" font-weight="700" fill="#6d28d9">Control plane</text>
+          <text x="855" y="38" font-size="9.5" fill="#64748b">versioned policies (v1 today → v2 with Carver)</text>
+
+          <!-- Legend item 4 -->
+          <rect x="1100" y="12" width="16" height="16" rx="3" fill="url(#dpGrad)" stroke="#60a5fa"/>
+          <text x="1125" y="24" font-size="10.5" font-weight="700" fill="#1d4ed8">Data plane</text>
+          <text x="1125" y="38" font-size="9.5" fill="#64748b">runtime layers per request</text>
+        </g>
+
+      </svg>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <strong>Two planes, one stack:</strong>
+      <span>The <strong>data plane</strong> handles every customer request through 7 runtime layers.</span>
+      <span>The <strong>control plane</strong> holds the policies that govern those layers — updated by <strong>Carver RegWatch</strong> as regulators publish new rules.</span>
+    </div>
+  </div>
+</body>
+</html>

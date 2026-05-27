@@ -1,0 +1,12 @@
+{
+  "source": "PubMed",
+  "authority": "PubMed",
+  "country": "INT",
+  "timestamp": "20260401_143922",
+  "records_count": 2596,
+  "systematic_reviews": 733,
+  "rcts": 1853,
+  "clinical_trials": 1855,
+  "search_query": "(pacemaker[MeSH Terms] OR implantable cardioverter-defibrillator[MeSH Terms] OR cardiac resynchronization therapy[MeSH Terms]) AND (systematic review[pt] OR meta-analysis[pt] OR randomized controlled trial[pt])",
+  "sha256": "7b7bc548a2a02f93d0792f9263ebaae22b01f7ff97e051fba6e12e4e3386b999"
+}

@@ -1,0 +1,12 @@
+# Carver Feeds pipeline dependencies
+# Install into .venv:  python -m venv .venv && pip install -r requirements.txt
+#
+# Usage:
+#   python scripts/fetch_feeds.py           # pull last 30 days
+#   python scripts/fetch_feeds.py --days 60 # wider window
+#   python scripts/vectorize_feeds.py       # vectorize + output JSON
+#   python scripts/vectorize_feeds.py --threshold 0.02 --feed-limit 15
+
+carver-feeds-sdk==0.4.0   # Carver Feeds API client
+python-dotenv>=1.0.0      # .env loading (used by SDK)
+requests>=2.31.0          # HTTP (used by SDK)

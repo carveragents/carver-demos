@@ -1,0 +1,9 @@
+{
+  "source": "FDA_MAUDE",
+  "authority": "FDA",
+  "country": "USA",
+  "timestamp": "20260327_165654",
+  "records_count": 10000,
+  "api_endpoint": "https://api.fda.gov/device/event.json",
+  "sha256": "c25d53fb14a3fbc611637ac92f59a236f3c413489743646c202b03b5be6af7be"
+}

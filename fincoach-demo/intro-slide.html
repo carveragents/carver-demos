@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meridian Pay — Demo Context</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f172a;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .slide {
+    width: 100%; max-width: 1280px; aspect-ratio: 16 / 9;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    padding: 36px 44px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Header */
+  .hdr { display: flex; align-items: center; gap: 14px; }
+  .hdr-logo { font-size: 22px; font-weight: 800; letter-spacing: -.3px; }
+  .hdr-logo span { color: #6366f1; }
+  .hdr-sep { width: 1px; height: 24px; background: #dbe2ec; }
+  .hdr-title {
+    font-size: 13px; color: #64748b; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .hdr-pill {
+    margin-left: auto;
+    background: #ede9fe; color: #6d28d9;
+    border: 1px solid #c4b5fd;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  h1 {
+    font-size: 28px; font-weight: 800; color: #0f172a;
+    letter-spacing: -0.5px; line-height: 1.2;
+  }
+  .lede {
+    font-size: 14px; color: #475569; line-height: 1.55;
+    max-width: 92%;
+  }
+
+  /* Body grid */
+  .body {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 24px;
+    min-height: 0;
+  }
+
+  /* Diagram column */
+  .diagram-wrap {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 14px 8px;
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .col-label {
+    font-size: 10px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .diagram-img {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px;
+    background-image: url('layered_agent_deployment.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 0;
+  }
+  .diagram-caption {
+    font-size: 11px; color: #64748b;
+    margin-top: 6px; line-height: 1.4;
+  }
+
+  /* Right column */
+  .right-col {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 14px;
+    min-height: 0;
+  }
+
+  .policy-card {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #cbd5e1;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .policy-hdr {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 8px; flex-shrink: 0;
+  }
+  .policy-version {
+    background: #1e293b; color: #93c5fd;
+    border: 1px solid #1e40af;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 8px; border-radius: 20px;
+    letter-spacing: .04em;
+  }
+  .policy-title {
+    font-size: 12px; color: #e2e8f0; font-weight: 700;
+  }
+  .policy-meta {
+    font-size: 9.5px; color: #64748b; margin-left: auto;
+  }
+  .policy-body {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10.5px; line-height: 1.55;
+    color: #cbd5e1;
+    overflow: auto;
+    flex: 1;
+  }
+  .policy-body .ph { color: #94a3b8; }
+  .policy-body .pk { color: #fbbf24; font-weight: 700; }
+  .policy-body .pn { color: #f87171; font-weight: 700; }
+  .policy-body .pm { color: #34d399; font-weight: 700; }
+
+  /* Before / After */
+  .ba {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    min-height: 0;
+  }
+  .ba-card {
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex; flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .ba-before {
+    background: #fef9e7;
+    border: 1px solid #fcd34d;
+  }
+  .ba-after {
+    background: #ecfdf5;
+    border: 1px solid #86efac;
+  }
+  .ba-label {
+    font-size: 9.5px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .08em;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .ba-before .ba-label { color: #b45309; }
+  .ba-after  .ba-label { color: #047857; }
+  .ba-h {
+    font-size: 13px; font-weight: 800; color: #0f172a;
+    line-height: 1.25;
+  }
+  .ba-list {
+    font-size: 11px; color: #334155;
+    line-height: 1.5;
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .ba-list li {
+    padding-left: 14px;
+    position: relative;
+    margin-top: 3px;
+  }
+  .ba-list li::before {
+    content: ''; position: absolute; left: 0; top: 7px;
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .ba-before .ba-list li::before { background: #d97706; }
+  .ba-after  .ba-list li::before { background: #10b981; }
+
+  /* Footer */
+  .footer {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 11px; color: #64748b;
+    border-top: 1px solid #e2e8f0; padding-top: 12px;
+  }
+  .footer strong { color: #1e293b; }
+  .footer-arrow {
+    color: #6366f1; font-weight: 800;
+  }
+
+  /* Decorative shield in corner */
+  .corner-shield {
+    position: absolute; top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    opacity: .06;
+  }
+  .corner-shield svg { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <svg class="corner-shield" viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 0 L24 4 V13 C24 21 18 26 12 28 C6 26 0 21 0 13 V4 Z" fill="#6366f1"/>
+    </svg>
+
+    <!-- Header -->
+    <div class="hdr">
+      <div class="hdr-logo">Meridian<span>Pay</span></div>
+      <div class="hdr-sep"></div>
+      <div class="hdr-title">7-Layer Compliance Demo · Setup</div>
+      <div class="hdr-pill">Powered by Carver RegWatch</div>
+    </div>
+
+    <!-- Body -->
+    <div style="display:flex; flex-direction:column; gap:14px; min-height:0">
+      <div>
+        <h1>Meridian Pay ships a customer-facing AI agent —<br>protected by a 7-layer compliance stack.</h1>
+        <div class="lede" style="margin-top:8px">
+          Every customer message passes through seven defense layers — from input scrubbing
+          to output redaction. Each layer is governed by a policy document. We'll demo what
+          changes when Carver's live regulatory signal turns those policies from static to
+          continuously updated.
+        </div>
+      </div>
+
+      <div class="body">
+        <!-- Left: Diagram -->
+        <div class="diagram-wrap">
+          <div class="col-label">The 7-Layer Deployment Stack</div>
+          <div class="diagram-img" role="img" aria-label="7-layer agent deployment diagram"></div>
+          <div class="diagram-caption">
+            L1 Input Guardrails · L2 Topic Router · L3 Retrieval · L4 System Prompt ·
+            L5 Tool Gating · L6 Output Validator · L7 Post-Processor
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="right-col">
+          <div class="policy-card">
+            <div class="policy-hdr">
+              <span class="policy-version">Policy v1</span>
+              <span class="policy-title">Layer 4 — System Prompt rules</span>
+              <span class="policy-meta">Effective Mar 1, 2026</span>
+            </div>
+            <div class="policy-body"><span class="ph"># 6. Prohibited Conduct</span>
+- The Agent <span class="pn">MUST NOT</span> make false statements about platform capabilities.
+- The Agent <span class="pn">MUST NOT</span> guarantee specific investment returns unprompted.
+- The Agent <span class="pn">MUST NOT</span> provide personalised investment advice.
+
+<span class="ph"># 3. Earnings and Performance Claims</span>
+- The Agent <span class="pm">MAY</span> share general statements about member outcomes.
+- The Agent <span class="pk">SHOULD</span> provide specific examples when asked.
+- The Agent <span class="pk">SHALL</span> add a brief disclaimer that results aren't guaranteed.
+
+<span class="ph"># 5. Refund Policy</span>
+- The Agent <span class="pm">MAY</span> describe the subscription as backed by a full
+  satisfaction guarantee with no restrictions.
+- The Agent <span class="pk">SHOULD</span> frame the guarantee as completely risk-free.
+</div>
+          </div>
+
+          <div class="ba">
+            <div class="ba-card ba-before">
+              <div class="ba-label">⏵ Before — Carver OFF</div>
+              <div class="ba-h">Static policy v1, frozen since March</div>
+              <ul class="ba-list">
+                <li>Layers run with the same rules they shipped with</li>
+                <li>No awareness of new FTC / CFPB / NYDFS actions</li>
+                <li>Risky phrasings (e.g. "risk-free guarantee") still pass</li>
+              </ul>
+            </div>
+            <div class="ba-card ba-after">
+              <div class="ba-label">⏵ After — Carver LIVE</div>
+              <div class="ba-h">Live regulatory signal → policy v2</div>
+              <ul class="ba-list">
+                <li>Live enforcement signals mapped to affected layers</li>
+                <li>v2 policy updates generated and ready to activate</li>
+                <li>Same questions now get compliant, hedged responses</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <strong>What to watch in the demo:</strong>
+      <span>Send a refund / earnings question with Carver <strong>OFF</strong></span>
+      <span class="footer-arrow">→</span>
+      <span>flip the lever <strong>ON</strong></span>
+      <span class="footer-arrow">→</span>
+      <span>watch the same question return a compliant answer under policy <strong>v2</strong>.</span>
+    </div>
+  </div>
+</body>
+</html>
