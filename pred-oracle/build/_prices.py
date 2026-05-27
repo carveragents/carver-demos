@@ -98,6 +98,9 @@ def fetch_polymarket(
         return []
     market = markets[0] if isinstance(markets, list) else markets
     token_ids = market.get("clobTokenIds", [])
+    if isinstance(token_ids, str):
+        import json as _json
+        token_ids = _json.loads(token_ids)
     if not token_ids:
         return []
     token_id = token_ids[0]

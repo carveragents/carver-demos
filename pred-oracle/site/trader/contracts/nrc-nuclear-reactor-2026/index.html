@@ -129,13 +129,13 @@
 <div class="flex flex-wrap items-center gap-3 mb-6">
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">YES</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-emerald-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">23¢</span>
+    <span class="text-[10px] text-emerald-200">payout $435/$100</span>
   </button>
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">NO</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-rose-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">77¢</span>
+    <span class="text-[10px] text-rose-200">payout $130/$100</span>
   </button>
 
   
@@ -153,7 +153,7 @@
     <span class="text-slate-500">200 contracts</span>
     <span class="text-slate-400">@ 78¢ avg</span>
     <span class="text-slate-300">·</span>
-    <span class="font-medium tabular-nums text-rose-600">-$56 (-36%)</span>
+    <span class="font-medium tabular-nums text-rose-600">-$2 (-1%)</span>
   </div>
   
 </div>
@@ -162,9 +162,7 @@
 <div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
   <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
   
-  <div class="h-64 flex items-center justify-center text-sm text-slate-400 italic">
-    Price data not yet available. Run <code class="bg-slate-100 px-1 rounded">make pull-prices</code> to fetch.
-  </div>
+  <div id="price-chart" class="h-64"></div>
   
 </div>
 
@@ -690,6 +688,123 @@ pending. This market resolves on the full COL issuance, not the construction per
   </footer>
 
   
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.46, "t": 1769472040}, {"p": 0.385, "t": 1769515226}, {"p": 0.355, "t": 1769558428}, {"p": 0.365, "t": 1769601630}, {"p": 0.29, "t": 1769644844}, {"p": 0.275, "t": 1769688035}, {"p": 0.315, "t": 1769731233}, {"p": 0.275, "t": 1769774449}, {"p": 0.27, "t": 1769817634}, {"p": 0.27, "t": 1769860839}, {"p": 0.315, "t": 1769904041}, {"p": 0.3, "t": 1769947236}, {"p": 0.31, "t": 1769990432}, {"p": 0.295, "t": 1770033637}, {"p": 0.3, "t": 1770076836}, {"p": 0.295, "t": 1770120043}, {"p": 0.305, "t": 1770163245}, {"p": 0.31, "t": 1770206437}, {"p": 0.305, "t": 1770249630}, {"p": 0.325, "t": 1770292842}, {"p": 0.255, "t": 1770336040}, {"p": 0.255, "t": 1770379242}, {"p": 0.195, "t": 1770422449}, {"p": 0.225, "t": 1770465646}, {"p": 0.21, "t": 1770508844}, {"p": 0.19, "t": 1770552057}, {"p": 0.17, "t": 1770595242}, {"p": 0.175, "t": 1770681646}, {"p": 0.195, "t": 1770768053}, {"p": 0.215, "t": 1770811246}, {"p": 0.185, "t": 1770854454}, {"p": 0.255, "t": 1770897645}, {"p": 0.225, "t": 1770940845}, {"p": 0.225, "t": 1770984050}, {"p": 0.265, "t": 1771027250}, {"p": 0.39, "t": 1771070455}, {"p": 0.195, "t": 1771113651}, {"p": 0.2, "t": 1771156856}, {"p": 0.375, "t": 1771286453}, {"p": 0.375, "t": 1771372857}, {"p": 0.285, "t": 1771416055}, {"p": 0.485, "t": 1771545654}, {"p": 0.435, "t": 1771588834}, {"p": 0.375, "t": 1771632036}, {"p": 0.345, "t": 1771675237}, {"p": 0.285, "t": 1771718437}, {"p": 0.255, "t": 1771761646}, {"p": 0.315, "t": 1771804844}, {"p": 0.335, "t": 1771848050}, {"p": 0.3, "t": 1771891245}, {"p": 0.27, "t": 1771934458}, {"p": 0.245, "t": 1771977651}, {"p": 0.285, "t": 1772020856}, {"p": 0.34, "t": 1772064045}, {"p": 0.33, "t": 1772150451}, {"p": 0.36, "t": 1772236848}, {"p": 0.36, "t": 1772366452}, {"p": 0.37, "t": 1772452850}, {"p": 0.365, "t": 1772496055}, {"p": 0.38, "t": 1772539257}, {"p": 0.38, "t": 1772582455}, {"p": 0.355, "t": 1772625650}, {"p": 0.38, "t": 1772668852}, {"p": 0.355, "t": 1772755251}, {"p": 0.36, "t": 1772798452}, {"p": 0.405, "t": 1772841655}, {"p": 0.365, "t": 1772884856}, {"p": 0.415, "t": 1772928044}, {"p": 0.375, "t": 1772971243}, {"p": 0.39, "t": 1773014441}, {"p": 0.28, "t": 1773057639}, {"p": 0.255, "t": 1773100849}, {"p": 0.38, "t": 1773144053}, {"p": 0.32, "t": 1773187253}, {"p": 0.275, "t": 1773273654}, {"p": 0.255, "t": 1773662441}, {"p": 0.255, "t": 1773705648}, {"p": 0.255, "t": 1773748852}, {"p": 0.255, "t": 1773792050}, {"p": 0.23, "t": 1773921655}, {"p": 0.23, "t": 1773964855}, {"p": 0.23, "t": 1774008051}, {"p": 0.23, "t": 1774051254}, {"p": 0.23, "t": 1774094447}, {"p": 0.23, "t": 1774137652}, {"p": 0.22, "t": 1774180858}, {"p": 0.22, "t": 1774224045}, {"p": 0.225, "t": 1774267243}, {"p": 0.225, "t": 1774310440}, {"p": 0.215, "t": 1774353646}, {"p": 0.215, "t": 1774396849}, {"p": 0.225, "t": 1774440052}, {"p": 0.27, "t": 1774483253}, {"p": 0.275, "t": 1774569643}, {"p": 0.26, "t": 1774612842}, {"p": 0.26, "t": 1774656046}, {"p": 0.235, "t": 1774699246}, {"p": 0.24, "t": 1774742451}, {"p": 0.27, "t": 1774872059}, {"p": 0.28, "t": 1775131256}, {"p": 0.22, "t": 1775649629}, {"p": 0.3, "t": 1775692827}, {"p": 0.34, "t": 1776816005}, {"p": 0.365, "t": 1776859205}, {"p": 0.32, "t": 1776902405}, {"p": 0.32, "t": 1776945607}, {"p": 0.3, "t": 1776988818}, {"p": 0.34, "t": 1777032004}, {"p": 0.305, "t": 1777075210}, {"p": 0.345, "t": 1777118404}, {"p": 0.275, "t": 1777161604}, {"p": 0.295, "t": 1777204804}, {"p": 0.29, "t": 1777248004}, {"p": 0.33, "t": 1777291215}, {"p": 0.29, "t": 1777334404}, {"p": 0.29, "t": 1777377603}, {"p": 0.305, "t": 1777420803}, {"p": 0.34, "t": 1777464004}, {"p": 0.295, "t": 1777507205}, {"p": 0.32, "t": 1777550404}, {"p": 0.32, "t": 1777593604}, {"p": 0.305, "t": 1777636806}, {"p": 0.31, "t": 1777680004}, {"p": 0.295, "t": 1777723204}, {"p": 0.215, "t": 1777766406}, {"p": 0.265, "t": 1777809606}, {"p": 0.22, "t": 1777852804}, {"p": 0.245, "t": 1777896004}, {"p": 0.28, "t": 1777939217}, {"p": 0.205, "t": 1777982404}, {"p": 0.315, "t": 1778025606}, {"p": 0.27, "t": 1778068804}, {"p": 0.295, "t": 1778112005}, {"p": 0.265, "t": 1778155217}, {"p": 0.285, "t": 1778198403}, {"p": 0.26, "t": 1778241603}, {"p": 0.345, "t": 1778284822}, {"p": 0.285, "t": 1778328007}, {"p": 0.255, "t": 1778371207}, {"p": 0.255, "t": 1778414406}, {"p": 0.255, "t": 1778457610}, {"p": 0.225, "t": 1778500810}, {"p": 0.205, "t": 1778544009}, {"p": 0.2, "t": 1778587208}, {"p": 0.18, "t": 1778630411}, {"p": 0.185, "t": 1778673610}, {"p": 0.185, "t": 1778716814}, {"p": 0.185, "t": 1778760009}, {"p": 0.225, "t": 1778803209}, {"p": 0.23, "t": 1778846411}, {"p": 0.225, "t": 1778889616}, {"p": 0.295, "t": 1778932812}, {"p": 0.24, "t": 1778976023}, {"p": 0.23, "t": 1779019206}, {"p": 0.25, "t": 1779062407}, {"p": 0.26, "t": 1779105606}, {"p": 0.22, "t": 1779148805}, {"p": 0.235, "t": 1779192019}, {"p": 0.245, "t": 1779235208}, {"p": 0.215, "t": 1779278405}, {"p": 0.305, "t": 1779321605}, {"p": 0.28, "t": 1779364808}, {"p": 0.285, "t": 1779408009}, {"p": 0.345, "t": 1779451205}, {"p": 0.315, "t": 1779494406}, {"p": 0.335, "t": 1779537607}, {"p": 0.34, "t": 1779580804}, {"p": 0.2, "t": 1779624004}, {"p": 0.255, "t": 1779667204}, {"p": 0.245, "t": 1779710403}, {"p": 0.245, "t": 1779753604}, {"p": 0.245, "t": 1779796804}, {"p": 0.23, "t": 1779840005}, {"p": 0.23, "t": 1779855183}];
+  var timelineEvents = [{"carver_feed_entry_id": "8503f9d0-1c92-4857-bb7b-6dcb547339eb", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "June 1, 2026", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "California AG\u0027s action targets oil pipeline approvals, unrelated to NRC combined-license process, so it doesn\u0027t affect COL issuance odds.", "pub_date": "2026-05-01", "regulator": "California Department of Justice", "relevance_score": 0, "timeline_shift": "none", "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines", "urgency": 1.0, "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-seeks-halt-trump-administration\u2019s-illegal-greenlight-oil"}, {"carver_feed_entry_id": "0d030a27-c2c9-416b-b049-57518ed0223e", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "June 1, 2026", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "California AG action on oil transport is unrelated to NRC combined-license issuance and does not affect COL odds.", "pub_date": "2026-05-01", "regulator": "California Department of Justice, Office of the Attorney General", "relevance_score": 0, "timeline_shift": "none", "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026", "urgency": 1.0, "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-seeks-halt-trump-administration%E2%80%99s-illegal-greenlight-oil"}, {"carver_feed_entry_id": "ef343201-50d5-4004-beba-d90f738c5b5a", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Ontario Securities Commission exemptions are unrelated to U.S. NRC combined licenses and have no bearing on COL issuance probability.", "pub_date": "2026-04-30", "regulator": "Ontario Securities Commission", "relevance_score": 0, "timeline_shift": "none", "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information", "urgency": 9.0, "url": "https://www.osc.ca/en/securities-law/instruments-rules-policies/3/33-510/notice-general-order-ontario-instrument-33-510-exemptions-requirements-submit-certain-personal"}, {"carver_feed_entry_id": "04620b8e-bfbb-4595-98f4-f91d4f91b5c3", "comment_deadline": "2026-03-04", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-02-02", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Context", "one_line_why": "Multi-state AG opposition to federal exemption of environmental review raises legal and political hurdles, lowering odds and likely delaying an NRC COL.", "pub_date": "2026-03-05", "regulator": "California Attorney General", "relevance_score": 6, "timeline_shift": "later", "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review", "urgency": 1.0, "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-trump-administration%E2%80%99s-attempt-exempt-new-and"}, {"carver_feed_entry_id": "0ac004c3-e7b5-4cfa-b238-62c1a3e46aee", "comment_deadline": "2026-03-04", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-02-02", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Context", "one_line_why": "California AG\u0027s opposition to federal exemptions could block expedited reviews and make an NRC COL by end-2026 less likely.", "pub_date": "2026-03-05", "regulator": "California Attorney General", "relevance_score": 6, "timeline_shift": "later", "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026", "urgency": 1.0, "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-trump-administration%E2%80%99s-attempt-exempt-new-and"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+});
+</script>
 
 
 </body>

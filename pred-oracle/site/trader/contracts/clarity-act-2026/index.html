@@ -129,13 +129,13 @@
 <div class="flex flex-wrap items-center gap-3 mb-6">
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">YES</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-emerald-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">58¢</span>
+    <span class="text-[10px] text-emerald-200">payout $172/$100</span>
   </button>
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">NO</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-rose-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">42¢</span>
+    <span class="text-[10px] text-rose-200">payout $238/$100</span>
   </button>
 
   
@@ -153,7 +153,7 @@
     <span class="text-slate-500">300 contracts</span>
     <span class="text-slate-400">@ 50¢ avg</span>
     <span class="text-slate-300">·</span>
-    <span class="font-medium tabular-nums text-emerald-600">+$0 (+0%)</span>
+    <span class="font-medium tabular-nums text-emerald-600">+$24 (+16%)</span>
   </div>
   
 </div>
@@ -162,9 +162,7 @@
 <div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
   <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
   
-  <div class="h-64 flex items-center justify-center text-sm text-slate-400 italic">
-    Price data not yet available. Run <code class="bg-slate-100 px-1 rounded">make pull-prices</code> to fetch.
-  </div>
+  <div id="price-chart" class="h-64"></div>
   
 </div>
 
@@ -722,6 +720,123 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
   </footer>
 
   
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.65, "t": 1768176019}, {"p": 0.72, "t": 1768219223}, {"p": 0.665, "t": 1768262420}, {"p": 0.7, "t": 1768305623}, {"p": 0.565, "t": 1768348820}, {"p": 0.55, "t": 1768392021}, {"p": 0.465, "t": 1768435222}, {"p": 0.6, "t": 1768478421}, {"p": 0.475, "t": 1768521624}, {"p": 0.62, "t": 1768564822}, {"p": 0.5, "t": 1768608021}, {"p": 0.52, "t": 1768651229}, {"p": 0.52, "t": 1768694432}, {"p": 0.41, "t": 1768737637}, {"p": 0.425, "t": 1768780818}, {"p": 0.42, "t": 1768824021}, {"p": 0.415, "t": 1768867220}, {"p": 0.395, "t": 1768910421}, {"p": 0.395, "t": 1768953621}, {"p": 0.4, "t": 1768996842}, {"p": 0.435, "t": 1769040030}, {"p": 0.45, "t": 1769083246}, {"p": 0.39, "t": 1769126438}, {"p": 0.415, "t": 1769169646}, {"p": 0.455, "t": 1769212832}, {"p": 0.505, "t": 1769256032}, {"p": 0.515, "t": 1769299240}, {"p": 0.525, "t": 1769342448}, {"p": 0.525, "t": 1769385639}, {"p": 0.515, "t": 1769428830}, {"p": 0.54, "t": 1769472034}, {"p": 0.545, "t": 1769515222}, {"p": 0.545, "t": 1769558423}, {"p": 0.55, "t": 1769601625}, {"p": 0.595, "t": 1769644838}, {"p": 0.645, "t": 1769688027}, {"p": 0.57, "t": 1769731227}, {"p": 0.575, "t": 1769774441}, {"p": 0.575, "t": 1769817627}, {"p": 0.565, "t": 1769860832}, {"p": 0.52, "t": 1769904032}, {"p": 0.51, "t": 1769947229}, {"p": 0.54, "t": 1769990426}, {"p": 0.575, "t": 1770033630}, {"p": 0.645, "t": 1770076829}, {"p": 0.585, "t": 1770120034}, {"p": 0.595, "t": 1770163239}, {"p": 0.635, "t": 1770206430}, {"p": 0.645, "t": 1770249625}, {"p": 0.64, "t": 1770292833}, {"p": 0.615, "t": 1770336031}, {"p": 0.605, "t": 1770379232}, {"p": 0.535, "t": 1770422438}, {"p": 0.545, "t": 1770465636}, {"p": 0.56, "t": 1770508834}, {"p": 0.555, "t": 1770552043}, {"p": 0.57, "t": 1770595232}, {"p": 0.57, "t": 1770638449}, {"p": 0.57, "t": 1770681637}, {"p": 0.57, "t": 1770724847}, {"p": 0.565, "t": 1770768037}, {"p": 0.565, "t": 1770811236}, {"p": 0.565, "t": 1770854446}, {"p": 0.555, "t": 1770897634}, {"p": 0.58, "t": 1770940835}, {"p": 0.595, "t": 1770984039}, {"p": 0.615, "t": 1771027238}, {"p": 0.58, "t": 1771070440}, {"p": 0.59, "t": 1771113638}, {"p": 0.59, "t": 1771156843}, {"p": 0.555, "t": 1771200050}, {"p": 0.545, "t": 1771243247}, {"p": 0.57, "t": 1771286439}, {"p": 0.6, "t": 1771329653}, {"p": 0.595, "t": 1771372844}, {"p": 0.615, "t": 1771416043}, {"p": 0.695, "t": 1771459245}, {"p": 0.815, "t": 1771545643}, {"p": 0.785, "t": 1771588827}, {"p": 0.72, "t": 1771632029}, {"p": 0.715, "t": 1771675229}, {"p": 0.72, "t": 1771718429}, {"p": 0.72, "t": 1771761635}, {"p": 0.715, "t": 1771804834}, {"p": 0.53, "t": 1771848038}, {"p": 0.515, "t": 1771891234}, {"p": 0.525, "t": 1771934442}, {"p": 0.475, "t": 1771977639}, {"p": 0.465, "t": 1772020842}, {"p": 0.625, "t": 1772064035}, {"p": 0.675, "t": 1772107251}, {"p": 0.685, "t": 1772150440}, {"p": 0.685, "t": 1772193654}, {"p": 0.51, "t": 1772236840}, {"p": 0.62, "t": 1772280059}, {"p": 0.555, "t": 1772323253}, {"p": 0.625, "t": 1772366443}, {"p": 0.615, "t": 1772409651}, {"p": 0.625, "t": 1772452842}, {"p": 0.78, "t": 1772496043}, {"p": 0.77, "t": 1772539246}, {"p": 0.725, "t": 1772582445}, {"p": 0.735, "t": 1772625641}, {"p": 0.705, "t": 1772668842}, {"p": 0.71, "t": 1772712058}, {"p": 0.71, "t": 1772755241}, {"p": 0.705, "t": 1772798441}, {"p": 0.71, "t": 1772841646}, {"p": 0.705, "t": 1772884845}, {"p": 0.705, "t": 1772928037}, {"p": 0.715, "t": 1772971236}, {"p": 0.695, "t": 1773014432}, {"p": 0.695, "t": 1773057631}, {"p": 0.725, "t": 1773100839}, {"p": 0.695, "t": 1773144043}, {"p": 0.6, "t": 1773187243}, {"p": 0.61, "t": 1773230454}, {"p": 0.615, "t": 1773273644}, {"p": 0.595, "t": 1773316856}, {"p": 0.585, "t": 1773403237}, {"p": 0.585, "t": 1773446437}, {"p": 0.555, "t": 1773489640}, {"p": 0.56, "t": 1773532838}, {"p": 0.56, "t": 1773576036}, {"p": 0.605, "t": 1773619251}, {"p": 0.605, "t": 1773662427}, {"p": 0.615, "t": 1773705633}, {"p": 0.6, "t": 1773748835}, {"p": 0.615, "t": 1773792035}, {"p": 0.615, "t": 1773835244}, {"p": 0.63, "t": 1773878442}, {"p": 0.63, "t": 1773921633}, {"p": 0.62, "t": 1773964839}, {"p": 0.625, "t": 1774008033}, {"p": 0.705, "t": 1774051237}, {"p": 0.675, "t": 1774094430}, {"p": 0.675, "t": 1774137635}, {"p": 0.675, "t": 1774180841}, {"p": 0.675, "t": 1774224029}, {"p": 0.68, "t": 1774267228}, {"p": 0.68, "t": 1774310426}, {"p": 0.68, "t": 1774353631}, {"p": 0.645, "t": 1774396842}, {"p": 0.62, "t": 1774440044}, {"p": 0.605, "t": 1774483245}, {"p": 0.495, "t": 1774526456}, {"p": 0.6, "t": 1774569652}, {"p": 0.605, "t": 1774612851}, {"p": 0.59, "t": 1774656056}, {"p": 0.54, "t": 1774699256}, {"p": 0.67, "t": 1775347215}, {"p": 0.545, "t": 1775649654}, {"p": 0.605, "t": 1775692836}, {"p": 0.675, "t": 1775952011}, {"p": 0.635, "t": 1776470430}, {"p": 0.485, "t": 1776600009}, {"p": 0.485, "t": 1776816017}, {"p": 0.485, "t": 1776859215}, {"p": 0.46, "t": 1776902422}, {"p": 0.455, "t": 1776945614}, {"p": 0.435, "t": 1776988834}, {"p": 0.485, "t": 1777032009}, {"p": 0.465, "t": 1777075216}, {"p": 0.415, "t": 1777118411}, {"p": 0.47, "t": 1777161610}, {"p": 0.465, "t": 1777204813}, {"p": 0.455, "t": 1777248013}, {"p": 0.465, "t": 1777291225}, {"p": 0.465, "t": 1777334414}, {"p": 0.465, "t": 1777377614}, {"p": 0.46, "t": 1777420811}, {"p": 0.455, "t": 1777464012}, {"p": 0.455, "t": 1777507217}, {"p": 0.455, "t": 1777550416}, {"p": 0.455, "t": 1777593620}, {"p": 0.455, "t": 1777636812}, {"p": 0.555, "t": 1777680013}, {"p": 0.685, "t": 1777723211}, {"p": 0.64, "t": 1777766407}, {"p": 0.625, "t": 1777809609}, {"p": 0.635, "t": 1777852807}, {"p": 0.635, "t": 1777896006}, {"p": 0.69, "t": 1777939220}, {"p": 0.625, "t": 1777982411}, {"p": 0.64, "t": 1778025611}, {"p": 0.66, "t": 1778068810}, {"p": 0.65, "t": 1778112011}, {"p": 0.655, "t": 1778155219}, {"p": 0.665, "t": 1778198411}, {"p": 0.685, "t": 1778241606}, {"p": 0.74, "t": 1778284825}, {"p": 0.735, "t": 1778328009}, {"p": 0.725, "t": 1778371212}, {"p": 0.74, "t": 1778414410}, {"p": 0.725, "t": 1778457612}, {"p": 0.625, "t": 1778500813}, {"p": 0.62, "t": 1778544018}, {"p": 0.685, "t": 1778587213}, {"p": 0.595, "t": 1778630416}, {"p": 0.585, "t": 1778673614}, {"p": 0.625, "t": 1778716822}, {"p": 0.66, "t": 1778760012}, {"p": 0.695, "t": 1778803213}, {"p": 0.675, "t": 1778846415}, {"p": 0.675, "t": 1778889620}, {"p": 0.665, "t": 1778932816}, {"p": 0.615, "t": 1778976030}, {"p": 0.605, "t": 1779019216}, {"p": 0.615, "t": 1779062415}, {"p": 0.635, "t": 1779105614}, {"p": 0.635, "t": 1779148811}, {"p": 0.635, "t": 1779192030}, {"p": 0.645, "t": 1779235215}, {"p": 0.565, "t": 1779278418}, {"p": 0.565, "t": 1779321617}, {"p": 0.575, "t": 1779364812}, {"p": 0.545, "t": 1779408027}, {"p": 0.495, "t": 1779451215}, {"p": 0.545, "t": 1779494414}, {"p": 0.63, "t": 1779537611}, {"p": 0.645, "t": 1779580809}, {"p": 0.645, "t": 1779624010}, {"p": 0.54, "t": 1779667209}, {"p": 0.54, "t": 1779710409}, {"p": 0.54, "t": 1779753610}, {"p": 0.595, "t": 1779796816}, {"p": 0.585, "t": 1779840010}, {"p": 0.585, "t": 1779855184}];
+  var timelineEvents = [{"carver_feed_entry_id": "e519db6e-499e-47d5-bd65-2b45752fb6bd", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-08-01", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "CFTC suing Minnesota to block state crypto law suggests federal enforcement can resolve jurisdictional disputes, reducing pressure to enact CLARITY Act.", "pub_date": "2026-05-19", "regulator": "Commodity Futures Trading Commission", "relevance_score": 7, "timeline_shift": "later", "title": "CFTC Sues Minnesota to Block State Law", "urgency": 9.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9233-26"}, {"carver_feed_entry_id": "cf8e71e8-bafa-4e99-a87d-970abc43b039", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-20", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2026-05-06", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60706"}, {"carver_feed_entry_id": "f62675fd-1770-4df9-baaa-16d1b3ed2f9d", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-15", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Internal CFTC committee restructuring is administrative and unlikely to affect congressional passage or presidential signing of H.R.3633.", "pub_date": "2026-05-01", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "05.01.2026 - Restructure the Disciplinary Panel and Appeals Committee from standing committees to ad hoc committees convened on an as-needed basis. - GMNI", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60668"}, {"carver_feed_entry_id": "eda81361-6059-4204-9baf-1e4d4357f5b7", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-15T17:00:00", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC\u0027s block-trade rebate action for Kalshi is an administrative market move unrelated to passage of H.R.3633, so it gives no clear signal.", "pub_date": "2026-05-01", "regulator": "U.S. Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "05.01.2026 - Block Trade Rebate Program - KEX", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60685"}, {"carver_feed_entry_id": "d979475d-0b64-47f0-a15e-7590ba8bf095", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC\u0027s Coinbase market-maker program shows regulator activity on crypto markets but doesn\u0027t materially change likelihood of H.R.3633 passage.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Non-Crypto Market Maker Program - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60506"}, {"carver_feed_entry_id": "8d16364f-fa65-4bdd-9178-5d152e517ea7", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-04", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Routine CFTC action on Coinbase trading hours is background regulatory activity and does not materially change odds that H.R.3633 will be enacted.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Modifications to trading hours\u2026 - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60501"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+});
+</script>
 
 
 </body>

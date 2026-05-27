@@ -129,13 +129,13 @@
 <div class="flex flex-wrap items-center gap-3 mb-6">
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">YES</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-emerald-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">97¢</span>
+    <span class="text-[10px] text-emerald-200">payout $103/$100</span>
   </button>
   <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
     <span class="text-xs font-medium uppercase tracking-wider">NO</span>
-    <span class="text-xl font-bold tabular-nums">50¢</span>
-    <span class="text-[10px] text-rose-200">payout $200/$100</span>
+    <span class="text-xl font-bold tabular-nums">3¢</span>
+    <span class="text-[10px] text-rose-200">payout $3333/$100</span>
   </button>
 
   
@@ -153,7 +153,7 @@
     <span class="text-slate-500">500 contracts</span>
     <span class="text-slate-400">@ 90¢ avg</span>
     <span class="text-slate-300">·</span>
-    <span class="font-medium tabular-nums text-rose-600">-$200 (-44%)</span>
+    <span class="font-medium tabular-nums text-emerald-600">+$35 (+8%)</span>
   </div>
   
 </div>
@@ -162,9 +162,7 @@
 <div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
   <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
   
-  <div class="h-64 flex items-center justify-center text-sm text-slate-400 italic">
-    Price data not yet available. Run <code class="bg-slate-100 px-1 rounded">make pull-prices</code> to fetch.
-  </div>
+  <div id="price-chart" class="h-64"></div>
   
 </div>
 
@@ -714,6 +712,123 @@ Market currently prices a 97% probability of YES.
   </footer>
 
   
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.795, "t": 1768953629}, {"p": 0.81, "t": 1768996855}, {"p": 0.81, "t": 1769040045}, {"p": 0.835, "t": 1769126446}, {"p": 0.82, "t": 1769212846}, {"p": 0.805, "t": 1769256045}, {"p": 0.83, "t": 1769299250}, {"p": 0.865, "t": 1769385648}, {"p": 0.89, "t": 1769428843}, {"p": 0.8065, "t": 1769472042}, {"p": 0.8065, "t": 1769515228}, {"p": 0.8065, "t": 1769558430}, {"p": 0.8135, "t": 1769601632}, {"p": 0.827, "t": 1769644846}, {"p": 0.827, "t": 1769688037}, {"p": 0.827, "t": 1769731235}, {"p": 0.819, "t": 1769774452}, {"p": 0.828, "t": 1769817636}, {"p": 0.829, "t": 1769860842}, {"p": 0.828, "t": 1769904044}, {"p": 0.828, "t": 1769947238}, {"p": 0.829, "t": 1769990435}, {"p": 0.829, "t": 1770033639}, {"p": 0.831, "t": 1770076839}, {"p": 0.829, "t": 1770120046}, {"p": 0.829, "t": 1770163247}, {"p": 0.8285, "t": 1770206439}, {"p": 0.829, "t": 1770249632}, {"p": 0.83, "t": 1770292845}, {"p": 0.8155, "t": 1770336042}, {"p": 0.829, "t": 1770379245}, {"p": 0.829, "t": 1770422452}, {"p": 0.8055, "t": 1770465649}, {"p": 0.7995, "t": 1770508847}, {"p": 0.829, "t": 1770595246}, {"p": 0.806, "t": 1770681649}, {"p": 0.8055, "t": 1770768059}, {"p": 0.8065, "t": 1770811250}, {"p": 0.8055, "t": 1770854457}, {"p": 0.805, "t": 1770897648}, {"p": 0.805, "t": 1770940848}, {"p": 0.794, "t": 1770984054}, {"p": 0.8105, "t": 1771027254}, {"p": 0.829, "t": 1771070459}, {"p": 0.829, "t": 1771113655}, {"p": 0.813, "t": 1771286457}, {"p": 0.8105, "t": 1771545658}, {"p": 0.8175, "t": 1771588836}, {"p": 0.847, "t": 1771632039}, {"p": 0.815, "t": 1771675239}, {"p": 0.952, "t": 1771718439}, {"p": 0.996, "t": 1771761650}, {"p": 0.928, "t": 1771804847}, {"p": 0.9265, "t": 1771848054}, {"p": 0.9285, "t": 1771891248}, {"p": 0.9275, "t": 1771977655}, {"p": 0.917, "t": 1772064049}, {"p": 0.914, "t": 1772150454}, {"p": 0.863, "t": 1772236851}, {"p": 0.8825, "t": 1772280009}, {"p": 0.8105, "t": 1772366455}, {"p": 0.81, "t": 1772452854}, {"p": 0.81, "t": 1772496059}, {"p": 0.8125, "t": 1772582458}, {"p": 0.8275, "t": 1772625653}, {"p": 0.8215, "t": 1772668855}, {"p": 0.9335, "t": 1772755253}, {"p": 0.9475, "t": 1772798455}, {"p": 0.961, "t": 1772841658}, {"p": 0.962, "t": 1772928046}, {"p": 0.963, "t": 1772971247}, {"p": 0.964, "t": 1773014443}, {"p": 0.965, "t": 1773057642}, {"p": 0.967, "t": 1773100852}, {"p": 0.9675, "t": 1773144056}, {"p": 0.9705, "t": 1773187256}, {"p": 0.965, "t": 1773273658}, {"p": 0.9885, "t": 1773662442}, {"p": 0.9885, "t": 1773705649}, {"p": 0.9885, "t": 1773748853}, {"p": 0.9885, "t": 1773792051}, {"p": 0.8305, "t": 1773921658}, {"p": 0.831, "t": 1773964856}, {"p": 0.829, "t": 1774008052}, {"p": 0.8295, "t": 1774051255}, {"p": 0.8295, "t": 1774094448}, {"p": 0.829, "t": 1774137654}, {"p": 0.8275, "t": 1774224046}, {"p": 0.8275, "t": 1774267244}, {"p": 0.8265, "t": 1774310441}, {"p": 0.8255, "t": 1774353648}, {"p": 0.826, "t": 1774396849}, {"p": 0.826, "t": 1774440052}, {"p": 0.8275, "t": 1774483253}, {"p": 0.8795, "t": 1774569644}, {"p": 0.8385, "t": 1774612842}, {"p": 0.827, "t": 1774656047}, {"p": 0.8285, "t": 1774699247}, {"p": 0.827, "t": 1774742451}, {"p": 0.701, "t": 1774872059}, {"p": 0.859, "t": 1775131257}, {"p": 0.9115, "t": 1775649630}, {"p": 0.9125, "t": 1775692827}, {"p": 0.8995, "t": 1776816009}, {"p": 0.905, "t": 1776859209}, {"p": 0.905, "t": 1776902405}, {"p": 0.9025, "t": 1776945607}, {"p": 0.931, "t": 1776988818}, {"p": 0.9195, "t": 1777032004}, {"p": 0.9275, "t": 1777075210}, {"p": 0.9295, "t": 1777118404}, {"p": 0.927, "t": 1777161604}, {"p": 0.9405, "t": 1777204804}, {"p": 0.9325, "t": 1777248004}, {"p": 0.92, "t": 1777291215}, {"p": 0.925, "t": 1777334404}, {"p": 0.925, "t": 1777377603}, {"p": 0.9335, "t": 1777420803}, {"p": 0.934, "t": 1777464004}, {"p": 0.915, "t": 1777507205}, {"p": 0.9095, "t": 1777550404}, {"p": 0.9485, "t": 1777593604}, {"p": 0.907, "t": 1777636806}, {"p": 0.9085, "t": 1777680004}, {"p": 0.908, "t": 1777723204}, {"p": 0.9005, "t": 1777766406}, {"p": 0.898, "t": 1777809606}, {"p": 0.8965, "t": 1777852804}, {"p": 0.9275, "t": 1777896004}, {"p": 0.908, "t": 1777939217}, {"p": 0.899, "t": 1777982404}, {"p": 0.9005, "t": 1778025606}, {"p": 0.9075, "t": 1778068804}, {"p": 0.9065, "t": 1778112005}, {"p": 0.913, "t": 1778155217}, {"p": 0.9075, "t": 1778198403}, {"p": 0.912, "t": 1778241603}, {"p": 0.901, "t": 1778284822}, {"p": 0.901, "t": 1778328007}, {"p": 0.8985, "t": 1778371207}, {"p": 0.899, "t": 1778414406}, {"p": 0.899, "t": 1778457610}, {"p": 0.901, "t": 1778500810}, {"p": 0.9005, "t": 1778544009}, {"p": 0.9005, "t": 1778587208}, {"p": 0.9005, "t": 1778630411}, {"p": 0.8985, "t": 1778673610}, {"p": 0.8965, "t": 1778716814}, {"p": 0.889, "t": 1778760009}, {"p": 0.789, "t": 1778803209}, {"p": 0.807, "t": 1778846411}, {"p": 0.8425, "t": 1778889616}, {"p": 0.85, "t": 1778932812}, {"p": 0.856, "t": 1778976026}, {"p": 0.7385, "t": 1779019206}, {"p": 0.827, "t": 1779062407}, {"p": 0.8325, "t": 1779105606}, {"p": 0.9255, "t": 1779148805}, {"p": 0.924, "t": 1779192019}, {"p": 0.9305, "t": 1779235208}, {"p": 0.95, "t": 1779278405}, {"p": 0.9435, "t": 1779321605}, {"p": 0.9395, "t": 1779364808}, {"p": 0.9645, "t": 1779408009}, {"p": 0.9645, "t": 1779451205}, {"p": 0.9645, "t": 1779494406}, {"p": 0.9645, "t": 1779537607}, {"p": 0.9645, "t": 1779580804}, {"p": 0.9645, "t": 1779624004}, {"p": 0.9645, "t": 1779667204}, {"p": 0.9655, "t": 1779710403}, {"p": 0.9685, "t": 1779753604}, {"p": 0.9695, "t": 1779796804}, {"p": 0.9695, "t": 1779840005}, {"p": 0.9695, "t": 1779855183}];
+  var timelineEvents = [{"carver_feed_entry_id": "b5a28d8c-5c8e-4c8b-ae97-a750e3b773a2", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "May 19, 2026", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "FTC chair advising compliance shows agency activity but gives no direct evidence that SCOTUS has ruled the President can remove FTC commissioners.", "pub_date": "2026-05-11", "regulator": "Federal Trade Commission \u2014 Office of the Chairman", "relevance_score": 1, "timeline_shift": "none", "title": "FTC Chairman Ferguson\u202fAdvises Companies to Comply with the Take It Down Act", "urgency": 10.0, "url": "https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-chairman-ferguson-advises-companies-comply-take-it-down-act"}, {"carver_feed_entry_id": "e4bbb28e-b913-466d-9b88-524a39c12ec3", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 4.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "FTC consumer guidance on scams is unrelated to the Supreme Court removal case and does not affect the chance of a pro\u2011Trump ruling.", "pub_date": "2026-05-04", "regulator": "Federal Trade Commission", "relevance_score": 0, "timeline_shift": "none", "title": "Protect your business from scams and online threats this National Small Business Week", "urgency": 10.0, "url": "https://www.ftc.gov/business-guidance/blog/2026/05/protect-your-business-scams-online-threats-national-small-business-week"}, {"carver_feed_entry_id": "2731007a-aa75-4839-88ef-f70aca813f0e", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-20", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "FTC workshop on merger remedies is routine agency activity unrelated to the Supreme Court\u0027s removal\u2011power case; no material effect on YES odds.", "pub_date": "2026-05-01", "regulator": "Federal Trade Commission \u2014 Bureau of Competition", "relevance_score": 1, "timeline_shift": "none", "title": "FTC to Host Workshop on \u201cLitigate the Fix\u201d Merger Remedy Proposals", "urgency": 9.0, "url": "https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-host-workshop-litigate-fix-merger-remedy-proposals"}, {"carver_feed_entry_id": "2abef73e-fa45-441e-899f-27aa3482a81a", "comment_deadline": "2026-04-13", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "FTC issuing a rule shows the agency is operating but provides no meaningful evidence on whether SCOTUS will permit presidential removal of commissioners \u2014 neutral.", "pub_date": "2026-03-12", "regulator": "Federal Trade Commission", "relevance_score": 2, "timeline_shift": "none", "title": "Rule Concerning the Use of Prenotification Negative Option Plans", "urgency": 9.0, "url": "https://www.ftc.gov/policy/public-comments/rule-concerning-use-prenotification-negative-option-plans-2"}, {"carver_feed_entry_id": "d397024a-7896-4a20-b452-c7e0f36ee0e5", "comment_deadline": "2026-04-13", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "FTC rule on rental-housing fees is routine agency action and doesn\u0027t materially inform whether SCOTUS will allow at\u2011will removal of FTC commissioners.", "pub_date": "2026-03-12", "regulator": "Federal Trade Commission", "relevance_score": 1, "timeline_shift": "none", "title": "Rule on Unfair or Deceptive Rental Housing Fee Practices", "urgency": 9.0, "url": "https://www.ftc.gov/policy/public-comments/rule-unfair-or-deceptive-rental-housing-fee-practices"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+});
+</script>
 
 
 </body>
