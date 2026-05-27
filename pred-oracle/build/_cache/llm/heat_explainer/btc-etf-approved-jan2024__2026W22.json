@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 139.78\nDelta_7d: -149.86\nTop records:\n- 2024-01-01 MSRB Update: Winter 2024\n- 2024-01-01 2025 Open Data Plan (PDF)\n- 2023-12-31 2023 OIAD Annual Report (PDF)\n- 2023-12-13 Standards for Covered Clearing Agencies for U.S. Treasury Securities and Applica\n- 2023-11-30 MSRB Establishes 2024 Annual Rate Card Fees for Dealers and Municipal Advisors\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "MSRB Winter 2024 update and 2024 rate\u2011card fee announcement",
+      "Release of the 2025 Open Data Plan",
+      "New standards for covered clearing agencies for U.S. Treasury securities"
+    ],
+    "explainer": "Heat is high due to clustered end\u2011of\u2011year regulatory releases\u2014MSRB updates and 2024 fee changes, a 2025 Open Data Plan, and new Treasury clearing\u2011agency standards\u2014despite a recent drop."
+  }
+}

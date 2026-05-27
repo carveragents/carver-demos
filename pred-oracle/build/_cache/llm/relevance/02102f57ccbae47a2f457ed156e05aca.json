@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: SCOTUS rules Trump can fire FTC commissioners?\nResolution criteria: This market will resolve to 'Yes' if the U.S. Supreme Court rules in Trump v.\nSlaughter (or a consolidated companion case) that the President may remove Federal\nTrade Commission commissioners without cause, by December 31, 2026, 11:59 PM ET.\nResolution requires a majority opinion from the Supreme Court. Otherwise, this\nmarket will resolve to 'No'.\n\nBackground: President Trump fired FTC Commissioners Rebecca Kelly Slaughter and\nAlvaro Bedoya in early 2025. The case challenges the 1935 Humphrey's Executor\nprecedent, which prohibits presidents from removing commissioners of independent\nagencies without cause. A ruling for Trump would fundamentally restructure the\nFTC's independence from executive control and reshape antitrust enforcement authority.\n\nThe Supreme Court's term ends in June 2026; a decision is expected before then.\nMarket currently prices a 97% probability of YES.\n\nConditions:\n  A: SCOTUS majority in Trump v. Slaughter \u2014 By Dec 31, 2026, SCOTUS issues a majority opinion in Trump v. Slaughter holding the President may remove FTC commissioners without cause.\n  B: SCOTUS majority in companion case \u2014 By Dec 31, 2026, SCOTUS issues a majority opinion in a consolidated companion case holding the President may remove FTC commissioners without cause.\nSettlement entities: ['Supreme Court of the United States', 'Federal Trade Commission', 'Department of Justice', 'Office of the Solicitor General']\n\nRecord title: OCC Issues Two Final Rules on Preemption of State Interest-on-Escrow Laws\nRecord date: 2026-05-15\nRecord regulator: Office of the Comptroller of the Currency\nRecord topic: Office of the Comptroller of the Currency (OCC) - USA [occ.treas]\nRecord entities: ['Aaron D. Ford', 'Aaron M. Frey', 'Alex Cantero', 'American Association of Residential Mortgage Regulators', 'American Bankers Association', 'Anthony G. Brown', 'Ashley Moody', 'Austin Knudsen', 'Bank of America', 'Brenna Bird', 'Brian L. Schwalb', 'Chamber of Commerce of the United States of America', 'Charity R. Clark', 'Christopher M. Carr', 'Conference of State Bank Supervisors', 'Dana Nessel', 'Deepak Gupta', 'Ellen F. Rosenblum', 'Eric H. Wessan', 'Federal Savings Associations', 'Gentner Drummond', 'George Washington University Law School', 'Goodwin Procter LLP', 'Gupta Wessler LLP', 'H. Rodgin Cohen', 'Hassan Zavareei', 'Ilana Harwayne-Gidansky', 'Jouret LLC', 'Jason S. Miyares', 'Jonathan E. Taylor', 'Jonathan M. Streisfeld', 'Jonathan D. Urick', 'Justin Wiseman', 'Kathleen Jennings', 'Keith Ellison', 'Kopelowitz Ostrow Ferguson Weiselberg Gilbert', 'Kwame Raoul', 'Letitia James', 'Lisa S. Blatt', 'Matthew A. Schwartz', 'Matthew J. Platkin', 'Matthew Lambert', 'Michael T. Hilgers', 'Mortgage Bankers Association', 'Marty J. Jackley', 'National Banks', 'Peter F. Neronha', 'Philip J. Weiser', 'Robert W. Ferguson', 'Rob Bonta', 'Saul R. Hymes', 'Sean D. Reyes', 'Stephanie Collins', 'Stefan L. Jouret', 'Sullivan & Cromwell LLP', 'Tabitha Edgens', 'The American Bankers Association', 'The Bank Policy Institute', 'Theodore E. Rokita', 'Thomas Pinder', 'Todd S. Garber', 'U.S. Chamber Litigation Center', 'U.S. Court of Appeals for the Second Circuit', 'U.S. Virgin Islands', 'United States', 'Wolf Haldenstein Adler Freeman & Herz LLP', 'Williams & Connolly LLP', 'Wyoming', 'Guam']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "OCC's interest-on-escrow preemption rules concern banking/state law issues and do not affect the Supreme Court's removal-of-FTC-commissioners case.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

@@ -40,3 +40,9 @@ retrospectives:
     platform: polymarket
   - id: tiktokban-25apr30
     platform: kalshi
+  - id: eth-etf-approved-may2024
+    platform: polymarket
+  - id: btc-etf-approved-jan2024
+    platform: polymarket
+  - id: cz-sentencing-apr2024
+    platform: polymarket

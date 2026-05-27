@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (7 events):\n- 2026-04-16 [background] FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief \u2014 Federal Trade Commission \u2014 Bureau of Consumer Protection \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-04-09 [background] Complaint for Permanent Injunction, Monetary Judgment, and Other Relief \u2014 FTC's Apr 9 complaint against StubHub shows the agency is still enforcing rules but provides no direct evidence on the Supreme Court removal issue.\n- 2026-03-24 [background] Air AI and its Owners will be Banned from Marketing Business Opportunities to Settle FTC Charges the Company Misled Many Entrepreneurs and Small Businesses \u2014 FTC enforcement action shows the agency remains active but does not affect the Supreme Court's legal question on presidential removal, so no directional effect.\n- 2026-03-10 [background] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Intimidate Scientific Organizations \u2014 State AGs oppose alleged Trump admin intimidation of scientific groups; mentions the FTC but provides no information bearing on the SCOTUS removal question.\n- 2026-02-12 [background] FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter \u2014 Federal Trade Commission \u2014 Bureau of Competition \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-01-09 [background] Early Termination Notices \u2014 FTC 'Early Termination Notices' are administrative filings with DOJ/FTC and provide no clear signal about the Supreme Court's decision on removal authority.\n- 2025-12-03 [background] FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger \u2014 FTC ordering Boeing divestitures is routine enforcement background about FTC activity and does not meaningfully affect the SCOTUS removal ruling.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "From Dec 2025 to Apr 2026, the FTC remains active with merger remedies, consent orders, consumer-protection actions, and administrative filings, none of which bear on presidential removal authority. These are background signals with no directional effect; the key legal question remains pending as the market awaits a Supreme Court ruling on whether Trump can fire FTC commissioners."
+  }
+}

@@ -1,0 +1,49 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "eth-etf-approved-may2024"
+
+title: "Will the SEC approve a spot Ethereum ETF by May 31, 2024?"
+resolution_criteria: |
+  Resolves YES if any spot Ethereum ETF receives approval from the U.S. Securities
+  and Exchange Commission by May 31, 2024, 11:59 PM ET. Approval means an effective
+  SEC order permitting listing on NYSE Arca, Cboe BZX, or NASDAQ. Resolves NO otherwise.
+
+listed_at: "2024-01-09"
+resolved_at: "2024-05-24"
+status: "resolved"
+resolution_outcome: "YES"
+condition_id: '0x4fdc8c72f3013001dccc152e318cb3fcb16da16c741816c3078a42947702ece5'
+clob_token_ids:
+  - '78309444736185544262992162576931418260050379456195987873071545690014436803266'
+  - '23628364072962630623049997607797594706315014345591676763062815858513969547631'
+polymarket_slug: 'ethereum-etf-approved-by-may-31'
+
+settlement_entities:
+  - "U.S. Securities and Exchange Commission"
+  - "Division of Trading and Markets"
+  - "Division of Investment Management"
+  - "BlackRock"
+  - "Fidelity Investments"
+  - "VanEck"
+  - "Grayscale Investments"
+  - "Bitwise Asset Management"
+  - "Invesco"
+  - "Franklin Templeton"
+
+source_urls:
+  - "https://www.sec.gov/about/divisions-offices/division-trading-markets"
+  - "https://en.wikipedia.org/wiki/Ethereum"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Contract opened Jan 9, 2024 at ~75% YES probability.
+# - Market declined steadily Jan–Apr 2024 as SEC delayed and appeared hostile.
+# - Crashed to historic low of 5.5% on May 5–6, 2024 after reports that SEC
+#   staff had given a negative recommendation to commissioners.
+# - SEC commissioners overruled staff and approved eight spot ETH ETF rule
+#   changes on May 23, 2024 — price rocketed from ~10% to 99% in one day.
+# - The Carver corpus tracked SEC enforcement actions (against crypto fraud,
+#   not against legitimate ETF applicants) throughout this window, providing
+#   an informational edge during the market's extreme mispricing at 5.5%.

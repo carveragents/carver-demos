@@ -1,0 +1,48 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "cz-sentencing-apr2024"
+
+title: "Will CZ (Changpeng Zhao) be sentenced to prison?"
+resolution_criteria: |
+  Resolves YES if Changpeng Zhao receives any custodial jail or prison sentence
+  in "United States v. Changpeng Zhao" by December 31, 2024, 11:59 PM ET.
+  Resolves NO if the sentence is probation, fines, or home confinement only.
+  Resolution based on official court records or credible news reporting consensus.
+
+listed_at: "2024-02-13"
+resolved_at: "2024-04-30"
+status: "resolved"
+resolution_outcome: "YES"
+condition_id: ''
+clob_token_ids:
+  - '2614849855220389172232950168231802677046226163119300346809673651650012515270'
+  - '76682133718557944459190079774028107119809345103803662348578541903126228474229'
+polymarket_slug: 'cz-sentenced-to-prison'
+
+settlement_entities:
+  - "U.S. Department of Justice"
+  - "Commodity Futures Trading Commission"
+  - "Financial Crimes Enforcement Network"
+  - "Binance"
+  - "Changpeng Zhao"
+
+source_urls:
+  - "https://www.justice.gov/opa/pr/binance-and-ceo-plead-guilty-federal-charges"
+  - "https://en.wikipedia.org/wiki/Changpeng_Zhao"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Nov 2023: Binance and CZ pled guilty to BSA violations; DOJ and CFTC
+#   were co-litigants. Binance paid $4.3B in penalties (largest US financial
+#   crime settlement at the time).
+# - Feb 2024: Sentencing postponed to Apr 30, 2024 after DOJ filed 3-year
+#   recommendation; defense argued for probation based on cooperation.
+# - Market opened at 49% YES (prison) reflecting uncertainty over judicial
+#   discretion, then climbed to ~90% as DOJ filings showed severity.
+# - Apr 30, 2024: Judge Richard Jones sentenced CZ to 4 months in prison —
+#   far below DOJ's 3-year ask but above the defense's zero-prison request.
+# - Carver corpus tracked CFTC enforcement orders and DOJ filings through
+#   the Nov 2023–Apr 2024 window, capturing the regulatory enforcement
+#   posture that informed the severity of the sentencing recommendation.

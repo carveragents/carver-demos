@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 83.92\nDelta_7d: -81.8\nTop records:\n- 2026-05-13 Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unli\n- 2026-05-13 Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unli\n- 2026-04-01 Attorney General Bonta Urges Federal Crackdown on \u201cTranq\u201d as Xylazine Abuse Surg\n- 2026-01-28 2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. D\n- 2025-12-30 AG Campbell Secures Agreement With Trump Administration Preventing Further Delay\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Duplicate press releases announcing felony charges from a joint investigation",
+      "AG urging federal crackdown on xylazine ('tranq') amid an abuse surge",
+      "Multistate coalition actions and a federal agreement drawing public attention"
+    ],
+    "explainer": "Critical heat is driven by recent high\u2011visibility AG activity \u2014 repeated felony\u2011charge announcements from a joint probe, renewed calls to crack down on xylazine ('tranq'), and multistate legal actions."
+  }
+}

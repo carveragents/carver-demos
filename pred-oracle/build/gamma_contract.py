@@ -186,6 +186,7 @@ def _build_contract_dto(
         "expires_at": "",
         "resolved_at": retro.get("resolved_at", ""),
         "resolution_criteria": retro.get("resolution_criteria", ""),
+        "resolution_outcome": retro.get("resolution_outcome", ""),
         "settlement_entities": [{"name": e, "role": _entity_role(e)} for e in settlement],
         "settlement_entities_flat": settlement,
         "source_urls": retro.get("source_urls", []),

@@ -1,0 +1,60 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Marijuana rescheduled by December 31, 2026?\nResolution criteria: This market will resolve to 'Yes' if marijuana is rescheduled down from Schedule I\nto any other level (or is unscheduled completely) by the Drug Enforcement Agency of\nthe United States by December 31, 2026, 11:59 PM ET. Otherwise, this market will\nresolve to 'No'.\n\nThe primary resolution source will be official information from the U.S. government,\nhowever a consensus of credible reporting will also be used.\n\nNote: In April 2026, FDA-approved marijuana products and state-licensed medical\ncannabis were moved to Schedule III under President Trump's executive order. This\nmarket specifically tracks whether recreational marijuana (currently Schedule I) is\nrescheduled. If the DEA reschedules only specific cannabinoids or derivatives without\nreclassifying marijuana as a whole, that does not qualify.\n\nA DEA administrative hearing on full rescheduling is scheduled to begin June 29, 2026.\n\nSettlement entities: ['Drug Enforcement Administration', 'Department of Health and Human Services', 'Department of Justice', 'Food and Drug Administration', 'White House Office of National Drug Control Policy']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "DEA lowers schedule for marijuana",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action reclassifies marijuana (the whole plant/substance, i.e., recreational marijuana) from Schedule I to II\u2013V. Not satisfied by rescheduling only cannabinoids/derivatives."
+      },
+      {
+        "id": "B",
+        "label": "DEA unschedules marijuana",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action removes marijuana entirely from the Controlled Substances Act schedules (unscheduled)."
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 331.28\nDelta_7d: -279.55\nTop records:\n- 2026-05-19 CFTC Sues Minnesota to Block State Law\n- 2026-05-18 Rescission of Policy Regarding Denials in Settlements of Enforcement Actions\n- 2026-05-13 CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures \n- 2026-05-07 GMNI - Liquidity Incentive Program - 05/07/2026\n- 2026-05-06 CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026\n- 2026-04-16 COIN | Crypto Market Maker Program - 04/16/2026\n- 2026-04-16 COIN | Broker Program - 04/16/2026\n- 2026-04-13 Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces \n- 2026-04-10 NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026\n- 2026-04-10 Permitted Payment Stablecoin Issuer Anti-Money Laundering/Countering the Financi\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Enforcement & litigation: CFTC suit and rescission of settlement-denial policy"
+    ],
+    "explainer": "Critical heat driven by concentrated enforcement and rulemaking in crypto/payments \u2014 major lawsuits and settlement-policy changes, AML/stablecoin NPRMs, and exchange/market-maker program shifts, though down vs last week."
+  }
+}

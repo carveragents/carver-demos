@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: US grants license for new nuclear reactor in 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-01 [background] Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines \u2014 California AG's action targets oil pipeline approvals, unrelated to NRC combined-license process, so it doesn't affect COL issuance odds.\n- 2026-05-01 [background] Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026 \u2014 California AG action on oil transport is unrelated to NRC combined-license issuance and does not affect COL odds.\n- 2026-04-30 [background] Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information \u2014 Ontario Securities Commission exemptions are unrelated to U.S. NRC combined licenses and have no bearing on COL issuance probability.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review \u2014 Multi-state AG opposition to federal exemption of environmental review raises legal and political hurdles, lowering odds and likely delaying an NRC COL.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026 \u2014 California AG's opposition to federal exemptions could block expedited reviews and make an NRC COL by end-2026 less likely.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Since March 2026, multistate AGs led by California AG Bonta oppose federal efforts to exempt new/experimental reactors from environmental review, creating legal and political headwinds that could delay NRC combined-license approvals this year. Other listed items (Ontario securities rule and CA oil-pipeline case) are unrelated and don\u2019t affect odds. NRC licensing timelines and any court outcomes on the exemptions remain pending."
+  }
+}
