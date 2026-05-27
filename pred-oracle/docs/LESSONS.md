@@ -16,3 +16,18 @@ When dispatching subagents via the `Agent` tool, explicitly set the `model` para
 | Final cross-cutting review of a whole stage / branch | `opus` |
 
 Per `superpowers:subagent-driven-development` skill: *"Use the least powerful model that can handle each role to conserve cost and increase speed."* Bias toward Sonnet when unsure rather than Haiku; bias toward Opus for any role where misjudgment cascades.
+
+## Playwright screenshot paths — 2026-05-26
+
+Always save Playwright `browser_take_screenshot` output to `build/screenshots/<descriptive-name>.png`. Never use a bare filename (resolves to CWD) or `../` paths (scatters files outside the project root).
+
+```python
+# Good
+filename="build/screenshots/ac26-calendar-panel.png"
+
+# Bad — lands in CWD or parent directory
+filename="ac26-calendar-panel.png"
+filename="../calendar-panel.png"
+```
+
+`build/screenshots/` is gitignored via the `*.png` rule in `.gitignore`. The directory is committed as an empty placeholder.

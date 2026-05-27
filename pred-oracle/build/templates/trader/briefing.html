@@ -84,12 +84,21 @@
   </button>
 
   {% if position %}
+  {% set pos_cents = yes_cents if position.side == 'YES' else no_cents %}
+  {% set cost_basis = position.size * position.entry_price %}
+  {% set current_value = position.size * pos_cents / 100 %}
+  {% set pnl = current_value - cost_basis %}
+  {% set pnl_pct = (pnl / cost_basis * 100)|round(0)|int if cost_basis > 0 else 0 %}
+  {% set pnl_sign = '+' if pnl >= 0 else '-' %}
+  {% set pnl_color = 'text-emerald-600' if pnl >= 0 else 'text-rose-600' %}
   <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
     <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
     <span class="text-slate-700">Your position:</span>
     <span class="font-semibold">{{ position.side }}</span>
     <span class="text-slate-500">{{ position.size }} contracts</span>
     <span class="text-slate-400">@ {{ (position.entry_price * 100)|round(0)|int }}¢ avg</span>
+    <span class="text-slate-300">·</span>
+    <span class="font-medium tabular-nums {{ pnl_color }}">{{ pnl_sign }}${{ pnl|abs|round(0)|int }} ({{ pnl_sign }}{{ pnl_pct|abs }}%)</span>
   </div>
   {% endif %}
 </div>
