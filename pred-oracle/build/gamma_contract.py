@@ -91,6 +91,28 @@ def _window_for(
     return (start, end)
 
 
+_TIMELINE_MIN_RELEVANCE: float = 3.0
+
+
+def _is_timeline_substantive(rec: dict[str, Any]) -> bool:
+    """Looser substantive filter for timeline building.
+
+    The global is_substantive() requires relevance >= 5.0, which drops
+    enforcement actions, proposed rules, and press releases that carry
+    useful regulatory context. Timeline records pass through LLM relevance
+    scoring downstream, so a lower floor here is safe.
+    """
+    if rec.get("update_type") in ("website error", "other"):
+        return False
+    if _fields.relevance_score(rec) < _TIMELINE_MIN_RELEVANCE:
+        return False
+    if not (rec.get("title") or "").strip():
+        return False
+    if not (rec.get("link") or "").strip():
+        return False
+    return True
+
+
 def _build_timeline(
     settlement_entities: list[str],
     corpus: list[dict[str, Any]],
@@ -102,9 +124,12 @@ def _build_timeline(
     matches: list[tuple[dict[str, Any], str]] = []
     seen_titles: set[str] = set()
     for rec in corpus:
-        if not _heat.is_substantive(rec):
+        if not _is_timeline_substantive(rec):
             continue
         rec_entities = rec.get("entities") or []
+        topic_name = rec.get("topic_name") or ""
+        if topic_name:
+            rec_entities = rec_entities + [topic_name]
         pub_iso = _fields.pub_date_iso(rec)
         pub = _parse_date(pub_iso)
         if pub is None:

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: US grants license for new nuclear reactor in 2026?\nKind: active\nTimeline (5 events):\n- 2026-04-02 [background] Attorney General James Secures Final Victory Protecting State Energy Programs \u2014 State AG victory protects state energy programs; unrelated to NRC COL approvals, so it doesn't materially change chances or timing of an NRC combined license.\n- 2026-03-31 [background] New England Governors Announce Commitment To Explore Advanced Nuclear Energy \u2014 Office of the Governor \u2014 Connecticut Department of Banking: tangential to resolution, no directional effect.\n- 2026-03-16 [background] Attorney General Bonta Celebrates Major Appellate Victory in Challenge to President Trump\u2019s Sweeping Federal Funding Freeze \u2014 California Attorney General's Office \u2014 Office of the Attorney General, California Department of Justice: tangential to resolution, no directional effect.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review \u2014 Multi-state AG opposition to federal exemption of environmental review raises legal and political hurdles, lowering odds and likely delaying an NRC COL.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026 \u2014 California AG's opposition to federal exemptions could block expedited reviews and make an NRC COL by end-2026 less likely.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "On Mar 5, 2026, state AGs led by California oppose federal moves to exempt new/experimental reactors from environmental review, adding legal/political hurdles and likely delaying NRC combined-license approvals in 2026. Later AG and governor actions are tangential and don\u2019t move timing. Pending are the fate of the exemption effort, any litigation, and whether any COL can clear NRC review by year-end."
+  }
+}

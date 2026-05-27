@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will CZ (Changpeng Zhao) be sentenced to prison?\nKind: retrospective\nTimeline (5 events):\n- 2024-03-26 [background] Treasury News Release: Financial Action Task Force Highlights Treasury\u2019s Efforts to Counter Illicit Finance \u2014 U.S. Department of the Treasury \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.\n- 2024-02-14 [background] Testimony of Director of the Financial Crimes Enforcement Network Andrea Gacki Before the Committee on Financial Services, U.S. House of Representatives \u2014 FinCEN director's testimony highlights AML oversight of Binance but only provides background context and does not directly change odds of CZ receiving a custodial sentence.\n- 2024-02-14 [background] Statement of FinCEN Director Andrea Gacki before the House Committee on Financial Services \u2014 FinCEN director's testimony discusses AML and Binance but doesn't report CZ criminal sentencing or compel custody\u2014background policy context only.\n- 2024-02-12 [background] READOUT: Treasury Officials Visit Mexico to Further Collaboration on Illicit Finance \u2014 Financial Crimes Enforcement Network \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.\n- 2023-11-21 [background] In the Matter of Binance Holdings Limited, et. al. d/b/a Binance and Binance.com \u2014 FinCEN's enforcement action is regulatory background on Binance and does not directly affect whether CZ receives a custodial sentence.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Regulatory pressure centered on AML/illicit finance oversight: FinCEN\u2019s 2023 Binance action and early-2024 Treasury/FinCEN statements and FATF notes underscored compliance failures but were largely background with no clear directional impact on odds. Despite the mainly contextual signals, CZ ultimately pled guilty and was sentenced to four months in U.S. federal prison."
+  }
+}

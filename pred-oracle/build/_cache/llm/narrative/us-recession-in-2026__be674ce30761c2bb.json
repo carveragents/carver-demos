@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the US enter a recession in 2026?\nKind: active\nTimeline (5 events):\n- 2026-03-19 [background] Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations \u2014 Federal Deposit Insurance Corporation \u2014 Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.\n- 2026-03-19 [background] Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets \u2014 FDIC capital-rule could affect bank lending and financial stability but is an indirect, small signal on 2026 recession odds.\n- 2026-03-19 [background] Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations \u2014 Office of the Comptroller of the Currency \u2014 Office of the Comptroller of the Currency: tangential to resolution, no directional effect.\n- 2026-03-17 [background] Michelle W Bowman: Capital rules for the real economy \u2014 Board of Governors of the Federal Reserve System \u2014 Supervision \u2014 Bank for International Settlements: tangential to resolution, no directional effect.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 U.S. Department of the Treasury \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Regulatory developments in late 2025 to March 2026 - FDIC/OCC capital rules and a Fed speech, plus Treasury sanctions on Russian oil - are background with minimal, indirect impact on 2026 recession odds. These may marginally influence bank lending and stability but do not directly drive resolution. The market remains active, awaiting 2026 macro data and any NBER assessment to determine if a recession occurs."
+  }
+}
