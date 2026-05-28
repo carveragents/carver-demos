@@ -167,21 +167,36 @@
               <span class="font-medium text-slate-900 text-sm">{{ cond.label }}</span>
               <span class="flex items-center gap-2 text-xs tabular-nums">
                 {% if cond.bullish_count is defined and cond.bearish_count is defined %}
-                <span class="text-emerald-600">↑ {{ cond.bullish_count }}</span>
-                <span class="text-rose-500">↓ {{ cond.bearish_count }}</span>
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ {{ cond.bullish_count }}</span>
+                  <span class="text-rose-500">↓ {{ cond.bearish_count }}</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                {% if (cond.background_bullish_count or 0) + (cond.background_bearish_count or 0) > 0 %}
+                <span class="text-slate-400">·</span>
+                <span class="text-slate-500" title="Background regulatory events with directional read but not directly tied to this condition">
+                  <span class="text-emerald-500/80">↑ {{ cond.background_bullish_count|default(0) }}</span>
+                  <span class="text-rose-400/80">↓ {{ cond.background_bearish_count|default(0) }}</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">background</span>
+                </span>
+                {% endif %}
                 {% elif cond_progress is not none %}
                 <span class="text-slate-500">{{ cond_progress }}%</span>
                 {% endif %}
               </span>
             </div>
             {% if cond_progress is not none %}
+            {% set b_direct = cond.get('bullish_count', 0) %}
+            {% set r_direct = cond.get('bearish_count', 0) %}
+            {% set b_bg = cond.get('background_bullish_count', 0) %}
+            {% set r_bg = cond.get('background_bearish_count', 0) %}
+            {% set total_dir = b_direct + r_direct + b_bg + r_bg %}
             <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden">
-              {% set b_pct = cond.get('bullish_count', 0) %}
-              {% set r_pct = cond.get('bearish_count', 0) %}
-              {% set total_dir = b_pct + r_pct %}
               {% if total_dir > 0 %}
-              <div class="bg-emerald-500 h-1.5" style="width: {{ (b_pct / total_dir * 100)|round|int }}%"></div>
-              <div class="bg-rose-500 h-1.5" style="width: {{ (r_pct / total_dir * 100)|round|int }}%"></div>
+              {% if b_direct > 0 %}<div class="bg-emerald-600 h-1.5" style="width: {{ (b_direct / total_dir * 100)|round|int }}%" title="{{ b_direct }} bullish (direct)"></div>{% endif %}
+              {% if b_bg > 0 %}<div class="bg-emerald-300 h-1.5" style="width: {{ (b_bg / total_dir * 100)|round|int }}%" title="{{ b_bg }} bullish (background)"></div>{% endif %}
+              {% if r_bg > 0 %}<div class="bg-rose-300 h-1.5" style="width: {{ (r_bg / total_dir * 100)|round|int }}%" title="{{ r_bg }} bearish (background)"></div>{% endif %}
+              {% if r_direct > 0 %}<div class="bg-rose-600 h-1.5" style="width: {{ (r_direct / total_dir * 100)|round|int }}%" title="{{ r_direct }} bearish (direct)"></div>{% endif %}
               {% else %}
               <div class="{{ bar_color }} rounded-full h-1.5" style="width: {{ cond_progress }}%"></div>
               {% endif %}

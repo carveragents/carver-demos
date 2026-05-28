@@ -106,6 +106,14 @@ def _annotate_conditions(
             1 for e in timeline
             if e.get("condition_tag") == cid and e.get("direction") == "bearish"
         )
+        bg_bullish = sum(
+            1 for e in timeline
+            if e.get("condition_tag") == "background" and e.get("direction") == "bullish"
+        )
+        bg_bearish = sum(
+            1 for e in timeline
+            if e.get("condition_tag") == "background" and e.get("direction") == "bearish"
+        )
         total = bullish + bearish
         progress = round(bullish / total * 100) if total > 0 else 50
         if bullish > bearish:
@@ -118,6 +126,8 @@ def _annotate_conditions(
             **cond,
             "bullish_count": bullish,
             "bearish_count": bearish,
+            "background_bullish_count": bg_bullish,
+            "background_bearish_count": bg_bearish,
             "progress": progress,
             "sentiment": sentiment,
         })
