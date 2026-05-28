@@ -200,7 +200,7 @@
     {# Narrative — sits just below thesis tracker #}
     {% if contract.narrative %}
     <section>
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Analyst narrative</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
       <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
         {{ contract.narrative }}
       </blockquote>
@@ -238,6 +238,13 @@
           {% endfor %}
         </div>
         {% endif %}
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
       </div>
 
       {% if timeline %}
@@ -290,7 +297,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded {{ dir_badge }} font-medium">{{ dir_label }}</span>
+              <span class="text-xs px-1.5 py-0.5 rounded {{ dir_badge }} font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">{{ dir_label }}</span>
               <span class="text-xs text-slate-400" title="{{ mag_title }}">{{ mag_label }}</span>
               {% if ev.mechanism %}
               <span class="text-xs text-slate-500">{{ ev.mechanism }}</span>
