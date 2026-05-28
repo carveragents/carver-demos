@@ -39,9 +39,9 @@
 
 <section>
   <h2 class="text-sm uppercase tracking-wider text-slate-500 mb-4">
-    Walk three scenes
+    Pick a persona
   </h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     <a href="{{ base_url|default('/') }}alpha/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition">
       <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 · Radar</div>
       <div class="text-xl font-bold mt-2">The GC&#39;s Monday morning</div>
@@ -64,6 +64,15 @@
       <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
       <div class="text-xl font-bold mt-2">Q3 planning, without the surprise</div>
       <p class="text-slate-600 mt-2 text-sm">Heat-map and quarterly intelligence for jurisdictional strategy.</p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="{{ base_url|default('/') }}trader/" class="scene-tile block p-6 border border-slate-200 rounded-lg hover:border-violet-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-violet-600 font-semibold">Trader · Carver Trader</div>
+      <div class="text-xl font-bold mt-2">Trade the regulatory edge</div>
+      <p class="text-slate-600 mt-2 text-sm">For prediction-market traders: live portfolio scoring, retrospective case studies, and a regulatory calendar.</p>
       <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
       </div>

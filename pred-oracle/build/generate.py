@@ -158,7 +158,8 @@ _EXPLICIT_ROUTES: dict[str, str] = {
     "beta/heatmap.html": "beta/heatmap/index.html",
     "beta/cascades.html": "beta/cascades/index.html",
     "beta/report.html": "beta/report/index.html",
-    "trader/list.html": "trader/index.html",
+    "trader/intro.html": "trader/index.html",
+    "trader/list.html": "trader/portfolio/index.html",
     "trader/calendar.html": "trader/calendar/index.html",
     "trader/retrospectives.html": "trader/retrospectives/index.html",
 }
@@ -248,6 +249,11 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
             if not ctx.get("scans"):
                 print(f"  skip {rel}: no scan data")
                 continue
+
+        if rel == Path("trader/intro.html"):
+            landing_path = repo_root / "build" / "page_data" / "landing.json"
+            if landing_path.exists():
+                ctx = json.loads(landing_path.read_text())
 
         if rel == Path("trader/list.html"):
             portfolio_path = repo_root / "build" / "page_data" / "trader" / "portfolio.json"

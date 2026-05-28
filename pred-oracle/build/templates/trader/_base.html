@@ -7,8 +7,16 @@
 <nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
   <div class="flex items-center gap-6">
     <a href="{{ base_url|default('/') }}trader/"
-       class="text-sm font-medium {% if active_nav == 'list' or active_nav == 'calendar' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
+       class="text-sm font-medium {% if active_nav == 'intro' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
+      Overview
+    </a>
+    <a href="{{ base_url|default('/') }}trader/portfolio/"
+       class="text-sm font-medium {% if active_nav == 'list' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
       Portfolio
+    </a>
+    <a href="{{ base_url|default('/') }}trader/calendar/"
+       class="text-sm font-medium {% if active_nav == 'calendar' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
+      Calendar
     </a>
     <a href="{{ base_url|default('/') }}trader/retrospectives/"
        class="text-sm font-medium {% if active_nav == 'retrospectives' %}text-ink{% else %}text-slate-500 hover:text-ink{% endif %} transition">
