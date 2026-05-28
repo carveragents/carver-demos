@@ -80,7 +80,7 @@ def portfolio_row(slice_doc: dict[str, Any], *, today: str = "") -> dict[str, An
             "magnitude": latest.get("magnitude", "low"),
         } if latest else None,
         "position": position,
-        "detail_href": f"contracts/{contract['id']}/",
+        "detail_href": f"../contracts/{contract['id']}/",
     }
 
 

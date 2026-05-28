@@ -31,7 +31,7 @@
       "size": 300,
       "entry_price": 0.5
     },
-    "detail_href": "contracts/clarity-act-2026/"
+    "detail_href": "../contracts/clarity-act-2026/"
   },
   {
     "contract_id": "kxbtc-maxprice-2026",
@@ -65,7 +65,7 @@
       "size": 200,
       "entry_price": 0.54
     },
-    "detail_href": "contracts/kxbtc-maxprice-2026/"
+    "detail_href": "../contracts/kxbtc-maxprice-2026/"
   },
   {
     "contract_id": "scotus-ftc-independence-2026",
@@ -99,7 +99,7 @@
       "size": 500,
       "entry_price": 0.9
     },
-    "detail_href": "contracts/scotus-ftc-independence-2026/"
+    "detail_href": "../contracts/scotus-ftc-independence-2026/"
   },
   {
     "contract_id": "kxfeddecision-28jan",
@@ -133,7 +133,7 @@
       "size": 100,
       "entry_price": 0.71
     },
-    "detail_href": "contracts/kxfeddecision-28jan/"
+    "detail_href": "../contracts/kxfeddecision-28jan/"
   },
   {
     "contract_id": "us-recession-in-2026",
@@ -167,7 +167,7 @@
       "size": 500,
       "entry_price": 0.18
     },
-    "detail_href": "contracts/us-recession-in-2026/"
+    "detail_href": "../contracts/us-recession-in-2026/"
   },
   {
     "contract_id": "cannabis-dea-rescheduling-2026",
@@ -201,7 +201,7 @@
       "size": 150,
       "entry_price": 0.32
     },
-    "detail_href": "contracts/cannabis-dea-rescheduling-2026/"
+    "detail_href": "../contracts/cannabis-dea-rescheduling-2026/"
   },
   {
     "contract_id": "fda-retatrutide-2026",
@@ -235,7 +235,7 @@
       "size": 250,
       "entry_price": 0.82
     },
-    "detail_href": "contracts/fda-retatrutide-2026/"
+    "detail_href": "../contracts/fda-retatrutide-2026/"
   },
   {
     "contract_id": "nrc-nuclear-reactor-2026",
@@ -269,6 +269,6 @@
       "size": 200,
       "entry_price": 0.78
     },
-    "detail_href": "contracts/nrc-nuclear-reactor-2026/"
+    "detail_href": "../contracts/nrc-nuclear-reactor-2026/"
   }
 ]
