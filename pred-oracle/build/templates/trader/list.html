@@ -194,14 +194,13 @@
 
           {# Right: heat + position #}
           <div class="flex-shrink-0 text-right">
-            {# Tier + qualitative delta #}
-            <div>
-              <div class="text-base font-bold uppercase tracking-wide
-                {% if row.heat_tier == 'critical' %}text-rose-700
-                {% elif row.heat_tier == 'active' %}text-orange-700
-                {% elif row.heat_tier == 'watch' %}text-amber-700
-                {% else %}text-slate-500{% endif %}">{{ row.heat_tier }}</div>
-              <div class="text-xs mt-0.5">
+            {# Tier pill + qualitative delta #}
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide {{ tier_badge }}">
+                <span class="w-1.5 h-1.5 rounded-full {{ tier_dot }}"></span>
+                {{ row.heat_tier }}
+              </span>
+              <div class="text-xs">
                 {% if row.heat_delta_7d > 0 %}
                   <span class="text-rose-600">▲ heating</span>
                 {% elif row.heat_delta_7d < 0 %}
