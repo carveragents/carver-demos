@@ -120,6 +120,9 @@ def _project_timeline_fields(judged: list[dict[str, Any]]) -> list[dict[str, Any
             "condition_tag": rec.get("condition_tag", "background"),
             "relevance_score": rec.get("relevance_score", 0),
             "high_impact": rec.get("high_impact", False),
+            "direction": rec.get("direction", "neutral"),
+            "magnitude": rec.get("magnitude", "low"),
+            "timeline_shift": rec.get("timeline_shift", "none"),
         })
     return out
 
