@@ -30,6 +30,65 @@ _ISO2 = re.compile(r"^[A-Z]{2}$")
 _SUBDIVISION = re.compile(r"^[A-Z]{2}-[A-Z0-9]{1,3}$")
 
 
+def _carver_total_events(cache_path: Path | None = None) -> int | None:
+    """Fetch the total artifact count across ALL Carver topics.
+
+    Cached to disk for 24h to avoid hitting the API on every build.
+    Returns None if the API key is missing or the call fails (callers
+    should fall back to a sensible default).
+    """
+    import os
+    import time
+
+    if cache_path is None:
+        cache_path = Path("data/_scratch/carver-total.json")
+    if cache_path.exists():
+        cached = json.loads(cache_path.read_text())
+        if time.time() - cached.get("fetched_at", 0) < 86400:
+            return int(cached["total"])
+
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+
+    api_key = os.environ.get("CARVER_API_KEY", "")
+    if not api_key:
+        return None
+
+    try:
+        import httpx
+    except ImportError:
+        return None
+
+    base_url = "https://app.carveragents.ai"
+    dag_id = "7f61eee4-1c56-44cc-b7fb-bbfcbda6a5ad"
+    url = f"{base_url}/api/v1/artifacts/dags/{dag_id}/artifacts"
+    headers = {"X-API-Key": api_key}
+    total = 0
+    offset = 0
+    try:
+        while True:
+            params = {"dag_ids_in": dag_id, "state": "completed", "limit": 10000, "offset": offset}
+            resp = httpx.get(url, params=params, headers=headers, timeout=120)
+            resp.raise_for_status()
+            items = resp.json()
+            if not items:
+                break
+            total += len(items)
+            if len(items) < 10000:
+                break
+            offset += len(items)
+    except Exception as e:
+        print(f"WARN: failed to fetch Carver total events: {e}")
+        return None
+
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps({"total": total, "fetched_at": time.time()}))
+    return total
+
+
 def generate_landing_slice(
     corpus_path: Path = Path("data/_scratch/artifacts.jsonl"),
 ) -> dict[str, Any]:
@@ -43,10 +102,12 @@ def generate_landing_slice(
     regulators: set[str] = set()
     dates: list[str] = []
 
+    carver_total = _carver_total_events()
     if not corpus_path.exists():
         # Build must still produce a landing page even before the first pull
         return {
             "events_count": 0,
+            "carver_total_events": carver_total,
             "jurisdictions_count": 0,
             "unique_regulators_count": 0,
             "earliest_pub_date": None,
@@ -89,6 +150,7 @@ def generate_landing_slice(
     in_window = [d for d in dates if plausible_min <= d <= today_iso]
     return {
         "events_count": events_count,
+        "carver_total_events": carver_total,
         "jurisdictions_count": len(jurisdictions),
         "unique_regulators_count": len(regulators),
         "earliest_pub_date": in_window[0] if in_window else None,
