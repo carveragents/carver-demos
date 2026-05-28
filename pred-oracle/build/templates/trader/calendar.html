@@ -18,38 +18,56 @@
       <h1 class="text-2xl font-bold">Regulatory Calendar</h1>
       <p class="text-sm text-slate-500 mt-1">{{ all_events|length }} event{% if all_events|length != 1 %}s{% endif %} across your portfolio</p>
     </div>
-    <a href="{{ base_url|default('/') }}trader/"
+    <a href="{{ base_url|default('/') }}trader/portfolio/"
        class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-ink border border-slate-200 rounded px-3 py-1.5 transition">
       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
       </svg>
-      List view
+      Portfolio
     </a>
   </div>
 
-  {# Event ticker strip #}
-  {% set recent_events = all_events[:5] %}
-  {% if recent_events %}
-  <div class="mb-6 flex items-center gap-0 overflow-x-auto pb-1">
-    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-medium mr-3 whitespace-nowrap flex-shrink-0">Recent</span>
-    {% for ev in recent_events %}
-    {% if ev.direction == 'bullish' %}
-      {% set ev_badge = 'bg-emerald-100 text-emerald-800' %}
-      {% set ev_arrow = '↑' %}
-    {% elif ev.direction == 'bearish' %}
-      {% set ev_badge = 'bg-rose-100 text-rose-800' %}
-      {% set ev_arrow = '↓' %}
-    {% else %}
-      {% set ev_badge = 'bg-slate-100 text-slate-700' %}
-      {% set ev_arrow = '→' %}
-    {% endif %}
-    <div class="flex-shrink-0 flex items-center gap-1.5 border border-slate-200 rounded px-3 py-1.5 bg-white mr-2 text-xs">
-      <span class="px-1 py-0.5 rounded {{ ev_badge }} font-medium">{{ ev_arrow }}</span>
-      <span class="text-slate-500 whitespace-nowrap">{{ ev.calendar_date[:10] if ev.calendar_date else '' }}</span>
-      <span class="text-slate-700 whitespace-nowrap max-w-[180px] truncate">{{ ev.title }}</span>
+  {# Upcoming catalysts — next 5 future-dated events, sorted chronologically #}
+  {% set upcoming = all_events
+    | selectattr('calendar_date', 'defined')
+    | selectattr('calendar_date', '>=', today)
+    | sort(attribute='calendar_date')
+    | list %}
+  {% if upcoming %}
+  <section class="mb-6 border border-slate-200 rounded-lg bg-slate-50/50 p-4">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Upcoming catalysts</h2>
+      <span class="text-xs text-slate-400">{{ upcoming|length }} ahead</span>
     </div>
-    {% endfor %}
-  </div>
+    <ul class="space-y-2">
+      {% for ev in upcoming[:5] %}
+      {% if ev.direction == 'bullish' %}
+        {% set ev_dot = 'bg-emerald-500' %}
+        {% set ev_label = '↑ bullish' %}
+        {% set ev_label_color = 'text-emerald-700' %}
+      {% elif ev.direction == 'bearish' %}
+        {% set ev_dot = 'bg-rose-500' %}
+        {% set ev_label = '↓ bearish' %}
+        {% set ev_label_color = 'text-rose-700' %}
+      {% elif ev.type == 'settlement' %}
+        {% set ev_dot = 'bg-blue-500' %}
+        {% set ev_label = 'settlement' %}
+        {% set ev_label_color = 'text-blue-700' %}
+      {% else %}
+        {% set ev_dot = 'bg-slate-400' %}
+        {% set ev_label = '→ neutral' %}
+        {% set ev_label_color = 'text-slate-600' %}
+      {% endif %}
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full {{ ev_dot }} mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">{{ ev.calendar_date[:10] }}</time>
+        <span class="flex-shrink-0 text-[10px] uppercase tracking-wider font-medium {{ ev_label_color }} w-20">{{ ev_label }}</span>
+        <a href="{{ base_url|default('/') }}trader/contracts/{{ ev.contract_id }}/"
+           class="flex-1 text-sm text-slate-800 hover:text-violet-700 transition leading-snug">{{ ev.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
   {% endif %}
 
   {# Month navigation #}
