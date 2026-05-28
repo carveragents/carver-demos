@@ -36,13 +36,11 @@ portfolio:
     position: {side: "YES", size: 500, entry_price: 0.90}
 
 retrospectives:
+  - id: polymarket-us-2025
+    platform: polymarket
+  - id: cardano-etf-2025
+    platform: polymarket
+  - id: stablecoin-genius-act-2025
+    platform: polymarket
   - id: solana-etf-2025
-    platform: polymarket
-  - id: tiktokban-25apr30
-    platform: kalshi
-  - id: eth-etf-approved-may2024
-    platform: polymarket
-  - id: btc-etf-approved-jan2024
-    platform: polymarket
-  - id: cz-sentencing-apr2024
     platform: polymarket

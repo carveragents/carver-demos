@@ -1,0 +1,48 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "cardano-etf-2025"
+
+title: "Will the SEC approve a spot Cardano ETF in 2025?"
+resolution_criteria: |
+  Resolves YES if the U.S. Securities and Exchange Commission approves a spot
+  Cardano (ADA) ETF for trading on a national securities exchange by
+  December 31, 2025, 11:59 PM ET. Resolves NO otherwise.
+
+listed_at: "2025-01-03"
+resolved_at: "2025-12-31"
+status: "resolved"
+resolution_outcome: "NO"
+condition_id: '0xda2699840a84b3388cf1162df4b8d4e249a22c44380e55d7820e25c1513121b0'
+clob_token_ids:
+  - '57904639948532778002248435788724940210404315989659385112544649656833850984460'
+  - '109612312495067640558838633989701459337742301251106810966580588890274721616442'
+polymarket_slug: 'cardano-etf-in-2025'
+
+settlement_entities:
+  - "U.S. Securities and Exchange Commission"
+  - "Division of Trading and Markets"
+  - "Division of Investment Management"
+  - "Grayscale Investments"
+  - "Canary Capital"
+
+source_urls:
+  - "https://www.coindesk.com/markets/2025/10/10/analysis-market-is-undervaluing-the-possibility-cardano-ada-etf-is-delayed-until-2026"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Jan 2025: Contract opened at ~10% YES following SEC's historic
+#   resistance to altcoin ETFs, despite BTC and ETH ETF precedents.
+# - Feb 2025: SEC Crypto Task Force designated under Commissioner Peirce,
+#   raising odds of more permissive crypto policy. Market rose to ~70%.
+# - Jul 2025: SEC approved in-kind creations/redemptions for crypto ETPs,
+#   further boosting optimism. Market peaked near 95%.
+# - Sep 2025: SEC approved generic listing standards for commodity-based
+#   trust shares, seen as streamlining the altcoin ETF approval path.
+# - Oct-Nov 2025: US government shutdown closed the SEC during a critical
+#   decision window, stalling multiple pending ETF applications.
+# - Dec 31, 2025: Deadline passed without SEC approval. Contract resolved NO.
+# - Carver corpus tracked SEC crypto enforcement, Project Crypto speeches,
+#   custody guidance, and listing standard changes throughout the year,
+#   capturing both the pro-crypto regulatory shift and the shutdown disruption.

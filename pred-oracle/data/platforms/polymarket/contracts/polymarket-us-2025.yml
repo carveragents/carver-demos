@@ -1,0 +1,51 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "polymarket-us-2025"
+
+title: "Will Polymarket US go live in 2025?"
+resolution_criteria: |
+  Resolves YES if a real-money trade is placed on an exchange operated by
+  Polymarket that holds a CFTC Designated Contract Market (DCM) designation,
+  available to US persons, by December 31, 2025, 11:59 PM ET.
+  Resolves NO otherwise.
+
+listed_at: "2025-07-22"
+resolved_at: "2025-12-05"
+status: "resolved"
+resolution_outcome: "YES"
+condition_id: '0x77b4a1d4cd398a86c18b6bb9b5218917dc9f04b01a3cd4bae1c71ea345f15fa8'
+clob_token_ids:
+  - '11011989236331164054844679338128881575446679057930991995271488699513863012857'
+  - '85192074595343152063514099581907578237984708585251625405204438498600285131861'
+polymarket_slug: 'will-polymarket-us-go-live-in-2025'
+
+settlement_entities:
+  - "Commodity Futures Trading Commission"
+  - "KalshiEX LLC"
+  - "Polymarket"
+  - "ElectronX"
+  - "CME Group"
+
+source_urls:
+  - "https://www.coindesk.com/business/2025/11/25/polymarket-secures-cftc-approval-for-regulated-u-s-return"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Jul 2025: Polymarket US contract listed as CFTC event-contract
+#   regulation accelerated under Acting Chairman Caroline D. Pham.
+# - Aug 2025: CFTC launched "Crypto Sprint" and spot crypto trading initiative,
+#   signaling openness to regulated crypto/event-contract markets.
+# - Sep 2025: CFTC-SEC joint statements on Project Crypto clarified
+#   regulatory coordination for spot crypto asset trading.
+# - Nov 25, 2025: Polymarket received CFTC Amended Order of Designation
+#   as a DCM. Polymarket filed its US Rulebook amendment the same day.
+# - Dec 4, 2025: Acting Chairman Pham announced first-ever listed spot
+#   crypto trading on US regulated exchanges.
+# - Dec 5, 2025: First real-money trade placed on Polymarket US, resolving
+#   the contract YES.
+# - Carver corpus tracked the full regulatory arc: CFTC no-action letters
+#   on event contracts (Jul-Sep), KalshiEX/ElectronX market maker programs
+#   (Nov), CME event contract modifications, and the Polymarket US Rulebook
+#   filing itself.
