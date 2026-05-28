@@ -53,27 +53,27 @@
     <ul class="space-y-3">
       {% for item in ns.ordered[:5] %}
       {% set ev = item.event %}
-      {% if ev.direction == 'bullish' %}
-        {% set ev_dot = 'bg-emerald-500' %}
-        {% set ev_label = '↑ bullish' %}
-        {% set ev_label_color = 'text-emerald-700' %}
-      {% elif ev.direction == 'bearish' %}
-        {% set ev_dot = 'bg-rose-500' %}
-        {% set ev_label = '↓ bearish' %}
-        {% set ev_label_color = 'text-rose-700' %}
-      {% elif ev.type == 'settlement' %}
+      {% if ev.type == 'settlement' %}
         {% set ev_dot = 'bg-blue-500' %}
         {% set ev_label = 'settlement' %}
         {% set ev_label_color = 'text-blue-700' %}
+      {% elif ev.type == 'effective_date' %}
+        {% set ev_dot = 'bg-violet-500' %}
+        {% set ev_label = 'effective date' %}
+        {% set ev_label_color = 'text-violet-700' %}
+      {% elif ev.type == 'comment_deadline' %}
+        {% set ev_dot = 'bg-emerald-500' %}
+        {% set ev_label = 'comment deadline' %}
+        {% set ev_label_color = 'text-emerald-700' %}
       {% else %}
-        {% set ev_dot = 'bg-slate-400' %}
-        {% set ev_label = '→ neutral' %}
-        {% set ev_label_color = 'text-slate-600' %}
+        {% set ev_dot = 'bg-amber-500' %}
+        {% set ev_label = 'reg filing' %}
+        {% set ev_label_color = 'text-amber-700' %}
       {% endif %}
       <li class="flex items-start gap-3">
         <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full {{ ev_dot }} mt-1.5"></span>
         <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">{{ ev.calendar_date[:10] }}</time>
-        <span class="flex-shrink-0 text-[10px] uppercase tracking-wider font-medium {{ ev_label_color }} w-20">{{ ev_label }}</span>
+        <span class="flex-shrink-0 text-[10px] uppercase tracking-wider font-medium {{ ev_label_color }} w-28">{{ ev_label }}</span>
         <div class="flex-1 min-w-0">
           <div class="text-sm text-slate-800 leading-snug">{{ ev.title }}</div>
           <div class="flex flex-wrap items-center gap-1.5 mt-1">
