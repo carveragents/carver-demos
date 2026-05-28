@@ -28,6 +28,17 @@ def tier_for(value: float) -> Tier:
     return "dormant"
 
 
+def tier_for_percentile(percentile: int) -> Tier:
+    """Map a peer percentile to a tier. Spreads the portfolio evenly."""
+    if percentile >= 75:
+        return "critical"
+    if percentile >= 40:
+        return "active"
+    if percentile >= 15:
+        return "watch"
+    return "dormant"
+
+
 def peer_percentile(value: float, peers: list[float]) -> int:
     """Percentile rank (0-100) of `value` against `peers` (inclusive count).
 
@@ -97,9 +108,9 @@ def build(
     cache_root: Path | None = None,
 ) -> dict[str, Any]:
     """Assemble a heat_panel dict for the contract page + dashboard tier."""
-    tier_label = tier_for(heat_value)
     delta_7d = round(heat_value - heat_value_7d_ago, 2)
     percentile = peer_percentile(heat_value, peers)
+    tier_label = tier_for_percentile(percentile)
     sparkline = urgency_weighted_sparkline(records, today=today, days=14)
 
     top_for_explainer = sorted(

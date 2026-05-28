@@ -341,22 +341,29 @@
     <div class="border border-slate-200 rounded-lg p-4 {{ heat_bg }}">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
 
-      <div class="flex items-baseline gap-2 mb-1">
-        <span class="text-3xl font-bold {{ heat_color }} tabular-nums">{{ heat_panel.value|round(0)|int }}</span>
-        <span class="text-sm {{ heat_color }} font-semibold uppercase tracking-wide">{{ heat_panel.tier }}</span>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold {{ heat_color }} uppercase tracking-wide">{{ heat_panel.tier }}</span>
+          {% if heat_panel.peer_percentile %}
+          <span class="text-sm text-slate-500">top {{ 100 - heat_panel.peer_percentile }}% of peers</span>
+          {% endif %}
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score {{ heat_panel.value|round(0)|int }}</span>
       </div>
 
-      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3 tabular-nums">
+      {# Percentile bar #}
+      {% set pct = heat_panel.peer_percentile if heat_panel.peer_percentile else 0 %}
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full {{ heat_color.replace('text-', 'bg-') }}" style="width: {{ pct }}%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
         {% if heat_panel.delta_7d > 0 %}
-          <span class="text-rose-600">+{{ heat_panel.delta_7d|round(1) }} / 7d</span>
+          <span class="text-rose-600">▲ heating / 7d</span>
         {% elif heat_panel.delta_7d < 0 %}
-          <span class="text-emerald-600">{{ heat_panel.delta_7d|round(1) }} / 7d</span>
+          <span class="text-emerald-600">▼ cooling / 7d</span>
         {% else %}
-          <span class="text-slate-400">±0 / 7d</span>
-        {% endif %}
-        {% if heat_panel.peer_percentile %}
-        <span class="text-slate-400">·</span>
-        <span>top {{ 100 - heat_panel.peer_percentile }}% of peers</span>
+          <span class="text-slate-400">— steady / 7d</span>
         {% endif %}
       </div>
 
