@@ -1,5 +1,9 @@
 {
-  "history": [
+  "contract_id": "stablecoin-genius-act-2025",
+  "platform": "polymarket",
+  "ticker": "70182065775553604111",
+  "fetched_at": "2026-05-27",
+  "series": [
     {
       "t": 1742515205,
       "p": 0.605

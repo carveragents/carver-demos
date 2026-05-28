@@ -1,5 +1,9 @@
 {
-  "history": [
+  "contract_id": "polymarket-us-2025",
+  "platform": "polymarket",
+  "ticker": "11011989236331164054",
+  "fetched_at": "2026-05-27",
+  "series": [
     {
       "t": 1753228809,
       "p": 0.725

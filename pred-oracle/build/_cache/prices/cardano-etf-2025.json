@@ -1,5 +1,9 @@
 {
-  "history": [
+  "contract_id": "cardano-etf-2025",
+  "platform": "polymarket",
+  "ticker": "57904639948532778002",
+  "fetched_at": "2026-05-27",
+  "series": [
     {
       "t": 1735948803,
       "p": 0.1
