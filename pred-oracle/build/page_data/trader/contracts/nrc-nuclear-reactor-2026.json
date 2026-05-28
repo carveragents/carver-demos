@@ -63,6 +63,8 @@
         "summary": "By Dec 31, 2026 11:59 PM ET, the U.S. NRC issues an initial combined license (COL) to construct and operate a nuclear power plant, in an official NRC release. No amendments/renewals/partials.",
         "bullish_count": 0,
         "bearish_count": 2,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 0,
         "sentiment": "bearish"
       }
@@ -180,7 +182,7 @@
     "value": 3.07,
     "tier": "dormant",
     "delta_7d": -6.18,
-    "peer_percentile": 10,
+    "peer_percentile": 8,
     "urgency_weighted_sparkline": [
       0,
       0,

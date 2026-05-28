@@ -44,7 +44,7 @@
     ],
     "source_urls": [],
     "primary_source_url": "https://polymarket.com/event/us-recession-in-2026",
-    "heat": 86.66,
+    "heat": 92.21,
     "heat_history": [
       0,
       0,
@@ -53,8 +53,8 @@
       0,
       4,
       4,
-      0,
-      2,
+      1,
+      4,
       1,
       0,
       0,
@@ -68,6 +68,8 @@
         "summary": "The NBER Business Cycle Dating Committee publicly announces that the U.S. entered a recession with the peak month occurring in 2026, and this announcement is made on or before 2026-12-31.",
         "bullish_count": 0,
         "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 50,
         "sentiment": "neutral"
       }
@@ -482,10 +484,10 @@
     }
   ],
   "heat_panel": {
-    "value": 86.66,
-    "tier": "critical",
-    "delta_7d": -70.51,
-    "peer_percentile": 50,
+    "value": 92.21,
+    "tier": "watch",
+    "delta_7d": -64.96,
+    "peer_percentile": 33,
     "urgency_weighted_sparkline": [
       0,
       0,

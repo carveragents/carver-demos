@@ -35,7 +35,7 @@
       "https://www.fda.gov/drugs/development-approval-process-drugs"
     ],
     "primary_source_url": "https://polymarket.com/event/fda-approves-retatrutide-this-year",
-    "heat": 7.31,
+    "heat": 9.4,
     "heat_history": [
       0,
       0,
@@ -45,7 +45,7 @@
       0,
       0,
       0,
-      0,
+      1,
       0,
       0,
       0,
@@ -59,6 +59,8 @@
         "summary": "FDA issues a final NDA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.",
         "bullish_count": 0,
         "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 50,
         "sentiment": "neutral"
       },
@@ -68,11 +70,13 @@
         "summary": "FDA issues a final BLA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.",
         "bullish_count": 0,
         "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 50,
         "sentiment": "neutral"
       }
     ],
-    "narrative": "Recent regulatory activity targets unrelated areas\u2014state AGs pressuring FDA on flavored e\u2011cigarettes, Supreme Court briefs on mifepristone access, and a Puerto Rico insurance rule\u2014none affect Retatrutide\u2019s review. No agency policy shifts or political pressure specific to Retatrutide are evident; FDA\u2019s 2026 decision remains pending under standard review."
+    "narrative": "Recent developments are unrelated background matters (state insurance rules, e\u2011cigarette guidance disputes) and a mifepristone brief that, while supporting FDA authority, doesn\u2019t directly affect Retatrutide. No targeted regulatory pressure is evident; odds hinge on standard FDA review and clinical data. The FDA decision for 2026 remains pending."
   },
   "position": {
     "side": "NO",
@@ -80,6 +84,26 @@
     "entry_price": 0.82
   },
   "timeline": [
+    {
+      "pub_date": "2026-05-21",
+      "title": "In the Matter of Ariel Betances",
+      "regulator": "STATE OF RHODE ISLAND DEPARTMENT OF BUSINESS REGULATION \u2014 Insurance Division",
+      "url": "https://dbr.ri.gov/sites/g/files/xkgbur696/files/2026-05/INS-2026-IN-005%20Betances%20Consent%20Agreement%20Executed.pdf",
+      "urgency": 3.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "ee1b6cab-c7d6-493d-8146-2e7b7a0d0383",
+      "one_line_why": "State insurance enforcement action unrelated to FDA, Eli Lilly, or retatrutide \u2014 no impact on FDA approval probability.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Binding Action",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
     {
       "pub_date": "2026-05-12",
       "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
@@ -159,33 +183,13 @@
       "mechanism": "Context",
       "effective_date": "",
       "comment_deadline": ""
-    },
-    {
-      "pub_date": "2026-05-04",
-      "title": "Attorney General Bonta Urged U.S. Supreme Court to Protect Telehealth Access to Mifepristone - May 4, 2026",
-      "regulator": "California Department of Justice",
-      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-urged-us-supreme-court-protect-telehealth-access",
-      "urgency": 9.0,
-      "impact": 9.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "5f371e37-4c38-4b62-8c16-db3999499cd5",
-      "one_line_why": "This AG filing concerns telehealth access to mifepristone and is unrelated to Lilly, Retatrutide, or FDA NDA/BLA approval timing.",
-      "condition_tag": "background",
-      "relevance_score": 0,
-      "high_impact": false,
-      "direction": "neutral",
-      "magnitude": "low",
-      "timeline_shift": "none",
-      "mechanism": "Context",
-      "effective_date": "",
-      "comment_deadline": ""
     }
   ],
   "heat_panel": {
-    "value": 7.31,
-    "tier": "dormant",
-    "delta_7d": -6.41,
-    "peer_percentile": 20,
+    "value": 9.4,
+    "tier": "watch",
+    "delta_7d": -4.32,
+    "peer_percentile": 17,
     "urgency_weighted_sparkline": [
       0,
       0,
@@ -195,7 +199,7 @@
       0,
       0,
       0,
-      0,
+      3,
       0,
       0,
       0,

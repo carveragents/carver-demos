@@ -117,19 +117,57 @@
           {
             "day": 8,
             "date": "2026-04-08",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-08",
+                "type": "regulatory_event",
+                "title": "Administrative Summary - 2026-04-08 - Francis Decker, CPA",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              }
+            ],
             "busy": false
           },
           {
             "day": 9,
             "date": "2026-04-09",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-09",
+                "type": "regulatory_event",
+                "title": "Complaint for Permanent Injunction, Monetary Judgment, and Other Relief",
+                "contract_id": "scotus-ftc-independence-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              }
+            ],
             "busy": false
           },
           {
             "day": 10,
             "date": "2026-04-10",
             "events": [
+              {
+                "calendar_date": "2026-04-10",
+                "type": "regulatory_event",
+                "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              },
               {
                 "calendar_date": "2026-04-10",
                 "type": "regulatory_event",
@@ -162,7 +200,30 @@
           {
             "day": 13,
             "date": "2026-04-13",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-13",
+                "type": "regulatory_event",
+                "title": "Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "bullish",
+                "magnitude": "medium",
+                "high_impact": false,
+                "relevance_score": 6
+              },
+              {
+                "calendar_date": "2026-04-13",
+                "type": "effective_date",
+                "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+                "contract_id": "scotus-ftc-independence-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              }
+            ],
             "busy": false
           },
           {
@@ -190,6 +251,18 @@
               {
                 "calendar_date": "2026-04-15",
                 "type": "regulatory_event",
+                "title": "Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              },
+              {
+                "calendar_date": "2026-04-15",
+                "type": "regulatory_event",
                 "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
@@ -200,12 +273,36 @@
                 "relevance_score": 3
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 16,
             "date": "2026-04-16",
             "events": [
+              {
+                "calendar_date": "2026-04-16",
+                "type": "regulatory_event",
+                "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              },
+              {
+                "calendar_date": "2026-04-16",
+                "type": "regulatory_event",
+                "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              },
               {
                 "calendar_date": "2026-04-16",
                 "type": "regulatory_event",
@@ -229,14 +326,51 @@
                 "magnitude": "low",
                 "high_impact": false,
                 "relevance_score": 3
+              },
+              {
+                "calendar_date": "2026-04-16",
+                "type": "regulatory_event",
+                "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+                "contract_id": "scotus-ftc-independence-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 17,
             "date": "2026-04-17",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-17",
+                "type": "regulatory_event",
+                "title": "GMNI Disclosure about AI information Features available to Members",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              },
+              {
+                "calendar_date": "2026-04-17",
+                "type": "regulatory_event",
+                "title": "13th Annual Conference on Financial Market Regulation",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              }
+            ],
             "busy": false
           },
           {
@@ -399,13 +533,39 @@
           {
             "day": 27,
             "date": "2026-04-27",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-27",
+                "type": "regulatory_event",
+                "title": "Bitcoin 2026",
+                "contract_id": "kxbtc-maxprice-2026",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              }
+            ],
             "busy": false
           },
           {
             "day": 28,
             "date": "2026-04-28",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-04-28",
+                "type": "regulatory_event",
+                "title": "CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "bullish",
+                "magnitude": "medium",
+                "high_impact": false,
+                "relevance_score": 6
+              }
+            ],
             "busy": false
           },
           {
@@ -433,6 +593,18 @@
               {
                 "calendar_date": "2026-04-30",
                 "type": "regulatory_event",
+                "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+                "contract_id": "nrc-nuclear-reactor-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              },
+              {
+                "calendar_date": "2026-04-30",
+                "type": "regulatory_event",
                 "title": "2026-04-30 - New Jersey Employment Report: March 2026",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
@@ -443,7 +615,7 @@
                 "relevance_score": 2
               }
             ],
-            "busy": false
+            "busy": true
           },
           null,
           null
@@ -556,19 +728,57 @@
         {
           "day": 8,
           "date": "2026-04-08",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-08",
+              "type": "regulatory_event",
+              "title": "Administrative Summary - 2026-04-08 - Francis Decker, CPA",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            }
+          ],
           "busy": false
         },
         {
           "day": 9,
           "date": "2026-04-09",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-09",
+              "type": "regulatory_event",
+              "title": "Complaint for Permanent Injunction, Monetary Judgment, and Other Relief",
+              "contract_id": "scotus-ftc-independence-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            }
+          ],
           "busy": false
         },
         {
           "day": 10,
           "date": "2026-04-10",
           "events": [
+            {
+              "calendar_date": "2026-04-10",
+              "type": "regulatory_event",
+              "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            },
             {
               "calendar_date": "2026-04-10",
               "type": "regulatory_event",
@@ -599,7 +809,30 @@
         {
           "day": 13,
           "date": "2026-04-13",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-13",
+              "type": "regulatory_event",
+              "title": "Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "bullish",
+              "magnitude": "medium",
+              "high_impact": false,
+              "relevance_score": 6
+            },
+            {
+              "calendar_date": "2026-04-13",
+              "type": "effective_date",
+              "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+              "contract_id": "scotus-ftc-independence-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            }
+          ],
           "busy": false
         },
         {
@@ -627,6 +860,18 @@
             {
               "calendar_date": "2026-04-15",
               "type": "regulatory_event",
+              "title": "Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            },
+            {
+              "calendar_date": "2026-04-15",
+              "type": "regulatory_event",
               "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
@@ -637,12 +882,36 @@
               "relevance_score": 3
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 16,
           "date": "2026-04-16",
           "events": [
+            {
+              "calendar_date": "2026-04-16",
+              "type": "regulatory_event",
+              "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            },
+            {
+              "calendar_date": "2026-04-16",
+              "type": "regulatory_event",
+              "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            },
             {
               "calendar_date": "2026-04-16",
               "type": "regulatory_event",
@@ -666,14 +935,51 @@
               "magnitude": "low",
               "high_impact": false,
               "relevance_score": 3
+            },
+            {
+              "calendar_date": "2026-04-16",
+              "type": "regulatory_event",
+              "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+              "contract_id": "scotus-ftc-independence-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 17,
           "date": "2026-04-17",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-17",
+              "type": "regulatory_event",
+              "title": "GMNI Disclosure about AI information Features available to Members",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            },
+            {
+              "calendar_date": "2026-04-17",
+              "type": "regulatory_event",
+              "title": "13th Annual Conference on Financial Market Regulation",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            }
+          ],
           "busy": false
         },
         {
@@ -832,13 +1138,39 @@
         {
           "day": 27,
           "date": "2026-04-27",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-27",
+              "type": "regulatory_event",
+              "title": "Bitcoin 2026",
+              "contract_id": "kxbtc-maxprice-2026",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            }
+          ],
           "busy": false
         },
         {
           "day": 28,
           "date": "2026-04-28",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-04-28",
+              "type": "regulatory_event",
+              "title": "CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "bullish",
+              "magnitude": "medium",
+              "high_impact": false,
+              "relevance_score": 6
+            }
+          ],
           "busy": false
         },
         {
@@ -866,6 +1198,18 @@
             {
               "calendar_date": "2026-04-30",
               "type": "regulatory_event",
+              "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+              "contract_id": "nrc-nuclear-reactor-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            },
+            {
+              "calendar_date": "2026-04-30",
+              "type": "regulatory_event",
               "title": "2026-04-30 - New Jersey Employment Report: March 2026",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
@@ -876,7 +1220,7 @@
               "relevance_score": 2
             }
           ],
-          "busy": false
+          "busy": true
         }
       ]
     },
@@ -897,6 +1241,48 @@
             "events": [
               {
                 "calendar_date": "2026-05-01",
+                "type": "regulatory_event",
+                "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 2
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "effective_date",
+                "title": "GMNI Disclosure about AI information Features available to Members",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "effective_date",
+                "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "effective_date",
+                "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-01",
                 "type": "effective_date",
                 "title": "COIN | Crypto Market Maker Program - 04/16/2026",
                 "contract_id": "kxbtc-maxprice-2026",
@@ -914,9 +1300,55 @@
                 "color": "purple",
                 "direction": "neutral",
                 "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "regulatory_event",
+                "title": "Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency",
+                "contract_id": "kxfeddecision-28jan",
+                "platform": "kalshi",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "regulatory_event",
+                "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+                "contract_id": "nrc-nuclear-reactor-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "regulatory_event",
+                "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026",
+                "contract_id": "nrc-nuclear-reactor-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              },
+              {
+                "calendar_date": "2026-05-01",
+                "type": "effective_date",
+                "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+                "contract_id": "nrc-nuclear-reactor-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 2,
@@ -936,6 +1368,18 @@
             "day": 4,
             "date": "2026-05-04",
             "events": [
+              {
+                "calendar_date": "2026-05-04",
+                "type": "regulatory_event",
+                "title": "Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 1
+              },
               {
                 "calendar_date": "2026-05-04",
                 "type": "regulatory_event",
@@ -960,13 +1404,48 @@
           {
             "day": 6,
             "date": "2026-05-06",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-05-06",
+                "type": "regulatory_event",
+                "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              }
+            ],
             "busy": false
           },
           {
             "day": 7,
             "date": "2026-05-07",
             "events": [
+              {
+                "calendar_date": "2026-05-07",
+                "type": "regulatory_event",
+                "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              },
+              {
+                "calendar_date": "2026-05-07",
+                "type": "effective_date",
+                "title": "13th Annual Conference on Financial Market Regulation",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
               {
                 "calendar_date": "2026-05-07",
                 "type": "regulatory_event",
@@ -980,7 +1459,7 @@
                 "relevance_score": 3
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 8,
@@ -1021,6 +1500,26 @@
             "events": [
               {
                 "calendar_date": "2026-05-11",
+                "type": "comment_deadline",
+                "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "green",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-11",
+                "type": "comment_deadline",
+                "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "green",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-11",
                 "type": "regulatory_event",
                 "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations",
                 "contract_id": "kxfeddecision-28jan",
@@ -1032,18 +1531,79 @@
                 "relevance_score": 3
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 12,
             "date": "2026-05-12",
-            "events": [],
-            "busy": false
+            "events": [
+              {
+                "calendar_date": "2026-05-12",
+                "type": "regulatory_event",
+                "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              },
+              {
+                "calendar_date": "2026-05-12",
+                "type": "regulatory_event",
+                "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              },
+              {
+                "calendar_date": "2026-05-12",
+                "type": "regulatory_event",
+                "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              }
+            ],
+            "busy": true
           },
           {
             "day": 13,
             "date": "2026-05-13",
             "events": [
+              {
+                "calendar_date": "2026-05-13",
+                "type": "regulatory_event",
+                "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026",
+                "contract_id": "cannabis-dea-rescheduling-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 1
+              },
+              {
+                "calendar_date": "2026-05-13",
+                "type": "regulatory_event",
+                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "bullish",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 4
+              },
               {
                 "calendar_date": "2026-05-13",
                 "type": "regulatory_event",
@@ -1142,6 +1702,28 @@
               {
                 "calendar_date": "2026-05-18",
                 "type": "regulatory_event",
+                "title": "Rescission of Policy Regarding Denials in Settlements of Enforcement Actions",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 3
+              },
+              {
+                "calendar_date": "2026-05-18",
+                "type": "effective_date",
+                "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-18",
+                "type": "regulatory_event",
                 "title": "Treasury International Capital Data for March",
                 "contract_id": "us-recession-in-2026",
                 "platform": "polymarket",
@@ -1152,24 +1734,83 @@
                 "relevance_score": 2
               }
             ],
-            "busy": false
+            "busy": true
           },
           {
             "day": 19,
             "date": "2026-05-19",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-05-19",
+                "type": "regulatory_event",
+                "title": "CFTC Sues Minnesota to Block State Law",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "bullish",
+                "magnitude": "medium",
+                "high_impact": false,
+                "relevance_score": 5
+              }
+            ],
             "busy": false
           },
           {
             "day": 20,
             "date": "2026-05-20",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-05-20",
+                "type": "regulatory_event",
+                "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+                "contract_id": "cannabis-dea-rescheduling-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 1
+              },
+              {
+                "calendar_date": "2026-05-20",
+                "type": "effective_date",
+                "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              }
+            ],
             "busy": false
           },
           {
             "day": 21,
             "date": "2026-05-21",
-            "events": [],
+            "events": [
+              {
+                "calendar_date": "2026-05-21",
+                "type": "effective_date",
+                "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
+              {
+                "calendar_date": "2026-05-21",
+                "type": "regulatory_event",
+                "title": "In the Matter of Ariel Betances",
+                "contract_id": "fda-retatrutide-2026",
+                "platform": "polymarket",
+                "color": "amber",
+                "direction": "neutral",
+                "magnitude": "low",
+                "high_impact": false,
+                "relevance_score": 0
+              }
+            ],
             "busy": false
           },
           {
@@ -1220,6 +1861,16 @@
             "day": 29,
             "date": "2026-05-29",
             "events": [
+              {
+                "calendar_date": "2026-05-29",
+                "type": "effective_date",
+                "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "purple",
+                "direction": "bullish",
+                "magnitude": "low"
+              },
               {
                 "calendar_date": "2026-05-29",
                 "type": "effective_date",
@@ -1282,6 +1933,48 @@
           "events": [
             {
               "calendar_date": "2026-05-01",
+              "type": "regulatory_event",
+              "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 2
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "effective_date",
+              "title": "GMNI Disclosure about AI information Features available to Members",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "effective_date",
+              "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "effective_date",
+              "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-01",
               "type": "effective_date",
               "title": "COIN | Crypto Market Maker Program - 04/16/2026",
               "contract_id": "kxbtc-maxprice-2026",
@@ -1299,9 +1992,55 @@
               "color": "purple",
               "direction": "neutral",
               "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "regulatory_event",
+              "title": "Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency",
+              "contract_id": "kxfeddecision-28jan",
+              "platform": "kalshi",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "regulatory_event",
+              "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+              "contract_id": "nrc-nuclear-reactor-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "regulatory_event",
+              "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026",
+              "contract_id": "nrc-nuclear-reactor-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            },
+            {
+              "calendar_date": "2026-05-01",
+              "type": "effective_date",
+              "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+              "contract_id": "nrc-nuclear-reactor-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 2,
@@ -1319,6 +2058,18 @@
           "day": 4,
           "date": "2026-05-04",
           "events": [
+            {
+              "calendar_date": "2026-05-04",
+              "type": "regulatory_event",
+              "title": "Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 1
+            },
             {
               "calendar_date": "2026-05-04",
               "type": "regulatory_event",
@@ -1343,13 +2094,48 @@
         {
           "day": 6,
           "date": "2026-05-06",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-05-06",
+              "type": "regulatory_event",
+              "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            }
+          ],
           "busy": false
         },
         {
           "day": 7,
           "date": "2026-05-07",
           "events": [
+            {
+              "calendar_date": "2026-05-07",
+              "type": "regulatory_event",
+              "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            },
+            {
+              "calendar_date": "2026-05-07",
+              "type": "effective_date",
+              "title": "13th Annual Conference on Financial Market Regulation",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
             {
               "calendar_date": "2026-05-07",
               "type": "regulatory_event",
@@ -1363,7 +2149,7 @@
               "relevance_score": 3
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 8,
@@ -1402,6 +2188,26 @@
           "events": [
             {
               "calendar_date": "2026-05-11",
+              "type": "comment_deadline",
+              "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "green",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-11",
+              "type": "comment_deadline",
+              "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "green",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-11",
               "type": "regulatory_event",
               "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations",
               "contract_id": "kxfeddecision-28jan",
@@ -1413,18 +2219,79 @@
               "relevance_score": 3
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 12,
           "date": "2026-05-12",
-          "events": [],
-          "busy": false
+          "events": [
+            {
+              "calendar_date": "2026-05-12",
+              "type": "regulatory_event",
+              "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            },
+            {
+              "calendar_date": "2026-05-12",
+              "type": "regulatory_event",
+              "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            },
+            {
+              "calendar_date": "2026-05-12",
+              "type": "regulatory_event",
+              "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            }
+          ],
+          "busy": true
         },
         {
           "day": 13,
           "date": "2026-05-13",
           "events": [
+            {
+              "calendar_date": "2026-05-13",
+              "type": "regulatory_event",
+              "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026",
+              "contract_id": "cannabis-dea-rescheduling-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 1
+            },
+            {
+              "calendar_date": "2026-05-13",
+              "type": "regulatory_event",
+              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "bullish",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 4
+            },
             {
               "calendar_date": "2026-05-13",
               "type": "regulatory_event",
@@ -1521,6 +2388,28 @@
             {
               "calendar_date": "2026-05-18",
               "type": "regulatory_event",
+              "title": "Rescission of Policy Regarding Denials in Settlements of Enforcement Actions",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 3
+            },
+            {
+              "calendar_date": "2026-05-18",
+              "type": "effective_date",
+              "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-18",
+              "type": "regulatory_event",
               "title": "Treasury International Capital Data for March",
               "contract_id": "us-recession-in-2026",
               "platform": "polymarket",
@@ -1531,24 +2420,83 @@
               "relevance_score": 2
             }
           ],
-          "busy": false
+          "busy": true
         },
         {
           "day": 19,
           "date": "2026-05-19",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-05-19",
+              "type": "regulatory_event",
+              "title": "CFTC Sues Minnesota to Block State Law",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "bullish",
+              "magnitude": "medium",
+              "high_impact": false,
+              "relevance_score": 5
+            }
+          ],
           "busy": false
         },
         {
           "day": 20,
           "date": "2026-05-20",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-05-20",
+              "type": "regulatory_event",
+              "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+              "contract_id": "cannabis-dea-rescheduling-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 1
+            },
+            {
+              "calendar_date": "2026-05-20",
+              "type": "effective_date",
+              "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            }
+          ],
           "busy": false
         },
         {
           "day": 21,
           "date": "2026-05-21",
-          "events": [],
+          "events": [
+            {
+              "calendar_date": "2026-05-21",
+              "type": "effective_date",
+              "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-05-21",
+              "type": "regulatory_event",
+              "title": "In the Matter of Ariel Betances",
+              "contract_id": "fda-retatrutide-2026",
+              "platform": "polymarket",
+              "color": "amber",
+              "direction": "neutral",
+              "magnitude": "low",
+              "high_impact": false,
+              "relevance_score": 0
+            }
+          ],
           "busy": false
         },
         {
@@ -1597,6 +2545,16 @@
           "day": 29,
           "date": "2026-05-29",
           "events": [
+            {
+              "calendar_date": "2026-05-29",
+              "type": "effective_date",
+              "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "purple",
+              "direction": "bullish",
+              "magnitude": "low"
+            },
             {
               "calendar_date": "2026-05-29",
               "type": "effective_date",
@@ -1727,6 +2685,16 @@
             "day": 9,
             "date": "2026-06-09",
             "events": [
+              {
+                "calendar_date": "2026-06-09",
+                "type": "comment_deadline",
+                "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+                "contract_id": "clarity-act-2026",
+                "platform": "polymarket",
+                "color": "green",
+                "direction": "neutral",
+                "magnitude": "low"
+              },
               {
                 "calendar_date": "2026-06-09",
                 "type": "comment_deadline",
@@ -2047,6 +3015,16 @@
             {
               "calendar_date": "2026-06-09",
               "type": "comment_deadline",
+              "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+              "contract_id": "clarity-act-2026",
+              "platform": "polymarket",
+              "color": "green",
+              "direction": "neutral",
+              "magnitude": "low"
+            },
+            {
+              "calendar_date": "2026-06-09",
+              "type": "comment_deadline",
               "title": "04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064\u2013AG19)",
               "contract_id": "kxbtc-maxprice-2026",
               "platform": "kalshi",
@@ -2281,6 +3259,1000 @@
     {
       "calendar_date": "2027-01-01",
       "type": "settlement",
+      "title": "Settlement: Marijuana rescheduled by December 31, 2026?",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "blue"
+    },
+    {
+      "calendar_date": "2026-05-20",
+      "type": "regulatory_event",
+      "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "2026-05-13",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "2026-03-26",
+      "type": "regulatory_event",
+      "title": "Attorney General Alan Wilson announces indictments in State Grand Jury Operation \u2018Ganjapreneur\u2019 involving marijuana and illegal THC products being sold openly in SC businesses",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-01-28",
+      "type": "regulatory_event",
+      "title": "2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. DOJ Threats Against Minnesota",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "April 1, 2",
+      "type": "effective_date",
+      "title": "AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-30",
+      "type": "regulatory_event",
+      "title": "AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research",
+      "contract_id": "cannabis-dea-rescheduling-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "week of 20",
+      "type": "effective_date",
+      "title": "Joshua T. White Named SEC Chief Economist",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-17",
+      "type": "regulatory_event",
+      "title": "Joshua T. White Named SEC Chief Economist",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-12-12",
+      "type": "regulatory_event",
+      "title": "Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Management USA, LLC; Gray Digital Technologies, LLC",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "In the com",
+      "type": "effective_date",
+      "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-11-12",
+      "type": "regulatory_event",
+      "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "2026-08-01",
+      "type": "effective_date",
+      "title": "Disclosure of Order Execution Information Trading and Markets",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2023-03-31",
+      "type": "comment_deadline",
+      "title": "Disclosure of Order Execution Information Trading and Markets",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-30",
+      "type": "regulatory_event",
+      "title": "Disclosure of Order Execution Information Trading and Markets",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-09-18",
+      "type": "comment_deadline",
+      "title": "Poking Holes: Statement in Response to No-Action Relief for State Trust Companies Acting as Crypto Asset Custodians",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-09-30",
+      "type": "regulatory_event",
+      "title": "Poking Holes: Statement in Response to No-Action Relief for State Trust Companies Acting as Crypto Asset Custodians",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 7
+    },
+    {
+      "calendar_date": "2025-09-30",
+      "type": "regulatory_event",
+      "title": "Cultivating Confidence: The Role of Custody in Institutional Confidence \u2013 Public Trust and Oversight; Remarks before the Digital Assets Summit Singapore",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-11-03",
+      "type": "effective_date",
+      "title": "Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.5",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "21 days af",
+      "type": "comment_deadline",
+      "title": "Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.5",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-25",
+      "type": "regulatory_event",
+      "title": "Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.5",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "2025-09-19",
+      "type": "effective_date",
+      "title": "_Federal Register_ version",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-19",
+      "type": "regulatory_event",
+      "title": "_Federal Register_ version",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-09-17",
+      "type": "regulatory_event",
+      "title": "SEC Approves Generic Listing Standards for Commodity-Based Trust Shares",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 7
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
+      "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
+      "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-08-01",
+      "type": "regulatory_event",
+      "title": "On the Road: SEC Crypto Task Force to Host a Series of Roundtables Across the U.S.",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-07-30",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-07-04",
+      "type": "effective_date",
+      "title": "SEC Announces Departure of David Saltiel",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-18",
+      "type": "regulatory_event",
+      "title": "SEC Announces Departure of David Saltiel",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-07-08",
+      "type": "effective_date",
+      "title": "Brian Daly Named Director of Division of Investment Management",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-13",
+      "type": "regulatory_event",
+      "title": "Brian Daly Named Director of Division of Investment Management",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "immediatel",
+      "type": "effective_date",
+      "title": "SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-10",
+      "type": "regulatory_event",
+      "title": "SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-07-04",
+      "type": "effective_date",
+      "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-06-10",
+      "type": "regulatory_event",
+      "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-09-08",
+      "type": "comment_deadline",
+      "title": "Concept Release on Foreign Private Issuer Eligibility 33-11376, 34-103176",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-04",
+      "type": "regulatory_event",
+      "title": "Concept Release on Foreign Private Issuer Eligibility 33-11376, 34-103176",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-05-14",
+      "type": "regulatory_event",
+      "title": "Final Management Letter: Audit of the SEC\u2019s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "March 2025",
+      "type": "effective_date",
+      "title": "2025 Examination Priorities (PDF)",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-03-01",
+      "type": "regulatory_event",
+      "title": "2025 Examination Priorities (PDF)",
+      "contract_id": "cardano-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2027-01-01",
+      "type": "settlement",
+      "title": "Settlement: Will the CLARITY Act be signed into law in 2026?",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "blue"
+    },
+    {
+      "calendar_date": "2026-08-01",
+      "type": "effective_date",
+      "title": "CFTC Sues Minnesota to Block State Law",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-05-19",
+      "type": "regulatory_event",
+      "title": "CFTC Sues Minnesota to Block State Law",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "Date of Pu",
+      "type": "effective_date",
+      "title": "Rescission of Policy Regarding Denials in Settlements of Enforcement Actions",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-18",
+      "type": "regulatory_event",
+      "title": "Rescission of Policy Regarding Denials in Settlements of Enforcement Actions",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-05-29",
+      "type": "effective_date",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-13",
+      "type": "regulatory_event",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "2026-05-21",
+      "type": "effective_date",
+      "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-07",
+      "type": "regulatory_event",
+      "title": "GMNI - Liquidity Incentive Program - 05/07/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-05-20",
+      "type": "effective_date",
+      "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-06",
+      "type": "regulatory_event",
+      "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-05-18",
+      "type": "effective_date",
+      "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "regulatory_event",
+      "title": "05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-04-28",
+      "type": "regulatory_event",
+      "title": "CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "effective_date",
+      "title": "GMNI Disclosure about AI information Features available to Members",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-17",
+      "type": "regulatory_event",
+      "title": "GMNI Disclosure about AI information Features available to Members",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-05-07",
+      "type": "effective_date",
+      "title": "13th Annual Conference on Financial Market Regulation",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-17",
+      "type": "regulatory_event",
+      "title": "13th Annual Conference on Financial Market Regulation",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "effective_date",
+      "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-16",
+      "type": "regulatory_event",
+      "title": "COIN | Crypto Market Maker Program - 04/16/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "effective_date",
+      "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-16",
+      "type": "regulatory_event",
+      "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-04-13",
+      "type": "regulatory_event",
+      "title": "Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2026-06-09",
+      "type": "comment_deadline",
+      "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-10",
+      "type": "regulatory_event",
+      "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-04-08",
+      "type": "regulatory_event",
+      "title": "Administrative Summary - 2026-04-08 - Francis Decker, CPA",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-03-23",
+      "type": "effective_date",
+      "title": "91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-23",
+      "type": "regulatory_event",
+      "title": "91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "Date of pu",
+      "type": "effective_date",
+      "title": "Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-18",
+      "type": "regulatory_event",
+      "title": "Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2026-02-23",
+      "type": "effective_date",
+      "title": "COIN | Modifications to the Non-Crypto Market Maker Program",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-01-29",
+      "type": "regulatory_event",
+      "title": "COIN | Modifications to the Non-Crypto Market Maker Program",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-02-09",
+      "type": "effective_date",
+      "title": "CME - Implementation of the Chainlink, Stellar, & Cardano Futures Market Maker Program",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-01-23",
+      "type": "regulatory_event",
+      "title": "CME - Implementation of the Chainlink, Stellar, & Cardano Futures Market Maker Program",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-02-12",
+      "type": "effective_date",
+      "title": "Secretary Bessent Announces Initiatives to Combat Rampant Fraud in Minnesota",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-01-09",
+      "type": "regulatory_event",
+      "title": "Secretary Bessent Announces Initiatives to Combat Rampant Fraud in Minnesota",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "effective ",
+      "type": "effective_date",
+      "title": "Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-08",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets",
+      "contract_id": "clarity-act-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2027-01-01",
+      "type": "settlement",
+      "title": "Settlement: FDA approves Retatrutide in 2026?",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "blue"
+    },
+    {
+      "calendar_date": "2026-05-21",
+      "type": "regulatory_event",
+      "title": "In the Matter of Ariel Betances",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2025-01-01",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-11",
+      "type": "comment_deadline",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-12",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2025-01-01",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-11",
+      "type": "comment_deadline",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-12",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2027-01-01",
+      "type": "effective_date",
+      "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-12",
+      "type": "regulatory_event",
+      "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2026-05-04",
+      "type": "regulatory_event",
+      "title": "Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone",
+      "contract_id": "fda-retatrutide-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "2027-01-01",
+      "type": "settlement",
       "title": "Settlement: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?",
       "contract_id": "kxbtc-maxprice-2026",
       "platform": "kalshi",
@@ -2417,6 +4389,18 @@
       "magnitude": "medium",
       "high_impact": false,
       "relevance_score": 7
+    },
+    {
+      "calendar_date": "2026-04-27",
+      "type": "regulatory_event",
+      "title": "Bitcoin 2026",
+      "contract_id": "kxbtc-maxprice-2026",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
     },
     {
       "calendar_date": "2026-04-21",
@@ -2705,28 +4689,6 @@
       "relevance_score": 6
     },
     {
-      "calendar_date": "2025-12-03",
-      "type": "effective_date",
-      "title": "Modifications to Position Limits",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-11-18",
-      "type": "regulatory_event",
-      "title": "Modifications to Position Limits",
-      "contract_id": "kxbtc-maxprice-2026",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 4
-    },
-    {
       "calendar_date": "2028-01-26",
       "type": "settlement",
       "title": "Settlement: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?",
@@ -2750,6 +4712,18 @@
       "calendar_date": "2026-05-07",
       "type": "regulatory_event",
       "title": "Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "regulatory_event",
+      "title": "Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency",
       "contract_id": "kxfeddecision-28jan",
       "platform": "kalshi",
       "color": "amber",
@@ -2847,6 +4821,18 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-04-15",
+      "type": "regulatory_event",
+      "title": "Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite",
+      "contract_id": "kxfeddecision-28jan",
+      "platform": "kalshi",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
     },
     {
       "calendar_date": "some time ",
@@ -2959,18 +4945,6 @@
       "relevance_score": 2
     },
     {
-      "calendar_date": "2026-03-12",
-      "type": "regulatory_event",
-      "title": "Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
-    },
-    {
       "calendar_date": "2026-03-10",
       "type": "regulatory_event",
       "title": "President Trump\u2019s Tax Cuts are Putting More Money Back into the Pockets of American Families and Workers",
@@ -2981,18 +4955,6 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 2
-    },
-    {
-      "calendar_date": "2026-03-02",
-      "type": "regulatory_event",
-      "title": "Christopher J Waller: Labor market data - signal or noise?",
-      "contract_id": "kxfeddecision-28jan",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 3
     },
     {
       "calendar_date": "2026-02-05",
@@ -3085,6 +5047,656 @@
       "relevance_score": 4
     },
     {
+      "calendar_date": "2027-01-01",
+      "type": "settlement",
+      "title": "Settlement: US grants license for new nuclear reactor in 2026?",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "blue"
+    },
+    {
+      "calendar_date": "June 1, 20",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "June 1, 20",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2026-05-01",
+      "type": "effective_date",
+      "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-30",
+      "type": "regulatory_event",
+      "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 0
+    },
+    {
+      "calendar_date": "2026-02-02",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-04",
+      "type": "comment_deadline",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-05",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2026-02-02",
+      "type": "effective_date",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-04",
+      "type": "comment_deadline",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bearish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2026-03-05",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026",
+      "contract_id": "nrc-nuclear-reactor-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-12-08",
+      "type": "effective_date",
+      "title": "Implementation of the Event Contract Swaps Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-12-05",
+      "type": "regulatory_event",
+      "title": "Implementation of the Event Contract Swaps Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 7
+    },
+    {
+      "calendar_date": "2026-02-03",
+      "type": "comment_deadline",
+      "title": "90 FR 56137",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-05",
+      "type": "regulatory_event",
+      "title": "90 FR 56137",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-12-07",
+      "type": "effective_date",
+      "title": "Amendments to the Contract Size and Minimum Price Increments of the CME, CBOT, NYMEX, and COMEX Event Contracts",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-04",
+      "type": "regulatory_event",
+      "title": "Amendments to the Contract Size and Minimum Price Increments of the CME, CBOT, NYMEX, and COMEX Event Contracts",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-12-16",
+      "type": "effective_date",
+      "title": "Implementation of the Event Contracts Incentive Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-01",
+      "type": "regulatory_event",
+      "title": "Implementation of the Event Contracts Incentive Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-12-15",
+      "type": "effective_date",
+      "title": "FMX - Adoption of Rule XI-6 (EFRP Transactions) and Amendments to I-1, III-6, and III-19.",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-28",
+      "type": "regulatory_event",
+      "title": "FMX - Adoption of Rule XI-6 (EFRP Transactions) and Amendments to I-1, III-6, and III-19.",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-12-15",
+      "type": "effective_date",
+      "title": "CME Modifications to the Cryptocurrency Spot-Quoted Futures Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-13",
+      "type": "regulatory_event",
+      "title": "CME Modifications to the Cryptocurrency Spot-Quoted Futures Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-11-01",
+      "type": "effective_date",
+      "title": "COIN Weekly Notification of Rule Amendments",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-11-06",
+      "type": "regulatory_event",
+      "title": "COIN Weekly Notification of Rule Amendments",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-10-24",
+      "type": "comment_deadline",
+      "title": "90 FR 47136",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-30",
+      "type": "regulatory_event",
+      "title": "90 FR 47136",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-10-14",
+      "type": "effective_date",
+      "title": "Amendments to Appendix VIII (EUDR) of Chapters 8 and 14 relating to invalidation and revocation of a previously Validated DDI",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bearish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-29",
+      "type": "regulatory_event",
+      "title": "Amendments to Appendix VIII (EUDR) of Chapters 8 and 14 relating to invalidation and revocation of a previously Validated DDI",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bearish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "2025-10-13",
+      "type": "effective_date",
+      "title": "CME Implementation of the SOL & XRP Options Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-09-23",
+      "type": "regulatory_event",
+      "title": "CME Implementation of the SOL & XRP Options Market Maker Program",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "2025-10-20",
+      "type": "comment_deadline",
+      "title": "Acting Chairman Pham Launches Tokenized Collateral and Stablecoins Initiative",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bullish",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-23",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Launches Tokenized Collateral and Stablecoins Initiative",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "immediatel",
+      "type": "effective_date",
+      "title": "CFTC Staff Withdraws Guidance on DCO Recovery Plans and Wind-down Plans",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-09-11",
+      "type": "regulatory_event",
+      "title": "CFTC Staff Withdraws Guidance on DCO Recovery Plans and Wind-down Plans",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
+      "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
+      "title": "SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-Host Roundtable Sept. 29",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-09-05",
+      "type": "regulatory_event",
+      "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 5
+    },
+    {
+      "calendar_date": "2025-08-18",
+      "type": "comment_deadline",
+      "title": "Acting Chairman Pham Launches Listed Spot Crypto Trading Initiative",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-08-04",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Launches Listed Spot Crypto Trading Initiative",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
+    },
+    {
+      "calendar_date": "2025-08-01",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Announces CFTC Crypto Sprint",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 7
+    },
+    {
+      "calendar_date": "2025-07-30",
+      "type": "regulatory_event",
+      "title": "Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 7
+    },
+    {
+      "calendar_date": "immediatel",
+      "type": "effective_date",
+      "title": "CFTC Staff Withdraws Advisory on Prime Brokerage Arrangements",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-07-18",
+      "type": "regulatory_event",
+      "title": "CFTC Staff Withdraws Advisory on Prime Brokerage Arrangements",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-06-16",
+      "type": "regulatory_event",
+      "title": "Federal Court Orders Texas Firm to Pay Over $100 Million to Customers Defrauded in Cattle Fraud Scheme",
+      "contract_id": "polymarket-us-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2027-01-01",
+      "type": "settlement",
+      "title": "Settlement: SCOTUS rules Trump can fire FTC commissioners?",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "blue"
+    },
+    {
+      "calendar_date": "2026-04-13",
+      "type": "effective_date",
+      "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-16",
+      "type": "regulatory_event",
+      "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-05-12",
+      "type": "effective_date",
+      "title": "Complaint for Permanent Injunction, Monetary Judgment, and Other Relief",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-04-09",
+      "type": "regulatory_event",
+      "title": "Complaint for Permanent Injunction, Monetary Judgment, and Other Relief",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-03-24",
+      "type": "regulatory_event",
+      "title": "Air AI and its Owners will be Banned from Marketing Business Opportunities to Settle FTC Charges the Company Misled Many Entrepreneurs and Small Businesses",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-03-10",
+      "type": "regulatory_event",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Intimidate Scientific Organizations",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "February 1",
+      "type": "effective_date",
+      "title": "FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2026-02-12",
+      "type": "regulatory_event",
+      "title": "FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2026-01-09",
+      "type": "regulatory_event",
+      "title": "Early Termination Notices",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 1
+    },
+    {
+      "calendar_date": "30 days fr",
+      "type": "comment_deadline",
+      "title": "FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-12-03",
+      "type": "regulatory_event",
+      "title": "FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger",
+      "contract_id": "scotus-ftc-independence-2026",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
       "calendar_date": "Date of Pu",
       "type": "effective_date",
       "title": "Final Rule Delegation of Authority to the Director of the Division of Investment Management IA-6934",
@@ -3105,6 +5717,28 @@
       "magnitude": "low",
       "high_impact": false,
       "relevance_score": 3
+    },
+    {
+      "calendar_date": "In the com",
+      "type": "effective_date",
+      "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    {
+      "calendar_date": "2025-11-12",
+      "type": "regulatory_event",
+      "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d",
+      "contract_id": "solana-etf-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "medium",
+      "high_impact": false,
+      "relevance_score": 6
     },
     {
       "calendar_date": "2025-09-18",
@@ -3367,28 +6001,6 @@
       "relevance_score": 2
     },
     {
-      "calendar_date": "2025-07-04",
-      "type": "effective_date",
-      "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "purple",
-      "direction": "neutral",
-      "magnitude": "low"
-    },
-    {
-      "calendar_date": "2025-06-10",
-      "type": "regulatory_event",
-      "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management",
-      "contract_id": "solana-etf-2025",
-      "platform": "polymarket",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 2
-    },
-    {
       "calendar_date": "2025-11-17",
       "type": "effective_date",
       "title": "Form N-PORT and Form N-CEN Reporting; Guidance on Open-End Fund Liquidity Risk Investment Management",
@@ -3445,79 +6057,223 @@
       "relevance_score": 4
     },
     {
-      "calendar_date": "2025-02-25",
-      "type": "regulatory_event",
-      "title": "D25-03 - Steven House - Amended Stipulated Agreement and Order",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 0
-    },
-    {
-      "calendar_date": "2025-01-31",
-      "type": "regulatory_event",
-      "title": "Regulatory Board Disciplinary Actions Archive",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 0
-    },
-    {
-      "calendar_date": "2025-01-24",
-      "type": "regulatory_event",
-      "title": "Bulletin B25-05",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
-      "color": "amber",
-      "direction": "neutral",
-      "magnitude": "low",
-      "high_impact": false,
-      "relevance_score": 0
-    },
-    {
-      "calendar_date": "May 1, 202",
+      "calendar_date": "beginning ",
       "type": "effective_date",
-      "title": "Bulletin B25-04",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
+      "title": "FDIC Proposes Regulatory Threshold Adjustments and Indexing to Reflect Inflation",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
       "color": "purple",
       "direction": "neutral",
       "magnitude": "low"
     },
     {
-      "calendar_date": "2025-01-24",
+      "calendar_date": "2025-09-26",
+      "type": "comment_deadline",
+      "title": "FDIC Proposes Regulatory Threshold Adjustments and Indexing to Reflect Inflation",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-07-15",
       "type": "regulatory_event",
-      "title": "Bulletin B25-04",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
+      "title": "FDIC Proposes Regulatory Threshold Adjustments and Indexing to Reflect Inflation",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
       "color": "amber",
       "direction": "neutral",
       "magnitude": "low",
       "high_impact": false,
-      "relevance_score": 0
+      "relevance_score": 2
     },
     {
-      "calendar_date": "CFPB will ",
+      "calendar_date": "2025-07-15",
+      "type": "regulatory_event",
+      "title": "SUNS July 15, 2025 (PDF)",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "21 DAYS AF",
       "type": "effective_date",
-      "title": "Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
+      "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving Vector Casa de Bolsa, S.A. de C.V.",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
       "color": "purple",
       "direction": "neutral",
       "magnitude": "low"
     },
     {
-      "calendar_date": "2024-09-19",
+      "calendar_date": "2025-06-30",
       "type": "regulatory_event",
-      "title": "Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data",
-      "contract_id": "tiktokban-25apr30",
-      "platform": "kalshi",
+      "title": "Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving Vector Casa de Bolsa, S.A. de C.V.",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "May 14, 20",
+      "type": "effective_date",
+      "title": "Testimony Before the United States Senate Appropriations Subcommittee on Financial Services and General Government",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-06-03",
+      "type": "regulatory_event",
+      "title": "Testimony Before the United States Senate Appropriations Subcommittee on Financial Services and General Government",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-06-04",
+      "type": "comment_deadline",
+      "title": "finding and notice of\u2026",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-05-05",
+      "type": "regulatory_event",
+      "title": "finding and notice of\u2026",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "30 days fr",
+      "type": "comment_deadline",
+      "title": "FinCEN Finds Cambodia-Based Huione Group to be of Primary Money Laundering Concern, Proposes a Rule to Combat Cyber Scams and Heists",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-05-01",
+      "type": "regulatory_event",
+      "title": "FinCEN Finds Cambodia-Based Huione Group to be of Primary Money Laundering Concern, Proposes a Rule to Combat Cyber Scams and Heists",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-04-30",
+      "type": "regulatory_event",
+      "title": "OCC Report Highlights Key Risks in Federal Banking System",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-04-01",
+      "type": "regulatory_event",
+      "title": "FinCEN Advisory FIN-2025-A001",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "bullish",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 4
+    },
+    {
+      "calendar_date": "March 2025",
+      "type": "effective_date",
+      "title": "2025 Examination Priorities (PDF)",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "purple",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-03-01",
+      "type": "regulatory_event",
+      "title": "2025 Examination Priorities (PDF)",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 2
+    },
+    {
+      "calendar_date": "2025-02-26",
+      "type": "regulatory_event",
+      "title": "Written Testimony",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-02-04",
+      "type": "regulatory_event",
+      "title": "SEC Crypto Task Force Designation (PDF)",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "amber",
+      "direction": "neutral",
+      "magnitude": "low",
+      "high_impact": false,
+      "relevance_score": 3
+    },
+    {
+      "calendar_date": "2025-04-11",
+      "type": "comment_deadline",
+      "title": "Request for Information Regarding the Collection, Use, and Monetization of Consumer Payment and Other Personal Financial Data",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
+      "color": "green",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    {
+      "calendar_date": "2025-01-10",
+      "type": "regulatory_event",
+      "title": "Request for Information Regarding the Collection, Use, and Monetization of Consumer Payment and Other Personal Financial Data",
+      "contract_id": "stablecoin-genius-act-2025",
+      "platform": "polymarket",
       "color": "amber",
       "direction": "neutral",
       "magnitude": "low",

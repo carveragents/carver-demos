@@ -47,6 +47,15 @@ def portfolio_row(slice_doc: dict[str, Any], *, today: str = "") -> dict[str, An
     catalyst = _next_catalyst(timeline, today)
     event_count = len(timeline)
 
+    # Aggregate thesis counts across all conditions (sum direct vs background)
+    conditions = contract.get("conditions") or []
+    direct_bullish = sum(c.get("bullish_count", 0) for c in conditions)
+    direct_bearish = sum(c.get("bearish_count", 0) for c in conditions)
+    # Background counts are the same across conditions (computed from timeline),
+    # so take from the first to avoid double-counting.
+    bg_bullish = conditions[0].get("background_bullish_count", 0) if conditions else 0
+    bg_bearish = conditions[0].get("background_bearish_count", 0) if conditions else 0
+
     return {
         "contract_id": contract["id"],
         "platform": contract.get("platform", ""),
@@ -58,6 +67,10 @@ def portfolio_row(slice_doc: dict[str, Any], *, today: str = "") -> dict[str, An
         "heat_delta_7d": heat_panel.get("delta_7d", 0),
         "peer_percentile": heat_panel.get("peer_percentile", 0),
         "net_direction": net_direction(timeline, today=today),
+        "thesis_direct_bullish": direct_bullish,
+        "thesis_direct_bearish": direct_bearish,
+        "thesis_background_bullish": bg_bullish,
+        "thesis_background_bearish": bg_bearish,
         "event_count_90d": event_count,
         "next_catalyst": catalyst,
         "latest_event": {

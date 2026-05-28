@@ -16,6 +16,7 @@
     "expires_at": "",
     "resolved_at": "2025-12-31",
     "resolution_criteria": "Resolves YES if the U.S. Securities and Exchange Commission approves at least one\nspot Solana exchange-traded fund (an ETF holding SOL tokens directly, not futures-based)\nfor listing on a U.S. national securities exchange (NYSE Arca, Cboe BZX, or NASDAQ)\nwith an effective approval order issued on or before 2025-12-31. Resolves NO otherwise.\n",
+    "resolution_outcome": "YES",
     "settlement_entities": [
       {
         "name": "U.S. Securities and Exchange Commission",
@@ -101,7 +102,7 @@
         "summary": "By 2025-12-31, SEC issues an effective order approving a NASDAQ rule change to list and trade a spot Solana ETF (holding SOL directly, not futures)."
       }
     ],
-    "narrative": "Through 2025, the SEC sent mixed signals: enforcement actions and custody cautions (e.g., Sept. 30 statements) dampened odds, while Sept. 17 approval of generic listing standards and inter\u2011agency harmonization modestly improved prospects. Procedural and personnel shifts in Investment Management offered little clarity. The year ended without a spot SOL ETF approval, so the market resolved No."
+    "narrative": "Early signals were mixed: a 2024 SEC settlement dampened odds, but 2025 saw SEC\u2011CFTC harmonization and crypto outreach. Momentum turned in Sept 2025 with approval of generic listing standards and intensified custody focus, and Nov\u2019s \u201cProject Crypto\u201d hinted a friendlier posture. The SEC ultimately approved a spot Solana ETF in 2025, resolving the contract YES."
   },
   "timeline": [
     {
@@ -116,7 +117,27 @@
       "one_line_why": "U.S. Securities and Exchange Commission \u2014 Division of Investment Management \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.",
       "condition_tag": "background",
       "relevance_score": 3,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
+    },
+    {
+      "pub_date": "2025-11-12",
+      "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d",
+      "regulator": "Securities and Exchange Commission",
+      "url": "https://www.sec.gov/newsroom/speeches-statements/atkins-111225-securities-exchange-commissions-approach-digital-assets-inside-project-crypto",
+      "urgency": 1.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "895101e9-e5ef-4167-9a7c-6a566962f1de",
+      "one_line_why": "Project Crypto signals a more pro-crypto SEC stance, increasing chances the SEC approves a spot Solana ETF before 2025-12-31.",
+      "condition_tag": "background",
+      "relevance_score": 6,
+      "high_impact": false,
+      "direction": "bullish",
+      "magnitude": "medium",
+      "timeline_shift": "sooner"
     },
     {
       "pub_date": "2025-09-30",
@@ -130,7 +151,10 @@
       "one_line_why": "SEC statement calling out problems with no-action custody relief signals regulatory caution on crypto custody, lowering odds of timely spot SOL ETF approval.",
       "condition_tag": "background",
       "relevance_score": 6,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bearish",
+      "magnitude": "medium",
+      "timeline_shift": "later"
     },
     {
       "pub_date": "2025-09-30",
@@ -144,7 +168,10 @@
       "one_line_why": "SEC speech emphasizing custody and institutional confidence reduces a key regulatory hurdle, modestly increasing odds of spot SOL ETF approval.",
       "condition_tag": "background",
       "relevance_score": 4,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bullish",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-09-24",
@@ -158,7 +185,10 @@
       "one_line_why": "CFTC\u2011SEC harmonization roundtable signals regulatory coordination but provides no direct indication that the SEC will approve a spot SOL ETF in 2025.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-09-17",
@@ -172,7 +202,10 @@
       "one_line_why": "Extending Form PF reporting to Oct 2026 affects private\u2011fund compliance timing but has minimal, indirect relevance to SEC approvals of a spot Solana ETF by end of 2025.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-09-17",
@@ -186,7 +219,10 @@
       "one_line_why": "SEC approved generic listing standards for commodity-based trust shares, easing approval path and increasing odds (and speeding) of a Cboe-listed spot SOL ETF.",
       "condition_tag": "B",
       "relevance_score": 7,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bullish",
+      "magnitude": "medium",
+      "timeline_shift": "sooner"
     },
     {
       "pub_date": "2025-09-05",
@@ -200,7 +236,10 @@
       "one_line_why": "Joint SEC\u2013CFTC harmonization reduces crypto regulatory uncertainty, modestly increasing odds the SEC will approve a spot SOL ETF in 2025.",
       "condition_tag": "background",
       "relevance_score": 6,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bullish",
+      "magnitude": "medium",
+      "timeline_shift": "sooner"
     },
     {
       "pub_date": "2025-09-05",
@@ -214,7 +253,10 @@
       "one_line_why": "Joint SEC/CFTC statement signals regulatory stance on crypto but contains no direct ETF approval action; ambiguous effect on SOL spot ETF odds.",
       "condition_tag": "background",
       "relevance_score": 3,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-09-05",
@@ -228,7 +270,10 @@
       "one_line_why": "General SEC\u2013CFTC harmonization roundtable is background policy news and does not directly affect approval odds for a spot SOL ETF in 2025.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-08-01",
@@ -242,7 +287,10 @@
       "one_line_why": "SEC crypto roundtables are general outreach and provide background on policy engagement but do not materially change odds of a spot SOL ETF approval.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-07-30",
@@ -256,7 +304,10 @@
       "one_line_why": "CFTC praise of PWG pro-crypto recommendations modestly raises regulatory support for crypto, slightly increasing odds the SEC approves a spot SOL ETF.",
       "condition_tag": "background",
       "relevance_score": 4,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bullish",
+      "magnitude": "low",
+      "timeline_shift": "sooner"
     },
     {
       "pub_date": "2025-06-18",
@@ -270,7 +321,10 @@
       "one_line_why": "Departure of a Division of Trading and Markets official creates review uncertainty but gives no clear directional signal on a spot Solana ETF approval.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-06-16",
@@ -284,7 +338,10 @@
       "one_line_why": "Securities and Exchange Commission \u2014 Division of Enforcement \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-06-13",
@@ -298,7 +355,10 @@
       "one_line_why": "New Division of Investment Management director affects SEC fund oversight but gives no crypto/ETF stance, so it doesn't materially change spot SOL ETF odds.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-06-12",
@@ -312,7 +372,10 @@
       "one_line_why": "SEC Investment Management guidance on safeguarding client assets is general and may only indirectly affect custody considerations for spot SOL ETFs.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-06-10",
@@ -326,21 +389,10 @@
       "one_line_why": "Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
-    },
-    {
-      "pub_date": "2025-06-10",
-      "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management",
-      "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management",
-      "url": "https://www.sec.gov/newsroom/press-releases/2025-84-natasha-vij-greiner-will-conclude-her-tenure-director-investment-management",
-      "urgency": 1.0,
-      "impact": 1.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "44bb5fde-a3f5-4803-ab1b-e283cb1793c8",
-      "one_line_why": "SEC Investment Management director leaving is a background personnel change; it gives no clear directional signal on approval of a spot Solana ETF.",
-      "condition_tag": "background",
-      "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-04-16",
@@ -354,7 +406,10 @@
       "one_line_why": "General guidance on fund reporting and liquidity risk is background regulatory context for ETFs but does not directly affect a spot SOL ETF approval decision.",
       "condition_tag": "background",
       "relevance_score": 2,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2025-02-04",
@@ -368,7 +423,10 @@
       "one_line_why": "SEC crypto task-force designation is background organizational news and does not directly change odds of a spot Solana ETF approval.",
       "condition_tag": "background",
       "relevance_score": 3,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none"
     },
     {
       "pub_date": "2024-09-12",
@@ -382,15 +440,18 @@
       "one_line_why": "SEC settlement with eToro signals stricter enforcement toward crypto, lowering odds the SEC will approve a spot SOL ETF.",
       "condition_tag": "background",
       "relevance_score": 4,
-      "high_impact": false
+      "high_impact": false,
+      "direction": "bearish",
+      "magnitude": "medium",
+      "timeline_shift": "later"
     }
   ],
   "open_tickets": [],
   "heat_panel": {
     "value": 198.45,
     "tier": "critical",
-    "delta_7d": -96.92,
-    "peer_percentile": 83,
+    "delta_7d": -97.62,
+    "peer_percentile": 78,
     "urgency_weighted_sparkline": [
       0,
       0,

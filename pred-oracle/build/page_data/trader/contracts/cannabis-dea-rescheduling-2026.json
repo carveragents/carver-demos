@@ -39,7 +39,7 @@
       "https://www.dea.gov/drug-information/drug-scheduling"
     ],
     "primary_source_url": "https://polymarket.com/event/weed-rescheduled-by-march-31",
-    "heat": 83.92,
+    "heat": 87.22,
     "heat_history": [
       3,
       4,
@@ -47,9 +47,9 @@
       0,
       0,
       0,
-      0,
-      0,
-      0,
+      1,
+      2,
+      2,
       0,
       0,
       0,
@@ -63,6 +63,8 @@
         "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action reclassifies marijuana (the whole plant/substance, i.e., recreational marijuana) from Schedule I to II\u2013V. Not satisfied by rescheduling only cannabinoids/derivatives.",
         "bullish_count": 0,
         "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 50,
         "sentiment": "neutral"
       },
@@ -72,11 +74,13 @@
         "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action removes marijuana entirely from the Controlled Substances Act schedules (unscheduled).",
         "bullish_count": 0,
         "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
         "progress": 50,
         "sentiment": "neutral"
       }
     ],
-    "narrative": "So far, the timeline features state AG crackdowns on unlicensed cannabis sales and general oversight warnings\u2014local actions with no clear bearing on DEA\u2019s federal rescheduling. No direct federal signal appears; the decisive step remains DEA rulemaking on marijuana\u2019s schedule, with any proposed or final rule and interagency review still pending ahead of the 2026 year-end deadline."
+    "narrative": "Regulatory pressure centers on DEA\u2019s rescheduling rulemaking, but 2025\u201326 developments\u2014state AG crackdowns, a multistate letter on federal-state enforcement, and OFAC fentanyl sanctions\u2014are peripheral and offer no clear signal. The key federal decision remains pending; a final DEA action is still needed before the Dec 31, 2026 deadline."
   },
   "position": {
     "side": "YES",
@@ -84,6 +88,26 @@
     "entry_price": 0.32
   },
   "timeline": [
+    {
+      "pub_date": "2026-05-20",
+      "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+      "regulator": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control",
+      "url": "https://home.treasury.gov/news/press-releases/sb0503",
+      "urgency": 1.0,
+      "impact": 10.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "e21e651d-d9c2-42c8-afc9-e6ecaccadf6a",
+      "one_line_why": "OFAC sanctions targeting Sinaloa fentanyl trafficking are unrelated to DEA action on marijuana rescheduling, so no material effect on the outcome.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
     {
       "pub_date": "2026-05-13",
       "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026",
@@ -105,46 +129,6 @@
       "comment_deadline": ""
     },
     {
-      "pub_date": "2026-05-13",
-      "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion",
-      "regulator": "California Department of Justice \u2014 Special Prosecutions Section",
-      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-joint-investigation-leads-felony-charges-against",
-      "urgency": 1.0,
-      "impact": 9.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "6677b9d6-be68-4fdf-9fbd-2d8da8600a4a",
-      "one_line_why": "State tax/evasion charges against an unlicensed CA cannabis retailer are local enforcement and do not materially affect a federal DEA rescheduling decision.",
-      "condition_tag": "background",
-      "relevance_score": 1,
-      "high_impact": false,
-      "direction": "neutral",
-      "magnitude": "low",
-      "timeline_shift": "none",
-      "mechanism": "Context",
-      "effective_date": "",
-      "comment_deadline": ""
-    },
-    {
-      "pub_date": "2026-05-11",
-      "title": "AG Rayfield, State AGs Warn of Enforcement Gap as Feds Pull Back on Corporate Oversight",
-      "regulator": "Oregon Department of Justice",
-      "url": "https://www.doj.state.or.us/media-home/news-media-releases/ag-rayfield-calls-for-state-resources-to-address-growing-mergers-monopolies/",
-      "urgency": 1.0,
-      "impact": 9.0,
-      "matched_entity": "",
-      "carver_feed_entry_id": "11b3a387-7149-4554-8ce3-a0718440a641",
-      "one_line_why": "State AGs warning about federal pullback on corporate oversight doesn't materially affect DEA's decision on rescheduling marijuana; no direct signal.",
-      "condition_tag": "background",
-      "relevance_score": 1,
-      "high_impact": false,
-      "direction": "neutral",
-      "magnitude": "low",
-      "timeline_shift": "none",
-      "mechanism": "Context",
-      "effective_date": "June",
-      "comment_deadline": ""
-    },
-    {
       "pub_date": "2026-03-26",
       "title": "Attorney General Alan Wilson announces indictments in State Grand Jury Operation \u2018Ganjapreneur\u2019 involving marijuana and illegal THC products being sold openly in SC businesses",
       "regulator": "South Carolina Attorney General \u2014 State Grand Jury Division",
@@ -154,6 +138,26 @@
       "matched_entity": "",
       "carver_feed_entry_id": "ab02ccbc-c9ef-401c-82d5-76e793b608bb",
       "one_line_why": "South Carolina Attorney General \u2014 State Grand Jury Division \u2014 South Carolina Securities Commissioner: tangential to resolution, no directional effect.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-01-28",
+      "title": "2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. DOJ Threats Against Minnesota",
+      "regulator": "California Department of Justice Office of the Attorney General",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-joins-multistate-coalition-condemning-us-doj-threats",
+      "urgency": 1.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "a8a57ad2-0452-4891-b9a3-ba883a91ca82",
+      "one_line_why": "Multistate AGs condemn DOJ threats; this concerns federal-state enforcement politics but gives no direct signal on DEA's rescheduling decision.",
       "condition_tag": "background",
       "relevance_score": 2,
       "high_impact": false,
@@ -186,19 +190,19 @@
     }
   ],
   "heat_panel": {
-    "value": 83.92,
-    "tier": "critical",
-    "delta_7d": -81.8,
-    "peer_percentile": 40,
+    "value": 87.22,
+    "tier": "watch",
+    "delta_7d": -81.5,
+    "peer_percentile": 25,
     "urgency_weighted_sparkline": [
-      2,
+      1,
       0,
       0,
       0,
       0,
       0,
       0,
-      0,
+      1,
       0,
       0,
       0,
@@ -207,10 +211,10 @@
       0
     ],
     "primary_drivers": [
-      "State AG joint investigations and felony charges",
-      "Multi\u2011state warnings of federal pullback on corporate oversight",
-      "Recent grand jury indictments and enforcement agreements"
+      "Duplicate press releases announcing felony charges from a joint investigation",
+      "AG urging federal crackdown on xylazine ('tranq') amid an abuse surge",
+      "Multistate coalition actions and a federal agreement drawing public attention"
     ],
-    "explainer": "Critical heat reflects a wave of state attorney general enforcement\u2014duplicate joint investigations and felony indictments\u2014plus multi\u2011state warnings about a federal pullback in corporate oversight."
+    "explainer": "Critical heat is driven by recent high\u2011visibility AG activity \u2014 repeated felony\u2011charge announcements from a joint probe, renewed calls to crack down on xylazine ('tranq'), and multistate legal actions."
   }
 }

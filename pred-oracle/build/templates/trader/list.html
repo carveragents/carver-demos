@@ -145,11 +145,26 @@
             </div>
             <h2 class="font-semibold text-slate-900 leading-snug">{{ row.title }}</h2>
 
-            {# Price row #}
-            <div class="flex items-center gap-4 mt-2 text-sm">
-              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700 tabular-nums">{{ row.yes_price }}¢</span></span>
-              <span class="text-slate-500">NO <span class="font-semibold text-rose-700 tabular-nums">{{ row.no_price }}¢</span></span>
-              <span class="{{ dir_color }} font-medium">{{ dir_arrow }} {{ row.net_direction }}</span>
+            {# Price row + thesis counts #}
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">{{ row.yes_price }}¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">{{ row.no_price }}¢</span></span>
+              {% if (row.thesis_direct_bullish + row.thesis_direct_bearish + row.thesis_background_bullish + row.thesis_background_bearish) > 0 %}
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑{{ row.thesis_direct_bullish }}</span>
+                <span class="text-rose-500">↓{{ row.thesis_direct_bearish }}</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              {% if row.thesis_background_bullish + row.thesis_background_bearish > 0 %}
+              <span class="text-xs text-slate-300">·</span>
+              <span class="text-xs" title="Background regulatory events with directional read">
+                <span class="text-emerald-500/80">↑{{ row.thesis_background_bullish }}</span>
+                <span class="text-rose-400/80">↓{{ row.thesis_background_bearish }}</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">bg</span>
+              </span>
+              {% endif %}
+              {% endif %}
             </div>
 
             {# Latest event snippet #}
@@ -183,18 +198,24 @@
 
           {# Right: heat + position #}
           <div class="flex-shrink-0 text-right">
-            {# Heat value #}
-            <div class="tabular-nums">
-              <span class="text-2xl font-bold text-slate-900">{{ row.heat_value|round(0)|int }}</span>
-              {% if row.heat_delta_7d > 0 %}
-                <span class="text-xs text-rose-600 ml-1">+{{ row.heat_delta_7d|round(1) }}</span>
-              {% elif row.heat_delta_7d < 0 %}
-                <span class="text-xs text-emerald-600 ml-1">{{ row.heat_delta_7d|round(1) }}</span>
-              {% else %}
-                <span class="text-xs text-slate-400 ml-1">±0</span>
-              {% endif %}
+            {# Tier + qualitative delta #}
+            <div>
+              <div class="text-base font-bold uppercase tracking-wide
+                {% if row.heat_tier == 'critical' %}text-rose-700
+                {% elif row.heat_tier == 'active' %}text-orange-700
+                {% elif row.heat_tier == 'watch' %}text-amber-700
+                {% else %}text-slate-500{% endif %}">{{ row.heat_tier }}</div>
+              <div class="text-xs mt-0.5">
+                {% if row.heat_delta_7d > 0 %}
+                  <span class="text-rose-600">▲ heating</span>
+                {% elif row.heat_delta_7d < 0 %}
+                  <span class="text-emerald-600">▼ cooling</span>
+                {% else %}
+                  <span class="text-slate-400">— steady</span>
+                {% endif %}
+                <span class="text-slate-400">/ 7d</span>
+              </div>
             </div>
-            <div class="text-[10px] text-slate-400 uppercase tracking-wider">heat / 7d Δ</div>
 
             {# Event count #}
             <div class="mt-2">
