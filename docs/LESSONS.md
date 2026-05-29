@@ -3,6 +3,7 @@
 ## SESSIONS
 
 - 2026-05-25-1138-move-existing-demos
+- 2026-05-25-1247-feat-trader-demos
 
 ---
 
@@ -27,3 +28,27 @@
 - `docs/LESSONS.md` or project-local lesson files (contextual decisions)
 
 **Lesson:** In a monorepo with heterogeneous projects, each demo/component is different. Keeping its local config prevents loss of context and avoids the need to recreate guidance later. The parent repo's `.claude/` and each subdirectory's `.claude/` serve different purposes and should coexist without conflict.
+
+### 3. Motion-graphic overlays require programmatic measurement, not estimation
+
+**Problem:** When aligning hyperframes overlays to page elements (e.g., thesis bar segment positions), manual CSS estimates or comment-based coordinates lead to misalignment that only becomes visible after rendering. Fixing after-the-fact costs rework.
+
+**Mitigation:** Use programmatic bounding-box measurement from the actual rendered page (Playwright `locator.bounding_box()`) in preflight validation. Measure segment positions, store in anchors.json, and use the data to position overlays. Automate the preflight check: fail if measured positions deviate more than 5–10px from expected.
+
+**Lesson:** Visual positioning is a data problem. Measure once during preflight, version the measurement data, and consume it in the composition. Avoid hardcoding positions based on assumptions or comments.
+
+### 4. Storyboard-driven video requires explicit transition beats between major sections
+
+**Problem:** Abrupt navigation jumps (e.g., closing Contract Details and jumping to Calendar) feel jarring to viewers. What seems like one logical step often needs two: exit-previous + enter-next.
+
+**Mitigation:** When sketching beat flow, mark navigation transitions explicitly: identify which beats involve page changes, then add explicit transition beats. Example: beat 8 (scroll to end of contract page) → beat 08b (goto /trader/) → beat 9 (click calendar). Keep transition beat narration short (2–3 seconds); it's bridge copy, not substance.
+
+**Lesson:** Smooth narrative pacing requires explicit transitions. Treat navigation like a scene change: close one scene, open the next. Don't skip the bridge.
+
+### 5. Verify all on-screen narration claims during preflight, before TTS generation
+
+**Problem:** Narration mentions numbers, dates, or UI labels that aren't actually visible at that beat's frame. Examples: mentioning a date when the timeline has scrolled past it, or citing event counts that don't match what's rendered. Catching these after recording wastes time on rework.
+
+**Mitigation:** During preflight, screenshot each beat's frame. Automatically parse visible text (OCR or DOM text-content), compare against narration script. Flag any claim (number, date, label) that doesn't appear on-screen. Fix narration BEFORE TTS generation.
+
+**Lesson:** Narration verification should be a preflight gate. Make it a checklist step: every factual claim must be verifiable from the page render, or the narration script is incomplete.
