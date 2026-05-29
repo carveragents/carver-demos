@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (5 events):\n- 2026-04-16 [background] FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief \u2014 FTC enforcement action shows the agency remains active but does not meaningfully affect whether SCOTUS will permit presidential removal\u2014no change to YES odds.\n- 2026-04-09 [background] Complaint for Permanent Injunction, Monetary Judgment, and Other Relief \u2014 FTC enforcement complaint against StubHub is unrelated to the Supreme Court's removal-of-commissioners ruling and doesn't affect YES probability.\n- 2026-03-30 [background] OkCupid/Match \u2014 FTC enforcement action re: Match/OkCupid is unrelated to the Court's legal question on presidential removal of FTC commissioners, so no change to YES odds.\n- 2026-02-12 [background] FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter \u2014 FTC consent order is routine enforcement action and does not bear on the Supreme Court's legal question about presidential removal of FTC commissioners.\n- 2026-01-30 [background] FTC Takes Action to Prevent Anticompetitive Healthcare Services Merger \u2014 FTC's Jan 30, 2026 enforcement shows the agency is still acting but does not directly affect whether SCOTUS will permit removal of commissioners.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "This market tracks whether SCOTUS will hold that the President (Trump) can remove FTC commissioners at will. To date, only routine FTC enforcement actions (merger, consent order, consumer cases incl. StubHub and OkCupid/Match) appear and don\u2019t affect the removal question or move odds. The key pressure is the pending Supreme Court ruling on presidential removal authority; outcome still awaited."
+  }
+}

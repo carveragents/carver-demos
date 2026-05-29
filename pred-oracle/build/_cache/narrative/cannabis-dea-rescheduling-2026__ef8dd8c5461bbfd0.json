@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Marijuana rescheduled by December 31, 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-13 [background] Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026 \u2014 State-level tax/fraud prosecution of an unlicensed retailer is unrelated to the DEA's federal rescheduling decision and provides only background enforcement context.\n- 2026-05-13 [background] Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion \u2014 California tax/criminal charges against an unlicensed seller are state enforcement actions and do not materially affect the DEA's federal rescheduling decision.\n- 2026-05-11 [background] AG Rayfield, State AGs Warn of Enforcement Gap as Feds Pull Back on Corporate Oversight \u2014 State AGs warning about federal pullback on corporate oversight is unrelated to DEA rulemaking on marijuana rescheduling, so no effect.\n- 2026-03-26 [background] Attorney General Alan Wilson announces indictments in State Grand Jury Operation \u2018Ganjapreneur\u2019 involving marijuana and illegal THC products being sold openly in SC businesses \u2014 South Carolina Attorney General \u2014 State Grand Jury Division \u2014 South Carolina Securities Commissioner: tangential to resolution, no directional effect.\n- 2025-12-30 [background] AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research \u2014 Office of the Attorney General \u2014 Massachusetts Office of the Attorney General Consumer Advocacy & Response Division: tangential to resolution, no directional effect.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The listed events are mostly state AG enforcement and oversight commentary, offering background but little direct pressure on DEA\u2019s federal rescheduling. The outcome hinges on DEA\u2019s ongoing rulemaking and interagency review\u2014public comment, scheduling analysis, and potential litigation\u2014which remain pending as the Dec 31, 2026 deadline approaches."
+  }
+}

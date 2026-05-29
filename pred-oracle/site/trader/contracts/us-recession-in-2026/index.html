@@ -71,7 +71,15 @@
   <div class="flex items-center gap-6">
     <a href="/trader/"
        class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="/trader/portfolio/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
       Portfolio
+    </a>
+    <a href="/trader/calendar/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
     </a>
     <a href="/trader/retrospectives/"
        class="text-sm font-medium text-slate-500 hover:text-ink transition">
@@ -107,7 +115,7 @@
 <header class="mb-6">
   <div class="flex items-center gap-2 mb-2 flex-wrap">
     <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
-    <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 uppercase tracking-wide font-medium">critical</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-orange-100 text-orange-800 uppercase tracking-wide font-medium">watch</span>
     
     
     <span class="text-xs text-slate-400">expires 2026-12-31</span>
@@ -174,7 +182,7 @@
 
     
     
-    <section>
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
       <ol class="space-y-4">
         
@@ -197,16 +205,22 @@
               <span class="font-medium text-slate-900 text-sm">NBER 2026-peak recession by 2026-12-31</span>
               <span class="flex items-center gap-2 text-xs tabular-nums">
                 
-                <span class="text-emerald-600">↑ 0</span>
-                <span class="text-rose-500">↓ 0</span>
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 0</span>
+                  <span class="text-rose-500">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
                 
               </span>
             </div>
             
-            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden">
-              
-              
-              
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
               
               <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
               
@@ -225,7 +239,7 @@
     
     
     <section>
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Analyst narrative</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
       <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
         Regulatory developments center on bank capital and leverage tweaks (eSLR, TLAC, CBLR) effective into 2026, which may nudge credit conditions but offer no clear recession signal. Routine TIC flows, Treasury statements, call reports, and state labor data provide only weak, indirect reads. The market awaits 2026 national macro releases and an eventual NBER dating decision to determine whether a 2026 recession occurs.
       </blockquote>
@@ -278,10 +292,17 @@
     
 
     
-    <section x-data="{ filter: 'all' }">
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
         
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
       </div>
 
       
@@ -316,7 +337,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -360,7 +381,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -404,7 +425,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -448,7 +469,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -492,7 +513,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -536,7 +557,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -580,7 +601,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -624,7 +645,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -668,7 +689,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Signal</span>
@@ -712,7 +733,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Signal</span>
@@ -756,7 +777,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Signal</span>
@@ -800,7 +821,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -844,7 +865,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -888,7 +909,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Signal</span>
@@ -932,7 +953,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -976,7 +997,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -1020,7 +1041,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -1064,7 +1085,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -1108,7 +1129,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -1152,7 +1173,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
@@ -1184,21 +1205,28 @@
 
     
     
-    <div class="border border-slate-200 rounded-lg p-4 bg-rose-50">
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-orange-50">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
 
-      <div class="flex items-baseline gap-2 mb-1">
-        <span class="text-3xl font-bold text-rose-700 tabular-nums">87</span>
-        <span class="text-sm text-rose-700 font-semibold uppercase tracking-wide">critical</span>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-orange-700 uppercase tracking-wide">watch</span>
+          
+          <span class="text-sm text-slate-500">top 67% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 92</span>
       </div>
 
-      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3 tabular-nums">
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-orange-700" style="width: 33%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
         
-          <span class="text-emerald-600">-70.5 / 7d</span>
-        
-        
-        <span class="text-slate-400">·</span>
-        <span>top 50% of peers</span>
+          <span class="text-emerald-600">▼ cooling / 7d</span>
         
       </div>
 
@@ -1613,6 +1641,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
 });
 </script>
 

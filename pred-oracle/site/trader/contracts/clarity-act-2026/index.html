@@ -71,7 +71,15 @@
   <div class="flex items-center gap-6">
     <a href="/trader/"
        class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="/trader/portfolio/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
       Portfolio
+    </a>
+    <a href="/trader/calendar/"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
     </a>
     <a href="/trader/retrospectives/"
        class="text-sm font-medium text-slate-500 hover:text-ink transition">
@@ -174,7 +182,7 @@
 
     
     
-    <section>
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
       <ol class="space-y-4">
         
@@ -194,27 +202,42 @@
           <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
           <div class="flex-1">
             <div class="flex items-baseline justify-between mb-1">
-              <span class="font-medium text-slate-900 text-sm">H.R.3633 passes both chambers and is signed</span>
+              <span class="font-medium text-slate-900 text-sm">H.R.3633 passed &amp; signed by 12/31/26 ET</span>
               <span class="flex items-center gap-2 text-xs tabular-nums">
                 
-                <span class="text-emerald-600">↑ 0</span>
-                <span class="text-rose-500">↓ 1</span>
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 2</span>
+                  <span class="text-rose-500">↓ 2</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                <span class="text-slate-400">·</span>
+                <span class="text-slate-500" title="Background regulatory events with directional read but not directly tied to this condition">
+                  <span class="text-emerald-500/80">↑ 2</span>
+                  <span class="text-rose-400/80">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">background</span>
+                </span>
+                
                 
               </span>
             </div>
             
-            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden">
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="2" data-direct-bearish="2" data-bg-bullish="2" data-bg-bearish="0">
               
+              <div class="bg-emerald-600 h-1.5" data-segment="direct-bullish" style="width: 33%" title="2 bullish (direct)"></div>
+              <div class="bg-emerald-300 h-1.5" data-segment="bg-bullish" style="width: 33%" title="2 bullish (background)"></div>
               
-              
-              
-              <div class="bg-emerald-500 h-1.5" style="width: 0%"></div>
-              <div class="bg-rose-500 h-1.5" style="width: 100%"></div>
+              <div class="bg-rose-600 h-1.5" data-segment="direct-bearish" style="width: 33%" title="2 bearish (direct)"></div>
               
             </div>
             
             
-            <p class="text-xs text-slate-600 mt-1.5">The Digital Asset Market Clarity Act of 2025 (H.R.3633) passes the U.S. House and Senate and is signed into law by the President by Dec 31, 2026, 11:59 PM ET.</p>
+            <p class="text-xs text-slate-600 mt-1.5">H.R.3633 (Digital Asset Market Clarity Act of 2025) passes both House and Senate and is signed into law by Dec 31, 2026, 11:59 PM ET, confirmed by Congress.gov, White House, or GPO.</p>
             
           </div>
         </li>
@@ -226,9 +249,9 @@
     
     
     <section>
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Analyst narrative</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
       <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
-        The CFTC’s May suit against Minnesota to block a state crypto law signals regulators can handle jurisdictional clashes, easing near-term pressure to advance the CLARITY Act. Other CFTC moves (committee changes, rebates, market-maker programs, trading-hour tweaks) are routine and largely non-directional. Passage by Congress and a 2026 presidential signature remain pending.
+        SEC moves in March 2026 to apply securities laws to crypto dampen momentum for shifting jurisdiction, but an April staff statement on broker-dealer registration for crypto UIs revives pressure for statutory clarity. Concurrent CFTC actions, including suits against WI and MN and market-expanding steps, nudge Congress toward a CFTC-friendly CLARITY Act. Bill passage and presidential signature remain pending.
       </blockquote>
     </section>
     
@@ -274,10 +297,17 @@
     
 
     
-    <section x-data="{ filter: 'all' }">
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (6)</h2>
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
         
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
       </div>
 
       
@@ -312,24 +342,149 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">↓ bearish</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
               <span class="text-xs text-slate-400" title="Medium impact">◑</span>
               
               <span class="text-xs text-slate-500">Binding Action</span>
               
               
-              <span class="text-xs text-slate-500 flex items-center gap-0.5">
-                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Later
-              </span>
-              
             </div>
             <a href="https://www.cftc.gov/PressRoom/PressReleases/9233-26" target="_blank" rel="noopener noreferrer"
                class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC Sues Minnesota to Block State Law</a>
             
-            <p class="text-xs text-slate-600 mt-1">CFTC suing Minnesota to block state crypto law suggests federal enforcement can resolve jurisdictional disputes, reducing pressure to enact CLARITY Act.</p>
+            <p class="text-xs text-slate-600 mt-1">CFTC suing Minnesota shows federal assertion over state crypto rules, modestly increasing odds Congress favors a federal CLARITY Act (bullish).</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/rules-regulations/2026/05/33-11417" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Rescission of Policy Regarding Denials in Settlements of Enforcement Actions</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Securities and Exchange Commission — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-13</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60767" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC expanding crypto futures trading hours underscores an active CFTC role in crypto markets, mildly increasing odds Congress favors a CFTC-friendly CLARITY Act.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-07</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60721" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">GMNI - Liquidity Incentive Program - 05/07/2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC action involving Gemini is tangentially relevant to jurisdictional implementation debates but doesn&#39;t materially change chances H.R.3633 will become law.</p>
             
           </article>
         </li>
@@ -363,7 +518,7 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
@@ -372,6 +527,50 @@
             </div>
             <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60706" target="_blank" rel="noopener noreferrer"
                class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CDNA - Amendments to rules on Insider definition, jurisdiction… - 05/06/2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC rule amendments reflect agency activity on crypto jurisdiction but are background regulatory action, not direct evidence of H.R.3633 being passed/signed.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60674" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">05.01.2026 - The changes amend Rules related to Bitnomial&#39;s non-FCM Clearing Members - BTNL</a>
             
             <p class="text-xs text-slate-600 mt-1">Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
             
@@ -398,7 +597,7 @@
         <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
             :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
           <time class="text-right pr-3 pt-1">
-            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-01</span>
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-28</span>
             <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
           </time>
           <div class="flex justify-center pt-2 relative">
@@ -407,17 +606,17 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
-              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
               
-              <span class="text-xs text-slate-500">Context</span>
+              <span class="text-xs text-slate-500">Binding Action</span>
               
               
             </div>
-            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60668" target="_blank" rel="noopener noreferrer"
-               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">05.01.2026 - Restructure the Disciplinary Panel and Appeals Committee from standing committees to ad hoc committees convened on an as-needed basis. - GMNI</a>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9220-26" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets</a>
             
-            <p class="text-xs text-slate-600 mt-1">Internal CFTC committee restructuring is administrative and unlikely to affect congressional passage or presidential signing of H.R.3633.</p>
+            <p class="text-xs text-slate-600 mt-1">CFTC suing to assert exclusive jurisdiction over prediction markets bolsters its claim over digital markets, modestly increasing H.R.3633&#39;s chance (bullish).</p>
             
           </article>
         </li>
@@ -442,7 +641,424 @@
         <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
             :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
           <time class="text-right pr-3 pt-1">
-            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-01</span>
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-17</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60511" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">GMNI Disclosure about AI information Features available to Members</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC disclosure about Gemini AI features shows active regulator involvement in crypto but is background noise that doesn&#39;t materially affect H.R.3633 passage odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-17</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Securities and Exchange Commission — Division of Economic and Risk Analysis</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/meetings-events/13th-annual-conference-financial-market-regulation" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">13th Annual Conference on Financial Market Regulation</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC conference on market regulation signals regulator engagement but provides no clear change to H.R.3633&#39;s chances of becoming law.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60505" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN | Crypto Market Maker Program - 04/16/2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC launching a Coinbase crypto market-maker program signals regulatory activity but doesn&#39;t materially change likelihood H.R.3633 is enacted.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60502" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN | Modifications to implement hard limits… - 04/16/2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC rule change on trading limits (COIN) is an agency action unrelated to Congress passing/signing H.R.3633; provides only minor background context.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-13</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Trading and Markets</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/speeches-statements/staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized-prepare-staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC staff asserting broker-dealer registration for crypto UIs likely increases pressure for Congress to enact clarifying law, raising odds H.R.3633 passes.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-10</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Financial Crimes Enforcement Network</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://www.federalregister.gov/documents/2026/04/10/2026-07033/anti-money-laundering-and-countering-the-financing-of-terrorism-programs" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">FinCEN&#39;s AML/CFT NPRM shapes the digital-asset regulatory backdrop but does not directly affect whether H.R.3633 is passed and signed; low-impact background signal.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-08</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Accounting and Auditing Enforcement</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/enforcement-litigation/administrative-proceedings/34-105184-s" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Administrative Summary - 2026-04-08 - Francis Decker, CPA</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Securities and Exchange Commission — Accounting and Auditing Enforcement — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/2026-05635.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC guidance asserting securities coverage of crypto weakens the case for shifting spot jurisdiction to the CFTC, lowering odds that H.R.3633 passes.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC guidance applying securities laws to crypto reduces congressional pressure to pass the CLARITY Act, lowering its passage odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-29</span>
             <span class="block text-[10px] text-slate-400 uppercase">U.S. Commodity Futures Trading Commission</span>
           </time>
           <div class="flex justify-center pt-2 relative">
@@ -451,17 +1067,17 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
               
               
             </div>
-            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60685" target="_blank" rel="noopener noreferrer"
-               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">05.01.2026 - Block Trade Rebate Program - KEX</a>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59560" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN | Modifications to the Non-Crypto Market Maker Program</a>
             
-            <p class="text-xs text-slate-600 mt-1">CFTC&#39;s block-trade rebate action for Kalshi is an administrative market move unrelated to passage of H.R.3633, so it gives no clear signal.</p>
+            <p class="text-xs text-slate-600 mt-1">U.S. Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
             
           </article>
         </li>
@@ -486,7 +1102,7 @@
         <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
             :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
           <time class="text-right pr-3 pt-1">
-            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-23</span>
             <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
           </time>
           <div class="flex justify-center pt-2 relative">
@@ -495,17 +1111,17 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
               
               
             </div>
-            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60506" target="_blank" rel="noopener noreferrer"
-               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN | Non-Crypto Market Maker Program - 04/16/2026</a>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59458" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CME - Implementation of the Chainlink, Stellar, &amp; Cardano Futures Market Maker Program</a>
             
-            <p class="text-xs text-slate-600 mt-1">CFTC&#39;s Coinbase market-maker program shows regulator activity on crypto markets but doesn&#39;t materially change likelihood of H.R.3633 passage.</p>
+            <p class="text-xs text-slate-600 mt-1">Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
             
           </article>
         </li>
@@ -530,8 +1146,8 @@
         <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
             :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
           <time class="text-right pr-3 pt-1">
-            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
-            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-09</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Financial Crimes Enforcement Network (FinCEN)</span>
           </time>
           <div class="flex justify-center pt-2 relative">
             <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
@@ -539,17 +1155,61 @@
           </div>
           <article class="pb-6 pl-2">
             <div class="flex flex-wrap items-center gap-1.5 mb-1">
-              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">→ neutral</span>
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
               <span class="text-xs text-slate-400" title="Low impact">○</span>
               
               <span class="text-xs text-slate-500">Context</span>
               
               
             </div>
-            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60501" target="_blank" rel="noopener noreferrer"
-               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN | Modifications to trading hours… - 04/16/2026</a>
+            <a href="https://www.fincen.gov/news/news-releases/secretary-bessent-announces-initiatives-combat-rampant-fraud-minnesota" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Secretary Bessent Announces Initiatives to Combat Rampant Fraud in Minnesota</a>
             
-            <p class="text-xs text-slate-600 mt-1">Routine CFTC action on Coinbase trading hours is background regulatory activity and does not materially change odds that H.R.3633 will be enacted.</p>
+            <p class="text-xs text-slate-600 mt-1">Financial Crimes Enforcement Network (FinCEN) — Financial Crimes Enforcement Network: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-08</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission — Market Participants Division, Division of Market Oversight, Division of Clearing and Risk</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9146-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC pilot shows regulator activity on digital assets but is not direct evidence for or against H.R.3633 becoming law.</p>
             
           </article>
         </li>
@@ -583,21 +1243,28 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
 
     
     
-    <div class="border border-slate-200 rounded-lg p-4 bg-rose-50">
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-rose-50">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
 
-      <div class="flex items-baseline gap-2 mb-1">
-        <span class="text-3xl font-bold text-rose-700 tabular-nums">331</span>
-        <span class="text-sm text-rose-700 font-semibold uppercase tracking-wide">critical</span>
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-rose-700 uppercase tracking-wide">critical</span>
+          
+          <span class="text-sm text-slate-500">top 0% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 360</span>
       </div>
 
-      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3 tabular-nums">
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-rose-700" style="width: 100%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
         
-          <span class="text-emerald-600">-279.6 / 7d</span>
-        
-        
-        <span class="text-slate-400">·</span>
-        <span>top 0% of peers</span>
+          <span class="text-emerald-600">▼ cooling / 7d</span>
         
       </div>
 
@@ -612,7 +1279,7 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
         
         <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
           <polyline fill="none" stroke="#84a826" stroke-width="1.5"
-            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,2.0 64.62,26.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+            points="0.0,2.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,10.0 55.38,2.0 64.62,26.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
         </svg>
         <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
           <span>-14d</span><span>today</span>
@@ -628,17 +1295,7 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
           
           <li class="flex items-start gap-1.5 text-xs text-slate-700">
             <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
-            Numerous unresolved critical findings
-          </li>
-          
-          <li class="flex items-start gap-1.5 text-xs text-slate-700">
-            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
-            Large influx of new high-severity incidents
-          </li>
-          
-          <li class="flex items-start gap-1.5 text-xs text-slate-700">
-            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
-            Lack of recent mitigation or closure actions
+            Enforcement &amp; litigation: CFTC suit and rescission of settlement-denial policy
           </li>
           
         </ul>
@@ -646,13 +1303,23 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
       
 
       
-      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Critical heat is elevated this week due to a sudden surge of unresolved high-severity findings and new incidents, with insufficient mitigation activity producing a large unaddressed risk spike.</p>
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Critical heat driven by concentrated enforcement and rulemaking in crypto/payments — major lawsuits and settlement-policy changes, AML/stablecoin NPRMs, and exchange/market-maker program shifts, though down vs last week.</p>
       
     </div>
     
 
     
     
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
     
       
         
@@ -671,6 +1338,48 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
       
       
     
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+        
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
       
       
     
@@ -685,10 +1394,75 @@ clarifying the SEC&#39;s jurisdiction over digital asset securities.
           </svg>
           <div>
             
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60767" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-05-29 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.federalregister.gov/documents/2026/04/10/2026-07033/anti-money-laundering-and-countering-the-financing-of-terrorism-programs" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-09 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
             <a href="https://www.cftc.gov/PressRoom/PressReleases/9233-26" target="_blank" rel="noopener noreferrer"
                class="font-medium text-slate-800 hover:text-blue-700 leading-snug">CFTC Sues Minnesota to Block State Law</a>
             
             <div class="text-xs text-slate-400 mt-0.5">2026-08-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.sec.gov/rules-regulations/2026/05/33-11417" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Rescission of Policy Regarding Denials in Settlements of Enforcement Actions</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">Date of Publication in the Federal Register · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">Date of publication in the Federal Register · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9146-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">effective immediately · Effective date</div>
           </div>
         </li>
         
@@ -728,7 +1502,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var chart = echarts.init(chartEl);
 
   var raw = [{"p": 0.65, "t": 1768176019}, {"p": 0.72, "t": 1768219223}, {"p": 0.665, "t": 1768262420}, {"p": 0.7, "t": 1768305623}, {"p": 0.565, "t": 1768348820}, {"p": 0.55, "t": 1768392021}, {"p": 0.465, "t": 1768435222}, {"p": 0.6, "t": 1768478421}, {"p": 0.475, "t": 1768521624}, {"p": 0.62, "t": 1768564822}, {"p": 0.5, "t": 1768608021}, {"p": 0.52, "t": 1768651229}, {"p": 0.52, "t": 1768694432}, {"p": 0.41, "t": 1768737637}, {"p": 0.425, "t": 1768780818}, {"p": 0.42, "t": 1768824021}, {"p": 0.415, "t": 1768867220}, {"p": 0.395, "t": 1768910421}, {"p": 0.395, "t": 1768953621}, {"p": 0.4, "t": 1768996842}, {"p": 0.435, "t": 1769040030}, {"p": 0.45, "t": 1769083246}, {"p": 0.39, "t": 1769126438}, {"p": 0.415, "t": 1769169646}, {"p": 0.455, "t": 1769212832}, {"p": 0.505, "t": 1769256032}, {"p": 0.515, "t": 1769299240}, {"p": 0.525, "t": 1769342448}, {"p": 0.525, "t": 1769385639}, {"p": 0.515, "t": 1769428830}, {"p": 0.54, "t": 1769472034}, {"p": 0.545, "t": 1769515222}, {"p": 0.545, "t": 1769558423}, {"p": 0.55, "t": 1769601625}, {"p": 0.595, "t": 1769644838}, {"p": 0.645, "t": 1769688027}, {"p": 0.57, "t": 1769731227}, {"p": 0.575, "t": 1769774441}, {"p": 0.575, "t": 1769817627}, {"p": 0.565, "t": 1769860832}, {"p": 0.52, "t": 1769904032}, {"p": 0.51, "t": 1769947229}, {"p": 0.54, "t": 1769990426}, {"p": 0.575, "t": 1770033630}, {"p": 0.645, "t": 1770076829}, {"p": 0.585, "t": 1770120034}, {"p": 0.595, "t": 1770163239}, {"p": 0.635, "t": 1770206430}, {"p": 0.645, "t": 1770249625}, {"p": 0.64, "t": 1770292833}, {"p": 0.615, "t": 1770336031}, {"p": 0.605, "t": 1770379232}, {"p": 0.535, "t": 1770422438}, {"p": 0.545, "t": 1770465636}, {"p": 0.56, "t": 1770508834}, {"p": 0.555, "t": 1770552043}, {"p": 0.57, "t": 1770595232}, {"p": 0.57, "t": 1770638449}, {"p": 0.57, "t": 1770681637}, {"p": 0.57, "t": 1770724847}, {"p": 0.565, "t": 1770768037}, {"p": 0.565, "t": 1770811236}, {"p": 0.565, "t": 1770854446}, {"p": 0.555, "t": 1770897634}, {"p": 0.58, "t": 1770940835}, {"p": 0.595, "t": 1770984039}, {"p": 0.615, "t": 1771027238}, {"p": 0.58, "t": 1771070440}, {"p": 0.59, "t": 1771113638}, {"p": 0.59, "t": 1771156843}, {"p": 0.555, "t": 1771200050}, {"p": 0.545, "t": 1771243247}, {"p": 0.57, "t": 1771286439}, {"p": 0.6, "t": 1771329653}, {"p": 0.595, "t": 1771372844}, {"p": 0.615, "t": 1771416043}, {"p": 0.695, "t": 1771459245}, {"p": 0.815, "t": 1771545643}, {"p": 0.785, "t": 1771588827}, {"p": 0.72, "t": 1771632029}, {"p": 0.715, "t": 1771675229}, {"p": 0.72, "t": 1771718429}, {"p": 0.72, "t": 1771761635}, {"p": 0.715, "t": 1771804834}, {"p": 0.53, "t": 1771848038}, {"p": 0.515, "t": 1771891234}, {"p": 0.525, "t": 1771934442}, {"p": 0.475, "t": 1771977639}, {"p": 0.465, "t": 1772020842}, {"p": 0.625, "t": 1772064035}, {"p": 0.675, "t": 1772107251}, {"p": 0.685, "t": 1772150440}, {"p": 0.685, "t": 1772193654}, {"p": 0.51, "t": 1772236840}, {"p": 0.62, "t": 1772280059}, {"p": 0.555, "t": 1772323253}, {"p": 0.625, "t": 1772366443}, {"p": 0.615, "t": 1772409651}, {"p": 0.625, "t": 1772452842}, {"p": 0.78, "t": 1772496043}, {"p": 0.77, "t": 1772539246}, {"p": 0.725, "t": 1772582445}, {"p": 0.735, "t": 1772625641}, {"p": 0.705, "t": 1772668842}, {"p": 0.71, "t": 1772712058}, {"p": 0.71, "t": 1772755241}, {"p": 0.705, "t": 1772798441}, {"p": 0.71, "t": 1772841646}, {"p": 0.705, "t": 1772884845}, {"p": 0.705, "t": 1772928037}, {"p": 0.715, "t": 1772971236}, {"p": 0.695, "t": 1773014432}, {"p": 0.695, "t": 1773057631}, {"p": 0.725, "t": 1773100839}, {"p": 0.695, "t": 1773144043}, {"p": 0.6, "t": 1773187243}, {"p": 0.61, "t": 1773230454}, {"p": 0.615, "t": 1773273644}, {"p": 0.595, "t": 1773316856}, {"p": 0.585, "t": 1773403237}, {"p": 0.585, "t": 1773446437}, {"p": 0.555, "t": 1773489640}, {"p": 0.56, "t": 1773532838}, {"p": 0.56, "t": 1773576036}, {"p": 0.605, "t": 1773619251}, {"p": 0.605, "t": 1773662427}, {"p": 0.615, "t": 1773705633}, {"p": 0.6, "t": 1773748835}, {"p": 0.615, "t": 1773792035}, {"p": 0.615, "t": 1773835244}, {"p": 0.63, "t": 1773878442}, {"p": 0.63, "t": 1773921633}, {"p": 0.62, "t": 1773964839}, {"p": 0.625, "t": 1774008033}, {"p": 0.705, "t": 1774051237}, {"p": 0.675, "t": 1774094430}, {"p": 0.675, "t": 1774137635}, {"p": 0.675, "t": 1774180841}, {"p": 0.675, "t": 1774224029}, {"p": 0.68, "t": 1774267228}, {"p": 0.68, "t": 1774310426}, {"p": 0.68, "t": 1774353631}, {"p": 0.645, "t": 1774396842}, {"p": 0.62, "t": 1774440044}, {"p": 0.605, "t": 1774483245}, {"p": 0.495, "t": 1774526456}, {"p": 0.6, "t": 1774569652}, {"p": 0.605, "t": 1774612851}, {"p": 0.59, "t": 1774656056}, {"p": 0.54, "t": 1774699256}, {"p": 0.67, "t": 1775347215}, {"p": 0.545, "t": 1775649654}, {"p": 0.605, "t": 1775692836}, {"p": 0.675, "t": 1775952011}, {"p": 0.635, "t": 1776470430}, {"p": 0.485, "t": 1776600009}, {"p": 0.485, "t": 1776816017}, {"p": 0.485, "t": 1776859215}, {"p": 0.46, "t": 1776902422}, {"p": 0.455, "t": 1776945614}, {"p": 0.435, "t": 1776988834}, {"p": 0.485, "t": 1777032009}, {"p": 0.465, "t": 1777075216}, {"p": 0.415, "t": 1777118411}, {"p": 0.47, "t": 1777161610}, {"p": 0.465, "t": 1777204813}, {"p": 0.455, "t": 1777248013}, {"p": 0.465, "t": 1777291225}, {"p": 0.465, "t": 1777334414}, {"p": 0.465, "t": 1777377614}, {"p": 0.46, "t": 1777420811}, {"p": 0.455, "t": 1777464012}, {"p": 0.455, "t": 1777507217}, {"p": 0.455, "t": 1777550416}, {"p": 0.455, "t": 1777593620}, {"p": 0.455, "t": 1777636812}, {"p": 0.555, "t": 1777680013}, {"p": 0.685, "t": 1777723211}, {"p": 0.64, "t": 1777766407}, {"p": 0.625, "t": 1777809609}, {"p": 0.635, "t": 1777852807}, {"p": 0.635, "t": 1777896006}, {"p": 0.69, "t": 1777939220}, {"p": 0.625, "t": 1777982411}, {"p": 0.64, "t": 1778025611}, {"p": 0.66, "t": 1778068810}, {"p": 0.65, "t": 1778112011}, {"p": 0.655, "t": 1778155219}, {"p": 0.665, "t": 1778198411}, {"p": 0.685, "t": 1778241606}, {"p": 0.74, "t": 1778284825}, {"p": 0.735, "t": 1778328009}, {"p": 0.725, "t": 1778371212}, {"p": 0.74, "t": 1778414410}, {"p": 0.725, "t": 1778457612}, {"p": 0.625, "t": 1778500813}, {"p": 0.62, "t": 1778544018}, {"p": 0.685, "t": 1778587213}, {"p": 0.595, "t": 1778630416}, {"p": 0.585, "t": 1778673614}, {"p": 0.625, "t": 1778716822}, {"p": 0.66, "t": 1778760012}, {"p": 0.695, "t": 1778803213}, {"p": 0.675, "t": 1778846415}, {"p": 0.675, "t": 1778889620}, {"p": 0.665, "t": 1778932816}, {"p": 0.615, "t": 1778976030}, {"p": 0.605, "t": 1779019216}, {"p": 0.615, "t": 1779062415}, {"p": 0.635, "t": 1779105614}, {"p": 0.635, "t": 1779148811}, {"p": 0.635, "t": 1779192030}, {"p": 0.645, "t": 1779235215}, {"p": 0.565, "t": 1779278418}, {"p": 0.565, "t": 1779321617}, {"p": 0.575, "t": 1779364812}, {"p": 0.545, "t": 1779408027}, {"p": 0.495, "t": 1779451215}, {"p": 0.545, "t": 1779494414}, {"p": 0.63, "t": 1779537611}, {"p": 0.645, "t": 1779580809}, {"p": 0.645, "t": 1779624010}, {"p": 0.54, "t": 1779667209}, {"p": 0.54, "t": 1779710409}, {"p": 0.54, "t": 1779753610}, {"p": 0.595, "t": 1779796816}, {"p": 0.585, "t": 1779840010}, {"p": 0.585, "t": 1779855184}];
-  var timelineEvents = [{"carver_feed_entry_id": "e519db6e-499e-47d5-bd65-2b45752fb6bd", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-08-01", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "CFTC suing Minnesota to block state crypto law suggests federal enforcement can resolve jurisdictional disputes, reducing pressure to enact CLARITY Act.", "pub_date": "2026-05-19", "regulator": "Commodity Futures Trading Commission", "relevance_score": 7, "timeline_shift": "later", "title": "CFTC Sues Minnesota to Block State Law", "urgency": 9.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9233-26"}, {"carver_feed_entry_id": "cf8e71e8-bafa-4e99-a87d-970abc43b039", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-20", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2026-05-06", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60706"}, {"carver_feed_entry_id": "f62675fd-1770-4df9-baaa-16d1b3ed2f9d", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-15", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Internal CFTC committee restructuring is administrative and unlikely to affect congressional passage or presidential signing of H.R.3633.", "pub_date": "2026-05-01", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "05.01.2026 - Restructure the Disciplinary Panel and Appeals Committee from standing committees to ad hoc committees convened on an as-needed basis. - GMNI", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60668"}, {"carver_feed_entry_id": "eda81361-6059-4204-9baf-1e4d4357f5b7", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-15T17:00:00", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC\u0027s block-trade rebate action for Kalshi is an administrative market move unrelated to passage of H.R.3633, so it gives no clear signal.", "pub_date": "2026-05-01", "regulator": "U.S. Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "05.01.2026 - Block Trade Rebate Program - KEX", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60685"}, {"carver_feed_entry_id": "d979475d-0b64-47f0-a15e-7590ba8bf095", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC\u0027s Coinbase market-maker program shows regulator activity on crypto markets but doesn\u0027t materially change likelihood of H.R.3633 passage.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Non-Crypto Market Maker Program - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60506"}, {"carver_feed_entry_id": "8d16364f-fa65-4bdd-9178-5d152e517ea7", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-04", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Routine CFTC action on Coinbase trading hours is background regulatory activity and does not materially change odds that H.R.3633 will be enacted.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Modifications to trading hours\u2026 - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60501"}];
+  var timelineEvents = [{"carver_feed_entry_id": "e519db6e-499e-47d5-bd65-2b45752fb6bd", "comment_deadline": "", "condition_tag": "A", "direction": "bullish", "effective_date": "2026-08-01", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "CFTC suing Minnesota shows federal assertion over state crypto rules, modestly increasing odds Congress favors a federal CLARITY Act (bullish).", "pub_date": "2026-05-19", "regulator": "Commodity Futures Trading Commission", "relevance_score": 5, "timeline_shift": "none", "title": "CFTC Sues Minnesota to Block State Law", "urgency": 9.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9233-26"}, {"carver_feed_entry_id": "c68b34cc-6034-42c0-ae1b-156b0cca99ca", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "Date of Publication in the Federal Register", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2026-05-18", "regulator": "Securities and Exchange Commission", "relevance_score": 3, "timeline_shift": "none", "title": "Rescission of Policy Regarding Denials in Settlements of Enforcement Actions", "urgency": 6.0, "url": "https://www.sec.gov/rules-regulations/2026/05/33-11417"}, {"carver_feed_entry_id": "ac55d99e-afd7-45b7-9d58-dfa2c2d2936d", "comment_deadline": "", "condition_tag": "background", "direction": "bullish", "effective_date": "2026-05-29", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC expanding crypto futures trading hours underscores an active CFTC role in crypto markets, mildly increasing odds Congress favors a CFTC-friendly CLARITY Act.", "pub_date": "2026-05-13", "regulator": "Commodity Futures Trading Commission", "relevance_score": 4, "timeline_shift": "none", "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60767"}, {"carver_feed_entry_id": "61b2517f-e646-40c8-8c98-1ede87091713", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-21", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC action involving Gemini is tangentially relevant to jurisdictional implementation debates but doesn\u0027t materially change chances H.R.3633 will become law.", "pub_date": "2026-05-07", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "GMNI - Liquidity Incentive Program - 05/07/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60721"}, {"carver_feed_entry_id": "cf8e71e8-bafa-4e99-a87d-970abc43b039", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-20", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC rule amendments reflect agency activity on crypto jurisdiction but are background regulatory action, not direct evidence of H.R.3633 being passed/signed.", "pub_date": "2026-05-06", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60706"}, {"carver_feed_entry_id": "6d949a02-29b9-4832-bb1e-65c58c635991", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-18", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2026-05-01", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "05.01.2026 - The changes amend Rules related to Bitnomial\u0027s non-FCM Clearing Members - BTNL", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60674"}, {"carver_feed_entry_id": "ff637c5e-300e-40d8-9db9-d212940da728", "comment_deadline": "", "condition_tag": "background", "direction": "bullish", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "CFTC suing to assert exclusive jurisdiction over prediction markets bolsters its claim over digital markets, modestly increasing H.R.3633\u0027s chance (bullish).", "pub_date": "2026-04-28", "regulator": "Commodity Futures Trading Commission", "relevance_score": 6, "timeline_shift": "none", "title": "CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets", "urgency": 6.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9220-26"}, {"carver_feed_entry_id": "528add1e-8d4d-4340-8a7b-8153aca39c56", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC disclosure about Gemini AI features shows active regulator involvement in crypto but is background noise that doesn\u0027t materially affect H.R.3633 passage odds.", "pub_date": "2026-04-17", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "GMNI Disclosure about AI information Features available to Members", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60511"}, {"carver_feed_entry_id": "740e2262-e527-4a76-8861-c15913b92011", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-07", "high_impact": false, "impact": 1.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "SEC conference on market regulation signals regulator engagement but provides no clear change to H.R.3633\u0027s chances of becoming law.", "pub_date": "2026-04-17", "regulator": "U.S. Securities and Exchange Commission \u2014 Division of Economic and Risk Analysis", "relevance_score": 2, "timeline_shift": "none", "title": "13th Annual Conference on Financial Market Regulation", "urgency": 9.0, "url": "https://www.sec.gov/newsroom/meetings-events/13th-annual-conference-financial-market-regulation"}, {"carver_feed_entry_id": "2489eb3b-8921-4d8f-8666-4c83861fe764", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC launching a Coinbase crypto market-maker program signals regulatory activity but doesn\u0027t materially change likelihood H.R.3633 is enacted.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Crypto Market Maker Program - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60505"}, {"carver_feed_entry_id": "426ff5dc-d63f-4f0f-bd41-cb8e3c202833", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-05-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "CFTC rule change on trading limits (COIN) is an agency action unrelated to Congress passing/signing H.R.3633; provides only minor background context.", "pub_date": "2026-04-16", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN | Modifications to implement hard limits\u2026 - 04/16/2026", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60502"}, {"carver_feed_entry_id": "9d163677-48f8-4408-b956-e95e9408c359", "comment_deadline": "", "condition_tag": "A", "direction": "bullish", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Signal", "one_line_why": "SEC staff asserting broker-dealer registration for crypto UIs likely increases pressure for Congress to enact clarifying law, raising odds H.R.3633 passes.", "pub_date": "2026-04-13", "regulator": "Securities and Exchange Commission \u2014 Division of Trading and Markets", "relevance_score": 6, "timeline_shift": "sooner", "title": "Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities", "urgency": 4.0, "url": "https://www.sec.gov/newsroom/speeches-statements/staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized-prepare-staff-statement-regarding-broker-dealer-registration-certain-user-interfaces-utilized"}, {"carver_feed_entry_id": "39869483-193a-41cc-8d08-34ef975e0477", "comment_deadline": "2026-06-09", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "FinCEN\u0027s AML/CFT NPRM shapes the digital-asset regulatory backdrop but does not directly affect whether H.R.3633 is passed and signed; low-impact background signal.", "pub_date": "2026-04-10", "regulator": "Financial Crimes Enforcement Network", "relevance_score": 3, "timeline_shift": "none", "title": "NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026", "urgency": 9.0, "url": "https://www.federalregister.gov/documents/2026/04/10/2026-07033/anti-money-laundering-and-countering-the-financing-of-terrorism-programs"}, {"carver_feed_entry_id": "a18ab17b-2aaf-43b1-99f4-3f42a4ac9ba9", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Securities and Exchange Commission \u2014 Accounting and Auditing Enforcement \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2026-04-08", "regulator": "Securities and Exchange Commission \u2014 Accounting and Auditing Enforcement", "relevance_score": 3, "timeline_shift": "none", "title": "Administrative Summary - 2026-04-08 - Francis Decker, CPA", "urgency": 6.0, "url": "https://www.sec.gov/enforcement-litigation/administrative-proceedings/34-105184-s"}, {"carver_feed_entry_id": "e50b4d15-2b48-4e20-9e9b-b5070adea7b1", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "2026-03-23", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "SEC guidance asserting securities coverage of crypto weakens the case for shifting spot jurisdiction to the CFTC, lowering odds that H.R.3633 passes.", "pub_date": "2026-03-23", "regulator": "Securities and Exchange Commission", "relevance_score": 6, "timeline_shift": "later", "title": "91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets", "urgency": 5.0, "url": "https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/2026-05635.html"}, {"carver_feed_entry_id": "74227b7c-367d-4621-9dad-9c5203ac7dc0", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "Date of publication in the Federal Register", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "SEC guidance applying securities laws to crypto reduces congressional pressure to pass the CLARITY Act, lowering its passage odds.", "pub_date": "2026-03-18", "regulator": "Securities and Exchange Commission", "relevance_score": 6, "timeline_shift": "later", "title": "Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance", "urgency": 5.0, "url": "https://www.sec.gov/rules-regulations/2026/03/s7-2026-09"}, {"carver_feed_entry_id": "6098fa0f-22e1-44e5-93e8-a71d677ba559", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-02-23", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2026-01-29", "regulator": "U.S. Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "COIN | Modifications to the Non-Crypto Market Maker Program", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59560"}, {"carver_feed_entry_id": "6fe85f59-4d69-43d9-a54d-d0784e789553", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-02-09", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2026-01-23", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "CME - Implementation of the Chainlink, Stellar, \u0026 Cardano Futures Market Maker Program", "urgency": 9.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59458"}, {"carver_feed_entry_id": "205257c0-999a-4a4f-ad43-8cdbe31bd967", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-02-12", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Financial Crimes Enforcement Network (FinCEN) \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.", "pub_date": "2026-01-09", "regulator": "Financial Crimes Enforcement Network (FinCEN)", "relevance_score": 3, "timeline_shift": "none", "title": "Secretary Bessent Announces Initiatives to Combat Rampant Fraud in Minnesota", "urgency": 9.0, "url": "https://www.fincen.gov/news/news-releases/secretary-bessent-announces-initiatives-combat-rampant-fraud-minnesota"}, {"carver_feed_entry_id": "4b716683-e4cd-4733-981b-1dfcc4930d50", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "effective immediately", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "CFTC pilot shows regulator activity on digital assets but is not direct evidence for or against H.R.3633 becoming law.", "pub_date": "2025-12-08", "regulator": "Commodity Futures Trading Commission \u2014 Market Participants Division, Division of Market Oversight, Division of Clearing and Risk", "relevance_score": 3, "timeline_shift": "none", "title": "Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets", "urgency": 7.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9146-25"}];
 
   var dates = raw.map(function(p) {
     var d = new Date(p.t * 1000);
@@ -835,6 +1609,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
 });
 </script>
 

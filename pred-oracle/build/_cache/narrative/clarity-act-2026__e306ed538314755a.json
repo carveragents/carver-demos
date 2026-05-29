@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the CLARITY Act be signed into law in 2026?\nKind: active\nTimeline (6 events):\n- 2026-05-19 [A] CFTC Sues Minnesota to Block State Law \u2014 CFTC suing Minnesota to block state crypto law suggests federal enforcement can resolve jurisdictional disputes, reducing pressure to enact CLARITY Act.\n- 2026-05-06 [background] CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026 \u2014 Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.\n- 2026-05-01 [background] 05.01.2026 - Restructure the Disciplinary Panel and Appeals Committee from standing committees to ad hoc committees convened on an as-needed basis. - GMNI \u2014 Internal CFTC committee restructuring is administrative and unlikely to affect congressional passage or presidential signing of H.R.3633.\n- 2026-05-01 [background] 05.01.2026 - Block Trade Rebate Program - KEX \u2014 CFTC's block-trade rebate action for Kalshi is an administrative market move unrelated to passage of H.R.3633, so it gives no clear signal.\n- 2026-04-16 [background] COIN | Non-Crypto Market Maker Program - 04/16/2026 \u2014 CFTC's Coinbase market-maker program shows regulator activity on crypto markets but doesn't materially change likelihood of H.R.3633 passage.\n- 2026-04-16 [background] COIN | Modifications to trading hours\u2026 - 04/16/2026 \u2014 Routine CFTC action on Coinbase trading hours is background regulatory activity and does not materially change odds that H.R.3633 will be enacted.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The CFTC\u2019s May suit against Minnesota to block a state crypto law signals regulators can handle jurisdictional clashes, easing near-term pressure to advance the CLARITY Act. Other CFTC moves (committee changes, rebates, market-maker programs, trading-hour tweaks) are routine and largely non-directional. Passage by Congress and a 2026 presidential signature remain pending."
+  }
+}

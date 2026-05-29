@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: US grants license for new nuclear reactor in 2026?\nKind: active\nTimeline (5 events):\n- 2026-04-30 [background] Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information \u2014 OSC notice on commodity-futures personal-info exemptions; unrelated to NRC COL issuance, so no impact on the contract's probability.\n- 2026-04-22 [background] Governor Lamont Announces Lower Electricity Rates in Response To Benefits Received From Nuclear Contracts and Other State Energy Policies \u2014 State-level announcement about lower rates from existing nuclear contracts is not evidence the NRC issued a new combined license; no clear impact on COL issuance.\n- 2026-04-07 [background] Governor Lamont Announces $15 Million in Available Funding To Support Clean Air Projects \u2014 State clean-air funding announcement in Connecticut unrelated to NRC combined-license decisions; no effect on the probability or timing of a COL.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review \u2014 Multistate AGs oppose exempting new reactors from environmental review, likely preventing faster approvals and lowering the odds of a COL by end-2026.\n- 2026-03-05 [A] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026 \u2014 State AGs' opposition to a federal attempt to exempt reactors could slow or complicate federal fast-tracking, lowering odds NRC issues a COL by 2026.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "In March 2026, multistate AGs oppose efforts to exempt new reactors from environmental review, increasing scrutiny and likely slowing NRC combined license (COL) approvals this year. Other listed events are state-level or unrelated, so they do not affect NRC action. The key pending factor is whether NRC can still issue a new reactor license by year-end; outcome remains undecided."
+  }
+}

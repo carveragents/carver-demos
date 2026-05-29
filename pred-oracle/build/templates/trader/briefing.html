@@ -132,7 +132,7 @@
 
     {# Thesis tracker #}
     {% if contract.conditions %}
-    <section>
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
       <ol class="space-y-4">
         {% for cond in contract.conditions %}
@@ -191,12 +191,12 @@
             {% set b_bg = cond.get('background_bullish_count', 0) %}
             {% set r_bg = cond.get('background_bearish_count', 0) %}
             {% set total_dir = b_direct + r_direct + b_bg + r_bg %}
-            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden">
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="{{ b_direct }}" data-direct-bearish="{{ r_direct }}" data-bg-bullish="{{ b_bg }}" data-bg-bearish="{{ r_bg }}">
               {% if total_dir > 0 %}
-              {% if b_direct > 0 %}<div class="bg-emerald-600 h-1.5" style="width: {{ (b_direct / total_dir * 100)|round|int }}%" title="{{ b_direct }} bullish (direct)"></div>{% endif %}
-              {% if b_bg > 0 %}<div class="bg-emerald-300 h-1.5" style="width: {{ (b_bg / total_dir * 100)|round|int }}%" title="{{ b_bg }} bullish (background)"></div>{% endif %}
-              {% if r_bg > 0 %}<div class="bg-rose-300 h-1.5" style="width: {{ (r_bg / total_dir * 100)|round|int }}%" title="{{ r_bg }} bearish (background)"></div>{% endif %}
-              {% if r_direct > 0 %}<div class="bg-rose-600 h-1.5" style="width: {{ (r_direct / total_dir * 100)|round|int }}%" title="{{ r_direct }} bearish (direct)"></div>{% endif %}
+              {% if b_direct > 0 %}<div class="bg-emerald-600 h-1.5" data-segment="direct-bullish" style="width: {{ (b_direct / total_dir * 100)|round|int }}%" title="{{ b_direct }} bullish (direct)"></div>{% endif %}
+              {% if b_bg > 0 %}<div class="bg-emerald-300 h-1.5" data-segment="bg-bullish" style="width: {{ (b_bg / total_dir * 100)|round|int }}%" title="{{ b_bg }} bullish (background)"></div>{% endif %}
+              {% if r_bg > 0 %}<div class="bg-rose-300 h-1.5" data-segment="bg-bearish" style="width: {{ (r_bg / total_dir * 100)|round|int }}%" title="{{ r_bg }} bearish (background)"></div>{% endif %}
+              {% if r_direct > 0 %}<div class="bg-rose-600 h-1.5" data-segment="direct-bearish" style="width: {{ (r_direct / total_dir * 100)|round|int }}%" title="{{ r_direct }} bearish (direct)"></div>{% endif %}
               {% else %}
               <div class="{{ bar_color }} rounded-full h-1.5" style="width: {{ cond_progress }}%"></div>
               {% endif %}
@@ -238,7 +238,7 @@
     {% endif %}
 
     {# Regulatory timeline #}
-    <section x-data="{ filter: 'all' }">
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline ({{ timeline|length }})</h2>
         {% if contract.conditions and contract.conditions|length > 1 %}
@@ -353,7 +353,7 @@
 
     {# Momentum / heat panel #}
     {% if heat_panel %}
-    <div class="border border-slate-200 rounded-lg p-4 {{ heat_bg }}">
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 {{ heat_bg }}">
       <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
 
       <div class="flex items-center justify-between mb-2">
@@ -579,6 +579,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
 });
 </script>
 {% endif %}
