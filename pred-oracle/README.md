@@ -2,7 +2,7 @@
 
 A vertical compliance-intelligence platform for prediction-market operators (Kalshi, Polymarket, and the broader CFTC-licensed DCM / event-contract category), built on top of Carver's existing regulatory-annotation pipeline.
 
-**Project status:** Stage 0 implemented — static demo site builds locally and is ready for GitHub Pages deploy.
+**Project status:** Four demo scenes built and rendering — α (Risk Radar), γ (Listed-Asset Risk), β (Expansion Intelligence), and a standalone **Trader** dashboard. The site is fully static (no server needed at runtime) and builds with portable, relative links that work over `file://`, at a domain root, or at any deploy subpath. A trader-only export is deployed alongside the sibling demos in the `carver-briefs` repo.
 
 ## What this project is
 
@@ -12,11 +12,17 @@ Pred-Oracle re-aims Carver's `entry_annotation` workflow output at a new buyer: 
 
 ```bash
 uv sync --extra dev
-make build       # produces site/
-make serve       # local preview at localhost:8000
+make build       # produces site/ (runs slice + generate)
+make serve       # builds, then local preview at localhost:8000
 ```
 
-See `docs/development.md` for full setup details.
+See `docs/development.md` for full setup details, and **Build modes & deployment** below for relative-link/scene-export options.
+
+> **Preview without rebuilding.** `make serve` (and `make build`) re-run `generate_slices.py`, which is **date-sensitive** — it re-selects "recent" regulatory events relative to today and will drift the committed, curated snapshot. To preview the curated site exactly as committed, serve the built output directly instead:
+> ```bash
+> cd site && python3 -m http.server 8000
+> ```
+> To re-render the committed snapshot for a different link mode, run `generate.py` **alone** (never `make build`) — it reads the curated `build/page_data/` without re-slicing.
 
 ## Where to start
 
@@ -49,8 +55,12 @@ pred-oracle/
 ├── pyproject.toml               # uv-managed deps (Python 3.10)
 ├── .github/workflows/           # CI: lint + test + GH Pages deploy
 ├── build/                       # Python build pipeline + Jinja templates + static assets
-├── data/                        # Real Carver pull, hand-curated platform YAMLs
-├── tests/                       # pytest suite (37 tests)
+│   ├── generate.py              #   render → site/ (relative/absolute/scene-export modes)
+│   ├── generate_slices.py       #   page_data/ from data/ (date-sensitive; see Quick start)
+│   └── templates/{alpha,beta,gamma,trader}/
+├── data/                        # Real Carver pull, hand-curated platform + scene YAMLs
+│   └── {alpha,beta,gamma,trader}-curation.yml
+├── tests/                       # pytest suite (293 tests)
 └── docs/
     ├── README.md                # Docs index
     ├── product-strategy.md      # Canonical strategy
@@ -140,6 +150,53 @@ The β scene ("Priya Kapur, Head of International") renders at `/beta/`:
 
 - `docs/specs/50-beta-walkthrough.md` — β narrative spec (Task 4 reframed §2.2 wow from ANJ to AMF/ESMA pressure).
 - `docs/specs/STAGE_3_NOTES.md` — Stage 3 acceptance log + schema notes + lessons learned.
+
+## Trader walkthrough
+
+A standalone scene aimed at a *different* buyer than α/β/γ: the **prediction-market trader** (retail bettor → prop desk), not the platform operator. It answers "what does the regulatory record say about the contracts I hold?" by overlaying Carver's scored regulatory corpus onto each contract in a sample book. Renders at `/trader/`:
+
+- `/trader/` — intro / how-it-works landing.
+- `/trader/portfolio/` — sample book of **8 active positions** (Kalshi + Polymarket). Each row shows current price, regulatory tier, a 7-day momentum arrow, and a **thesis tracker** mini-bar splitting filings direct vs background, bullish vs bearish.
+- `/trader/contracts/{id}/` — **contract briefing** (12 pages — 8 active + 4 retrospective). Sections: price/position header, **regulatory momentum** panel (tier + percentile + heating/cooling arrow), **thesis tracker** (direct/background × bullish/bearish decomposition), and a **regulatory timeline** of Carver-scored events, each timestamped, attributed, tagged with a one-line "why" and linked to source.
+- `/trader/calendar/` — monthly grid of every comment deadline, effective date, and scheduled event across the book, plus an **Upcoming catalysts** strip (next 5 dated events; titles link to the regulatory source).
+- `/trader/retrospectives/` — **Case studies** on resolved contracts (4). Each plots market price against every Carver-scored event into settlement, demonstrating signal-before-price (e.g. Polymarket US, resolved YES Dec 2025).
+
+### Curation
+
+- `data/trader-curation.yml` — `build_date`, the 8-position sample `portfolio`, and the 4 `retrospectives`. Edit `id` / `position` entries to swap the book; re-run `generate_slices.py` to regenerate.
+- Contract metadata + scored timelines come from the same Carver pull + LLM-enrichment cache (`build/_cache/`) as the other scenes.
+
+### Specs & plans
+
+- `docs/superpowers/specs/2026-05-25-trader-dashboard-design.md` — design spec (personas, structure, data-latency framing).
+- `docs/superpowers/specs/2026-05-25-trader-acceptance-criteria.md` — acceptance criteria.
+- `docs/superpowers/specs/2026-05-26-trader-data-integrity.md` + `plans/2026-05-26-trader-data-integrity.md` — data-integrity spec/plan.
+- `docs/superpowers/plans/2026-05-25-trader-dashboard.md` — implementation plan.
+
+### Demo video
+
+A narrated, branded walkthrough of the trader scene (17 beats, ~3 min) is produced separately via the `show-n-tell` + `hyperframes` skills; recording anchors (`#how-it-works`, `#thesis-tracker`, `#reg-momentum`, `#reg-timeline`, `data-thesis-bar`/`data-segment`) and the `?demo_show_event=YYYY-MM-DD` chart-tooltip dispatcher live in the trader templates to support it.
+
+## Build modes & deployment
+
+The site is **fully static** — GitHub Pages (or any static host) serves it directly; the `python -m http.server` targets are only for local preview. `generate.py` supports three deploy shapes via env vars:
+
+| Goal | Command | Link style |
+|------|---------|------------|
+| Portable / `file://` / any path *(default)* | `make build` | per-page **relative** (`../trader/…`), rewritten to explicit `index.html` so directories don't list under `file://` |
+| Fixed server subpath | `PRED_ORACLE_BASE_URL=/sub/ make build` | absolute prefix (`/sub/trader/…`) |
+| **Single-scene export** mounted at root | `PRED_ORACLE_SCENE=trader python build/generate.py` | scene mounted at root (`portfolio/…`, `contracts/…`); other scenes + landing omitted |
+
+Relevant `generate.py` internals: `_relative_base` (per-page depth prefix), `_fileify_links` (directory link → `index.html`, for `file://`), `_strip_scene_links` + `_remount_route` (root-mount a single scene), and the `scene_only` template flag (hides cross-scene chrome like "← Back to all demos").
+
+### Standalone trader demo in `carver-briefs`
+
+The trader scene is exported on its own and committed (pre-built, no CI) into the sibling `carver-briefs` repo at `carver-briefs/carver-trader/`, alongside `policy-diffs`, `forecasting`, etc. It opens straight into the trader intro and is navigable over `file://`. To regenerate that export:
+
+```bash
+PRED_ORACLE_SCENE=trader python build/generate.py    # builds trader-only at site/ root
+# then sync site/ → carver-briefs/carver-trader/
+```
 
 ## Audience
 

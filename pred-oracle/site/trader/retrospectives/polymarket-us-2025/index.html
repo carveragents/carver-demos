@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Will Polymarket US go live in 2025?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="../../../trader/index.html" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 uppercase tracking-wide font-medium">critical</span>
+    
+    <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 uppercase tracking-wide">retrospective</span>
+    
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">Will Polymarket US go live in 2025?</h1>
+</header>
+
+
+
+  
+  <div class="mb-5 flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 text-sm text-emerald-800">
+    <svg class="w-4 h-4 flex-shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span><span class="font-semibold">Resolved YES</span> on 2025-12-05</span>
+  </div>
+  
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">100¢</span>
+    <span class="text-[10px] text-emerald-200">payout $100/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">0¢</span>
+    <span class="text-[10px] text-rose-200">payout $0/$100</span>
+  </button>
+
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">Polymarket DCM trade by 2025 deadline</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-500">50%</span>
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">At least one real-money trade occurs by Dec 31, 2025, 11:59 PM ET on an exchange operated by Polymarket that holds a CFTC DCM designation and is available to US persons.</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Throughout 2025, regulatory tailwinds built: the CFTC&#39;s crypto sprint and listed-spot initiative, SEC-CFTC harmonization, and tokenized-collateral work signaled openness to crypto DCMs, and December&#39;s event-contract market-maker program added support. A late-September rule tweak on invalidation briefly weighed on odds. Polymarket US ultimately launched in 2025, resolving YES.
+      </blockquote>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Commodity Futures Trading Commission
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          KalshiEX LLC
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Polymarket
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          ElectronX
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          CME Group
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+    
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58567" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Implementation of the Event Contract Swaps Market Maker Program</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC&#39;s Event Contract Swaps market-maker program creates regulatory support and liquidity for event contracts, increasing odds Polymarket can operate as a DCM.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/LawRegulation/FederalRegister/publicinformationcollectionrequirements/2025-22108.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">90 FR 56137</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC Federal Register notice (Dec 5, 2025) could pertain to DCM actions but does not explicitly mention Polymarket or a trade; no clear directional signal.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-04</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58515" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Amendments to the Contract Size and Minimum Price Increments of the CME, CBOT, NYMEX, and COMEX Event Contracts</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58706" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Implementation of the Event Contracts Incentive Program</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC implemented an incentive program for event contracts but mentions no Polymarket/DCM designation; it&#39;s background policy with no direct effect on Polymarket going live.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-28</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58699" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">FMX - Adoption of Rule XI-6 (EFRP Transactions) and Amendments to I-1, III-6, and III-19.</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC approval of FMX rule changes concerns a different exchange and offers only a minor, indirect signal about regulator activity—not directly about Polymarket DCM or US launch.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-13</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58462" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CME Modifications to the Cryptocurrency Spot-Quoted Futures Market Maker Program</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CME&#39;s crypto market-maker program tweaks show CFTC activity in crypto derivatives but do not directly affect a Polymarket DCM approval or US launch.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-06</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58398" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">COIN Weekly Notification of Rule Amendments</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC weekly notice covers Coinbase Derivatives rule changes, not Polymarket—provides background on DCM activity but no direct signal about Polymarket going live.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission — Market Participants Division</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/LawRegulation/FederalRegister/proposedrules/2025-18924.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">90 FR 47136</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC Federal Register notice (9/30/2025); metadata shows comments but no Polymarket/DCM mention, so offers little direct signal—neutral.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-29</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58292" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Amendments to Appendix VIII (EUDR) of Chapters 8 and 14 relating to invalidation and revocation of a previously Validated DDI</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC amendments on invalidation/revocation likely lower odds of timely DCM approval/listing for new entrants like Polymarket, slightly bearish.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58232" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CME Implementation of the SOL &amp; XRP Options Market Maker Program</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC permitting CME SOL/XRP options signals regulator comfort with crypto DCM activity, modestly raising odds Polymarket could obtain DCM and trade in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9130-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Launches Tokenized Collateral and Stablecoins Initiative</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC initiative on tokenized collateral/stablecoins could modestly ease regulatory hurdles for crypto exchanges, slightly raising Polymarket&#39;s chance of securing a DCM and trading by 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-11</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission — Division of Clearing and Risk</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9120-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC Staff Withdraws Guidance on DCO Recovery Plans and Wind-down Plans</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Commodity Futures Trading Commission — Division of Clearing and Risk — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9115-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Joint CFTC–SEC harmonization statement lowers regulatory barriers, raising odds Polymarket obtains a DCM and launches US trading before Dec 31, 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-112-sec-cftc-issue-joint-statement-regulatory-harmonization-efforts-will-co-host-roundtable-sept-29" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-Host Roundtable Sept. 29</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC-CFTC harmonization statement and Sept 29 roundtable suggests coordinated oversight, modestly increasing odds Polymarket secures DCM access in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Joint SEC–CFTC statement on regulatory coordination could influence the DCM approval climate but doesn&#39;t confirm a Polymarket DCM trade.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-08-04</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9105-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Launches Listed Spot Crypto Trading Initiative</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC&#39;s listed-spot crypto initiative creates a clearer pathway for crypto platforms to obtain DCM approvals, increasing Polymarket&#39;s chances.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-08-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9104-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Announces CFTC Crypto Sprint</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC crypto sprint suggests faster review and prioritization of crypto DCM matters, raising chance Polymarket obtains a DCM and trades in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9102-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC Acting Chair&#39;s praise of PWG pro-crypto recommendations increases regulatory momentum, raising odds Polymarket can get a DCM and launch in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission — Division of Clearing and Risk</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9097-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC Staff Withdraws Advisory on Prime Brokerage Arrangements</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC withdrew a staff advisory on prime brokerage; it&#39;s a general regulatory change with no clear direct effect on Polymarket’s DCM launch, so neutral.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-16</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission — Division of Enforcement</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9087-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Federal Court Orders Texas Firm to Pay Over $100 Million to Customers Defrauded in Cattle Fraud Scheme</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Commodity Futures Trading Commission — Division of Enforcement — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">Resolves YES if a real-money trade is placed on an exchange operated by
+Polymarket that holds a CFTC Designated Contract Market (DCM) designation,
+available to US persons, by December 31, 2025, 11:59 PM ET.
+Resolves NO otherwise.
+</p>
+    </section>
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-rose-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-rose-700 uppercase tracking-wide">critical</span>
+          
+          <span class="text-sm text-slate-500">top 22% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 211</span>
+      </div>
+
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-rose-700" style="width: 78%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
+        
+          <span class="text-emerald-600">▼ cooling / 7d</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,26.0 64.62,26.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Rollout of multiple exchange market‑maker programs (CME, SOL/XRP, swaps MM)
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Contract size and minimum price increment amendments for CME/CBOT
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Event‑contract incentive program implementations and crypto rule amendments (COIN, spot futures)
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Critical heat is driven by concentrated late‑2025 rulemaking: multiple exchange market‑maker program implementations, contract‑size/price‑increment amendments, event‑contract incentives and crypto rule changes.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <p class="text-sm text-slate-400 italic">No upcoming regulatory dates on record</p>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.725, "t": 1753228809}, {"p": 0.645, "t": 1753315209}, {"p": 0.665, "t": 1753401609}, {"p": 0.685, "t": 1753488009}, {"p": 0.675, "t": 1753574410}, {"p": 0.67, "t": 1753660809}, {"p": 0.66, "t": 1753747210}, {"p": 0.66, "t": 1753833610}, {"p": 0.645, "t": 1753920008}, {"p": 0.71, "t": 1754006409}, {"p": 0.68, "t": 1754092809}, {"p": 0.63, "t": 1754179208}, {"p": 0.645, "t": 1754265607}, {"p": 0.605, "t": 1754352008}, {"p": 0.655, "t": 1754438409}, {"p": 0.645, "t": 1754524810}, {"p": 0.67, "t": 1754611209}, {"p": 0.675, "t": 1754697609}, {"p": 0.7, "t": 1754784009}, {"p": 0.745, "t": 1754870410}, {"p": 0.725, "t": 1754956806}, {"p": 0.77, "t": 1755043210}, {"p": 0.825, "t": 1755129607}, {"p": 0.81, "t": 1755216010}, {"p": 0.87, "t": 1755302410}, {"p": 0.865, "t": 1755388808}, {"p": 0.875, "t": 1755475208}, {"p": 0.885, "t": 1755561614}, {"p": 0.85, "t": 1755648004}, {"p": 0.875, "t": 1755734406}, {"p": 0.925, "t": 1755820808}, {"p": 0.935, "t": 1755907213}, {"p": 0.93, "t": 1755993606}, {"p": 0.92, "t": 1756080008}, {"p": 0.955, "t": 1756166409}, {"p": 0.945, "t": 1756252807}, {"p": 0.955, "t": 1756339210}, {"p": 0.9575, "t": 1756425606}, {"p": 0.953, "t": 1756512003}, {"p": 0.9515, "t": 1756598418}, {"p": 0.949, "t": 1756684808}, {"p": 0.944, "t": 1756771205}, {"p": 0.9455, "t": 1756857604}, {"p": 0.9695, "t": 1756944008}, {"p": 0.97, "t": 1757030408}, {"p": 0.971, "t": 1757116806}, {"p": 0.9695, "t": 1757203209}, {"p": 0.969, "t": 1757289611}, {"p": 0.973, "t": 1757376003}, {"p": 0.966, "t": 1757462403}, {"p": 0.96, "t": 1757548808}, {"p": 0.9575, "t": 1757635209}, {"p": 0.943, "t": 1757721613}, {"p": 0.9275, "t": 1757808012}, {"p": 0.9355, "t": 1757894414}, {"p": 0.9435, "t": 1757980821}, {"p": 0.9495, "t": 1758067211}, {"p": 0.9665, "t": 1758153608}, {"p": 0.9675, "t": 1758240008}, {"p": 0.958, "t": 1758326413}, {"p": 0.9445, "t": 1758412808}, {"p": 0.9525, "t": 1758499207}, {"p": 0.9545, "t": 1758585602}, {"p": 0.976, "t": 1758672015}, {"p": 0.9625, "t": 1758758404}, {"p": 0.9735, "t": 1758844812}, {"p": 0.9755, "t": 1758931203}, {"p": 0.975, "t": 1759017616}, {"p": 0.978, "t": 1759104009}, {"p": 0.9795, "t": 1759190409}, {"p": 0.9655, "t": 1759276802}, {"p": 0.9875, "t": 1759363204}, {"p": 0.9855, "t": 1759449605}, {"p": 0.9835, "t": 1759536006}, {"p": 0.985, "t": 1759622403}, {"p": 0.978, "t": 1759708803}, {"p": 0.985, "t": 1759795206}, {"p": 0.983, "t": 1759881610}, {"p": 0.9805, "t": 1759968010}, {"p": 0.9675, "t": 1760054413}, {"p": 0.9745, "t": 1760140812}, {"p": 0.9705, "t": 1760227215}, {"p": 0.9645, "t": 1760313611}, {"p": 0.963, "t": 1760400008}, {"p": 0.96, "t": 1760486409}, {"p": 0.932, "t": 1760572816}, {"p": 0.9105, "t": 1760659212}, {"p": 0.9325, "t": 1760745607}, {"p": 0.917, "t": 1760832003}, {"p": 0.822, "t": 1760918403}, {"p": 0.8125, "t": 1761004815}, {"p": 0.811, "t": 1761091207}, {"p": 0.823, "t": 1761177606}, {"p": 0.827, "t": 1761264007}, {"p": 0.7875, "t": 1761350407}, {"p": 0.835, "t": 1761436807}, {"p": 0.826, "t": 1761523207}, {"p": 0.8545, "t": 1761609607}, {"p": 0.886, "t": 1761696007}, {"p": 0.8735, "t": 1761782407}, {"p": 0.862, "t": 1761868806}, {"p": 0.878, "t": 1761955207}, {"p": 0.8515, "t": 1762041607}, {"p": 0.835, "t": 1762128005}, {"p": 0.856, "t": 1762214407}, {"p": 0.903, "t": 1762300806}, {"p": 0.8765, "t": 1762387204}, {"p": 0.8935, "t": 1762473606}, {"p": 0.887, "t": 1762560006}, {"p": 0.8815, "t": 1762646420}, {"p": 0.9195, "t": 1762732805}, {"p": 0.919, "t": 1762819208}, {"p": 0.9225, "t": 1762905609}, {"p": 0.9385, "t": 1762992007}, {"p": 0.9365, "t": 1763078407}, {"p": 0.928, "t": 1763164807}, {"p": 0.8555, "t": 1763251207}, {"p": 0.8335, "t": 1763337606}, {"p": 0.8375, "t": 1763424006}, {"p": 0.7965, "t": 1763510408}, {"p": 0.822, "t": 1763596806}, {"p": 0.731, "t": 1763683208}, {"p": 0.725, "t": 1763769607}, {"p": 0.7155, "t": 1763856007}, {"p": 0.7455, "t": 1763942410}, {"p": 0.6895, "t": 1764028807}, {"p": 0.704, "t": 1764115208}, {"p": 0.7695, "t": 1764201608}, {"p": 0.736, "t": 1764288008}, {"p": 0.7845, "t": 1764374409}, {"p": 0.7385, "t": 1764460808}, {"p": 0.8255, "t": 1764547207}, {"p": 0.922, "t": 1764633607}, {"p": 0.9635, "t": 1764720009}, {"p": 0.9935, "t": 1764806408}, {"p": 0.9925, "t": 1764892808}, {"p": 0.9985, "t": 1764979209}];
+  var timelineEvents = [{"carver_feed_entry_id": "89a79c87-f37e-40ed-8946-448193eab1a4", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC\u0027s Event Contract Swaps market-maker program creates regulatory support and liquidity for event contracts, increasing odds Polymarket can operate as a DCM.", "pub_date": "2025-12-05", "regulator": "Commodity Futures Trading Commission", "relevance_score": 7, "timeline_shift": "sooner", "title": "Implementation of the Event Contract Swaps Market Maker Program", "urgency": 7.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58567"}, {"carver_feed_entry_id": "8d6b96d8-bede-4370-aef8-329381776443", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC Federal Register notice (Dec 5, 2025) could pertain to DCM actions but does not explicitly mention Polymarket or a trade; no clear directional signal.", "pub_date": "2025-12-05", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "90 FR 56137", "urgency": 2.0, "url": "https://www.cftc.gov/LawRegulation/FederalRegister/publicinformationcollectionrequirements/2025-22108.html"}, {"carver_feed_entry_id": "c295a5b5-e33a-4a41-8764-9413ab63081f", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2025-12-04", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "Amendments to the Contract Size and Minimum Price Increments of the CME, CBOT, NYMEX, and COMEX Event Contracts", "urgency": 5.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58515"}, {"carver_feed_entry_id": "f986aba7-efe1-4ab9-8be2-a264cc46f681", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC implemented an incentive program for event contracts but mentions no Polymarket/DCM designation; it\u0027s background policy with no direct effect on Polymarket going live.", "pub_date": "2025-12-01", "regulator": "Commodity Futures Trading Commission", "relevance_score": 3, "timeline_shift": "none", "title": "Implementation of the Event Contracts Incentive Program", "urgency": 6.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58706"}, {"carver_feed_entry_id": "f1630635-c58c-4536-86ab-87452e60bcd0", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC approval of FMX rule changes concerns a different exchange and offers only a minor, indirect signal about regulator activity\u2014not directly about Polymarket DCM or US launch.", "pub_date": "2025-11-28", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "FMX - Adoption of Rule XI-6 (EFRP Transactions) and Amendments to I-1, III-6, and III-19.", "urgency": 5.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58699"}, {"carver_feed_entry_id": "1a0a09f3-b06f-4ffb-b691-bfda2417dd6d", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CME\u0027s crypto market-maker program tweaks show CFTC activity in crypto derivatives but do not directly affect a Polymarket DCM approval or US launch.", "pub_date": "2025-11-13", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "CME Modifications to the Cryptocurrency Spot-Quoted Futures Market Maker Program", "urgency": 8.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58462"}, {"carver_feed_entry_id": "a49a6af4-31e0-4100-8666-56a1cff9a441", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 4.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC weekly notice covers Coinbase Derivatives rule changes, not Polymarket\u2014provides background on DCM activity but no direct signal about Polymarket going live.", "pub_date": "2025-11-06", "regulator": "Commodity Futures Trading Commission", "relevance_score": 2, "timeline_shift": "none", "title": "COIN Weekly Notification of Rule Amendments", "urgency": 7.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58398"}, {"carver_feed_entry_id": "f07b3973-9438-4bc0-bdfa-6624707b70c6", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC Federal Register notice (9/30/2025); metadata shows comments but no Polymarket/DCM mention, so offers little direct signal\u2014neutral.", "pub_date": "2025-09-30", "regulator": "Commodity Futures Trading Commission \u2014 Market Participants Division", "relevance_score": 3, "timeline_shift": "none", "title": "90 FR 47136", "urgency": 3.0, "url": "https://www.cftc.gov/LawRegulation/FederalRegister/proposedrules/2025-18924.html"}, {"carver_feed_entry_id": "7971f539-904f-42af-a309-c9ef9aaf5cb5", "condition_tag": "A", "direction": "bearish", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC amendments on invalidation/revocation likely lower odds of timely DCM approval/listing for new entrants like Polymarket, slightly bearish.", "pub_date": "2025-09-29", "regulator": "Commodity Futures Trading Commission", "relevance_score": 4, "timeline_shift": "later", "title": "Amendments to Appendix VIII (EUDR) of Chapters 8 and 14 relating to invalidation and revocation of a previously Validated DDI", "urgency": 5.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58292"}, {"carver_feed_entry_id": "656d7452-518d-40a4-b063-10059d920266", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC permitting CME SOL/XRP options signals regulator comfort with crypto DCM activity, modestly raising odds Polymarket could obtain DCM and trade in 2025.", "pub_date": "2025-09-23", "regulator": "Commodity Futures Trading Commission", "relevance_score": 5, "timeline_shift": "none", "title": "CME Implementation of the SOL \u0026 XRP Options Market Maker Program", "urgency": 7.0, "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58232"}, {"carver_feed_entry_id": "69539ddd-7696-485c-8289-a78461f0b186", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC initiative on tokenized collateral/stablecoins could modestly ease regulatory hurdles for crypto exchanges, slightly raising Polymarket\u0027s chance of securing a DCM and trading by 2025.", "pub_date": "2025-09-23", "regulator": "Commodity Futures Trading Commission", "relevance_score": 4, "timeline_shift": "sooner", "title": "Acting Chairman Pham Launches Tokenized Collateral and Stablecoins Initiative", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9130-25"}, {"carver_feed_entry_id": "6dd85863-9e2d-4c97-9dc1-05006bbd1e93", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Commodity Futures Trading Commission \u2014 Division of Clearing and Risk \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2025-09-11", "regulator": "Commodity Futures Trading Commission \u2014 Division of Clearing and Risk", "relevance_score": 3, "timeline_shift": "none", "title": "CFTC Staff Withdraws Guidance on DCO Recovery Plans and Wind-down Plans", "urgency": 7.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9120-25"}, {"carver_feed_entry_id": "91ac6dfc-51b0-42f9-b4b8-7be7168c0a59", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 6.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "Joint CFTC\u2013SEC harmonization statement lowers regulatory barriers, raising odds Polymarket obtains a DCM and launches US trading before Dec 31, 2025.", "pub_date": "2025-09-05", "regulator": "Commodity Futures Trading Commission", "relevance_score": 6, "timeline_shift": "sooner", "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9115-25"}, {"carver_feed_entry_id": "349e1e34-56fb-4e03-bd72-3c9e94bbd1bd", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "SEC-CFTC harmonization statement and Sept 29 roundtable suggests coordinated oversight, modestly increasing odds Polymarket secures DCM access in 2025.", "pub_date": "2025-09-05", "regulator": "Securities and Exchange Commission", "relevance_score": 6, "timeline_shift": "none", "title": "SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-Host Roundtable Sept. 29", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-112-sec-cftc-issue-joint-statement-regulatory-harmonization-efforts-will-co-host-roundtable-sept-29"}, {"carver_feed_entry_id": "64ecd867-93ef-44bf-b2be-442805a71feb", "condition_tag": "A", "direction": "neutral", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Joint SEC\u2013CFTC statement on regulatory coordination could influence the DCM approval climate but doesn\u0027t confirm a Polymarket DCM trade.", "pub_date": "2025-09-05", "regulator": "U.S. Securities and Exchange Commission", "relevance_score": 5, "timeline_shift": "none", "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525"}, {"carver_feed_entry_id": "3f3f57e2-6391-4de5-a313-695601c37650", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC\u0027s listed-spot crypto initiative creates a clearer pathway for crypto platforms to obtain DCM approvals, increasing Polymarket\u0027s chances.", "pub_date": "2025-08-04", "regulator": "Commodity Futures Trading Commission", "relevance_score": 6, "timeline_shift": "sooner", "title": "Acting Chairman Pham Launches Listed Spot Crypto Trading Initiative", "urgency": 2.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9105-25"}, {"carver_feed_entry_id": "2945b65d-444a-4331-a43e-3a9617af3f00", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC crypto sprint suggests faster review and prioritization of crypto DCM matters, raising chance Polymarket obtains a DCM and trades in 2025.", "pub_date": "2025-08-01", "regulator": "Commodity Futures Trading Commission", "relevance_score": 7, "timeline_shift": "sooner", "title": "Acting Chairman Pham Announces CFTC Crypto Sprint", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9104-25"}, {"carver_feed_entry_id": "cf3aab15-bb23-4a4a-adfb-961875e3880a", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC Acting Chair\u0027s praise of PWG pro-crypto recommendations increases regulatory momentum, raising odds Polymarket can get a DCM and launch in 2025.", "pub_date": "2025-07-30", "regulator": "Commodity Futures Trading Commission", "relevance_score": 7, "timeline_shift": "sooner", "title": "Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9102-25"}, {"carver_feed_entry_id": "7cf5e91e-bcb6-430c-af47-f412824ff269", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "CFTC withdrew a staff advisory on prime brokerage; it\u0027s a general regulatory change with no clear direct effect on Polymarket\u2019s DCM launch, so neutral.", "pub_date": "2025-07-18", "regulator": "Commodity Futures Trading Commission \u2014 Division of Clearing and Risk", "relevance_score": 2, "timeline_shift": "none", "title": "CFTC Staff Withdraws Advisory on Prime Brokerage Arrangements", "urgency": 7.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9097-25"}, {"carver_feed_entry_id": "ae8f8f01-fa6a-4c17-809e-1be6067e057c", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Commodity Futures Trading Commission \u2014 Division of Enforcement \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.", "pub_date": "2025-06-16", "regulator": "Commodity Futures Trading Commission \u2014 Division of Enforcement", "relevance_score": 2, "timeline_shift": "none", "title": "Federal Court Orders Texas Firm to Pay Over $100 Million to Customers Defrauded in Cattle Fraud Scheme", "urgency": 6.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9087-25"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
+});
+</script>
+
+
+</body>
+</html>

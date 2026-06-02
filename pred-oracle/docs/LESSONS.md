@@ -1,5 +1,7 @@
 # SESSIONS
 
+- 2026-06-02-trader-export (Trader demo scene export + relative-link portability + catalyst links + README documentation)
+
 # LESSONS
 
 ## Model selection for subagent dispatch — 2026-05-19
@@ -31,3 +33,19 @@ filename="../calendar-panel.png"
 ```
 
 `build/screenshots/` is gitignored via the `*.png` rule in `.gitignore`. The directory is committed as an empty placeholder.
+
+## Date-sensitive build steps contaminate curated snapshots — 2026-06-02
+
+**Problem:** `make build` (and `make serve`) run `generate_slices.py` to regenerate date-specific content like `latest_pub_date` in `landing.json`. This drifts the committed, curated demo snapshot from its intended date. A demo recorded on 2026-05-28 may show "as of 2026-06-02" if rebuilt later.
+
+**Mitigation:** Document prominently in the README that `make build`/`make serve` are date-sensitive. For preserving a curated snapshot's date, serve the pre-built `site/` output directly (`cd site && python3 -m http.server`) instead of rebuilding, or run `generate.py` alone (never `make build`) to re-render without re-slicing.
+
+**Lesson:** Date-dependent content should be gated separately from the main build. Alternatively, cache the slice result and reuse it unless explicitly requested. The goal is "reproduce the committed curated snapshot" without side effects like date drift.
+
+## Portable static sites require explicit link normalization for file:// protocol — 2026-06-02
+
+**Problem:** The `file://` protocol doesn't auto-serve `dir/index.html` when navigating to `dir/` (unlike HTTP servers). Links like `../trader/` open a directory listing, not the index, breaking single-file-open portability.
+
+**Mitigation:** After template rendering, apply a regex pass (`_fileify_links`) to rewrite all directory-style links to explicit `index.html` paths: `../trader/` → `../trader/index.html`. This is non-invasive (no template changes) and composable (applies site-wide in one pass).
+
+**Lesson:** For truly portable demos that work over `file://`, HTTP at any path, or any domain subpath, use relative + fileified links as the default. Absolute prefixes are opt-in via environment variable for fixed-subpath deployments (e.g., GitHub Pages under a subdomain). The fileify approach catches an edge case that would otherwise require site structure changes or server-side rewrites.

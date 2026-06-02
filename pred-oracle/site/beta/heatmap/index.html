@@ -41,8 +41,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/site.css">
-  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
 
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
   <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
@@ -56,7 +56,7 @@
 
   <nav class="bg-carver sticky top-0 z-10">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/"
+      <a href="../../index.html"
          class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
         <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
         <span class="text-base">Pred-Oracle</span>
@@ -68,7 +68,7 @@
   <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
     
 <nav class="mb-4 text-sm">
-  <a href="/beta/" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+  <a href="../../beta/index.html" class="text-slate-500 hover:text-slate-900">← International strategy</a>
 </nav>
 
 <header class="mb-8">
@@ -233,8 +233,8 @@
 </section>
 
 <section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
-  <a href="/beta/" class="text-sm text-slate-500 hover:text-slate-900">← International strategy</a>
-  <a href="/beta/cascades/" class="text-sm text-blue-600 hover:text-blue-800">Open cascade signals →</a>
+  <a href="../../beta/index.html" class="text-sm text-slate-500 hover:text-slate-900">← International strategy</a>
+  <a href="../../beta/cascades/index.html" class="text-sm text-blue-600 hover:text-blue-800">Open cascade signals →</a>
 </section>
 
 <script>
@@ -244,7 +244,7 @@
   (function () {
     function initWorld() {
       if (typeof echarts === 'undefined') { setTimeout(initWorld, 50); return; }
-      fetch('/static/js/world.geo.json')
+      fetch('../../static/js/world.geo.json')
         .then(r => r.ok ? r.json() : null)
         .then(geo => {
           const map = echarts.init(document.getElementById('world-map'));
@@ -279,7 +279,7 @@
     }
     function initStates() {
       if (typeof echarts === 'undefined') { setTimeout(initStates, 50); return; }
-      fetch('/static/js/usa-states.json')
+      fetch('../../static/js/usa-states.json')
         .then(r => r.ok ? r.json() : null)
         .then(geo => {
           const map = echarts.init(document.getElementById('us-states-map'));
