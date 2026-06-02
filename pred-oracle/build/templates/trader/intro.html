@@ -85,7 +85,7 @@
 </section>
 
 <section class="mt-10 flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-6">
-  <a href="{{ base_url|default('/') }}" class="hover:text-slate-600 transition">← Back to all demos</a>
+  {% if scene_only %}<span></span>{% else %}<a href="{{ base_url|default('/') }}" class="hover:text-slate-600 transition">← Back to all demos</a>{% endif %}
   <span>Carver Trader · {{ '{:,}'.format(carver_total_events or 192822) }} events tracked across Carver as of {{ latest_pub_date or '2026-05-28' }}</span>
 </section>
 {% endblock %}

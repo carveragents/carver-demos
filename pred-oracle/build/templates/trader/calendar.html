@@ -74,7 +74,9 @@
         <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full {{ ev_dot }} mt-1.5"></span>
         <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">{{ ev.calendar_date[:10] }}</time>
         <div class="flex-1 min-w-0">
-          <div class="text-sm text-slate-800 leading-snug">{{ ev.title }}</div>
+          <div class="text-sm text-slate-800 leading-snug">
+            {% if ev.url %}<a href="{{ ev.url }}" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">{{ ev.title }}</a>{% else %}{{ ev.title }}{% endif %}
+          </div>
           <div class="flex flex-wrap items-center gap-1.5 mt-1">
             <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
             {% for cid in item.contract_ids %}
