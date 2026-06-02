@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Marijuana rescheduled by December 31, 2026?\nResolution criteria: This market will resolve to 'Yes' if marijuana is rescheduled down from Schedule I\nto any other level (or is unscheduled completely) by the Drug Enforcement Agency of\nthe United States by December 31, 2026, 11:59 PM ET. Otherwise, this market will\nresolve to 'No'.\n\nThe primary resolution source will be official information from the U.S. government,\nhowever a consensus of credible reporting will also be used.\n\nNote: In April 2026, FDA-approved marijuana products and state-licensed medical\ncannabis were moved to Schedule III under President Trump's executive order. This\nmarket specifically tracks whether recreational marijuana (currently Schedule I) is\nrescheduled. If the DEA reschedules only specific cannabinoids or derivatives without\nreclassifying marijuana as a whole, that does not qualify.\n\nA DEA administrative hearing on full rescheduling is scheduled to begin June 29, 2026.\n\nConditions:\n  A: DEA lowers schedule for marijuana \u2014 By Dec 31, 2026, 11:59 PM ET, a final DEA action reclassifies marijuana (the whole plant/substance, i.e., recreational marijuana) from Schedule I to II\u2013V. Not satisfied by rescheduling only cannabinoids/derivatives.\n  B: DEA unschedules marijuana \u2014 By Dec 31, 2026, 11:59 PM ET, a final DEA action removes marijuana entirely from the Controlled Substances Act schedules (unscheduled).\nSettlement entities: ['Drug Enforcement Administration', 'Department of Health and Human Services', 'Department of Justice', 'Food and Drug Administration', 'White House Office of National Drug Control Policy']\n\nRecord title: Attorney General Dan Rayfield Files Motion To Make Sure Oregonians Can Keep Accessing Snap Benefits\nRecord date: 2025-11-10\nRecord regulator: Oregon Department of Justice\nRecord topic: Oregon Department of Justice\nRecord entities: ['Dan Rayfield', 'Oregon Department of Justice', 'U.S. District Court for the District of Massachusetts', 'United States Department of Agriculture']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "State SNAP-access legal filing is unrelated to federal DEA cannabis rescheduling, so it doesn't affect the probability or timing of rescheduling.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

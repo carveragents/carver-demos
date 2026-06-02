@@ -22,7 +22,11 @@ try:
     from dotenv import load_dotenv
 
     _REPO_ROOT = Path(__file__).resolve().parent.parent
-    load_dotenv(_REPO_ROOT / ".env")
+    # .env lives at the worktree root (one level above pred-oracle/)
+    _env_path = _REPO_ROOT / ".env"
+    if not _env_path.exists():
+        _env_path = _REPO_ROOT.parent / ".env"
+    load_dotenv(_env_path)
 except ImportError:
     pass
 

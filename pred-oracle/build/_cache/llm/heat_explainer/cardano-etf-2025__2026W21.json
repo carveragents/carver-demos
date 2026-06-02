@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 195.7\nDelta_7d: -91.65\nTop records:\n- 2025-12-17 Joshua T. White Named SEC Chief Economist\n- 2025-12-12 Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Manage\n- 2025-11-12 The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cPro\n- 2025-09-30 Disclosure of Order Execution Information Trading and Markets\n- 2025-09-30 Poking Holes: Statement in Response to No-Action Relief for State Trust Companie\n- 2025-09-30 Cultivating Confidence: The Role of Custody in Institutional Confidence \u2013 Public\n- 2025-09-25 Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and\n- 2025-09-19 _Federal Register_ version\n- 2025-09-17 SEC Approves Generic Listing Standards for Commodity-Based Trust Shares\n- 2025-09-05 CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Appointment of a new SEC Chief Economist signaling policy focus",
+      "Major SEC rulemaking/statements on digital assets, custody, order execution and listing standards",
+      "Multiple enforcement/litigation releases and CFTC\u2011SEC coordination efforts"
+    ],
+    "explainer": "Critical heat driven by a cluster of major SEC actions this week \u2014 leadership change, enforcement releases, and sweeping digital\u2011asset/custody/listing policy moves reinforced by CFTC coordination."
+  }
+}

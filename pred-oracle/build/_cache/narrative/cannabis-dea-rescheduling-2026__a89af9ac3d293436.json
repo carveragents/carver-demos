@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Marijuana rescheduled by December 31, 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-14 [background] California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations - 14.05.2026 \u2014 California social media regulations are unrelated to the federal DEA process and do not affect whether marijuana is rescheduled.\n- 2026-05-14 [background] California Department of Justice Releases Proposed \"Protecting Our Kids from Social Media Addiction Act (SB 976)\u201d Regulations \u2014 California social-media regulation proposal is unrelated to federal DEA marijuana scheduling and provides no information on DEA action.\n- 2026-05-12 [background] CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027 \u2014 Puerto Rico insurance forms/fees rule is unrelated to DEA federal scheduling of marijuana and does not affect rescheduling odds.\n- 2026-05-05 [background] Attorney General Bonta and Secretary of State Weber: Vote Early in June Primary Election - May 5, 2026 \u2014 California voting guidance for a June primary is unrelated to federal DEA rulemaking on marijuana rescheduling.\n- 2026-05-05 [background] Attorney General Bonta and Secretary of State Weber in Sacramento: Vote Early in June Primary Election and Know Your Voting Rights \u2014 California officials urging voters in a state primary is unrelated to the federal DEA rescheduling process and doesn't change rescheduling odds.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The timeline shows only unrelated state or territorial notices (CA social-media rules, PR insurance forms, CA voting guidance) and no federal scheduling steps. Rescheduling pressure rests with DEA/HHS rulemaking; a final DEA rule, OMB review, and potential litigation are still pending before Dec 31, 2026."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will CZ (Changpeng Zhao) be sentenced to prison?\nKind: retrospective\nTimeline (5 events):\n- 2024-04-29 [background] FinCEN to Host Webinar on Beneficial Ownership Information Reporting Requirements \u2014 FinCEN webinar on beneficial-ownership reporting is general regulatory guidance and has no bearing on CZ's criminal sentencing.\n- 2024-03-28 [background] Consumer Compliance Supervisory Highlights \u2014 FDIC consumer-compliance report is unrelated to CZ's criminal case and does not affect chances of a custodial sentence in US v. Zhao.\n- 2024-02-14 [background] Statement of FinCEN Director Andrea Gacki before the House Committee on Financial Services \u2014 FinCEN director's testimony discusses AML and Binance but doesn't report CZ criminal sentencing or compel custody\u2014background policy context only.\n- 2024-01-01 [background] U.S. Beneficial Ownership Information Registry Now Accepting Reports \u2014 FinCEN's BOI registry launch is general AML/reporting background and does not materially affect whether CZ receives a custodial sentence in his DOJ criminal case.\n- 2023-11-21 [background] In the Matter of Binance Holdings Limited, et. al. d/b/a Binance and Binance.com \u2014 FinCEN's enforcement action is regulatory background on Binance and does not directly affect whether CZ receives a custodial sentence.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Most pressure came as background AML context: FinCEN/FDIC compliance publications, the BOI registry launch, and FinCEN\u2019s 2023 Binance action, none directly bearing on sentencing. The case resolved on Apr 30, 2024, when CZ was sentenced to 4 months in prison."
+  }
+}

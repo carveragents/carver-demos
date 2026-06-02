@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../trader/portfolio/index.html"
+       class="text-sm font-medium text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+<div x-data="{
+  sort: 'heat',
+  platform: 'all',
+  tier: 'all',
+  doSort() {
+    const container = this.$refs.rows;
+    if (!container) return;
+    const items = Array.from(container.querySelectorAll('[data-heat]'));
+    const dirOrder = { Bullish: 0, Mixed: 1, Bearish: 2 };
+    items.sort((a, b) => {
+      if (this.sort === 'heat') return parseFloat(b.dataset.heat) - parseFloat(a.dataset.heat);
+      if (this.sort === 'direction') return (dirOrder[a.dataset.direction] ?? 1) - (dirOrder[b.dataset.direction] ?? 1);
+      if (this.sort === 'events') return parseInt(b.dataset.events) - parseInt(a.dataset.events);
+      return 0;
+    });
+    items.forEach(el => container.appendChild(el));
+  }
+}" x-effect="doSort()">
+
+  
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold">Your Portfolio</h1>
+      <p class="text-sm text-slate-500 mt-1">8 contracts · regulatory heat updated daily</p>
+    </div>
+    <a href="../../trader/calendar/index.html"
+       class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-ink border border-slate-200 rounded px-3 py-1.5 transition">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+      </svg>
+      Calendar view
+    </a>
+  </div>
+
+  
+  <div class="flex flex-wrap items-center gap-3 mb-5 text-xs">
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Sort</span>
+    <button @click="sort='heat'"
+            :class="sort==='heat' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Heat</button>
+    <button @click="sort='direction'"
+            :class="sort==='direction' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Direction</button>
+    <button @click="sort='events'"
+            :class="sort==='events' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Events</button>
+
+    <span class="text-slate-300">|</span>
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Platform</span>
+    <button @click="platform='all'"
+            :class="platform==='all' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">All</button>
+    <button @click="platform='kalshi'"
+            :class="platform==='kalshi' ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Kalshi</button>
+    <button @click="platform='polymarket'"
+            :class="platform==='polymarket' ? 'bg-blue-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Polymarket</button>
+
+    <span class="text-slate-300">|</span>
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Tier</span>
+    <button @click="tier='all'"
+            :class="tier==='all' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">All</button>
+    <button @click="tier='critical'"
+            :class="tier==='critical' ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Critical</button>
+    <button @click="tier='active'"
+            :class="tier==='active' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Active</button>
+    <button @click="tier='watch'"
+            :class="tier==='watch' ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Watch</button>
+    <button @click="tier='dormant'"
+            :class="tier==='dormant' ? 'bg-slate-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Dormant</button>
+  </div>
+
+  
+  <div class="space-y-3" x-ref="rows">
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'critical')
+      "
+      data-platform="polymarket"
+      data-tier="critical"
+      data-heat="359.68"
+      data-direction="Bullish"
+      data-events="20"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/clarity-act-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">Will the CLARITY Act be signed into law in 2026?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">58¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">42¢</span></span>
+              
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑2</span>
+                <span class="text-rose-500">↓2</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              
+              <span class="text-xs text-slate-300">·</span>
+              <span class="text-xs" title="Background regulatory events with directional read">
+                <span class="text-emerald-500/80">↑2</span>
+                <span class="text-rose-400/80">↓0</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">background</span>
+              </span>
+              
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium flex-shrink-0">↑ bullish</span>
+              
+              <span class="truncate">CFTC Sues Minnesota to Block State Law</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-19</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</span>
+              <span class="text-slate-400">· 2026-05-29</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-rose-100 text-rose-800 ring-rose-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                critical
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                20 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>YES 300 @ 50¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'kalshi') &&
+        (tier === 'all' || tier === 'critical')
+      "
+      data-platform="kalshi"
+      data-tier="critical"
+      data-heat="323.65"
+      data-direction="Bullish"
+      data-events="20"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/kxbtc-maxprice-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-emerald-50 text-emerald-700 ring-emerald-200 capitalize">
+                kalshi
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">26¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">74¢</span></span>
+              
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑8</span>
+                <span class="text-rose-500">↓2</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-15</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</span>
+              <span class="text-slate-400">· 2026-05-29</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-rose-100 text-rose-800 ring-rose-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                critical
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                20 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>YES 200 @ 54¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'critical')
+      "
+      data-platform="polymarket"
+      data-tier="critical"
+      data-heat="257.78"
+      data-direction="Mixed"
+      data-events="7"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/scotus-ftc-independence-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">SCOTUS rules Trump can fire FTC commissioners?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">97¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">3¢</span></span>
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief</span>
+              <span class="whitespace-nowrap text-slate-400">2026-04-16</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger</span>
+              <span class="text-slate-400">· 30 days from publication date</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-rose-100 text-rose-800 ring-rose-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                critical
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                7 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>YES 500 @ 90¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'kalshi') &&
+        (tier === 'all' || tier === 'active')
+      "
+      data-platform="kalshi"
+      data-tier="active"
+      data-heat="93.58"
+      data-direction="Mixed"
+      data-events="20"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/kxfeddecision-28jan/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-emerald-50 text-emerald-700 ring-emerald-200 capitalize">
+                kalshi
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">20¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">80¢</span></span>
+              
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑1</span>
+                <span class="text-rose-500">↓2</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">Economic Fury Ramps Up Pressure on Iran’s Islamic Revolutionary Guard Corps Oil Operations</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-11</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</span>
+              <span class="text-slate-400">· 2026-06-18</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-orange-100 text-orange-800 ring-orange-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                active
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                20 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>NO 100 @ 71¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'watch')
+      "
+      data-platform="polymarket"
+      data-tier="watch"
+      data-heat="92.21"
+      data-direction="Mixed"
+      data-events="20"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/us-recession-in-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">Will the US enter a recession in 2026?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">22¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">78¢</span></span>
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">Treasury International Capital Data for March</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-18</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</span>
+              <span class="text-slate-400">· 2026-06-18</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-amber-100 text-amber-800 ring-amber-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                watch
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                20 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>YES 500 @ 18¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'watch')
+      "
+      data-platform="polymarket"
+      data-tier="watch"
+      data-heat="87.22"
+      data-direction="Mixed"
+      data-events="5"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/cannabis-dea-rescheduling-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">Marijuana rescheduled by December 31, 2026?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">28¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">72¢</span></span>
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-20</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research</span>
+              <span class="text-slate-400">· April 1, 2025</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-amber-100 text-amber-800 ring-amber-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                watch
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                5 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>YES 150 @ 32¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'watch')
+      "
+      data-platform="polymarket"
+      data-tier="watch"
+      data-heat="9.4"
+      data-direction="Mixed"
+      data-events="5"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/fda-retatrutide-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">FDA approves Retatrutide in 2026?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">23¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">77¢</span></span>
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">In the Matter of Ariel Betances</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-21</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Serán Efectivo a Partir del Año Calendario 2027</span>
+              <span class="text-slate-400">· 2027-01-01</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-amber-100 text-amber-800 ring-amber-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                watch
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                5 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>NO 250 @ 82¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+    
+    
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+      
+    
+
+    <div
+      x-show="
+        (platform === 'all' || platform === 'polymarket') &&
+        (tier === 'all' || tier === 'dormant')
+      "
+      data-platform="polymarket"
+      data-tier="dormant"
+      data-heat="3.07"
+      data-direction="Mixed"
+      data-events="5"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="../contracts/nrc-nuclear-reactor-2026/index.html" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">
+                polymarket
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">US grants license for new nuclear reactor in 2026?</h2>
+
+            
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">23¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">77¢</span></span>
+              
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑0</span>
+                <span class="text-rose-500">↓2</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              
+              
+            </div>
+
+            
+            
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              
+              <span class="truncate">Attorney General Bonta Seeks to Halt Trump Administration’s Illegal Greenlight of Oil Transportation in California Pipelines</span>
+              <span class="whitespace-nowrap text-slate-400">2026-05-01</span>
+            </div>
+            
+
+            
+            
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>Attorney General Bonta Seeks to Halt Trump Administration’s Illegal Greenlight of Oil Transportation in California Pipelines</span>
+              <span class="text-slate-400">· June 1, 2026</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="flex-shrink-0 text-right">
+            
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide bg-slate-100 text-slate-600 ring-slate-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                dormant
+              </span>
+              <div class="text-xs">
+                
+                  <span class="text-emerald-600">▼ cooling</span>
+                
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                5 key events
+              </span>
+            </div>
+
+            
+            
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>NO 200 @ 78¢</span>
+            </div>
+            
+          </div>
+
+        </div>
+      </a>
+    </div>
+    
+  </div>
+
+  
+  <div x-show="document.querySelectorAll('[data-platform]').length > 0"
+       class="hidden text-sm text-slate-400 text-center py-8 mt-2">
+    No contracts match the current filters.
+  </div>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

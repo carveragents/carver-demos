@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nKind: active\nTimeline (5 events):\n- 2026-04-02 [background] Consolidated Reports of Condition and Income for First Quarter 2026 \u2014 Q1 2026 Call Reports show bank balance-sheet data \u2014 general background for policy but not specific or decisive about a 25bp FOMC cut on Jan 26, 2028.\n- 2026-03-19 [background] Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations \u2014 FDIC capital-rule affects bank resilience and lending conditions, an indirect and small influence on Fed policy but not directly determinative of a Jan\u201126, 2028 25bp cut.\n- 2026-03-19 [background] Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System \u2014 Regulatory capital proposals are long\u2011term, indirect signals for monetary policy and provide only a weak, ambiguous influence on a Jan 2028 Fed cut.\n- 2026-03-19 [background] Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations \u2014 Banking capital rule proposal affects financial conditions indirectly and only modestly, so it offers little direct information on a Jan 26, 2028 25bp Fed cut.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 U.S. Department of the Treasury \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Regulatory signals so far are indirect: March 2026 bank\u2011capital proposals/rules and Q1 2026 call\u2011report data modestly shape financial conditions but offer no decisive push toward a 25 bp cut at the January 2028 FOMC meeting. October 2025 Russia sanctions are tangential. Key drivers\u2014inflation, labor data, growth, and FOMC guidance nearer the meeting\u2014remain pending, so regulatory pressure is minimal."
+  }
+}

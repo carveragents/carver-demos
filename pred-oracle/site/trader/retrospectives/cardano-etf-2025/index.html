@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Will the SEC approve a spot Cardano ETF in 2025?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="../../../trader/index.html" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 uppercase tracking-wide font-medium">critical</span>
+    
+    <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 uppercase tracking-wide">retrospective</span>
+    
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">Will the SEC approve a spot Cardano ETF in 2025?</h1>
+</header>
+
+
+
+  
+  <div class="mb-5 flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-lg px-4 py-2.5 text-sm text-rose-800">
+    <svg class="w-4 h-4 flex-shrink-0 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span><span class="font-semibold">Resolved NO</span> on 2025-12-31</span>
+  </div>
+  
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">0¢</span>
+    <span class="text-[10px] text-emerald-200">payout $0/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">100¢</span>
+    <span class="text-[10px] text-rose-200">payout $100/$100</span>
+  </button>
+
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">19b-4 approval for ADA ETF listing</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-500">50%</span>
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">By Dec 31, 2025, the SEC issues an order approving an exchange’s Rule 19b-4 to list and trade shares of a spot Cardano (ADA) ETF on a U.S. national securities exchange.</p>
+            
+          </div>
+        </li>
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">B</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">ADA ETF starts trading on exchange</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-500">50%</span>
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">By Dec 31, 2025, shares of a spot Cardano (ADA) ETF actually list and commence trading on any U.S. national securities exchange, implying SEC approval for trading.</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Through 2025, leadership churn and process uncertainty tempered odds, even as mid‑year signals—SEC/CFTC harmonization, approval of generic commodity‑trust listing standards, NYSE rule prep, and “Project Crypto”—briefly boosted optimism. Countervailing custody skepticism and the lack of ADA‑specific action stalled momentum. The SEC ultimately did not approve a spot Cardano ETF by Dec 31, 2025 (resolved NO).
+      </blockquote>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          U.S. Securities and Exchange Commission
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Division of Trading and Markets
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Division of Investment Management
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Grayscale Investments
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Canary Capital
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+    
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+        <div class="flex gap-1 text-xs">
+          <button @click="filter='all'"
+                  :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'"
+                  :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">A</button>
+          
+          <button @click="filter='B'"
+                  :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">B</button>
+          
+        </div>
+        
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-17</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Economic and Risk Analysis</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-143-joshua-t-white-named-sec-chief-economist" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Joshua T. White Named SEC Chief Economist</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Appointment of SEC chief economist is background and provides little direct information on whether the agency will approve a spot ADA ETF by Dec 31, 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-12</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. SECURITIES AND EXCHANGE COMMISSION — Fort Worth Regional Office</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/enforcement-litigation/litigation-releases/lr-26439" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Management USA, LLC; Gray Digital Technologies, LLC</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. SECURITIES AND EXCHANGE COMMISSION — Fort Worth Regional Office — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-12</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/speeches-statements/atkins-111225-securities-exchange-commissions-approach-digital-assets-inside-project-crypto" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">The Securities and Exchange Commission’s Approach to Digital Assets: Inside “Project Crypto”</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Inside look at SEC’s &#39;Project Crypto&#39; suggests a more crypto-friendly stance, modestly increasing odds of SEC approving a spot ADA ETF in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/rules-regulations/2025/09/disclosure-order-execution-information" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Disclosure of Order Execution Information Trading and Markets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC order on order-execution disclosure concerns market structure, not ETF listing approvals—minimal indirect effect on ADA ETF approval probability.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/speeches-statements/crenshaw-093025-poking-holes-statement-response-no-action-relief-state-trust-companies-acting-crypto" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Poking Holes: Statement in Response to No-Action Relief for State Trust Companies Acting as Crypto Asset Custodians</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC&#39;s critical statement on no-action relief for state-trust crypto custodians raises custody concerns, decreasing odds of a timely approval for a spot ADA ETF.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-093025-cultivating-confidence-role-custody-institutional-confidence-public-trust-oversight" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Cultivating Confidence: The Role of Custody in Institutional Confidence – Public Trust and Oversight; Remarks before the Digital Assets Summit Singapore</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC remarks stressing custody solutions and oversight reduce custody-related objections to crypto ETFs, increasing odds of SEC approval for a spot ADA ETF.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-25</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Trading and Markets</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/files/rules/sro/nyse/2025/34-104209.pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.5</a>
+            
+            <p class="text-xs text-slate-600 mt-1">NYSE filed an immediate-effectiveness rule change to amend listing rules, suggesting it&#39;s preparing to list a spot ADA ETF and modestly raises approval odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.federalregister.gov/d/2025-18238" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">_Federal Register_ version</a>
+            
+            <p class="text-xs text-slate-600 mt-1">An SEC &#39;Federal Register version&#39; posting could be the formal publication of an order, but without text it’s ambiguous and only weakly informative about an ADA ETF approval.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-17</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Trading and Markets</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-121-sec-approves-generic-listing-standards-commodity-based-trust-shares" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">SEC Approves Generic Listing Standards for Commodity-Based Trust Shares</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC&#39;s approval of generic listing standards for commodity-based trusts reduces listing barriers for crypto ETFs, increasing odds a spot ADA ETF will be approved and list sooner.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9115-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Joint CFTC–SEC harmonization statement suggests smoother coordination, modestly increasing odds the SEC would approve a spot ADA ETF.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-09-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC</a>
+            
+            <p class="text-xs text-slate-600 mt-1">SEC–CFTC joint statement on crypto jurisdiction provides background policy context but contains no direct action on approving a spot ADA ETF.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-08-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-102-road-sec-crypto-task-force-host-series-roundtables-across-us" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">On the Road: SEC Crypto Task Force to Host a Series of Roundtables Across the U.S.</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Securities and Exchange Commission — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Commodity Futures Trading Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Sooner
+              </span>
+              
+            </div>
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9102-25" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.</a>
+            
+            <p class="text-xs text-slate-600 mt-1">CFTC praise for PWG pro-crypto recommendations signals stronger interagency support, modestly increasing chances the SEC approves a spot ADA ETF in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-18</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Trading and Markets</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-91-sec-announces-departure-david-saltiel" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">SEC Announces Departure of David Saltiel</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Departure of an SEC official is background news that creates uncertainty but gives no clear signal on approving a spot ADA ETF in 2025.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-13</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Investment Management</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-88-brian-daly-named-director-division-investment-management" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Brian Daly Named Director of Division of Investment Management</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Naming a new Division of Investment Management director affects ETF review leadership but gives no public signal on Cardano stance, so little change to odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-10</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-83-sec-resume-processing-registration-applications-swiss-based-investment-advisers" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Securities and Exchange Commission — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-10</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission — Division of Investment Management</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://www.sec.gov/newsroom/press-releases/2025-84-natasha-vij-greiner-will-conclude-her-tenure-director-investment-management" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Director of Investment Management&#39;s departure may slow SEC ETF reviews and modestly reduce odds ADA spot ETF is approved before year-end due to transition.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-04</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Securities and Exchange Commission</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/rules-regulations/2025/06/s7-2025-01#33-11376concept" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Concept Release on Foreign Private Issuer Eligibility 33-11376, 34-103176</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Securities and Exchange Commission — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-05-14</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Securities and Exchange Commission — Office of Inspector General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/files/sec-oig-aud-fml-2025-01.pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Final Management Letter: Audit of the SEC’s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Securities and Exchange Commission — Office of Inspector General — U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-03-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Securities and Exchange Commission — Division of Examinations</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              
+            </div>
+            <a href="https://www.sec.gov/files/2025-exam-priorities.pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">2025 Examination Priorities (PDF)</a>
+            
+            <p class="text-xs text-slate-600 mt-1">General SEC Examination Priorities document doesn&#39;t approve or list an ADA ETF; only offers background on the SEC&#39;s crypto oversight focus.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">Resolves YES if the U.S. Securities and Exchange Commission approves a spot
+Cardano (ADA) ETF for trading on a national securities exchange by
+December 31, 2025, 11:59 PM ET. Resolves NO otherwise.
+</p>
+    </section>
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-rose-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-rose-700 uppercase tracking-wide">critical</span>
+          
+          <span class="text-sm text-slate-500">top 22% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 196</span>
+      </div>
+
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-rose-700" style="width: 78%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
+        
+          <span class="text-emerald-600">▼ cooling / 7d</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,26.0 64.62,26.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Appointment of a new SEC Chief Economist signaling policy focus
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Major SEC rulemaking/statements on digital assets, custody, order execution and listing standards
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Multiple enforcement/litigation releases and CFTC‑SEC coordination efforts
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Critical heat driven by a cluster of major SEC actions this week — leadership change, enforcement releases, and sweeping digital‑asset/custody/listing policy moves reinforced by CFTC coordination.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <p class="text-sm text-slate-400 italic">No upcoming regulatory dates on record</p>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.1, "t": 1735948803}, {"p": 0.24, "t": 1736035203}, {"p": 0.285, "t": 1736121603}, {"p": 0.325, "t": 1736208004}, {"p": 0.33, "t": 1736294403}, {"p": 0.25, "t": 1736380803}, {"p": 0.245, "t": 1736467204}, {"p": 0.245, "t": 1736553604}, {"p": 0.215, "t": 1736640004}, {"p": 0.175, "t": 1736726404}, {"p": 0.185, "t": 1736812803}, {"p": 0.18, "t": 1736899203}, {"p": 0.17, "t": 1736985604}, {"p": 0.195, "t": 1737072004}, {"p": 0.255, "t": 1737158404}, {"p": 0.255, "t": 1737244804}, {"p": 0.245, "t": 1737331204}, {"p": 0.245, "t": 1737417603}, {"p": 0.215, "t": 1737504003}, {"p": 0.21, "t": 1737590404}, {"p": 0.47, "t": 1737676803}, {"p": 0.385, "t": 1737763205}, {"p": 0.52, "t": 1737849604}, {"p": 0.58, "t": 1737936004}, {"p": 0.585, "t": 1738022404}, {"p": 0.64, "t": 1738108804}, {"p": 0.5, "t": 1738195205}, {"p": 0.475, "t": 1738281604}, {"p": 0.54, "t": 1738368005}, {"p": 0.54, "t": 1738454404}, {"p": 0.54, "t": 1738540805}, {"p": 0.37, "t": 1738627204}, {"p": 0.44, "t": 1738713604}, {"p": 0.445, "t": 1738800005}, {"p": 0.445, "t": 1738886404}, {"p": 0.445, "t": 1738972804}, {"p": 0.445, "t": 1739059206}, {"p": 0.445, "t": 1739145605}, {"p": 0.635, "t": 1739232004}, {"p": 0.57, "t": 1739318404}, {"p": 0.55, "t": 1739404804}, {"p": 0.565, "t": 1739491205}, {"p": 0.58, "t": 1739577604}, {"p": 0.605, "t": 1739664004}, {"p": 0.595, "t": 1739750404}, {"p": 0.605, "t": 1739836804}, {"p": 0.56, "t": 1739923204}, {"p": 0.54, "t": 1740009604}, {"p": 0.54, "t": 1740096005}, {"p": 0.55, "t": 1740182405}, {"p": 0.54, "t": 1740268804}, {"p": 0.52, "t": 1740355204}, {"p": 0.655, "t": 1740441604}, {"p": 0.65, "t": 1740528005}, {"p": 0.655, "t": 1740614405}, {"p": 0.665, "t": 1740700805}, {"p": 0.66, "t": 1740787205}, {"p": 0.675, "t": 1740873605}, {"p": 0.7, "t": 1740960005}, {"p": 0.685, "t": 1741046405}, {"p": 0.705, "t": 1741132804}, {"p": 0.7, "t": 1741219205}, {"p": 0.685, "t": 1741305605}, {"p": 0.695, "t": 1741392005}, {"p": 0.695, "t": 1741478405}, {"p": 0.655, "t": 1741564804}, {"p": 0.685, "t": 1741651205}, {"p": 0.69, "t": 1741737605}, {"p": 0.695, "t": 1741824006}, {"p": 0.7, "t": 1741910405}, {"p": 0.685, "t": 1741996804}, {"p": 0.685, "t": 1742083204}, {"p": 0.68, "t": 1742169604}, {"p": 0.685, "t": 1742256005}, {"p": 0.655, "t": 1742342405}, {"p": 0.665, "t": 1742428805}, {"p": 0.665, "t": 1742515205}, {"p": 0.685, "t": 1742601606}, {"p": 0.655, "t": 1742688006}, {"p": 0.64, "t": 1742774405}, {"p": 0.615, "t": 1742860806}, {"p": 0.585, "t": 1742947205}, {"p": 0.575, "t": 1743033606}, {"p": 0.585, "t": 1743120006}, {"p": 0.61, "t": 1743206406}, {"p": 0.59, "t": 1743292806}, {"p": 0.585, "t": 1743379205}, {"p": 0.565, "t": 1743465605}, {"p": 0.565, "t": 1743552006}, {"p": 0.58, "t": 1743638405}, {"p": 0.56, "t": 1743724805}, {"p": 0.535, "t": 1743811205}, {"p": 0.515, "t": 1743897605}, {"p": 0.515, "t": 1743984006}, {"p": 0.515, "t": 1744070406}, {"p": 0.515, "t": 1744156806}, {"p": 0.375, "t": 1744243205}, {"p": 0.46, "t": 1744329605}, {"p": 0.47, "t": 1744416006}, {"p": 0.4, "t": 1744502405}, {"p": 0.44, "t": 1744588805}, {"p": 0.48, "t": 1744675205}, {"p": 0.53, "t": 1744761605}, {"p": 0.555, "t": 1744848006}, {"p": 0.555, "t": 1744934404}, {"p": 0.57, "t": 1745020806}, {"p": 0.565, "t": 1745107206}, {"p": 0.565, "t": 1745193606}, {"p": 0.57, "t": 1745280006}, {"p": 0.595, "t": 1745366407}, {"p": 0.57, "t": 1745452806}, {"p": 0.595, "t": 1745539206}, {"p": 0.555, "t": 1745625606}, {"p": 0.52, "t": 1745712005}, {"p": 0.58, "t": 1745798405}, {"p": 0.52, "t": 1745884805}, {"p": 0.525, "t": 1745971206}, {"p": 0.69, "t": 1746057606}, {"p": 0.695, "t": 1746144006}, {"p": 0.68, "t": 1746230406}, {"p": 0.69, "t": 1746316805}, {"p": 0.7, "t": 1746403205}, {"p": 0.49, "t": 1746489606}, {"p": 0.56, "t": 1746576005}, {"p": 0.56, "t": 1746662406}, {"p": 0.56, "t": 1746748807}, {"p": 0.56, "t": 1746835206}, {"p": 0.555, "t": 1746921606}, {"p": 0.555, "t": 1747008006}, {"p": 0.55, "t": 1747094406}, {"p": 0.545, "t": 1747180807}, {"p": 0.55, "t": 1747267207}, {"p": 0.555, "t": 1747353606}, {"p": 0.63, "t": 1747440007}, {"p": 0.63, "t": 1747526406}, {"p": 0.635, "t": 1747612806}, {"p": 0.635, "t": 1747699206}, {"p": 0.635, "t": 1747785606}, {"p": 0.635, "t": 1747872007}, {"p": 0.675, "t": 1747958407}, {"p": 0.685, "t": 1748044807}, {"p": 0.705, "t": 1748131206}, {"p": 0.71, "t": 1748217607}, {"p": 0.71, "t": 1748304006}, {"p": 0.7, "t": 1748390406}, {"p": 0.7, "t": 1748476807}, {"p": 0.66, "t": 1748563207}, {"p": 0.66, "t": 1748649607}, {"p": 0.635, "t": 1748736007}, {"p": 0.56, "t": 1748822406}, {"p": 0.575, "t": 1748908807}, {"p": 0.685, "t": 1748995206}, {"p": 0.69, "t": 1749081606}, {"p": 0.455, "t": 1749168006}, {"p": 0.445, "t": 1749254407}, {"p": 0.41, "t": 1749340807}, {"p": 0.41, "t": 1749427207}, {"p": 0.63, "t": 1749513606}, {"p": 0.625, "t": 1749600007}, {"p": 0.66, "t": 1749686407}, {"p": 0.66, "t": 1749772807}, {"p": 0.655, "t": 1749859208}, {"p": 0.655, "t": 1749945608}, {"p": 0.665, "t": 1750032007}, {"p": 0.645, "t": 1750118408}, {"p": 0.6, "t": 1750204808}, {"p": 0.555, "t": 1750291207}, {"p": 0.575, "t": 1750377608}, {"p": 0.775, "t": 1750464008}, {"p": 0.68, "t": 1750550406}, {"p": 0.8, "t": 1750636807}, {"p": 0.745, "t": 1750723207}, {"p": 0.705, "t": 1750809607}, {"p": 0.75, "t": 1750896008}, {"p": 0.785, "t": 1750982407}, {"p": 0.725, "t": 1751068807}, {"p": 0.765, "t": 1751155208}, {"p": 0.755, "t": 1751241607}, {"p": 0.56, "t": 1751328008}, {"p": 0.785, "t": 1751414407}, {"p": 0.855, "t": 1751500808}, {"p": 0.83, "t": 1751587208}, {"p": 0.835, "t": 1751673608}, {"p": 0.825, "t": 1751760007}, {"p": 0.82, "t": 1751846407}, {"p": 0.82, "t": 1751932808}, {"p": 0.82, "t": 1752019207}, {"p": 0.88, "t": 1752105608}, {"p": 0.885, "t": 1752192008}, {"p": 0.88, "t": 1752278409}, {"p": 0.84, "t": 1752364808}, {"p": 0.82, "t": 1752451207}, {"p": 0.82, "t": 1752537608}, {"p": 0.835, "t": 1752624008}, {"p": 0.835, "t": 1752710408}, {"p": 0.81, "t": 1752796808}, {"p": 0.835, "t": 1752883209}, {"p": 0.835, "t": 1752969608}, {"p": 0.84, "t": 1753056007}, {"p": 0.835, "t": 1753142409}, {"p": 0.835, "t": 1753228809}, {"p": 0.835, "t": 1753315209}, {"p": 0.835, "t": 1753401609}, {"p": 0.835, "t": 1753488009}, {"p": 0.835, "t": 1753574410}, {"p": 0.825, "t": 1753660809}, {"p": 0.825, "t": 1753747210}, {"p": 0.825, "t": 1753833610}, {"p": 0.825, "t": 1753920008}, {"p": 0.825, "t": 1754006409}, {"p": 0.825, "t": 1754092809}, {"p": 0.825, "t": 1754179208}, {"p": 0.77, "t": 1754265607}, {"p": 0.75, "t": 1754352008}, {"p": 0.745, "t": 1754438409}, {"p": 0.775, "t": 1754524807}, {"p": 0.625, "t": 1754611203}, {"p": 0.71, "t": 1754697609}, {"p": 0.74, "t": 1754784007}, {"p": 0.755, "t": 1754870411}, {"p": 0.75, "t": 1754956805}, {"p": 0.83, "t": 1755043211}, {"p": 0.795, "t": 1755129605}, {"p": 0.83, "t": 1755216010}, {"p": 0.83, "t": 1755302405}, {"p": 0.8, "t": 1755388808}, {"p": 0.82, "t": 1755475204}, {"p": 0.815, "t": 1755561605}, {"p": 0.805, "t": 1755648007}, {"p": 0.805, "t": 1755734402}, {"p": 0.81, "t": 1755820805}, {"p": 0.81, "t": 1755907207}, {"p": 0.785, "t": 1755993611}, {"p": 0.775, "t": 1756080013}, {"p": 0.75, "t": 1756166404}, {"p": 0.795, "t": 1756252815}, {"p": 0.86, "t": 1756339208}, {"p": 0.865, "t": 1756425605}, {"p": 0.865, "t": 1756512004}, {"p": 0.865, "t": 1756598415}, {"p": 0.87, "t": 1756684810}, {"p": 0.865, "t": 1756771203}, {"p": 0.85, "t": 1756857602}, {"p": 0.865, "t": 1756944009}, {"p": 0.865, "t": 1757030407}, {"p": 0.865, "t": 1757116819}, {"p": 0.865, "t": 1757203208}, {"p": 0.89, "t": 1757289613}, {"p": 0.88, "t": 1757376014}, {"p": 0.87, "t": 1757462414}, {"p": 0.865, "t": 1757548808}, {"p": 0.82, "t": 1757635221}, {"p": 0.855, "t": 1757721610}, {"p": 0.815, "t": 1757808009}, {"p": 0.81, "t": 1757894409}, {"p": 0.835, "t": 1757980806}, {"p": 0.835, "t": 1758067221}, {"p": 0.87, "t": 1758153606}, {"p": 0.93, "t": 1758240018}, {"p": 0.905, "t": 1758326412}, {"p": 0.92, "t": 1758412804}, {"p": 0.915, "t": 1758499213}, {"p": 0.915, "t": 1758585605}, {"p": 0.905, "t": 1758672010}, {"p": 0.905, "t": 1758758407}, {"p": 0.905, "t": 1758844806}, {"p": 0.895, "t": 1758931210}, {"p": 0.89, "t": 1759017615}, {"p": 0.895, "t": 1759104006}, {"p": 0.92, "t": 1759190407}, {"p": 0.955, "t": 1759276808}, {"p": 0.955, "t": 1759363206}, {"p": 0.95, "t": 1759449610}, {"p": 0.95, "t": 1759536009}, {"p": 0.95, "t": 1759622405}, {"p": 0.945, "t": 1759708807}, {"p": 0.925, "t": 1759795206}, {"p": 0.905, "t": 1759881612}, {"p": 0.925, "t": 1759968014}, {"p": 0.895, "t": 1760054418}, {"p": 0.915, "t": 1760140806}, {"p": 0.895, "t": 1760227204}, {"p": 0.89, "t": 1760313614}, {"p": 0.91, "t": 1760400006}, {"p": 0.91, "t": 1760486405}, {"p": 0.75, "t": 1760572817}, {"p": 0.575, "t": 1760659210}, {"p": 0.81, "t": 1760745613}, {"p": 0.825, "t": 1760832019}, {"p": 0.72, "t": 1760918408}, {"p": 0.76, "t": 1761004817}, {"p": 0.755, "t": 1761091227}, {"p": 0.725, "t": 1761177613}, {"p": 0.705, "t": 1761264023}, {"p": 0.735, "t": 1761350420}, {"p": 0.735, "t": 1761436825}, {"p": 0.725, "t": 1761523221}, {"p": 0.775, "t": 1761609626}, {"p": 0.735, "t": 1761696025}, {"p": 0.725, "t": 1761782426}, {"p": 0.715, "t": 1761868817}, {"p": 0.715, "t": 1761955225}, {"p": 0.685, "t": 1762041620}, {"p": 0.56, "t": 1762128024}, {"p": 0.655, "t": 1762214423}, {"p": 0.51, "t": 1762300827}, {"p": 0.495, "t": 1762387216}, {"p": 0.47, "t": 1762473627}, {"p": 0.405, "t": 1762560017}, {"p": 0.375, "t": 1762646438}, {"p": 0.345, "t": 1762732817}, {"p": 0.42, "t": 1762819227}, {"p": 0.405, "t": 1762905623}, {"p": 0.385, "t": 1762992026}, {"p": 0.345, "t": 1763078424}, {"p": 0.23, "t": 1763164831}, {"p": 0.21, "t": 1763251219}, {"p": 0.295, "t": 1763337627}, {"p": 0.305, "t": 1763424020}, {"p": 0.335, "t": 1763510431}, {"p": 0.24, "t": 1763596819}, {"p": 0.245, "t": 1763683234}, {"p": 0.175, "t": 1763769621}, {"p": 0.125, "t": 1763856022}, {"p": 0.11, "t": 1763942418}, {"p": 0.18, "t": 1764028827}, {"p": 0.195, "t": 1764115221}, {"p": 0.18, "t": 1764201628}, {"p": 0.175, "t": 1764288025}, {"p": 0.275, "t": 1764374436}, {"p": 0.245, "t": 1764460826}, {"p": 0.215, "t": 1764547231}, {"p": 0.15, "t": 1764633619}, {"p": 0.135, "t": 1764720031}, {"p": 0.16, "t": 1764806419}, {"p": 0.155, "t": 1764892822}, {"p": 0.105, "t": 1764979223}, {"p": 0.065, "t": 1765065636}, {"p": 0.065, "t": 1765152035}, {"p": 0.042, "t": 1765238432}, {"p": 0.052, "t": 1765324818}, {"p": 0.0305, "t": 1765411220}, {"p": 0.0265, "t": 1765497620}, {"p": 0.0335, "t": 1765584023}, {"p": 0.0345, "t": 1765670425}, {"p": 0.0275, "t": 1765756828}, {"p": 0.031, "t": 1765843223}, {"p": 0.0315, "t": 1765929620}, {"p": 0.0315, "t": 1765929639}, {"p": 0.0275, "t": 1766016029}, {"p": 0.028, "t": 1766102421}, {"p": 0.021, "t": 1766188821}, {"p": 0.0235, "t": 1766275222}, {"p": 0.0225, "t": 1766361622}, {"p": 0.03, "t": 1766448025}, {"p": 0.017, "t": 1766534424}, {"p": 0.0145, "t": 1766620833}, {"p": 0.022, "t": 1766707217}, {"p": 0.0165, "t": 1766793622}, {"p": 0.02, "t": 1766880022}, {"p": 0.017, "t": 1766966440}, {"p": 0.0165, "t": 1767052827}, {"p": 0.004, "t": 1767139224}, {"p": 0.003, "t": 1767225624}];
+  var timelineEvents = [{"carver_feed_entry_id": "b8e87184-7eaa-4224-b30c-bfbd8160fb73", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 4.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Appointment of SEC chief economist is background and provides little direct information on whether the agency will approve a spot ADA ETF by Dec 31, 2025.", "pub_date": "2025-12-17", "regulator": "Securities and Exchange Commission \u2014 Division of Economic and Risk Analysis", "relevance_score": 2, "timeline_shift": "none", "title": "Joshua T. White Named SEC Chief Economist", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-143-joshua-t-white-named-sec-chief-economist"}, {"carver_feed_entry_id": "fe81a0f2-333f-4e10-b19f-8f7f0028c2c2", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "one_line_why": "U.S. SECURITIES AND EXCHANGE COMMISSION \u2014 Fort Worth Regional Office \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2025-12-12", "regulator": "U.S. SECURITIES AND EXCHANGE COMMISSION \u2014 Fort Worth Regional Office", "relevance_score": 2, "timeline_shift": "none", "title": "Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Management USA, LLC; Gray Digital Technologies, LLC", "urgency": 5.0, "url": "https://www.sec.gov/enforcement-litigation/litigation-releases/lr-26439"}, {"carver_feed_entry_id": "895101e9-e5ef-4167-9a7c-6a566962f1de", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "Inside look at SEC\u2019s \u0027Project Crypto\u0027 suggests a more crypto-friendly stance, modestly increasing odds of SEC approving a spot ADA ETF in 2025.", "pub_date": "2025-11-12", "regulator": "Securities and Exchange Commission", "relevance_score": 5, "timeline_shift": "sooner", "title": "The Securities and Exchange Commission\u2019s Approach to Digital Assets: Inside \u201cProject Crypto\u201d", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/speeches-statements/atkins-111225-securities-exchange-commissions-approach-digital-assets-inside-project-crypto"}, {"carver_feed_entry_id": "b236eee0-a8ed-44f1-8e6d-da24568b6770", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "one_line_why": "SEC order on order-execution disclosure concerns market structure, not ETF listing approvals\u2014minimal indirect effect on ADA ETF approval probability.", "pub_date": "2025-09-30", "regulator": "Securities and Exchange Commission", "relevance_score": 2, "timeline_shift": "none", "title": "Disclosure of Order Execution Information Trading and Markets", "urgency": 5.0, "url": "https://www.sec.gov/rules-regulations/2025/09/disclosure-order-execution-information"}, {"carver_feed_entry_id": "6fb3af4d-dcaf-4e32-a574-ee664f4ffd89", "condition_tag": "A", "direction": "bearish", "high_impact": false, "impact": 9.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "SEC\u0027s critical statement on no-action relief for state-trust crypto custodians raises custody concerns, decreasing odds of a timely approval for a spot ADA ETF.", "pub_date": "2025-09-30", "regulator": "Securities and Exchange Commission", "relevance_score": 7, "timeline_shift": "later", "title": "Poking Holes: Statement in Response to No-Action Relief for State Trust Companies Acting as Crypto Asset Custodians", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/speeches-statements/crenshaw-093025-poking-holes-statement-response-no-action-relief-state-trust-companies-acting-crypto"}, {"carver_feed_entry_id": "0354ab46-7488-4de7-8c1e-308cda3a966c", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "SEC remarks stressing custody solutions and oversight reduce custody-related objections to crypto ETFs, increasing odds of SEC approval for a spot ADA ETF.", "pub_date": "2025-09-30", "regulator": "Securities and Exchange Commission", "relevance_score": 6, "timeline_shift": "sooner", "title": "Cultivating Confidence: The Role of Custody in Institutional Confidence \u2013 Public Trust and Oversight; Remarks before the Digital Assets Summit Singapore", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/speeches-statements/peirce-093025-cultivating-confidence-role-custody-institutional-confidence-public-trust-oversight"}, {"carver_feed_entry_id": "715dfda0-c99e-4b60-a951-2b6521cbd735", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "one_line_why": "NYSE filed an immediate-effectiveness rule change to amend listing rules, suggesting it\u0027s preparing to list a spot ADA ETF and modestly raises approval odds.", "pub_date": "2025-09-25", "regulator": "Securities and Exchange Commission \u2014 Division of Trading and Markets", "relevance_score": 5, "timeline_shift": "sooner", "title": "Self-Regulatory Organizations; New York Stock Exchange LLC; Notice of Filing and Immediate Effectiveness of Proposed Rule Change to Amend Rule 7.5", "urgency": 3.0, "url": "https://www.sec.gov/files/rules/sro/nyse/2025/34-104209.pdf"}, {"carver_feed_entry_id": "ad2e83c5-6903-46ea-9663-0036dda63825", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 5.0, "magnitude": "low", "matched_entity": "", "one_line_why": "An SEC \u0027Federal Register version\u0027 posting could be the formal publication of an order, but without text it\u2019s ambiguous and only weakly informative about an ADA ETF approval.", "pub_date": "2025-09-19", "regulator": "Securities and Exchange Commission", "relevance_score": 3, "timeline_shift": "none", "title": "_Federal Register_ version", "urgency": 5.0, "url": "https://www.federalregister.gov/d/2025-18238"}, {"carver_feed_entry_id": "40e7973e-add1-4fcd-9c11-1d18c82fc8a0", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "SEC\u0027s approval of generic listing standards for commodity-based trusts reduces listing barriers for crypto ETFs, increasing odds a spot ADA ETF will be approved and list sooner.", "pub_date": "2025-09-17", "regulator": "Securities and Exchange Commission \u2014 Division of Trading and Markets", "relevance_score": 7, "timeline_shift": "sooner", "title": "SEC Approves Generic Listing Standards for Commodity-Based Trust Shares", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-121-sec-approves-generic-listing-standards-commodity-based-trust-shares"}, {"carver_feed_entry_id": "91ac6dfc-51b0-42f9-b4b8-7be7168c0a59", "condition_tag": "A", "direction": "bullish", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Joint CFTC\u2013SEC harmonization statement suggests smoother coordination, modestly increasing odds the SEC would approve a spot ADA ETF.", "pub_date": "2025-09-05", "regulator": "Commodity Futures Trading Commission", "relevance_score": 4, "timeline_shift": "sooner", "title": "CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9115-25"}, {"carver_feed_entry_id": "64ecd867-93ef-44bf-b2be-442805a71feb", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "one_line_why": "SEC\u2013CFTC joint statement on crypto jurisdiction provides background policy context but contains no direct action on approving a spot ADA ETF.", "pub_date": "2025-09-05", "regulator": "U.S. Securities and Exchange Commission", "relevance_score": 3, "timeline_shift": "none", "title": "Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/phamatkinsstatement090525"}, {"carver_feed_entry_id": "860ea837-5d6b-42e9-852a-f6caf0793a85", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 3.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2025-08-01", "regulator": "Securities and Exchange Commission", "relevance_score": 3, "timeline_shift": "none", "title": "On the Road: SEC Crypto Task Force to Host a Series of Roundtables Across the U.S.", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-102-road-sec-crypto-task-force-host-series-roundtables-across-us"}, {"carver_feed_entry_id": "cf3aab15-bb23-4a4a-adfb-961875e3880a", "condition_tag": "background", "direction": "bullish", "high_impact": false, "impact": 8.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "CFTC praise for PWG pro-crypto recommendations signals stronger interagency support, modestly increasing chances the SEC approves a spot ADA ETF in 2025.", "pub_date": "2025-07-30", "regulator": "Commodity Futures Trading Commission", "relevance_score": 6, "timeline_shift": "sooner", "title": "Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S.", "urgency": 1.0, "url": "https://www.cftc.gov/PressRoom/PressReleases/9102-25"}, {"carver_feed_entry_id": "43c7a527-0cb2-4a8a-a63f-bd9187135710", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 4.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Departure of an SEC official is background news that creates uncertainty but gives no clear signal on approving a spot ADA ETF in 2025.", "pub_date": "2025-06-18", "regulator": "Securities and Exchange Commission \u2014 Division of Trading and Markets", "relevance_score": 3, "timeline_shift": "none", "title": "SEC Announces Departure of David Saltiel", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-91-sec-announces-departure-david-saltiel"}, {"carver_feed_entry_id": "528462e9-129c-4fcd-9e93-ae9d5468a00d", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 2.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Naming a new Division of Investment Management director affects ETF review leadership but gives no public signal on Cardano stance, so little change to odds.", "pub_date": "2025-06-13", "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management", "relevance_score": 3, "timeline_shift": "none", "title": "Brian Daly Named Director of Division of Investment Management", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-88-brian-daly-named-director-division-investment-management"}, {"carver_feed_entry_id": "9e0f8496-5d9b-4a14-9982-635730c90760", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2025-06-10", "regulator": "Securities and Exchange Commission", "relevance_score": 2, "timeline_shift": "none", "title": "SEC to Resume Processing of Registration Applications From Swiss-Based Investment Advisers", "urgency": 7.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-83-sec-resume-processing-registration-applications-swiss-based-investment-advisers"}, {"carver_feed_entry_id": "44bb5fde-a3f5-4803-ab1b-e283cb1793c8", "condition_tag": "A", "direction": "bearish", "high_impact": false, "impact": 1.0, "magnitude": "medium", "matched_entity": "", "one_line_why": "Director of Investment Management\u0027s departure may slow SEC ETF reviews and modestly reduce odds ADA spot ETF is approved before year-end due to transition.", "pub_date": "2025-06-10", "regulator": "Securities and Exchange Commission \u2014 Division of Investment Management", "relevance_score": 6, "timeline_shift": "later", "title": "Natasha Vij Greiner Will Conclude Her Tenure as Director of Investment Management", "urgency": 1.0, "url": "https://www.sec.gov/newsroom/press-releases/2025-84-natasha-vij-greiner-will-conclude-her-tenure-director-investment-management"}, {"carver_feed_entry_id": "b02204d4-89af-4f90-8438-822f4298b51b", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2025-06-04", "regulator": "Securities and Exchange Commission", "relevance_score": 3, "timeline_shift": "none", "title": "Concept Release on Foreign Private Issuer Eligibility 33-11376, 34-103176", "urgency": 2.0, "url": "https://www.sec.gov/rules-regulations/2025/06/s7-2025-01#33-11376concept"}, {"carver_feed_entry_id": "79678838-82c5-4785-8815-40f3fcfbd86c", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "one_line_why": "U.S. Securities and Exchange Commission \u2014 Office of Inspector General \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.", "pub_date": "2025-05-14", "regulator": "U.S. Securities and Exchange Commission \u2014 Office of Inspector General", "relevance_score": 3, "timeline_shift": "none", "title": "Final Management Letter: Audit of the SEC\u2019s Efforts to Recruit and Retain a Highly Skilled Workforce and Address Related Challenges", "urgency": 1.0, "url": "https://www.sec.gov/files/sec-oig-aud-fml-2025-01.pdf"}, {"carver_feed_entry_id": "9f06a8bd-bb5e-44df-a334-1eada1c41e44", "condition_tag": "background", "direction": "neutral", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "one_line_why": "General SEC Examination Priorities document doesn\u0027t approve or list an ADA ETF; only offers background on the SEC\u0027s crypto oversight focus.", "pub_date": "2025-03-01", "regulator": "U.S. Securities and Exchange Commission \u2014 Division of Examinations", "relevance_score": 2, "timeline_shift": "none", "title": "2025 Examination Priorities (PDF)", "urgency": 4.0, "url": "https://www.sec.gov/files/2025-exam-priorities.pdf"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
+});
+</script>
+
+
+</body>
+</html>

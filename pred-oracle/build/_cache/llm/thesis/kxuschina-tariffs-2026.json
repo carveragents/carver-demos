@@ -1,0 +1,60 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will US tariffs on Chinese goods exceed 60% average effective rate in 2026?\nResolution criteria: Resolves YES if the Office of the United States Trade Representative publishes\nan official notice, or the Department of Commerce issues a Federal Register\ndetermination, establishing that the average effective US tariff rate on imports\nfrom China exceeds 60.0% at any point between 2026-01-01 and 2026-12-31.\n\nSettlement entities: ['Office of the United States Trade Representative', 'Department of Commerce', 'Bureau of Industry and Security', 'Office of Foreign Assets Control', 'Department of the Treasury']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "USTR notice: avg China tariff >60%",
+        "summary": "The USTR publishes an official notice stating the average effective US tariff rate on imports from China strictly exceeds 60.0% at any time during 2026 (2026-01-01 to 2026-12-31)."
+      },
+      {
+        "id": "B",
+        "label": "Commerce FR: avg China tariff >60%",
+        "summary": "The Department of Commerce issues a Federal Register determination establishing the average effective US tariff rate on imports from China strictly exceeds 60.0% at any time during 2026."
+      }
+    ]
+  }
+}

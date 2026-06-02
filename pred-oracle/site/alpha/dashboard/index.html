@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Dashboard — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../alpha/index.html" class="text-slate-500 hover:text-slate-900">← Back to inbox</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 · Radar</div>
+  <h1 class="text-2xl font-bold mt-1">Where's the pressure?</h1>
+  <p class="text-slate-600 mt-1 text-sm">Activity by jurisdiction in the last 90 days, scoped to prediction-market-relevant updates.</p>
+</header>
+
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+  <div class="lg:col-span-2 border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">United States</h2>
+    <div id="us-states-map" style="height: 380px;"></div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Update types</h2>
+    <div id="update-types-chart" style="height: 380px;"></div>
+  </div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+  <div class="border border-slate-200 rounded-lg overflow-hidden">
+    <h2 class="px-4 py-3 text-sm font-semibold uppercase tracking-wider text-slate-500 border-b border-slate-100">Top 10 US states</h2>
+    <table class="w-full text-sm">
+      <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+        <tr><th class="text-left px-4 py-2">State</th><th class="text-right px-4 py-2">Count</th><th class="text-right px-4 py-2">Avg urgency</th><th class="text-right px-4 py-2">Max</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">California</td>
+          <td class="text-right px-4 py-2 font-medium">691</td>
+          <td class="text-right px-4 py-2 text-slate-600">3.09</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Delaware</td>
+          <td class="text-right px-4 py-2 font-medium">280</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.1</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">New York</td>
+          <td class="text-right px-4 py-2 font-medium">242</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.3</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Massachusetts</td>
+          <td class="text-right px-4 py-2 font-medium">241</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.42</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Connecticut</td>
+          <td class="text-right px-4 py-2 font-medium">197</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.49</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Illinois</td>
+          <td class="text-right px-4 py-2 font-medium">179</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.49</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Oregon</td>
+          <td class="text-right px-4 py-2 font-medium">179</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.43</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Indiana</td>
+          <td class="text-right px-4 py-2 font-medium">164</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.78</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">New Jersey</td>
+          <td class="text-right px-4 py-2 font-medium">156</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.52</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2">Colorado</td>
+          <td class="text-right px-4 py-2 font-medium">141</td>
+          <td class="text-right px-4 py-2 text-slate-600">2.09</td>
+          <td class="text-right px-4 py-2 text-slate-600">10.0</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">International activity</h2>
+    <div class="flex flex-wrap gap-2">
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">GB</span>
+          <span class="text-xs text-slate-500">542</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">TW</span>
+          <span class="text-xs text-slate-500">493</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">EU</span>
+          <span class="text-xs text-slate-500">455</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">FR</span>
+          <span class="text-xs text-slate-500">318</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">AE</span>
+          <span class="text-xs text-slate-500">189</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">HK</span>
+          <span class="text-xs text-slate-500">186</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BR</span>
+          <span class="text-xs text-slate-500">184</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">CH</span>
+          <span class="text-xs text-slate-500">169</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">ES</span>
+          <span class="text-xs text-slate-500">163</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BE</span>
+          <span class="text-xs text-slate-500">135</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">AU</span>
+          <span class="text-xs text-slate-500">110</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">JP</span>
+          <span class="text-xs text-slate-500">107</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">RO</span>
+          <span class="text-xs text-slate-500">104</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">NL</span>
+          <span class="text-xs text-slate-500">98</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">IT</span>
+          <span class="text-xs text-slate-500">94</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">CN</span>
+          <span class="text-xs text-slate-500">84</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">SG</span>
+          <span class="text-xs text-slate-500">76</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">JO</span>
+          <span class="text-xs text-slate-500">71</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">AT</span>
+          <span class="text-xs text-slate-500">57</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">MY</span>
+          <span class="text-xs text-slate-500">56</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">FI</span>
+          <span class="text-xs text-slate-500">56</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">VG</span>
+          <span class="text-xs text-slate-500">54</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">GR</span>
+          <span class="text-xs text-slate-500">45</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">NZ</span>
+          <span class="text-xs text-slate-500">44</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">IE</span>
+          <span class="text-xs text-slate-500">43</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">KR</span>
+          <span class="text-xs text-slate-500">35</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">SI</span>
+          <span class="text-xs text-slate-500">34</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">CL</span>
+          <span class="text-xs text-slate-500">33</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BS</span>
+          <span class="text-xs text-slate-500">33</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">TH</span>
+          <span class="text-xs text-slate-500">32</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">CY</span>
+          <span class="text-xs text-slate-500">32</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">MX</span>
+          <span class="text-xs text-slate-500">32</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">NO</span>
+          <span class="text-xs text-slate-500">31</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">DK</span>
+          <span class="text-xs text-slate-500">30</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">SE</span>
+          <span class="text-xs text-slate-500">26</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LU</span>
+          <span class="text-xs text-slate-500">26</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BG</span>
+          <span class="text-xs text-slate-500">25</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">HU</span>
+          <span class="text-xs text-slate-500">25</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">ZA</span>
+          <span class="text-xs text-slate-500">25</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">SK</span>
+          <span class="text-xs text-slate-500">24</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">SA</span>
+          <span class="text-xs text-slate-500">24</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">KW</span>
+          <span class="text-xs text-slate-500">24</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">PL</span>
+          <span class="text-xs text-slate-500">22</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">CZ</span>
+          <span class="text-xs text-slate-500">22</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">HR</span>
+          <span class="text-xs text-slate-500">21</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">EE</span>
+          <span class="text-xs text-slate-500">21</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">IS</span>
+          <span class="text-xs text-slate-500">20</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">PT</span>
+          <span class="text-xs text-slate-500">19</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">TR</span>
+          <span class="text-xs text-slate-500">18</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LI</span>
+          <span class="text-xs text-slate-500">17</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LT</span>
+          <span class="text-xs text-slate-500">16</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">RU</span>
+          <span class="text-xs text-slate-500">16</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">UA</span>
+          <span class="text-xs text-slate-500">14</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LV</span>
+          <span class="text-xs text-slate-500">14</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">QA</span>
+          <span class="text-xs text-slate-500">13</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">IR</span>
+          <span class="text-xs text-slate-500">13</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">KZ</span>
+          <span class="text-xs text-slate-500">12</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">NG</span>
+          <span class="text-xs text-slate-500">12</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BM</span>
+          <span class="text-xs text-slate-500">11</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">AD</span>
+          <span class="text-xs text-slate-500">10</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">PE</span>
+          <span class="text-xs text-slate-500">10</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">VN</span>
+          <span class="text-xs text-slate-500">10</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">EL</span>
+          <span class="text-xs text-slate-500">10</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">UK</span>
+          <span class="text-xs text-slate-500">9</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">RS</span>
+          <span class="text-xs text-slate-500">8</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">VE</span>
+          <span class="text-xs text-slate-500">8</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">EG</span>
+          <span class="text-xs text-slate-500">8</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">GH</span>
+          <span class="text-xs text-slate-500">7</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">IQ</span>
+          <span class="text-xs text-slate-500">7</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LR</span>
+          <span class="text-xs text-slate-500">6</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">MU</span>
+          <span class="text-xs text-slate-500">6</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">MH</span>
+          <span class="text-xs text-slate-500">6</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">OM</span>
+          <span class="text-xs text-slate-500">6</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">ON</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">QC</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">BA</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">RW</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">ZM</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">PH</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">UZ</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">NI</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+        <span class="inline-flex items-baseline gap-1 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded">
+          <span class="font-medium">LB</span>
+          <span class="text-xs text-slate-500">5</span>
+        </span>
+      
+    </div>
+    <div class="mt-4 text-xs text-slate-500">
+      Federal US: 1949 · State-level: 4870 · International: 5003
+    </div>
+  </div>
+</section>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="../../alpha/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Inbox</a>
+  <a href="../../alpha/audit-export/index.html" class="text-sm text-blue-600 hover:text-blue-800">Audit export →</a>
+</section>
+
+<script>
+  // ECharts data baked in at build time — no runtime fetches.
+  const US_STATES_DATA = [{"code": "CA", "count": 691, "label": "California", "max_urgency": 10.0}, {"code": "DE", "count": 280, "label": "Delaware", "max_urgency": 10.0}, {"code": "NY", "count": 242, "label": "New York", "max_urgency": 10.0}, {"code": "MA", "count": 241, "label": "Massachusetts", "max_urgency": 10.0}, {"code": "CT", "count": 197, "label": "Connecticut", "max_urgency": 10.0}, {"code": "IL", "count": 179, "label": "Illinois", "max_urgency": 10.0}, {"code": "OR", "count": 179, "label": "Oregon", "max_urgency": 10.0}, {"code": "IN", "count": 164, "label": "Indiana", "max_urgency": 10.0}, {"code": "NJ", "count": 156, "label": "New Jersey", "max_urgency": 10.0}, {"code": "CO", "count": 141, "label": "Colorado", "max_urgency": 10.0}, {"code": "MT", "count": 131, "label": "Montana", "max_urgency": 9.0}, {"code": "WA", "count": 126, "label": "Washington", "max_urgency": 10.0}, {"code": "VT", "count": 120, "label": "Vermont", "max_urgency": 10.0}, {"code": "NM", "count": 119, "label": "New Mexico", "max_urgency": 10.0}, {"code": "MD", "count": 103, "label": "Maryland", "max_urgency": 10.0}, {"code": "AZ", "count": 102, "label": "Arizona", "max_urgency": 10.0}, {"code": "MI", "count": 99, "label": "Michigan", "max_urgency": 10.0}, {"code": "MN", "count": 98, "label": "Minnesota", "max_urgency": 10.0}, {"code": "RI", "count": 98, "label": "Rhode Island", "max_urgency": 10.0}, {"code": "SC", "count": 96, "label": "South Carolina", "max_urgency": 10.0}, {"code": "PA", "count": 92, "label": "Pennsylvania", "max_urgency": 10.0}, {"code": "DC", "count": 85, "label": "District of Columbia", "max_urgency": 10.0}, {"code": "NV", "count": 84, "label": "Nevada", "max_urgency": 10.0}, {"code": "ME", "count": 83, "label": "Maine", "max_urgency": 10.0}, {"code": "TN", "count": 79, "label": "Tennessee", "max_urgency": 9.0}, {"code": "OH", "count": 67, "label": "Ohio", "max_urgency": 10.0}, {"code": "VA", "count": 67, "label": "Virginia", "max_urgency": 10.0}, {"code": "HI", "count": 65, "label": "Hawaii", "max_urgency": 10.0}, {"code": "WI", "count": 63, "label": "Wisconsin", "max_urgency": 9.0}, {"code": "TX", "count": 58, "label": "Texas", "max_urgency": 10.0}, {"code": "NC", "count": 58, "label": "North Carolina", "max_urgency": 10.0}, {"code": "SD", "count": 54, "label": "South Dakota", "max_urgency": 10.0}, {"code": "ID", "count": 37, "label": "Idaho", "max_urgency": 7.0}, {"code": "NE", "count": 37, "label": "Nebraska", "max_urgency": 10.0}, {"code": "FL", "count": 35, "label": "Florida", "max_urgency": 10.0}, {"code": "MO", "count": 34, "label": "Missouri", "max_urgency": 10.0}, {"code": "KY", "count": 30, "label": "Kentucky", "max_urgency": 9.0}, {"code": "AR", "count": 24, "label": "Arkansas", "max_urgency": 7.0}, {"code": "AL", "count": 22, "label": "Alabama", "max_urgency": 9.0}, {"code": "WY", "count": 22, "label": "Wyoming", "max_urgency": 9.0}, {"code": "OK", "count": 21, "label": "Oklahoma", "max_urgency": 7.0}, {"code": "MS", "count": 21, "label": "Mississippi", "max_urgency": 9.0}, {"code": "KS", "count": 20, "label": "Kansas", "max_urgency": 10.0}, {"code": "UT", "count": 20, "label": "Utah", "max_urgency": 9.0}, {"code": "PR", "count": 20, "label": "Puerto Rico", "max_urgency": 10.0}, {"code": "NH", "count": 19, "label": "New Hampshire", "max_urgency": 9.0}, {"code": "AK", "count": 18, "label": "Alaska", "max_urgency": 9.0}, {"code": "GA", "count": 17, "label": "Georgia", "max_urgency": 10.0}, {"code": "IA", "count": 15, "label": "Iowa", "max_urgency": 9.0}, {"code": "LA", "count": 14, "label": "Louisiana", "max_urgency": 7.0}, {"code": "ND", "count": 8, "label": "North Dakota", "max_urgency": 9.0}, {"code": "WV", "count": 8, "label": "West Virginia", "max_urgency": 7.0}, {"code": "GU", "count": 4, "label": "Guam", "max_urgency": 9.0}, {"code": "VI", "count": 4, "label": "U.S. Virgin Islands", "max_urgency": 5.0}, {"code": "MP", "count": 2, "label": "Northern Mariana Islands", "max_urgency": 1.0}, {"code": "UK", "count": 1, "label": "US-UK", "max_urgency": 1.0}];
+  const UPDATE_TYPES_DATA = [{"count": 3235, "label": "press release"}, {"count": 1091, "label": "advisory"}, {"count": 677, "label": "enforcement"}, {"count": 667, "label": "bulletin"}, {"count": 469, "label": "speech"}, {"count": 421, "label": "trend report"}, {"count": 279, "label": "proposed rule"}, {"count": 268, "label": "event announcement"}, {"count": 266, "label": "final rule"}, {"count": 258, "label": "guidance"}, {"count": 225, "label": "comment request"}, {"count": 73, "label": "newsletter"}, {"count": 30, "label": "insights"}, {"count": 1, "label": "standard"}, {"count": 1, "label": "reference"}, {"count": 1, "label": "notice"}];
+
+  (function () {
+    function initCharts() {
+      if (typeof echarts === 'undefined') {
+        setTimeout(initCharts, 50);
+        return;
+      }
+      fetch('../../static/js/usa-states.json')
+        .then(r => r.ok ? r.json() : null)
+        .then(geo => {
+          const map = echarts.init(document.getElementById('us-states-map'));
+          if (geo) {
+            echarts.registerMap('USA', geo);
+            map.setOption({
+              tooltip: { trigger: 'item', formatter: p =>
+                `<b>${p.name}</b><br/>events: ${p.value || 0}` },
+              visualMap: {
+                min: 0, max: Math.max(1, ...US_STATES_DATA.map(d => d.count)),
+                left: 'left', bottom: 0, calculable: true,
+                inRange: { color: ['#eff6ff', '#1e40af'] },
+                text: ['high', 'low'],
+              },
+              series: [{
+                type: 'map', map: 'USA', roam: false,
+                label: { show: false },
+                data: US_STATES_DATA.map(d => ({ name: d.label, value: d.count })),
+              }],
+            });
+          } else {
+            // Fallback bar chart if map JSON fails to load
+            map.setOption({
+              tooltip: { trigger: 'axis' },
+              xAxis: { type: 'category',
+                       data: US_STATES_DATA.slice(0, 15).map(d => d.label),
+                       axisLabel: { rotate: 45 } },
+              yAxis: { type: 'value' },
+              series: [{ type: 'bar',
+                         data: US_STATES_DATA.slice(0, 15).map(d => d.count),
+                         itemStyle: { color: '#2563eb' } }],
+            });
+          }
+        });
+
+      const ut = echarts.init(document.getElementById('update-types-chart'));
+      ut.setOption({
+        tooltip: { trigger: 'item' },
+        series: [{
+          type: 'pie', radius: ['40%', '70%'],
+          label: { show: true, formatter: '{b}\n{c}' },
+          data: UPDATE_TYPES_DATA.map(t => ({ name: t.label, value: t.count })),
+        }],
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCharts);
+    } else {
+      initCharts();
+    }
+  })();
+</script>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

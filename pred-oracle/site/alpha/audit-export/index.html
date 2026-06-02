@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Audit export — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../alpha/index.html" class="text-slate-500 hover:text-slate-900">← Back to inbox</a>
+</nav>
+
+<header class="mb-6">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 1 · Radar</div>
+  <h1 class="text-2xl font-bold mt-1">Audit-log export — Q2 2026</h1>
+  <p class="text-slate-600 mt-2 max-w-2xl text-sm">
+    Every status transition and triage decision is recorded for CFTC compliance,
+    SOC2 audit, and litigation discovery. Sample below: transitions across the
+    pre-loaded demo tickets.
+  </p>
+</header>
+
+<section class="border border-slate-200 rounded-lg overflow-hidden mb-8">
+  <header class="px-4 py-3 flex items-center justify-between border-b border-slate-100 bg-slate-50">
+    <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Transition log</h2>
+    <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider bg-amber-50 border border-amber-200 text-amber-800 px-2 py-0.5 rounded">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>
+  demo data
+</span>
+  </header>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+        <tr>
+          <th class="text-left px-4 py-2">Timestamp</th>
+          <th class="text-left px-4 py-2">Ticket</th>
+          <th class="text-left px-4 py-2">Transition</th>
+          <th class="text-left px-4 py-2">By</th>
+          <th class="text-left px-4 py-2">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 03:00</td>
+          <td class="px-4 py-2">David H. Goldman</td>
+          <td class="px-4 py-2 font-mono text-xs">(new) → new</td>
+          <td class="px-4 py-2 text-slate-700">system</td>
+          <td class="px-4 py-2 text-slate-600">Ingested from Carver annotation pipeline.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 03:00</td>
+          <td class="px-4 py-2">California Department of Justice Releases Proposed &#34;Protecting Our Kids from Social Media Addiction Act (SB 976)” Regulations - 14.05.2026</td>
+          <td class="px-4 py-2 font-mono text-xs">(new) → new</td>
+          <td class="px-4 py-2 text-slate-700">system</td>
+          <td class="px-4 py-2 text-slate-600">Ingested from Carver annotation pipeline.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 03:00</td>
+          <td class="px-4 py-2">CFTC Sues Minnesota to Block State Law</td>
+          <td class="px-4 py-2 font-mono text-xs">(new) → new</td>
+          <td class="px-4 py-2 text-slate-700">system</td>
+          <td class="px-4 py-2 text-slate-600">Ingested from Carver annotation pipeline.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 03:00</td>
+          <td class="px-4 py-2">DFPI Shuts Down Crypto Kiosk Operator for Cheating Consumers and Violating State Laws</td>
+          <td class="px-4 py-2 font-mono text-xs">(new) → new</td>
+          <td class="px-4 py-2 text-slate-700">system</td>
+          <td class="px-4 py-2 text-slate-600">Ingested from Carver annotation pipeline.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 03:00</td>
+          <td class="px-4 py-2">CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets</td>
+          <td class="px-4 py-2 font-mono text-xs">(new) → new</td>
+          <td class="px-4 py-2 text-slate-700">system</td>
+          <td class="px-4 py-2 text-slate-600">Ingested from Carver annotation pipeline.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 05:00</td>
+          <td class="px-4 py-2">David H. Goldman</td>
+          <td class="px-4 py-2 font-mono text-xs">new → acknowledged</td>
+          <td class="px-4 py-2 text-slate-700">General Counsel</td>
+          <td class="px-4 py-2 text-slate-600">Acknowledged in morning triage.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 05:00</td>
+          <td class="px-4 py-2">California Department of Justice Releases Proposed &#34;Protecting Our Kids from Social Media Addiction Act (SB 976)” Regulations - 14.05.2026</td>
+          <td class="px-4 py-2 font-mono text-xs">new → acknowledged</td>
+          <td class="px-4 py-2 text-slate-700">General Counsel</td>
+          <td class="px-4 py-2 text-slate-600">Acknowledged in morning triage.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 05:00</td>
+          <td class="px-4 py-2">CFTC Sues Minnesota to Block State Law</td>
+          <td class="px-4 py-2 font-mono text-xs">new → acknowledged</td>
+          <td class="px-4 py-2 text-slate-700">General Counsel</td>
+          <td class="px-4 py-2 text-slate-600">Acknowledged in morning triage.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 05:00</td>
+          <td class="px-4 py-2">DFPI Shuts Down Crypto Kiosk Operator for Cheating Consumers and Violating State Laws</td>
+          <td class="px-4 py-2 font-mono text-xs">new → acknowledged</td>
+          <td class="px-4 py-2 text-slate-700">Associate Counsel</td>
+          <td class="px-4 py-2 text-slate-600">Acknowledged in morning triage.</td>
+        </tr>
+        
+        <tr class="border-t border-slate-100">
+          <td class="px-4 py-2 text-slate-500 text-xs whitespace-nowrap">2026-05-20 05:00</td>
+          <td class="px-4 py-2">CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets</td>
+          <td class="px-4 py-2 font-mono text-xs">new → acknowledged</td>
+          <td class="px-4 py-2 text-slate-700">Associate Counsel</td>
+          <td class="px-4 py-2 text-slate-600">Acknowledged in morning triage.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="border border-slate-200 rounded-lg p-6 bg-slate-50/30 max-w-2xl">
+  <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">What you'd download</h2>
+  <div class="flex items-center gap-4">
+    <div class="w-16 h-20 bg-white border border-slate-200 rounded flex items-center justify-center text-slate-400 text-xs">PDF</div>
+    <div class="flex-1">
+      <p class="text-sm text-slate-700">A print-ready audit log spanning the chosen period. Defensible against discovery requests; signed with the workspace's audit hash.</p>
+      <a href="../../static/samples/audit-export-sample.pdf" target="_blank" rel="noopener" class="mt-2 inline-block text-blue-600 hover:text-blue-800 text-sm font-medium">View sample PDF →</a>
+    </div>
+  </div>
+</section>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="../../alpha/dashboard/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Dashboard</a>
+  <a href="../../gamma/index.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Next scene: Listing risk →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

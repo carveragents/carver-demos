@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — FDA approves Retatrutide in 2026?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="../../../trader/index.html" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-orange-100 text-orange-800 uppercase tracking-wide font-medium">watch</span>
+    
+    
+    <span class="text-xs text-slate-400">expires 2027-01-01</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">FDA approves Retatrutide in 2026?</h1>
+</header>
+
+
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">23¢</span>
+    <span class="text-[10px] text-emerald-200">payout $435/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">77¢</span>
+    <span class="text-[10px] text-rose-200">payout $130/$100</span>
+  </button>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
+    <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
+    <span class="text-slate-700">Your position:</span>
+    <span class="font-semibold">NO</span>
+    <span class="text-slate-500">250 contracts</span>
+    <span class="text-slate-400">@ 82¢ avg</span>
+    <span class="text-slate-300">·</span>
+    <span class="font-medium tabular-nums text-rose-600">-$12 (-6%)</span>
+  </div>
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">FDA NDA approval letter</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 0</span>
+                  <span class="text-rose-500">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">FDA issues a final NDA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.</p>
+            
+          </div>
+        </li>
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">B</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">FDA BLA approval letter</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 0</span>
+                  <span class="text-rose-500">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">FDA issues a final BLA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Recent developments are unrelated background matters (state insurance rules, e‑cigarette guidance disputes) and a mifepristone brief that, while supporting FDA authority, doesn’t directly affect Retatrutide. No targeted regulatory pressure is evident; odds hinge on standard FDA review and clinical data. The FDA decision for 2026 remains pending.
+      </blockquote>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Food and Drug Administration
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Center for Drug Evaluation and Research
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Eli Lilly and Company
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Office of New Drugs
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+    
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (5)</h2>
+        
+        <div class="flex gap-1 text-xs">
+          <button @click="filter='all'"
+                  :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'"
+                  :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">A</button>
+          
+          <button @click="filter='B'"
+                  :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">B</button>
+          
+        </div>
+        
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-21</span>
+            <span class="block text-[10px] text-slate-400 uppercase">STATE OF RHODE ISLAND DEPARTMENT OF BUSINESS REGULATION — Insurance Division</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://dbr.ri.gov/sites/g/files/xkgbur696/files/2026-05/INS-2026-IN-005%20Betances%20Consent%20Agreement%20Executed.pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">In the Matter of Ariel Betances</a>
+            
+            <p class="text-xs text-slate-600 mt-1">State insurance enforcement action unrelated to FDA, Eli Lilly, or retatrutide — no impact on FDA approval probability.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-12</span>
+            <span class="block text-[10px] text-slate-400 uppercase">California Attorney General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">State AG urging FDA on e‑cigarette guidance is unrelated to drug approval decisions for Retatrutide and doesn&#39;t change its approval odds or timing.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-12</span>
+            <span class="block text-[10px] text-slate-400 uppercase">California Attorney General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes</a>
+            
+            <p class="text-xs text-slate-600 mt-1">AG urging FDA to reverse e‑cigarette guidance concerns tobacco policy and is unlikely to affect Retatrutide&#39;s NDA/BLA approval odds or timing.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-12</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Oficina del Comisionado de Seguros de Puerto Rico</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://docs.pr.gov/files/OCS/Asuntos_Legales/Cartas%20Normativas/2026/CN-2026-377-AS%20(Enmendada).pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Serán Efectivo a Partir del Año Calendario 2027</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Puerto Rico insurance/forms-and-fees administrative rule; unrelated to FDA drug approval of Retatrutide, so it does not change approval odds.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-04</span>
+            <span class="block text-[10px] text-slate-400 uppercase">New York Attorney General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-leads-coalition-urging-supreme-court-protect-access" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Coalition to protect mifepristone preserves FDA authority broadly but has no material, direct effect on Retatrutide approval likelihood or timing.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">This market will resolve to &#39;Yes&#39; if the U.S. Food and Drug Administration formally
+approves Retatrutide (LY3437943, Eli Lilly&#39;s triple GIP/GLP-1/glucagon receptor
+agonist) for any indication by December 31, 2026, 11:59 PM ET. Approval must be
+via formal FDA authorization — a New Drug Application (NDA) or Biologics License
+Application (BLA) approval letter. Excludes Emergency Use Authorizations (EUA),
+compassionate use designations, tentative approvals, and approvable letters.
+
+Retatrutide targets obesity, type 2 diabetes, and related metabolic conditions.
+Phase 3 clinical trial data is expected in 2026, with NDA submission expected no
+earlier than late 2026, making a 2026 FDA decision unlikely but possible on
+accelerated review pathways.
+</p>
+    </section>
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-orange-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-orange-700 uppercase tracking-wide">watch</span>
+          
+          <span class="text-sm text-slate-500">top 83% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 9</span>
+      </div>
+
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-orange-700" style="width: 17%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
+        
+          <span class="text-emerald-600">▼ cooling / 7d</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,26.0 64.62,26.0 73.85,2.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            AG letters urging FDA to reverse flavored e‑cigarette guidance
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Coalition/Supreme Court filings to protect access (telehealth/other)
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Regulatory filing CN-2026-377-AS re: forms and fees
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Dormant heat reflects a small cluster of attorney general advocacy letters (Bonta, James) plus a single regulatory filing (CN-2026-377-AS); overall activity has cooled this week.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <ul class="space-y-3">
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://docs.pr.gov/files/OCS/Asuntos_Legales/Cartas%20Normativas/2026/CN-2026-377-AS%20(Enmendada).pdf" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Serán Efectivo a Partir del Año Calendario 2027</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2027-01-01 · Effective date</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.35, "t": 1768262423}, {"p": 0.21, "t": 1768305626}, {"p": 0.175, "t": 1768348824}, {"p": 0.17, "t": 1768392025}, {"p": 0.17, "t": 1768435226}, {"p": 0.17, "t": 1768478425}, {"p": 0.17, "t": 1768521629}, {"p": 0.155, "t": 1768564826}, {"p": 0.145, "t": 1768608025}, {"p": 0.145, "t": 1768651240}, {"p": 0.145, "t": 1768694439}, {"p": 0.145, "t": 1768737641}, {"p": 0.125, "t": 1768780821}, {"p": 0.125, "t": 1768824025}, {"p": 0.125, "t": 1768867223}, {"p": 0.125, "t": 1768910424}, {"p": 0.125, "t": 1768953625}, {"p": 0.125, "t": 1768996849}, {"p": 0.125, "t": 1769040036}, {"p": 0.125, "t": 1769083254}, {"p": 0.125, "t": 1769126442}, {"p": 0.125, "t": 1769169658}, {"p": 0.125, "t": 1769212839}, {"p": 0.125, "t": 1769256039}, {"p": 0.125, "t": 1769299245}, {"p": 0.125, "t": 1769385645}, {"p": 0.125, "t": 1769428838}, {"p": 0.145, "t": 1769472038}, {"p": 0.145, "t": 1769515225}, {"p": 0.145, "t": 1769558427}, {"p": 0.145, "t": 1769601629}, {"p": 0.145, "t": 1769644842}, {"p": 0.155, "t": 1769688033}, {"p": 0.15, "t": 1769731231}, {"p": 0.225, "t": 1769774446}, {"p": 0.215, "t": 1769817632}, {"p": 0.35, "t": 1769860837}, {"p": 0.3, "t": 1769904038}, {"p": 0.305, "t": 1769947234}, {"p": 0.295, "t": 1769990430}, {"p": 0.285, "t": 1770033634}, {"p": 0.315, "t": 1770076834}, {"p": 0.21, "t": 1770120040}, {"p": 0.185, "t": 1770163243}, {"p": 0.17, "t": 1770206435}, {"p": 0.15, "t": 1770249629}, {"p": 0.22, "t": 1770292839}, {"p": 0.23, "t": 1770336037}, {"p": 0.255, "t": 1770379240}, {"p": 0.275, "t": 1770422445}, {"p": 0.27, "t": 1770465642}, {"p": 0.285, "t": 1770508840}, {"p": 0.29, "t": 1770552052}, {"p": 0.265, "t": 1770595240}, {"p": 0.285, "t": 1770638457}, {"p": 0.285, "t": 1770681642}, {"p": 0.245, "t": 1770724857}, {"p": 0.27, "t": 1770768047}, {"p": 0.275, "t": 1770811243}, {"p": 0.24, "t": 1770854452}, {"p": 0.205, "t": 1770897641}, {"p": 0.21, "t": 1770940842}, {"p": 0.185, "t": 1770984047}, {"p": 0.19, "t": 1771027248}, {"p": 0.215, "t": 1771070451}, {"p": 0.255, "t": 1771113646}, {"p": 0.225, "t": 1771156852}, {"p": 0.205, "t": 1771200057}, {"p": 0.2, "t": 1771243257}, {"p": 0.195, "t": 1771286449}, {"p": 0.195, "t": 1771372853}, {"p": 0.195, "t": 1771416052}, {"p": 0.235, "t": 1771459255}, {"p": 0.2, "t": 1771545650}, {"p": 0.2, "t": 1771588831}, {"p": 0.2, "t": 1771632034}, {"p": 0.2, "t": 1771675235}, {"p": 0.2, "t": 1771718434}, {"p": 0.225, "t": 1771761643}, {"p": 0.245, "t": 1771804841}, {"p": 0.24, "t": 1771848046}, {"p": 0.205, "t": 1771891241}, {"p": 0.21, "t": 1771934454}, {"p": 0.185, "t": 1771977647}, {"p": 0.195, "t": 1772020851}, {"p": 0.18, "t": 1772064041}, {"p": 0.23, "t": 1772150447}, {"p": 0.21, "t": 1772236846}, {"p": 0.295, "t": 1772366448}, {"p": 0.295, "t": 1772409657}, {"p": 0.3, "t": 1772452847}, {"p": 0.235, "t": 1772496051}, {"p": 0.185, "t": 1772539253}, {"p": 0.135, "t": 1772582452}, {"p": 0.165, "t": 1772625647}, {"p": 0.15, "t": 1772668849}, {"p": 0.15, "t": 1772755247}, {"p": 0.15, "t": 1772798448}, {"p": 0.15, "t": 1772841652}, {"p": 0.16, "t": 1772884853}, {"p": 0.165, "t": 1772928042}, {"p": 0.165, "t": 1772971240}, {"p": 0.165, "t": 1773014438}, {"p": 0.175, "t": 1773057637}, {"p": 0.175, "t": 1773100846}, {"p": 0.175, "t": 1773144050}, {"p": 0.175, "t": 1773187249}, {"p": 0.175, "t": 1773273651}, {"p": 0.275, "t": 1773403242}, {"p": 0.31, "t": 1773446442}, {"p": 0.315, "t": 1773489645}, {"p": 0.26, "t": 1773532844}, {"p": 0.23, "t": 1773576041}, {"p": 0.23, "t": 1773619255}, {"p": 0.23, "t": 1773662430}, {"p": 0.23, "t": 1773705636}, {"p": 0.225, "t": 1773748838}, {"p": 0.215, "t": 1773792037}, {"p": 0.215, "t": 1773835249}, {"p": 0.225, "t": 1773878448}, {"p": 0.225, "t": 1773921636}, {"p": 0.225, "t": 1773964842}, {"p": 0.225, "t": 1774008036}, {"p": 0.225, "t": 1774051240}, {"p": 0.225, "t": 1774094433}, {"p": 0.225, "t": 1774137637}, {"p": 0.225, "t": 1774180844}, {"p": 0.225, "t": 1774224031}, {"p": 0.225, "t": 1774267230}, {"p": 0.23, "t": 1774310428}, {"p": 0.225, "t": 1774353634}, {"p": 0.225, "t": 1774396843}, {"p": 0.225, "t": 1774440045}, {"p": 0.23, "t": 1774483246}, {"p": 0.23, "t": 1774526457}, {"p": 0.23, "t": 1774569653}, {"p": 0.23, "t": 1774612851}, {"p": 0.23, "t": 1774656057}, {"p": 0.23, "t": 1774699257}, {"p": 0.295, "t": 1775347217}, {"p": 0.255, "t": 1775649656}, {"p": 0.285, "t": 1775692837}, {"p": 0.295, "t": 1775952014}, {"p": 0.165, "t": 1776816009}, {"p": 0.165, "t": 1776859209}, {"p": 0.165, "t": 1776902413}, {"p": 0.165, "t": 1776945611}, {"p": 0.165, "t": 1776988823}, {"p": 0.165, "t": 1777032005}, {"p": 0.155, "t": 1777075213}, {"p": 0.155, "t": 1777118408}, {"p": 0.135, "t": 1777161607}, {"p": 0.145, "t": 1777204809}, {"p": 0.145, "t": 1777248008}, {"p": 0.145, "t": 1777291220}, {"p": 0.145, "t": 1777334409}, {"p": 0.145, "t": 1777377607}, {"p": 0.14, "t": 1777420807}, {"p": 0.135, "t": 1777464008}, {"p": 0.14, "t": 1777507213}, {"p": 0.235, "t": 1777550409}, {"p": 0.23, "t": 1777593608}, {"p": 0.225, "t": 1777636809}, {"p": 0.24, "t": 1777680006}, {"p": 0.235, "t": 1777723207}, {"p": 0.24, "t": 1777766406}, {"p": 0.25, "t": 1777809608}, {"p": 0.25, "t": 1777852805}, {"p": 0.25, "t": 1777896005}, {"p": 0.245, "t": 1777939219}, {"p": 0.24, "t": 1777982408}, {"p": 0.235, "t": 1778025609}, {"p": 0.24, "t": 1778068807}, {"p": 0.19, "t": 1778112009}, {"p": 0.185, "t": 1778155218}, {"p": 0.19, "t": 1778198405}, {"p": 0.18, "t": 1778241604}, {"p": 0.185, "t": 1778284823}, {"p": 0.24, "t": 1778328007}, {"p": 0.22, "t": 1778371209}, {"p": 0.245, "t": 1778414406}, {"p": 0.215, "t": 1778457610}, {"p": 0.21, "t": 1778500810}, {"p": 0.205, "t": 1778544010}, {"p": 0.205, "t": 1778587208}, {"p": 0.205, "t": 1778630412}, {"p": 0.155, "t": 1778673610}, {"p": 0.155, "t": 1778716816}, {"p": 0.155, "t": 1778760010}, {"p": 0.155, "t": 1778803209}, {"p": 0.155, "t": 1778846411}, {"p": 0.155, "t": 1778889616}, {"p": 0.155, "t": 1778932812}, {"p": 0.155, "t": 1778976027}, {"p": 0.16, "t": 1779019211}, {"p": 0.175, "t": 1779062410}, {"p": 0.175, "t": 1779105609}, {"p": 0.285, "t": 1779148808}, {"p": 0.285, "t": 1779192023}, {"p": 0.305, "t": 1779235211}, {"p": 0.29, "t": 1779278411}, {"p": 0.3, "t": 1779321613}, {"p": 0.29, "t": 1779364809}, {"p": 0.29, "t": 1779408014}, {"p": 0.29, "t": 1779451209}, {"p": 0.235, "t": 1779494410}, {"p": 0.19, "t": 1779537609}, {"p": 0.195, "t": 1779580806}, {"p": 0.23, "t": 1779624007}, {"p": 0.225, "t": 1779667207}, {"p": 0.21, "t": 1779710406}, {"p": 0.205, "t": 1779753607}, {"p": 0.21, "t": 1779796809}, {"p": 0.225, "t": 1779840008}, {"p": 0.23, "t": 1779855184}];
+  var timelineEvents = [{"carver_feed_entry_id": "ee1b6cab-c7d6-493d-8146-2e7b7a0d0383", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "State insurance enforcement action unrelated to FDA, Eli Lilly, or retatrutide \u2014 no impact on FDA approval probability.", "pub_date": "2026-05-21", "regulator": "STATE OF RHODE ISLAND DEPARTMENT OF BUSINESS REGULATION \u2014 Insurance Division", "relevance_score": 0, "timeline_shift": "none", "title": "In the Matter of Ariel Betances", "urgency": 3.0, "url": "https://dbr.ri.gov/sites/g/files/xkgbur696/files/2026-05/INS-2026-IN-005%20Betances%20Consent%20Agreement%20Executed.pdf"}, {"carver_feed_entry_id": "dff5f36c-d80a-42b5-888a-609b78a205df", "comment_deadline": "2026-05-11", "condition_tag": "background", "direction": "neutral", "effective_date": "2025-01-01", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "State AG urging FDA on e\u2011cigarette guidance is unrelated to drug approval decisions for Retatrutide and doesn\u0027t change its approval odds or timing.", "pub_date": "2026-05-12", "regulator": "California Attorney General", "relevance_score": 0, "timeline_shift": "none", "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026", "urgency": 1.0, "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e"}, {"carver_feed_entry_id": "a432adb5-62b8-4199-a4c5-4c8305c403e8", "comment_deadline": "2026-05-11", "condition_tag": "background", "direction": "neutral", "effective_date": "2025-01-01", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "AG urging FDA to reverse e\u2011cigarette guidance concerns tobacco policy and is unlikely to affect Retatrutide\u0027s NDA/BLA approval odds or timing.", "pub_date": "2026-05-12", "regulator": "California Attorney General", "relevance_score": 0, "timeline_shift": "none", "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes", "urgency": 1.0, "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e"}, {"carver_feed_entry_id": "6fb83753-c348-471e-b523-84c267b2c027", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2027-01-01", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "Puerto Rico insurance/forms-and-fees administrative rule; unrelated to FDA drug approval of Retatrutide, so it does not change approval odds.", "pub_date": "2026-05-12", "regulator": "Oficina del Comisionado de Seguros de Puerto Rico", "relevance_score": 0, "timeline_shift": "none", "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027", "urgency": 9.0, "url": "https://docs.pr.gov/files/OCS/Asuntos_Legales/Cartas%20Normativas/2026/CN-2026-377-AS%20(Enmendada).pdf"}, {"carver_feed_entry_id": "bbc07d52-fe47-4552-a6dc-2750c5e19eaa", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Coalition to protect mifepristone preserves FDA authority broadly but has no material, direct effect on Retatrutide approval likelihood or timing.", "pub_date": "2026-05-04", "regulator": "New York Attorney General", "relevance_score": 1, "timeline_shift": "none", "title": "Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone", "urgency": 1.0, "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-leads-coalition-urging-supreme-court-protect-access"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
+});
+</script>
+
+
+</body>
+</html>

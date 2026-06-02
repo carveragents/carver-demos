@@ -1,0 +1,46 @@
+schema_version: 1
+build_date: "2026-05-26"
+
+portfolio:
+  - id: kxbtc-maxprice-2026
+    platform: kalshi
+    kind: active
+    position: {side: "YES", size: 200, entry_price: 0.54}
+  - id: kxfeddecision-28jan
+    platform: kalshi
+    kind: active
+    position: {side: "NO", size: 100, entry_price: 0.71}
+  - id: us-recession-in-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 500, entry_price: 0.18}
+  - id: clarity-act-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 300, entry_price: 0.50}
+  - id: cannabis-dea-rescheduling-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 150, entry_price: 0.32}
+  - id: nrc-nuclear-reactor-2026
+    platform: polymarket
+    kind: active
+    position: {side: "NO", size: 200, entry_price: 0.78}
+  - id: fda-retatrutide-2026
+    platform: polymarket
+    kind: active
+    position: {side: "NO", size: 250, entry_price: 0.82}
+  - id: scotus-ftc-independence-2026
+    platform: polymarket
+    kind: active
+    position: {side: "YES", size: 500, entry_price: 0.90}
+
+retrospectives:
+  - id: polymarket-us-2025
+    platform: polymarket
+  - id: cardano-etf-2025
+    platform: polymarket
+  - id: stablecoin-genius-act-2025
+    platform: polymarket
+  - id: solana-etf-2025
+    platform: polymarket

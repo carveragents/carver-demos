@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will the SEC approve a spot Ethereum ETF by May 31, 2024?\nResolution criteria: Resolves YES if any spot Ethereum ETF receives approval from the U.S. Securities\nand Exchange Commission by May 31, 2024, 11:59 PM ET. Approval means an effective\nSEC order permitting listing on NYSE Arca, Cboe BZX, or NASDAQ. Resolves NO otherwise.\n\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'Division of Investment Management', 'BlackRock', 'Fidelity Investments', 'VanEck', 'Grayscale Investments', 'Bitwise Asset Management', 'Invesco', 'Franklin Templeton']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "SEC OKs NYSE Arca ETH spot ETF listing",
+        "summary": "By May 31, 2024, 11:59 PM ET, the SEC issues an effective order permitting NYSE Arca to list any spot Ethereum ETF."
+      },
+      {
+        "id": "B",
+        "label": "SEC OKs Cboe BZX ETH spot ETF listing",
+        "summary": "By May 31, 2024, 11:59 PM ET, the SEC issues an effective order permitting Cboe BZX to list any spot Ethereum ETF."
+      },
+      {
+        "id": "C",
+        "label": "SEC OKs NASDAQ ETH spot ETF listing",
+        "summary": "By May 31, 2024, 11:59 PM ET, the SEC issues an effective order permitting NASDAQ to list any spot Ethereum ETF."
+      }
+    ]
+  }
+}

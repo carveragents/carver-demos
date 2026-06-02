@@ -1,0 +1,209 @@
+{
+  "contract": {
+    "id": "nrc-nuclear-reactor-2026",
+    "platform": "polymarket",
+    "kind": "active",
+    "title": "US grants license for new nuclear reactor in 2026?",
+    "subtitle": "",
+    "external_id": "nrc-nuclear-reactor-2026",
+    "status": "active",
+    "listed_at": "2026-01-26",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "resolved_at": "",
+    "resolution_criteria": "This market will resolve to 'Yes' if the U.S. Nuclear Regulatory Commission (NRC)\nissues a new combined license (COL) for the construction and operation of a nuclear\npower plant by December 31, 2026, 11:59 PM ET. A combined license must be clearly\nidentified as such and documented in official NRC releases. Only initial issuances\ncount; amendments, renewals, or partial approvals do not qualify.\n\nNote: In March 2026, TerraPower's Natrium sodium-cooled advanced reactor received\nits first commercial construction permit \u2014 the first non-light-water reactor permit\nin years \u2014 but a separate combined operating license (COL) application remains\npending. This market resolves on the full COL issuance, not the construction permit.\n",
+    "resolution_outcome": "",
+    "settlement_entities": [
+      {
+        "name": "Nuclear Regulatory Commission",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Energy",
+        "role": "regulator"
+      },
+      {
+        "name": "TerraPower LLC",
+        "role": "company"
+      },
+      {
+        "name": "SMR LLC",
+        "role": "company"
+      },
+      {
+        "name": "NuScale Power",
+        "role": "company"
+      }
+    ],
+    "source_urls": [
+      "https://polymarket.com/event/us-grants-license-for-new-nuclear-reactor-in-2026",
+      "https://www.nrc.gov/reactors/new-reactors/new-light-water-reactors/col.html"
+    ],
+    "primary_source_url": "https://polymarket.com/event/us-grants-license-for-new-nuclear-reactor-in-2026",
+    "heat": 3.07,
+    "heat_history": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "conditions": [
+      {
+        "id": "A",
+        "label": "NRC issues initial COL by deadline",
+        "summary": "By Dec 31, 2026 11:59 PM ET, the U.S. NRC issues an initial combined license (COL) to construct and operate a nuclear power plant, in an official NRC release. No amendments/renewals/partials.",
+        "bullish_count": 0,
+        "bearish_count": 2,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
+        "progress": 0,
+        "sentiment": "bearish"
+      }
+    ],
+    "narrative": "Since March 2026, multistate AGs led by California AG Bonta oppose federal efforts to exempt new/experimental reactors from environmental review, creating legal and political headwinds that could delay NRC combined-license approvals this year. Other listed items (Ontario securities rule and CA oil-pipeline case) are unrelated and don\u2019t affect odds. NRC licensing timelines and any court outcomes on the exemptions remain pending."
+  },
+  "position": {
+    "side": "NO",
+    "size": 200,
+    "entry_price": 0.78
+  },
+  "timeline": [
+    {
+      "pub_date": "2026-05-01",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+      "regulator": "California Department of Justice",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-seeks-halt-trump-administration\u2019s-illegal-greenlight-oil",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "8503f9d0-1c92-4857-bb7b-6dcb547339eb",
+      "one_line_why": "California AG's action targets oil pipeline approvals, unrelated to NRC combined-license process, so it doesn't affect COL issuance odds.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "June 1, 2026",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-01",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation - May 1, 2026",
+      "regulator": "California Department of Justice, Office of the Attorney General",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-seeks-halt-trump-administration%E2%80%99s-illegal-greenlight-oil",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "0d030a27-c2c9-416b-b049-57518ed0223e",
+      "one_line_why": "California AG action on oil transport is unrelated to NRC combined-license issuance and does not affect COL odds.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "June 1, 2026",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-04-30",
+      "title": "Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information",
+      "regulator": "Ontario Securities Commission",
+      "url": "https://www.osc.ca/en/securities-law/instruments-rules-policies/3/33-510/notice-general-order-ontario-instrument-33-510-exemptions-requirements-submit-certain-personal",
+      "urgency": 9.0,
+      "impact": 5.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "ef343201-50d5-4004-beba-d90f738c5b5a",
+      "one_line_why": "Ontario Securities Commission exemptions are unrelated to U.S. NRC combined licenses and have no bearing on COL issuance probability.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2026-05-01",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-03-05",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and Experimental Nuclear Reactors from Environmental Review",
+      "regulator": "California Attorney General",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-trump-administration%E2%80%99s-attempt-exempt-new-and",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "04620b8e-bfbb-4595-98f4-f91d4f91b5c3",
+      "one_line_why": "Multi-state AG opposition to federal exemption of environmental review raises legal and political hurdles, lowering odds and likely delaying an NRC COL.",
+      "condition_tag": "A",
+      "relevance_score": 6,
+      "high_impact": false,
+      "direction": "bearish",
+      "magnitude": "medium",
+      "timeline_shift": "later",
+      "mechanism": "Context",
+      "effective_date": "2026-02-02",
+      "comment_deadline": "2026-03-04"
+    },
+    {
+      "pub_date": "2026-03-05",
+      "title": "Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear Reactors - March 5, 2026",
+      "regulator": "California Attorney General",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-trump-administration%E2%80%99s-attempt-exempt-new-and",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "0ac004c3-e7b5-4cfa-b238-62c1a3e46aee",
+      "one_line_why": "California AG's opposition to federal exemptions could block expedited reviews and make an NRC COL by end-2026 less likely.",
+      "condition_tag": "A",
+      "relevance_score": 6,
+      "high_impact": false,
+      "direction": "bearish",
+      "magnitude": "medium",
+      "timeline_shift": "later",
+      "mechanism": "Context",
+      "effective_date": "2026-02-02",
+      "comment_deadline": "2026-03-04"
+    }
+  ],
+  "heat_panel": {
+    "value": 3.07,
+    "tier": "dormant",
+    "delta_7d": -6.18,
+    "peer_percentile": 8,
+    "urgency_weighted_sparkline": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "primary_drivers": [
+      "Repeated legal filings by California AG Bonta",
+      "Ontario regulatory notice re: exemptions",
+      "Overall decline in mentions this week"
+    ],
+    "explainer": "Dormant heat reflects a handful of repeated CA AG Bonta legal actions plus an Ontario exemptions notice, with overall mentions dropping this week."
+  }
+}

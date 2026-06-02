@@ -14,6 +14,11 @@ listed_at: "2024-06-01"
 resolved_at: "2025-12-31"
 status: "resolved"
 resolution_outcome: "YES"
+condition_id: '0xf106435e0c9a1b56fc1c0bea0ca3856a8d3a31b1c5f891f8c3600f4a66e74186'
+clob_token_ids:
+  - '40950322194820832807533485831393987792860704048110302763324386741027206308151'
+  - '77613029953598772381982336999913863065916454247916111678568891881569398156706'
+polymarket_slug: 'solana-etf-approved-in-2025'
 
 settlement_entities:
   - "U.S. Securities and Exchange Commission"

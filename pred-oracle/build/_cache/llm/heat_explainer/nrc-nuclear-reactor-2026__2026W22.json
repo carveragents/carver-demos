@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: dormant\nHeat: 3.07\nDelta_7d: -6.18\nTop records:\n- 2026-05-01 Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight o\n- 2026-05-01 Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight o\n- 2026-04-30 Notice of General Order \u2013 Ontario Instrument 33-510 Exemptions from Requirements\n- 2026-03-05 Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt New and \n- 2026-03-05 Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Exempt Nuclear \n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Repeated legal filings by California AG Bonta",
+      "Ontario regulatory notice re: exemptions",
+      "Overall decline in mentions this week"
+    ],
+    "explainer": "Dormant heat reflects a handful of repeated CA AG Bonta legal actions plus an Ontario exemptions notice, with overall mentions dropping this week."
+  }
+}

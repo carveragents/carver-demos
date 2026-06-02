@@ -2,7 +2,7 @@
   "request": {
     "model": "gpt-5-mini",
     "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
-    "user": "Tier: critical\nHeat: 184.87\nDelta_7d: -110.5\nTop records:\n- 2025-12-29 Final Rule Delegation of Authority to the Director of the Division of Investment\n- 2025-12-12 Litigation Releases: Nathan Gauvin; Blackridge, LLC; Gray Digital Capital Manage\n- 2025-12-05 SEC Announces Agenda and Panelists for Roundtable on Financial Surveillance and \n- 2025-12-04 Remarks at the Meeting of the Investor Advisory Committee\n- 2025-11-12 Remarks at the 2025 U.S. Treasury Market Conference\n- 2025-10-03 Platinum Analytics Cayman Limited\n- 2025-09-30 Poking Holes: Statement in Response to No-Action Relief for State Trust Companie\n- 2025-09-30 Cultivating Confidence: The Role of Custody in Institutional Confidence \u2013 Public\n- 2025-09-19 _Federal Register_ version\n- 2025-09-17 SEC Approves Generic Listing Standards for Commodity-Based Trust Shares\n",
+    "user": "Tier: critical\nHeat: 198.45\nDelta_7d: -96.92\nTop records:\n- 2025-12-29 Final Rule Delegation of Authority to the Director of the Division of Investment\n- 2025-09-30 Poking Holes: Statement in Response to No-Action Relief for State Trust Companie\n- 2025-09-30 Cultivating Confidence: The Role of Custody in Institutional Confidence \u2013 Public\n- 2025-09-24 Agenda, Panelists for SEC-CFTC Roundtable on Regulatory Harmonization Efforts An\n- 2025-09-17 CFTC and SEC Extend Form PF Compliance Date to Oct. 1, 2026\n- 2025-09-17 SEC Approves Generic Listing Standards for Commodity-Based Trust Shares\n- 2025-09-05 CFTC and SEC Issue Joint Statement on Regulatory Harmonization Efforts\n- 2025-09-05 Joint Statement from the Chairman of the SEC and Acting Chairman of the CFTC\n- 2025-09-05 SEC and CFTC Issue Joint Statement on Regulatory Harmonization Efforts; Will Co-\n- 2025-08-01 On the Road: SEC Crypto Task Force to Host a Series of Roundtables Across the U.\n",
     "schema": {
       "type": "object",
       "additionalProperties": false,
@@ -27,10 +27,10 @@
   },
   "response": {
     "primary_drivers": [
-      "Final Rule delegating authority to Director, Division of Investment",
-      "High-profile litigation and enforcement releases",
-      "Market-structure & surveillance focus: roundtable, Treasury market remarks, custody and listing approvals"
+      "SEC-CFTC joint statements and regulatory harmonization roundtables",
+      "Final rule delegating authority and other high-impact rulemakings",
+      "Custody and commodity-trust listing decisions plus Form PF compliance extension"
     ],
-    "explainer": "Heat driven by a major final rule delegating authority to the Division of Investment, notable enforcement/litigation releases, and elevated market-structure/surveillance events and product approvals."
+    "explainer": "Heat is critical because a concentrated run of high-impact SEC and CFTC actions \u2014 joint harmonization statements, roundtables, a delegation final rule, custody/listing decisions, and a Form PF extension \u2014 keeps regulatory scrutiny elevated."
   }
 }

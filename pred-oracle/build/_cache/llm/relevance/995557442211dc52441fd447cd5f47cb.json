@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the CLARITY Act be signed into law in 2026?\nResolution criteria: This market will resolve to 'Yes' if the Digital Asset Market Clarity Act of 2025\n(H.R.3633) is passed by both chambers of the U.S. Congress and signed into law by\nDecember 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to 'No'.\n\nThe primary resolution source will be official information from Congress.gov, the\nWhite House, and the U.S. Government Publishing Office. A consensus of credible\nreporting will also be used.\n\nThe CLARITY Act (also referred to as the Digital Asset Market Clarity Act) establishes\na regulatory framework distinguishing digital commodities from digital securities,\ngranting the CFTC primary jurisdiction over digital commodity spot markets and\nclarifying the SEC's jurisdiction over digital asset securities.\n\nConditions:\n  A: H.R.3633 passed & signed by 12/31/26 ET \u2014 H.R.3633 (Digital Asset Market Clarity Act of 2025) passes both House and Senate and is signed into law by Dec 31, 2026, 11:59 PM ET, confirmed by Congress.gov, White House, or GPO.\nSettlement entities: ['U.S. House of Representatives', 'U.S. Senate', 'Commodity Futures Trading Commission', 'U.S. Securities and Exchange Commission', 'White House', 'Department of the Treasury']\n\nRecord title: FMX | Amendment to the 5YR USTF Market Maker Incentive Program | [2]\nRecord date: 2026-05-08\nRecord regulator: Commodity Futures Trading Commission\nRecord topic: Commodity Futures Trading Commission\nRecord entities: ['Christopher J. Kirkpatrick', 'Commodity Futures Trading Commission', 'FMX Futures Exchange, L.P.', 'Rhianna Ross']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "An exchange/CFTC amendment on a 5yr USTF market-maker incentive concerns treasury futures incentives, not the CLARITY Act's congressional passage.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

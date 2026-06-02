@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Q2 2026 report — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../beta/index.html" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+</nav>
+
+<header class="mb-6 max-w-3xl">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Q2 2026 · Regulatory Expansion Intelligence <span class="text-slate-400 normal-case">(illustrative)</span></div>
+  <h1 class="text-2xl font-bold mt-1">Quarterly intelligence report</h1>
+  <div class="text-xs text-slate-500 mt-1">
+    Generated 2026-05-20 · Source: Pred-Oracle (built on Carver regulatory annotations)
+    · Window 2026-04-01 → 2026-06-30
+  </div>
+  <a href="../../static/samples/q2-2026-report.pdf" target="_blank" rel="noopener noreferrer"
+     class="inline-block mt-3 bg-slate-900 hover:bg-slate-700 text-white px-4 py-2 rounded text-sm font-medium">
+    Download PDF
+  </a>
+</header>
+
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Events in window</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">2358</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Jurisdictions</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">45</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">High-urgency (≥8)</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">1081</div>
+  </div>
+  <div class="border border-slate-200 rounded-lg p-4">
+    <div class="text-xs uppercase tracking-wider text-slate-500">Active cascades</div>
+    <div class="text-3xl font-bold mt-1 tabular-nums">3</div>
+  </div>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-lg font-semibold mb-3">Pressure rising</h2>
+  <ul class="space-y-3">
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Brazil</span>
+          <span class="text-xs text-slate-500 ml-1">(operating)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+62.03</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Brazil pressure is rising (+62.0 vs prior 90d). Current footprint: operating. 93 events at avg urgency 4.7.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.gov.br/cvm/pt-br/assuntos/noticias/2026/suspensas-quatro-ofertas-publicas-de-distribuicao-de-cotas-do-multiplike-plus-fidc" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Suspensas quatro ofertas públicas de distribuição de cotas do Multiplike Plus FIDC</a> — Comissão de Valores Mobiliários — Superintendência de Registro de Valores Mobiliários (2026-05-20)</li><li>· <a href="https://www.gov.br/cvm/pt-br/assuntos/noticias/2026/abertura-da-semana-enef-2026-destaca-importancia-do-planejamento-continuo-para-a-construcao-de-um-futuro-mais-seguro-e-sustentavel" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Abertura da Semana ENEF 2026 destaca importância do planejamento contínuo para a construção de um futuro mais seguro e sustentável</a> — Comissão de Valores Mobiliários (2026-05-18)</li><li>· <a href="https://www.gov.br/susep/pt-br/central-de-conteudos/noticias/2026/maio/susep-realiza-reuniao-ordinaria-do-conselho-diretor-em-20-de-maio" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Susep realiza reunião ordinária do Conselho Diretor em 20 de maio</a> — Superintendência de Seguros Privados (Susep) (2026-05-18)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Belgium</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+49.96</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Belgium pressure is rising (+50.0 vs prior 90d). Current footprint: other. 99 events at avg urgency 3.1.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="http://www.fsma.be/fr/news/reglement-transactionnel-avec-pv-assurances-sc" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Règlement transactionnel avec P&amp;V Assurances SC</a> — Autorité des services et marchés financiers (FSMA) (2026-05-18)</li><li>· <a href="http://www.fsma.be/fr/news/orientations-relatives-aux-scenarios-de-simulations-de-crise-au-titre-du-reglement-sur-les-5" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Orientations relatives aux scénarios de simulations de crise au titre du règlement sur les fonds monétaires</a> — FSMA (2026-05-19)</li><li>· <a href="http://www.fsma.be/nl/news/richtsnoeren-betreffende-stresstestscenarios-volgens-de-verordening-inzake-geldmarktfondsen-4" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Richtsnoeren betreffende stresstestscenario&#39;s volgens de verordening inzake geldmarktfondsen</a> — FSMA (2026-05-19)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Spain</span>
+          <span class="text-xs text-slate-500 ml-1">(operating)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+33.4</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Spain pressure is rising (+33.4 vs prior 90d). Current footprint: operating. 55 events at avg urgency 3.8.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.cnmv.es/webservices/verdocumento/ver?t=%7b5bf7ec9e-0738-4700-b755-c2d6f22f4f44%7d" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Nueve de cada diez empresas de mayor capitalización alcanzan el 40 por ciento de consejeras antes del plazo marcado por la ley</a> — CNMV (2026-05-18)</li><li>· <a href="https://www.cnmv.es/webservices/verdocumento/ver?t=%7b2e8b3e55-3c9c-40c5-b45b-b02106f14c22%7d" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Apertura del plazo de recepción de expresiones de interés para propuesta de terna de administración concursal de Tubos Reunidos, S.A.</a> — Comisión Nacional del Mercado de Valores (2026-05-14)</li><li>· <a href="https://www.cnmv.es/webservices/verdocumento/ver?t=%7b61a4bca4-e45a-48ec-8d54-8e1e17711f5a%7d" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">La CNMV difunde el segundo comunicado de ESMA sobre la implementación de cambios previstos en la Listing act en materia de folletos</a> — European Securities and Markets Authority (2026-05-11)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">United Kingdom</span>
+          <span class="text-xs text-slate-500 ml-1">(closed)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+27.11</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">United Kingdom pressure is rising (+27.1 vs prior 90d). Current footprint: closed. 97 events at avg urgency 4.6.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.fca.org.uk/news/press-releases/fca-opens-doors-support-fast-growing-financial-firms" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FCA opens doors to support fast-growing financial firms</a> — Financial Conduct Authority (2026-05-20)</li><li>· <a href="https://www.fca.org.uk/news/press-releases/fca-and-bank-england-set-out-shared-vision-tokenisation-uk-wholesale-markets" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FCA and Bank of England set out shared vision for tokenisation in UK wholesale markets</a> — Financial Conduct Authority (2026-05-18)</li><li>· <a href="https://www.fca.org.uk/news/press-releases/fca-announces-new-appointments-executive-team" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FCA announces new appointments to executive team</a> — Financial Conduct Authority (2026-05-13)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">United Arab Emirates</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+23.17</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">United Arab Emirates pressure is rising (+23.2 vs prior 90d). Current footprint: other. 68 events at avg urgency 3.2.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://assets.adgm.com/download/assets/432318985+-+Multiple+Critical+Remote+Code+Execution+Vulnerabilities+in+n8n.pdf/6e1d68e8534b11f181dbfe8aca6e75de" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">432318985 - Multiple Critical Remote Code Execution Vulnerabilities in n8n.pdf</a> — Cyber Security Council of the United Arab Emirates Government (2026-05-18)</li><li>· <a href="https://assets.adgm.com/download/assets/432318982+-+Multiple+Vulnerabilities+in+Cisco+Catalyst+SD-WAN+Manager.pdf/6e6ed688534b11f1b496fe288e74ad6b" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">432318982 - Multiple Vulnerabilities in Cisco Catalyst SD-WAN Manager.pdf</a> — Cyber Security Council of the United Arab Emirates Government (2026-05-18)</li><li>· <a href="https://assets.adgm.com/download/assets/432318986+-+Critical+Actively+Exploited+Vulnerability+in+NGINX.pdf/6e30cb54534b11f1ab68ba133d69f58f" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">432318986 - Critical Actively Exploited Vulnerability in NGINX.pdf</a> — Cyber Security Council of the United Arab Emirates Government (2026-05-18)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Italy</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+21.0</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Italy pressure is rising (+21.0 vs prior 90d). Current footprint: other. 23 events at avg urgency 5.9.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.consob.it/web/consob-and-its-activities/-/weekly-newsletter-year-xxxii-no-18-11-may-2026?redirect=%2Fweb%2Fconsob-and-its-activities%2Fnewsletter%2Flatests" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Weekly newsletter year XXXII, No. 18 - 11.05.2026</a> — CONSOB (2026-05-11)</li><li>· <a href="https://www.consob.it/web/consob-and-its-activities/-/weekly-newsletter-year-xxxii-no-18-11-may-2026?redirect=%2Fweb%2Fconsob-and-its-activities%2Fnewsletter" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Weekly newsletter year XXXII, No. 18, 11 May 2026</a> — CONSOB (2026-05-11)</li><li>· <a href="https://www.consob.it/web/consob-and-its-activities/-/weekly-newsletter-year-xxxii-no-17-4-may-2026?redirect=%2Fweb%2Fconsob-and-its-activities%2Fnewsletter%2Flatests" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Weekly newsletter year XXXII, No. 17 - 04.05.2026</a> — CONSOB (2026-05-04)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Singapore</span>
+          <span class="text-xs text-slate-500 ml-1">(closed)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+20.44</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Singapore pressure is rising (+20.4 vs prior 90d). Current footprint: closed. 28 events at avg urgency 6.1.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.mas.gov.sg/publications/consultations/2026/consultation-paper-on-proposed-tlac-requirements-for-dsibs-in-singapore" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Consultation Paper on Proposed Total Loss Absorbing Capacity Requirements for Domestic Systemically Important Banks in Singapore</a> — Monetary Authority of Singapore (2026-05-13)</li><li>· <a href="https://www.mas.gov.sg/news/media-releases/2026/changes-to-mas-board-of-directors" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Changes to MAS Board of Directors</a> — Monetary Authority of Singapore (2026-05-12)</li><li>· <a href="https://www.mas.gov.sg/regulation/enforcement/enforcement-actions/2026/two-individuals-convicted-for-offences-under-the-securities-and-futures-act" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Two Individuals Convicted for Offences under the Securities and Futures Act</a> — Monetary Authority of Singapore — enforcement (2026-05-20)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Finland</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+18.8</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Finland pressure is rising (+18.8 vs prior 90d). Current footprint: other. 25 events at avg urgency 5.9.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.finanssivalvonta.fi/en/publications-and-press-releases/supervision-releases/2026/on-the-11-october-2027-the-settlement-cycle-for-securities-will-be-shortened-in-the-eu-readiness-surveys-open-until-9-june-2026/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">18.05.2026 - On the 11 October 2027 the settlement cycle for securities will be shortened in the EU; readiness surveys open until 9 June 2026</a> — Financial Supervisory Authority (2026-05-18)</li><li>· <a href="https://www.finanssivalvonta.fi/en/publications-and-press-releases/news-releases/2026/eiopas-invitation-public-workshop-on-eiopas-draft-technical-advice-on-minimum-common-standards-for-insurance-guarantee-schemes-igs-in-the-eu-17-june-2026/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">EIOPA&#39;s invitation: Public workshop on EIOPA’s draft technical advice on minimum common standards for insurance guarantee schemes (IGS) in the EU, 17 June 2026</a> — European Insurance and Occupational Pensions Authority (2026-05-18)</li><li>· <a href="https://www.finanssivalvonta.fi/en/publications-and-press-releases/Press-release/2026/combined-penalty-payment-of-eur-400000-for-oma-savings-bank-plc-for-omissions-regarding-maintenance-of-insider-lists/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Combined penalty payment of EUR 400,000 for Oma Savings Bank Plc for omissions regarding maintenance of insider lists - 15.05.2026</a> — Financial Supervisory Authority (FIN-FSA) (2026-05-15)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Switzerland</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+18.18</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Switzerland pressure is rising (+18.2 vs prior 90d). Current footprint: other. 66 events at avg urgency 2.6.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.finma.ch/en/news/2026/05/20260520-mm-rvv-finma/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FINMA publishes new ordinance on risk diversification for banks and securities firms</a> — Swiss Financial Market Supervisory Authority FINMA (2026-05-20)</li><li>· <a href="https://www.finma.ch/de/news/2026/05/20260520-mm-rvv-finma/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FINMA veröffentlicht eine neue Verordnung über die Risikoverteilung für Banken und Wertpapierhäuser</a> — Eidgenössische Finanzmarktaufsicht FINMA (2026-05-20)</li><li>· <a href="https://www.finma.ch/en/news/2026/05/20260512-mm-anh-gwv-finma/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">FINMA launches consultation on partial revision of the FINMA Anti-Money Laundering Ordinance</a> — Swiss Financial Market Supervisory Authority FINMA (2026-05-12)</li>
+      </ul>
+      
+    </li>
+    
+    <li class="border border-slate-200 rounded p-3">
+      <div class="flex items-baseline justify-between gap-3">
+        <div>
+          <span class="font-medium">Malta</span>
+          <span class="text-xs text-slate-500 ml-1">(other)</span>
+        </div>
+        <div class="text-sm text-rose-600 font-medium tabular-nums">+16.76</div>
+      </div>
+      <p class="text-sm text-slate-700 mt-1">Malta pressure is rising (+16.8 vs prior 90d). Current footprint: other. 47 events at avg urgency 4.2.</p>
+      
+      <ul class="text-xs text-slate-500 mt-2 space-y-0.5">
+        <li>· <a href="https://www.mfsa.mt/wp-content/uploads/2026/05/European-Commission-Public-Feedback-on-the-Revised-European-Sustainability-Reporting-Standards-and-Voluntary-Sustainability-Reporting-Standard.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Circular</a> — European Commission (2026-05-20)</li><li>· <a href="https://www.mfsa.mt/publication/european-commission-public-feedback-on-the-revised-european-sustainability-reporting-standards-and-voluntary-sustainability-reporting-standard/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">European Commission Public Feedback on the Revised European Sustainability Reporting Standards and Voluntary Sustainability Reporting Standard</a> — Malta Financial Services Authority (2026-05-20)</li><li>· <a href="https://www.mfsa.mt/news-item/malta-financial-services-authority-launches-consultation-on-the-tokenisation-of-financial-instruments-and-real-world-assets/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Malta Financial Services Authority Launches Consultation on the Tokenisation of Financial Instruments and Real-World Assets</a> — Malta Financial Services Authority (2026-05-18)</li>
+      </ul>
+      
+    </li>
+    
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-lg font-semibold mb-3">Pressure easing</h2>
+  <ul class="space-y-2">
+    
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">Kuwait</span>
+      <span class="text-xs text-slate-500">(other)</span>
+      <span class="text-emerald-700 tabular-nums ml-2">-44.56</span>
+      <span class="text-slate-500"> — Kuwait pressure is easing (-44.6 vs prior 90d). Current footprint: other. 16 events at avg urgency 3.9.</span>
+    </li>
+    
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">Chile</span>
+      <span class="text-xs text-slate-500">(considering)</span>
+      <span class="text-emerald-700 tabular-nums ml-2">-35.58</span>
+      <span class="text-slate-500"> — Chile pressure is easing (-35.6 vs prior 90d). Current footprint: considering. 8 events at avg urgency 4.5.</span>
+    </li>
+    
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">France</span>
+      <span class="text-xs text-slate-500">(closed)</span>
+      <span class="text-emerald-700 tabular-nums ml-2">-20.35</span>
+      <span class="text-slate-500"> — France pressure is easing (-20.4 vs prior 90d). Current footprint: closed. 92 events at avg urgency 3.7.</span>
+    </li>
+    
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">Germany</span>
+      <span class="text-xs text-slate-500">(operating)</span>
+      <span class="text-emerald-700 tabular-nums ml-2">-8.22</span>
+      <span class="text-slate-500"> — Germany pressure is easing (-8.2 vs prior 90d). Current footprint: operating. 9 events at avg urgency 5.0.</span>
+    </li>
+    
+    <li class="text-sm text-slate-700">
+      <span class="font-medium">JO</span>
+      <span class="text-xs text-slate-500">(other)</span>
+      <span class="text-emerald-700 tabular-nums ml-2">-6.4</span>
+      <span class="text-slate-500"> — JO pressure is easing (-6.4 vs prior 90d). Current footprint: other. 8 events at avg urgency 4.0.</span>
+    </li>
+    
+  </ul>
+</section>
+
+<section class="mb-10 border-t border-slate-200 pt-8">
+  <h2 class="text-xl font-bold mb-2">Watch list — 3 jurisdictions that look like France did 12 months ago</h2>
+  <p class="text-xs text-slate-500 mb-4">Pattern-based projection, not prediction. Confidence: medium.</p>
+  <div class="space-y-4">
+    
+      <article class="border-l-4 border-amber-400 bg-amber-50/40 pl-5 py-4 pr-4 rounded-r">
+  <header class="flex items-baseline justify-between gap-3 mb-2">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900">Brazil</h3>
+      <div class="text-xs text-slate-500 mt-0.5">
+        Current footprint: <span class="font-medium capitalize">operating</span>
+      </div>
+    </div>
+    <a href="../../alpha/dashboard/index.html#BR" class="text-xs text-blue-600 hover:text-blue-800 underline">
+      View in dashboard →
+    </a>
+  </header>
+  <p class="text-sm text-slate-700 mb-3 whitespace-pre-line">SECAP scrutiny of fixed-odds platforms has intensified through Q1-Q2 2026.
+Pattern resembles French regulatory escalation 12 months out: bulletins,
+then guidance, then perimeter clarification. Three driving events in window.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Recommended actions</div>
+    <ul class="text-sm text-slate-800 space-y-1 list-disc list-inside">
+      <li>Engage local counsel on SECAP perimeter interpretation</li><li>Prepare geofencing playbook for São Paulo/Rio routing</li><li>Monitor monthly; escalate if guidance ≥ &#39;enforcement&#39; tier emerges</li>
+    </ul>
+  </div>
+  
+  <div>
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Driving events</div>
+    <ul class="text-sm space-y-1">
+      
+      <li>
+        <a href="https://www.gov.br/cvm/pt-br/assuntos/noticias/2026/suspensas-quatro-ofertas-publicas-de-distribuicao-de-cotas-do-multiplike-plus-fidc" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Suspensas quatro ofertas públicas de distribuição de cotas do Multiplike Plus FIDC</a>
+        <span class="text-xs text-slate-500">— Comissão de Valores Mobiliários — Superintendência de Registro de Valores Mobiliários · 2026-05-20 · urg 9</span>
+      </li>
+      
+      <li>
+        <a href="https://www.gov.br/cvm/pt-br/assuntos/noticias/2026/abertura-da-semana-enef-2026-destaca-importancia-do-planejamento-continuo-para-a-construcao-de-um-futuro-mais-seguro-e-sustentavel" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Abertura da Semana ENEF 2026 destaca importância do planejamento contínuo para a construção de um futuro mais seguro e sustentável</a>
+        <span class="text-xs text-slate-500">— Comissão de Valores Mobiliários · 2026-05-18 · urg 10</span>
+      </li>
+      
+      <li>
+        <a href="https://www.gov.br/susep/pt-br/central-de-conteudos/noticias/2026/maio/susep-realiza-reuniao-ordinaria-do-conselho-diretor-em-20-de-maio" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Susep realiza reunião ordinária do Conselho Diretor em 20 de maio</a>
+        <span class="text-xs text-slate-500">— Superintendência de Seguros Privados (Susep) · 2026-05-18 · urg 9</span>
+      </li>
+      
+    </ul>
+  </div>
+  
+</article>
+    
+      <article class="border-l-4 border-amber-400 bg-amber-50/40 pl-5 py-4 pr-4 rounded-r">
+  <header class="flex items-baseline justify-between gap-3 mb-2">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900">Singapore</h3>
+      <div class="text-xs text-slate-500 mt-0.5">
+        Current footprint: <span class="font-medium capitalize">closed</span>
+      </div>
+    </div>
+    <a href="../../alpha/dashboard/index.html#SG" class="text-xs text-blue-600 hover:text-blue-800 underline">
+      View in dashboard →
+    </a>
+  </header>
+  <p class="text-sm text-slate-700 mb-3 whitespace-pre-line">MAS guidance cadence on digital payment tokens has spilled into
+event-contract platforms via remote-gaming references. The 2025 reviews
+cite cross-border solicitation language consistent with the French
+AMF posture 14 months pre-action.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Recommended actions</div>
+    <ul class="text-sm text-slate-800 space-y-1 list-disc list-inside">
+      <li>Audit MAS RNC notifications for the past 90 days</li><li>Confirm whether the platform&#39;s payment rails meet DPT Act perimeter</li><li>Bring posture review to next board meeting</li>
+    </ul>
+  </div>
+  
+  <div>
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Driving events</div>
+    <ul class="text-sm space-y-1">
+      
+      <li>
+        <a href="https://www.mas.gov.sg/publications/consultations/2026/consultation-paper-on-proposed-tlac-requirements-for-dsibs-in-singapore" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Consultation Paper on Proposed Total Loss Absorbing Capacity Requirements for Domestic Systemically Important Banks in Singapore</a>
+        <span class="text-xs text-slate-500">— Monetary Authority of Singapore · 2026-05-13 · urg 9</span>
+      </li>
+      
+      <li>
+        <a href="https://www.mas.gov.sg/news/media-releases/2026/changes-to-mas-board-of-directors" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Changes to MAS Board of Directors</a>
+        <span class="text-xs text-slate-500">— Monetary Authority of Singapore · 2026-05-12 · urg 9</span>
+      </li>
+      
+      <li>
+        <a href="https://www.mas.gov.sg/regulation/enforcement/enforcement-actions/2026/two-individuals-convicted-for-offences-under-the-securities-and-futures-act" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">Two Individuals Convicted for Offences under the Securities and Futures Act</a>
+        <span class="text-xs text-slate-500">— Monetary Authority of Singapore — enforcement · 2026-05-20 · urg 5</span>
+      </li>
+      
+    </ul>
+  </div>
+  
+</article>
+    
+      <article class="border-l-4 border-amber-400 bg-amber-50/40 pl-5 py-4 pr-4 rounded-r">
+  <header class="flex items-baseline justify-between gap-3 mb-2">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900">Australia</h3>
+      <div class="text-xs text-slate-500 mt-0.5">
+        Current footprint: <span class="font-medium capitalize">operating</span>
+      </div>
+    </div>
+    <a href="../../alpha/dashboard/index.html#AU" class="text-xs text-blue-600 hover:text-blue-800 underline">
+      View in dashboard →
+    </a>
+  </header>
+  <p class="text-sm text-slate-700 mb-3 whitespace-pre-line">AUSTRAC + ACMA combined posture has tightened through 2026 Q1. Carver
+tagged 480 AU records, with a clear uptick in advisory and guidance
+tiers Q4 2025 onward — the same composition curve France showed.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Recommended actions</div>
+    <ul class="text-sm text-slate-800 space-y-1 list-disc list-inside">
+      <li>Map AUSTRAC reporting-entity obligations for event-contract products</li><li>Review ACMA enforcement bulletins quarterly</li><li>Flag in next board international-strategy slide</li>
+    </ul>
+  </div>
+  
+  <div>
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Driving events</div>
+    <ul class="text-sm space-y-1">
+      
+      <li>
+        <a href="https://www.asic.gov.au/about-asic/news-centre/find-a-media-release/2026-releases/26-099mr-federal-court-orders-33-5-million-penalty-against-snaffle-operator-for-inflating-prices-and-overcharging-on-credit-contracts/" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">26-099MR - 18.05.2026 - Federal Court orders $33.5 million penalty against Snaffle operator for inflating prices and overcharging on credit contracts</a>
+        <span class="text-xs text-slate-500">— Australian Securities and Investments Commission · 2026-05-18 · urg 6</span>
+      </li>
+      
+      <li>
+        <a href="https://www.asic.gov.au/about-asic/news-centre/news-items/asic-invites-feedback-on-proposed-derivative-transaction-reporting-rules-updates/" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">27.03.2026 - ASIC invites feedback on proposed derivative transaction reporting rules updates</a>
+        <span class="text-xs text-slate-500">— Australian Securities and Investments Commission · 2026-05-08 · urg 7</span>
+      </li>
+      
+      <li>
+        <a href="https://www.asic.gov.au/about-asic/news-centre/find-a-media-release/2026-releases/26-093mr-asic-permanently-bans-queensland-property-developer-trent-giumelli-from-financial-services/" target="_blank" rel="noopener noreferrer" class="text-slate-900 hover:text-blue-700">08.05.2026 - ASIC permanently bans Queensland property developer Trent Giumelli from financial services</a>
+        <span class="text-xs text-slate-500">— Australian Securities and Investments Commission · 2026-05-08 · urg 5</span>
+      </li>
+      
+    </ul>
+  </div>
+  
+</article>
+    
+  </div>
+</section>
+
+
+<aside class="mb-10 border border-slate-200 rounded-lg p-4 bg-slate-50/40">
+  <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Contract touchpoints — active contracts correlated with watch-list jurisdictions</h2>
+  <ul class="text-sm space-y-1">
+    
+    <li>
+      <a href="../../gamma/contracts/kxbtc-maxprice-2026/index.html" class="text-slate-900 hover:text-blue-700">Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?</a>
+      <span class="text-xs text-slate-500">— heat 435</span>
+    </li>
+    
+    <li>
+      <a href="../../gamma/contracts/kxfeddecision-28jan/index.html" class="text-slate-900 hover:text-blue-700">Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?</a>
+      <span class="text-xs text-slate-500">— heat 114</span>
+    </li>
+    
+    <li>
+      <a href="../../gamma/contracts/us-recession-in-2026/index.html" class="text-slate-900 hover:text-blue-700">Will the US enter a recession in 2026?</a>
+      <span class="text-xs text-slate-500">— heat 112</span>
+    </li>
+    
+  </ul>
+</aside>
+
+
+<section class="mb-10 border-t border-slate-200 pt-6">
+  <h2 class="text-lg font-semibold mb-2">Appendix · Active cascade signals</h2>
+  <ul class="text-sm space-y-1">
+    
+    <li><span class="font-medium">FATF</span> — Updated Guidance on Risk-Based Approach to Virtual Assets and VASPs (Q4 2025 amendment) <span class="text-xs text-slate-500">(2025-11-20 · 31/39 (79%))</span></li>
+    
+    <li><span class="font-medium">BCBS</span> — Disclosure framework for cryptoasset exposures — finalised standards <span class="text-xs text-slate-500">(2025-10-08 · 22/28 (79%))</span></li>
+    
+    <li><span class="font-medium">ESMA</span> — Q1 2026 thematic risk note on event-contract and prediction-market venues <span class="text-xs text-slate-500">(2026-03-12 · 18/27 (67%))</span></li>
+    
+  </ul>
+</section>
+
+<footer class="border-t border-slate-200 pt-6 text-xs text-slate-500 space-y-2">
+  <p><span class="font-semibold text-slate-700">Method.</span> Pressure score = min(100, count × avg urgency / 5) over the report window. Delta compares against the equivalent immediately-prior window. Watch list is hand-picked; pattern match is qualitative.</p>
+  <p><span class="font-semibold text-slate-700">Coverage.</span> All events drawn from Carver&#39;s regulatory-annotation pipeline. Coverage skews toward bodies in the regulator allowlist; smaller or country-specific bodies may be underrepresented.</p>
+  <p>V1 cascade rules are curated from historical patterns. Learned models will replace rules in V2+ as more data accrues.</p>
+</footer>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="../../beta/cascades/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Cascade signals</a>
+  <a href="../../close.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Finish demo →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

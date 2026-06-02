@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the U.S. enact a stablecoin bill in 2025?\nResolution criteria: Resolves YES if the President of the United States signs into law a federal\nstablecoin regulatory framework bill by December 31, 2025, 11:59 PM ET.\nResolves NO otherwise.\n\nConditions:\n  A: Standalone stablecoin bill signed \u2014 By Dec 31, 2025, 11:59 PM ET, the U.S. President signs into law a standalone federal bill that establishes a regulatory framework for stablecoins.\n  B: Framework in larger act signed \u2014 By Dec 31, 2025, 11:59 PM ET, the President signs into law broader federal legislation that includes provisions establishing a federal stablecoin regulatory framework.\nSettlement entities: ['Office of the Comptroller of the Currency', 'Federal Deposit Insurance Corporation', 'Consumer Financial Protection Bureau', 'U.S. Securities and Exchange Commission', 'Financial Crimes Enforcement Network', 'Federal Reserve']\n\nRecord title: FDIC Approves Notice of Proposed Rulemaking to Rescind the 2023 Community Reinvestment Act Final Rule\nRecord date: 2025-07-16\nRecord regulator: Federal Deposit Insurance Corporation\nRecord topic: Federal Deposit Insurance Corporation\nRecord entities: ['Amal Patel', 'Alys V. Brown', 'Board of Governors of the Federal Reserve System', 'Cassandra Duhaney', 'Cody Gaffney', 'Emily Boyes', 'Federal Deposit Insurance Corporation', 'Federal Reserve', 'Heidi Thomas', 'Jaydee DiGiovanni', 'Kristopher M. Rengert', 'Office of the Comptroller of the Currency', 'Onjil T. McEachin', 'Patience R. Singleton', 'Taz George']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "FDIC NPRM to rescind the CRA rule concerns community-lending regulation, not creation of a federal stablecoin framework, so it doesn't affect 2025 stablecoin bill odds.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

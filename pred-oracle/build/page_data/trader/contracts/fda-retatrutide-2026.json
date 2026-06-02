@@ -1,0 +1,216 @@
+{
+  "contract": {
+    "id": "fda-retatrutide-2026",
+    "platform": "polymarket",
+    "kind": "active",
+    "title": "FDA approves Retatrutide in 2026?",
+    "subtitle": "",
+    "external_id": "fda-retatrutide-2026",
+    "status": "active",
+    "listed_at": "2026-01-12",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "resolved_at": "",
+    "resolution_criteria": "This market will resolve to 'Yes' if the U.S. Food and Drug Administration formally\napproves Retatrutide (LY3437943, Eli Lilly's triple GIP/GLP-1/glucagon receptor\nagonist) for any indication by December 31, 2026, 11:59 PM ET. Approval must be\nvia formal FDA authorization \u2014 a New Drug Application (NDA) or Biologics License\nApplication (BLA) approval letter. Excludes Emergency Use Authorizations (EUA),\ncompassionate use designations, tentative approvals, and approvable letters.\n\nRetatrutide targets obesity, type 2 diabetes, and related metabolic conditions.\nPhase 3 clinical trial data is expected in 2026, with NDA submission expected no\nearlier than late 2026, making a 2026 FDA decision unlikely but possible on\naccelerated review pathways.\n",
+    "resolution_outcome": "",
+    "settlement_entities": [
+      {
+        "name": "Food and Drug Administration",
+        "role": "regulator"
+      },
+      {
+        "name": "Center for Drug Evaluation and Research",
+        "role": "company"
+      },
+      {
+        "name": "Eli Lilly and Company",
+        "role": "company"
+      },
+      {
+        "name": "Office of New Drugs",
+        "role": "regulator"
+      }
+    ],
+    "source_urls": [
+      "https://polymarket.com/event/fda-approves-retatrutide-this-year",
+      "https://www.fda.gov/drugs/development-approval-process-drugs"
+    ],
+    "primary_source_url": "https://polymarket.com/event/fda-approves-retatrutide-this-year",
+    "heat": 9.4,
+    "heat_history": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "conditions": [
+      {
+        "id": "A",
+        "label": "FDA NDA approval letter",
+        "summary": "FDA issues a final NDA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      },
+      {
+        "id": "B",
+        "label": "FDA BLA approval letter",
+        "summary": "FDA issues a final BLA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      }
+    ],
+    "narrative": "Recent developments are unrelated background matters (state insurance rules, e\u2011cigarette guidance disputes) and a mifepristone brief that, while supporting FDA authority, doesn\u2019t directly affect Retatrutide. No targeted regulatory pressure is evident; odds hinge on standard FDA review and clinical data. The FDA decision for 2026 remains pending."
+  },
+  "position": {
+    "side": "NO",
+    "size": 250,
+    "entry_price": 0.82
+  },
+  "timeline": [
+    {
+      "pub_date": "2026-05-21",
+      "title": "In the Matter of Ariel Betances",
+      "regulator": "STATE OF RHODE ISLAND DEPARTMENT OF BUSINESS REGULATION \u2014 Insurance Division",
+      "url": "https://dbr.ri.gov/sites/g/files/xkgbur696/files/2026-05/INS-2026-IN-005%20Betances%20Consent%20Agreement%20Executed.pdf",
+      "urgency": 3.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "ee1b6cab-c7d6-493d-8146-2e7b7a0d0383",
+      "one_line_why": "State insurance enforcement action unrelated to FDA, Eli Lilly, or retatrutide \u2014 no impact on FDA approval probability.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Binding Action",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-12",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026",
+      "regulator": "California Attorney General",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "dff5f36c-d80a-42b5-888a-609b78a205df",
+      "one_line_why": "State AG urging FDA on e\u2011cigarette guidance is unrelated to drug approval decisions for Retatrutide and doesn't change its approval odds or timing.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2025-01-01",
+      "comment_deadline": "2026-05-11"
+    },
+    {
+      "pub_date": "2026-05-12",
+      "title": "Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes",
+      "regulator": "California Attorney General",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-urges-fda-reverse-guidance-easing-sales-flavored-e",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "a432adb5-62b8-4199-a4c5-4c8305c403e8",
+      "one_line_why": "AG urging FDA to reverse e\u2011cigarette guidance concerns tobacco policy and is unlikely to affect Retatrutide's NDA/BLA approval odds or timing.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "2025-01-01",
+      "comment_deadline": "2026-05-11"
+    },
+    {
+      "pub_date": "2026-05-12",
+      "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027",
+      "regulator": "Oficina del Comisionado de Seguros de Puerto Rico",
+      "url": "https://docs.pr.gov/files/OCS/Asuntos_Legales/Cartas%20Normativas/2026/CN-2026-377-AS%20(Enmendada).pdf",
+      "urgency": 9.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "6fb83753-c348-471e-b523-84c267b2c027",
+      "one_line_why": "Puerto Rico insurance/forms-and-fees administrative rule; unrelated to FDA drug approval of Retatrutide, so it does not change approval odds.",
+      "condition_tag": "background",
+      "relevance_score": 0,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Signal",
+      "effective_date": "2027-01-01",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-04",
+      "title": "Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone",
+      "regulator": "New York Attorney General",
+      "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-leads-coalition-urging-supreme-court-protect-access",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "bbc07d52-fe47-4552-a6dc-2750c5e19eaa",
+      "one_line_why": "Coalition to protect mifepristone preserves FDA authority broadly but has no material, direct effect on Retatrutide approval likelihood or timing.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    }
+  ],
+  "heat_panel": {
+    "value": 9.4,
+    "tier": "watch",
+    "delta_7d": -4.32,
+    "peer_percentile": 17,
+    "urgency_weighted_sparkline": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "primary_drivers": [
+      "AG letters urging FDA to reverse flavored e\u2011cigarette guidance",
+      "Coalition/Supreme Court filings to protect access (telehealth/other)",
+      "Regulatory filing CN-2026-377-AS re: forms and fees"
+    ],
+    "explainer": "Dormant heat reflects a small cluster of attorney general advocacy letters (Bonta, James) plus a single regulatory filing (CN-2026-377-AS); overall activity has cooled this week."
+  }
+}

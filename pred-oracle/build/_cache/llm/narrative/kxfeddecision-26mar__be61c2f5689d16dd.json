@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nKind: retrospective\nTimeline (5 events):\n- 2026-03-12 [background] Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI \u2014 BIS speech offers macro commentary on inflation and AI that may slightly shape Fed expectations before Mar 18 but does not determine the FOMC decision.\n- 2026-03-06 [background] Treasury, IRS issue proposed regulations for Trump Accounts pilot program, Treasury Department to deposit $1,000 into the account of each eligible child \u2014 Fiscal $1,000 child deposits are Treasury/IRS fiscal policy, not Fed action, so unlikely to materially affect the Fed's March 17\u201318 rate decision.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 Waller's BIS talk on whether labor-market data are signal/noise gives modest guidance on Fed thinking but does not directly determine the March 18 target decision.\n- 2026-01-09 [background] Consolidated Reports of Condition and Income for Fourth Quarter 2025 \u2014 Q4 2025 Call Reports are background banking-sector data that provide only indirect, low-signal information about conditions ahead of the March FOMC and do not materially change odds.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 OFAC sanctions on major Russian oil firms raise oil-price and inflation risk, modestly increasing the chance of the Fed holding/hiking by Mar 2026.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "OFAC\u2019s Oct 2025 oil sanctions nudged inflation risk up, while Q4 2025 call\u2011report data and early\u2011March BIS speeches offered only soft signals. Treasury/IRS \u201cTrump Accounts\u201d was fiscal, not monetary, so it didn\u2019t bind the Fed. Ultimately the Mar 18, 2026 FOMC decision proceeded on macro fundamentals, and the market resolved on that outcome with little direct regulatory pressure."
+  }
+}

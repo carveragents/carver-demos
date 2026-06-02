@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Cascade signals — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../beta/index.html" class="text-slate-500 hover:text-slate-900">← International strategy</a>
+</nav>
+
+<header class="mb-6 max-w-3xl">
+  <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Scene 3 · Expansion</div>
+  <h1 class="text-2xl font-bold mt-1">Active regulatory cascades</h1>
+  <p class="text-slate-600 mt-2 text-sm">
+    When an international body publishes guidance, its member states historically follow.
+    Pred-Oracle tracks these patterns and names the jurisdictions next.
+  </p>
+</header>
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
+  <section class="lg:col-span-3 space-y-6">
+    
+      <article class="border border-slate-200 rounded-lg p-5 bg-white">
+  <header class="flex items-start justify-between gap-3 mb-3">
+    <div>
+      <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-blue-600 font-semibold mb-1">
+        <span>FATF</span>
+        <span class="text-slate-300">·</span>
+        <span class="text-slate-500 normal-case font-medium">Financial Action Task Force</span>
+      </div>
+      <h3 class="text-lg font-semibold text-slate-900">
+        <a href="https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Virtual-assets-rba-update.html" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Updated Guidance on Risk-Based Approach to Virtual Assets and VASPs (Q4 2025 amendment)</a>
+      </h3>
+      <div class="text-xs text-slate-500 mt-1">
+        Trigger 2025-11-20 · Expected member action by 2027-05-14 (540d window)
+      </div>
+    </div>
+    <div class="text-right shrink-0 w-36">
+      <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Historical adoption</div>
+      <div class="text-3xl font-bold text-slate-900 tabular-nums leading-none">79%</div>
+      <div class="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <div class="h-full bg-blue-500 rounded-full" style="width: 79%"></div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1.5 tabular-nums">
+        31 of 39 members
+      </div>
+    </div>
+  </header>
+  <p class="text-sm text-slate-700 mb-4 whitespace-pre-line">FATF Recommendation-15 updates historically prompt 27-33 member states to
+adopt parallel guidance within 18 months. Prior 2022 amendment landed
+31/39 member adoptions through 2024-04. For prediction-market platforms
+the relevant clause is the expanded &#34;VASP-adjacent&#34; perimeter — direct
+enforcement risk for cross-chain settlement / on-ramp platforms.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">
+      Expected followers (39) · 11 in your footprint
+    </div>
+    <div class="flex flex-wrap gap-1.5">
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="AR · Argentina · operating">
+  <span class="font-medium">Argentina</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="AU · Australia · operating">
+  <span class="font-medium">Australia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="AT · Austria · other">
+  <span class="font-medium">Austria</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="BE · Belgium · other">
+  <span class="font-medium">Belgium</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="BR · Brazil · operating">
+  <span class="font-medium">Brazil</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CA · Canada · other">
+  <span class="font-medium">Canada</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CN · China · other">
+  <span class="font-medium">China</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="DK · Denmark · other">
+  <span class="font-medium">Denmark</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="FI · Finland · other">
+  <span class="font-medium">Finland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="FR · France · closed">
+  <span class="font-medium">France</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="DE · Germany · operating">
+  <span class="font-medium">Germany</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="GR · Greece · other">
+  <span class="font-medium">Greece</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="HK · Hong Kong · other">
+  <span class="font-medium">Hong Kong</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IS · Iceland · other">
+  <span class="font-medium">Iceland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="IN · India · operating">
+  <span class="font-medium">India</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IE · Ireland · other">
+  <span class="font-medium">Ireland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IL · Israel · other">
+  <span class="font-medium">Israel</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IT · Italy · other">
+  <span class="font-medium">Italy</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="JP · Japan · operating">
+  <span class="font-medium">Japan</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-400 border-dashed bg-blue-50/50 text-blue-700"
+      title="KR · South Korea · considering">
+  <span class="font-medium">South Korea</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">considering</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="LU · Luxembourg · other">
+  <span class="font-medium">Luxembourg</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="MY · Malaysia · other">
+  <span class="font-medium">Malaysia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="MX · Mexico · operating">
+  <span class="font-medium">Mexico</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="NL · Netherlands · closed">
+  <span class="font-medium">Netherlands</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="NZ · New Zealand · other">
+  <span class="font-medium">New Zealand</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="NO · Norway · other">
+  <span class="font-medium">Norway</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="PT · Portugal · other">
+  <span class="font-medium">Portugal</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="RU · Russia · other">
+  <span class="font-medium">Russia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SA · Saudi Arabia · other">
+  <span class="font-medium">Saudi Arabia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="SG · Singapore · closed">
+  <span class="font-medium">Singapore</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="ZA · South Africa · operating">
+  <span class="font-medium">South Africa</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="ES · Spain · operating">
+  <span class="font-medium">Spain</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SE · Sweden · other">
+  <span class="font-medium">Sweden</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CH · Switzerland · other">
+  <span class="font-medium">Switzerland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="TR · Turkey · other">
+  <span class="font-medium">Turkey</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="AE · United Arab Emirates · other">
+  <span class="font-medium">United Arab Emirates</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="GB · United Kingdom · closed">
+  <span class="font-medium">United Kingdom</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="US · United States of America · operating">
+  <span class="font-medium">United States of America</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="EU · European Union · other">
+  <span class="font-medium">European Union</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+    </div>
+  </div>
+</article>
+    
+      <article class="border border-slate-200 rounded-lg p-5 bg-white">
+  <header class="flex items-start justify-between gap-3 mb-3">
+    <div>
+      <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-blue-600 font-semibold mb-1">
+        <span>BCBS</span>
+        <span class="text-slate-300">·</span>
+        <span class="text-slate-500 normal-case font-medium">Basel Committee on Banking Supervision</span>
+      </div>
+      <h3 class="text-lg font-semibold text-slate-900">
+        <a href="https://www.bis.org/bcbs/publ/d579.htm" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Disclosure framework for cryptoasset exposures — finalised standards</a>
+      </h3>
+      <div class="text-xs text-slate-500 mt-1">
+        Trigger 2025-10-08 · Expected member action by 2027-09-28 (720d window)
+      </div>
+    </div>
+    <div class="text-right shrink-0 w-36">
+      <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Historical adoption</div>
+      <div class="text-3xl font-bold text-slate-900 tabular-nums leading-none">79%</div>
+      <div class="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <div class="h-full bg-blue-500 rounded-full" style="width: 79%"></div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1.5 tabular-nums">
+        22 of 28 members
+      </div>
+    </div>
+  </header>
+  <p class="text-sm text-slate-700 mb-4 whitespace-pre-line">BCBS disclosure standards historically adopted by ~24 BCBS member jurisdictions
+within 24 months via local prudential rules. Indirect effect on prediction
+markets via their banking counterparties&#39; exposure reporting and KYC posture.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">
+      Expected followers (28) · 12 in your footprint
+    </div>
+    <div class="flex flex-wrap gap-1.5">
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="AR · Argentina · operating">
+  <span class="font-medium">Argentina</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="AU · Australia · operating">
+  <span class="font-medium">Australia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="BE · Belgium · other">
+  <span class="font-medium">Belgium</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="BR · Brazil · operating">
+  <span class="font-medium">Brazil</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CA · Canada · other">
+  <span class="font-medium">Canada</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CN · China · other">
+  <span class="font-medium">China</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="FR · France · closed">
+  <span class="font-medium">France</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="DE · Germany · operating">
+  <span class="font-medium">Germany</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="HK · Hong Kong · other">
+  <span class="font-medium">Hong Kong</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="IN · India · operating">
+  <span class="font-medium">India</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-400 border-dashed bg-blue-50/50 text-blue-700"
+      title="ID · Indonesia · considering">
+  <span class="font-medium">Indonesia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">considering</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IT · Italy · other">
+  <span class="font-medium">Italy</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="JP · Japan · operating">
+  <span class="font-medium">Japan</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-400 border-dashed bg-blue-50/50 text-blue-700"
+      title="KR · South Korea · considering">
+  <span class="font-medium">South Korea</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">considering</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="LU · Luxembourg · other">
+  <span class="font-medium">Luxembourg</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="MX · Mexico · operating">
+  <span class="font-medium">Mexico</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="NL · Netherlands · closed">
+  <span class="font-medium">Netherlands</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="RU · Russia · other">
+  <span class="font-medium">Russia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SA · Saudi Arabia · other">
+  <span class="font-medium">Saudi Arabia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="SG · Singapore · closed">
+  <span class="font-medium">Singapore</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="ZA · South Africa · operating">
+  <span class="font-medium">South Africa</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="ES · Spain · operating">
+  <span class="font-medium">Spain</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SE · Sweden · other">
+  <span class="font-medium">Sweden</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CH · Switzerland · other">
+  <span class="font-medium">Switzerland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="TR · Turkey · other">
+  <span class="font-medium">Turkey</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="GB · United Kingdom · closed">
+  <span class="font-medium">United Kingdom</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="US · United States of America · operating">
+  <span class="font-medium">United States of America</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="EU · European Union · other">
+  <span class="font-medium">European Union</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+    </div>
+  </div>
+</article>
+    
+      <article class="border border-slate-200 rounded-lg p-5 bg-white">
+  <header class="flex items-start justify-between gap-3 mb-3">
+    <div>
+      <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-blue-600 font-semibold mb-1">
+        <span>ESMA</span>
+        <span class="text-slate-300">·</span>
+        <span class="text-slate-500 normal-case font-medium">European Securities and Markets Authority</span>
+      </div>
+      <h3 class="text-lg font-semibold text-slate-900">
+        <a href="https://www.esma.europa.eu/press-news/esma-news/esma-q1-2026-risk-dashboard" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Q1 2026 thematic risk note on event-contract and prediction-market venues</a>
+      </h3>
+      <div class="text-xs text-slate-500 mt-1">
+        Trigger 2026-03-12 · Expected member action by 2026-12-07 (270d window)
+      </div>
+    </div>
+    <div class="text-right shrink-0 w-36">
+      <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">Historical adoption</div>
+      <div class="text-3xl font-bold text-slate-900 tabular-nums leading-none">67%</div>
+      <div class="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <div class="h-full bg-blue-500 rounded-full" style="width: 67%"></div>
+      </div>
+      <div class="text-xs text-slate-500 mt-1.5 tabular-nums">
+        18 of 27 members
+      </div>
+    </div>
+  </header>
+  <p class="text-sm text-slate-700 mb-4 whitespace-pre-line">ESMA thematic notes historically prompt parallel guidance from 18-22 EU/EEA
+national competent authorities within 9 months. The Q1 2026 note explicitly
+names cross-border solicitation by US-licensed event-contract platforms —
+the cascade window aligns with EU NCA Q3-Q4 2026 supervisory priority-setting.
+</p>
+  <div class="mb-3">
+    <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">
+      Expected followers (27) · 2 in your footprint
+    </div>
+    <div class="flex flex-wrap gap-1.5">
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="AT · Austria · other">
+  <span class="font-medium">Austria</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="BE · Belgium · other">
+  <span class="font-medium">Belgium</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="BG · Bulgaria · other">
+  <span class="font-medium">Bulgaria</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="HR · Croatia · other">
+  <span class="font-medium">Croatia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CY · Cyprus · other">
+  <span class="font-medium">Cyprus</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="CZ · Czechia · other">
+  <span class="font-medium">Czechia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="DK · Denmark · other">
+  <span class="font-medium">Denmark</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="EE · Estonia · other">
+  <span class="font-medium">Estonia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="FI · Finland · other">
+  <span class="font-medium">Finland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="FR · France · closed">
+  <span class="font-medium">France</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="DE · Germany · operating">
+  <span class="font-medium">Germany</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="GR · Greece · other">
+  <span class="font-medium">Greece</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="HU · Hungary · other">
+  <span class="font-medium">Hungary</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IE · Ireland · other">
+  <span class="font-medium">Ireland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="IT · Italy · other">
+  <span class="font-medium">Italy</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="LV · Latvia · other">
+  <span class="font-medium">Latvia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="LT · Lithuania · other">
+  <span class="font-medium">Lithuania</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="LU · Luxembourg · other">
+  <span class="font-medium">Luxembourg</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="MT · Malta · other">
+  <span class="font-medium">Malta</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-rose-400 bg-rose-50 text-rose-800 line-through"
+      title="NL · Netherlands · closed">
+  <span class="font-medium">Netherlands</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">closed</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="PL · Poland · other">
+  <span class="font-medium">Poland</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="PT · Portugal · other">
+  <span class="font-medium">Portugal</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="RO · Romania · other">
+  <span class="font-medium">Romania</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SK · Slovakia · other">
+  <span class="font-medium">Slovakia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SI · Slovenia · other">
+  <span class="font-medium">Slovenia</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-blue-500 bg-blue-50 text-blue-800"
+      title="ES · Spain · operating">
+  <span class="font-medium">Spain</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">operating</span>
+</span>
+      
+        
+
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded border-slate-200 bg-slate-50 text-slate-700"
+      title="SE · Sweden · other">
+  <span class="font-medium">Sweden</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">other</span>
+</span>
+      
+    </div>
+  </div>
+</article>
+    
+  </section>
+  <aside class="lg:col-span-1 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">How cascade rules work</h2>
+      <p class="text-sm text-slate-700">
+        Each card lists a standards body, its trigger guidance, and the member jurisdictions historically expected to act within the follow-window. Hit-rates are computed against prior cascades by the same body.
+      </p>
+    </div>
+    <div class="border border-slate-200 rounded-lg p-4 text-xs text-slate-500">
+      V1: rule-based. Learned models replace rules in V2+ as more cascades accumulate.
+    </div>
+  </aside>
+</div>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="../../beta/heatmap/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Heat-map</a>
+  <a href="../../beta/report/index.html" class="text-sm text-blue-600 hover:text-blue-800">Read the Q2 2026 report →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

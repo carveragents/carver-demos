@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?\nKind: active\nTimeline (2 events):\n- 2026-04-30 [background] Keynote Remarks at ISDA 40th Annual General Meeting \u2014 Generic ISDA keynote listing the Fed Board provides no substantive Fed policy signal for Jan 26, 2028 and doesn't change cut odds.\n- 2025-07-30 [background] Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S. \u2014 Praise for crypto regulatory recommendations is unrelated to FOMC rate policy and provides negligible information about a Jan 26, 2028 25bp cut.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "To date, there is no regulatory or policy signaling exerting pressure toward a 25bps cut in Jan 2028. A generic Fed keynote and unrelated crypto-oversight praise add negligible information and do not shift odds. The contract remains open pending future FOMC guidance, economic data, and the January 2028 decision."
+  }
+}

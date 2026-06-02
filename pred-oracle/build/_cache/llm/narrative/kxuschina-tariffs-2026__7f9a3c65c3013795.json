@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will US tariffs on Chinese goods exceed 60% average effective rate in 2026?\nKind: active\nTimeline (2 events):\n- 2026-02-25 [background] PDF Version \u2014 Mentions Department of Commerce but is a generic 'PDF Version' with no substantive notice or Federal Register determination about tariffs >60%.\n- 2026-02-25 [background] View Comments \u2014 Generic 'View Comments' entry names Dept. of Commerce but contains no tariff/China substance, so it doesn't change resolution probability.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Thus far, the record shows only generic Commerce-linked \u201cPDF Version\u201d and \u201cView Comments\u201d stubs with no substantive China/tariff content, offering no regulatory signal toward >60% average rates. No USTR/Commerce/ITC Federal Register notices, proposed rules, or proclamations indicate movement to that level. Pending triggers would be new Section 301 actions, presidential proclamations, or legislation raising average effective rates."
+  }
+}

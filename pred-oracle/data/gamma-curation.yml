@@ -62,14 +62,23 @@ pre_listing_scans:
 # hand-curated YAML files under data/platforms/<platform>/contracts/<id>.yml.
 contract_detail_picks:
   # Retrospectives (hand-curated from Wayback / news sources)
+  - id: "polymarket-us-2025"
+    platform: "polymarket"
+    kind: "retrospective"
+  - id: "cardano-etf-2025"
+    platform: "polymarket"
+    kind: "retrospective"
+  - id: "stablecoin-genius-act-2025"
+    platform: "polymarket"
+    kind: "retrospective"
+  - id: "solana-etf-2025"
+    platform: "polymarket"
+    kind: "retrospective"
   - id: "tiktokban-25apr30"
     platform: "kalshi"
     kind: "retrospective"
   - id: "kxfeddecision-26mar"
     platform: "kalshi"
-    kind: "retrospective"
-  - id: "solana-etf-2025"
-    platform: "polymarket"
     kind: "retrospective"
   # Active picks — must match data/platforms/{kalshi,polymarket}/contracts.yml
   # so every dashboard row has a clickable detail page.

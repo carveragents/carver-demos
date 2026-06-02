@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (5 events):\n- 2026-05-04 [background] Attorney General Bonta Urged U.S. Supreme Court to Protect Telehealth Access to Mifepristone - May 4, 2026 \u2014 Unrelated SCOTUS filing about telehealth access for mifepristone; does not affect Trump v. Slaughter or FTC removal issue.\n- 2026-02-12 [background] FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter \u2014 Federal Trade Commission \u2014 Bureau of Competition \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-01-14 [background] Instacart (timeline item) - January 14, 2026 \u2014 An FTC timeline entry about Instacart is agency enforcement background and does not affect whether the Supreme Court will rule on presidential removal power.\n- 2025-12-19 [background] FTC Continues Enforcement Action Streak Against Anticompetitive No-Hire Agreements \u2014 FTC continuing enforcement actions is routine background showing agency activity but does not materially affect whether SCOTUS will rule the President may remove FTC commissioners.\n- 2025-11-25 [background] Gateway Pet Memorial Services \u2014 Routine FTC enforcement mentioning commissioners provides background but does not change odds of a Supreme Court removal ruling.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Thus far the timeline shows only routine FTC enforcement and unrelated SCOTUS filings, providing background but no directional pressure on whether the President can remove FTC commissioners. The market hinges on SCOTUS taking and deciding a relevant removal\u2011power case; cert, briefing, argument, and a merits ruling remain pending."
+  }
+}

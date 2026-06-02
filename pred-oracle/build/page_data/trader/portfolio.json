@@ -1,0 +1,274 @@
+[
+  {
+    "contract_id": "clarity-act-2026",
+    "platform": "polymarket",
+    "title": "Will the CLARITY Act be signed into law in 2026?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 359.68,
+    "heat_tier": "critical",
+    "heat_delta_7d": -251.61,
+    "peer_percentile": 100,
+    "net_direction": "Bullish",
+    "thesis_direct_bullish": 2,
+    "thesis_direct_bearish": 2,
+    "thesis_background_bullish": 2,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-05-29",
+      "field": "effective_date",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-19",
+      "title": "CFTC Sues Minnesota to Block State Law",
+      "direction": "bullish",
+      "magnitude": "medium"
+    },
+    "position": {
+      "side": "YES",
+      "size": 300,
+      "entry_price": 0.5
+    },
+    "detail_href": "../contracts/clarity-act-2026/"
+  },
+  {
+    "contract_id": "kxbtc-maxprice-2026",
+    "platform": "kalshi",
+    "title": "Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 323.65,
+    "heat_tier": "critical",
+    "heat_delta_7d": -248.21,
+    "peer_percentile": 92,
+    "net_direction": "Bullish",
+    "thesis_direct_bullish": 8,
+    "thesis_direct_bearish": 2,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-05-29",
+      "field": "effective_date",
+      "title": "CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-15",
+      "title": "CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 200,
+      "entry_price": 0.54
+    },
+    "detail_href": "../contracts/kxbtc-maxprice-2026/"
+  },
+  {
+    "contract_id": "scotus-ftc-independence-2026",
+    "platform": "polymarket",
+    "title": "SCOTUS rules Trump can fire FTC commissioners?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 257.78,
+    "heat_tier": "critical",
+    "heat_delta_7d": -201.73,
+    "peer_percentile": 75,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 0,
+    "thesis_direct_bearish": 0,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 7,
+    "next_catalyst": {
+      "date": "30 days from publication date",
+      "field": "comment_deadline",
+      "title": "FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger"
+    },
+    "latest_event": {
+      "pub_date": "2026-04-16",
+      "title": "FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 500,
+      "entry_price": 0.9
+    },
+    "detail_href": "../contracts/scotus-ftc-independence-2026/"
+  },
+  {
+    "contract_id": "kxfeddecision-28jan",
+    "platform": "kalshi",
+    "title": "Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?",
+    "kind": "active",
+    "expires_at": "2028-01-26T18:59:00Z",
+    "heat_value": 93.58,
+    "heat_tier": "active",
+    "heat_delta_7d": -66.25,
+    "peer_percentile": 42,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 1,
+    "thesis_direct_bearish": 2,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-06-18",
+      "field": "comment_deadline",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-11",
+      "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "NO",
+      "size": 100,
+      "entry_price": 0.71
+    },
+    "detail_href": "../contracts/kxfeddecision-28jan/"
+  },
+  {
+    "contract_id": "us-recession-in-2026",
+    "platform": "polymarket",
+    "title": "Will the US enter a recession in 2026?",
+    "kind": "active",
+    "expires_at": "2026-12-31T23:59:00Z",
+    "heat_value": 92.21,
+    "heat_tier": "watch",
+    "heat_delta_7d": -64.96,
+    "peer_percentile": 33,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 0,
+    "thesis_direct_bearish": 0,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 20,
+    "next_catalyst": {
+      "date": "2026-06-18",
+      "field": "comment_deadline",
+      "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-18",
+      "title": "Treasury International Capital Data for March",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 500,
+      "entry_price": 0.18
+    },
+    "detail_href": "../contracts/us-recession-in-2026/"
+  },
+  {
+    "contract_id": "cannabis-dea-rescheduling-2026",
+    "platform": "polymarket",
+    "title": "Marijuana rescheduled by December 31, 2026?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 87.22,
+    "heat_tier": "watch",
+    "heat_delta_7d": -81.5,
+    "peer_percentile": 25,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 0,
+    "thesis_direct_bearish": 0,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 5,
+    "next_catalyst": {
+      "date": "April 1, 2025",
+      "field": "effective_date",
+      "title": "AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-20",
+      "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "YES",
+      "size": 150,
+      "entry_price": 0.32
+    },
+    "detail_href": "../contracts/cannabis-dea-rescheduling-2026/"
+  },
+  {
+    "contract_id": "fda-retatrutide-2026",
+    "platform": "polymarket",
+    "title": "FDA approves Retatrutide in 2026?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 9.4,
+    "heat_tier": "watch",
+    "heat_delta_7d": -4.32,
+    "peer_percentile": 17,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 0,
+    "thesis_direct_bearish": 0,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 5,
+    "next_catalyst": {
+      "date": "2027-01-01",
+      "field": "effective_date",
+      "title": "CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-21",
+      "title": "In the Matter of Ariel Betances",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "NO",
+      "size": 250,
+      "entry_price": 0.82
+    },
+    "detail_href": "../contracts/fda-retatrutide-2026/"
+  },
+  {
+    "contract_id": "nrc-nuclear-reactor-2026",
+    "platform": "polymarket",
+    "title": "US grants license for new nuclear reactor in 2026?",
+    "kind": "active",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "heat_value": 3.07,
+    "heat_tier": "dormant",
+    "heat_delta_7d": -6.18,
+    "peer_percentile": 8,
+    "net_direction": "Mixed",
+    "thesis_direct_bullish": 0,
+    "thesis_direct_bearish": 2,
+    "thesis_background_bullish": 0,
+    "thesis_background_bearish": 0,
+    "event_count_90d": 5,
+    "next_catalyst": {
+      "date": "June 1, 2026",
+      "field": "effective_date",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines"
+    },
+    "latest_event": {
+      "pub_date": "2026-05-01",
+      "title": "Attorney General Bonta Seeks to Halt Trump Administration\u2019s Illegal Greenlight of Oil Transportation in California Pipelines",
+      "direction": "neutral",
+      "magnitude": "low"
+    },
+    "position": {
+      "side": "NO",
+      "size": 200,
+      "entry_price": 0.78
+    },
+    "detail_href": "../contracts/nrc-nuclear-reactor-2026/"
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: Will the SEC officially classify Ether as a security by 2026-12-31?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission issues a formal\norder, final rule, or sustained civil enforcement judgment concluding that\nEther (ETH) is a security under the Securities Act of 1933 or the Securities\nExchange Act of 1934, on or before 2026-12-31.\n\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Commodity Futures Trading Commission', 'Coinbase', 'Consensys', 'Ethereum Foundation']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "SEC formal order",
+        "summary": "By 2026-12-31, the SEC issues a formal order explicitly concluding Ether (ETH) is a security under the Securities Act of 1933 or the Securities Exchange Act of 1934."
+      },
+      {
+        "id": "B",
+        "label": "SEC final rule",
+        "summary": "By 2026-12-31, the SEC adopts and publishes a final rule that classifies Ether (ETH) as a security under the 1933 or 1934 Acts."
+      },
+      {
+        "id": "C",
+        "label": "Sustained SEC civil judgment",
+        "summary": "By 2026-12-31, an SEC civil enforcement case yields a court\u2019s final judgment that ETH is a security under the 1933/1934 Acts, and the judgment stands (affirmed or unappealed) by that date."
+      }
+    ]
+  }
+}

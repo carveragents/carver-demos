@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (5 events):\n- 2026-05-11 [background] FTC Chairman Ferguson\u202fAdvises Companies to Comply with the Take It Down Act \u2014 FTC chair advising compliance shows agency activity but gives no direct evidence that SCOTUS has ruled the President can remove FTC commissioners.\n- 2026-05-01 [background] FTC to Host Workshop on \u201cLitigate the Fix\u201d Merger Remedy Proposals \u2014 FTC workshop on merger remedies is routine agency activity unrelated to the Supreme Court's removal\u2011power case; no material effect on YES odds.\n- 2026-04-15 [background] Testimony of the Federal Trade Commission before the Committee on Commerce, Science and Transportation \u2014 FTC testimony provides context on agency views but does not directly alter the Supreme Court's decision or probability of a majority for removal.\n- 2026-03-24 [background] Do you have thoughts on negative option-related regulations? Share them with the FTC \u2014 An FTC request for comments on negative-option rules is routine agency activity and does not materially affect a Supreme Court removal ruling.\n- 2026-03-12 [background] Rule Concerning the Use of Prenotification Negative Option Plans \u2014 FTC promulgating a rule is routine agency action and doesn't directly affect the Supreme Court's legal question on presidential removal.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "From Mar\u2013May 2026, the FTC issued rules, sought comments, held a workshop, and gave testimony\u2014routine actions that do not bear on SCOTUS's removal\u2011power question. Compliance advisories likewise reflect status quo agency operations. The Supreme Court\u2019s ruling on whether Trump can fire FTC commissioners remains pending."
+  }
+}

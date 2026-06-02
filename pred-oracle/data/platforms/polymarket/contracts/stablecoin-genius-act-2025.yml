@@ -1,0 +1,51 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "stablecoin-genius-act-2025"
+
+title: "Will the U.S. enact a stablecoin bill in 2025?"
+resolution_criteria: |
+  Resolves YES if the President of the United States signs into law a federal
+  stablecoin regulatory framework bill by December 31, 2025, 11:59 PM ET.
+  Resolves NO otherwise.
+
+listed_at: "2025-03-20"
+resolved_at: "2025-07-18"
+status: "resolved"
+resolution_outcome: "YES"
+condition_id: '0x05856dd8d47a2b4a98d86e9863a7276b42ff099c79cda62467bd6d737907e7d5'
+clob_token_ids:
+  - '70182065775553604111451664399636263302945246670321226849019457109669503067260'
+  - '15951699082175685800883034128250761631254714417671773419845473478399732761730'
+polymarket_slug: 'us-enacts-stablecoin-bill-in-2025'
+
+settlement_entities:
+  - "Office of the Comptroller of the Currency"
+  - "Federal Deposit Insurance Corporation"
+  - "Consumer Financial Protection Bureau"
+  - "U.S. Securities and Exchange Commission"
+  - "Financial Crimes Enforcement Network"
+  - "Federal Reserve"
+
+source_urls:
+  - "https://www.mayerbrown.com/en/insights/publications/2025/07/genius-act-signed-into-law-us-enacts-federal-stablecoin-legislation"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Mar 2025: Contract listed at ~60% YES. The GENIUS Act (Guiding and
+#   Establishing National Innovation for U.S. Stablecoins) was advancing
+#   through Congress with bipartisan support.
+# - Feb 2025: FDIC released 175 documents on crypto supervision, signaling
+#   regulatory transparency. SEC designated Crypto Task Force.
+# - Apr 2025: FDIC and Federal Reserve withdrew prior joint statements
+#   restricting bank crypto activities — a major policy reversal.
+# - Jul 14, 2025: FDIC, OCC, and Federal Reserve issued joint statement
+#   on risk management for banks' crypto-asset safekeeping, laying
+#   groundwork for stablecoin oversight framework.
+# - Jul 18, 2025: President Trump signed the GENIUS Act into law,
+#   creating a federal-state framework for stablecoin oversight involving
+#   OCC, FDIC, Federal Reserve, and state financial regulators.
+# - Carver corpus tracked multi-agency crypto policy shifts: FDIC document
+#   releases, agency statement withdrawals, joint risk-management guidance,
+#   and SEC Crypto Task Force activities throughout the window.

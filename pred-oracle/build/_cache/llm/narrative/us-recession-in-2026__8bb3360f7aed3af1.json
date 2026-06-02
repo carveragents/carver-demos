@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the US enter a recession in 2026?\nKind: active\nTimeline (1 events):\n- 2025-07-30 [background] Acting Chairman Pham Lauds Presidential Working Group Recommendations to Usher in Golden Age of Crypto in the U.S. \u2014 Crypto-friendly regulatory recommendations may slightly boost growth and so marginally reduce probability of a 2026 NBER recession.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "In July 2025, Acting Chairman Pham lauds PWG crypto\u2011friendly recommendations, signaling lighter\u2011touch digital\u2011asset rules that could modestly support investment and growth, slightly lowering 2026 recession odds. Macro data, policy moves, and any NBER recession call are still pending."
+  }
+}

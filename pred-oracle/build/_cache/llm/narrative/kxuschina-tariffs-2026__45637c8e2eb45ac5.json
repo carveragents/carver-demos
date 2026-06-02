@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will US tariffs on Chinese goods exceed 60% average effective rate in 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-22 [background] FIL-24-2026 - 22.05.2026 - Notice of Proposed Rulemaking to Establish Bank Secrecy Act and Sanctions Compliance Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers \u2014 FDIC proposed rule on stablecoin BSA/sanctions compliance does not affect USTR or Commerce tariff determinations on China.\n- 2026-05-21 [background] OCC Announces Enforcement Actions for May 2026 \u2014 OCC enforcement actions concern bank supervision and do not bear on USTR or Commerce tariff determinations for China.\n- 2026-04-27 [background] READOUT: Secretary of the Treasury Scott Bessent\u2019s Meeting with European Commissioner for Trade and Economic Security Maro\u0161 \u0160ef\u010dovi\u010d \u2014 Treasury\u2013EU trade readout contains no indication USTR/Commerce will set US\u2013China average tariff >60%; negligible effect on resolution odds.\n- 2026-04-24 [background] Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet \u2014 OFAC sanctions target Iran-related shipping/oil firms and do not affect USTR/Commerce tariff determinations, so they have negligible effect on a >60% China tariff outcome.\n- 2026-01-29 [background] Treasury Releases Report on Macroeconomic and Foreign Exchange Policies of Major Trading Partners of the United States \u2014 Treasury macro/FX report does not announce USTR or Commerce tariff findings; at best a background policy signal with negligible effect on a >60% tariff outcome.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Recent actions (FDIC stablecoin compliance NPRM, OCC enforcement, Treasury\u2013EU trade readout, Iran-related OFAC sanctions, and Treasury FX report) are peripheral to tariff-setting and offer no signal that average tariffs on China will exceed 60%. There is no direct USTR or Commerce move toward such levels; key 2026 tariff determinations remain pending."
+  }
+}

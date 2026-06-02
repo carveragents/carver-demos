@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: FDA approves Retatrutide in 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-12 [background] Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026 \u2014 California AG urging FDA to reverse e-cigarette guidance is unrelated to Lilly's Retatrutide NDA/BLA and doesn't change 2026 approval odds.\n- 2026-05-12 [background] Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes \u2014 Action targets e\u2011cigarette guidance, not drug approvals or Lilly/Retatrutide, so it doesn't affect FDA's NDA/BLA decision likelihood or timing.\n- 2026-05-12 [background] CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027 \u2014 Puerto Rico insurance forms/fees notice unrelated to FDA approval of Retatrutide; no impact on likelihood or timing of FDA NDA/BLA approval.\n- 2026-05-04 [background] Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone \u2014 Coalition concerns mifepristone/Supreme Court case; unrelated to Retatrutide's clinical data, NDA/BLA timing, or FDA decision on this drug.\n- 2026-05-04 [background] Attorney General Bonta Urged U.S. Supreme Court to Protect Telehealth Access to Mifepristone - May 4, 2026 \u2014 Unrelated legal advocacy about mifepristone telehealth access; does not affect FDA review or Eli Lilly's Retatrutide approval prospects.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "So far, no regulatory pressure targets Retatrutide itself; listed events concern e\u2011cigarette guidance, mifepristone access, and a Puerto Rico insurance notice, none affecting FDA review of this drug. The 2026 approval outcome remains pending under standard NDA/BLA timelines, with any submission and FDA decision still to come."
+  }
+}

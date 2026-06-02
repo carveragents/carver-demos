@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Marijuana rescheduled by December 31, 2026?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="../../../trader/index.html" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-orange-100 text-orange-800 uppercase tracking-wide font-medium">watch</span>
+    
+    
+    <span class="text-xs text-slate-400">expires 2027-01-01</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">Marijuana rescheduled by December 31, 2026?</h1>
+</header>
+
+
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">28¢</span>
+    <span class="text-[10px] text-emerald-200">payout $357/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">72¢</span>
+    <span class="text-[10px] text-rose-200">payout $139/$100</span>
+  </button>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
+    <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
+    <span class="text-slate-700">Your position:</span>
+    <span class="font-semibold">YES</span>
+    <span class="text-slate-500">150 contracts</span>
+    <span class="text-slate-400">@ 32¢ avg</span>
+    <span class="text-slate-300">·</span>
+    <span class="font-medium tabular-nums text-rose-600">-$6 (-12%)</span>
+  </div>
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">DEA lowers schedule for marijuana</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 0</span>
+                  <span class="text-rose-500">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">By Dec 31, 2026, 11:59 PM ET, a final DEA action reclassifies marijuana (the whole plant/substance, i.e., recreational marijuana) from Schedule I to II–V. Not satisfied by rescheduling only cannabinoids/derivatives.</p>
+            
+          </div>
+        </li>
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">B</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">DEA unschedules marijuana</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 0</span>
+                  <span class="text-rose-500">↓ 0</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="0" data-direct-bearish="0" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-slate-400 rounded-full h-1.5" style="width: 50%"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">By Dec 31, 2026, 11:59 PM ET, a final DEA action removes marijuana entirely from the Controlled Substances Act schedules (unscheduled).</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Regulatory pressure centers on DEA’s rescheduling rulemaking, but 2025–26 developments—state AG crackdowns, a multistate letter on federal-state enforcement, and OFAC fentanyl sanctions—are peripheral and offer no clear signal. The key federal decision remains pending; a final DEA action is still needed before the Dec 31, 2026 deadline.
+      </blockquote>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Drug Enforcement Administration
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Department of Health and Human Services
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Department of Justice
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Food and Drug Administration
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          White House Office of National Drug Control Policy
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+    
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (5)</h2>
+        
+        <div class="flex gap-1 text-xs">
+          <button @click="filter='all'"
+                  :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'"
+                  :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">A</button>
+          
+          <button @click="filter='B'"
+                  :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'"
+                  class="px-2 py-1 rounded">B</button>
+          
+        </div>
+        
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-20</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury Office of Foreign Assets Control — Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0503" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations</a>
+            
+            <p class="text-xs text-slate-600 mt-1">OFAC sanctions targeting Sinaloa fentanyl trafficking are unrelated to DEA action on marijuana rescheduling, so no material effect on the outcome.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-13</span>
+            <span class="block text-[10px] text-slate-400 uppercase">California Department of Justice — Special Prosecutions Section</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-joint-investigation-leads-felony-charges-against" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">State tax prosecution of an unlicensed cannabis retailer is a local enforcement action and has no clear effect on the DEA&#39;s federal rescheduling decision.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-26</span>
+            <span class="block text-[10px] text-slate-400 uppercase">South Carolina Attorney General — State Grand Jury Division</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.scag.gov/about-the-office/news/attorney-general-alan-wilson-announces-indictments-in-state-grand-jury-operation-ganjapreneur-involving-marijuana-and-illegal-thc-products-being-sold-openly-in-sc-businesses/" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Attorney General Alan Wilson announces indictments in State Grand Jury Operation ‘Ganjapreneur’ involving marijuana and illegal THC products being sold openly in SC businesses</a>
+            
+            <p class="text-xs text-slate-600 mt-1">South Carolina Attorney General — State Grand Jury Division — South Carolina Securities Commissioner: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-28</span>
+            <span class="block text-[10px] text-slate-400 uppercase">California Department of Justice Office of the Attorney General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-joins-multistate-coalition-condemning-us-doj-threats" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. DOJ Threats Against Minnesota</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Multistate AGs condemn DOJ threats; this concerns federal-state enforcement politics but gives no direct signal on DEA&#39;s rescheduling decision.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Attorney General</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.mass.gov/news/ag-campbell-secures-agreement-with-trump-administration-preventing-further-delays-in-medical-and-public-health-research" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Office of the Attorney General — Massachusetts Office of the Attorney General Consumer Advocacy &amp; Response Division: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">This market will resolve to &#39;Yes&#39; if marijuana is rescheduled down from Schedule I
+to any other level (or is unscheduled completely) by the Drug Enforcement Agency of
+the United States by December 31, 2026, 11:59 PM ET. Otherwise, this market will
+resolve to &#39;No&#39;.
+
+The primary resolution source will be official information from the U.S. government,
+however a consensus of credible reporting will also be used.
+
+Note: In April 2026, FDA-approved marijuana products and state-licensed medical
+cannabis were moved to Schedule III under President Trump&#39;s executive order. This
+market specifically tracks whether recreational marijuana (currently Schedule I) is
+rescheduled. If the DEA reschedules only specific cannabinoids or derivatives without
+reclassifying marijuana as a whole, that does not qualify.
+
+A DEA administrative hearing on full rescheduling is scheduled to begin June 29, 2026.
+</p>
+    </section>
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-orange-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-orange-700 uppercase tracking-wide">watch</span>
+          
+          <span class="text-sm text-slate-500">top 75% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 87</span>
+      </div>
+
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-orange-700" style="width: 25%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
+        
+          <span class="text-emerald-600">▼ cooling / 7d</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,2.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,26.0 64.62,2.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Duplicate press releases announcing felony charges from a joint investigation
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            AG urging federal crackdown on xylazine (&#39;tranq&#39;) amid an abuse surge
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Multistate coalition actions and a federal agreement drawing public attention
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Critical heat is driven by recent high‑visibility AG activity — repeated felony‑charge announcements from a joint probe, renewed calls to crack down on xylazine (&#39;tranq&#39;), and multistate legal actions.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <ul class="space-y-3">
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.mass.gov/news/ag-campbell-secures-agreement-with-trump-administration-preventing-further-delays-in-medical-and-public-health-research" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">April 1, 2025 · Effective date</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.29, "t": 1770440400}, {"p": 0.29, "t": 1770483600}, {"p": 0.29, "t": 1770526800}, {"p": 0.291, "t": 1770570000}, {"p": 0.291, "t": 1770613200}, {"p": 0.291, "t": 1770656400}, {"p": 0.291, "t": 1770699600}, {"p": 0.292, "t": 1770742800}, {"p": 0.292, "t": 1770786000}, {"p": 0.292, "t": 1770829200}, {"p": 0.292, "t": 1770872400}, {"p": 0.292, "t": 1770915600}, {"p": 0.293, "t": 1770958800}, {"p": 0.293, "t": 1771002000}, {"p": 0.293, "t": 1771045200}, {"p": 0.293, "t": 1771088400}, {"p": 0.294, "t": 1771131600}, {"p": 0.294, "t": 1771174800}, {"p": 0.294, "t": 1771218000}, {"p": 0.294, "t": 1771261200}, {"p": 0.295, "t": 1771304400}, {"p": 0.295, "t": 1771347600}, {"p": 0.295, "t": 1771390800}, {"p": 0.295, "t": 1771434000}, {"p": 0.295, "t": 1771477200}, {"p": 0.296, "t": 1771520400}, {"p": 0.296, "t": 1771563600}, {"p": 0.296, "t": 1771606800}, {"p": 0.296, "t": 1771650000}, {"p": 0.297, "t": 1771693200}, {"p": 0.297, "t": 1771736400}, {"p": 0.297, "t": 1771779600}, {"p": 0.297, "t": 1771822800}, {"p": 0.297, "t": 1771866000}, {"p": 0.298, "t": 1771909200}, {"p": 0.298, "t": 1771952400}, {"p": 0.298, "t": 1771995600}, {"p": 0.298, "t": 1772038800}, {"p": 0.299, "t": 1772082000}, {"p": 0.299, "t": 1772125200}, {"p": 0.299, "t": 1772168400}, {"p": 0.299, "t": 1772211600}, {"p": 0.3, "t": 1772254800}, {"p": 0.3, "t": 1772298000}, {"p": 0.3, "t": 1772341200}, {"p": 0.3, "t": 1772384400}, {"p": 0.301, "t": 1772427600}, {"p": 0.301, "t": 1772470800}, {"p": 0.301, "t": 1772514000}, {"p": 0.302, "t": 1772557200}, {"p": 0.302, "t": 1772600400}, {"p": 0.302, "t": 1772643600}, {"p": 0.303, "t": 1772686800}, {"p": 0.303, "t": 1772730000}, {"p": 0.304, "t": 1772773200}, {"p": 0.304, "t": 1772816400}, {"p": 0.304, "t": 1772859600}, {"p": 0.305, "t": 1772902800}, {"p": 0.305, "t": 1772946000}, {"p": 0.305, "t": 1772985600}, {"p": 0.306, "t": 1773028800}, {"p": 0.306, "t": 1773072000}, {"p": 0.306, "t": 1773115200}, {"p": 0.307, "t": 1773158400}, {"p": 0.307, "t": 1773201600}, {"p": 0.307, "t": 1773244800}, {"p": 0.308, "t": 1773288000}, {"p": 0.308, "t": 1773331200}, {"p": 0.309, "t": 1773374400}, {"p": 0.309, "t": 1773417600}, {"p": 0.309, "t": 1773460800}, {"p": 0.31, "t": 1773504000}, {"p": 0.31, "t": 1773547200}, {"p": 0.311, "t": 1773590400}, {"p": 0.311, "t": 1773633600}, {"p": 0.312, "t": 1773676800}, {"p": 0.312, "t": 1773720000}, {"p": 0.313, "t": 1773763200}, {"p": 0.314, "t": 1773806400}, {"p": 0.314, "t": 1773849600}, {"p": 0.315, "t": 1773892800}, {"p": 0.315, "t": 1773936000}, {"p": 0.316, "t": 1773979200}, {"p": 0.316, "t": 1774022400}, {"p": 0.317, "t": 1774065600}, {"p": 0.318, "t": 1774108800}, {"p": 0.318, "t": 1774152000}, {"p": 0.319, "t": 1774195200}, {"p": 0.319, "t": 1774238400}, {"p": 0.32, "t": 1774281600}, {"p": 0.321, "t": 1774324800}, {"p": 0.321, "t": 1774368000}, {"p": 0.322, "t": 1774411200}, {"p": 0.322, "t": 1774454400}, {"p": 0.323, "t": 1774497600}, {"p": 0.324, "t": 1774540800}, {"p": 0.324, "t": 1774584000}, {"p": 0.325, "t": 1774627200}, {"p": 0.325, "t": 1774670400}, {"p": 0.326, "t": 1774713600}, {"p": 0.326, "t": 1774756800}, {"p": 0.327, "t": 1774800000}, {"p": 0.328, "t": 1774843200}, {"p": 0.328, "t": 1774886400}, {"p": 0.329, "t": 1774929600}, {"p": 0.329, "t": 1774972800}, {"p": 0.33, "t": 1775016000}, {"p": 0.338, "t": 1775059200}, {"p": 0.345, "t": 1775102400}, {"p": 0.353, "t": 1775145600}, {"p": 0.36, "t": 1775188800}, {"p": 0.367, "t": 1775232000}, {"p": 0.375, "t": 1775275200}, {"p": 0.383, "t": 1775318400}, {"p": 0.39, "t": 1775361600}, {"p": 0.397, "t": 1775404800}, {"p": 0.405, "t": 1775448000}, {"p": 0.412, "t": 1775491200}, {"p": 0.42, "t": 1775534400}, {"p": 0.414, "t": 1775577600}, {"p": 0.407, "t": 1775620800}, {"p": 0.401, "t": 1775664000}, {"p": 0.395, "t": 1775707200}, {"p": 0.389, "t": 1775750400}, {"p": 0.383, "t": 1775793600}, {"p": 0.376, "t": 1775836800}, {"p": 0.37, "t": 1775880000}, {"p": 0.364, "t": 1775923200}, {"p": 0.357, "t": 1775966400}, {"p": 0.351, "t": 1776009600}, {"p": 0.345, "t": 1776052800}, {"p": 0.339, "t": 1776096000}, {"p": 0.333, "t": 1776139200}, {"p": 0.326, "t": 1776182400}, {"p": 0.32, "t": 1776225600}, {"p": 0.319, "t": 1776268800}, {"p": 0.318, "t": 1776312000}, {"p": 0.317, "t": 1776355200}, {"p": 0.315, "t": 1776398400}, {"p": 0.314, "t": 1776441600}, {"p": 0.313, "t": 1776484800}, {"p": 0.312, "t": 1776528000}, {"p": 0.311, "t": 1776571200}, {"p": 0.31, "t": 1776614400}, {"p": 0.308, "t": 1776657600}, {"p": 0.307, "t": 1776700800}, {"p": 0.306, "t": 1776744000}, {"p": 0.305, "t": 1776787200}, {"p": 0.304, "t": 1776830400}, {"p": 0.303, "t": 1776873600}, {"p": 0.302, "t": 1776916800}, {"p": 0.3, "t": 1776960000}, {"p": 0.299, "t": 1777003200}, {"p": 0.298, "t": 1777046400}, {"p": 0.297, "t": 1777089600}, {"p": 0.296, "t": 1777132800}, {"p": 0.295, "t": 1777176000}, {"p": 0.293, "t": 1777219200}, {"p": 0.292, "t": 1777262400}, {"p": 0.291, "t": 1777305600}, {"p": 0.29, "t": 1777348800}, {"p": 0.29, "t": 1777392000}, {"p": 0.289, "t": 1777435200}, {"p": 0.289, "t": 1777478400}, {"p": 0.288, "t": 1777521600}, {"p": 0.288, "t": 1777564800}, {"p": 0.287, "t": 1777608000}, {"p": 0.287, "t": 1777651200}, {"p": 0.287, "t": 1777694400}, {"p": 0.286, "t": 1777737600}, {"p": 0.286, "t": 1777780800}, {"p": 0.285, "t": 1777824000}, {"p": 0.285, "t": 1777867200}, {"p": 0.285, "t": 1777910400}, {"p": 0.284, "t": 1777953600}, {"p": 0.284, "t": 1777996800}, {"p": 0.283, "t": 1778040000}, {"p": 0.283, "t": 1778083200}, {"p": 0.283, "t": 1778126400}, {"p": 0.282, "t": 1778169600}, {"p": 0.282, "t": 1778212800}, {"p": 0.281, "t": 1778256000}, {"p": 0.281, "t": 1778299200}, {"p": 0.28, "t": 1778342400}, {"p": 0.28, "t": 1778385600}, {"p": 0.281, "t": 1778428800}, {"p": 0.281, "t": 1778472000}, {"p": 0.282, "t": 1778515200}, {"p": 0.282, "t": 1778558400}, {"p": 0.283, "t": 1778601600}, {"p": 0.283, "t": 1778644800}, {"p": 0.284, "t": 1778688000}, {"p": 0.284, "t": 1778731200}, {"p": 0.285, "t": 1778774400}, {"p": 0.285, "t": 1778817600}, {"p": 0.285, "t": 1778860800}, {"p": 0.286, "t": 1778904000}, {"p": 0.286, "t": 1778947200}, {"p": 0.287, "t": 1778990400}, {"p": 0.287, "t": 1779033600}, {"p": 0.288, "t": 1779076800}, {"p": 0.288, "t": 1779120000}, {"p": 0.289, "t": 1779163200}, {"p": 0.289, "t": 1779206400}, {"p": 0.29, "t": 1779249600}, {"p": 0.289, "t": 1779292800}, {"p": 0.288, "t": 1779336000}, {"p": 0.287, "t": 1779379200}, {"p": 0.287, "t": 1779422400}, {"p": 0.286, "t": 1779465600}, {"p": 0.285, "t": 1779508800}, {"p": 0.284, "t": 1779552000}, {"p": 0.283, "t": 1779595200}, {"p": 0.283, "t": 1779638400}, {"p": 0.282, "t": 1779681600}, {"p": 0.281, "t": 1779724800}, {"p": 0.28, "t": 1779768000}];
+  var timelineEvents = [{"carver_feed_entry_id": "e21e651d-d9c2-42c8-afc9-e6ecaccadf6a", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "OFAC sanctions targeting Sinaloa fentanyl trafficking are unrelated to DEA action on marijuana rescheduling, so no material effect on the outcome.", "pub_date": "2026-05-20", "regulator": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control", "relevance_score": 1, "timeline_shift": "none", "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0503"}, {"carver_feed_entry_id": "290aca15-e563-4bbd-892b-ad606f75ff46", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "State tax prosecution of an unlicensed cannabis retailer is a local enforcement action and has no clear effect on the DEA\u0027s federal rescheduling decision.", "pub_date": "2026-05-13", "regulator": "California Department of Justice \u2014 Special Prosecutions Section", "relevance_score": 1, "timeline_shift": "none", "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026", "urgency": 1.0, "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-joint-investigation-leads-felony-charges-against"}, {"carver_feed_entry_id": "ab02ccbc-c9ef-401c-82d5-76e793b608bb", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "South Carolina Attorney General \u2014 State Grand Jury Division \u2014 South Carolina Securities Commissioner: tangential to resolution, no directional effect.", "pub_date": "2026-03-26", "regulator": "South Carolina Attorney General \u2014 State Grand Jury Division", "relevance_score": 2, "timeline_shift": "none", "title": "Attorney General Alan Wilson announces indictments in State Grand Jury Operation \u2018Ganjapreneur\u2019 involving marijuana and illegal THC products being sold openly in SC businesses", "urgency": 1.0, "url": "https://www.scag.gov/about-the-office/news/attorney-general-alan-wilson-announces-indictments-in-state-grand-jury-operation-ganjapreneur-involving-marijuana-and-illegal-thc-products-being-sold-openly-in-sc-businesses/"}, {"carver_feed_entry_id": "a8a57ad2-0452-4891-b9a3-ba883a91ca82", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Multistate AGs condemn DOJ threats; this concerns federal-state enforcement politics but gives no direct signal on DEA\u0027s rescheduling decision.", "pub_date": "2026-01-28", "regulator": "California Department of Justice Office of the Attorney General", "relevance_score": 2, "timeline_shift": "none", "title": "2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. DOJ Threats Against Minnesota", "urgency": 1.0, "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-joins-multistate-coalition-condemning-us-doj-threats"}, {"carver_feed_entry_id": "c9a11f37-4a5c-4883-886f-3f332ae6f4ed", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "April 1, 2025", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Office of the Attorney General \u2014 Massachusetts Office of the Attorney General Consumer Advocacy \u0026 Response Division: tangential to resolution, no directional effect.", "pub_date": "2025-12-30", "regulator": "Office of the Attorney General", "relevance_score": 3, "timeline_shift": "none", "title": "AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research", "urgency": 1.0, "url": "https://www.mass.gov/news/ag-campbell-secures-agreement-with-trump-administration-preventing-further-delays-in-medical-and-public-health-research"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
+});
+</script>
+
+
+</body>
+</html>

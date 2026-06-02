@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET? — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../../gamma/dashboard/index.html" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+</nav>
+
+<header class="mb-6">
+  <div class="flex items-baseline gap-2 mb-1">
+    <span class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Listed contract</span>
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">active</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold">
+    
+    <a href="https://kalshi.com/markets/KXBTCMAXY-26DEC31-109999.99" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?</a>
+    
+  </h1>
+  <div class="text-xs text-slate-500 mt-1">listed 2026-01-02 · expires 2027-01-01</div>
+</header>
+
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
+  <article class="lg:col-span-3">
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-slate-800 whitespace-pre-line">If the Bitcoin spot price according to the CF Bitcoin Real-Time Index is above $109999.99 starting 01/02/2026 06:00 PM and before Dec 31, 2026 at 11:59 PM ET, then the market resolves to Yes.</p>
+    </section>
+
+    
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Conditions for YES</h2>
+      <ol class="space-y-2 text-sm">
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0">A</span>
+          <div>
+            <div class="font-medium text-slate-900">BTC &gt; $109,999.99 on CF RT Index</div>
+            <div class="text-slate-600">YES if, at any moment from Jan 2, 2026 6:00 PM ET (inclusive) to before Dec 31, 2026 11:59 PM ET, the CF Bitcoin Real-Time Index spot price is strictly &gt; $109,999.99 USD.</div>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">U.S. Securities and Exchange Commission</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Commodity Futures Trading Commission</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Reserve System</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">BlackRock</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Fidelity Investments</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Coinbase</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+      </div>
+    </section>
+
+    
+    <section class="mb-6">
+      <blockquote class="border-l-4 border-blue-400 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 italic">
+        Regulatory signals are mixed: CFTC pilots and ICE/CME 24/7 and market‑maker programs expand crypto derivatives liquidity (bullish). The SEC is reviewing a Nasdaq proposal to list BlackRock’s Bitcoin Premium Income ETF (potentially demand‑boosting), while bank capital tightening and NY AG suits against Coinbase/Gemini pose headwinds (bearish). Pending: SEC ETF decision and litigation outcomes.
+      </blockquote>
+    </section>
+    
+
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+      </div>
+
+      
+      <div class="mb-4 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
+        <span class="font-medium">Condition:</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-600"></span>A: BTC &gt; $109,999.99 on CF RT Index</span>
+        
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Background</span>
+        <span class="ml-4 font-medium">Urgency:</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-1 ring-slate-500"></span>low</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-2 ring-slate-500"></span>med</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-[3px] ring-slate-500"></span>high</span>
+      </div>
+
+      <ol class="relative">
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-15</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60807" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Commodity Futures Trading Commission — Office of the Secretariat — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission — Office of the Secretariat · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-14</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60795" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CME’s market‑maker program affects bitcoin derivatives liquidity/volatility but has an indirect and ambiguous effect on the BTC spot reaching $109,999.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 8</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-13</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60767" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CME expanding crypto futures trading/clearing hours boosts liquidity and price discovery, modestly increasing odds BTC tops $110k and may resolve sooner.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-13</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60773" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Bullish: CME&#39;s 24/7 weekend market-maker program modestly increases liquidity/trading access, slightly raising odds BTC tops $109,999.99 and may speed timing.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 8</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-13</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60772" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CME&#39;s 24/7 weekend market-maker program boosts futures liquidity and continuous price discovery, modestly raising odds BTC tops $109,999.99 — bullish.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission — Office of the Secretariat · matched <span class="font-medium"></span> · urg 8</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-08</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/rules/sro/nasdaq/2026/34-105424.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Self-Regulatory Organizations; The Nasdaq Stock Market LLC; Notice of Filing of Proposed Rule Change, as Modified by Amendment No. 1 Thereto, to List and Trade Shares of iShares Bitcoin Premium Income ETF under Nasdaq Rule 5711(d) (CommodityBased Trust...</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC notice to list BlackRock iShares Bitcoin Premium Income ETF raises institutional access/demand, modestly increasing odds BTC tops $109,999 in 2026.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-27</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/meetings-events/bitcoin-2026" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Bitcoin 2026</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC/Paul Atkins &#39;Bitcoin 2026&#39; item implies regulatory commentary but contains no concrete policy or market-moving action; only a weak indirect signal on BTC price.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 10</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-21</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-sues-coinbase-and-gemini-running-illegal-gambling" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Platforms in New York</a>
+            
+            <p class="text-sm text-slate-700 mt-1">NY AG sues Coinbase and Gemini; reduced US exchange access/confidence likely lowers BTC demand, making &gt;$110k less likely (medium).</p>
+            
+            <p class="text-xs text-slate-500 mt-1">New York Attorney General — Investor Protection Bureau · matched <span class="font-medium"></span> · urg 5</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60505" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">COIN | Crypto Market Maker Program - 04/16/2026</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC market-maker program for Coinbase derivatives could boost liquidity and institutional demand, slightly increasing odds BTC exceeds $109,999.99.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-16</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60499" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME | Modifications to the Event Contract… - 04/16/2026</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC notice of CME contract modifications likely only indirectly affects BTC price/liquidity via futures; no clear directional effect on CF RT Index.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-10</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.govinfo.gov/content/pkg/FR-2026-04-10/pdf/2026-06974.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064–AG19)</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Federal Deposit Insurance Corporation — Division of Complex Institution Supervision and Resolution — Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Federal Deposit Insurance Corporation — Division of Complex Institution Supervision and Resolution · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-9.html" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Capital rule changes tightening banks&#39; trading activity could reduce institutional crypto holdings/trading, lowering odds BTC tops $109,999.99 in 2026.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Office of the Comptroller of the Currency · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Federal Deposit Insurance Corporation — Federal Deposit Insurance Corporation: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Federal Deposit Insurance Corporation · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-12</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59935" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-12</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59676" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CFE Cboe Bitcoin Continuous Futures Lead Market Maker Program Amendment [2]</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Commodity Futures Trading Commission — Commodity Futures Trading Commission: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-03</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59590" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">ICE US New Cryptocurrency Futures Liquidity Provider Program</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC-backed ICE liquidity provider program for crypto futures should improve liquidity and demand, modestly increasing odds BTC tops $109,999.99.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-03</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59589" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">ICE US New Cryptocurrency Futures Market Maker Program</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC-backed ICE market-maker program should boost futures liquidity and institutional participation, modestly increasing odds BTC tops $109,999.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-01-29</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/59559" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">COIN | Modifications to the Perp Style Futures Market Maker Program</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC changes to Coinbase&#39;s perp futures market-maker program may only indirectly affect BTC liquidity/volatility, so no clear impact on &gt;$109,999 outcome.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 8</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-17</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/58895" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">CME - Modifications to the Bitcoin Friday Futures Market Maker Program</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CME changes to Bitcoin futures market‑maker program can affect liquidity/volatility and thus spot dynamics, but the title alone gives no clear directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission · matched <span class="font-medium"></span> · urg 9</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-12-08</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 ring-[3px] ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.cftc.gov/PressRoom/PressReleases/9146-25" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFTC pilot to allow tokenized collateral in derivatives likely boosts institutional demand/liquidity for crypto, modestly increasing odds BTC tops $110k in 2026.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Commodity Futures Trading Commission — Market Participants Division, Division of Market Oversight, Division of Clearing and Risk · matched <span class="font-medium"></span> · urg 7</p>
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+  </article>
+
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Heat</h2>
+      
+      <div class="text-3xl font-bold uppercase tracking-wide text-rose-700 leading-none">critical</div>
+      <div class="text-sm text-slate-600 mt-1 tabular-nums">
+        435
+         · -209.0 / 7d
+         · top 0%
+      </div>
+      
+      <p class="text-sm text-slate-700 mt-3">Critical heat is driven by a wave of exchange actions implementing market‑maker programs and 24/7 trading expansions, amplified by high‑profile regulatory and legal moves this week.</p>
+      
+      <div class="mt-4">
+        
+        
+
+
+
+
+
+<svg viewBox="0 0 80 24" width="80" height="24" class="inline-block align-middle">
+  <polyline fill="none" stroke="#2563eb" stroke-width="1.5"
+    points="0.0,23.0 6.15,16.84 12.31,23.0 18.46,23.0 24.62,23.0 30.77,23.0 36.92,1.0 43.08,15.96 49.23,15.08 55.38,23.0 61.54,23.0 67.69,23.0 73.85,23.0 80.0,23.0 " />
+</svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-1">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+</div>
+
+<section class="flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="../../../gamma/dashboard/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Back to dashboard</a>
+  <a href="../../../beta/index.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Next scene: International planning →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

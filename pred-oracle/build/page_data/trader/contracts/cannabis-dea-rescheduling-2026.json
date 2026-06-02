@@ -1,0 +1,220 @@
+{
+  "contract": {
+    "id": "cannabis-dea-rescheduling-2026",
+    "platform": "polymarket",
+    "kind": "active",
+    "title": "Marijuana rescheduled by December 31, 2026?",
+    "subtitle": "",
+    "external_id": "cannabis-dea-rescheduling-2026",
+    "status": "active",
+    "listed_at": "2026-02-07",
+    "expires_at": "2027-01-01T04:59:00Z",
+    "resolved_at": "",
+    "resolution_criteria": "This market will resolve to 'Yes' if marijuana is rescheduled down from Schedule I\nto any other level (or is unscheduled completely) by the Drug Enforcement Agency of\nthe United States by December 31, 2026, 11:59 PM ET. Otherwise, this market will\nresolve to 'No'.\n\nThe primary resolution source will be official information from the U.S. government,\nhowever a consensus of credible reporting will also be used.\n\nNote: In April 2026, FDA-approved marijuana products and state-licensed medical\ncannabis were moved to Schedule III under President Trump's executive order. This\nmarket specifically tracks whether recreational marijuana (currently Schedule I) is\nrescheduled. If the DEA reschedules only specific cannabinoids or derivatives without\nreclassifying marijuana as a whole, that does not qualify.\n\nA DEA administrative hearing on full rescheduling is scheduled to begin June 29, 2026.\n",
+    "resolution_outcome": "",
+    "settlement_entities": [
+      {
+        "name": "Drug Enforcement Administration",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Health and Human Services",
+        "role": "regulator"
+      },
+      {
+        "name": "Department of Justice",
+        "role": "regulator"
+      },
+      {
+        "name": "Food and Drug Administration",
+        "role": "regulator"
+      },
+      {
+        "name": "White House Office of National Drug Control Policy",
+        "role": "regulator"
+      }
+    ],
+    "source_urls": [
+      "https://polymarket.com/event/weed-rescheduled-by-march-31",
+      "https://www.dea.gov/drug-information/drug-scheduling"
+    ],
+    "primary_source_url": "https://polymarket.com/event/weed-rescheduled-by-march-31",
+    "heat": 87.22,
+    "heat_history": [
+      3,
+      4,
+      9,
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "conditions": [
+      {
+        "id": "A",
+        "label": "DEA lowers schedule for marijuana",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action reclassifies marijuana (the whole plant/substance, i.e., recreational marijuana) from Schedule I to II\u2013V. Not satisfied by rescheduling only cannabinoids/derivatives.",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      },
+      {
+        "id": "B",
+        "label": "DEA unschedules marijuana",
+        "summary": "By Dec 31, 2026, 11:59 PM ET, a final DEA action removes marijuana entirely from the Controlled Substances Act schedules (unscheduled).",
+        "bullish_count": 0,
+        "bearish_count": 0,
+        "background_bullish_count": 0,
+        "background_bearish_count": 0,
+        "progress": 50,
+        "sentiment": "neutral"
+      }
+    ],
+    "narrative": "Regulatory pressure centers on DEA\u2019s rescheduling rulemaking, but 2025\u201326 developments\u2014state AG crackdowns, a multistate letter on federal-state enforcement, and OFAC fentanyl sanctions\u2014are peripheral and offer no clear signal. The key federal decision remains pending; a final DEA action is still needed before the Dec 31, 2026 deadline."
+  },
+  "position": {
+    "side": "YES",
+    "size": 150,
+    "entry_price": 0.32
+  },
+  "timeline": [
+    {
+      "pub_date": "2026-05-20",
+      "title": "Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations",
+      "regulator": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control",
+      "url": "https://home.treasury.gov/news/press-releases/sb0503",
+      "urgency": 1.0,
+      "impact": 10.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "e21e651d-d9c2-42c8-afc9-e6ecaccadf6a",
+      "one_line_why": "OFAC sanctions targeting Sinaloa fentanyl trafficking are unrelated to DEA action on marijuana rescheduling, so no material effect on the outcome.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-05-13",
+      "title": "Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026",
+      "regulator": "California Department of Justice \u2014 Special Prosecutions Section",
+      "url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-joint-investigation-leads-felony-charges-against",
+      "urgency": 1.0,
+      "impact": 9.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "290aca15-e563-4bbd-892b-ad606f75ff46",
+      "one_line_why": "State tax prosecution of an unlicensed cannabis retailer is a local enforcement action and has no clear effect on the DEA's federal rescheduling decision.",
+      "condition_tag": "background",
+      "relevance_score": 1,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-03-26",
+      "title": "Attorney General Alan Wilson announces indictments in State Grand Jury Operation \u2018Ganjapreneur\u2019 involving marijuana and illegal THC products being sold openly in SC businesses",
+      "regulator": "South Carolina Attorney General \u2014 State Grand Jury Division",
+      "url": "https://www.scag.gov/about-the-office/news/attorney-general-alan-wilson-announces-indictments-in-state-grand-jury-operation-ganjapreneur-involving-marijuana-and-illegal-thc-products-being-sold-openly-in-sc-businesses/",
+      "urgency": 1.0,
+      "impact": 10.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "ab02ccbc-c9ef-401c-82d5-76e793b608bb",
+      "one_line_why": "South Carolina Attorney General \u2014 State Grand Jury Division \u2014 South Carolina Securities Commissioner: tangential to resolution, no directional effect.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2026-01-28",
+      "title": "2026-01-28 - Attorney General Bonta Joins Multistate Coalition Condemning U.S. DOJ Threats Against Minnesota",
+      "regulator": "California Department of Justice Office of the Attorney General",
+      "url": "https://www.oag.ca.gov/news/press-releases/attorney-general-bonta-joins-multistate-coalition-condemning-us-doj-threats",
+      "urgency": 1.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "a8a57ad2-0452-4891-b9a3-ba883a91ca82",
+      "one_line_why": "Multistate AGs condemn DOJ threats; this concerns federal-state enforcement politics but gives no direct signal on DEA's rescheduling decision.",
+      "condition_tag": "background",
+      "relevance_score": 2,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "",
+      "comment_deadline": ""
+    },
+    {
+      "pub_date": "2025-12-30",
+      "title": "AG Campbell Secures Agreement With Trump Administration Preventing Further Delays In Medical And Public Health Research",
+      "regulator": "Office of the Attorney General",
+      "url": "https://www.mass.gov/news/ag-campbell-secures-agreement-with-trump-administration-preventing-further-delays-in-medical-and-public-health-research",
+      "urgency": 1.0,
+      "impact": 8.0,
+      "matched_entity": "",
+      "carver_feed_entry_id": "c9a11f37-4a5c-4883-886f-3f332ae6f4ed",
+      "one_line_why": "Office of the Attorney General \u2014 Massachusetts Office of the Attorney General Consumer Advocacy & Response Division: tangential to resolution, no directional effect.",
+      "condition_tag": "background",
+      "relevance_score": 3,
+      "high_impact": false,
+      "direction": "neutral",
+      "magnitude": "low",
+      "timeline_shift": "none",
+      "mechanism": "Context",
+      "effective_date": "April 1, 2025",
+      "comment_deadline": ""
+    }
+  ],
+  "heat_panel": {
+    "value": 87.22,
+    "tier": "watch",
+    "delta_7d": -81.5,
+    "peer_percentile": 25,
+    "urgency_weighted_sparkline": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "primary_drivers": [
+      "Duplicate press releases announcing felony charges from a joint investigation",
+      "AG urging federal crackdown on xylazine ('tranq') amid an abuse surge",
+      "Multistate coalition actions and a federal agreement drawing public attention"
+    ],
+    "explainer": "Critical heat is driven by recent high\u2011visibility AG activity \u2014 repeated felony\u2011charge announcements from a joint probe, renewed calls to crack down on xylazine ('tranq'), and multistate legal actions."
+  }
+}

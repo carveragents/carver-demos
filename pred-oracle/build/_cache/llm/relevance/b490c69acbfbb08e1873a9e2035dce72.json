@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the SEC approve a spot Cardano ETF in 2025?\nResolution criteria: Resolves YES if the U.S. Securities and Exchange Commission approves a spot\nCardano (ADA) ETF for trading on a national securities exchange by\nDecember 31, 2025, 11:59 PM ET. Resolves NO otherwise.\n\nConditions:\n  A: 19b-4 approval for ADA ETF listing \u2014 By Dec 31, 2025, the SEC issues an order approving an exchange\u2019s Rule 19b-4 to list and trade shares of a spot Cardano (ADA) ETF on a U.S. national securities exchange.\n  B: ADA ETF starts trading on exchange \u2014 By Dec 31, 2025, shares of a spot Cardano (ADA) ETF actually list and commence trading on any U.S. national securities exchange, implying SEC approval for trading.\nSettlement entities: ['U.S. Securities and Exchange Commission', 'Division of Trading and Markets', 'Division of Investment Management', 'Grayscale Investments', 'Canary Capital']\n\nRecord title: Federal Register Notice of Filing (June 20, 2025)\nRecord date: 2025-06-20\nRecord regulator: Municipal Securities Rulemaking Board\nRecord topic: Municipal Securities Rulemaking Board\nRecord entities: ['Municipal Securities Rulemaking Board', 'Securities and Exchange Commission', 'Sherry R. Haywood']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "MSRB Federal Register filing concerns municipal securities, not SEC approval or trading of a spot Cardano (ADA) ETF; no impact on resolution.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

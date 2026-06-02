@@ -1,0 +1,39 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "clarity-act-2026"
+
+title: "Will the CLARITY Act be signed into law in 2026?"
+resolution_criteria: |
+  This market will resolve to 'Yes' if the Digital Asset Market Clarity Act of 2025
+  (H.R.3633) is passed by both chambers of the U.S. Congress and signed into law by
+  December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to 'No'.
+
+  The primary resolution source will be official information from Congress.gov, the
+  White House, and the U.S. Government Publishing Office. A consensus of credible
+  reporting will also be used.
+
+  The CLARITY Act (also referred to as the Digital Asset Market Clarity Act) establishes
+  a regulatory framework distinguishing digital commodities from digital securities,
+  granting the CFTC primary jurisdiction over digital commodity spot markets and
+  clarifying the SEC's jurisdiction over digital asset securities.
+
+listed_at: "2026-01-11"
+expires_at: "2027-01-01T04:59:00Z"
+status: "active"
+
+polymarket_slug: "clarity-act-signed-into-law-in-2026"
+
+settlement_entities:
+  - "U.S. House of Representatives"
+  - "U.S. Senate"
+  - "Commodity Futures Trading Commission"
+  - "U.S. Securities and Exchange Commission"
+  - "White House"
+  - "Department of the Treasury"
+
+source_urls:
+  - "https://polymarket.com/event/clarity-act-signed-into-law-in-2026"
+  - "https://www.congress.gov/bill/119th-congress/house-bill/3633"
+
+source_retrieved_at: "2026-05-26"

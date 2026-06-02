@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Pred-Oracle Demo — Next Steps</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<section class="max-w-3xl">
+  <h1 class="text-3xl font-bold tracking-tight">Thank you for walking the demo.</h1>
+  <p class="mt-4 text-slate-600">
+    Every signal you saw came from Carver's regulatory-annotation pipeline.
+    Your production deployment would pull live across the regulators relevant
+    to your business — federal, state, international, and standards bodies.
+  </p>
+</section>
+
+<section class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+  <a href="alpha/index.html" class="block p-5 border border-slate-200 rounded-lg hover:border-blue-500 transition">
+    <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Radar</div>
+    <div class="text-base font-bold mt-2">The GC's inbox</div>
+    <p class="text-sm text-slate-600 mt-2">15 ranked signals; one promoted to wow row.</p>
+  </a>
+  <a href="gamma/index.html" class="block p-5 border border-slate-200 rounded-lg hover:border-blue-500 transition">
+    <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Listing</div>
+    <div class="text-base font-bold mt-2">Listing risk dashboard</div>
+    <p class="text-sm text-slate-600 mt-2">Pre-listing scan + 8 contract detail pages.</p>
+  </a>
+  <a href="beta/index.html" class="block p-5 border border-slate-200 rounded-lg hover:border-blue-500 transition">
+    <div class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Expansion</div>
+    <div class="text-base font-bold mt-2">Q2 2026 intelligence report</div>
+    <p class="text-sm text-slate-600 mt-2">World heat-map + cascades + board-ready report.</p>
+  </a>
+</section>
+
+<section class="mt-10 max-w-2xl border border-slate-200 rounded-lg p-6 bg-slate-50/50">
+  <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">Next steps</div>
+  <h2 class="text-xl font-bold mb-3">Request a live data feed.</h2>
+  <p class="text-sm text-slate-700 mb-4">
+    Reach out to discuss a Carver-backed regulatory-intelligence feed configured
+    for your operating footprint, listing posture, and board reporting cadence.
+  </p>
+  <a href="mailto:hello@predoracle.example?subject=Pred-Oracle%20demo%20followup"
+     class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">
+    Contact the team
+  </a>
+</section>
+
+<section class="mt-10 text-xs text-slate-500">
+  <p>This is a static demo. Synthetic platform context is labelled where it appears. Every regulatory event is linked to its primary source.</p>
+</section>
+
+<section class="mt-10 flex items-center justify-between border-t border-slate-200 pt-6">
+  <a href="index.html" class="text-sm text-slate-500 hover:text-slate-900">← Back to landing</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

@@ -1,0 +1,36 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "fda-retatrutide-2026"
+
+title: "FDA approves Retatrutide in 2026?"
+resolution_criteria: |
+  This market will resolve to 'Yes' if the U.S. Food and Drug Administration formally
+  approves Retatrutide (LY3437943, Eli Lilly's triple GIP/GLP-1/glucagon receptor
+  agonist) for any indication by December 31, 2026, 11:59 PM ET. Approval must be
+  via formal FDA authorization — a New Drug Application (NDA) or Biologics License
+  Application (BLA) approval letter. Excludes Emergency Use Authorizations (EUA),
+  compassionate use designations, tentative approvals, and approvable letters.
+
+  Retatrutide targets obesity, type 2 diabetes, and related metabolic conditions.
+  Phase 3 clinical trial data is expected in 2026, with NDA submission expected no
+  earlier than late 2026, making a 2026 FDA decision unlikely but possible on
+  accelerated review pathways.
+
+listed_at: "2026-01-12"
+expires_at: "2027-01-01T04:59:00Z"
+status: "active"
+
+polymarket_slug: "fda-approves-retatrutide-this-year"
+
+settlement_entities:
+  - "Food and Drug Administration"
+  - "Center for Drug Evaluation and Research"
+  - "Eli Lilly and Company"
+  - "Office of New Drugs"
+
+source_urls:
+  - "https://polymarket.com/event/fda-approves-retatrutide-this-year"
+  - "https://www.fda.gov/drugs/development-approval-process-drugs"
+
+source_retrieved_at: "2026-05-26"

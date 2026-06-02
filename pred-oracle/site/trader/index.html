@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track the regulators that move your prediction-market positions. Carver-enriched portfolio, retrospective case studies, and regulatory calendar.">
+  <title>Carver Trader — Prediction-Market Regulatory Intelligence</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<section class="mb-12 max-w-3xl">
+  <div class="text-xs uppercase tracking-[0.18em] text-violet-600 font-semibold">For Prediction-Market Traders</div>
+  <h1 class="text-4xl font-bold tracking-tight leading-tight mt-2">
+    Regulators move markets.
+    <span class="block text-slate-900">Carver gets there first.</span>
+  </h1>
+  <p class="mt-6 text-xl text-slate-600">
+    Carver Trader is a Carver-powered overlay on your prediction market positions.
+    Every contract is scored against the regulatory filings that drive its resolution —
+    so you see signal before the market reprices.
+  </p>
+</section>
+
+<section class="mb-12">
+  <h2 class="text-sm uppercase tracking-wider text-slate-500 mb-4">Three ways in</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="../trader/portfolio/index.html"
+       class="block p-6 border border-slate-200 rounded-lg hover:border-violet-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-violet-600 font-semibold">A — Your book</div>
+      <div class="text-xl font-bold mt-2">Live portfolio</div>
+      <p class="text-slate-600 mt-2 text-sm">
+        Eight open positions across Polymarket and Kalshi, each scored for regulatory pressure
+        and tagged with the latest event that moved its odds.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="../trader/calendar/index.html"
+       class="block p-6 border border-slate-200 rounded-lg hover:border-violet-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-violet-600 font-semibold">B — What's next</div>
+      <div class="text-xl font-bold mt-2">Regulatory calendar</div>
+      <p class="text-slate-600 mt-2 text-sm">
+        Comment deadlines, rule effective dates, and scheduled hearings across your book —
+        the calendar of upcoming catalysts.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+
+    <a href="../trader/retrospectives/index.html"
+       class="block p-6 border border-slate-200 rounded-lg hover:border-violet-500 hover:shadow-md transition">
+      <div class="text-xs uppercase tracking-[0.18em] text-violet-600 font-semibold">C — Track record</div>
+      <div class="text-xl font-bold mt-2">Resolved case studies</div>
+      <p class="text-slate-600 mt-2 text-sm">
+        Four resolved contracts replayed against the regulatory timeline Carver tracked
+        at the time. See where the signals lined up — and where they didn't.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="how-it-works" class="border-t border-slate-200 pt-8 max-w-3xl" style="scroll-margin-top: 80px;">
+  <h2 class="text-sm uppercase tracking-wider text-slate-500 mb-3">How it works</h2>
+  <ol class="space-y-3 text-sm text-slate-700">
+    <li class="flex gap-3">
+      <span class="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center">1</span>
+      <span>For each contract, Carver decomposes the resolution criteria into named conditions and the regulatory bodies whose actions could resolve them.</span>
+    </li>
+    <li class="flex gap-3">
+      <span class="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center">2</span>
+      <span>Every regulatory filing Carver ingests is scored against those conditions — directly relevant (↑↓), tangential background, or unrelated.</span>
+    </li>
+    <li class="flex gap-3">
+      <span class="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-700 text-xs font-bold flex items-center justify-center">3</span>
+      <span>You get a tier label (critical/active/watch/dormant), a percentile rank vs your other positions, and a timeline of every event that contributed.</span>
+    </li>
+  </ol>
+  <p class="mt-6 text-xs text-slate-400 italic">
+    Demo data: portfolio and prices are real (sourced from Polymarket and Kalshi APIs); positions are illustrative.
+    Regulatory intelligence is generated from Carver's live corpus.
+    Not investment advice.
+  </p>
+</section>
+
+<section class="mt-10 flex items-center justify-between text-xs text-slate-400 border-t border-slate-200 pt-6">
+  <a href="../index.html" class="hover:text-slate-600 transition">← Back to all demos</a>
+  <span>Carver Trader · 192,822 events tracked across Carver as of 2026-06-02</span>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

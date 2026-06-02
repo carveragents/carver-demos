@@ -1,0 +1,51 @@
+schema_version: 1
+kind: "retrospective"
+platform: "polymarket"
+id: "btc-etf-approved-jan2024"
+
+title: "Will the SEC approve a spot Bitcoin ETF by January 15, 2024?"
+resolution_criteria: |
+  Resolves YES if any spot Bitcoin ETF receives approval from the U.S. Securities
+  and Exchange Commission by January 15, 2024, 11:59 PM ET. Approval means an
+  effective SEC order permitting listing on NYSE Arca, Cboe BZX, or NASDAQ.
+  Resolves NO otherwise.
+
+listed_at: "2023-12-01"
+resolved_at: "2024-01-10"
+status: "resolved"
+resolution_outcome: "YES"
+condition_id: '0xb36886bb0cf7cede4fd57fedbbbf80342ec76921d567fa9958275c22e1df04bd'
+clob_token_ids:
+  - '98787006152320761811798607481686168525551752574583108841982899511109091268658'
+  - '12378428024728849934843560840433868979543695535836715150168659304994480706119'
+polymarket_slug: 'bitcoin-etf-approved-by-jan-15'
+
+settlement_entities:
+  - "U.S. Securities and Exchange Commission"
+  - "Division of Trading and Markets"
+  - "Division of Investment Management"
+  - "BlackRock"
+  - "Fidelity Investments"
+  - "VanEck"
+  - "Grayscale Investments"
+  - "Ark Investment Management"
+  - "Invesco"
+  - "WisdomTree"
+
+source_urls:
+  - "https://www.sec.gov/about/divisions-offices/division-trading-markets"
+  - "https://en.wikipedia.org/wiki/Bitcoin_exchange-traded_fund"
+
+source_retrieved_at: "2026-05-27"
+
+# Resolution context for retrospective narrative:
+# - Contract opened Dec 1, 2023 at 41.5% YES — the market had been burned by
+#   prior SEC denials and was skeptical despite Grayscale's Aug 2023 court win.
+# - Probability rose rapidly to 72–89% through December as institutional
+#   applicants (BlackRock, Fidelity) held meetings with SEC staff.
+# - On Jan 9, 2024, the SEC's official X account was hacked; a fake tweet
+#   announcing approval briefly spiked Bitcoin price by ~$2K before the SEC
+#   clarified no approval had occurred — a signal of how primed the market was.
+# - SEC approved eleven spot Bitcoin ETFs on Jan 10, 2024, resolving YES.
+# - Carver corpus tracked SEC enforcement actions against crypto fraud throughout
+#   Dec 2023–Jan 2024, with no adverse signals toward the pending ETF applicants.

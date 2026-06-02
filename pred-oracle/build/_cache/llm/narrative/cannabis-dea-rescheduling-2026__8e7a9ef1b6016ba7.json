@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Marijuana rescheduled by December 31, 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-13 [background] Attorney General Bonta Seeks Answers from FIFA Regarding Potentially Misleading 2026 World Cup Ticketing Practices \u2014 California AG inquiry into FIFA ticketing is unrelated to DEA actions on marijuana and does not affect rescheduling odds.\n- 2026-05-12 [background] CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Ser\u00e1n Efectivo a Partir del A\u00f1o Calendario 2027 \u2014 Puerto Rico insurance commissioner forms/fees notice unrelated to DEA actions on marijuana; no effect on rescheduling probability.\n- 2026-05-04 [background] Attorney General Bonta Urged U.S. Supreme Court to Protect Telehealth Access to Mifepristone - May 4, 2026 \u2014 Concerns telehealth access to mifepristone and the Supreme Court; unrelated to DEA actions or marijuana scheduling, so no impact on odds.\n- 2026-05-04 [background] U.S. Supreme Court Issues Temporary Stay on Restrictions on Mifepristone after Attorney General Rayfield and Coalition File Brief \u2014 Off-topic: concerns a Supreme Court stay on mifepristone litigation and state AG actions, unrelated to DEA marijuana rescheduling.\n- 2026-03-13 [background] Attorney General Bonta Secures Second Court Order Blocking Trump Administration\u2019s Unlawful Termination of Over $600 Million In Federal Public Health Grants \u2014 California AG's court order blocking federal grant cuts is unrelated to DEA rescheduling of marijuana and doesn't affect odds.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "All listed timeline items are unrelated state or court matters and exert no direct pressure on DEA\u2019s cannabis rescheduling. The outcome hinges on ongoing DEA/DOJ rulemaking; final rule, interagency review, and potential court challenges remain pending before Dec 31, 2026."
+  }
+}

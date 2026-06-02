@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pred-Oracle — vertical compliance intelligence for prediction-market operators.">
+  <title>Will the U.S. enact a stablecoin bill in 2025? — Pred-Oracle</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="mb-4 text-sm">
+  <a href="../../../gamma/dashboard/index.html" class="text-slate-500 hover:text-slate-900">← Dashboard</a>
+</nav>
+
+<header class="mb-6">
+  <div class="flex items-baseline gap-2 mb-1">
+    <span class="text-xs uppercase tracking-[0.18em] text-blue-600 font-semibold">Listed contract</span>
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-slate-200 text-slate-700">resolved</span>
+    
+    <span class="text-xs uppercase tracking-wider px-2 py-0.5 rounded bg-violet-100 text-violet-800">retrospective</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold">
+    
+    <a href="https://www.mayerbrown.com/en/insights/publications/2025/07/genius-act-signed-into-law-us-enacts-federal-stablecoin-legislation" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700">Will the U.S. enact a stablecoin bill in 2025?</a>
+    
+  </h1>
+  <div class="text-xs text-slate-500 mt-1">listed 2025-03-20 · resolved 2025-07-18</div>
+</header>
+
+
+<aside class="mb-6 border-l-4 border-violet-400 bg-violet-50/40 px-4 py-3 text-sm text-slate-700 max-w-3xl">
+  <span class="font-medium">Retrospective.</span>
+  If your team had been running Pred-Oracle while this contract was live, here's what you would have seen.
+  Sources:
+  <a href="https://www.mayerbrown.com/en/insights/publications/2025/07/genius-act-signed-into-law-us-enacts-federal-stablecoin-legislation" target="_blank" rel="noopener noreferrer" class="text-violet-700 underline">[1]</a>
+</aside>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
+  <article class="lg:col-span-3">
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-slate-800 whitespace-pre-line">Resolves YES if the President of the United States signs into law a federal
+stablecoin regulatory framework bill by December 31, 2025, 11:59 PM ET.
+Resolves NO otherwise.
+</p>
+    </section>
+
+    
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Conditions for YES</h2>
+      <ol class="space-y-2 text-sm">
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0">A</span>
+          <div>
+            <div class="font-medium text-slate-900">Standalone stablecoin bill signed</div>
+            <div class="text-slate-600">By Dec 31, 2025, 11:59 PM ET, the U.S. President signs into law a standalone federal bill that establishes a regulatory framework for stablecoins.</div>
+          </div>
+        </li>
+        
+        <li class="flex gap-3">
+          
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex-shrink-0">B</span>
+          <div>
+            <div class="font-medium text-slate-900">Framework in larger act signed</div>
+            <div class="text-slate-600">By Dec 31, 2025, 11:59 PM ET, the President signs into law broader federal legislation that includes provisions establishing a federal stablecoin regulatory framework.</div>
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    <section class="mb-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Office of the Comptroller of the Currency</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Deposit Insurance Corporation</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Consumer Financial Protection Bureau</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">U.S. Securities and Exchange Commission</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-slate-50 text-slate-700 border-slate-200" title="company">
+  <span class="font-medium">Financial Crimes Enforcement Network</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">company</span>
+</span>
+        
+          
+<span class="inline-flex items-center gap-1 text-xs border px-2 py-0.5 rounded bg-blue-50 text-blue-700 border-blue-200" title="regulator">
+  <span class="font-medium">Federal Reserve</span>
+  <span class="opacity-60 text-[10px] uppercase tracking-wider">regulator</span>
+</span>
+        
+      </div>
+    </section>
+
+    
+    <section class="mb-6">
+      <blockquote class="border-l-4 border-blue-400 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 italic">
+        Through 2025, SEC, FinCEN, OCC, FDIC, and CFPB issued reports, advisories, and testimonies on crypto, payments, and banking risks—mostly background with limited direct impact. FinCEN&#39;s April interagency advisory and AML moves modestly increased pressure for a federal framework. Congress ultimately passed and the President signed a stablecoin bill in 2025, resolving YES.
+      </blockquote>
+    </section>
+    
+
+    <section x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (12)</h2>
+        
+        <div role="tablist" class="flex gap-1 text-xs">
+          <button @click="filter='all'" :class="filter==='all' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">All</button>
+          
+          <button @click="filter='A'" :class="filter==='A' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">A only</button>
+          
+          <button @click="filter='B'" :class="filter==='B' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700'" class="px-2 py-1 rounded">B only</button>
+          
+        </div>
+        
+      </div>
+
+      
+      <div class="mb-4 text-xs text-slate-500 flex flex-wrap gap-x-4 gap-y-1">
+        <span class="font-medium">Condition:</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-600"></span>A: Standalone stablecoin bill signed</span>
+        
+          
+          <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span>B: Framework in larger act signed</span>
+        
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Background</span>
+        <span class="ml-4 font-medium">Urgency:</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-1 ring-slate-500"></span>low</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-2 ring-slate-500"></span>med</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 ring-[3px] ring-slate-500"></span>high</span>
+      </div>
+
+      <ol class="relative">
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-15</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.fdic.gov/news/press-releases/2025/fdic-proposes-regulatory-threshold-adjustments-and-indexing-reflect" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">FDIC Proposes Regulatory Threshold Adjustments and Indexing to Reflect Inflation</a>
+            
+            <p class="text-sm text-slate-700 mt-1">FDIC&#39;s inflation-indexing proposal is relevant background on banking regulation but does not directly affect the likelihood of a federal stablecoin bill.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Federal Deposit Insurance Corporation · matched <span class="font-medium"></span> · urg 3</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-07-15</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.dob.texas.gov/sites/default/files/files/Applications-Forms-Publications/Publications/Suns/suns07-25.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">SUNS July 15, 2025 (PDF)</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Texas Dept. of Banking SUNS references federal agencies and stakeholders — provides background on oversight/cooperation but doesn&#39;t directly determine a federal stablecoin law.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Texas Department of Banking · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-30</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.federalregister.gov/d/2025-11991" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving Vector Casa de Bolsa, S.A. de C.V.</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Financial Crimes Enforcement Network — Financial Crimes Enforcement Network: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Financial Crimes Enforcement Network · matched <span class="font-medium"></span> · urg 6</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-06-03</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/newsroom/speeches-statements/testimony-atkins-060325" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Testimony Before the United States Senate Appropriations Subcommittee on Financial Services and General Government</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC testimony to Appropriations Subcommittee is general oversight/funding testimony and only weakly signals SEC priorities on stablecoins; minimal direct impact.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Securities and Exchange Commission · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-05-05</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.federalregister.gov/public-inspection/2025-07837/special-measure-regarding-huione-group-as-a-foreign-financial-institution-of-primary-money" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">finding and notice of…</a>
+            
+            <p class="text-sm text-slate-700 mt-1">FinCEN finding/notice affects crypto regulatory climate but lacks direct bearing on whether Congress will pass and the President will sign a federal stablecoin law.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Financial Crimes Enforcement Network · matched <span class="font-medium"></span> · urg 3</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-05-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.fincen.gov/news/news-releases/fincen-finds-cambodia-based-huione-group-be-primary-money-laundering-concern" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">FinCEN Finds Cambodia-Based Huione Group to be of Primary Money Laundering Concern, Proposes a Rule to Combat Cyber Scams and Heists</a>
+            
+            <p class="text-sm text-slate-700 mt-1">Financial Crimes Enforcement Network — Financial Crimes Enforcement Network: tangential to resolution, no directional effect.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Financial Crimes Enforcement Network · matched <span class="font-medium"></span> · urg 3</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-04-30</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.occ.gov/publications-and-resources/publications/semiannual-risk-perspective/files/semiannual-risk-perspective-spring-2025.html" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">OCC Report Highlights Key Risks in Federal Banking System</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OCC&#39;s general report flags banking risks but doesn&#39;t specifically address a federal stablecoin framework, so it offers only background context.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Office of the Comptroller of the Currency · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-04-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.fincen.gov/resources/advisories/fincen-advisory-fin-2025-a001" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">FinCEN Advisory FIN-2025-A001</a>
+            
+            <p class="text-sm text-slate-700 mt-1">FinCEN interagency advisory signals heightened concern about crypto/stablecoins, modestly increasing pressure for federal stablecoin legislation.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Financial Crimes Enforcement Network (FinCEN) · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-03-01</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/2025-exam-priorities.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">2025 Examination Priorities (PDF)</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC 2025 exam priorities are regulatory guidance, not law; they signal agency focus on crypto but don&#39;t materially change the chance a federal stablecoin bill is signed in 2025.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission — Division of Examinations · matched <span class="font-medium"></span> · urg 4</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-02-26</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.occ.gov/news-issuances/congressional-testimony/2026/ct-occ-2026-10-written.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Written Testimony</a>
+            
+            <p class="text-sm text-slate-700 mt-1">OCC testimony shows regulator engagement on stablecoins but, without clear policy change or legislative action, doesn&#39;t materially change passage odds.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Office of the Comptroller of the Currency · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-02-04</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.sec.gov/files/crypto-task-force-designation-letter.pdf" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">SEC Crypto Task Force Designation (PDF)</a>
+            
+            <p class="text-sm text-slate-700 mt-1">SEC designates a crypto task force—increases regulatory scrutiny but is background and unlikely to materially affect whether a federal stablecoin bill is signed.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">U.S. Securities and Exchange Commission — Office of the Chairman · matched <span class="font-medium"></span> · urg 1</p>
+          </article>
+        </li>
+        
+        
+        
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) && 'opacity-30'">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-01-10</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 ring-1 ring-slate-300"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <a href="https://www.consumerfinance.gov/rules-policy/notice-opportunities-comment/open-notices/request-for-information-regarding-the-collection-use-and-monetization-of-consumer-payment-and-other-personal-financial-data/" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 hover:text-blue-700">Request for Information Regarding the Collection, Use, and Monetization of Consumer Payment and Other Personal Financial Data</a>
+            
+            <p class="text-sm text-slate-700 mt-1">CFPB RFI on consumer payment data signals background attention to payments regulation but does not materially change likelihood of a 2025 federal stablecoin law.</p>
+            
+            <p class="text-xs text-slate-500 mt-1">Consumer Financial Protection Bureau · matched <span class="font-medium"></span> · urg 2</p>
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+  </article>
+
+  <aside class="lg:col-span-2 space-y-4">
+    <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Heat</h2>
+      
+      <div class="text-3xl font-bold uppercase tracking-wide text-rose-700 leading-none">critical</div>
+      <div class="text-sm text-slate-600 mt-1 tabular-nums">
+        391
+         · -130.1 / 7d
+         · top 11%
+      </div>
+      
+      <p class="text-sm text-slate-700 mt-3">Critical heat driven by a cluster of high‑impact regulatory moves and enforcement actions this summer — FDIC threshold/indexing proposal, FinCEN advisories/enforcement, OCC risks and special measures raising compliance and supervisory scrutiny.</p>
+      
+      <div class="mt-4">
+        
+        
+
+
+
+
+
+<svg viewBox="0 0 80 24" width="80" height="24" class="inline-block align-middle">
+  <polyline fill="none" stroke="#2563eb" stroke-width="1.5"
+    points="0.0,23.0 6.15,23.0 12.31,23.0 18.46,23.0 24.62,23.0 30.77,23.0 36.92,23.0 43.08,23.0 49.23,23.0 55.38,23.0 61.54,23.0 67.69,23.0 73.85,23.0 80.0,23.0 " />
+</svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-1">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+</div>
+
+<section class="flex items-center justify-between border-t border-slate-200 pt-6 flex-wrap gap-2">
+  <a href="../../../gamma/dashboard/index.html" class="text-sm text-slate-500 hover:text-slate-900">← Back to dashboard</a>
+  <a href="../../../beta/index.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium">Next scene: International planning →</a>
+</section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

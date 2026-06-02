@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: US grants license for new nuclear reactor in 2026?\nResolution criteria: This market will resolve to 'Yes' if the U.S. Nuclear Regulatory Commission (NRC)\nissues a new combined license (COL) for the construction and operation of a nuclear\npower plant by December 31, 2026, 11:59 PM ET. A combined license must be clearly\nidentified as such and documented in official NRC releases. Only initial issuances\ncount; amendments, renewals, or partial approvals do not qualify.\n\nNote: In March 2026, TerraPower's Natrium sodium-cooled advanced reactor received\nits first commercial construction permit \u2014 the first non-light-water reactor permit\nin years \u2014 but a separate combined operating license (COL) application remains\npending. This market resolves on the full COL issuance, not the construction permit.\n\nConditions:\n  A: NRC issues initial COL by deadline \u2014 By Dec 31, 2026 11:59 PM ET, the U.S. NRC issues an initial combined license (COL) to construct and operate a nuclear power plant, in an official NRC release. No amendments/renewals/partials.\nSettlement entities: ['Nuclear Regulatory Commission', 'Department of Energy', 'TerraPower LLC', 'SMR LLC', 'NuScale Power']\n\nRecord title: Consumer Notice \u2013 April 28, 2026\nRecord date: 2026-04-28\nRecord regulator: Connecticut Insurance Department \u2014 Consumer Affairs Division\nRecord topic: Connecticut Department of Banking\nRecord entities: ['Connecticut Insurance Department', 'Consumer Affairs Division', 'Insurance Institute for Business & Home Safety', 'National Association of Insurance Commissioners', 'Connecticut Department of Energy and Environmental Protection']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Connecticut insurance consumer notice concerns state insurance/energy agencies, not the NRC COL process; no effect on federal COL issuance.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

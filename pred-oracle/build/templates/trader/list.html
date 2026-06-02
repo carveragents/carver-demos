@@ -1,0 +1,246 @@
+{% extends "trader/_base.html" %}
+{% set active_nav = "list" %}
+
+{% block page_title %}Portfolio{% endblock %}
+
+{% block trader_content %}
+<div x-data="{
+  sort: 'heat',
+  platform: 'all',
+  tier: 'all',
+  doSort() {
+    const container = this.$refs.rows;
+    if (!container) return;
+    const items = Array.from(container.querySelectorAll('[data-heat]'));
+    const dirOrder = { Bullish: 0, Mixed: 1, Bearish: 2 };
+    items.sort((a, b) => {
+      if (this.sort === 'heat') return parseFloat(b.dataset.heat) - parseFloat(a.dataset.heat);
+      if (this.sort === 'direction') return (dirOrder[a.dataset.direction] ?? 1) - (dirOrder[b.dataset.direction] ?? 1);
+      if (this.sort === 'events') return parseInt(b.dataset.events) - parseInt(a.dataset.events);
+      return 0;
+    });
+    items.forEach(el => container.appendChild(el));
+  }
+}" x-effect="doSort()">
+
+  {# Header + view toggle #}
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold">Your Portfolio</h1>
+      <p class="text-sm text-slate-500 mt-1">{{ rows|length }} contract{% if rows|length != 1 %}s{% endif %} · regulatory heat updated daily</p>
+    </div>
+    <a href="{{ base_url|default('/') }}trader/calendar/"
+       class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-ink border border-slate-200 rounded px-3 py-1.5 transition">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+      </svg>
+      Calendar view
+    </a>
+  </div>
+
+  {# Filter / sort bar #}
+  <div class="flex flex-wrap items-center gap-3 mb-5 text-xs">
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Sort</span>
+    <button @click="sort='heat'"
+            :class="sort==='heat' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Heat</button>
+    <button @click="sort='direction'"
+            :class="sort==='direction' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Direction</button>
+    <button @click="sort='events'"
+            :class="sort==='events' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Events</button>
+
+    <span class="text-slate-300">|</span>
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Platform</span>
+    <button @click="platform='all'"
+            :class="platform==='all' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">All</button>
+    <button @click="platform='kalshi'"
+            :class="platform==='kalshi' ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Kalshi</button>
+    <button @click="platform='polymarket'"
+            :class="platform==='polymarket' ? 'bg-blue-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Polymarket</button>
+
+    <span class="text-slate-300">|</span>
+    <span class="text-slate-400 font-medium uppercase tracking-wider">Tier</span>
+    <button @click="tier='all'"
+            :class="tier==='all' ? 'bg-ink text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">All</button>
+    <button @click="tier='critical'"
+            :class="tier==='critical' ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Critical</button>
+    <button @click="tier='active'"
+            :class="tier==='active' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Active</button>
+    <button @click="tier='watch'"
+            :class="tier==='watch' ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Watch</button>
+    <button @click="tier='dormant'"
+            :class="tier==='dormant' ? 'bg-slate-500 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
+            class="px-2.5 py-1 rounded transition">Dormant</button>
+  </div>
+
+  {# Contract rows #}
+  <div class="space-y-3" x-ref="rows">
+    {% for row in rows %}
+    {# Determine badge colors #}
+    {% if row.heat_tier == 'critical' %}
+      {% set tier_badge = 'bg-rose-100 text-rose-800 ring-rose-200' %}
+      {% set tier_dot = 'bg-rose-500' %}
+    {% elif row.heat_tier == 'active' %}
+      {% set tier_badge = 'bg-orange-100 text-orange-800 ring-orange-200' %}
+      {% set tier_dot = 'bg-orange-500' %}
+    {% elif row.heat_tier == 'watch' %}
+      {% set tier_badge = 'bg-amber-100 text-amber-800 ring-amber-200' %}
+      {% set tier_dot = 'bg-amber-500' %}
+    {% else %}
+      {% set tier_badge = 'bg-slate-100 text-slate-600 ring-slate-200' %}
+      {% set tier_dot = 'bg-slate-400' %}
+    {% endif %}
+
+    {% if row.platform == 'kalshi' %}
+      {% set platform_badge = 'bg-emerald-50 text-emerald-700 ring-emerald-200' %}
+    {% else %}
+      {% set platform_badge = 'bg-blue-50 text-blue-700 ring-blue-200' %}
+    {% endif %}
+
+    {% if row.net_direction == 'Bullish' %}
+      {% set dir_color = 'text-emerald-700' %}
+      {% set dir_arrow = '↑' %}
+    {% elif row.net_direction == 'Bearish' %}
+      {% set dir_color = 'text-rose-700' %}
+      {% set dir_arrow = '↓' %}
+    {% else %}
+      {% set dir_color = 'text-slate-500' %}
+      {% set dir_arrow = '→' %}
+    {% endif %}
+
+    <div
+      x-show="
+        (platform === 'all' || platform === '{{ row.platform }}') &&
+        (tier === 'all' || tier === '{{ row.heat_tier }}')
+      "
+      data-platform="{{ row.platform }}"
+      data-tier="{{ row.heat_tier }}"
+      data-heat="{{ row.heat_value }}"
+      data-direction="{{ row.net_direction }}"
+      data-events="{{ row.event_count_90d }}"
+      class="border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition bg-white"
+    >
+      <a href="{{ row.detail_href }}" class="block p-4">
+        <div class="flex items-start justify-between gap-4">
+
+          {# Left: title + meta #}
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded ring-1 {{ platform_badge }} capitalize">
+                {{ row.platform }}
+              </span>
+            </div>
+            <h2 class="font-semibold text-slate-900 leading-snug">{{ row.title }}</h2>
+
+            {# Price row + thesis counts #}
+            <div class="flex items-center gap-4 mt-2 text-sm tabular-nums">
+              <span class="text-slate-500">YES <span class="font-semibold text-emerald-700">{{ row.yes_price }}¢</span></span>
+              <span class="text-slate-500">NO <span class="font-semibold text-rose-700">{{ row.no_price }}¢</span></span>
+              {% if (row.thesis_direct_bullish + row.thesis_direct_bearish + row.thesis_background_bullish + row.thesis_background_bearish) > 0 %}
+              <span class="text-xs text-slate-400">·</span>
+              <span class="text-xs" title="Events directly tied to a thesis condition">
+                <span class="text-emerald-600">↑{{ row.thesis_direct_bullish }}</span>
+                <span class="text-rose-500">↓{{ row.thesis_direct_bearish }}</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+              </span>
+              {% if row.thesis_background_bullish + row.thesis_background_bearish > 0 %}
+              <span class="text-xs text-slate-300">·</span>
+              <span class="text-xs" title="Background regulatory events with directional read">
+                <span class="text-emerald-500/80">↑{{ row.thesis_background_bullish }}</span>
+                <span class="text-rose-400/80">↓{{ row.thesis_background_bearish }}</span>
+                <span class="text-slate-400 text-[10px] ml-0.5">background</span>
+              </span>
+              {% endif %}
+              {% endif %}
+            </div>
+
+            {# Latest event snippet #}
+            {% if row.latest_event %}
+            <div class="mt-2 flex items-start gap-2 text-xs text-slate-500">
+              <span class="text-slate-400 whitespace-nowrap">Latest:</span>
+              {% if row.latest_event.direction == 'bullish' %}
+                <span class="inline-block px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium flex-shrink-0">↑ bullish</span>
+              {% elif row.latest_event.direction == 'bearish' %}
+                <span class="inline-block px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium flex-shrink-0">↓ bearish</span>
+              {% else %}
+                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium flex-shrink-0">→ neutral</span>
+              {% endif %}
+              <span class="truncate">{{ row.latest_event.title }}</span>
+              <span class="whitespace-nowrap text-slate-400">{{ row.latest_event.pub_date }}</span>
+            </div>
+            {% endif %}
+
+            {# Next catalyst #}
+            {% if row.next_catalyst %}
+            <div class="mt-1.5 flex items-center gap-1.5 text-xs text-amber-700">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+              </svg>
+              <span class="font-medium">Next catalyst:</span>
+              <span>{{ row.next_catalyst.title }}</span>
+              {% if row.next_catalyst.date %}<span class="text-slate-400">· {{ row.next_catalyst.date }}</span>{% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          {# Right: heat + position #}
+          <div class="flex-shrink-0 text-right">
+            {# Tier pill + qualitative delta #}
+            <div class="flex flex-col items-end gap-1">
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold px-2.5 py-1 rounded-full ring-1 uppercase tracking-wide {{ tier_badge }}">
+                <span class="w-1.5 h-1.5 rounded-full {{ tier_dot }}"></span>
+                {{ row.heat_tier }}
+              </span>
+              <div class="text-xs">
+                {% if row.heat_delta_7d > 0 %}
+                  <span class="text-rose-600">▲ heating</span>
+                {% elif row.heat_delta_7d < 0 %}
+                  <span class="text-emerald-600">▼ cooling</span>
+                {% else %}
+                  <span class="text-slate-400">— steady</span>
+                {% endif %}
+                <span class="text-slate-400">/ 7d</span>
+              </div>
+            </div>
+
+            {# Event count #}
+            <div class="mt-2">
+              <span class="inline-flex items-center justify-center text-xs bg-slate-100 text-slate-700 rounded px-2 py-0.5 tabular-nums">
+                {{ row.event_count_90d }} key events
+              </span>
+            </div>
+
+            {# Position #}
+            {% if row.position %}
+            <div class="mt-2 text-xs text-slate-500 flex items-center justify-end gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 font-medium">DEMO</span>
+              <span>{{ row.position.side }} {{ row.position.size }} @ {{ (row.position.entry_price * 100)|round(0)|int }}¢</span>
+            </div>
+            {% endif %}
+          </div>
+
+        </div>
+      </a>
+    </div>
+    {% else %}
+    <p class="text-sm text-slate-500 py-8 text-center">No contracts in your portfolio yet.</p>
+    {% endfor %}
+  </div>
+
+  {# Empty state when filters hide all #}
+  <div x-show="document.querySelectorAll('[data-platform]').length > 0"
+       class="hidden text-sm text-slate-400 text-center py-8 mt-2">
+    No contracts match the current filters.
+  </div>
+
+</div>
+{% endblock %}

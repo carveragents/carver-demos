@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the SEC approve a spot Ethereum ETF by May 31, 2024?\nKind: retrospective\nTimeline (5 events):\n- 2024-04-16 [background] Report on the 43rd Annual Small Business Forum (PDF) \u2014 General SEC small-business forum report contains no specific action or guidance on spot ETH ETF approvals, so no direct effect on odds.\n- 2024-03-27 [background] Shortening the Securities Transaction Settlement Cycle \u2014 Settlement-cycle rulemaking is a broad market infrastructure change and does not materially affect likelihood of an SEC approval for spot ETH ETFs.\n- 2024-02-07 [background] Alaska Joins $1.5 Million Multistate Securities Settlement Against Crypto Platform, TradeStation. \u2014 State-level $1.5M settlement with TradeStation Crypto is a general enforcement action and unlikely to materially affect the SEC's spot-ETH ETF approval decision.\n- 2024-01-10 [background] Observations Related to Security-Based Swap Dealers \u2014 Division of Examinations observations on security\u2011based swap dealers are general supervisory guidance and do not directly affect SEC spot\u2011ETH ETF listing approvals.\n- 2023-10-11 [background] Are Short-selling Restrictions Effective? \u2014 OFR study on short-selling restrictions is background market-structure research and does not directly affect SEC spot-ETH ETF approval odds.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Across Oct 2023\u2013Apr 2024, only background moves\u2014market-structure research, settlement-cycle changes, and unrelated enforcement\u2014offered little signal on spot ETH ETF odds. On May 23, 2024, the SEC approved exchange rule changes for spot Ether ETFs (S\u20111s still pending), satisfying the contract\u2019s approval criterion and resolving the market Yes before May 31."
+  }
+}

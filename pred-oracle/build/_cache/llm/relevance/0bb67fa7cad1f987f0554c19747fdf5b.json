@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will the CLARITY Act be signed into law in 2026?\nResolution criteria: This market will resolve to 'Yes' if the Digital Asset Market Clarity Act of 2025\n(H.R.3633) is passed by both chambers of the U.S. Congress and signed into law by\nDecember 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to 'No'.\n\nThe primary resolution source will be official information from Congress.gov, the\nWhite House, and the U.S. Government Publishing Office. A consensus of credible\nreporting will also be used.\n\nThe CLARITY Act (also referred to as the Digital Asset Market Clarity Act) establishes\na regulatory framework distinguishing digital commodities from digital securities,\ngranting the CFTC primary jurisdiction over digital commodity spot markets and\nclarifying the SEC's jurisdiction over digital asset securities.\n\nConditions:\n  A: H.R.3633 passed & signed by 12/31/26 ET \u2014 H.R.3633 (Digital Asset Market Clarity Act of 2025) passes both House and Senate and is signed into law by Dec 31, 2026, 11:59 PM ET, confirmed by Congress.gov, White House, or GPO.\nSettlement entities: ['U.S. House of Representatives', 'U.S. Senate', 'Commodity Futures Trading Commission', 'U.S. Securities and Exchange Commission', 'White House', 'Department of the Treasury']\n\nRecord title: Counter Terrorism, Counter Narcotics, and Cyber-related Designations; Issuance of Cyber-related General License\nRecord date: 2026-04-23\nRecord regulator: U.S. Department of the Treasury's Office of Foreign Assets Control\nRecord topic: Office of Foreign Assets Control\nRecord entities: ['855 Investment Corporation', 'A Wee Trading Co Ltd', 'ADUAEASY S. DE R.L. DE C.V.', 'AGRAT Chemicals And Pharmaceuticals', 'Anco Brothers Co Ltd', 'Anco Specialized Bank Ltd', 'Anco Water Supply Co Ltd', 'Aurum Co Ltd', 'Botanica 2000', 'Brilliancy Sihanoukville Investment And Development Co Ltd', 'Cargo Global 3PS, S. DE R.L. DE C.V.', 'Central Logistica De Servicios', 'Comercializadora Grupo Carhern S.A. De C.V.', 'Corporativo Y Enlace Ram S.A. De C.V.', 'Crown Resorts Co Ltd', 'Desarrollos Cartok S.A. De C.V.', 'E-Ram Group LLC', 'Enlace Forwarding Mexico, S. DE R.L. DE C.V.', 'Fung Yuet Resort Hotel Co Ltd', 'Heng Feng Cambodia Bank PLC', 'Heng Feng Group Co Ltd', 'Huan Hai Bo Lai International Investment Co Ltd', 'J And C Import', 'K99 Culture And Media Co Ltd', 'Kaissa Travel Co Ltd', 'Kep Hydropower SVTK And MSRC Co Ltd', 'Khemreah Co Ltd', 'Khmer Electrical Power Co Ltd', 'Mekong Potable Water Construction Import Export Co Ltd', 'Nan Tian International Hotel Co Ltd', 'OFAC', 'Quimica Soluciones Y Logistica Integral Bajio, S.A. De C.V.', 'Reyma Global Trading SA De CV', 'SR Chemicals And Pharmaceuticals', 'SSDD Construction Material Co Ltd', 'Treasury', 'Xihu Resort Hotel Co Ltd', 'Xing Tian Di Co Ltd', 'Xiong Wei Investment Co Ltd', 'Xiong Wei Real Estate Development Co Ltd', 'ACOSTA HERNANDEZ, Regulo', 'AIK, Paung', 'BARRIENTOS CAMAZ, Jaime Augusto', 'CARRILLO TORRES, Karina Guadalupe', 'FELIX HERAS, Ramiro Baltazar', 'KOK, An', 'LUO, Hong', 'MODI, Yuktakumari Ashishkumar', 'RAMIREZ TORRES, Jose de Jesus', 'REYNOSO JIMENEZ, Alejandro', 'RITHY, Raksmei', 'RUGERIO ARRIAGA, Maria Viridiana', 'SAI, Aung Linn', 'SUTARIA, Satishkumar Hareshbhai']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "OFAC sanction/designation and license action is unrelated to congressional passage or presidential signing of H.R.3633 and gives no signal on its outcome.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

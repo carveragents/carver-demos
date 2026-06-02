@@ -1,0 +1,60 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Decompose a prediction-market contract's resolution criteria into 1-3 atomic conditions. Each condition should describe one independent path by which the contract can resolve YES. Return JSON matching the provided schema; labels \u2264 40 chars; summaries \u2264 200 chars.",
+    "user": "Title: FDA approves Retatrutide in 2026?\nResolution criteria: This market will resolve to 'Yes' if the U.S. Food and Drug Administration formally\napproves Retatrutide (LY3437943, Eli Lilly's triple GIP/GLP-1/glucagon receptor\nagonist) for any indication by December 31, 2026, 11:59 PM ET. Approval must be\nvia formal FDA authorization \u2014 a New Drug Application (NDA) or Biologics License\nApplication (BLA) approval letter. Excludes Emergency Use Authorizations (EUA),\ncompassionate use designations, tentative approvals, and approvable letters.\n\nRetatrutide targets obesity, type 2 diabetes, and related metabolic conditions.\nPhase 3 clinical trial data is expected in 2026, with NDA submission expected no\nearlier than late 2026, making a 2026 FDA decision unlikely but possible on\naccelerated review pathways.\n\nSettlement entities: ['Food and Drug Administration', 'Center for Drug Evaluation and Research', 'Eli Lilly and Company', 'Office of New Drugs']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "summary"
+            ]
+          }
+        }
+      },
+      "required": [
+        "conditions"
+      ]
+    }
+  },
+  "response": {
+    "conditions": [
+      {
+        "id": "A",
+        "label": "FDA NDA approval by 2026 deadline",
+        "summary": "FDA issues an NDA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Accelerated approval qualifies. Excludes EUA, compassionate use, tentative or approvable letters."
+      },
+      {
+        "id": "B",
+        "label": "FDA BLA approval by 2026 deadline",
+        "summary": "FDA issues a BLA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Accelerated approval qualifies. Excludes EUA, compassionate use, tentative or approvable letters."
+      }
+    ]
+  }
+}

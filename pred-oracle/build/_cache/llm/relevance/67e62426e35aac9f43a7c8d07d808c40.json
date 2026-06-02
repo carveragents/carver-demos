@@ -1,0 +1,80 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nResolution criteria: Resolves to the outcome announced by the Federal Open Market Committee at the\nconclusion of its March 17-18, 2026 meeting. Settlement is the official FOMC\nstatement on the federal funds target range published 2026-03-18.\n\nStandard FOMC-decision outcome buckets cover changes of -50 bps, -25 bps,\n0 bps (hold), +25 bps, +50 bps relative to the prior target range.\n\nConditions:\n  A: Official FOMC statement (2026-03-18) \u2014 Use the official FOMC statement published 2026-03-18. Compare the announced federal funds target range to the range in effect before the meeting. If the change equals this market\u2019s bucket, resolve YES.\n  B: Fed Implementation Note/press release \u2014 If no usable statement, use the Fed\u2019s Implementation Note or FOMC press release dated 2026-03-18 that sets the target range. If the change vs the prior range matches this market\u2019s bucket, YES.\n  C: Delayed/canceled meeting fallback \u2014 If the Mar 17-18 meeting is delayed/canceled or the statement is later, use the first official FOMC/Board release for the March 2026 decision. If the change vs prior matches this market\u2019s bucket, YES.\nSettlement entities: ['Federal Open Market Committee', 'Federal Reserve System', 'Federal Reserve Board of Governors', 'Jerome Powell', 'Department of the Treasury', 'Bureau of Labor Statistics']\n\nRecord title: Alert\nRecord date: 2025-11-28\nRecord regulator: Financial Crimes Enforcement Network (FinCEN)\nRecord topic: Financial Crimes Enforcement Network\nRecord entities: ['Department of State', 'Financial Crimes Enforcement Network (FinCEN)', 'U.S. Department of the Treasury']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "FinCEN alert about financial crimes is unrelated to the FOMC\u2019s March 2026 rate decision and gives no info on the target range.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

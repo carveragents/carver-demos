@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+
+
+<nav class="mb-5 text-sm">
+  <a href="../../../trader/index.html" class="text-slate-500 hover:text-ink transition">← Portfolio</a>
+</nav>
+
+
+<header class="mb-6">
+  <div class="flex items-center gap-2 mb-2 flex-wrap">
+    <span class="text-xs px-2 py-0.5 rounded ring-1 bg-emerald-50 text-emerald-700 ring-emerald-200 capitalize">kalshi</span>
+    <span class="text-xs px-2 py-0.5 rounded bg-orange-100 text-orange-800 uppercase tracking-wide font-medium">active</span>
+    
+    
+    <span class="text-xs text-slate-400">expires 2028-01-26</span>
+    
+  </div>
+  <h1 class="text-2xl font-bold leading-snug">Will the Federal Reserve Cut rates by 25bps at their January 2028 meeting?</h1>
+</header>
+
+
+
+
+
+
+  
+
+
+
+
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">YES</span>
+    <span class="text-xl font-bold tabular-nums">20¢</span>
+    <span class="text-[10px] text-emerald-200">payout $500/$100</span>
+  </button>
+  <button class="inline-flex flex-col items-center px-5 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white transition cursor-default">
+    <span class="text-xs font-medium uppercase tracking-wider">NO</span>
+    <span class="text-xl font-bold tabular-nums">80¢</span>
+    <span class="text-[10px] text-rose-200">payout $125/$100</span>
+  </button>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ml-2 flex items-center gap-2 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-slate-50">
+    <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-xs font-medium">DEMO</span>
+    <span class="text-slate-700">Your position:</span>
+    <span class="font-semibold">NO</span>
+    <span class="text-slate-500">100 contracts</span>
+    <span class="text-slate-400">@ 71¢ avg</span>
+    <span class="text-slate-300">·</span>
+    <span class="font-medium tabular-nums text-emerald-600">+$9 (+13%)</span>
+  </div>
+  
+</div>
+
+
+<div class="mb-8 border border-slate-200 rounded-lg p-4 bg-white">
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Probability over time</h2>
+  
+  <div id="price-chart" class="h-64"></div>
+  
+</div>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+  
+  <article class="lg:col-span-3 space-y-8">
+
+    
+    
+    <section id="thesis-tracker" style="scroll-margin-top: 80px;">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Thesis tracker</h2>
+      <ol class="space-y-4">
+        
+        
+        
+          
+          
+          
+        
+        
+        
+        
+          
+        
+
+        <li class="flex gap-4 items-start">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex-1">
+            <div class="flex items-baseline justify-between mb-1">
+              <span class="font-medium text-slate-900 text-sm">FOMC 25 bps cut on Jan 26, 2028</span>
+              <span class="flex items-center gap-2 text-xs tabular-nums">
+                
+                <span class="text-slate-700" title="Events the LLM tagged as directly bearing on this condition's resolution">
+                  <span class="text-emerald-600">↑ 1</span>
+                  <span class="text-rose-500">↓ 2</span>
+                  <span class="text-slate-400 text-[10px] ml-0.5">direct</span>
+                </span>
+                
+                
+              </span>
+            </div>
+            
+            
+            
+            
+            
+            
+            <div class="w-full bg-slate-100 rounded-full h-1.5 flex overflow-hidden" data-thesis-bar="true" data-direct-bullish="1" data-direct-bearish="2" data-bg-bullish="0" data-bg-bearish="0">
+              
+              <div class="bg-emerald-600 h-1.5" data-segment="direct-bullish" style="width: 33%" title="1 bullish (direct)"></div>
+              
+              
+              <div class="bg-rose-600 h-1.5" data-segment="direct-bearish" style="width: 67%" title="2 bearish (direct)"></div>
+              
+            </div>
+            
+            
+            <p class="text-xs text-slate-600 mt-1.5">On Jan 26, 2028, the FOMC announces an exact 25 bp reduction in the federal funds rate target range (both bounds down 0.25 pp vs prior), per official Federal Reserve release.</p>
+            
+          </div>
+        </li>
+        
+      </ol>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Carver Signal Narrative</h2>
+      <blockquote class="border-l-4 border-lime-400 bg-lime-50/40 px-4 py-3 text-sm text-slate-800 italic leading-relaxed">
+        Signals are mixed: Waller&#39;s Nov 2025 case for continued cuts nudges odds up, while same-day Iran-oil sanctions and Bowman&#39;s Feb 2026 hawkish outlook lean against a January 2028 25bp cut. Capital and leverage-rule tweaks and other sanctions are largely tangential, with weak, indirect macro effects. Outcome remains pending; odds hinge on inflation and growth data, financial conditions, and forthcoming Fed guidance into 2027.
+      </blockquote>
+    </section>
+    
+
+    
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Settlement entities</h2>
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Federal Open Market Committee
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Federal Reserve System
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Federal Reserve Board of Governors
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Jerome Powell
+          <span class="text-slate-400">· company</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Department of the Treasury
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+        <span class="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
+          Bureau of Labor Statistics
+          <span class="text-slate-400">· regulator</span>
+        </span>
+        
+      </div>
+    </section>
+    
+
+    
+    <section id="reg-timeline" style="scroll-margin-top: 80px;" x-data="{ filter: 'all' }">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500">Regulatory timeline (20)</h2>
+        
+      </div>
+
+      <div class="mb-4 flex items-start gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 leading-relaxed">
+        <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Directional assessments (↑↓) are AI-generated from Carver's regulatory corpus and reflect estimated regulatory impact on contract odds. Not investment advice.</span>
+      </div>
+
+      
+      <ol class="relative space-y-0">
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-11</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Department of the Treasury — Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0498" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Fury Ramps Up Pressure on Iran’s Islamic Revolutionary Guard Corps Oil Operations</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Department of the Treasury — Office of Foreign Assets Control — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-07</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury Office of Foreign Assets Control — Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0492" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Department of the Treasury Office of Foreign Assets Control — Office of Foreign Assets Control — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-05-01</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury — Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0483" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Department of the Treasury — Office of Foreign Assets Control — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-30</span>
+            <span class="block text-[10px] text-slate-400 uppercase">New Jersey Department of Labor and Workforce Development — Office of Research and Information</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.nj.gov/labor/lwdhome/press/2026/20260430_jobs.shtml" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">2026-04-30 - New Jersey Employment Report: March 2026</a>
+            
+            <p class="text-xs text-slate-600 mt-1">A single-state employment report is an indirect, minor macro signal for FOMC policy but gives no clear directional info toward a Jan 2028 cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-24</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury’s Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0472" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Fury Targets Global Network Fueling Iran’s Oil Trade and Shadow Fleet</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Department of the Treasury’s Office of Foreign Assets Control — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/press-releases/2026/agencies-finalize-changes-community-bank-leverage-ratio" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Finalize Changes to Community Bank Leverage Ratio</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Finalized community-bank leverage-rule changes are a background regulatory tweak with minimal indirect effect on odds of a Jan 26, 2028 25bp Fed cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-23</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-15.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Community Bank Leverage Ratio: Final Rule</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Final OCC rule on community bank leverage ratio affects bank capital and credit supply only indirectly, offering minimal signal about a Jan 26, 2028 Fed rate cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-15</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0441" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Department of the Treasury — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-04-15</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Department of the Treasury Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0443" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Department of the Treasury Office of Foreign Assets Control — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-31</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Bank for International Settlements</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.bis.org/review/r260331c.htm" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Stephen I Miran: Prospects for shrinking the Federal Reserve Bank&#39;s balance sheet</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Bank for International Settlements — Bank for International Settlements: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <p class="text-xs text-slate-600 mt-1">FDIC capital-rule affects bank resilience and lending conditions, an indirect and small influence on Fed policy but not directly determinative of a Jan‑26, 2028 25bp cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/press-releases/2026/agencies-request-comment-proposals-modernize-regulatory-capital-framework" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Regulatory capital proposals are long‑term, indirect signals for monetary policy and provide only a weak, ambiguous influence on a Jan 2028 Fed cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-9.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Banking capital rule proposal affects financial conditions indirectly and only modestly, so it offers little direct information on a Jan 26, 2028 25bp Fed cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-19</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Signal</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-8.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Regulatory Capital: Standardized Approach for Risk-Weighted Assets</a>
+            
+            <p class="text-xs text-slate-600 mt-1">OCC capital-rule affects bank capital and lending only indirectly; it’s a background macroprudential signal unlikely to materially shift odds of a Jan 26, 2028 25bp Fed cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-03-10</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0414" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">President Trump’s Tax Cuts are Putting More Money Back into the Pockets of American Families and Workers</a>
+            
+            <p class="text-xs text-slate-600 mt-1">U.S. Department of the Treasury — United States Department of the Treasury: tangential to resolution, no directional effect.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2026-02-05</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Board of Governors of the Federal Reserve System — supervision</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Medium impact">◑</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.bis.org/review/r260204a.htm" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Michelle W Bowman: Outlook for the economy and monetary policy</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Bowman’s Feb 2026 policy outlook signals persistent hawkishness, reducing the chance a 25bp cut will occur at the Jan 26, 2028 meeting.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-25</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Federal Deposit Insurance Corporation</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://www.fdic.gov/news/press-releases/2025/agencies-issue-final-rule-modify-certain-regulatory-capital-standards" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Changes to bank capital rules could slightly affect lending and macro conditions that influence Fed cuts, but lacking specifics the effect and direction are unclear.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'background' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-25</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Office of the Comptroller of the Currency</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-slate-400 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">→ neutral</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Binding Action</span>
+              
+              
+            </div>
+            <a href="https://occ.gov/news-issuances/bulletins/2025/bulletin-2025-41.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Background OCC final rule changing GSIB eSLR standards; may marginally affect financial conditions but gives no clear signal on a Jan 26, 2028 25bp Fed cut.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-20</span>
+            <span class="block text-[10px] text-slate-400 uppercase">Board of Governors of the Federal Reserve System</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↑ bullish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+            </div>
+            <a href="https://www.bis.org/review/r251118c.htm" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Christopher J Waller: The case for continuing rate cuts</a>
+            
+            <p class="text-xs text-slate-600 mt-1">Waller&#39;s Nov 2025 speech urging continued rate cuts modestly raises the probability the Fed eases through 2028, making a Jan 26, 2028 cut slightly more likely.</p>
+            
+          </article>
+        </li>
+        
+        
+        
+          
+          
+        
+
+        
+        
+          
+        
+
+        
+        
+          
+          
+        
+
+        <li class="grid grid-cols-[6.5rem_2rem_1fr] items-start transition-opacity"
+            :class="(filter !== 'all' && 'A' !== filter) ? 'opacity-30' : ''">
+          <time class="text-right pr-3 pt-1">
+            <span class="block text-sm font-semibold tabular-nums text-slate-900">2025-11-20</span>
+            <span class="block text-[10px] text-slate-400 uppercase">U.S. Department of the Treasury — Office of Foreign Assets Control</span>
+          </time>
+          <div class="flex justify-center pt-2 relative">
+            <span class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-200 -z-10"></span>
+            <span class="w-3 h-3 rounded-full bg-indigo-600 flex-shrink-0"></span>
+          </div>
+          <article class="pb-6 pl-2">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
+              <span class="text-xs px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium cursor-help" title="AI-estimated directional impact on contract odds, derived from public regulatory filings. Not investment advice.">↓ bearish</span>
+              <span class="text-xs text-slate-400" title="Low impact">○</span>
+              
+              <span class="text-xs text-slate-500">Context</span>
+              
+              
+              <span class="text-xs text-slate-500 flex items-center gap-0.5">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Later
+              </span>
+              
+            </div>
+            <a href="https://home.treasury.gov/news/press-releases/sb0322" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-900 hover:text-blue-700 text-sm leading-snug">Treasury Tightens Sanctions on Iran’s Oil Network Supporting its Military</a>
+            
+            <p class="text-xs text-slate-600 mt-1">US sanctions on Iran&#39;s oil network could tighten supply and lift oil-driven inflation, making a Jan 2028 Fed cut slightly less likely.</p>
+            
+          </article>
+        </li>
+        
+      </ol>
+      
+    </section>
+
+    
+    <section>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-2">Resolution criteria</h2>
+      <p class="text-sm text-slate-700 whitespace-pre-line">If the Federal Reserve does a Cut of 25bps on January 26, 2028, then the market resolves to Yes.</p>
+    </section>
+
+  </article>
+
+  
+  <aside class="lg:col-span-2 space-y-5">
+
+    
+    
+    <div id="reg-momentum" style="scroll-margin-top: 80px;" class="border border-slate-200 rounded-lg p-4 bg-orange-50">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Regulatory momentum</h2>
+
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-baseline gap-2">
+          <span class="text-lg font-bold text-orange-700 uppercase tracking-wide">active</span>
+          
+          <span class="text-sm text-slate-500">top 58% of peers</span>
+          
+        </div>
+        <span class="text-xs text-slate-400 tabular-nums cursor-help" title="Heat score: time-weighted sum of regulatory activity matching this contract's settlement entities (severity × recency decay over 90 days)">score 94</span>
+      </div>
+
+      
+      
+      <div class="w-full h-2 bg-slate-100 rounded-full mb-2 overflow-hidden">
+        <div class="h-full rounded-full bg-orange-700" style="width: 42%"></div>
+      </div>
+
+      <div class="flex items-center gap-3 text-sm text-slate-600 mb-3">
+        
+          <span class="text-emerald-600">▼ cooling / 7d</span>
+        
+      </div>
+
+      
+      
+      <div class="mb-3">
+        
+        
+        
+        
+        
+        
+        <svg viewBox="0 0 120 28" width="120" height="28" class="inline-block align-middle">
+          <polyline fill="none" stroke="#84a826" stroke-width="1.5"
+            points="0.0,26.0 9.23,26.0 18.46,26.0 27.69,26.0 36.92,26.0 46.15,26.0 55.38,26.0 64.62,26.0 73.85,26.0 83.08,26.0 92.31,26.0 101.54,26.0 110.77,26.0 120.0,26.0 " />
+        </svg>
+        <div class="flex justify-between text-[10px] uppercase tracking-wider text-slate-400 mt-0.5" style="width: 120px">
+          <span>-14d</span><span>today</span>
+        </div>
+      </div>
+      
+
+      
+      
+      <div class="mb-3">
+        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5">Primary drivers</div>
+        <ul class="space-y-1">
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Economic Fury campaign disrupting Iran’s oil trade and shadow fleet
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            Targeted actions against Iraqi oil officials and Iran-backed militias
+          </li>
+          
+          <li class="flex items-start gap-1.5 text-xs text-slate-700">
+            <span class="mt-1 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0"></span>
+            U.S. banking rulemaking: community-bank leverage ratio final rule and capital modernization proposals
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <p class="text-xs text-slate-600 border-t border-slate-200 pt-3 mt-3 italic">Intense &#39;Economic Fury&#39; actions targeting Iran-linked oil networks and shadow fleets, plus major U.S. banking rulemaking (community-bank leverage ratio final rule and capital modernization proposals), are keeping heat critical despite recent cooling.</p>
+      
+    </div>
+    
+
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+        
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+        
+      
+      
+    
+      
+      
+    
+    <div class="border border-slate-200 rounded-lg p-4">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-3">Upcoming catalysts</h2>
+      
+      <ul class="space-y-3">
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.fdic.gov/news/press-releases/2026/agencies-request-comment-proposals-modernize-regulatory-capital-framework" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-9.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-8.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Regulatory Capital: Standardized Approach for Risk-Weighted Assets</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-06-18 · Comment deadline</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.fdic.gov/news/press-releases/2026/agencies-finalize-changes-community-bank-leverage-ratio" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Agencies Finalize Changes to Community Bank Leverage Ratio</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-15.html" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Community Bank Leverage Ratio: Final Rule</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">2026-07-01 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.bis.org/review/r251118c.htm" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Christopher J Waller: The case for continuing rate cuts</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">December 9 and 10, 2025 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://home.treasury.gov/news/press-releases/sb0441" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">July 2025 · Effective date</div>
+          </div>
+        </li>
+        
+        <li class="flex items-start gap-2 text-sm">
+          <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            
+            <a href="https://www.bis.org/review/r260331c.htm" target="_blank" rel="noopener noreferrer"
+               class="font-medium text-slate-800 hover:text-blue-700 leading-snug">Stephen I Miran: Prospects for shrinking the Federal Reserve Bank&#39;s balance sheet</a>
+            
+            <div class="text-xs text-slate-400 mt-0.5">some time after decision to proceed, likely well over a year and possibly several years · Effective date</div>
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var chartEl = document.getElementById('price-chart');
+  if (!chartEl || typeof echarts === 'undefined') return;
+  var chart = echarts.init(chartEl);
+
+  var raw = [{"p": 0.24, "t": 1761019200}, {"p": 0.11, "t": 1768539600}, {"p": 0.27, "t": 1770354000}, {"p": 0.28, "t": 1770440400}, {"p": 0.27, "t": 1770526800}, {"p": 0.22, "t": 1770872400}, {"p": 0.15, "t": 1770958800}, {"p": 0.22, "t": 1771650000}, {"p": 0.15, "t": 1771736400}, {"p": 0.19, "t": 1771909200}, {"p": 0.19, "t": 1771995600}, {"p": 0.19, "t": 1772082000}, {"p": 0.19, "t": 1772168400}, {"p": 0.2, "t": 1773115200}, {"p": 0.2, "t": 1773201600}, {"p": 0.2, "t": 1773633600}, {"p": 0.2, "t": 1773806400}, {"p": 0.2, "t": 1773892800}, {"p": 0.2, "t": 1774238400}, {"p": 0.2, "t": 1774584000}, {"p": 0.14, "t": 1774929600}, {"p": 0.14, "t": 1775275200}, {"p": 0.2, "t": 1775361600}, {"p": 0.2, "t": 1775707200}, {"p": 0.14, "t": 1775793600}, {"p": 0.14, "t": 1776225600}, {"p": 0.03, "t": 1777867200}, {"p": 0.02, "t": 1778299200}, {"p": 0.2, "t": 1779249600}];
+  var timelineEvents = [{"carver_feed_entry_id": "745b5fd2-856d-4e38-bab8-32345dea5740", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Department of the Treasury \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-05-11", "regulator": "Department of the Treasury \u2014 Office of Foreign Assets Control", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0498"}, {"carver_feed_entry_id": "3f8f3706-a61a-470c-acc3-b609f9ccd6d9", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-05-07", "regulator": "U.S. Department of the Treasury Office of Foreign Assets Control \u2014 Office of Foreign Assets Control", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0492"}, {"carver_feed_entry_id": "9b5a9485-9e2e-49a2-830e-8e6cc335cecc", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Department of the Treasury \u2014 Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-05-01", "regulator": "U.S. Department of the Treasury \u2014 Office of Foreign Assets Control", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0483"}, {"carver_feed_entry_id": "98dc3d04-29e0-466d-99dc-9e2b6d7aec9d", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 3.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "A single-state employment report is an indirect, minor macro signal for FOMC policy but gives no clear directional info toward a Jan 2028 cut.", "pub_date": "2026-04-30", "regulator": "New Jersey Department of Labor and Workforce Development \u2014 Office of Research and Information", "relevance_score": 1, "timeline_shift": "none", "title": "2026-04-30 - New Jersey Employment Report: March 2026", "urgency": 8.0, "url": "https://www.nj.gov/labor/lwdhome/press/2026/20260430_jobs.shtml"}, {"carver_feed_entry_id": "db544783-0b80-4f0f-95b3-df9cbce3a176", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Department of the Treasury\u2019s Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-04-24", "regulator": "U.S. Department of the Treasury\u2019s Office of Foreign Assets Control", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0472"}, {"carver_feed_entry_id": "423034e5-0535-445e-a159-3dd14bfa1d24", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Finalized community-bank leverage-rule changes are a background regulatory tweak with minimal indirect effect on odds of a Jan 26, 2028 25bp Fed cut.", "pub_date": "2026-04-23", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio", "urgency": 9.0, "url": "https://www.fdic.gov/news/press-releases/2026/agencies-finalize-changes-community-bank-leverage-ratio"}, {"carver_feed_entry_id": "ef99a074-b288-411d-8687-0a8a2f1bee88", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-07-01", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Final OCC rule on community bank leverage ratio affects bank capital and credit supply only indirectly, offering minimal signal about a Jan 26, 2028 Fed rate cut.", "pub_date": "2026-04-23", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Community Bank Leverage Ratio: Final Rule", "urgency": 9.0, "url": "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-15.html"}, {"carver_feed_entry_id": "82a36402-48ad-41d5-bd9e-8b3cf75c9cd7", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "July 2025", "high_impact": false, "impact": 7.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Department of the Treasury \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-04-15", "regulator": "U.S. Department of the Treasury", "relevance_score": 2, "timeline_shift": "none", "title": "Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New Tax Cuts", "urgency": 4.0, "url": "https://home.treasury.gov/news/press-releases/sb0441"}, {"carver_feed_entry_id": "ca39d939-79d2-4b93-b34b-3a1b458f17cd", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Department of the Treasury Office of Foreign Assets Control \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-04-15", "regulator": "Department of the Treasury Office of Foreign Assets Control", "relevance_score": 3, "timeline_shift": "none", "title": "Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0443"}, {"carver_feed_entry_id": "30e6c208-38af-48b4-a8b4-21bf1e0e0184", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "some time after decision to proceed, likely well over a year and possibly several years", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Bank for International Settlements \u2014 Bank for International Settlements: tangential to resolution, no directional effect.", "pub_date": "2026-03-31", "regulator": "Bank for International Settlements", "relevance_score": 3, "timeline_shift": "none", "title": "Stephen I Miran: Prospects for shrinking the Federal Reserve Bank\u0027s balance sheet", "urgency": 1.0, "url": "https://www.bis.org/review/r260331c.htm"}, {"carver_feed_entry_id": "dc7f842e-05c6-4c40-9712-20e87fd0e42b", "comment_deadline": "2026-06-18", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "FDIC capital-rule affects bank resilience and lending conditions, an indirect and small influence on Fed policy but not directly determinative of a Jan\u201126, 2028 25bp cut.", "pub_date": "2026-03-19", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations", "urgency": 9.0, "url": "https://www.fdic.gov/news/financial-institution-letters/2026/regulatory-capital-rule-category-i-and-ii-banking"}, {"carver_feed_entry_id": "7d9d29e4-007d-490b-a97c-67c3364b8d0c", "comment_deadline": "2026-06-18", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "Regulatory capital proposals are long\u2011term, indirect signals for monetary policy and provide only a weak, ambiguous influence on a Jan 2028 Fed cut.", "pub_date": "2026-03-19", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 2, "timeline_shift": "none", "title": "Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System", "urgency": 9.0, "url": "https://www.fdic.gov/news/press-releases/2026/agencies-request-comment-proposals-modernize-regulatory-capital-framework"}, {"carver_feed_entry_id": "3579c43e-09db-49ec-85b1-87513438e9c8", "comment_deadline": "2026-06-18", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 9.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "Banking capital rule proposal affects financial conditions indirectly and only modestly, so it offers little direct information on a Jan 26, 2028 25bp Fed cut.", "pub_date": "2026-03-19", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations", "urgency": 9.0, "url": "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-9.html"}, {"carver_feed_entry_id": "f2d712ea-47dd-4ce6-ad3a-db0876a56144", "comment_deadline": "2026-06-18", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Signal", "one_line_why": "OCC capital-rule affects bank capital and lending only indirectly; it\u2019s a background macroprudential signal unlikely to materially shift odds of a Jan 26, 2028 25bp Fed cut.", "pub_date": "2026-03-19", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Regulatory Capital: Standardized Approach for Risk-Weighted Assets", "urgency": 8.0, "url": "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-8.html"}, {"carver_feed_entry_id": "a8e0411a-f13c-47cc-a2b9-d1dd07757a3d", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "U.S. Department of the Treasury \u2014 United States Department of the Treasury: tangential to resolution, no directional effect.", "pub_date": "2026-03-10", "regulator": "U.S. Department of the Treasury", "relevance_score": 2, "timeline_shift": "none", "title": "President Trump\u2019s Tax Cuts are Putting More Money Back into the Pockets of American Families and Workers", "urgency": 9.0, "url": "https://home.treasury.gov/news/press-releases/sb0414"}, {"carver_feed_entry_id": "2fef6d98-3a2c-40a2-9a92-60b7951c88c0", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "", "high_impact": false, "impact": 7.0, "magnitude": "medium", "matched_entity": "", "mechanism": "Context", "one_line_why": "Bowman\u2019s Feb 2026 policy outlook signals persistent hawkishness, reducing the chance a 25bp cut will occur at the Jan 26, 2028 meeting.", "pub_date": "2026-02-05", "regulator": "Board of Governors of the Federal Reserve System \u2014 supervision", "relevance_score": 5, "timeline_shift": "none", "title": "Michelle W Bowman: Outlook for the economy and monetary policy", "urgency": 1.0, "url": "https://www.bis.org/review/r260204a.htm"}, {"carver_feed_entry_id": "92af90fa-5e1b-4745-a31c-147c57c28be8", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-04-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Changes to bank capital rules could slightly affect lending and macro conditions that influence Fed cuts, but lacking specifics the effect and direction are unclear.", "pub_date": "2025-11-25", "regulator": "Federal Deposit Insurance Corporation", "relevance_score": 3, "timeline_shift": "none", "title": "Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards", "urgency": 5.0, "url": "https://www.fdic.gov/news/press-releases/2025/agencies-issue-final-rule-modify-certain-regulatory-capital-standards"}, {"carver_feed_entry_id": "7b0bed6b-3a5e-46b8-89c9-06ca5b355e67", "comment_deadline": "", "condition_tag": "background", "direction": "neutral", "effective_date": "2026-04-01", "high_impact": false, "impact": 8.0, "magnitude": "low", "matched_entity": "", "mechanism": "Binding Action", "one_line_why": "Background OCC final rule changing GSIB eSLR standards; may marginally affect financial conditions but gives no clear signal on a Jan 26, 2028 25bp Fed cut.", "pub_date": "2025-11-25", "regulator": "Office of the Comptroller of the Currency", "relevance_score": 2, "timeline_shift": "none", "title": "Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule", "urgency": 5.0, "url": "https://occ.gov/news-issuances/bulletins/2025/bulletin-2025-41.html"}, {"carver_feed_entry_id": "43fbf1b8-b79a-4236-a319-0ab5a824bcbd", "comment_deadline": "", "condition_tag": "A", "direction": "bullish", "effective_date": "December 9 and 10, 2025", "high_impact": false, "impact": 6.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "Waller\u0027s Nov 2025 speech urging continued rate cuts modestly raises the probability the Fed eases through 2028, making a Jan 26, 2028 cut slightly more likely.", "pub_date": "2025-11-20", "regulator": "Board of Governors of the Federal Reserve System", "relevance_score": 4, "timeline_shift": "none", "title": "Christopher J Waller: The case for continuing rate cuts", "urgency": 1.0, "url": "https://www.bis.org/review/r251118c.htm"}, {"carver_feed_entry_id": "da28bae9-9797-4377-a4c5-13756bc686fb", "comment_deadline": "", "condition_tag": "A", "direction": "bearish", "effective_date": "", "high_impact": false, "impact": 10.0, "magnitude": "low", "matched_entity": "", "mechanism": "Context", "one_line_why": "US sanctions on Iran\u0027s oil network could tighten supply and lift oil-driven inflation, making a Jan 2028 Fed cut slightly less likely.", "pub_date": "2025-11-20", "regulator": "U.S. Department of the Treasury \u2014 Office of Foreign Assets Control", "relevance_score": 4, "timeline_shift": "later", "title": "Treasury Tightens Sanctions on Iran\u2019s Oil Network Supporting its Military", "urgency": 1.0, "url": "https://home.treasury.gov/news/press-releases/sb0322"}];
+
+  var dates = raw.map(function(p) {
+    var d = new Date(p.t * 1000);
+    return d.toISOString().slice(0, 10);
+  });
+  var yesValues = raw.map(function(p) { return Math.round(p.p * 100); });
+  var noValues = yesValues.map(function(v) { return 100 - v; });
+
+  var dirColors = { bullish: '#059669', bearish: '#e11d48', neutral: '#94a3b8' };
+  var markLines = timelineEvents.map(function(ev) {
+    return {
+      xAxis: ev.pub_date ? ev.pub_date.slice(0, 10) : ev.pub_date,
+      lineStyle: { color: dirColors[ev.direction] || '#94a3b8', type: 'dashed', width: 2, opacity: 0.75 },
+      label: { show: false }
+    };
+  });
+
+  var eventsByDate = {};
+  timelineEvents.forEach(function(ev) {
+    var d = ev.pub_date ? ev.pub_date.slice(0, 10) : null;
+    if (d) { if (!eventsByDate[d]) eventsByDate[d] = []; eventsByDate[d].push(ev); }
+  });
+
+  var lastYes = yesValues[yesValues.length - 1] || 50;
+  var lastNo = noValues[noValues.length - 1] || 50;
+
+  chart.setOption({
+    grid: { top: 24, right: 80, bottom: 28, left: 44 },
+    legend: { show: false },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: { fontSize: 10, color: '#94a3b8', interval: Math.max(1, Math.floor(dates.length / 8)) },
+      axisLine: { lineStyle: { color: '#e2e8f0' } },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      axisLabel: { formatter: '{value}%', fontSize: 10, color: '#94a3b8' },
+      splitLine: { lineStyle: { color: '#f1f5f9' } },
+    },
+    series: [
+      {
+        name: 'YES',
+        type: 'line',
+        data: yesValues,
+        smooth: true,
+        lineStyle: { color: '#059669', width: 2 },
+        symbol: 'none',
+        markLine: { silent: true, symbol: 'none', data: markLines },
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastYes], value: lastYes + '%',
+                   itemStyle: { color: '#059669' },
+                   label: { show: true, formatter: 'YES\n{c}', fontSize: 11, fontWeight: 'bold', color: '#059669', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+      {
+        name: 'NO',
+        type: 'line',
+        data: noValues,
+        smooth: true,
+        lineStyle: { color: '#e11d48', width: 2 },
+        symbol: 'none',
+        markPoint: {
+          data: [{ coord: [dates.length - 1, lastNo], value: lastNo + '%',
+                   itemStyle: { color: '#e11d48' },
+                   label: { show: true, formatter: 'NO\n{c}', fontSize: 11, fontWeight: 'bold', color: '#e11d48', position: 'right', distance: 8 },
+                   symbol: 'circle', symbolSize: 6 }],
+        },
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+      enterable: false,
+      extraCssText: 'max-width:300px;white-space:normal;',
+      formatter: function(params) {
+        var date = params[0].axisValue;
+        var yes = params[0] ? params[0].value : '-';
+        var no = params[1] ? params[1].value : '-';
+        var html = '<span style="font-size:11px;color:#94a3b8">' + date + '</span>' +
+          '<br/><span style="color:#059669;font-weight:600">YES ' + yes + '%</span>' +
+          ' <span style="color:#e11d48;font-weight:600">NO ' + no + '%</span>' +
+          ' <span style="color:#cbd5e1;font-size:10px">market price</span>';
+        var evs = eventsByDate[date];
+        if (evs && evs.length > 0) {
+          var arrows = { bullish: '↑', bearish: '↓', neutral: '→' };
+          html += '<hr style="margin:5px 0;border:none;border-top:1px solid #e2e8f0"/>';
+          html += '<span style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8">Regulatory signal' + (evs.length > 1 ? 's' : '') + '</span>';
+          evs.forEach(function(ev) {
+            var c = dirColors[ev.direction] || '#94a3b8';
+            var arrow = arrows[ev.direction] || '→';
+            html += '<br/><span style="color:' + c + ';font-weight:700">' + arrow + '</span> ' +
+              '<span style="font-weight:600;font-size:12px">' + (ev.title || '').slice(0, 55) + (ev.title && ev.title.length > 55 ? '…' : '') + '</span>';
+            if (ev.one_line_why) {
+              html += '<br/><span style="color:#64748b;font-size:11px">' + ev.one_line_why.slice(0, 110) + (ev.one_line_why.length > 110 ? '…' : '') + '</span>';
+            }
+          });
+        }
+        return html;
+      },
+    },
+  });
+
+  window.addEventListener('resize', function() { chart.resize(); });
+
+  // Demo affordance: ?demo_show_event=YYYY-MM-DD persistently shows the tooltip
+  // at that date (used by recorded walk-throughs). Re-applies on resize.
+  var demoDate = new URLSearchParams(window.location.search).get('demo_show_event');
+  if (demoDate) {
+    var demoIdx = dates.indexOf(demoDate);
+    if (demoIdx >= 0) {
+      var showTip = function() {
+        chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: demoIdx });
+      };
+      setTimeout(showTip, 200);
+      window.addEventListener('resize', function() { setTimeout(showTip, 250); });
+    }
+  }
+});
+</script>
+
+
+</body>
+</html>

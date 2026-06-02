@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the CLARITY Act be signed into law in 2026?\nKind: active\nTimeline (9 events):\n- 2026-05-19 [A] CFTC Sues Minnesota to Block State Law \u2014 CFTC suing Minnesota shows federal assertion over state crypto rules, modestly increasing odds Congress favors a federal CLARITY Act (bullish).\n- 2026-05-06 [background] CDNA - Amendments to rules on Insider definition, jurisdiction\u2026 - 05/06/2026 \u2014 CFTC rule amendments reflect agency activity on crypto jurisdiction but are background regulatory action, not direct evidence of H.R.3633 being passed/signed.\n- 2026-05-01 [background] 05.01.2026 - The changes amend Rules related to Bitnomial's non-FCM Clearing Members - BTNL \u2014 Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.\n- 2026-03-23 [A] 91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets \u2014 SEC guidance asserting securities coverage of crypto weakens the case for shifting spot jurisdiction to the CFTC, lowering odds that H.R.3633 passes.\n- 2026-03-23 [background] 91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets (PDF) \u2014 Securities and Exchange Commission \u2014 Commodity Futures Trading Commission (CFTC) - USA [comments]: tangential to resolution, no directional effect.\n- 2026-03-18 [A] Application of the Federal Securities Laws to Certain Types of Crypto Assets and Certain Transactions Involving Crypto Assets Corporation Finance \u2014 SEC guidance applying securities laws to crypto reduces congressional pressure to pass the CLARITY Act, lowering its passage odds.\n- 2026-02-09 [background] Remarks at the Asset Management Derivatives Forum 2026: Treasuries and Tokenization \u2014 SEC remarks on treasuries and tokenization provide background on regulator stance toward digital assets but don't directly affect H.R.3633's passage.\n- 2026-01-16 [background] Administrative Proceedings: Ankit Mahadevia and Satyavrat Shukla \u2014 Securities and Exchange Commission \u2014 Division of Enforcement \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.\n- 2025-12-08 [background] Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets \u2014 CFTC pilot shows regulator activity on digital assets but is not direct evidence for or against H.R.3633 becoming law.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "SEC guidance in March 2026 asserting many crypto assets are securities dampens momentum for shifting spot oversight to the CFTC, lowering odds for the CLARITY Act. In May, the CFTC's lawsuit against Minnesota signals a push for federal primacy, modestly boosting prospects for a federal framework. Congressional action and a presidential signature in 2026 remain pending."
+  }
+}

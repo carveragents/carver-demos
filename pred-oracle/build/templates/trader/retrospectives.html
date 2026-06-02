@@ -1,0 +1,84 @@
+{% extends "trader/_base.html" %}
+{% set active_nav = "retrospectives" %}
+
+{% block page_title %}Case Studies{% endblock %}
+
+{% block trader_content %}
+<div class="mb-8">
+  <h1 class="text-2xl font-bold mb-2">Case Studies</h1>
+  <p class="text-slate-600 text-sm max-w-2xl leading-relaxed">
+    These retrospectives show what Pred-Oracle would have surfaced had it been running during resolved contracts.
+    Each case traces the regulatory signals that preceded the final outcome — helping you calibrate how to read
+    the heat panel and timeline on live positions.
+  </p>
+</div>
+
+{% if retrospectives %}
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+  {% for retro in retrospectives %}
+  {% if retro.contract.platform == 'kalshi' %}
+    {% set platform_badge = 'bg-emerald-50 text-emerald-700 ring-emerald-200' %}
+  {% else %}
+    {% set platform_badge = 'bg-blue-50 text-blue-700 ring-blue-200' %}
+  {% endif %}
+
+  <a href="{{ base_url|default('/') }}trader/retrospectives/{{ retro.contract.id }}/"
+     class="group block border border-slate-200 rounded-xl p-5 bg-white hover:border-slate-300 hover:shadow-sm transition">
+
+    <div class="flex items-center gap-2 mb-3 flex-wrap">
+      <span class="text-xs px-2 py-0.5 rounded ring-1 {{ platform_badge }} capitalize">{{ retro.contract.platform }}</span>
+      <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-medium uppercase tracking-wide">Retrospective</span>
+      {# Resolution badge #}
+      {% if retro.contract.get('resolution_outcome') == 'YES' %}
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        Resolved YES
+      </span>
+      {% elif retro.contract.get('resolution_outcome') == 'NO' %}
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">
+        Resolved NO
+      </span>
+      {% endif %}
+    </div>
+
+    <h2 class="font-semibold text-slate-900 leading-snug group-hover:text-blue-700 transition mb-2">
+      {{ retro.contract.title }}
+    </h2>
+
+    {% if retro.narrative_snippet %}
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      {{ retro.narrative_snippet }}
+    </p>
+    {% elif retro.contract.narrative %}
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      {{ retro.contract.narrative }}
+    </p>
+    {% endif %}
+
+    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+      {% if retro.contract.get('resolved_at') %}
+      <span>Resolved {{ retro.contract.resolved_at[:10] }}</span>
+      {% elif retro.contract.get('expires_at') %}
+      <span>Expired {{ retro.contract.expires_at[:10] }}</span>
+      {% else %}
+      <span></span>
+      {% endif %}
+      <span class="text-blue-600 group-hover:text-blue-800 font-medium transition">View case study →</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="py-16 text-center border border-dashed border-slate-200 rounded-xl">
+  <div class="text-slate-400 text-sm">No case studies available yet.</div>
+  <div class="text-slate-400 text-xs mt-1">Resolved contracts will appear here as retrospectives.</div>
+</div>
+{% endif %}
+
+<div class="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-400 max-w-2xl">
+  Retrospectives use real public regulatory filings and events linked to their original sources.
+  Platform prices and position data are synthetic for demo purposes.
+</div>
+{% endblock %}

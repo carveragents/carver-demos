@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nKind: retrospective\nTimeline (10 events):\n- 2026-03-12 [background] Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI \u2014 BIS speech offers macro commentary on inflation and AI that may slightly shape Fed expectations before Mar 18 but does not determine the FOMC decision.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 Waller's BIS talk on whether labor-market data are signal/noise gives modest guidance on Fed thinking but does not directly determine the March 18 target decision.\n- 2026-02-25 [background] Michael S Barr: What will artificial intelligence mean for the labor market and the economy? \u2014 Fed governor's Feb 25 speech on AI/labor-market provides background economic context but gives no clear signal on the March 18 rate decision.\n- 2026-02-05 [background] Michelle W Bowman: Outlook for the economy and monetary policy \u2014 Bowman\u2019s Feb 5 policy speech offers general Fed outlook but isn\u2019t an official FOMC decision; provides only a small, ambiguous signal about March action.\n- 2026-02-01 [background] Factors Affecting Regional Bank Health and Supervisory Rating: An Exploration \u2014 Cleveland Fed research on regional bank health is background information that could inform policymakers but does not directly determine the March 18 rate decision.\n- 2026-01-09 [background] Consolidated Reports of Condition and Income for Fourth Quarter 2025 \u2014 Q4 2025 Call Reports are background banking-sector data that provide only indirect, low-signal information about conditions ahead of the March FOMC and do not materially change odds.\n- 2025-12-18 [background] Treasury International Capital Data for October \u2014 TIC October is background capital-flow data months before March 2026; provides only minor, non-directional context and unlikely to shift the decision.\n- 2025-12-16 [background] Stephen I Miran: The inflation outlook \u2014 Fed official's Dec 2025 speech on the inflation outlook is background commentary; it provides context but doesn't materially affect March 2026 rate-change odds.\n- 2025-11-20 [background] Christopher J Waller: The case for continuing rate cuts \u2014 Waller's Nov 2025 call for continued rate cuts raises the likelihood of a March 2026 cut, modestly increasing chances this contract's cut-bucket resolves YES.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 OFAC sanctions on major Russian oil firms raise oil-price and inflation risk, modestly increasing the chance of the Fed holding/hiking by Mar 2026.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Signals were mixed: OFAC\u2019s Oct 2025 oil sanctions nudged odds toward hold/hike, while Waller\u2019s Nov 2025 call for continued cuts boosted cut expectations; later speeches provided context but no decisive guidance. The March 18, 2026 FOMC decision set the outcome, and the contract resolved in line with that decision."
+  }
+}

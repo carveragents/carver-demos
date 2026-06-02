@@ -1,0 +1,36 @@
+schema_version: 1
+kind: "active"
+platform: "polymarket"
+id: "nrc-nuclear-reactor-2026"
+
+title: "US grants license for new nuclear reactor in 2026?"
+resolution_criteria: |
+  This market will resolve to 'Yes' if the U.S. Nuclear Regulatory Commission (NRC)
+  issues a new combined license (COL) for the construction and operation of a nuclear
+  power plant by December 31, 2026, 11:59 PM ET. A combined license must be clearly
+  identified as such and documented in official NRC releases. Only initial issuances
+  count; amendments, renewals, or partial approvals do not qualify.
+
+  Note: In March 2026, TerraPower's Natrium sodium-cooled advanced reactor received
+  its first commercial construction permit — the first non-light-water reactor permit
+  in years — but a separate combined operating license (COL) application remains
+  pending. This market resolves on the full COL issuance, not the construction permit.
+
+listed_at: "2026-01-26"
+expires_at: "2027-01-01T04:59:00Z"
+status: "active"
+
+polymarket_slug: "us-grants-license-for-new-nuclear-reactor-in-2026"
+
+settlement_entities:
+  - "Nuclear Regulatory Commission"
+  - "Department of Energy"
+  - "TerraPower LLC"
+  - "SMR LLC"
+  - "NuScale Power"
+
+source_urls:
+  - "https://polymarket.com/event/us-grants-license-for-new-nuclear-reactor-in-2026"
+  - "https://www.nrc.gov/reactors/new-reactors/new-light-water-reactors/col.html"
+
+source_retrieved_at: "2026-05-26"

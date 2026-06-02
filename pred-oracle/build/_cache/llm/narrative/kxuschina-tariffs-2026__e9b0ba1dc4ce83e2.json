@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will US tariffs on Chinese goods exceed 60% average effective rate in 2026?\nKind: active\nTimeline (5 events):\n- 2026-05-19 [background] SEC Proposes Transformative Reforms to Help Public Companies Conduct Registered Offerings and Simplify Reporting Requirements \u2014 SEC securities reform proposal is unrelated to USTR or Commerce tariff determinations and does not affect the probability of tariffs exceeding 60%.\n- 2026-05-12 [background] PHX Financial, Inc. \u2014 SEC enforcement action concerning PHX Financial is unrelated to USTR or Commerce tariff determinations and does not affect the China tariff rate probability.\n- 2026-05-11 [background] Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations \u2014 OFAC sanctions on Iran\u2019s oil operations are unrelated to USTR/Commerce determinations of US average tariffs on Chinese imports, so no impact on resolution.\n- 2026-05-11 [background] FinCEN Issues Alert to Stop Money Laundering by Iranian Revolutionary Guard Corps \u2014 FinCEN AML alert on Iranian actors (IRGC) and OFAC actions does not affect USTR/Commerce determinations of US average tariff rates on China.\n- 2026-02-25 [background] PDF Version \u2014 USDA PDF metadata contains no USTR/Commerce notice or tariff-rate info; appears unrelated to whether average China tariff >60%.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The 2026 entries\u2014SEC reforms/enforcement, OFAC/FinCEN Iran actions, and an unrelated USDA PDF\u2014are outside USTR/Commerce tariff setting and exert no pressure on China tariff levels. No USTR, Commerce, presidential, or congressional moves yet point toward >60%. The market awaits any Section 301 actions or proclamations that could lift average effective rates in 2026."
+  }
+}

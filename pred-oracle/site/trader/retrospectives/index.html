@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Case Studies</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../trader/calendar/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Calendar
+    </a>
+    <a href="../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+<div class="mb-8">
+  <h1 class="text-2xl font-bold mb-2">Case Studies</h1>
+  <p class="text-slate-600 text-sm max-w-2xl leading-relaxed">
+    These retrospectives show what Pred-Oracle would have surfaced had it been running during resolved contracts.
+    Each case traces the regulatory signals that preceded the final outcome — helping you calibrate how to read
+    the heat panel and timeline on live positions.
+  </p>
+</div>
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+  
+  
+    
+  
+
+  <a href="../../trader/retrospectives/cardano-etf-2025/index.html"
+     class="group block border border-slate-200 rounded-xl p-5 bg-white hover:border-slate-300 hover:shadow-sm transition">
+
+    <div class="flex items-center gap-2 mb-3 flex-wrap">
+      <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+      <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-medium uppercase tracking-wide">Retrospective</span>
+      
+      
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-medium">
+        Resolved NO
+      </span>
+      
+    </div>
+
+    <h2 class="font-semibold text-slate-900 leading-snug group-hover:text-blue-700 transition mb-2">
+      Will the SEC approve a spot Cardano ETF in 2025?
+    </h2>
+
+    
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      Through 2025, leadership churn and process uncertainty tempered odds, even as mid‑year signals—SEC/CFTC harmonization, approval of generic commodity‑trust listing standards, NYSE rule prep, and “Project Crypto”—briefly boosted optimism. Countervailing custody skepticism and the lack of ADA‑specific action stalled momentum. The SEC ultimately did not approve a spot Cardano ETF by Dec 31, 2025 (resolved NO).
+    </p>
+    
+
+    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+      
+      <span>Resolved 2025-12-31</span>
+      
+      <span class="text-blue-600 group-hover:text-blue-800 font-medium transition">View case study →</span>
+    </div>
+  </a>
+  
+  
+    
+  
+
+  <a href="../../trader/retrospectives/polymarket-us-2025/index.html"
+     class="group block border border-slate-200 rounded-xl p-5 bg-white hover:border-slate-300 hover:shadow-sm transition">
+
+    <div class="flex items-center gap-2 mb-3 flex-wrap">
+      <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+      <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-medium uppercase tracking-wide">Retrospective</span>
+      
+      
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        Resolved YES
+      </span>
+      
+    </div>
+
+    <h2 class="font-semibold text-slate-900 leading-snug group-hover:text-blue-700 transition mb-2">
+      Will Polymarket US go live in 2025?
+    </h2>
+
+    
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      Throughout 2025, regulatory tailwinds built: the CFTC&#39;s crypto sprint and listed-spot initiative, SEC-CFTC harmonization, and tokenized-collateral work signaled openness to crypto DCMs, and December&#39;s event-contract market-maker program added support. A late-September rule tweak on invalidation briefly weighed on odds. Polymarket US ultimately launched in 2025, resolving YES.
+    </p>
+    
+
+    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+      
+      <span>Resolved 2025-12-05</span>
+      
+      <span class="text-blue-600 group-hover:text-blue-800 font-medium transition">View case study →</span>
+    </div>
+  </a>
+  
+  
+    
+  
+
+  <a href="../../trader/retrospectives/solana-etf-2025/index.html"
+     class="group block border border-slate-200 rounded-xl p-5 bg-white hover:border-slate-300 hover:shadow-sm transition">
+
+    <div class="flex items-center gap-2 mb-3 flex-wrap">
+      <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+      <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-medium uppercase tracking-wide">Retrospective</span>
+      
+      
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        Resolved YES
+      </span>
+      
+    </div>
+
+    <h2 class="font-semibold text-slate-900 leading-snug group-hover:text-blue-700 transition mb-2">
+      Will the SEC approve a spot Solana ETF in 2025?
+    </h2>
+
+    
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      Early signals were mixed: a 2024 SEC settlement dampened odds, but 2025 saw SEC‑CFTC harmonization and crypto outreach. Momentum turned in Sept 2025 with approval of generic listing standards and intensified custody focus, and Nov’s “Project Crypto” hinted a friendlier posture. The SEC ultimately approved a spot Solana ETF in 2025, resolving the contract YES.
+    </p>
+    
+
+    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+      
+      <span>Resolved 2025-12-31</span>
+      
+      <span class="text-blue-600 group-hover:text-blue-800 font-medium transition">View case study →</span>
+    </div>
+  </a>
+  
+  
+    
+  
+
+  <a href="../../trader/retrospectives/stablecoin-genius-act-2025/index.html"
+     class="group block border border-slate-200 rounded-xl p-5 bg-white hover:border-slate-300 hover:shadow-sm transition">
+
+    <div class="flex items-center gap-2 mb-3 flex-wrap">
+      <span class="text-xs px-2 py-0.5 rounded ring-1 bg-blue-50 text-blue-700 ring-blue-200 capitalize">polymarket</span>
+      <span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-800 font-medium uppercase tracking-wide">Retrospective</span>
+      
+      
+      <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        Resolved YES
+      </span>
+      
+    </div>
+
+    <h2 class="font-semibold text-slate-900 leading-snug group-hover:text-blue-700 transition mb-2">
+      Will the U.S. enact a stablecoin bill in 2025?
+    </h2>
+
+    
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      Through 2025, SEC, FinCEN, OCC, FDIC, and CFPB issued reports, advisories, and testimonies on crypto, payments, and banking risks—mostly background with limited direct impact. FinCEN&#39;s April interagency advisory and AML moves modestly increased pressure for a federal framework. Congress ultimately passed and the President signed a stablecoin bill in 2025, resolving YES.
+    </p>
+    
+
+    <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+      
+      <span>Resolved 2025-07-18</span>
+      
+      <span class="text-blue-600 group-hover:text-blue-800 font-medium transition">View case study →</span>
+    </div>
+  </a>
+  
+</div>
+
+
+<div class="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-400 max-w-2xl">
+  Retrospectives use real public regulatory filings and events linked to their original sources.
+  Platform prices and position data are synthetic for demo purposes.
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

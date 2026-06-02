@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the SEC approve a spot Bitcoin ETF by January 15, 2024?\nKind: retrospective\nTimeline (5 events):\n- 2023-11-01 [background] AML/CFT/CPF Guidelines 2023 \u2014 General AML/CFT/CPF guidance is background compliance guidance and does not materially affect whether the SEC will approve a spot Bitcoin ETF.\n- 2023-10-11 [background] Are Short-selling Restrictions Effective? \u2014 OFR report on short-selling rules is general market-regulation background and unlikely to materially affect the SEC's spot-BTC ETF approval decision.\n- 2023-10-01 [background] The Inspector General\u2019s Statement on the SEC\u2019s Management and Performance Challenges, October 2023 \u2014 U.S. Securities and Exchange Commission \u2014 Office of Inspector General \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.\n- 2023-09-12 [background] Oral Testimony Before the Senate Committee on Banking, Housing, and Urban Affairs \u2014 Gensler's Senate testimony informs SEC stance on crypto but doesn't announce ETF approvals, so it only modestly affects approval odds.\n- 2023-09-12 [background] Testimony Before the Senate Committee on Banking, Housing, and Urban Affairs \u2014 General SEC testimony (Gensler) provides policy context on crypto regulation but gives no direct signal about approving a spot BTC ETF, so neutral.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Through Sep-Nov 2023, SEC and government materials (Gensler's Senate testimonies, SEC OIG challenges statement, OFR short-selling report, AML/CFT/CPF guidance) provided context but no decisive signals on spot BTC ETFs. Despite limited direct pressure from these background items, the SEC approved multiple spot Bitcoin ETFs on Jan 10, 2024, resolving Yes by the Jan 15 deadline."
+  }
+}

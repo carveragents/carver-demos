@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: SCOTUS rules Trump can fire FTC commissioners?\nResolution criteria: This market will resolve to 'Yes' if the U.S. Supreme Court rules in Trump v.\nSlaughter (or a consolidated companion case) that the President may remove Federal\nTrade Commission commissioners without cause, by December 31, 2026, 11:59 PM ET.\nResolution requires a majority opinion from the Supreme Court. Otherwise, this\nmarket will resolve to 'No'.\n\nBackground: President Trump fired FTC Commissioners Rebecca Kelly Slaughter and\nAlvaro Bedoya in early 2025. The case challenges the 1935 Humphrey's Executor\nprecedent, which prohibits presidents from removing commissioners of independent\nagencies without cause. A ruling for Trump would fundamentally restructure the\nFTC's independence from executive control and reshape antitrust enforcement authority.\n\nThe Supreme Court's term ends in June 2026; a decision is expected before then.\nMarket currently prices a 97% probability of YES.\n\nConditions:\n  A: SCOTUS majority in Trump v. Slaughter \u2014 By Dec 31, 2026, SCOTUS issues a majority opinion in Trump v. Slaughter holding the President may remove FTC commissioners without cause.\n  B: SCOTUS majority in companion case \u2014 By Dec 31, 2026, SCOTUS issues a majority opinion in a consolidated companion case holding the President may remove FTC commissioners without cause.\nSettlement entities: ['Supreme Court of the United States', 'Federal Trade Commission', 'Department of Justice', 'Office of the Solicitor General']\n\nRecord title: Attorney General Bonta Co-Leads Lawsuit Challenging President Trump\u2019s Executive Order Restricting Mail Voting, Exerting Federal Control over Elections\nRecord date: 2026-04-03\nRecord regulator: California Department of Justice\nRecord topic: Office of the Attorney General, California Department of Justice\nRecord entities: ['Aaron Ford', 'Aaron M. Frey', 'Amber McReynolds', 'Andrea Joy Campbell', 'Anthony G. Brown', 'Arizona Attorney General Kris Mayes', 'California Attorney General Rob Bonta', 'California Governor Gavin Newsom', 'California Secretary of State Dr. Shirley N. Weber, Ph.D', 'Colorado Attorney General Philip J. Weiser', 'Connecticut Attorney General William Tong', 'Derek T. Kan', 'Delaware Attorney General Kathleen Jennings', 'District of Columbia Attorney General Brian L. Schwalb', 'Donald J. Trump', 'Doug Tolino', 'Frank Bisignano', 'Illinois Attorney General Kwame Raoul', 'Jay Jones', 'Jeff Jackson', 'Jennifer Davenport', 'Josh Kaul', 'Josh Shapiro', 'Keith Ellison', 'Letitia James', 'Markwayne Mullin', 'Massachusetts Attorney General Andrea Joy Campbell', 'Michigan Attorney General Dana Nessel', 'Minnesota Attorney General Keith Ellison', 'Nevada Attorney General Aaron Ford', 'New Jersey Attorney General Jennifer Davenport', 'New Mexico Attorney General Ra\u00fal Torrez', 'New York Attorney General Letitia James', 'Nicholas W. Brown', 'North Carolina Attorney General Jeff Jackson', 'Oregon Attorney General Dan Rayfield', 'Pennsylvania Governor Josh Shapiro', 'Peter F. Neronha', 'Rhode Island Attorney General Peter F. Neronha', 'Ronald Stroman', 'State of Arizona', 'State of California', 'State of Colorado', 'State of Connecticut', 'State of Delaware', 'State of Illinois', 'State of Maine', 'State of Maryland', 'State of Massachusetts', 'State of Michigan', 'State of Minnesota', 'State of Nevada', 'State of New Jersey', 'State of New Mexico', 'State of New York', 'State of North Carolina', 'State of Oregon', 'State of Rhode Island', 'State of Vermont', 'State of Virginia', 'State of Washington', 'State of Wisconsin', 'Todd Blanche', 'United States Department of Homeland Security', 'United States Department of Justice', 'United States Postal Service', 'United States Social Security Administration', 'Vermont Attorney General Charity R. Clark', 'Virginia Attorney General Jay Jones', 'Washington Attorney General Nick Brown', 'Wisconsin Attorney General Josh Kaul']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Multistate suit targets Trump's election-related executive order on mail voting; it does not concern FTC commissioner removals or Humphrey\u2019s Executor, so no effect.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

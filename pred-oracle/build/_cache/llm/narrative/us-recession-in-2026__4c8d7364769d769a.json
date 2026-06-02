@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the US enter a recession in 2026?\nKind: active\nTimeline (10 events):\n- 2026-05-11 [A] Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil Operations \u2014 OFAC sanctions on IRGC oil operations could tighten global oil supply, slightly raising US inflation and recession risk, modestly increasing chance of a 2026 NBER recession.\n- 2026-04-16 [background] Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving CIBanco S.A., Instituci\u00f3n de Banca Multiple; Amendment \u2014 FinCEN special measure on a Mexican bank could slightly strain cross\u2011border finance and marginally raise US recession odds, but impact is minimal.\n- 2026-04-07 [background] FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance \u2014 FinCEN's proposed AML rule raises banks' compliance costs and could modestly tighten credit, slightly increasing near-term recession probability but not determinative.\n- 2026-03-31 [background] Stephen I Miran: Prospects for shrinking the Federal Reserve Bank's balance sheet \u2014 BIS analysis that Fed may shrink its balance sheet implies tighter policy, modestly raising 2026 recession odds and nudging timing sooner.\n- 2026-03-25 [background] READOUT: Financial Stability Oversight Council Meeting on March 25, 2026 \u2014 An FSOC meeting readout may mention financial risks but does not itself announce an NBER recession peak; provides only background signal.\n- 2026-03-12 [background] Isabel Schnabel: Navigating inflation and employment in an era of supply shocks and AI \u2014 ECB official's BIS speech gives broad macro context on inflation/employment and AI but does not directly affect an NBER 2026 recession call.\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 Fed official's take on whether labor-market data are signal or noise modestly shifts recession expectations but doesn't determine an NBER 2026 peak.\n- 2026-01-28 [background] Federal Reserve issues FOMC statement \u2014 FOMC statements convey the Fed's economic outlook and policy stance, providing an early-year signal that can modestly alter 2026 recession odds.\n- 2025-10-29 [background] FOMC Statement \u2014 FOMC statements affect monetary policy and recession risk, but with no content here the 2025 statement provides only ambiguous, small signal for 2026.\n- 2024-12-18 [background] 2024-12-18 - FOMC Statement \u2014 FOMC policy statements affect medium-term recession risk; the Dec 2024 stance could slightly shift odds of a 2026 NBER recession.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Fed guidance from late 2024\u20132026, including FOMC statements and talk of balance\u2011sheet shrinkage, plus FinCEN\u2019s special measure and proposed AML overhaul, signal modest tightening that nudges 2026 recession odds higher. OFAC\u2019s sanctions on IRGC oil raise energy\u2011price risks, while FSOC and central\u2011bank speeches add background signals. NBER has not dated a 2026 recession yet; further policy moves and data remain pending."
+  }
+}

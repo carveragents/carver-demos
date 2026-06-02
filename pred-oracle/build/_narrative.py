@@ -43,9 +43,12 @@ def summarize(
     if not timeline:
         return ""
     h = _timeline_hash(timeline)
+    resolution = contract.get("resolution_outcome", "")
+    resolution_line = f"Resolution: {resolution}\n" if resolution else ""
     user = (
         f"Contract: {contract.get('title', '')}\n"
         f"Kind: {contract.get('kind', '')}\n"
+        f"{resolution_line}"
         f"Timeline ({len(timeline)} events):\n"
         + "".join(
             f"- {ev.get('pub_date', '')} [{ev.get('condition_tag', '?')}] "

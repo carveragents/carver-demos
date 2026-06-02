@@ -1,0 +1,36 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
+    "user": "Tier: critical\nHeat: 88.03\nDelta_7d: -71.8\nTop records:\n- 2026-05-11 Economic Fury Ramps Up Pressure on Iran\u2019s Islamic Revolutionary Guard Corps Oil \n- 2026-05-07 Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq\n- 2026-04-30 2026-04-30 - New Jersey Employment Report: March 2026\n- 2026-04-24 Economic Fury Targets Global Network Fueling Iran\u2019s Oil Trade and Shadow Fleet\n- 2026-04-23 Agencies\u202fFinalize\u202fChanges to Community Bank Leverage Ratio\n- 2026-04-23 Community Bank Leverage Ratio: Final Rule\n- 2026-04-15 Over 53 Million Filers Claimed At Least One of President Trump\u2019s Signature New T\n- 2026-03-31 Stephen I Miran: Prospects for shrinking the Federal Reserve Bank's balance shee\n- 2026-03-19 Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organi\n- 2026-03-19 Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framew\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_drivers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "explainer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_drivers",
+        "explainer"
+      ]
+    }
+  },
+  "response": {
+    "primary_drivers": [
+      "Economic Fury campaign disrupting Iran\u2019s oil trade and shadow fleet",
+      "Targeted actions against Iraqi oil officials and Iran-backed militias",
+      "U.S. banking rulemaking: community-bank leverage ratio final rule and capital modernization proposals"
+    ],
+    "explainer": "Intense 'Economic Fury' actions targeting Iran-linked oil networks and shadow fleets, plus major U.S. banking rulemaking (community-bank leverage ratio final rule and capital modernization proposals), are keeping heat critical despite recent cooling."
+  }
+}

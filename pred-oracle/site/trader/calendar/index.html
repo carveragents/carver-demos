@@ -1,0 +1,5293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carver-enhanced regulatory intelligence for prediction market traders.">
+  <title>Carver Trader — Calendar</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Brand-token extension for the Tailwind CDN. Keeps the rest of the
+    // codebase free of inline color literals.
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            ink:    '#0a0a0a',
+            paper:  '#fafaf7',
+            carver: '#1F2124',  // Carver Agents nav/body shade
+            lime: {
+              50:  '#f6fde3',
+              100: '#ecfac1',
+              200: '#dcf48a',
+              300: '#caec4d',
+              400: '#c6f432',
+              500: '#a8d524',
+              600: '#84a826',
+              700: '#5e7820',
+              900: '#2e3a13',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+
+  
+</head>
+<body class="font-sans bg-paper text-ink antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow">
+    Skip to main content
+  </a>
+
+  <nav class="bg-carver sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="../../index.html"
+         class="group inline-flex items-center gap-2 font-semibold tracking-tight text-white">
+        <span class="inline-flex w-2 h-2 rounded-full bg-lime-400 ring-0 group-hover:ring-4 ring-lime-400/15 transition"></span>
+        <span class="text-base">Pred-Oracle</span>
+      </a>
+      <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-lime-300 bg-lime-400/10 border border-lime-400/25 px-2 py-1 rounded-full">Demo</span>
+    </div>
+  </nav>
+
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    
+<nav class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+  <div class="flex items-center gap-6">
+    <a href="../../trader/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Overview
+    </a>
+    <a href="../../trader/portfolio/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Portfolio
+    </a>
+    <a href="../../trader/calendar/index.html"
+       class="text-sm font-medium text-ink transition">
+      Calendar
+    </a>
+    <a href="../../trader/retrospectives/index.html"
+       class="text-sm font-medium text-slate-500 hover:text-ink transition">
+      Case Studies
+    </a>
+  </div>
+  <div class="flex items-center gap-2 text-xs text-slate-400">
+    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+    <span>Alex's Portfolio</span>
+    <span class="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-medium">DEMO</span>
+  </div>
+</nav>
+
+
+<div x-data="{
+  currentMonth: 1,
+  selectedDate: null,
+  selectDate: function(dateStr) {
+    this.selectedDate = (this.selectedDate === dateStr) ? null : dateStr;
+  }
+}">
+
+  
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold">Regulatory Calendar</h1>
+      <p class="text-sm text-slate-500 mt-1">308 events across your portfolio</p>
+    </div>
+    <a href="../../trader/portfolio/index.html"
+       class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-ink border border-slate-200 rounded px-3 py-1.5 transition">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+      Portfolio
+    </a>
+  </div>
+
+  
+  
+  
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+    
+    
+      
+      
+      
+    
+  
+  
+  <section class="mb-6 border border-slate-200 rounded-lg bg-slate-50/50 p-4">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Upcoming catalysts</h2>
+      <span class="text-xs text-slate-400">55 ahead</span>
+    </div>
+    <ul class="space-y-3">
+      
+      
+      
+        
+        
+        
+      
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">2026-05-29</time>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm text-slate-800 leading-snug">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60767" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 mt-1">
+            <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
+            
+            <a href="../../trader/contracts/clarity-act-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">clarity-act-2026</a>
+            
+            <a href="../../trader/contracts/kxbtc-maxprice-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">kxbtc-maxprice-2026</a>
+            
+          </div>
+        </div>
+      </li>
+      
+      
+      
+        
+        
+        
+      
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">2026-05-29</time>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm text-slate-800 leading-snug">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60773" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 mt-1">
+            <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
+            
+            <a href="../../trader/contracts/kxbtc-maxprice-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">kxbtc-maxprice-2026</a>
+            
+          </div>
+        </div>
+      </li>
+      
+      
+      
+        
+        
+        
+      
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">2026-05-29</time>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm text-slate-800 leading-snug">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60772" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 mt-1">
+            <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
+            
+            <a href="../../trader/contracts/kxbtc-maxprice-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">kxbtc-maxprice-2026</a>
+            
+          </div>
+        </div>
+      </li>
+      
+      
+      
+        
+        
+        
+      
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">2026-06-01</time>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm text-slate-800 leading-snug">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60795" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 mt-1">
+            <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
+            
+            <a href="../../trader/contracts/kxbtc-maxprice-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">kxbtc-maxprice-2026</a>
+            
+          </div>
+        </div>
+      </li>
+      
+      
+      
+        
+        
+        
+      
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-violet-500 mt-1.5"></span>
+        <time class="flex-shrink-0 text-xs text-slate-500 tabular-nums w-20">2026-06-08</time>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm text-slate-800 leading-snug">
+            <a href="https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationRules/60807" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 hover:underline transition">CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]</a>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 mt-1">
+            <span class="text-[10px] uppercase tracking-wider text-slate-400">affects</span>
+            
+            <a href="../../trader/contracts/kxbtc-maxprice-2026/index.html"
+               class="text-[10px] px-1.5 py-0.5 rounded bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-violet-300 hover:text-violet-700 transition font-medium">kxbtc-maxprice-2026</a>
+            
+          </div>
+        </div>
+      </li>
+      
+    </ul>
+    <div class="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center gap-4 text-[10px] text-slate-500">
+      <span class="font-medium uppercase tracking-wider">Event type:</span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Settlement</span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-violet-500"></span>Effective date</span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Comment deadline</span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Reg filing</span>
+    </div>
+  </section>
+  
+
+  
+  <div class="flex items-center gap-4 mb-4">
+    <button @click="currentMonth = Math.max(0, currentMonth - 1)"
+            :disabled="currentMonth === 0"
+            class="p-1.5 rounded hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition">
+      <svg class="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    
+    <h2 class="text-lg font-semibold text-slate-900"
+        x-show="currentMonth === 0">
+      April 2026
+    </h2>
+    
+    <h2 class="text-lg font-semibold text-slate-900"
+        x-show="currentMonth === 1">
+      May 2026
+    </h2>
+    
+    <h2 class="text-lg font-semibold text-slate-900"
+        x-show="currentMonth === 2">
+      June 2026
+    </h2>
+    
+    <button @click="currentMonth = Math.min(2, currentMonth + 1)"
+            :disabled="currentMonth === 2"
+            class="p-1.5 rounded hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition">
+      <svg class="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  
+  
+  <div x-show="currentMonth === 0" x-cloak>
+
+    
+    <div class="grid grid-cols-7 mb-1">
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sun</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Mon</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Tue</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Wed</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Thu</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Fri</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sat</div>
+      
+    </div>
+
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-01')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-01' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            1
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="Regulatory Capital Rule: Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions; Total Loss-Absorbing Capacity and Long-Term Debt Requirements for U.S. Global Systemically Important Bank Holding Companies 12 CFR Part 324 RIN 3064–AG11 Final rule Effective Date: January 1, 2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-02')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-02' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            2
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-03')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-03' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            3
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-04')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-04' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            4
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-05')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-05' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            5
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-06')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-06' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            6
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-07')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-07' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            7
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-08')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-08' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            8
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Administrative Summary - 2026-04-08 - Francis Decker, CPA"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-09')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-09' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            9
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Complaint for Permanent Injunction, Monetary Judgment, and Other Relief"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-10')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-10' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            10
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064–AG19)"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-11')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-11' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            11
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-12')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-12' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            12
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-13')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-13' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            13
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-14')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-14' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            14
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-15')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-15' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            15
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-16')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-16' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            16
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="COIN | Crypto Market Maker Program - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="COIN | Modifications to implement hard limits… - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="COIN | Crypto Market Maker Program - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="CME | Modifications to the Event Contract… - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-17')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-17' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            17
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="GMNI Disclosure about AI information Features available to Members"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="13th Annual Conference on Financial Market Regulation"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-18')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-18' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            18
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-19')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-19' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            19
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-20')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-20' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            20
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-21')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-21' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            21
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500" title="Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Platforms in New York"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-22')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-22' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            22
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-23')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-23' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            23
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Agencies Finalize Changes to Community Bank Leverage Ratio"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Community Bank Leverage Ratio: Final Rule"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Agencies Finalize Changes to Community Bank Leverage Ratio"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Agencies Finalize Changes to Community Bank Leverage Ratio"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Community Bank Leverage Ratio: Final Rule"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-24')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-24' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            24
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Economic Fury Targets Global Network Fueling Iran’s Oil Trade and Shadow Fleet"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-25')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-25' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            25
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-26')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-26' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            26
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-27')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-27' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            27
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Bitcoin 2026"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-28')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-28' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            28
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-29')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-29' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            29
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-04-30')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-04-30' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            30
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="2026-04-30 - New Jersey Employment Report: March 2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Notice of General Order – Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="2026-04-30 - New Jersey Employment Report: March 2026"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+    </div>
+    
+
+    
+    <div x-show="selectedDate !== null" class="mt-4 border border-slate-200 rounded-lg p-4 bg-white">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-semibold text-slate-800" x-text="selectedDate"></h3>
+        <button @click="selectedDate = null" class="text-slate-400 hover:text-slate-600 text-xs">dismiss</button>
+      </div>
+      
+      
+      <div x-show="selectedDate === '2026-04-01'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME - Extension of the Ultra 10 Options Market Maker Program - 03/12/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions; Total Loss-Absorbing Capacity and Long-Term Debt Requirements for U.S. Global Systemically Important Bank Holding Companies 12 CFR Part 324 RIN 3064–AG11 Final rule Effective Date: January 1, 2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Modifications to the Enhanced Supplementary Leverage Ratio Standards for U.S. Global Systemically Important Bank Holding Companies and Their Subsidiary Depository Institutions: Final Rule</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Issue Final Rule to Modify Certain Regulatory Capital Standards</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-08'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Administrative Summary - 2026-04-08 - Francis Decker, CPA</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-09'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Complaint for Permanent Injunction, Monetary Judgment, and Other Relief</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-10'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064–AG19)</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-13'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">Staff Statement Regarding Broker-Dealer Registration of Certain User Interfaces Utilized to Prepare Transactions in Crypto Asset Securities</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-15'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Fury Targets Illicit Oil Smuggling Network Run by Iranian Regime Elite</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Over 53 Million Filers Claimed At Least One of President Trump’s Signature New Tax Cuts</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-16'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Crypto Market Maker Program - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Modifications to implement hard limits… - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Crypto Market Maker Program - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Modifications to the Event Contract… - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-17'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">GMNI Disclosure about AI information Features available to Members</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">13th Annual Conference on Financial Market Regulation</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-21'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium text-xs flex-shrink-0">↓</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Platforms in New York</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-23'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Finalize Changes to Community Bank Leverage Ratio</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Community Bank Leverage Ratio: Final Rule</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Finalize Changes to Community Bank Leverage Ratio</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Apr 23, 2026 - Final Rule on Revisions to the Community Bank Leverage Ratio (CBLR) Framework | FIL-19-2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Finalize Changes to Community Bank Leverage Ratio</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Community Bank Leverage Ratio: Final Rule</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-24'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Fury Targets Global Network Fueling Iran’s Oil Trade and Shadow Fleet</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-27'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Bitcoin 2026</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-28'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CFTC Sues Wisconsin to Reaffirm its Exclusive Jurisdiction Over Prediction Markets</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-04-30'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">2026-04-30 - New Jersey Employment Report: March 2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Notice of General Order – Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">2026-04-30 - New Jersey Employment Report: March 2026</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+    </div>
+
+  </div>
+  
+  <div x-show="currentMonth === 1" x-cloak>
+
+    
+    <div class="grid grid-cols-7 mb-1">
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sun</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Mon</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Tue</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Wed</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Thu</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Fri</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sat</div>
+      
+    </div>
+
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-01')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-01' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            1
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="05.01.2026 - The changes amend Rules related to Bitnomial&#39;s non-FCM Clearing Members - BTNL"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="GMNI Disclosure about AI information Features available to Members"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="COIN | Crypto Market Maker Program - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="COIN | Modifications to implement hard limits… - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="COIN | Crypto Market Maker Program - 04/16/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="CME | Modifications to the Event Contract… - 04/16/2026"></span>
+          
+          
+          <span class="text-[9px] text-slate-400">+4</span>
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-02')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-02' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            2
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-03')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-03' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            3
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-04')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-04' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            4
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Economic Policy Statements to TBAC: 2026 - 2nd Quarter​"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-05')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-05' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            5
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-06')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-06' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            6
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="CDNA - Amendments to rules on Insider definition, jurisdiction… - 05/06/2026"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-07')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-07' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            7
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="GMNI - Liquidity Incentive Program - 05/07/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="13th Annual Conference on Financial Market Regulation"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-08')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-08' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            8
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Self-Regulatory Organizations; The Nasdaq Stock Market LLC; Notice of Filing of Proposed Rule Change, as Modified by Amendment No. 1 Thereto, to List and Trade Shares of iShares Bitcoin Premium Income ETF under Nasdaq Rule 5711(d) (CommodityBased Trust..."></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-09')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-09' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            9
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-10')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-10' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            10
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-11')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-11' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            11
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Economic Fury Ramps Up Pressure on Iran’s Islamic Revolutionary Guard Corps Oil Operations"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-12')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-12' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            12
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Serán Efectivo a Partir del Año Calendario 2027"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-13')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-13' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            13
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-14')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-14' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            14
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-15')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-15' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            15
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-16')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-16' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            16
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-17')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-17' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            17
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-18')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-18' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            18
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Rescission of Policy Regarding Denials in Settlements of Enforcement Actions"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="05.01.2026 - The changes amend Rules related to Bitnomial&#39;s non-FCM Clearing Members - BTNL"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Treasury International Capital Data for March"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-19')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-19' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            19
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CFTC Sues Minnesota to Block State Law"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-20')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-20' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            20
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="CDNA - Amendments to rules on Insider definition, jurisdiction… - 05/06/2026"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-21')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-21' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            21
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="GMNI - Liquidity Incentive Program - 05/07/2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500" title="In the Matter of Ariel Betances"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-22')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-22' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            22
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-23')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-23' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            23
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-24')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-24' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            24
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-25')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-25' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            25
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-26')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-lime-400"
+        :class="selectedDate === '2026-05-26' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-lime-700 font-bold tabular-nums">
+            26
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-27')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-27' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            27
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-28')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-28' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            28
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-29')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-29' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            29
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" title="CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-30')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-30' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            30
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-slate-100">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-05-31')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-05-31' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            31
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+    </div>
+    
+
+    
+    <div x-show="selectedDate !== null" class="mt-4 border border-slate-200 rounded-lg p-4 bg-white">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-semibold text-slate-800" x-text="selectedDate"></h3>
+        <button @click="selectedDate = null" class="text-slate-400 hover:text-slate-600 text-xs">dismiss</button>
+      </div>
+      
+      
+      <div x-show="selectedDate === '2026-05-01'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">05.01.2026 - The changes amend Rules related to Bitnomial&#39;s non-FCM Clearing Members - BTNL</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">GMNI Disclosure about AI information Features available to Members</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Crypto Market Maker Program - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Modifications to implement hard limits… - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">COIN | Crypto Market Maker Program - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Modifications to the Event Contract… - 04/16/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Fury Targets Iranian Shadow Banking Networks Moving Billions in Foreign Currency</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Seeks to Halt Trump Administration’s Illegal Greenlight of Oil Transportation in California Pipelines</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Seeks to Halt Trump Administration’s Illegal Greenlight of Oil Transportation - May 1, 2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Notice of General Order – Ontario Instrument 33-510 Exemptions from Requirements to Submit Certain Personal Information under OSC Rule 33-506 (Commodity Futures Act) Registration Information</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-04'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General James Leads Coalition Urging Supreme Court to Protect Access to Mifepristone</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Policy Statements to TBAC: 2026 - 2nd Quarter​</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-06'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CDNA - Amendments to rules on Insider definition, jurisdiction… - 05/06/2026</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-07'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">GMNI - Liquidity Incentive Program - 05/07/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">13th Annual Conference on Financial Market Regulation</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Fury Targets Iraqi Oil Official, Iran-Backed Terrorist Militias in Iraq</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-08'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">Self-Regulatory Organizations; The Nasdaq Stock Market LLC; Notice of Filing of Proposed Rule Change, as Modified by Amendment No. 1 Thereto, to List and Trade Shares of iShares Bitcoin Premium Income ETF under Nasdaq Rule 5711(d) (CommodityBased Trust...</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-11'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Economic Fury Ramps Up Pressure on Iran’s Islamic Revolutionary Guard Corps Oil Operations</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-12'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes - 12.05.2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta Urges FDA to Reverse Guidance Easing Sales of Flavored E-Cigarettes</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CN-2026-377-AS (Enmendada) - 12.05.2026 - Formulario y Tarifas que Serán Efectivo a Partir del Año Calendario 2027</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-13'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Attorney General Bonta: Joint Investigation Leads to Felony Charges Against Unlicensed Cannabis Retailer for $7.1 Million in Tax Evasion - 13.05.2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-14'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-15'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-18'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Rescission of Policy Regarding Denials in Settlements of Enforcement Actions</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">05.01.2026 - The changes amend Rules related to Bitnomial&#39;s non-FCM Clearing Members - BTNL</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Treasury International Capital Data for March</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-19'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CFTC Sues Minnesota to Block State Law</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-20'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Treasury Disrupts Sinaloa Cartel Narco-Terrorist Fentanyl Trafficking Operations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CDNA - Amendments to rules on Insider definition, jurisdiction… - 05/06/2026</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-21'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">GMNI - Liquidity Incentive Program - 05/07/2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">In the Matter of Ariel Betances</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-05-29'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures and Options on Futures Contracts. | [1]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProgram | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium text-xs flex-shrink-0">↑</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+    </div>
+
+  </div>
+  
+  <div x-show="currentMonth === 2" x-cloak>
+
+    
+    <div class="grid grid-cols-7 mb-1">
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sun</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Mon</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Tue</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Wed</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Thu</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Fri</div>
+      
+      <div class="text-center text-[10px] uppercase tracking-wider text-slate-400 font-medium py-1">Sat</div>
+      
+    </div>
+
+    
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-slate-100">
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-01')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-01' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            1
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-02')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-02' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            2
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-03')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-03' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            3
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-04')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-04' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            4
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-05')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-05' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            5
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-06')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-06' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            6
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-07')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-07' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            7
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-08')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-08' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            8
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-500" title="CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-09')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-09' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            9
+          </span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064–AG19)"></span>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-10')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-10' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            10
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-11')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-11' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            11
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-12')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-12' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            12
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-13')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-13' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            13
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-amber-50/50">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-14')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-14' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            14
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-15')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-15' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            15
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-16')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-16' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            16
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-17')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-17' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            17
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-18')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-18' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            18
+          </span>
+          
+          <span class="text-[9px] text-amber-600 font-medium">busy</span>
+          
+        </div>
+
+        
+        
+        <div class="flex flex-wrap gap-0.5 mt-0.5">
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500" title="Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations"></span>
+          
+          
+            
+          
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400" title="Regulatory Capital: Standardized Approach for Risk-Weighted Assets"></span>
+          
+          
+          <span class="text-[9px] text-slate-400">+3</span>
+          
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-19')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-19' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            19
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-20')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-20' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            20
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-slate-100">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-21')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-21' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            21
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-22')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-22' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            22
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-23')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-23' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            23
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-24')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-24' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            24
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-25')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-25' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            25
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-26')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-26' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            26
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-27')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-27' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            27
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <div class="grid grid-cols-7 gap-px mb-px bg-slate-100">
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-28')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-28' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            28
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-29')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-29' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            29
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      
+      
+      <div
+        @click="selectDate('2026-06-30')"
+        class="min-h-[72px] bg-white p-1.5 cursor-pointer hover:bg-slate-50 transition border-t border-transparent"
+        :class="selectedDate === '2026-06-30' ? 'ring-2 ring-inset ring-lime-400' : ''"
+      >
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-medium text-slate-700 tabular-nums">
+            30
+          </span>
+          
+        </div>
+
+        
+        
+      </div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+      
+      <div class="min-h-[72px] bg-slate-50/50"></div>
+      
+      
+    </div>
+    
+
+    
+    <div x-show="selectedDate !== null" class="mt-4 border border-slate-200 rounded-lg p-4 bg-white">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-semibold text-slate-800" x-text="selectedDate"></h3>
+        <button @click="selectedDate = null" class="text-slate-400 hover:text-slate-600 text-xs">dismiss</button>
+      </div>
+      
+      
+      <div x-show="selectedDate === '2026-06-01'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-06-08'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program | [2]</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      <div x-show="selectedDate === '2026-06-09'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">NPRM: Anti-Money Laundering and CFT Programs - 10.04.2026</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted Payment Stablecoin Issuers (RIN 3064–AG19)</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div x-show="selectedDate === '2026-06-18'" class="space-y-2">
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-medium text-xs flex-shrink-0">↓</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Agencies Request Comment on Proposals to Modernize the Regulatory Capital Framework And Maintain the Strength of the Banking System</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital: Standardized Approach for Risk-Weighted Assets</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations with Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital Rule: Regulatory Capital and Standardized Approach for Risk-weighted Assets</div>
+            
+            
+          </div>
+        </div>
+        
+        
+          
+          
+        
+        <div class="flex items-start gap-2 text-sm">
+          <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-xs flex-shrink-0">→</span>
+          <div>
+            <div class="font-medium text-slate-800">Regulatory Capital: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations</div>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+
+  </div>
+  
+
+  
+  <p class="mt-6 text-[10px] text-slate-400">
+    Coverage: Carver entry annotations matched to your portfolio settlement entities.
+    Events outside the annotation window not shown.
+  </p>
+
+</div>
+
+
+  </main>
+
+  <footer class="border-t border-slate-200 mt-24 py-8">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+      <div class="max-w-2xl">
+        Pred-Oracle demo built on Carver regulatory annotations. Synthetic platform context labelled where applicable. Real persons / events linked to public sources.
+      </div>
+      <div class="flex items-center gap-2 text-xs shrink-0">
+        <span class="text-slate-400">Built by</span>
+        <a href="https://carveragents.ai" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 text-ink hover:text-lime-700 transition">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span>
+          <span class="font-medium">Carver Agents</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

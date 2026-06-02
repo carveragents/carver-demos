@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the SEC approve a spot Ethereum ETF by May 31, 2024?\nKind: retrospective\nTimeline (5 events):\n- 2024-05-16 [background] Compliance Outreach on Regulation S-P \u2014 Regulation S-P outreach pertains to privacy/compliance, not ETF listing approvals, so it does not affect SEC spot-ETH ETF odds.\n- 2024-04-19 [background] Guidelines For Issuing Instruments Under Section 209 Of The Securities Industry Act 2016 (Act 929) As Amended 2024 \u2014 Guidance from Ghana's SEC on local securities instruments is unrelated to the US SEC's decision on a spot ETH ETF.\n- 2024-04-17 [background] Proposed Rule Change to Amend the MSRB's Real-Time Transaction Reporting System and Price Dissemination Information Facility to Retire the Transmission Control Protocol Secure Socket Connection \u2014 MSRB rule on municipal securities reporting is unrelated to SEC decisions about listing/approving spot ETH ETFs.\n- 2024-04-09 [background] Aon Investments USA Inc., fka Aon Hewitt Investment Consulting, Inc. \u2014 SEC enforcement action involving Aon and a pension fund is unrelated to spot-ETH ETF listing approvals; no impact on approval odds or timing.\n- 2024-03-27 [background] Shortening the Securities Transaction Settlement Cycle \u2014 Settlement-cycle rulemaking is a broad market infrastructure change and does not materially affect likelihood of an SEC approval for spot ETH ETFs.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Most cited regulatory actions in Mar\u2013May 2024 (settlement\u2011cycle changes, Reg S\u2011P outreach, an Aon enforcement, an MSRB tech tweak, and Ghana SEC guidance) were unrelated to spot\u2011ETH ETFs and had no effect on odds. Despite that, on May 23, 2024 the SEC approved multiple spot Ethereum ETF 19b\u20114s, so the contract resolved Yes before the May 31 deadline."
+  }
+}

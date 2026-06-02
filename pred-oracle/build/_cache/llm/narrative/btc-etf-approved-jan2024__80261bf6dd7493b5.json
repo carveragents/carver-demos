@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the SEC approve a spot Bitcoin ETF by January 15, 2024?\nKind: retrospective\nTimeline (5 events):\n- 2024-01-01 [background] MSRB Update: Winter 2024 \u2014 MSRB winter update concerns municipal securities and general SEC matters; it gives no information affecting spot-Bitcoin ETF approval prospects.\n- 2024-01-01 [background] 2025 Open Data Plan (PDF) \u2014 General SEC Open Data Plan unrelated to spot-BTC ETF approval; provides no info affecting likelihood of approval by Jan 15, 2024.\n- 2023-12-31 [background] 2023 OIAD Annual Report (PDF) \u2014 A generic SEC annual report (OIAD) does not directly indicate approval or denial of a specific spot BTC ETF by Jan 15, 2024.\n- 2023-12-13 [background] Standards for Covered Clearing Agencies for U.S. Treasury Securities and Application of the Broker-Dealer Customer Protection Rule With Respect to U.S. Treasury Securities Trading and Markets \u2014 SEC rulemaking on U.S. Treasury clearing and broker-dealer customer protection is unrelated to spot Bitcoin ETF approvals, so it doesn't change odds.\n- 2023-11-30 [background] MSRB Establishes 2024 Annual Rate Card Fees for Dealers and Municipal Advisors \u2014 MSRB's dealer/municipal advisor fee schedule is unrelated to SEC spot-Bitcoin ETF approval and doesn't affect approval odds.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Regulatory signals in the provided timeline were tangential\u2014MSRB fee updates, SEC clearing rules, and generic reports offered no insight into spot\u2011Bitcoin ETF approval odds. Nevertheless, the SEC approved multiple spot Bitcoin ETFs on Jan 10, 2024, leading the contract to resolve Yes ahead of the Jan 15 deadline."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: FDA approves Retatrutide in 2026?\nResolution criteria: This market will resolve to 'Yes' if the U.S. Food and Drug Administration formally\napproves Retatrutide (LY3437943, Eli Lilly's triple GIP/GLP-1/glucagon receptor\nagonist) for any indication by December 31, 2026, 11:59 PM ET. Approval must be\nvia formal FDA authorization \u2014 a New Drug Application (NDA) or Biologics License\nApplication (BLA) approval letter. Excludes Emergency Use Authorizations (EUA),\ncompassionate use designations, tentative approvals, and approvable letters.\n\nRetatrutide targets obesity, type 2 diabetes, and related metabolic conditions.\nPhase 3 clinical trial data is expected in 2026, with NDA submission expected no\nearlier than late 2026, making a 2026 FDA decision unlikely but possible on\naccelerated review pathways.\n\nConditions:\n  A: FDA NDA approval letter \u2014 FDA issues a final NDA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.\n  B: FDA BLA approval letter \u2014 FDA issues a final BLA approval letter for Retatrutide (LY3437943) for any indication by Dec 31, 2026, 11:59 PM ET. Standard or accelerated approval counts; EUA, tentative, and approvable letters do not.\nSettlement entities: ['Food and Drug Administration', 'Center for Drug Evaluation and Research', 'Eli Lilly and Company', 'Office of New Drugs']\n\nRecord title: Attorney General James Releases Statement on Ruling Restricting Access to Mifepristone\nRecord date: 2026-05-01\nRecord regulator: New York Attorney General\nRecord topic: New York State Office of the Attorney General\nRecord entities: ['Food and Drug Administration', 'Letitia James', 'New York Attorney General Office', 'U.S. Court of Appeals for the Fifth Circuit']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": false,
+    "relevance_score": 0,
+    "one_line_why": "Statement concerns mifepristone access and legal scrutiny of FDA decisions; it does not materially change FDA approval odds or timing for Retatrutide.",
+    "condition_tag": "background",
+    "high_impact": false,
+    "direction": "neutral",
+    "magnitude": "low",
+    "timeline_shift": "none"
+  }
+}

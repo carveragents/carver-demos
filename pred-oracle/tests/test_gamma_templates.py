@@ -229,7 +229,6 @@ def test_contract_detail_renders_conditions_and_legend(tmp_path) -> None:
 def test_gamma_intro_renders_with_scene_copy() -> None:
     tpl = _env().get_template("gamma/intro.html")
     out = tpl.render(base_url="")
-    assert "Marcus Vega" in out
     assert "pre-listing" in out.lower() or "pre listing" in out.lower()
     assert "active contracts" in out.lower()
     out_l = out.lower()

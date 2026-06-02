@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will the U.S. enact a stablecoin bill in 2025?\nKind: retrospective\nResolution: YES\nTimeline (12 events):\n- 2025-07-15 [background] FDIC Proposes Regulatory Threshold Adjustments and Indexing to Reflect Inflation \u2014 FDIC's inflation-indexing proposal is relevant background on banking regulation but does not directly affect the likelihood of a federal stablecoin bill.\n- 2025-07-15 [background] SUNS July 15, 2025 (PDF) \u2014 Texas Dept. of Banking SUNS references federal agencies and stakeholders \u2014 provides background on oversight/cooperation but doesn't directly determine a federal stablecoin law.\n- 2025-06-30 [background] Imposition of Special Measure Prohibiting Certain Transmittals of Funds Involving Vector Casa de Bolsa, S.A. de C.V. \u2014 Financial Crimes Enforcement Network \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.\n- 2025-06-03 [background] Testimony Before the United States Senate Appropriations Subcommittee on Financial Services and General Government \u2014 SEC testimony to Appropriations Subcommittee is general oversight/funding testimony and only weakly signals SEC priorities on stablecoins; minimal direct impact.\n- 2025-05-05 [background] finding and notice of\u2026 \u2014 FinCEN finding/notice affects crypto regulatory climate but lacks direct bearing on whether Congress will pass and the President will sign a federal stablecoin law.\n- 2025-05-01 [background] FinCEN Finds Cambodia-Based Huione Group to be of Primary Money Laundering Concern, Proposes a Rule to Combat Cyber Scams and Heists \u2014 Financial Crimes Enforcement Network \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.\n- 2025-04-30 [background] OCC Report Highlights Key Risks in Federal Banking System \u2014 OCC's general report flags banking risks but doesn't specifically address a federal stablecoin framework, so it offers only background context.\n- 2025-04-01 [background] FinCEN Advisory FIN-2025-A001 \u2014 FinCEN interagency advisory signals heightened concern about crypto/stablecoins, modestly increasing pressure for federal stablecoin legislation.\n- 2025-03-01 [background] 2025 Examination Priorities (PDF) \u2014 SEC 2025 exam priorities are regulatory guidance, not law; they signal agency focus on crypto but don't materially change the chance a federal stablecoin bill is signed in 2025.\n- 2025-02-26 [background] Written Testimony \u2014 OCC testimony shows regulator engagement on stablecoins but, without clear policy change or legislative action, doesn't materially change passage odds.\n- 2025-02-04 [background] SEC Crypto Task Force Designation (PDF) \u2014 SEC designates a crypto task force\u2014increases regulatory scrutiny but is background and unlikely to materially affect whether a federal stablecoin bill is signed.\n- 2025-01-10 [background] Request for Information Regarding the Collection, Use, and Monetization of Consumer Payment and Other Personal Financial Data \u2014 CFPB RFI on consumer payment data signals background attention to payments regulation but does not materially change likelihood of a 2025 federal stablecoin law.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Through 2025, SEC, FinCEN, OCC, FDIC, and CFPB issued reports, advisories, and testimonies on crypto, payments, and banking risks\u2014mostly background with limited direct impact. FinCEN's April interagency advisory and AML moves modestly increased pressure for a federal framework. Congress ultimately passed and the President signed a stablecoin bill in 2025, resolving YES."
+  }
+}

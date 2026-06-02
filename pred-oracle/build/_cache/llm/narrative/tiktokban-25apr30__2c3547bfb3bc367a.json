@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will TikTok be banned in the United States by April 30, 2025?\nKind: retrospective\nTimeline (5 events):\n- 2025-02-25 [background] D25-03 - Steven House - Amended Stipulated Agreement and Order \u2014 Alaska Division of Insurance amended order concerns state insurance matters and officials, not TikTok availability or federal PAFACA actions.\n- 2025-02-12 [background] Hearing Notice \u2014 Off-topic Alaska insurance hearing notice unrelated to TikTok, app stores, or federal PAFACA actions; no impact on ban probability.\n- 2025-02-06 [background] February \u2014 Alaska Board of Nursing item is unrelated to TikTok availability or any federal PAFACA enforcement; it doesn't change ban odds.\n- 2025-01-31 [background] Regulatory Board Disciplinary Actions Archive \u2014 State-level disciplinary archive about Tennessee businesses unrelated to TikTok app availability or federal PAFACA orders.\n- 2024-09-19 [background] Prepared Opening Remarks of CFPB Director Rohit Chopra at the Aspen Institute on Abuse and Misuse of Our Personal Data \u2014 Consumer Financial Protection Bureau \u2014 Consumer Financial Protection Bureau: tangential to resolution, no directional effect.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The timeline showed only off-topic state actions (Alaska insurance/nursing, Tennessee discipline) and a tangential CFPB speech, with no concrete federal PAFACA enforcement or app-store measures. As litigation and divest-or-ban deadlines progressed without implementation, TikTok was not banned by April 30, 2025."
+  }
+}

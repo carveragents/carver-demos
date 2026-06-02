@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (5 events):\n- 2026-05-11 [background] FTC Chairman Ferguson\u202fAdvises Companies to Comply with the Take It Down Act \u2014 FTC chair advising compliance shows agency activity but gives no direct evidence that SCOTUS has ruled the President can remove FTC commissioners.\n- 2026-05-04 [background] Protect your business from scams and online threats this National Small Business Week \u2014 FTC consumer guidance on scams is unrelated to the Supreme Court removal case and does not affect the chance of a pro\u2011Trump ruling.\n- 2026-05-01 [background] FTC to Host Workshop on \u201cLitigate the Fix\u201d Merger Remedy Proposals \u2014 FTC workshop on merger remedies is routine agency activity unrelated to the Supreme Court's removal\u2011power case; no material effect on YES odds.\n- 2026-04-02 [background] Jena Antonucci, In the Matter of \u2014 FTC ALJ case (Jena Antonucci) is an administrative enforcement matter unrelated to SCOTUS removal of FTC commissioners; no impact on resolution.\n- 2026-03-12 [background] Rule Concerning the Use of Prenotification Negative Option Plans \u2014 FTC issuing a consumer-rule shows the agency is active but provides no direct evidence about a Supreme Court majority ruling on presidential removal power.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "All listed events are routine FTC actions (consumer rule, ALJ matter, workshop, guidance) and do not bear on the Supreme Court\u2019s stance on presidential removal of FTC commissioners. No SCOTUS decision has issued; the question remains pending until the Court takes and resolves a case that squarely addresses whether the President may fire FTC commissioners at will."
+  }
+}

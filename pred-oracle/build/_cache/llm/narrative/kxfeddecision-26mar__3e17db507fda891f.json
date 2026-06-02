@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Federal Reserve rate decision \u2014 March 2026 FOMC meeting\nKind: retrospective\nTimeline (10 events):\n- 2026-03-02 [background] Christopher J Waller: Labor market data - signal or noise? \u2014 Waller's BIS piece reveals a Fed policymaker's view on labor-market signals ahead of Mar 17\u201318, providing background for odds but not determinative.\n- 2026-02-05 [background] Michelle W Bowman: Outlook for the economy and monetary policy \u2014 Bowman\u2019s Feb 5 policy outlook offers incremental guidance on FOMC views but is not an official rate decision.\n- 2026-02-01 [background] Factors Affecting Regional Bank Health and Supervisory Rating: An Exploration \u2014 Cleveland Fed paper highlighting regional bank fragility slightly raises downside risk to further tightening, modestly lowering odds of a March hike.\n- 2026-01-21 [background] Treasury Exposes and Disrupts Hamas\u2019s Covert Support Network \u2014 OFAC sanctions raise geopolitical risk and could modestly affect energy/inflation expectations, but only weakly and indirectly for the March FOMC decision.\n- 2026-01-06 [background] Secretary Scott Bessent Announces Working Families Tax Cuts: Ushering in a New Golden Age \u2014 Treasury\u2019s Jan 6 expansionary tax-cut plan could boost growth/inflation and modestly raise odds of a March rate hike.\n- 2025-11-25 [background] Final Rule to Modify the Enhanced Supplementary Leverage Ratio \u2014 FDIC\u2019s eSLR rule change affects bank capital/lending conditions and thus Fed policy only indirectly and modestly, giving a small signal months before the meeting.\n- 2025-11-20 [background] Christopher J Waller: The case for continuing rate cuts \u2014 Fed Governor Waller argued for continuing rate cuts (Nov 2025), modestly raising odds of a March 2026 cut vs hold/raise.\n- 2025-11-20 [background] Philip N Jefferson: Economic outlook and monetary policy \u2014 Fed Governor Jefferson\u2019s Nov 2025 policy outlook offers an incremental signal on the Fed\u2019s rate path, mildly adjusting March 2026 move odds.\n- 2025-11-20 [background] Treasury Tightens Sanctions on Iran\u2019s Oil Network Supporting its Military \u2014 OFAC sanctions could tighten Iranian oil supply, nudging oil prices and inflation slightly and thus modestly raising odds of a higher Fed funds target.\n- 2025-10-22 [background] Treasury Sanctions Major Russian Oil Companies, Calls on Moscow to Immediately Agree to Ceasefire \u2014 OFAC sanctions on major Russian oil firms could tighten supply and raise oil-driven inflation, slightly increasing odds of Fed holding/raising in Mar 2026.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Leading into Mar 17\u201318, 2026, oil sanctions and tax cuts lifted inflation risk, while bank\u2011fragility concerns and Fed commentary tilted dovish. Odds coalesced around caution. The contract resolved to the FOMC's announced decision, aligning with that tenor rather than a renewed hike."
+  }
+}

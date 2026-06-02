@@ -2,7 +2,7 @@
   "request": {
     "model": "gpt-5-mini",
     "system": "You are a regulatory analyst. Given a contract's heat tier and its top recent matching records, write a one-sentence (\u2264220 char) explanation of what is driving heat at this level this week. Also list 1-3 short primary drivers (\u2264120 chars each). Return JSON matching the schema.",
-    "user": "Tier: critical\nHeat: 418.18\nDelta_7d: -224.65\nTop records:\n- 2026-05-15 CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program\n- 2026-05-14 CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2\n- 2026-05-13 CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures \n- 2026-05-13 CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProg\n- 2026-05-08 Self-Regulatory Organizations; The Nasdaq Stock Market LLC; Notice of Filing of \n- 2026-05-01 05.01.2026 - Amendment to trading hours to allow for product specific trading ho\n- 2026-05-01 05.01.2026 - Issuance of CME Group Market Regulation Advisory Notice RA2602-5 Re\n- 2026-04-21 Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Pla\n- 2026-04-16 CME | Modifications to the Event Contract\u2026 - 04/16/2026\n- 2026-04-16 COIN | Modifications to implement hard limits\u2026 - 04/16/2026\n",
+    "user": "Tier: critical\nHeat: 434.56\nDelta_7d: -208.27\nTop records:\n- 2026-05-15 CME | Implementation of the Nasdaq CME Crypto Index Futures Market Maker Program\n- 2026-05-14 CME | Implementation of the Bitcoin Volatility Futures Market Maker Program | [2\n- 2026-05-13 CME | Expansion of the Trading and ClearingHours for all Cryptocurrency Futures \n- 2026-05-13 CME | Implementation of the Cryptocurrency Options 24/7 Weekend Market MakerProg\n- 2026-05-13 CME | Implementation of the Cryptocurrency Futures 24/7 Weekend Market Maker Pro\n- 2026-05-08 Self-Regulatory Organizations; The Nasdaq Stock Market LLC; Notice of Filing of \n- 2026-04-21 Attorney General James Sues Coinbase and Gemini for Running Illegal Gambling Pla\n- 2026-04-16 COIN | Crypto Market Maker Program - 04/16/2026\n- 2026-04-16 CME | Modifications to the Event Contract\u2026 - 04/16/2026\n- 2026-04-10 04/10/26 - GENIUS Act Requirements and Standards for FDIC-Supervised Permitted P\n",
     "schema": {
       "type": "object",
       "additionalProperties": false,
@@ -27,10 +27,10 @@
   },
   "response": {
     "primary_drivers": [
-      "CME market-maker programs for Nasdaq crypto index and Bitcoin volatility futures",
-      "Expansion of trading/clearing hours and 24/7 weekend crypto options market-maker program",
-      "Regulatory filings and a high-profile AG enforcement suit vs Coinbase/Gemini"
+      "CME implementations of multiple crypto market\u2011maker programs",
+      "Expansion to 24/7 weekend trading and extended clearing hours",
+      "Regulatory/legal pressure: AG suit, Nasdaq filings, GENIUS Act developments"
     ],
-    "explainer": "Critical heat driven by a concentrated wave of CME product rollouts and program notices \u2014 new crypto derivatives market-maker programs and extended 24/7 trading/clearing hours \u2014 plus regulatory filings and an AG enforcement suit."
+    "explainer": "Critical heat is driven by a wave of exchange actions implementing market\u2011maker programs and 24/7 trading expansions, amplified by high\u2011profile regulatory and legal moves this week."
   }
 }

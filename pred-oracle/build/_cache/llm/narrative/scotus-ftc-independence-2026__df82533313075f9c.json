@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (6 events):\n- 2026-04-16 [background] FTC Stops Operation that Allegedly Targeted People Seeking Student Loan Debt Relief \u2014 Federal Trade Commission \u2014 Bureau of Consumer Protection \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-04-09 [background] Complaint for Permanent Injunction, Monetary Judgment, and Other Relief \u2014 FTC's Apr 9 complaint against StubHub shows the agency is still enforcing rules but provides no direct evidence on the Supreme Court removal issue.\n- 2026-03-30 [background] OkCupid/Match \u2014 FTC enforcement action against Match/OkCupid shows agency is active but does not meaningfully affect the Supreme Court's removability legal question.\n- 2026-02-12 [background] FTC Finalizes Consent Order in Adamas No-Hire Agreement Matter \u2014 Federal Trade Commission \u2014 Bureau of Competition \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-01-30 [background] FTC Takes Action to Prevent Anticompetitive Healthcare Services Merger \u2014 FTC enforcement shows the agency is functioning but gives no direct evidence about the Supreme Court's removal ruling; no meaningful effect on YES odds.\n- 2026-01-12 [background] FTC is Seeking Information from 20 Universities on Sports Agents\u2019 Compliance with Law Aimed at Protecting Student Athletes \u2014 Routine FTC enforcement action provides background on agency activity but does not materially affect whether SCOTUS will rule on removal powers.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Through early 2026, the FTC remains active across consumer protection and competition matters, but these routine actions provide no signal on whether SCOTUS will permit presidential at\u2011will removal of FTC commissioners. The market hinges on if/when the Court takes and decides a case revisiting the FTC\u2019s for\u2011cause removal protections; until then, regulatory activity is status quo and non\u2011directional."
+  }
+}

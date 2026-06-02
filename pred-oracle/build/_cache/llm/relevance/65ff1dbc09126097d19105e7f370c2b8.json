@@ -1,0 +1,78 @@
+{
+  "request": {
+    "model": "gpt-5-mini",
+    "system": "You are a regulatory analyst. Given a prediction-market contract and a single regulatory news record, decide if this record is relevant to whether the contract resolves YES or NO. Score relevance 0-10 (0 = off-topic, 10 = directly determinative). Return JSON matching the schema. one_line_why should be \u2264160 chars and explain how this record moves resolution probability.\n\nDirection: judge whether this event makes the contract MORE likely to resolve YES (= bullish), LESS likely to resolve YES (= bearish), or has no directional effect (= neutral). IMPORTANT: direction is always relative to YES resolution. If your one_line_why says the event 'increases odds' or 'raises probability', direction MUST be bullish. If it says 'decreases odds' or 'lowers probability', direction MUST be bearish. Do not contradict yourself.\n\nMagnitude: high = materially changes probability, medium = notable but not decisive, low = incremental signal.\n\nTimeline shift: does this event suggest resolution will come sooner or later than expected, or no change (none)?",
+    "user": "Contract title: Will Polymarket US go live in 2025?\nResolution criteria: Resolves YES if a real-money trade is placed on an exchange operated by\nPolymarket that holds a CFTC Designated Contract Market (DCM) designation,\navailable to US persons, by December 31, 2025, 11:59 PM ET.\nResolves NO otherwise.\n\nConditions:\n  A: Polymarket DCM trade by 2025 deadline \u2014 At least one real-money trade occurs by Dec 31, 2025, 11:59 PM ET on an exchange operated by Polymarket that holds a CFTC DCM designation and is available to US persons.\nSettlement entities: ['Commodity Futures Trading Commission', 'KalshiEX LLC', 'Polymarket', 'ElectronX', 'CME Group']\n\nRecord title: Acting Chairman Pham Launches Tokenized Collateral and Stablecoins Initiative\nRecord date: 2025-09-23\nRecord regulator: Commodity Futures Trading Commission\nRecord topic: Commodity Futures Trading Commission\nRecord entities: ['Caroline D. Pham', 'Circle', 'Coinbase Institutional Product', 'Commodity Futures Trading Commission', 'Crypto.com', 'Crypto Exchanges', 'Fintechs', 'Greg Tusar', 'Heath Tarbert', 'Jack McDonald', 'Paolo Ardoino', 'Ripple', 'Stablecoins', 'Tether']",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "relevance_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "one_line_why": {
+          "type": "string"
+        },
+        "condition_tag": {
+          "type": "string",
+          "enum": [
+            "A",
+            "background"
+          ]
+        },
+        "high_impact": {
+          "type": "boolean"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "bullish",
+            "bearish",
+            "neutral"
+          ]
+        },
+        "magnitude": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "timeline_shift": {
+          "type": "string",
+          "enum": [
+            "sooner",
+            "later",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "relevant",
+        "relevance_score",
+        "one_line_why",
+        "condition_tag",
+        "high_impact",
+        "direction",
+        "magnitude",
+        "timeline_shift"
+      ]
+    }
+  },
+  "response": {
+    "relevant": true,
+    "relevance_score": 4,
+    "one_line_why": "CFTC initiative on tokenized collateral/stablecoins could modestly ease regulatory hurdles for crypto exchanges, slightly raising Polymarket's chance of securing a DCM and trading by 2025.",
+    "condition_tag": "A",
+    "high_impact": false,
+    "direction": "bullish",
+    "magnitude": "low",
+    "timeline_shift": "sooner"
+  }
+}

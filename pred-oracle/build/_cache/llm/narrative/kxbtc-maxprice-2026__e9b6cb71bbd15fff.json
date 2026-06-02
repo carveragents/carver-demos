@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: Will Bitcoin be above $109,999.99 by Dec 31, 2026 at 11:59 PM ET?\nKind: active\nTimeline (6 events):\n- 2026-05-19 [background] CFTC Sues Minnesota to Block State Law \u2014 Commodity Futures Trading Commission \u2014 Commodity Futures Trading Commission: tangential to resolution, no directional effect.\n- 2026-04-07 [background] FinCEN Proposes Rule to Fundamentally Reform Financial Institution Programs Designed to Fight Illicit Finance \u2014 Financial Crimes Enforcement Network \u2014 Financial Crimes Enforcement Network: tangential to resolution, no directional effect.\n- 2026-03-23 [background] 91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets (PDF) \u2014 SEC notice clarifying application of federal securities laws to crypto assets is background regulatory info that may affect sentiment but not directly BTC spot.\n- 2026-03-23 [background] 91 FR 13714 - 3/23/2026 - Application of the Federal Securities Laws to Certain Types of Crypto Assets \u2014 SEC guidance on securities treatment for some crypto assets is regulatory background and unlikely to materially change Bitcoin's odds of topping $110k.\n- 2026-02-09 [background] Remarks at the Asset Management Derivatives Forum 2026: Treasuries and Tokenization \u2014 U.S. Securities and Exchange Commission \u2014 U.S. Securities and Exchange Commission: tangential to resolution, no directional effect.\n- 2025-12-08 [A] Acting Chairman Pham Announces Launch of Digital Assets Pilot Program for Tokenized Collateral in Derivatives Markets \u2014 CFTC pilot to allow tokenized collateral in derivatives likely boosts institutional demand/liquidity for crypto, modestly increasing odds BTC tops $110k in 2026.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "Launch of CFTC's tokenized collateral pilot in late 2025 expands institutional use of crypto in derivatives, modestly improving liquidity and odds BTC could top $110k by end-2026. 2026 actions\u2014SEC crypto-asset guidance, a FinCEN AML reform proposal, and a CFTC suit against a state law\u2014are largely tangential and sentiment-driven; with rulemaking and litigation outcomes still pending, no decisive BTC-spot regulation is in play."
+  }
+}

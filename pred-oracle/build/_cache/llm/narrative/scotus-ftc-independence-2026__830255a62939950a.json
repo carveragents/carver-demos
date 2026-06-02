@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "gpt-5",
+    "system": "You are a regulatory analyst. Write a 2-3 sentence storyline summary (\u2264500 chars total) of the regulatory pressure history for this prediction-market contract. For 'retrospective' kind, write past tense and reference the actual resolution. For 'active' kind, write present tense and note what's still pending. Return JSON {text: ...}.",
+    "user": "Contract: SCOTUS rules Trump can fire FTC commissioners?\nKind: active\nTimeline (8 events):\n- 2026-04-14 [background] TruHeight; Analysis of Proposed Consent Order To Aid Public Comment \u2014 FTC's proposed consent order is routine enforcement activity and provides no direct evidence about SCOTUS ruling on presidential removal of FTC commissioners.\n- 2026-04-13 [background] Publishing.com to Pay $1.5 Million for Misleading Consumers about How Much Income They Could Earn Using the Company\u2019s Products and Services \u2014 Federal Trade Commission \u2014 Bureau of Consumer Protection \u2014 Federal Trade Commission: tangential to resolution, no directional effect.\n- 2026-04-09 [background] StubHub Refunding $10 Million in Fees to Consumers After Deceptive Ticket Pricing \u2014 FTC enforcement shows the agency is active but provides no legal or judicial signal about SCOTUS deciding presidential removal in Trump v. Slaughter.\n- 2026-03-24 [background] Air AI and its Owners will be Banned from Marketing Business Opportunities to Settle FTC Charges the Company Misled Many Entrepreneurs and Small Businesses \u2014 FTC enforcement action shows the agency remains active but does not affect the Supreme Court's legal question on presidential removal, so no directional effect.\n- 2026-03-10 [background] Attorney General Bonta Opposes Trump Administration\u2019s Attempt to Intimidate Scientific Organizations \u2014 State AGs oppose alleged Trump admin intimidation of scientific groups; mentions the FTC but provides no information bearing on the SCOTUS removal question.\n- 2026-02-11 [background] Express Scripts, Inc., et al.; Analysis of Agreement Containing Consent Order To Aid Public Comment \u2014 Routine FTC consent-order notice shows the agency is issuing orders but gives no direct evidence about SCOTUS removal ruling; minimal impact.\n- 2026-01-09 [background] Early Termination Notices \u2014 FTC 'Early Termination Notices' are administrative filings with DOJ/FTC and provide no clear signal about the Supreme Court's decision on removal authority.\n- 2025-12-03 [background] FTC Requires Boeing to Divest Several Spirit Assets to Proceed with Merger \u2014 FTC ordering Boeing divestitures is routine enforcement background about FTC activity and does not meaningfully affect the SCOTUS removal ruling.\n",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "response": {
+    "text": "The timeline shows routine FTC enforcement and administrative actions through late 2025\u2013Apr 2026, signaling an active agency but no legal indication on presidential removal authority. The key issue\u2014whether SCOTUS will rule that a president (e.g., Trump) can fire FTC commissioners\u2014remains pending, with no directional cues from these events."
+  }
+}
