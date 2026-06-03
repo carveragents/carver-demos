@@ -272,11 +272,42 @@ def _relative_base(site_root: Path, out_path: Path) -> str:
     return "" if rel == "." else rel + "/"
 
 
+def _preserve_sliceless_retrospectives(
+    repo_root: Path, out_dir: Path, scene: str | None
+) -> dict[str, bytes]:
+    """Snapshot committed retrospective pages that have no page_data slice.
+
+    A few resolved-contract retrospectives ship as committed rendered HTML
+    while their source slices do NOT (the corpus that produced them is
+    gitignored scratch — see docs/LESSONS.md). `build_site` wipes `out_dir`
+    wholesale before re-rendering from slices, which would permanently delete
+    these pages. Snapshot them here so the caller can restore them after the
+    rebuild. Returns {site-relative path: html bytes}; empty when every
+    retrospective dir has a matching slice (self-disabling once slices exist).
+    """
+    # The page_data source path is always scene-independent; only the rendered
+    # output mount point (retros_sub) changes for a trader-only scene export.
+    pd_retro = repo_root / "build" / "page_data" / "trader" / "retrospectives"
+    have_slice = {p.stem for p in pd_retro.glob("*.json")} if pd_retro.exists() else set()
+    retros_sub = "retrospectives" if scene == "trader" else "trader/retrospectives"
+    retro_root = out_dir / retros_sub
+    preserved: dict[str, bytes] = {}
+    if not retro_root.exists():
+        return preserved
+    for d in sorted(retro_root.iterdir()):
+        idx = d / "index.html"
+        if d.is_dir() and d.name not in have_slice and idx.exists():
+            preserved[f"{retros_sub}/{d.name}/index.html"] = idx.read_bytes()
+    return preserved
+
+
 def build_site(repo_root: Path, out_dir: Path) -> None:
     """Render templates and write to out_dir.
 
     WARNING: This wipes out_dir entirely before writing. Callers must ensure
-    out_dir points to a build-output location, not user data.
+    out_dir points to a build-output location, not user data. Committed
+    retrospective pages without a page_data slice are snapshotted and restored
+    across the wipe (see _preserve_sliceless_retrospectives) so they survive.
 
     Link mode is controlled by the `PRED_ORACLE_BASE_URL` env var:
       - set to an absolute path ("/carver-briefs/pred-oracle/") or a URL →
@@ -298,6 +329,10 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
 
     templates_dir = repo_root / "build" / "templates"
     static_dir = repo_root / "build" / "static"
+
+    # Snapshot committed retrospective pages whose slices aren't committed, so
+    # the wholesale wipe below doesn't permanently delete them.
+    preserved_retros = _preserve_sliceless_retrospectives(repo_root, out_dir, scene)
 
     if out_dir.exists():
         shutil.rmtree(out_dir)
@@ -448,6 +483,14 @@ def build_site(repo_root: Path, out_dir: Path) -> None:
     # Copy static dir
     shutil.copytree(static_dir, out_dir / "static", dirs_exist_ok=True)
     print(f"Copied static assets to {out_dir / 'static'}")
+
+    # Restore committed retrospective pages the wipe removed (sliceless ones).
+    for rel, data in preserved_retros.items():
+        dest = out_dir / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+    if preserved_retros:
+        print(f"Preserved {len(preserved_retros)} sliceless retrospective page(s)")
 
 
 def main() -> int:
