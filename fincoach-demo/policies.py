@@ -144,10 +144,7 @@ def generate_layer_updates(signals_by_layer: dict[int, list]) -> dict:
     if not _layers:
         load_all_v1()
 
-    grok = OpenAI(
-        api_key=os.environ["GROK_API_KEY"],
-        base_url="https://api.x.ai/v1",
-    )
+    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     affected = [lid for lid, sigs in signals_by_layer.items() if sigs]
     logger.info(f"Generating v2 for layers: {affected}")
 
@@ -204,8 +201,8 @@ def generate_layer_updates(signals_by_layer: dict[int, list]) -> dict:
         )
 
         try:
-            resp = grok.chat.completions.create(
-                model="grok-4-fast-non-reasoning",
+            resp = client.chat.completions.create(
+                model="gpt-4o",
                 messages=[
                     {"role": "system", "content": system},
                     {"role": "user", "content": user},

@@ -1,0 +1,27 @@
+{
+  "fintech": {
+    "label": "FinTech",
+    "icon": "💳",
+    "description": "Banking, payments, lending, investment, crypto, robo-advisory",
+    "topics": [
+      { "name": "SEC", "topic_id": "0364883a-c054-41d8-9168-1f9a983ceca9"},
+      { "name": "FINRA", "topic_id": "70aba929-903f-4d18-9088-f035b308c12b"},                                                                            
+      { "name": "CFPB", "topic_id": "5bab5721-56e6-41ad-a6a8-54b534ee7f0b"},                                                                             
+      { "name": "OCC", "topic_id": "67997d1b-6333-4feb-812f-1567b4ca02f9"},                                                                              
+      { "name": "FTC", "topic_id": "bfc3cb59-b0ea-4726-867f-42155f156529"} 
+
+    ]
+  },
+  "healthcare": {
+    "label": "Healthcare",
+    "icon": "🏥",
+    "description": "Medical devices, pharma, providers, payors, health data",
+    "topics": [
+      { "name": "FDA", "topic_id": "4dd18b8a-1d19-4f6d-aa4d-04f666a6b3b7" },                                                                       
+      { "name": "HHS", "topic_id": "7c5b5e11-479c-44a4-bddf-7aaaccf70621" },                                                                             
+      { "name": "HHS OIG", "topic_id": "4debcfba-d2b6-4bbf-ad34-bd875688a6a8"},                                                                          
+      { "name": "FTC", "topic_id": "bfc3cb59-b0ea-4726-867f-42155f156529" },                                                                              
+      { "name": "EBSA", "topic_id": "e1e556e4-6c43-40d9-8f2a-c3efcba9283f" } 
+    ]
+  }
+}
