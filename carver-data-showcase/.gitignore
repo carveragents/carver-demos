@@ -1,0 +1,29 @@
+# Secrets
+.env
+
+# Virtual environment
+.venv/
+
+# Data files (large; pulled once offline — not committed)
+data/*.jsonl
+data/*.parquet
+data/*.csv
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+data/*.log
+data/annotations.prev.jsonl
