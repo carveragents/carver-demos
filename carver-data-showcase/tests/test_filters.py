@@ -15,6 +15,7 @@ Tests:
 - test_apply_filters_score_and_date_ranges
 - test_apply_filters_min_richness
 - test_build_record_index_and_get_raw_record
+- test_topic_id_filter_missing_column_is_noop
 """
 
 from __future__ import annotations
@@ -345,3 +346,177 @@ def test_apply_filters_no_streamlit_import():
             assert all(a.name != "streamlit" for a in node.names)
         if isinstance(node, ast.ImportFrom):
             assert node.module != "streamlit"
+
+
+# ---------------------------------------------------------------------------
+# Tests: topic_id (Institution) multiselect filter
+# ---------------------------------------------------------------------------
+
+TOPIC_ID_A = "aaaaaaaa-0000-0000-0000-000000000001"
+TOPIC_ID_B = "bbbbbbbb-0000-0000-0000-000000000002"
+TOPIC_ID_C = "cccccccc-0000-0000-0000-000000000003"
+
+
+def _make_frame_with_topic_id() -> pd.DataFrame:
+    """5-row frame that includes a topic_id column for institution-filter tests."""
+    rows = [
+        {
+            "artifact_id": "art-101",
+            "topic_id": TOPIC_ID_A,
+            "category": "Finance",
+            "jurisdiction_country": "US",
+            "update_type": "Regulatory Update",
+            "impact_score": 7.0,
+            "urgency_score": 5.0,
+            "relevance_score": 6.0,
+            "reconciled_published_date": SAMPLE_DATE_1,
+            "richness_score": 70.0,
+        },
+        {
+            "artifact_id": "art-102",
+            "topic_id": TOPIC_ID_B,
+            "category": "Finance",
+            "jurisdiction_country": "DE",
+            "update_type": "Guidance",
+            "impact_score": 4.0,
+            "urgency_score": 3.0,
+            "relevance_score": 3.5,
+            "reconciled_published_date": SAMPLE_DATE_2,
+            "richness_score": 40.0,
+        },
+        {
+            "artifact_id": "art-103",
+            "topic_id": TOPIC_ID_A,
+            "category": "Medical Devices",
+            "jurisdiction_country": "US",
+            "update_type": "Enforcement Action",
+            "impact_score": 9.0,
+            "urgency_score": 8.0,
+            "relevance_score": 8.5,
+            "reconciled_published_date": SAMPLE_DATE_3,
+            "richness_score": 85.0,
+        },
+        {
+            "artifact_id": "art-104",
+            "topic_id": TOPIC_ID_C,
+            "category": "Finance",
+            "jurisdiction_country": "GB",
+            "update_type": "Guidance",
+            "impact_score": 2.0,
+            "urgency_score": 1.0,
+            "relevance_score": 1.5,
+            "reconciled_published_date": SAMPLE_DATE_1,
+            "richness_score": 15.0,
+        },
+        {
+            "artifact_id": "art-105",
+            "topic_id": TOPIC_ID_B,
+            "category": "Data protection & cybersecurity",
+            "jurisdiction_country": "FR",
+            "update_type": "Regulatory Update",
+            "impact_score": 6.0,
+            "urgency_score": 6.0,
+            "relevance_score": 6.0,
+            "reconciled_published_date": SAMPLE_DATE_2,
+            "richness_score": 55.0,
+        },
+    ]
+    df = pd.DataFrame(rows)
+    for col in ("impact_score", "urgency_score", "relevance_score", "richness_score"):
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    return df
+
+
+def test_topic_id_filter_empty_is_noop():
+    """topic_id=[] (default) must not filter any rows."""
+    df = _make_frame_with_topic_id()
+    state = FilterState()  # topic_id defaults to []
+    result = apply_filters(df, state)
+    assert len(result) == len(df), "empty topic_id must return all rows"
+    assert list(result.index) == list(df.index)
+
+
+def test_topic_id_filter_single_id():
+    """topic_id=[TOPIC_ID_A] returns only the two rows with that institution."""
+    df = _make_frame_with_topic_id()
+    state = FilterState(topic_id=[TOPIC_ID_A])
+    result = apply_filters(df, state)
+    assert len(result) == 2
+    assert all(result["topic_id"] == TOPIC_ID_A)
+    assert set(result["artifact_id"]) == {"art-101", "art-103"}
+
+
+def test_topic_id_filter_multiple_ids():
+    """topic_id=[A, B] returns rows belonging to either institution (union, then AND-ed with others)."""
+    df = _make_frame_with_topic_id()
+    state = FilterState(topic_id=[TOPIC_ID_A, TOPIC_ID_B])
+    result = apply_filters(df, state)
+    assert len(result) == 4
+    assert all(result["topic_id"].isin([TOPIC_ID_A, TOPIC_ID_B]))
+
+
+def test_topic_id_filter_conjunctive_with_update_type():
+    """topic_id AND update_type together must be conjunctive (both must match)."""
+    df = _make_frame_with_topic_id()
+    # TOPIC_ID_A has art-101 (Regulatory Update) and art-103 (Enforcement Action).
+    # Guidance belongs to TOPIC_ID_B and TOPIC_ID_C only.
+    state = FilterState(topic_id=[TOPIC_ID_A], update_type=["Guidance"])
+    result = apply_filters(df, state)
+    assert len(result) == 0, "TOPIC_ID_A has no Guidance rows — should be empty"
+
+    # TOPIC_ID_B has art-102 (Guidance) and art-105 (Regulatory Update).
+    state2 = FilterState(topic_id=[TOPIC_ID_B], update_type=["Guidance"])
+    result2 = apply_filters(df, state2)
+    assert len(result2) == 1
+    assert result2.iloc[0]["artifact_id"] == "art-102"
+
+
+def test_topic_id_filter_missing_column_is_noop():
+    """apply_filters is a no-op when the topic_id column is absent from df."""
+    df = _make_frame()  # has NO topic_id column
+    assert "topic_id" not in df.columns
+    state = FilterState(topic_id=["anything"])
+    result = apply_filters(df, state)
+    assert len(result) == len(df), "missing topic_id column must leave all rows"
+    assert list(result.index) == list(df.index)
+
+
+def test_topic_id_field_defaults_to_empty_on_existing_construction():
+    """Constructing FilterState with the old call style (no topic_id kwarg) still works."""
+    # This mirrors what existing tests and callers do — omitting topic_id entirely.
+    state = FilterState(
+        category=["Finance"],
+        jurisdiction_country=["US"],
+    )
+    assert state.topic_id == [], "topic_id must default to []"
+
+    # The default sentinel should be a no-op in apply_filters.
+    df = _make_frame_with_topic_id()
+    result = apply_filters(df, state)
+    # Finance rows in US: only art-101 (art-103 is "Medical Devices").
+    assert len(result) == 1
+    assert all(result["jurisdiction_country"] == "US")
+    assert all(result["category"] == "Finance")
+
+
+# ---------------------------------------------------------------------------
+# Test: include_regulator=False → regulator_name stays [] → no filtering
+# ---------------------------------------------------------------------------
+
+
+def test_apply_filters_empty_regulator_name_is_noop():
+    """When regulator_name is [] (the sentinel for include_regulator=False),
+    apply_filters must not filter any rows — even when the frame has regulator
+    values.  This mirrors the gallery behaviour after the Regulators UI was
+    removed: sidebar_filters(..., include_regulator=False) produces a
+    FilterState with regulator_name=[], which must be a strict no-op."""
+    df = _make_frame()  # has SEC, BfArM, ICO, CFTC, EMA in regulator_name
+    assert df["regulator_name"].notna().any(), "fixture must have regulator values"
+
+    state = FilterState(regulator_name=[])
+    result = apply_filters(df, state)
+    assert len(result) == len(df), (
+        "regulator_name=[] must return all rows (no-op), "
+        f"but got {len(result)} of {len(df)}"
+    )
+    assert list(result.index) == list(df.index), "row order must be preserved"

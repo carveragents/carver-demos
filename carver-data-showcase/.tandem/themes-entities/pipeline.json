@@ -1,0 +1,15 @@
+{
+  "goal": "Themes & Entities — a new Gallery tab + matching deck slide for the Carver Annotation Data Showcase that turns the annotations' `tags` and `entities` fields into corpus-wide stats, using a ONE-TIME OpenAI Batch enrichment to type & de-duplicate entities (tags stay deterministic frequency stats).",
+  "stages": [
+    {
+      "id": "01-spec",
+      "title": "01-spec",
+      "status": "approved"
+    },
+    {
+      "id": "02-plan",
+      "title": "02-plan",
+      "status": "approved"
+    }
+  ]
+}

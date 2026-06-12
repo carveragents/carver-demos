@@ -14,7 +14,7 @@
 
 ```bash
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install httpx python-dotenv pandas
+.venv/bin/python -m pip install -r requirements.txt   # includes kaleido + reportlab (deck renderer)
 # create .env — see docs/data-access.md
 ```
 
@@ -23,15 +23,32 @@ Always invoke the repo venv explicitly (`.venv/bin/python …`) so you stay on t
 
 ## Running
 
-No entry point exists yet (greenfield). Once built, document the run command here
-and point to it from `docs/README.md`. Until then, the working surface is the data
-pull described in [data-access.md](data-access.md).
+```bash
+# Pull the full annotation corpus (~211K records, ~2.5 min). This also rebuilds the
+# parquet from the fresh JSONL and RE-RENDERS the deck (data/carver-state-of-data.pdf).
+.venv/bin/python tools/pull_full.py
+
+# Launch the Streamlit gallery
+.venv/bin/streamlit run apps/gallery.py
+
+# Re-render the deck on demand (otherwise it's regenerated automatically by pull_full;
+# writes data/carver-state-of-data.pdf — ~2–3 min dominated by the choropleths)
+.venv/bin/python tools/build_deck.py
+```
+
+The deck is git-ignored (`data/*.pdf`). On a fresh checkout (before any pull) the
+gallery shows a caption in place of the download button; the button appears once the
+deck file exists. A deck render failure during a pull warns but does not fail the pull.
 
 ## Testing
 
-No test suite yet. When adding one, mirror `pred-oracle`'s approach (`pytest`,
-fixtures that stub the HTTP layer so tests don't hit the live API). Reference:
-`carver-demos/pred-oracle/tests/`.
+```bash
+.venv/bin/python -m pytest -q          # full suite
+.venv/bin/python -m pytest tests/test_charts.py tests/test_deck.py -q   # deck-related only
+```
+
+Tests are deterministic and offline: the deck tests monkeypatch `kaleido` so no
+Chrome is launched, and data tests stub the HTTP layer (mirroring `pred-oracle`).
 
 ## Working conventions
 

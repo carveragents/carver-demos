@@ -1,15 +1,17 @@
 """Shared visual constants for the showcase apps.
 
-One source of truth for the score-axis order and the per-axis colors so the
-Gallery and the Cockpit can't drift to slightly different palettes.
+The score-axis order and per-axis colors now live in ``carver_showcase.config``
+(the logic-free constants module) so the framework-agnostic chart builders in
+``carver_showcase.charts`` can share them without the app layer importing back
+into a Streamlit module.  This module simply re-exports them so existing app
+imports (``from apps.components.theme import AXIS_COLORS, SCORE_AXES``) keep
+working — there is still exactly one source of truth.
+
+Relevance is intentionally absent: it is a deprecated weighted sum of impact
+and urgency, so neither app surfaces it as a scored axis.  Only the two
+independent axes are shown.
 """
 
-# The three scored axes, in canonical display order.
-SCORE_AXES = ["impact", "urgency", "relevance"]
+from carver_showcase.config import AXIS_COLORS, SCORE_AXES
 
-# One canonical color per score axis, used by both apps' distribution charts.
-AXIS_COLORS = {
-    "impact": "#d32f2f",     # red
-    "urgency": "#f57c00",    # orange
-    "relevance": "#1976d2",  # blue
-}
+__all__ = ["SCORE_AXES", "AXIS_COLORS"]

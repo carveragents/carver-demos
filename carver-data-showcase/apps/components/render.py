@@ -5,8 +5,16 @@ Public functions
 kpi_cards(metrics_dict)
     Render headline KPI metric cards (st.metric / columns).
 
-sampling_caveat_banner()
-    Persistent honest scope banner per spec §2.2/§8.
+snapshot_note(meta)
+    One-line, always-visible "point-in-time as of <date>" note so a viewer
+    never mistakes the snapshot for a live feed.  Rendered above the tabs.
+
+scope_banner(df, catalog_df, meta)
+    Data-driven scope/composition banner.  Counts are computed live from the
+    loaded frame and catalog, so they can never drift from the data.
+
+richness_definition()
+    Reusable info box defining the deterministic richness score.
 
 record_drilldown(raw_output_data, envelope=None)
     Render the FULL nested annotation per spec §6.3 from the RAW
@@ -21,6 +29,8 @@ Design notes
 - ``record_drilldown`` accepts the raw ``output_data`` dict (not a
   normalized row) so it can render the full nested payload fetched via
   ``load.get_raw_record``.
+- Relevance is never shown: it is a deprecated weighted sum of impact and
+  urgency, so the score section renders only those two axes.
 """
 
 from __future__ import annotations
@@ -30,7 +40,7 @@ from typing import Any, Optional
 
 import streamlit as st
 
-from carver_showcase.config import PLACEHOLDERS
+from carver_showcase.config import DECK_PDF, DECK_TITLE, PLACEHOLDERS
 
 
 # ---------------------------------------------------------------------------
@@ -141,11 +151,11 @@ def kpi_cards(metrics_dict: dict[str, Any]) -> None:
     Example
     -------
     >>> kpi_cards({
-    ...     "Records": "58,982",
-    ...     "Topics": 405,
-    ...     "Countries": 111,
-    ...     "Regulators": "3,219",
-    ...     "Median richness": "72",
+    ...     "Records": f"{len(df):,}",
+    ...     "Institutions": bs["n_topics"],
+    ...     "Countries": bs["n_countries"],
+    ...     "Regulators": f"{bs['n_regulators']:,}",
+    ...     "Median richness": median_richness,
     ... })
     """
     if not metrics_dict:
@@ -158,31 +168,216 @@ def kpi_cards(metrics_dict: dict[str, Any]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Public: sampling_caveat_banner
+# Public: snapshot_note + scope_banner (data-driven; no hard-coded counts)
 # ---------------------------------------------------------------------------
 
 
-def sampling_caveat_banner() -> None:
-    """Render the persistent honest-scope sampling caveat banner.
+def deck_download(meta: Optional[dict] = None) -> None:
+    """Render the prominent download link for the "State of Carver Data" deck.
 
-    Per spec §2.2/§8: a non-negotiable banner on the overview stating the
-    stratified composition (per-category record counts; MD/DP pulled in full,
-    Finance sub-sampled), topic coverage (405/1,071 monitored), and that the
-    sample is category-stratified, not random.
+    Serves the pre-rendered PDF (``config.DECK_PDF``) — a point-in-time,
+    filter-free snapshot of every showcase view, one slide per tab, re-rendered
+    on each data pull.  When the file is absent (a fresh checkout before any
+    pull), a subtle caption is shown instead of an error.
 
-    Corpus-wide breadth claims are clearly marked as describing the FULL
-    dataset; live metrics describe this 58,982-record slice.
+    Parameters
+    ----------
+    meta:
+        Snapshot provenance from ``load.load_snapshot_meta`` (used for the
+        snapshot date in the downloaded file name).
     """
-    st.info(
-        "**Sampling scope** — This showcase is built on a **category-stratified snapshot "
-        "of 58,982 records**: Finance 40,000 · Data protection & cybersecurity 10,132 · "
-        "Medical Devices 8,850. Medical Devices and Data protection were pulled in full; "
-        "Finance was sub-sampled to 40,000 to balance representation. "
-        "This slice covers **405 of the 1,071 monitored institutions** in the Carver universe. "
-        "Corpus-wide figures (1,071 institutions, 241 jurisdictions) describe the **full "
-        "Carver dataset** — all live metrics computed here are over this stratified snapshot.",
-        icon="ℹ️",
+    meta = meta or {}
+    if not DECK_PDF.exists():
+        st.caption(
+            f"📑 The downloadable **{DECK_TITLE}** deck will appear here after the "
+            "next data pull."
+        )
+        return
+
+    date = meta.get("snapshot_date") or "latest"
+    st.download_button(
+        label=f"📑  Download the “{DECK_TITLE}” deck (PDF)",
+        data=DECK_PDF.read_bytes(),
+        file_name=f"carver-state-of-data-{date}.pdf",
+        mime="application/pdf",
+        type="primary",
+        help=(
+            "A point-in-time, filter-free snapshot of every chart in this showcase "
+            "— one slide per view. Re-rendered on every data refresh."
+        ),
     )
+
+
+def snapshot_note(meta: Optional[dict] = None) -> None:
+    """Render the always-visible point-in-time snapshot note.
+
+    Rendered ABOVE the tabs so it shows on every page.  States the pull date
+    and that the data is a static snapshot, not a live feed — so a viewer never
+    mistakes a figure here for the current platform value.
+
+    Parameters
+    ----------
+    meta:
+        The dict returned by ``load.load_snapshot_meta`` (carries
+        ``snapshot_date``).  Falls back gracefully if missing.
+    """
+    meta = meta or {}
+    date = meta.get("snapshot_date") or "an earlier date"
+    st.caption(
+        f"📸 **Point-in-time snapshot — computed on {date} (UTC).** "
+        "This is a static extract of the Carver annotation corpus, **not a live feed**; "
+        "figures here will differ from the live platform as new annotations land."
+    )
+
+
+def _composition_str(category_counts: dict) -> str:
+    """Render ``{cat: n}`` as 'Cat A 12,345 · Cat B 6,789' (largest first)."""
+    if not category_counts:
+        return ""
+    ordered = sorted(category_counts.items(), key=lambda kv: kv[1], reverse=True)
+    return " · ".join(f"{cat} {int(n):,}" for cat, n in ordered)
+
+
+def scope_banner(
+    df,
+    catalog_df=None,
+    meta: Optional[dict] = None,
+    show_categories: bool = True,
+) -> None:
+    """Render the honest scope/composition banner with LIVE counts.
+
+    Every number is computed from the loaded frame and catalog at render time,
+    so the banner can never drift from the actual snapshot.  The wording adapts
+    to the snapshot scope recorded in ``meta`` (a full corpus pull vs a
+    breadth-balanced sample).
+
+    Parameters
+    ----------
+    df:
+        The normalized annotations DataFrame (the full, unfiltered snapshot).
+    catalog_df:
+        The monitored-institutions catalog (``topic_catalog.csv``); used for
+        the corpus-wide universe size.  Optional.
+    meta:
+        Snapshot provenance from ``load.load_snapshot_meta``.
+    show_categories:
+        When ``False``, the banner omits all category composition/wording
+        (categories are an internal concept).  The external Gallery passes
+        ``False``; the Cockpit leaves the default ``True``.
+    """
+    meta = meta or {}
+    n_records = len(df)
+    category_counts = (
+        df["category"].dropna().value_counts().to_dict()
+        if show_categories and "category" in df.columns else {}
+    )
+    composition = _composition_str(category_counts)
+    n_topics_present = (
+        int(df["topic_id"].dropna().nunique()) if "topic_id" in df.columns else 0
+    )
+    n_countries = (
+        int(df["jurisdiction_country"].dropna().nunique())
+        if "jurisdiction_country" in df.columns else 0
+    )
+
+    has_catalog = catalog_df is not None and not catalog_df.empty
+    n_monitored = len(catalog_df) if has_catalog else None
+
+    # Breadth headline — distinct institutions and jurisdictions actually in the data.
+    breadth_clause = (
+        f"It spans **{n_topics_present:,} distinct institutions** in "
+        f"**{n_countries:,} jurisdictions** present in the data."
+    )
+
+    # Catalog reconciliation, phrased as a breakdown of the breadth count ("Of these,
+    # X … and Y …") so the three numbers read as one whole rather than three competing
+    # totals. The snapshot's distinct institutions are NOT all a subset of the catalog:
+    # some topic_ids appear in the data but aren't (yet) catalogued, so a bare "X of Y"
+    # would be wrong.
+    catalog_clause = ""
+    if n_monitored and "topic_id" in df.columns:
+        _data_ids = set(df["topic_id"].dropna().unique())
+        _catalog_ids = set(catalog_df["topic_id"].dropna().unique())
+        n_cataloged_present = len(_data_ids & _catalog_ids)
+        n_uncataloged = n_topics_present - n_cataloged_present
+        if n_uncataloged > 0:
+            catalog_clause = (
+                f" Of these, **{n_cataloged_present:,}** are part of Carver's "
+                f"**{n_monitored:,}-institution** monitored catalog and "
+                f"**{n_uncataloged:,}** are not yet catalogued."
+            )
+        else:
+            catalog_clause = (
+                f" All are part of Carver's **{n_monitored:,}-institution** monitored catalog."
+            )
+
+    # Category phrasing only when this view talks about categories (Cockpit).
+    # Drift-proof — derived from the data, not a fixed "three".
+    if show_categories and category_counts:
+        n_showcased = len([c for c in category_counts if c != "Uncategorized"])
+        showcased_clause = f"{n_showcased} showcased categor{'y' if n_showcased == 1 else 'ies'}"
+        uncat_clause = (
+            " plus any uncategorized institutions" if "Uncategorized" in category_counts else ""
+        )
+        full_category_phrase = f" across {showcased_clause}{uncat_clause} ({composition})"
+        sample_label = "category-stratified sample"
+        sample_kind = "category-stratified"
+        sample_category_phrase = f" ({composition})"
+        sample_note = (
+            "Per-category volumes are balanced for breadth, so they are **not** "
+            "proportional to the live corpus. "
+        )
+    else:
+        full_category_phrase = ""
+        sample_label = "representative sample"
+        sample_kind = "breadth-balanced"
+        sample_category_phrase = ""
+        sample_note = (
+            "Volumes are selected for breadth, so they are **not** proportional to "
+            "the live corpus. "
+        )
+
+    scope = meta.get("scope", "full")
+    if scope == "full":
+        st.info(
+            f"**Scope — complete snapshot.** This showcase is built on the **full "
+            f"set of {n_records:,} annotations**{full_category_phrase}. "
+            f"{breadth_clause}{catalog_clause} "
+            "All figures below are computed live over this snapshot — nothing is hard-coded.",
+            icon="ℹ️",
+        )
+    else:
+        st.info(
+            f"**Scope — {sample_label}.** This showcase is built on a "
+            f"**{n_records:,}-record** {sample_kind} snapshot{sample_category_phrase}. "
+            f"{breadth_clause}{catalog_clause} "
+            f"{sample_note}All figures below are computed live over this snapshot.",
+            icon="ℹ️",
+        )
+
+
+def richness_definition(expanded: bool = False) -> None:
+    """Reusable info box defining the deterministic richness score (spec §5.2).
+
+    Shown wherever the richness score is surfaced so a viewer always knows what
+    the number means and how it is derived.
+    """
+    with st.expander("How is the richness score computed?", expanded=expanded):
+        st.markdown(
+            "**Richness score (0–100)** is a deterministic, rule-based measure of how "
+            "much structured content an annotation carries — **no LLM, no randomness**, "
+            "fully reproducible. It is a weighted blend of six populated-content signals:\n\n"
+            "| Component | Weight | What it measures |\n"
+            "|---|---:|---|\n"
+            "| Impact prose | 30% | How many of the 5 impact-summary parts are present |\n"
+            "| Actionables | 20% | How many of the 7 actionable lanes are populated |\n"
+            "| Critical dates | 15% | Count of key dates (capped at 5) |\n"
+            "| Regulatory refs | 15% | Count of rules/statutes/precedents (capped at 6) |\n"
+            "| Entities & tags | 10% | Named entities and topic tags (each capped at 8) |\n"
+            "| Impacted business | 10% | Whether impacted business + functions are present |\n\n"
+            "A high score means a deep, well-populated compliance object; a low score flags "
+            "a thin 'shell' record. It measures **completeness, not correctness.**"
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -210,8 +405,8 @@ def record_drilldown(
 
     Sections rendered (spec §6.3):
     1. Header: title / regulator / jurisdiction / update_type / date / source link
-    2. Scores: three gauges (impact/urgency/relevance) with label+confidence;
-       urgency also shows basis
+    2. Scores: two gauges (impact/urgency) with label+confidence; urgency also
+       shows basis.  Relevance is omitted (deprecated weighted sum).
     3. Impact summary: 5 parts + key_requirements list
     4. Actionables: 7 lanes as labelled cards (only populated lanes shown)
     5. Critical dates: key dates (with calendars) + other_dates[] list
@@ -292,15 +487,16 @@ def record_drilldown(
     # -----------------------------------------------------------------------
     impact = scores.get("impact") or {}
     urgency = scores.get("urgency") or {}
-    relevance = scores.get("relevance") or {}
 
+    # Relevance is intentionally omitted — it is a deprecated weighted sum of
+    # impact and urgency, so only the two independent axes are shown.
     has_any_score = any(
         not _is_empty(s.get("score"))
-        for s in [impact, urgency, relevance]
+        for s in [impact, urgency]
     )
     if has_any_score:
         _section_header("Scores", "📊")
-        cols = st.columns(3)
+        cols = st.columns(2)
         with cols[0]:
             _score_gauge(
                 f"Impact ({_safe_str(impact.get('label'))})",
@@ -313,12 +509,6 @@ def record_drilldown(
                 urgency.get("score"),
                 urgency.get("confidence"),
                 basis=_safe_str(urgency.get("basis")),
-            )
-        with cols[2]:
-            _score_gauge(
-                f"Relevance ({_safe_str(relevance.get('label'))})",
-                relevance.get("score"),
-                relevance.get("confidence"),
             )
         st.divider()
 

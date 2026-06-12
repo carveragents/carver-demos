@@ -19,18 +19,23 @@ Views
 7.6  Coverage-over-time trend — field population % by month/quarter.
 7.7  Deprecation / migration tracker — residual jurisdiction_tier legacy count
      and its breakdown by category.
+7.8  Score calibration — per-axis label-vs-score-band heatmap (impact + urgency);
+     the visual companion to the label_score_mismatch anomaly. Moved here from
+     the Gallery (it is an internal data-quality view, not a showcase one).
 
 Design notes
 ------------
 - No live API, no LLM: cached snapshot only.
 - cache_data wraps load_normalized, load_catalog, predicate_flags, and
   anomaly_report so they are computed once per session.
-- Sidebar filters drive 7.1 and 7.2 (coverage matrix + cleanup queue);
-  7.3–7.7 run over the full (unfiltered) frame for global health reporting.
+- Sidebar filters drive the filtered views (7.1, 7.2, 7.5, 7.6, 7.8); the
+  global-health views (7.3, 7.4, 7.7) run over the full (unfiltered) frame.
 """
 
 from __future__ import annotations
 
+import pathlib
+import sys
 from typing import Optional
 
 import pandas as pd
@@ -38,7 +43,15 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from carver_showcase.load import load_catalog, load_normalized
+# Allow running via `streamlit run apps/cockpit.py` from the repo root without
+# installing the package (mirrors apps/gallery.py's bootstrap).
+_REPO_ROOT = pathlib.Path(__file__).parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from carver_showcase import charts
+from carver_showcase.config import LABEL_BANDS
+from carver_showcase.load import load_catalog, load_normalized, load_snapshot_meta
 from carver_showcase.metrics import (
     coverage_matrix,
     score_distributions,
@@ -46,8 +59,8 @@ from carver_showcase.metrics import (
 )
 from carver_showcase.quality import anomaly_report, cleanup_queue, predicate_flags
 from apps.components.filters import apply_filters, sidebar_filters
-from apps.components.render import kpi_cards, sampling_caveat_banner
-from apps.components.theme import AXIS_COLORS
+from apps.components.render import kpi_cards, scope_banner, snapshot_note
+from apps.components.theme import AXIS_COLORS, SCORE_AXES
 
 
 # ---------------------------------------------------------------------------
@@ -76,6 +89,11 @@ def _load_catalog_df() -> pd.DataFrame:
     return load_catalog()
 
 
+@st.cache_data(show_spinner=False)
+def _load_meta() -> dict:
+    return load_snapshot_meta()
+
+
 @st.cache_data(show_spinner="Computing predicate flags…")
 def _predicate_flags_cached() -> pd.DataFrame:
     """Predicate flags over the full snapshot, computed once per session.
@@ -99,6 +117,7 @@ def _anomaly_report_cached() -> dict:
 
 _full_df = _load_df()
 _catalog_df = _load_catalog_df()
+_meta = _load_meta()
 
 # Compute quality artifacts once over the full frame
 _flags_df = _predicate_flags_cached()
@@ -110,7 +129,8 @@ _anomalies = _anomaly_report_cached()
 
 st.title("Carver Data-Quality Cockpit")
 st.caption("Internal tool — for the cleanup and migration team only.")
-sampling_caveat_banner()
+snapshot_note(_meta)
+scope_banner(_full_df, _catalog_df, _meta)
 
 st.markdown("---")
 
@@ -138,6 +158,8 @@ tab_labels = [
     "7.5 Distributions",
     "7.6 Coverage Trend",
     "7.7 Migration Tracker",
+    "7.8 Score Calibration",
+    "7.9 Category Structure",
 ]
 tabs = st.tabs(tab_labels)
 
@@ -167,7 +189,6 @@ with tabs[0]:
         "Scores": [
             "impact_score", "impact_confidence",
             "urgency_score", "urgency_confidence",
-            "relevance_score", "relevance_confidence",
             "urgency_basis",
         ],
         "Classification": [
@@ -274,7 +295,7 @@ with tabs[0]:
         cols = st.columns(3)
         cols[0].metric("Missing jurisdiction_code", f"{n_missing_jc:,}", help="Catalog institutions with no country code")
         cols[1].metric("Missing entity_type", f"{n_missing_et:,}", help="Catalog institutions with no entity type")
-        cols[2].metric("0 records in this sample", f"{n_zero:,}", help="Monitored institutions absent from the 58,982-record slice")
+        cols[2].metric("0 records in this sample", f"{n_zero:,}", help=f"Monitored institutions absent from the {n_total:,}-record snapshot")
 
         if n_zero > 0:
             with st.expander(f"Institutions with 0 sample records ({n_zero:,})"):
@@ -290,9 +311,13 @@ with tabs[0]:
 
 with tabs[1]:
     st.subheader("Gap Finder / Cleanup Queue")
+    _pct_no_url = (
+        float(_full_df["feed_url"].isna().mean())
+        if "feed_url" in _full_df.columns else 0.0
+    )
     st.markdown(
         "Records failing one or more quality predicates. "
-        "Rows with no `feed_url` are harder to action (≈46% of the corpus). "
+        f"Rows with no `feed_url` are harder to action (**{_pct_no_url:.0%}** of the corpus). "
         "Use sidebar filters to narrow the scope, then export the queue as CSV."
     )
 
@@ -574,9 +599,11 @@ with tabs[4]:
 
     dist_data = score_distributions(filtered_df)
 
-    # Score distributions with QA annotations
+    # Score distributions with QA annotations.
+    # Relevance is omitted everywhere — it is a deprecated weighted sum of the
+    # two independent axes, so only impact + urgency are charted.
     st.markdown("### Score distributions — watch for spikes at 0 and 10")
-    score_axes = [("impact", "Impact"), ("urgency", "Urgency"), ("relevance", "Relevance")]
+    score_axes = [(axis, axis.capitalize()) for axis in SCORE_AXES]
     fig_scores = go.Figure()
     axis_colors = AXIS_COLORS
     for axis, axis_label in score_axes:
@@ -593,7 +620,7 @@ with tabs[4]:
         barmode="overlay",
         xaxis_title="Score (0–10)",
         yaxis_title="Record count",
-        title="Impact / Urgency / Relevance score distributions",
+        title="Impact / Urgency score distributions",
         height=350,
     )
     fig_scores.add_vrect(
@@ -624,7 +651,7 @@ with tabs[4]:
         barmode="overlay",
         xaxis_title="Confidence (0–1)",
         yaxis_title="Record count",
-        title="Impact / Urgency / Relevance confidence distributions",
+        title="Impact / Urgency confidence distributions",
         height=350,
     )
     st.plotly_chart(fig_conf, width="stretch")
@@ -704,6 +731,24 @@ with tabs[4]:
                 title="Richness score distribution",
             )
             st.plotly_chart(fig_rich, width="stretch")
+
+    # Urgency-basis distribution — the explicit reasoning behind each urgency score.
+    # Lives here in the internal Cockpit; the external gallery shows impact-only.
+    # Uses the shared builders, so it stays consistent with the rest of the suite.
+    st.markdown("---")
+    st.markdown("### Urgency-basis distribution")
+    st.caption(
+        "Every urgency score carries an explicit `basis` value — the reasoning behind the "
+        "number (e.g. `future_deadline`, `past_deadline`, `effective_immediately`)."
+    )
+    if "urgency_basis" in filtered_df.columns and not filtered_df["urgency_basis"].dropna().empty:
+        col_ub, col_up = st.columns([2, 1])
+        with col_ub:
+            st.plotly_chart(charts.fig_urgency_basis_bar(filtered_df), width="stretch")
+        with col_up:
+            st.plotly_chart(charts.fig_urgency_basis_pie(filtered_df), width="stretch")
+    else:
+        st.info("No urgency_basis data in the filtered frame.")
 
 
 # ============================================================
@@ -989,3 +1034,132 @@ with tabs[6]:
         "Residual legacy": f"{n_legacy:,} ({pct_legacy:.1%})" if "has_jurisdiction_tier_legacy" in _full_df.columns else "—",
         "Rules triggered": sum(1 for v in _anomalies.values() if v["count"] > 0),
     })
+
+
+# ============================================================
+# 7.8  Score calibration (moved here from the Gallery — an internal DQ view)
+# ============================================================
+
+with tabs[7]:
+    st.subheader("Score Calibration")
+    st.markdown(
+        "Per-axis heatmap of the assigned **label** vs. the **expected band** from the numeric "
+        f"score (bands: low=[{LABEL_BANDS['low'][0]:g},{LABEL_BANDS['low'][1]:g}), "
+        f"medium=[{LABEL_BANDS['medium'][0]:g},{LABEL_BANDS['medium'][1]:g}), "
+        f"high=[{LABEL_BANDS['high'][0]:g},{LABEL_BANDS['high'][1]:g}]). "
+        "Off-diagonal cells are **label↔score mismatches** — the same records the "
+        "`label_score_mismatch` rule (7.3 Anomaly Panel) flags for triage. "
+        "Impact and urgency only (relevance is deprecated). Uses the sidebar-filtered frame."
+    )
+
+    def _expected_band(score):
+        """Band for an in-range score (config.LABEL_BANDS; high inclusive of its upper
+        bound). Out-of-range → None (those are caught by the score_out_of_range rule)."""
+        lo_min = LABEL_BANDS["low"][0]
+        hi_max = LABEL_BANDS["high"][1]
+        if score < lo_min or score > hi_max:
+            return None
+        if score < LABEL_BANDS["low"][1]:
+            return "low"
+        if score < LABEL_BANDS["medium"][1]:
+            return "medium"
+        return "high"
+
+    if filtered_df.empty:
+        st.warning("No records in the current filter.")
+    else:
+        n_mismatch = 0  # accumulated across axes as each heatmap is built
+        # Stacked vertically (full width) so each heatmap is readable.
+        for axis in SCORE_AXES:
+            score_col = f"{axis}_score"
+            label_col = f"{axis}_label"
+            if score_col not in filtered_df.columns or label_col not in filtered_df.columns:
+                st.info(f"No {axis} data.")
+                continue
+
+            sub = filtered_df[[score_col, label_col]].dropna()
+            if sub.empty:
+                st.info(f"No {axis} data.")
+                continue
+
+            sub = sub.copy()
+            sub["expected_band"] = (
+                pd.to_numeric(sub[score_col], errors="coerce")
+                .map(lambda v: _expected_band(v) if pd.notna(v) else None)
+            )
+            sub = sub.dropna(subset=["expected_band"])
+            n_mismatch += int((sub[label_col] != sub["expected_band"]).sum())
+
+            heatmap_data = (
+                sub.groupby([label_col, "expected_band"]).size().unstack(fill_value=0)
+            )
+            band_order = ["low", "medium", "high"]
+            heatmap_data = heatmap_data.reindex(
+                index=[b for b in band_order if b in heatmap_data.index],
+                columns=[b for b in band_order if b in heatmap_data.columns],
+                fill_value=0,
+            )
+            if heatmap_data.empty:
+                st.info(f"Not enough {axis} data to render calibration.")
+                continue
+
+            fig_hm = px.imshow(
+                heatmap_data,
+                labels={
+                    "x": "Expected band (from score)",
+                    "y": "Assigned label",
+                    "color": "Records",
+                },
+                title=f"{axis.capitalize()} calibration (off-diagonal = mismatch)",
+                color_continuous_scale="Reds",
+                text_auto=True,
+            )
+            fig_hm.update_layout(height=360)
+            st.plotly_chart(fig_hm, width="stretch")
+
+        if n_mismatch > 0:
+            st.caption(
+                f"**{n_mismatch:,}** label-score mismatches across the {len(SCORE_AXES)} scored "
+                "axes in the current filter. See the `label_score_mismatch` rule in "
+                "**7.3 Anomaly Panel** for the offending records and CSV export."
+            )
+
+
+# ============================================================
+# 7.9  Category → institution structure
+# ============================================================
+
+with tabs[8]:
+    st.subheader("Category → Institution Structure")
+    st.markdown(
+        "Taxonomic breadth: categories and their constituent institutions. Category is "
+        "catalog-sourced; unmapped institutions render as 'Uncategorized'. Computed over the "
+        "sidebar-filtered frame. (A structural view — lives here, not in the external gallery.)"
+    )
+
+    if filtered_df.empty:
+        st.warning("No records match the current filters.")
+    else:
+        cat_topic = (
+            filtered_df.groupby(["category", "topic_id"])
+            .size()
+            .reset_index(name="count")
+        )
+        if not cat_topic.empty:
+            col_chart, col_info = st.columns([3, 1])
+            with col_chart:
+                # Shared builder — same sunburst the gallery used to show.
+                st.plotly_chart(charts.fig_category_sunburst(filtered_df), width="stretch")
+            with col_info:
+                st.markdown("**Category summary**")
+                for cat, grp in cat_topic.groupby("category"):
+                    st.metric(
+                        label=str(cat),
+                        value=f"{grp['count'].sum():,} records",
+                        delta=f"{len(grp):,} institutions",
+                    )
+
+        st.markdown("### Institution volume (top 30 by record count)")
+        st.plotly_chart(
+            charts.fig_top_institutions(filtered_df, _catalog_df, n=30), width="stretch"
+        )

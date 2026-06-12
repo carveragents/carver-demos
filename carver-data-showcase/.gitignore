@@ -8,6 +8,9 @@
 data/*.jsonl
 data/*.parquet
 data/*.csv
+data/*.json
+# Generated deck artifact (re-rendered on every pull; served by the gallery)
+data/*.pdf
 
 # Python caches
 __pycache__/

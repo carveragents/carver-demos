@@ -15,9 +15,10 @@ apply_filters(df, state) -> DataFrame
     framework-agnostic so it can be unit-tested cleanly.
     An unset/empty filter field is a strict no-op (all rows pass that filter).
 
-sidebar_filters(df) -> FilterState
+sidebar_filters(df, include_category=True, catalog_df=None) -> FilterState
     Renders the st.sidebar widgets from the frame's distinct values and
     returns a FilterState.  Uses Streamlit; NOT unit-tested directly.
+    The Institution multiselect is rendered only when ``catalog_df`` is provided.
 
 Design notes
 ------------
@@ -59,6 +60,7 @@ class FilterState:
     jurisdiction_country: list[str] = field(default_factory=list)
     jurisdiction_bloc: list[str] = field(default_factory=list)
     jurisdiction_scope: list[str] = field(default_factory=list)
+    topic_id: list[str] = field(default_factory=list)
     regulator_name: list[str] = field(default_factory=list)
     update_type: list[str] = field(default_factory=list)
 
@@ -113,6 +115,7 @@ def apply_filters(df: pd.DataFrame, state: FilterState) -> pd.DataFrame:
         ("jurisdiction_country", state.jurisdiction_country),
         ("jurisdiction_bloc", state.jurisdiction_bloc),
         ("jurisdiction_scope", state.jurisdiction_scope),
+        ("topic_id", state.topic_id),
         ("regulator_name", state.regulator_name),
         ("update_type", state.update_type),
     ]
@@ -156,7 +159,12 @@ def apply_filters(df: pd.DataFrame, state: FilterState) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 
 
-def sidebar_filters(df: pd.DataFrame) -> FilterState:
+def sidebar_filters(
+    df: pd.DataFrame,
+    include_category: bool = True,
+    include_regulator: bool = True,
+    catalog_df: pd.DataFrame | None = None,
+) -> FilterState:
     """Render sidebar filter widgets and return a FilterState.
 
     Builds widgets from the distinct non-null values in each filter column.
@@ -166,6 +174,22 @@ def sidebar_filters(df: pd.DataFrame) -> FilterState:
     ----------
     df:
         Normalized annotations DataFrame.
+    include_category:
+        When ``False``, the Category multiselect is not rendered and
+        ``FilterState.category`` stays at its no-op default.  The external
+        Gallery passes ``False`` (categories are an internal concept); the
+        Cockpit leaves the default ``True``.
+    include_regulator:
+        When ``False``, the Regulator multiselect is not rendered and
+        ``FilterState.regulator_name`` stays at its no-op default ``[]``.  The
+        external Gallery passes ``False`` (regulators are no longer surfaced in
+        the showcase); the Cockpit leaves the default ``True``.
+    catalog_df:
+        Optional topic catalog DataFrame (columns: topic_id, name, acronym,
+        jurisdiction_code).  When provided and non-empty, an "Institution"
+        multiselect is rendered.  When ``None`` or empty (e.g., the Cockpit
+        caller), the widget is skipped and ``FilterState.topic_id`` stays at
+        its no-op default ``[]``.
 
     Returns
     -------
@@ -185,12 +209,17 @@ def sidebar_filters(df: pd.DataFrame) -> FilterState:
         return sorted(str(v) for v in vals)
 
     # --- Multiselects ---
-    category = st.sidebar.multiselect(
-        "Category",
-        options=_sorted_unique("category"),
-        default=[],
-        key="filter_category",
-    )
+    # Category is an internal concept — the external Gallery opts out via
+    # include_category=False, leaving the field at its no-op default.
+    if include_category:
+        category = st.sidebar.multiselect(
+            "Category",
+            options=_sorted_unique("category"),
+            default=[],
+            key="filter_category",
+        )
+    else:
+        category = []
     jurisdiction_country = st.sidebar.multiselect(
         "Country",
         options=_sorted_unique("jurisdiction_country"),
@@ -209,12 +238,74 @@ def sidebar_filters(df: pd.DataFrame) -> FilterState:
         default=[],
         key="filter_scope",
     )
-    regulator_name = st.sidebar.multiselect(
-        "Regulator",
-        options=_sorted_unique("regulator_name"),
-        default=[],
-        key="filter_regulator",
-    )
+    # --- Institution (topic_id) multiselect ---
+    # Only rendered when a catalog is provided and df has a topic_id column.
+    # Cockpit caller passes catalog_df=None → block is skipped entirely.
+    topic_id: list[str] = []
+    if catalog_df is not None and not catalog_df.empty and "topic_id" in df.columns:
+        raw_topic_ids = df["topic_id"].dropna().unique()
+        if len(raw_topic_ids) > 0:
+            # Treat None, NaN, and empty/whitespace strings as missing.
+            def _present(val) -> bool:
+                if val is None:
+                    return False
+                try:
+                    if pd.isna(val):
+                        return False
+                except (TypeError, ValueError):
+                    pass
+                return str(val).strip() != ""
+
+            # Build inst_label_map in a single catalog pass; first-occurrence-wins
+            # for any duplicate topic_id (avoids .loc returning a DataFrame).
+            inst_label_map: dict[str, str] = {}
+            has_name = "name" in catalog_df.columns
+            has_acronym = "acronym" in catalog_df.columns
+            has_jcode = "jurisdiction_code" in catalog_df.columns
+            for row in catalog_df.to_dict("records"):
+                tid = str(row.get("topic_id", ""))
+                if not tid or tid in inst_label_map:
+                    continue
+                name_str = str(row["name"]).strip() if has_name and _present(row.get("name")) else ""
+                if not name_str:
+                    inst_label_map[tid] = f"Unknown institution ({tid[:8]})"
+                    continue
+                label = name_str
+                if has_acronym and _present(row.get("acronym")):
+                    label = f"{label} ({str(row['acronym']).strip()})"
+                if has_jcode and _present(row.get("jurisdiction_code")):
+                    label = f"{label} — {str(row['jurisdiction_code']).strip()}"
+                inst_label_map[tid] = label
+
+            def _inst_display(tid: str) -> str:
+                return inst_label_map.get(tid, f"Unknown institution ({tid[:8]})")
+
+            sorted_topic_ids = sorted(
+                (str(t) for t in raw_topic_ids),
+                key=lambda tid: _inst_display(tid).lower(),
+            )
+
+            topic_id = list(
+                st.sidebar.multiselect(
+                    "Institution",
+                    options=sorted_topic_ids,
+                    default=[],
+                    format_func=_inst_display,
+                    key="filter_institution",
+                )
+            )
+
+    # Regulator is no longer surfaced in the external Gallery (it opts out via
+    # include_regulator=False); the Cockpit keeps it via the default.
+    if include_regulator:
+        regulator_name = st.sidebar.multiselect(
+            "Regulator",
+            options=_sorted_unique("regulator_name"),
+            default=[],
+            key="filter_regulator",
+        )
+    else:
+        regulator_name = []
     update_type = st.sidebar.multiselect(
         "Update type",
         options=_sorted_unique("update_type"),
@@ -241,14 +332,9 @@ def sidebar_filters(df: pd.DataFrame) -> FilterState:
         step=0.1,
         key="filter_urgency_score",
     )
-    relevance_score_range = st.sidebar.slider(
-        "Relevance score",
-        min_value=0.0,
-        max_value=10.0,
-        value=(0.0, 10.0),
-        step=0.1,
-        key="filter_relevance_score",
-    )
+    # Relevance is a deprecated weighted sum of impact + urgency, so it is not
+    # offered as a filter.  The FilterState field stays at its no-op default.
+    relevance_score_range = (0.0, 10.0)
 
     # --- Min richness ---
     min_richness = st.sidebar.slider(
@@ -282,6 +368,7 @@ def sidebar_filters(df: pd.DataFrame) -> FilterState:
         jurisdiction_country=list(jurisdiction_country),
         jurisdiction_bloc=list(jurisdiction_bloc),
         jurisdiction_scope=list(jurisdiction_scope),
+        topic_id=list(topic_id),
         regulator_name=list(regulator_name),
         update_type=list(update_type),
         impact_score_range=tuple(impact_score_range),

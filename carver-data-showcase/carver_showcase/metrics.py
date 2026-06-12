@@ -9,7 +9,7 @@ Public functions
 ----------------
 coverage_matrix(df, slice_by=None) -> DataFrame
 score_distributions(df) -> dict
-breadth_summary(df) -> dict
+breadth_summary(df, regulator_canon=None) -> dict
 volume_over_time(df, freq, exclude_implausible) -> DataFrame
 historical_depth(df) -> dict
 
@@ -23,12 +23,17 @@ Design notes
 
 from __future__ import annotations
 
+import collections
 import datetime
 from typing import Optional
 
 import pandas as pd
 
-from carver_showcase.config import PLAUSIBLE_DATE_WINDOW
+from carver_showcase.config import (
+    HISTORICAL_DEPTH_FLOOR_QUANTILE,
+    PLAUSIBLE_DATE_WINDOW,
+    RECENCY_WINDOWS_YEARS,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -181,19 +186,94 @@ def score_distributions(df: pd.DataFrame) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def breadth_summary(df: pd.DataFrame) -> dict:
+def breadth_summary(
+    df: pd.DataFrame,
+    regulator_canon: dict | None = None,
+    min_regulator_mentions: int = 1,
+) -> dict:
     """Compute distinct-count breadth metrics and per-category record counts.
+
+    Parameters
+    ----------
+    df:
+        The normalized annotations DataFrame.
+    regulator_canon:
+        Optional canonicalization mapping returned by
+        ``load.load_regulator_canonical`` — shaped
+        ``{raw_name: {"canonical": str, "is_regulator": bool, "key": str}}``.
+
+        When ``None`` (default): ``n_regulators`` is computed as the plain
+        distinct-count of ``regulator_name`` values, identical to previous
+        behavior (``min_regulator_mentions`` is ignored in this path).
+
+        When provided: ``n_regulators`` is the number of **distinct merge-keys
+        among genuine regulators** in the DataFrame whose total row-count in
+        ``df`` (summed across all raw name variants that share the same merge
+        key) meets ``min_regulator_mentions``.  For each distinct non-null
+        ``regulator_name`` value:
+
+        - If the name is in the mapping and ``is_regulator`` is True: its
+          ``key`` accumulates the name's row-count from ``df`` into a
+          ``collections.Counter``.
+        - If the name is in the mapping and ``is_regulator`` is False: it is
+          **excluded** from the count (non-regulator entities are dropped).
+        - If the name is **not** in the mapping (e.g. added after the last
+          batch run): it is counted conservatively by using the raw name
+          itself as the key, so no unmapped name is ever silently dropped;
+          its row-count accumulates under the raw name.
+
+        Only keys whose accumulated mention-count is ``>= min_regulator_mentions``
+        are included in the final ``n_regulators`` tally.
+
+        Because this operates on whatever ``df`` is passed in (the filtered
+        view in the Gallery), the deduplicated count is automatically
+        filter-aware with no extra work.
+
+    min_regulator_mentions:
+        Minimum number of row-count mentions a deduped body must have in ``df``
+        to be counted in ``n_regulators``.  Defaults to ``1`` (no cutoff), which
+        preserves the previous behaviour so all existing tests remain valid.
+        Mentions are the ROW COUNT of each raw ``regulator_name`` variant in the
+        passed ``df`` (filter-aware), summed across all variants that merge to
+        the same canonical key.
+        Ignored when ``regulator_canon`` is ``None``.
 
     Returns
     -------
     dict with keys:
         n_topics, n_countries, n_blocs, n_scopes, n_regulators, n_update_types,
-        category_counts (dict of category → count)
+        category_counts (dict of category → count), per_category (alias for
+        category_counts)
     """
     def _nunique(col: str) -> int:
         if col not in df.columns:
             return 0
         return int(df[col].dropna().nunique())
+
+    def _n_regulators_dedup(canon: dict, min_mentions: int) -> int:
+        if "regulator_name" not in df.columns:
+            return 0
+        # Count how many times each raw name appears in df (row-count, not nunique).
+        raw_counts = df["regulator_name"].dropna().value_counts()
+        # Accumulate mention-counts per merge-key.
+        counts: collections.Counter = collections.Counter()
+        for raw, n in raw_counts.items():
+            rec = canon.get(raw)
+            if rec is None:
+                # Unmapped name: conservative over-count — accumulate under the raw
+                # name rather than dropping it, since we can't confirm it's a
+                # non-regulator.
+                counts[raw] += n
+            elif rec.get("is_regulator", True):
+                counts[rec["key"]] += n
+            # else: is_regulator is False — skip (non-regulator entity).
+        return sum(1 for c in counts.values() if c >= min_mentions)
+
+    n_regulators = (
+        _n_regulators_dedup(regulator_canon, min_regulator_mentions)
+        if regulator_canon is not None
+        else _nunique("regulator_name")
+    )
 
     category_counts: dict = {}
     if "category" in df.columns:
@@ -204,7 +284,7 @@ def breadth_summary(df: pd.DataFrame) -> dict:
         "n_countries": _nunique("jurisdiction_country"),
         "n_blocs": _nunique("jurisdiction_bloc"),
         "n_scopes": _nunique("jurisdiction_scope"),
-        "n_regulators": _nunique("regulator_name"),
+        "n_regulators": n_regulators,
         "n_update_types": _nunique("update_type"),
         "category_counts": category_counts,
         "per_category": category_counts,  # alias
@@ -266,12 +346,23 @@ def volume_over_time(
 
 
 def historical_depth(df: pd.DataFrame) -> dict:
-    """Compute earliest/latest plausible date, span, and recency distribution.
+    """Compute the displayed earliest/latest date, span, and recency distribution.
 
-    Implausible dates (outside config.PLAUSIBLE_DATE_WINDOW) are EXCLUDED from all
-    computations — including the earliest date, latest date, and span. The garbage
-    extremes (1947-12-25 / 2105-07-01 observed in the real snapshot) must NEVER define
-    the advertised historical depth.
+    Two layers of date handling, kept deliberately separate:
+
+    1. **Anomaly window** (``config.PLAUSIBLE_DATE_WINDOW``): garbage extremes outside
+       it (e.g. 1442-07-01 / 2569-04-30 observed in the real corpus) are excluded from
+       every computation here and counted as ``n_implausible``.
+    2. **Display floor** (``config.HISTORICAL_DEPTH_FLOOR_QUANTILE``, default 1%): the
+       advertised ``earliest_date`` is the low quantile of the in-window dates, NOT the
+       hard minimum, so an ultra-sparse tail of very old (but in-window) records doesn't
+       define the headline span. The true minimum is still reported as
+       ``true_earliest_date`` for honesty, and the records below the floor are counted in
+       ``n_below_floor``. ``latest_date`` remains the true in-window maximum.
+
+    A robust quantile (not mean±σ) is used because the date distribution is a heavily
+    right-loaded spike (median ≈ now, skew ≈ -4), where moments are not meaningful and a
+    σ-based floor would both drift on every refresh and mis-trim a skewed tail.
 
     Parameters
     ----------
@@ -281,28 +372,38 @@ def historical_depth(df: pd.DataFrame) -> dict:
     Returns
     -------
     dict with keys:
-        earliest_date  (datetime.date or None)
-        latest_date    (datetime.date or None)
-        span_days      (int or None)
-        n_plausible    (int — records with plausible dates)
-        n_implausible  (int — records with dates outside the window)
-        recency        (dict with pct_1y, pct_3y, pct_7y as float 0–1)
+        earliest_date       (datetime.date or None — the display floor, low quantile)
+        true_earliest_date  (datetime.date or None — the actual in-window minimum)
+        latest_date         (datetime.date or None — the in-window maximum)
+        span_days           (int or None — latest_date − earliest_date)
+        floor_quantile      (float — the quantile used for earliest_date)
+        n_plausible         (int — records with in-window dates)
+        n_below_floor       (int — in-window records older than the display floor)
+        n_implausible       (int — records with dates outside the window)
+        recency             (dict with pct_<N>y for each N in
+                             config.RECENCY_WINDOWS_YEARS, as float 0–1)
 
     Notes
     -----
-    Recency percentages are computed as fractions of all PLAUSIBLE records (rows
-    with implausible or NA dates are excluded from the denominator).
+    Recency percentages are computed as fractions of all PLAUSIBLE (in-window) records;
+    rows with implausible or NA dates are excluded from the denominator. They are not
+    affected by the display floor.
     """
+    empty = {
+        "earliest_date": None,
+        "true_earliest_date": None,
+        "latest_date": None,
+        "span_days": None,
+        "floor_quantile": HISTORICAL_DEPTH_FLOOR_QUANTILE,
+        "n_plausible": 0,
+        "n_below_floor": 0,
+        "n_implausible": 0,
+        "recency": {f"pct_{y}y": 0.0 for y in RECENCY_WINDOWS_YEARS},
+    }
+
     date_col = "reconciled_published_date"
     if date_col not in df.columns:
-        return {
-            "earliest_date": None,
-            "latest_date": None,
-            "span_days": None,
-            "n_plausible": 0,
-            "n_implausible": 0,
-            "recency": {"pct_1y": 0.0, "pct_3y": 0.0, "pct_7y": 0.0},
-        }
+        return dict(empty)
 
     dates = _ensure_utc(df[date_col].copy())
 
@@ -312,40 +413,38 @@ def historical_depth(df: pd.DataFrame) -> dict:
     n_implausible = int(dates.notna().sum()) - n_plausible
 
     if n_plausible == 0:
-        return {
-            "earliest_date": None,
-            "latest_date": None,
-            "span_days": None,
-            "n_plausible": 0,
-            "n_implausible": n_implausible,
-            "recency": {"pct_1y": 0.0, "pct_3y": 0.0, "pct_7y": 0.0},
-        }
+        return {**empty, "n_implausible": n_implausible}
 
-    earliest_ts = plausible_dates.min()
+    # Display floor: low quantile of in-window dates (robust to the sparse old tail).
+    floor_ts = plausible_dates.quantile(HISTORICAL_DEPTH_FLOOR_QUANTILE)
+    true_earliest_ts = plausible_dates.min()
     latest_ts = plausible_dates.max()
-    earliest_date = earliest_ts.date()
+
+    earliest_date = floor_ts.date()
+    true_earliest_date = true_earliest_ts.date()
     latest_date = latest_ts.date()
-    span_days = (latest_ts - earliest_ts).days
+    span_days = (latest_ts - floor_ts).days
+    n_below_floor = int((plausible_dates < floor_ts).sum())
 
-    # Recency buckets relative to today
+    # Recency buckets relative to today (over ALL plausible records; floor-independent).
+    # Share of dated records within the last N years for each configured window.
     today = pd.Timestamp(datetime.date.today(), tz="UTC")
-    cutoff_1y = today - pd.DateOffset(years=1)
-    cutoff_3y = today - pd.DateOffset(years=3)
-    cutoff_7y = today - pd.DateOffset(years=7)
-
-    pct_1y = float((plausible_dates >= cutoff_1y).sum()) / n_plausible
-    pct_3y = float((plausible_dates >= cutoff_3y).sum()) / n_plausible
-    pct_7y = float((plausible_dates >= cutoff_7y).sum()) / n_plausible
+    recency = {
+        f"pct_{years}y": float(
+            (plausible_dates >= today - pd.DateOffset(years=years)).sum()
+        )
+        / n_plausible
+        for years in RECENCY_WINDOWS_YEARS
+    }
 
     return {
         "earliest_date": earliest_date,
+        "true_earliest_date": true_earliest_date,
         "latest_date": latest_date,
         "span_days": span_days,
+        "floor_quantile": HISTORICAL_DEPTH_FLOOR_QUANTILE,
         "n_plausible": n_plausible,
+        "n_below_floor": n_below_floor,
         "n_implausible": n_implausible,
-        "recency": {
-            "pct_1y": pct_1y,
-            "pct_3y": pct_3y,
-            "pct_7y": pct_7y,
-        },
+        "recency": recency,
     }

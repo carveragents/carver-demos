@@ -14,7 +14,7 @@ It does not duplicate content. Start here, then jump.
 | Understand the **annotation dataset** (the whole point) — schema, scale, what each field proves | [data-model.md](data-model.md) |
 | **Pull the data** — direct Artifacts API, `X-API-Key`, offset-paginated pull loop | [data-access.md](data-access.md) |
 | Understand the **intended architecture** and how this fits the `carver-demos` family | [architecture.md](architecture.md) |
-| **Set up, run, and test** locally | [development.md](development.md) |
+| **Set up, run, and test** locally — including building the PDF deck | [development.md](development.md) |
 | Avoid known **pitfalls** / read session history | [LESSONS.md](LESSONS.md) |
 | Read Claude Code working rules for this repo | [../CLAUDE.md](../CLAUDE.md) |
 
@@ -33,6 +33,19 @@ It does not duplicate content. Start here, then jump.
   (`fetch_artifacts.py` + `run_backfill.sh`) — the paginated direct-API pull. For
   field-coverage audits, `pred-oracle/data/`. Pointers in
   [architecture.md](architecture.md) and [data-access.md](data-access.md).
+- **Apps and views:** `apps/gallery.py` is the external Streamlit entry point — 8 tab
+  views (Overview, Geography, Institutions, Update Types, Volume Over Time, Score
+  Distributions, plus Record Drill-Down and Highlight Reel). Score Distributions is
+  **impact-only**; urgency-score detail (score / confidence / basis) and the category →
+  institution structure (sunburst + top institutions) live in the internal **Data-Quality
+  Cockpit** (`apps/cockpit.py`), not the public gallery. The gallery (and the deck) also
+  drop `update_type` **noise** via `carver_showcase/curate.py` — any value below 0.01% of
+  volume plus named crawl-junk (`website error`, `other (invalid document)`) — so it
+  never shows in the dataset, charts, or filters; the Cockpit keeps the full sprawl. Every
+  chart is built by `carver_showcase/charts.py` (pure `df → go.Figure`, shared with the
+  deck). The gallery also serves a **downloadable PDF deck** at the top of the header — an
+  8-slide, filter-free "State of Carver Data" summary built by `carver_showcase/deck.py` /
+  `tools/build_deck.py` and kept in sync with the gallery.
 
 ## External / source-of-truth references
 

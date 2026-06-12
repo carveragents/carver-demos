@@ -7,7 +7,8 @@ Tests verify:
 - score_distributions bucket structure
 - breadth_summary distinct counts
 - volume_over_time excludes implausible dates by default
-- historical_depth uses the plausible min/max (not 1947 / 2105 extremes)
+- historical_depth excludes out-of-window extremes (1947 / 2105) and uses a low-quantile
+  display floor for the advertised earliest date (true min reported separately)
 - load_normalized build-then-cached-read on a tiny JSONL fixture
 """
 
@@ -254,6 +255,356 @@ class TestBreadthSummary:
 
 
 # ---------------------------------------------------------------------------
+# Tests: breadth_summary with regulator_canon
+# ---------------------------------------------------------------------------
+
+
+class TestBreadthSummaryRegulatorCanon:
+    """Tests for the optional regulator_canon deduplication parameter."""
+
+    def _make_canon_df(self, reg_names: list) -> pd.DataFrame:
+        """Build a minimal DataFrame with just regulator_name (plus required cols)."""
+        base = _make_df()
+        # Override regulator_name with the provided list (pad/truncate to 4 rows).
+        names = (reg_names + [None] * 4)[:4]
+        base["regulator_name"] = pd.array(names, dtype="string")
+        return base
+
+    # ------------------------------------------------------------------
+    # Backward-compatibility: no mapping → identical to plain nunique
+    # ------------------------------------------------------------------
+
+    def test_backward_compat_no_mapping(self):
+        """No regulator_canon → n_regulators equals plain dropna().nunique()."""
+        from carver_showcase.metrics import breadth_summary
+
+        df = _make_df()
+        result = breadth_summary(df)
+        expected = int(df["regulator_name"].dropna().nunique())
+        assert result["n_regulators"] == expected
+
+    def test_backward_compat_other_keys_unchanged(self):
+        """Empty regulator_canon → all non-regulator keys match the no-arg call."""
+        from carver_showcase.metrics import breadth_summary
+
+        df = _make_df()
+        result_no_map = breadth_summary(df)
+        # Pass an empty mapping: every regulator name is unmapped, so n_regulators
+        # may differ from the no-arg (nunique) path.  Assert all OTHER keys are
+        # identical — that is what this backward-compat test is actually verifying.
+        result_empty_map = breadth_summary(df, regulator_canon={})
+        other_keys = [k for k in result_no_map if k != "n_regulators"]
+        for key in other_keys:
+            assert result_no_map[key] == result_empty_map[key], (
+                f"Key {key!r} changed unexpectedly between no-arg and empty-map calls"
+            )
+
+    # ------------------------------------------------------------------
+    # Dedup: two raw names → same canonical key → counted as 1
+    # ------------------------------------------------------------------
+
+    def test_dedup_two_names_same_key(self):
+        """Two raw names mapping to the same key are counted as 1 regulator."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {
+            "Financial Conduct Authority": {
+                "canonical": "Financial Conduct Authority",
+                "is_regulator": True,
+                "key": "financial_conduct_authority",
+            },
+            "FCA": {
+                "canonical": "Financial Conduct Authority",
+                "is_regulator": True,
+                "key": "financial_conduct_authority",  # same key
+            },
+        }
+        df = self._make_canon_df(["Financial Conduct Authority", "FCA", None, None])
+        result = breadth_summary(df, regulator_canon=canon)
+        assert result["n_regulators"] == 1, (
+            f"Expected 1 (two names share a key), got {result['n_regulators']}"
+        )
+
+    # ------------------------------------------------------------------
+    # Drop: is_regulator=False → excluded from count
+    # ------------------------------------------------------------------
+
+    def test_drop_non_regulator(self):
+        """A raw name with is_regulator=False is excluded from n_regulators."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {
+            "SEC": {
+                "canonical": "Securities and Exchange Commission",
+                "is_regulator": True,
+                "key": "sec",
+            },
+            "Reuters": {
+                "canonical": "Reuters",
+                "is_regulator": False,  # news agency, not a regulator
+                "key": "reuters",
+            },
+        }
+        df = self._make_canon_df(["SEC", "Reuters", None, None])
+        result = breadth_summary(df, regulator_canon=canon)
+        # Only SEC (is_regulator=True) should be counted; Reuters is dropped.
+        assert result["n_regulators"] == 1, (
+            f"Expected 1 (Reuters dropped), got {result['n_regulators']}"
+        )
+
+    def test_all_non_regulators_gives_zero(self):
+        """If every name has is_regulator=False, n_regulators == 0."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {
+            "Reuters": {"canonical": "Reuters", "is_regulator": False, "key": "reuters"},
+            "Bloomberg": {"canonical": "Bloomberg", "is_regulator": False, "key": "bloomberg"},
+        }
+        df = self._make_canon_df(["Reuters", "Bloomberg", None, None])
+        result = breadth_summary(df, regulator_canon=canon)
+        assert result["n_regulators"] == 0
+
+    # ------------------------------------------------------------------
+    # Unmapped fallback: absent from canon → counted with raw name as key
+    # ------------------------------------------------------------------
+
+    def test_unmapped_name_is_counted(self):
+        """A name absent from regulator_canon is still counted (raw name as key)."""
+        from carver_showcase.metrics import breadth_summary
+
+        # canon knows about SEC but not about "CFTC" (added after last batch run)
+        canon = {
+            "SEC": {
+                "canonical": "Securities and Exchange Commission",
+                "is_regulator": True,
+                "key": "sec",
+            },
+        }
+        df = self._make_canon_df(["SEC", "CFTC", None, None])
+        result = breadth_summary(df, regulator_canon=canon)
+        # SEC (mapped, is_regulator=True) + CFTC (unmapped fallback) = 2
+        assert result["n_regulators"] == 2, (
+            f"Expected 2 (mapped SEC + unmapped CFTC), got {result['n_regulators']}"
+        )
+
+    def test_unmapped_names_deduplicated_by_raw_key(self):
+        """Multiple identical unmapped names count as 1, not N."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon: dict = {}  # nothing mapped
+        # Two rows with "UnknownBody" — should deduplicate to 1.
+        df = self._make_canon_df(["UnknownBody", "UnknownBody", None, None])
+        result = breadth_summary(df, regulator_canon=canon)
+        assert result["n_regulators"] == 1, (
+            f"Expected 1 (same unmapped name twice), got {result['n_regulators']}"
+        )
+
+    # ------------------------------------------------------------------
+    # Mixed scenario: mapped true + mapped false + unmapped
+    # ------------------------------------------------------------------
+
+    def test_mixed_mapped_dropped_unmapped(self):
+        """Mixed canon: 2 mapped-true (shared key), 1 dropped, 1 unmapped → 2."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {
+            "Financial Conduct Authority": {
+                "canonical": "Financial Conduct Authority",
+                "is_regulator": True,
+                "key": "fca",
+            },
+            "FCA": {
+                "canonical": "Financial Conduct Authority",
+                "is_regulator": True,
+                "key": "fca",  # same key as above
+            },
+            "Reuters": {
+                "canonical": "Reuters",
+                "is_regulator": False,
+                "key": "reuters",
+            },
+            # "NewBody" intentionally absent → unmapped fallback
+        }
+        df = self._make_canon_df(
+            ["Financial Conduct Authority", "FCA", "Reuters", "NewBody"]
+        )
+        result = breadth_summary(df, regulator_canon=canon)
+        # "Financial Conduct Authority" + "FCA" → 1 (shared key "fca")
+        # "Reuters" → dropped (is_regulator=False)
+        # "NewBody" → 1 (unmapped fallback, raw name as key)
+        # Total: 2
+        assert result["n_regulators"] == 2, (
+            f"Expected 2, got {result['n_regulators']}"
+        )
+
+    # ------------------------------------------------------------------
+    # Filter-awareness: subset of rows → count reflects only that subset
+    # ------------------------------------------------------------------
+
+    def test_filter_awareness(self):
+        """Passing a row-subset yields a count reflecting only that subset."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {
+            "SEC": {"canonical": "SEC", "is_regulator": True, "key": "sec"},
+            "FCA": {"canonical": "FCA", "is_regulator": True, "key": "fca"},
+            "EMA": {"canonical": "EMA", "is_regulator": True, "key": "ema"},
+        }
+        df_full = self._make_canon_df(["SEC", "FCA", "EMA", None])
+
+        # Full df: 3 distinct mapped regulators.
+        result_full = breadth_summary(df_full, regulator_canon=canon)
+        assert result_full["n_regulators"] == 3
+
+        # Subset: only rows where regulator_name is "SEC" or "FCA".
+        df_subset = df_full[df_full["regulator_name"].isin(["SEC", "FCA"])].copy()
+        result_subset = breadth_summary(df_subset, regulator_canon=canon)
+        assert result_subset["n_regulators"] == 2, (
+            f"Expected 2 for subset, got {result_subset['n_regulators']}"
+        )
+
+    # ------------------------------------------------------------------
+    # No regulator_name column → 0
+    # ------------------------------------------------------------------
+
+    def test_missing_column_with_canon_returns_zero(self):
+        """If regulator_name column is absent and canon is provided, n_regulators=0."""
+        from carver_showcase.metrics import breadth_summary
+
+        canon = {"SEC": {"canonical": "SEC", "is_regulator": True, "key": "sec"}}
+        df = _make_df().drop(columns=["regulator_name"])
+        result = breadth_summary(df, regulator_canon=canon)
+        assert result["n_regulators"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Tests: breadth_summary min_regulator_mentions threshold
+# ---------------------------------------------------------------------------
+
+
+class TestBreadthSummaryMinMentions:
+    """Tests for the min_regulator_mentions threshold in breadth_summary.
+
+    Uses an inline regulator_canon with bodies that have varying row-counts in
+    the test DataFrame, verifying that the threshold correctly filters out
+    long-tail bodies with too few mentions.
+    """
+
+    # Inline canon: three distinct bodies
+    _CANON = {
+        # "BodyA" and "body_a_alias" both map to key "body_a" → total 2 mentions
+        "BodyA": {"canonical": "Body A", "is_regulator": True, "key": "body_a"},
+        "body_a_alias": {"canonical": "Body A", "is_regulator": True, "key": "body_a"},
+        # "BodyB" → key "body_b", will have 1 row → below threshold=3
+        "BodyB": {"canonical": "Body B", "is_regulator": True, "key": "body_b"},
+        # "BodyC" → key "body_c", will have 3 rows → at threshold=3
+        "BodyC": {"canonical": "Body C", "is_regulator": True, "key": "body_c"},
+        # "BodyD" → key "body_d", will have 5 rows → above threshold=3
+        "BodyD": {"canonical": "Body D", "is_regulator": True, "key": "body_d"},
+    }
+
+    def _make_threshold_df(self) -> "pd.DataFrame":
+        """Build a DataFrame where row counts per name are:
+        - BodyA: 1, body_a_alias: 1 → body_a key total: 2 (below threshold=3)
+        - BodyB: 1               → body_b key total: 1 (below threshold=3)
+        - BodyC: 3               → body_c key total: 3 (meets threshold=3)
+        - BodyD: 5               → body_d key total: 5 (above threshold=3)
+        """
+        names = (
+            ["BodyA"] * 1
+            + ["body_a_alias"] * 1
+            + ["BodyB"] * 1
+            + ["BodyC"] * 3
+            + ["BodyD"] * 5
+        )
+        df = pd.DataFrame(
+            {
+                "regulator_name": pd.array(names, dtype="string"),
+                "topic_id": pd.array([f"t{i}" for i in range(len(names))], dtype="string"),
+                "jurisdiction_country": pd.array(["US"] * len(names), dtype="string"),
+            }
+        )
+        return df
+
+    def test_threshold_1_equals_plain_dedup(self):
+        """min_regulator_mentions=1 (no cutoff) must equal the plain deduped key count."""
+        from carver_showcase.metrics import breadth_summary
+
+        df = self._make_threshold_df()
+        result_1 = breadth_summary(df, regulator_canon=self._CANON, min_regulator_mentions=1)
+        # 4 distinct keys: body_a (2 mentions), body_b (1), body_c (3), body_d (5)
+        assert result_1["n_regulators"] == 4, (
+            f"With min=1 expected 4 bodies, got {result_1['n_regulators']}"
+        )
+
+    def test_threshold_3_excludes_low_mention_bodies(self):
+        """min_regulator_mentions=3 must exclude body_a (2 mentions) and body_b (1 mention)."""
+        from carver_showcase.metrics import breadth_summary
+
+        df = self._make_threshold_df()
+        result_3 = breadth_summary(df, regulator_canon=self._CANON, min_regulator_mentions=3)
+        # Only body_c (3) and body_d (5) meet the threshold
+        assert result_3["n_regulators"] == 2, (
+            f"With min=3 expected 2 bodies (body_c + body_d), got {result_3['n_regulators']}"
+        )
+
+    def test_split_variants_summed_across_raw_names(self):
+        """A body whose mentions are split across two raw variants must sum them."""
+        from carver_showcase.metrics import breadth_summary
+
+        # BodyA appears 2x and body_a_alias appears 2x → key "body_a" = 4 total → meets min=3
+        names = ["BodyA", "BodyA", "body_a_alias", "body_a_alias"]
+        df = pd.DataFrame({"regulator_name": pd.array(names, dtype="string")})
+        result = breadth_summary(df, regulator_canon=self._CANON, min_regulator_mentions=3)
+        assert result["n_regulators"] == 1, (
+            f"body_a should be counted (4 mentions summed across two variants), "
+            f"got n_regulators={result['n_regulators']}"
+        )
+
+    def test_filter_awareness_changes_which_bodies_clear_threshold(self):
+        """Passing a row-subset can push a borderline body below the threshold."""
+        from carver_showcase.metrics import breadth_summary
+
+        df_full = self._make_threshold_df()
+        # Full frame: body_c (3 rows) meets min=3 → counted
+        result_full = breadth_summary(df_full, regulator_canon=self._CANON, min_regulator_mentions=3)
+        assert result_full["n_regulators"] == 2  # body_c + body_d
+
+        # Subset: keep only BodyC rows minus 2 (leaves 1 BodyC row) and keep BodyD
+        df_sub = df_full[df_full["regulator_name"].isin(["BodyC", "BodyD"])].head(3).copy()
+        # Ensure BodyC appears fewer than 3 times in the subset
+        sub_body_c_count = int((df_sub["regulator_name"] == "BodyC").sum())
+        if sub_body_c_count < 3:
+            result_sub = breadth_summary(df_sub, regulator_canon=self._CANON, min_regulator_mentions=3)
+            # body_c drops below threshold in this subset
+            assert result_sub["n_regulators"] <= 2, (
+                f"Subset should have fewer qualifying bodies; got {result_sub['n_regulators']}"
+            )
+
+    def test_threshold_above_all_drops_to_zero(self):
+        """A threshold higher than all mention-counts gives n_regulators=0."""
+        from carver_showcase.metrics import breadth_summary
+
+        # max in the full frame is 5 (BodyD); threshold=6 should give 0
+        df = self._make_threshold_df()
+        result = breadth_summary(df, regulator_canon=self._CANON, min_regulator_mentions=6)
+        assert result["n_regulators"] == 0, (
+            f"Expected 0 with threshold=6 (max mentions=5), got {result['n_regulators']}"
+        )
+
+    def test_default_min_matches_threshold_1(self):
+        """Calling breadth_summary without min_regulator_mentions uses default=1."""
+        from carver_showcase.metrics import breadth_summary
+
+        df = self._make_threshold_df()
+        result_default = breadth_summary(df, regulator_canon=self._CANON)
+        result_explicit_1 = breadth_summary(df, regulator_canon=self._CANON, min_regulator_mentions=1)
+        assert result_default["n_regulators"] == result_explicit_1["n_regulators"], (
+            "Default (no min arg) must equal explicit min=1"
+        )
+
+
+# ---------------------------------------------------------------------------
 # Tests: volume_over_time
 # ---------------------------------------------------------------------------
 
@@ -369,12 +720,20 @@ class TestHistoricalDepth:
             f"Latest should NOT be 2105, got {latest}"
         )
 
-        # recency buckets: at least one bucket for 1y / 3y / 7y
+        # recency buckets: one per configured window (1, 2, 3, 5, 10 years)
         recency = result.get("recency")
         assert recency is not None, "Expected 'recency' in result"
-        # Should be a dict with pct_1y, pct_3y, or pct_7y
-        assert any(k in recency for k in ("pct_1y", "pct_3y", "pct_7y", "1y", "3y", "7y")), (
-            f"Expected recency bucket keys, got {list(recency.keys())}"
+        expected_keys = {"pct_1y", "pct_2y", "pct_3y", "pct_5y", "pct_10y"}
+        assert expected_keys.issubset(recency.keys()), (
+            f"Expected recency buckets {expected_keys}, got {list(recency.keys())}"
+        )
+        # longer windows include at least as many records as shorter ones
+        assert (
+            recency["pct_1y"]
+            <= recency["pct_2y"]
+            <= recency["pct_3y"]
+            <= recency["pct_5y"]
+            <= recency["pct_10y"]
         )
 
     def test_historical_depth_span_excludes_extremes(self):
@@ -391,6 +750,38 @@ class TestHistoricalDepth:
         # Plausible span: 2020-06-01 to 2025-06-01 ≈ 1826 days (not from 1947 to 2105)
         if isinstance(span, (int, float)):
             assert span < 50_000, f"Span looks too large (includes extremes?): {span} days"
+
+    def test_historical_depth_earliest_uses_quantile_floor(self):
+        """earliest_date is the low-quantile DISPLAY floor (not the hard min); the true
+        in-window minimum is still exposed as true_earliest_date, and sub-floor records
+        are counted in n_below_floor."""
+        import datetime
+
+        from carver_showcase.metrics import historical_depth
+
+        # One in-window old outlier (0.5% of the sample, below the 1% floor) + a recent
+        # cluster. The floor should trim the lone 2005 record from the advertised earliest.
+        dates = ["2005-01-01"] + ["2025-01-01"] * 199
+        df = _make_date_df(dates)
+        result = historical_depth(df)
+
+        earliest = result["earliest_date"]
+        true_earliest = result["true_earliest_date"]
+        if hasattr(earliest, "date"):
+            earliest = earliest.date()
+        if hasattr(true_earliest, "date"):
+            true_earliest = true_earliest.date()
+
+        # True minimum is preserved and honestly reported …
+        assert true_earliest == datetime.date(2005, 1, 1)
+        # … but the advertised earliest is the recent cluster, not the 2005 outlier.
+        assert earliest >= datetime.date(2024, 1, 1)
+        assert earliest > true_earliest
+        # The sub-floor outlier is counted, and the quantile is surfaced.
+        assert result["n_below_floor"] >= 1
+        assert result["floor_quantile"] == 0.01
+        # All 200 rows are still plausible (the floor is display-only, not a filter).
+        assert result["n_plausible"] == 200
 
 
 # ---------------------------------------------------------------------------
