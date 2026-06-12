@@ -1,9 +1,0 @@
-{
-  "mode": "pipeline",
-  "stage": "02-plan",
-  "phase": "done",
-  "round": 1,
-  "verdict": "COMPLETE",
-  "max_rounds": 7,
-  "updated_by": "orchestrator"
-}

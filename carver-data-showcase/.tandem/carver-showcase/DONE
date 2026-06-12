@@ -1,4 +1,0 @@
-verdict=COMPLETE
-stages:
-  01-spec [approved] -> stages/01-spec/artifact.md
-  02-plan [approved] -> stages/02-plan/artifact.md
