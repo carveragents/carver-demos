@@ -5,6 +5,7 @@ No functions, no I/O, no imports beyond stdlib and pycountry.
 """
 
 import datetime
+import os
 import pathlib
 
 import pycountry
@@ -13,7 +14,9 @@ import pycountry
 # Paths
 # ---------------------------------------------------------------------------
 
-DATA_DIR = pathlib.Path(__file__).parent.parent / "data"
+DATA_DIR = pathlib.Path(
+    os.environ.get("CARVER_DATA_DIR") or (pathlib.Path(__file__).parent.parent / "data")
+)
 
 ANNOTATIONS_JSONL = DATA_DIR / "annotations.jsonl"
 ANNOTATIONS_PARQUET = DATA_DIR / "annotations.parquet"
@@ -451,3 +454,83 @@ DOMAIN_CHUNK_SIZE: int = 20
 # upgrade is cheap. Right-sized per CLAUDE.md: mini for the simpler regulator job,
 # gpt-4o for this harder one.
 DOMAIN_MODEL: str = "gpt-4o"
+
+# ---------------------------------------------------------------------------
+# Public deployment constants (see docs/superpowers/specs/2026-06-12-public-deployment-design.md)
+#
+# These constants power the public bundle export (tools/export_public_bundle.py)
+# and the offline bundle validator (tools/validate_bundle.py).
+#
+# Trust boundary: the public app reads only data/public/, never raw annotations.
+# The validators act as a blocking gate: a hard FAIL prevents the commit, so a
+# leaky or malformed bundle can never reach Streamlit.  All constants here are
+# pure data — no functions, no I/O.
+# ---------------------------------------------------------------------------
+
+# Subdirectory under DATA_DIR where the public bundle lives.
+# The slim parquet and all aggregate sidecars are committed here; Streamlit
+# Community Cloud reads from this directory with CARVER_DATA_DIR=data/public.
+PUBLIC_DATA_SUBDIR: str = "public"
+
+# The slim annotations frame shipped in the public bundle — exactly these columns,
+# in this order.  Every name must be a member of schema.NORMALIZED_COLUMNS.
+# Identifiers (artifact_id, entry_id, source_id), all content prose (title,
+# summary, feed_url, base_url, *_reasoning, regulator_*), detailed date columns,
+# richness-constituent has_*/n_reg_* columns, and category (internal) are all
+# dropped.  Each row becomes (institution, jurisdiction, scores, pub-date, counts).
+PUBLIC_KEEP_COLUMNS: tuple[str, ...] = (
+    "topic_id",
+    "jurisdiction_country", "jurisdiction_bloc", "jurisdiction_scope",
+    "impact_score", "impact_confidence", "impact_label",
+    "urgency_score", "urgency_confidence", "urgency_label",
+    "update_type",
+    "reconciled_published_date",
+    "richness_score",
+    "n_entities", "n_tags",
+)
+
+# Column names that must NEVER appear in the public bundle (belt-and-suspenders
+# leak gate — the validator checks for these explicitly).
+PUBLIC_CONTENT_DENYLIST: frozenset[str] = frozenset(
+    {
+        "title",
+        "summary",
+        "feed_url",
+        "base_url",
+        "jurisdiction_reasoning",
+        "regulator_name",
+        "regulator_division",
+        "regulator_other_agency",
+        "artifact_id",
+        "entry_id",
+        "source_id",
+    }
+)
+
+# Maximum allowed byte-length of any string value in a public-frame string column.
+# Content prose (title, summary) is far longer; values exceeding this in a
+# supposedly-slim column signal a leak of content that must be caught at the gate.
+PUBLIC_STRING_MAXLEN: int = 64
+
+# Hard failure threshold: if the public bundle row count drops by more than this
+# fraction vs the baseline, the validator exits non-zero (collapsed data gate).
+PUBLIC_ROWCOUNT_DROP_TOLERANCE: float = 0.20
+
+# Orphan topic_id tolerance: the live feed adds institutions continuously, so the
+# catalog may lag the annotation pull by a handful of new topic_ids.  The gallery
+# renders missing catalog names gracefully.  HARD-fail only when the orphan SHARE
+# of DISTINCT topic_ids exceeds this fraction; a few stragglers (<= 3%) are fine.
+# Set to 3% (not 2%) to accommodate real-world catalog lag: observed ~2.5% (26/1036
+# institutions) on the current corpus with institutions added since the last catalog pull.
+PUBLIC_ORPHAN_TOPIC_TOLERANCE: float = 0.03
+
+# Soft warning threshold: local full-row count vs the upstream annotations total
+# is expected to differ by at most this fraction (live feed drifts slightly).
+UPSTREAM_RECORD_TOLERANCE: float = 0.01
+
+# Minimum byte size of the public deck PDF (used by check_deck_pdf in validate_bundle).
+PUBLIC_DECK_MIN_BYTES: int = 20_000
+
+# Maximum age (days) of the newest upstream artifact relative to snapshot date,
+# used by check_freshness in validate_upstream.
+UPSTREAM_FRESHNESS_MAX_AGE_DAYS: int = 7

@@ -7,12 +7,65 @@ It includes:
   - an anomalous impacted_business entry to exercise has_impacted_business logic
 """
 
+import importlib
 import io
 import json
+import os
 import pathlib
 
 import pandas as pd
 import pytest
+
+
+# ---------------------------------------------------------------------------
+# Autouse: isolate env vars + config state between all tests
+# ---------------------------------------------------------------------------
+
+@pytest.fixture(autouse=True)
+def _isolate_public_env(request):
+    """Snapshot CARVER_DATA_DIR / CARVER_PUBLIC_BUILD, restore after each test.
+
+    Reloads carver_showcase.config in teardown so any relocation applied inside
+    a test cannot bleed into later tests regardless of execution order.
+    Also clears st.cache_data after app tests so cached Streamlit state doesn't
+    persist across tests.
+    """
+    import carver_showcase.config as cfg
+
+    saved_data_dir = os.environ.get("CARVER_DATA_DIR")
+    saved_public_build = os.environ.get("CARVER_PUBLIC_BUILD")
+
+    yield
+
+    # Restore env vars
+    if saved_data_dir is None:
+        os.environ.pop("CARVER_DATA_DIR", None)
+    else:
+        os.environ["CARVER_DATA_DIR"] = saved_data_dir
+
+    if saved_public_build is None:
+        os.environ.pop("CARVER_PUBLIC_BUILD", None)
+    else:
+        os.environ["CARVER_PUBLIC_BUILD"] = saved_public_build
+
+    # Reload config first so its module-level constants update to restored env.
+    importlib.reload(cfg)
+
+    # Reload load.py so its function default args (e.g. path=TOPIC_DOMAINS_CSV)
+    # re-bind to the restored config paths — prevents stale path state from bleeding
+    # into the next test's AppTest run.
+    try:
+        import carver_showcase.load as load_mod
+        importlib.reload(load_mod)
+    except Exception:
+        pass
+
+    # Clear Streamlit cache if available (DRY — avoids per-test st.cache_data.clear())
+    try:
+        import streamlit as st
+        st.cache_data.clear()
+    except Exception:
+        pass
 
 
 @pytest.fixture()

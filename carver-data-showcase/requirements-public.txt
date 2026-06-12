@@ -1,0 +1,26 @@
+# Lean runtime dependencies for the public Streamlit Community Cloud gallery.
+#
+# This is the minimal install set for apps/gallery.py and everything it imports
+# at runtime (carver_showcase/{charts,config,curate,ingest,load,metrics,normalize,
+# richness,schema}.py + apps/components/{filters,render,theme}.py).
+#
+# Pinned to the same versions as the full requirements.txt (used for the data
+# pipeline, deck-building tools, and OpenAI enrichment jobs — none of those tool-
+# only deps are needed here):
+#   EXCLUDED: openai (LLM enrichment tools only)
+#             python-dotenv (local .env loading for dev/tools only)
+#             kaleido (deck PDF rendering — deck is pre-built; gallery reads bytes)
+#             reportlab (deck PDF rendering — same reason)
+#             pytest (test runner, dev-only)
+#
+# NOTE: httpx IS included because carver_showcase/ingest.py imports it at module
+# level, and load.py imports ingest at module level, so the import is triggered
+# transitively when gallery.py imports load.py — even though the live API pull
+# path is never exercised in the public build (the parquet already exists).
+
+streamlit==1.58.0
+pandas==3.0.3
+pyarrow==24.0.0
+plotly==6.8.0
+pycountry==26.2.16
+httpx==0.28.1

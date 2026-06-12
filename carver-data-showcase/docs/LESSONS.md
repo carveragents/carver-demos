@@ -286,3 +286,35 @@
   restart; it passed in 32s in isolation and on a clean re-run. Lesson: don't run the deck build or
   other Chrome/kaleido-heavy work alongside the test suite — the AppTest timeout is the canary, and
   a timeout there means "machine was busy," not "code broke." Verify in isolation before chasing it.
+
+## v2.0 — Public deployment (aggregate-only bundle + validation gate, 2026-06-12)
+
+- **Trust boundary: the operator validates+gates+commits; Streamlit just serves.** The public app
+  reads only a committed `data/public/` bundle — zero secrets, no API/OpenAI, no raw data. The weekly
+  loop is `pull → export_public_bundle → validate_upstream + validate_bundle → commit iff both exit 0
+  → push`. The guarantee that "only validated data ships" is the **blocking gate** (`validate && git
+  commit`): a HARD failure exits non-zero → the commit never runs → the last good bundle stays live.
+- **Aggregate-only is three independent layers, not one check.** (1) `export_public_bundle.py`
+  curates then slims to the 15-col `PUBLIC_KEEP_COLUMNS` allowlist (no content, no record ids);
+  (2) the runtime loader allowlist (`load_normalized(keep_columns=...)` intersection) means the app
+  *physically can't* read a content column even from a bad bundle; (3) `validate_bundle.py` HARD-gates
+  on allowlist ⊆ + a content denylist + a string-length cap (catches a renamed/added rich-text column
+  the name checks miss). Defense-in-depth because any single layer can be bypassed by a mistake.
+- **Module-level path constants don't follow a runtime env relocation — and function default args are
+  worse.** `config.DATA_DIR` reads `CARVER_DATA_DIR` at import, so relocating it in-process needs
+  `importlib.reload(config)`. But `load.py` binds defaults like `path=TOPIC_DOMAINS_CSV` at *function
+  definition*, so you must ALSO `importlib.reload(load)` — else cached loaders keep the old paths and
+  an AppTest silently loads real data (the public-mode smoke test passed for the wrong reason until
+  fixed). Lesson: an env-relocatable data dir needs the env set *before process start* (production is
+  fine — Streamlit Cloud sets it); in-process tests need an autouse conftest fixture that reloads both
+  modules and restores the env, or they pollute the suite.
+- **Reconciliation thresholds must be relative — a fail-on-any-orphan HARD gate wedges the weekly
+  loop.** `topic_id ∈ catalog` started as fail-on-any-orphan; the real data has 26 orphan topic_ids
+  (2.51%) from a catalog that lags the annotation pull — benign, and the gallery already renders
+  missing names gracefully. A HARD gate there would block every weekly publish. Fixed to tolerance-
+  based (`PUBLIC_ORPHAN_TOPIC_TOLERANCE`), matching the rest of the validator's relative-threshold
+  philosophy. The orphan share is still surfaced in the report as a stale-catalog signal.
+- **The end-to-end run is the real test.** The unit suite was green, but only running
+  `export → validate_bundle` against the live `data/` surfaced (a) the orphan-tolerance issue and
+  (b) that the export shipped the full 211,489 rows instead of the curated 186,201 — the bundle now
+  curates (`drop_noise_update_types`) before slimming. Prove the gate on real data before declaring done.

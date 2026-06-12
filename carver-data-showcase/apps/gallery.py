@@ -27,6 +27,7 @@ Design rules:
 
 from __future__ import annotations
 
+import os
 import pathlib
 import sys
 
@@ -46,9 +47,11 @@ from carver_showcase.config import (
     ANNOTATIONS_PARQUET,
     LABEL_BANDS,
     PLAUSIBLE_DATE_WINDOW,
+    PUBLIC_KEEP_COLUMNS,
     TOPIC_CATALOG_CSV,
     TOPIC_CATEGORIES_CSV,
 )
+
 from carver_showcase.curate import drop_noise_update_types
 from carver_showcase.load import (
     build_record_index,
@@ -74,6 +77,13 @@ from apps.components.render import (
     scope_banner,
     snapshot_note,
 )
+
+# ---------------------------------------------------------------------------
+# Public-build flag — set CARVER_PUBLIC_BUILD=1 to enable aggregate-only mode.
+# When true: slim data load (15-col allowlist), record-level tabs omitted, and
+# build_record_index / get_raw_record are never called (no JSONL access).
+# ---------------------------------------------------------------------------
+PUBLIC_BUILD = os.environ.get("CARVER_PUBLIC_BUILD") == "1"
 
 # ---------------------------------------------------------------------------
 # Page config
@@ -163,10 +173,15 @@ st.markdown(
 
 @st.cache_data(show_spinner="Loading annotation snapshot…")
 def _load_df() -> pd.DataFrame:
+    # In public mode, restrict to the 15-column allowlist as a belt-and-suspenders
+    # structural guard — the app physically cannot surface a content column even
+    # if a misconfigured bundle were deployed.
+    keep = list(PUBLIC_KEEP_COLUMNS) if PUBLIC_BUILD else None
     df = load_normalized(
         parquet_path=ANNOTATIONS_PARQUET,
         jsonl_path=ANNOTATIONS_JSONL,
         categories_path=TOPIC_CATEGORIES_CSV,
+        keep_columns=keep,
     )
     # External gallery: drop update_type noise (the sub-0.01% long tail + named
     # crawl-junk like "website error") so it never appears in the dataset, KPIs,
@@ -253,9 +268,11 @@ TABS = TABS + [
     "Update Types",
     "Volume Over Time",
     "Score Distributions",
-    "Record Drill-Down",
-    "Highlight Reel",
 ]
+# Record-level tabs are omitted in public mode — they require raw JSONL access
+# and expose per-record content that must not appear in the public bundle.
+if not PUBLIC_BUILD:
+    TABS = TABS + ["Record Drill-Down", "Highlight Reel"]
 
 tabs = st.tabs(TABS)
 # Address tab bodies by name (not position) so the conditional Tags & Entities
@@ -771,183 +788,188 @@ with tabs[TAB["Score Distributions"]]:
 
 
 # ===========================================================================
-# v8 — Single-record richness drill-down
+# v8 — Single-record richness drill-down (full mode only — not in PUBLIC_BUILD)
+# In public mode these tabs don't exist in TABS, so TAB["Record Drill-Down"]
+# would KeyError; the guard also ensures build_record_index / get_raw_record
+# are never invoked (no JSONL access in public mode).
 # ===========================================================================
-with tabs[TAB["Record Drill-Down"]]:
-    st.markdown("## Single-Record Richness Drill-Down")
-    st.markdown(
-        "Select any record from the filtered set and see the **full nested annotation** "
-        "rendered as a structured compliance brief — the richness you cannot see in a "
-        "list of links."
-    )
-    richness_definition()
-
-    if view.empty:
-        st.warning("No records match the current filters.")
-    else:
-        record_idx = _build_index()
-
-        # Build display options: title + artifact_id for identification
-        title_col = "title" if "title" in view.columns else None
-        if title_col:
-            options_series = view["artifact_id"].astype(str)
-            label_map = dict(
-                zip(
-                    view["artifact_id"].astype(str),
-                    view[title_col].fillna(view["artifact_id"].astype(str)),
-                )
-            )
-        else:
-            options_series = view["artifact_id"].astype(str)
-            label_map = {}
-
-        # Search / filter records
-        drill_search = st.text_input(
-            "Filter records (search title or artifact_id)",
-            value="",
-            key="drill_search",
+if not PUBLIC_BUILD:
+    with tabs[TAB["Record Drill-Down"]]:
+        st.markdown("## Single-Record Richness Drill-Down")
+        st.markdown(
+            "Select any record from the filtered set and see the **full nested annotation** "
+            "rendered as a structured compliance brief — the richness you cannot see in a "
+            "list of links."
         )
-        if drill_search.strip():
-            q = drill_search.strip().lower()
-            mask = (
-                view["artifact_id"].astype(str).str.lower().str.contains(q, regex=False)
-            )
-            if title_col:
-                mask |= view[title_col].fillna("").str.lower().str.contains(q, regex=False)
-            candidate_ids = view.loc[mask, "artifact_id"].astype(str).tolist()
+        richness_definition()
+
+        if view.empty:
+            st.warning("No records match the current filters.")
         else:
-            # Default: show top 200 by richness_score for selector performance
-            if "richness_score" in view.columns:
-                candidate_ids = (
-                    view.nlargest(200, "richness_score")["artifact_id"]
-                    .astype(str)
-                    .tolist()
+            record_idx = _build_index()
+
+            # Build display options: title + artifact_id for identification
+            title_col = "title" if "title" in view.columns else None
+            if title_col:
+                options_series = view["artifact_id"].astype(str)
+                label_map = dict(
+                    zip(
+                        view["artifact_id"].astype(str),
+                        view[title_col].fillna(view["artifact_id"].astype(str)),
+                    )
                 )
             else:
-                candidate_ids = view["artifact_id"].astype(str).head(200).tolist()
+                options_series = view["artifact_id"].astype(str)
+                label_map = {}
 
-        if not candidate_ids:
-            st.info("No records match your search.")
-        else:
-            def _format_option(aid: str) -> str:
-                title = label_map.get(aid, "")
-                if title and title != aid:
-                    return f"{title[:80]}… [{aid[:8]}]" if len(title) > 80 else f"{title} [{aid[:8]}]"
-                return aid[:16]
-
-            selected_id = st.selectbox(
-                f"Select a record ({len(candidate_ids):,} shown)",
-                options=candidate_ids,
-                format_func=_format_option,
-                key="drill_select",
+            # Search / filter records
+            drill_search = st.text_input(
+                "Filter records (search title or artifact_id)",
+                value="",
+                key="drill_search",
             )
-
-            if selected_id:
-                with st.spinner("Loading record…"):
-                    raw = get_raw_record(selected_id, jsonl_path=ANNOTATIONS_JSONL, index=record_idx)
-
-                if raw is None:
-                    st.error(f"Record {selected_id} not found in the JSONL index.")
+            if drill_search.strip():
+                q = drill_search.strip().lower()
+                mask = (
+                    view["artifact_id"].astype(str).str.lower().str.contains(q, regex=False)
+                )
+                if title_col:
+                    mask |= view[title_col].fillna("").str.lower().str.contains(q, regex=False)
+                candidate_ids = view.loc[mask, "artifact_id"].astype(str).tolist()
+            else:
+                # Default: show top 200 by richness_score for selector performance
+                if "richness_score" in view.columns:
+                    candidate_ids = (
+                        view.nlargest(200, "richness_score")["artifact_id"]
+                        .astype(str)
+                        .tolist()
+                    )
                 else:
-                    output_data = raw.get("output_data") or {}
-                    # Show richness score from the normalized frame if available
-                    row = view[view["artifact_id"].astype(str) == selected_id]
-                    if not row.empty and "richness_score" in row.columns:
-                        rs = row.iloc[0]["richness_score"]
-                        if pd.notna(rs):
-                            st.metric("Richness score", f"{int(rs)}/100")
-                    record_drilldown(output_data, envelope=raw)
+                    candidate_ids = view["artifact_id"].astype(str).head(200).tolist()
+
+            if not candidate_ids:
+                st.info("No records match your search.")
+            else:
+                def _format_option(aid: str) -> str:
+                    title = label_map.get(aid, "")
+                    if title and title != aid:
+                        return f"{title[:80]}… [{aid[:8]}]" if len(title) > 80 else f"{title} [{aid[:8]}]"
+                    return aid[:16]
+
+                selected_id = st.selectbox(
+                    f"Select a record ({len(candidate_ids):,} shown)",
+                    options=candidate_ids,
+                    format_func=_format_option,
+                    key="drill_select",
+                )
+
+                if selected_id:
+                    with st.spinner("Loading record…"):
+                        raw = get_raw_record(selected_id, jsonl_path=ANNOTATIONS_JSONL, index=record_idx)
+
+                    if raw is None:
+                        st.error(f"Record {selected_id} not found in the JSONL index.")
+                    else:
+                        output_data = raw.get("output_data") or {}
+                        # Show richness score from the normalized frame if available
+                        row = view[view["artifact_id"].astype(str) == selected_id]
+                        if not row.empty and "richness_score" in row.columns:
+                            rs = row.iloc[0]["richness_score"]
+                            if pd.notna(rs):
+                                st.metric("Richness score", f"{int(rs)}/100")
+                        record_drilldown(output_data, envelope=raw)
 
 
 # ===========================================================================
-# v9 — Highlight reel
+# v9 — Highlight reel (full mode only — not in PUBLIC_BUILD)
 # ===========================================================================
-with tabs[TAB["Highlight Reel"]]:
-    st.markdown("## Highlight Reel")
-    st.markdown(
-        "Auto-selected top records by **deterministic richness score** within the current "
-        "filter. Diversity pass: at most one record per institution, then per update-type. "
-        "No randomness — reproducible across runs."
-    )
-    richness_definition()
-
-    if view.empty:
-        st.warning("No records match the current filters.")
-    elif "richness_score" not in view.columns:
-        st.warning("richness_score column not available.")
-    else:
-        n_reel = st.slider(
-            "Number of records in reel",
-            min_value=3,
-            max_value=20,
-            value=9,
-            step=1,
-            key="reel_n",
+if not PUBLIC_BUILD:
+    with tabs[TAB["Highlight Reel"]]:
+        st.markdown("## Highlight Reel")
+        st.markdown(
+            "Auto-selected top records by **deterministic richness score** within the current "
+            "filter. Diversity pass: at most one record per institution, then per update-type. "
+            "No randomness — reproducible across runs."
         )
-        diversify = st.checkbox("Diversify (one per institution)", value=True, key="reel_diversify")
+        richness_definition()
 
-        with st.spinner("Selecting highlight reel…"):
-            reel = highlight_reel(view, n=n_reel, diversify=diversify)
-
-        if reel.empty:
-            st.info("Not enough records to build a highlight reel with current filters.")
+        if view.empty:
+            st.warning("No records match the current filters.")
+        elif "richness_score" not in view.columns:
+            st.warning("richness_score column not available.")
         else:
-            st.caption(
-                f"Showing top **{len(reel)}** records by richness score "
-                f"(median={int(view['richness_score'].dropna().median())}/100 "
-                f"in current filter)."
+            n_reel = st.slider(
+                "Number of records in reel",
+                min_value=3,
+                max_value=20,
+                value=9,
+                step=1,
+                key="reel_n",
             )
+            diversify = st.checkbox("Diversify (one per institution)", value=True, key="reel_diversify")
 
-            # Render as cards in a 3-column grid
-            card_cols = 3
-            for row_start in range(0, len(reel), card_cols):
-                row_cards = reel.iloc[row_start : row_start + card_cols]
-                cols = st.columns(card_cols)
-                for col, (_, record) in zip(cols, row_cards.iterrows()):
-                    with col:
-                        title = str(record.get("title", "")) if pd.notna(record.get("title", None)) else ""
-                        artifact_id = str(record.get("artifact_id", ""))
-                        richness = record.get("richness_score", None)
-                        impact_score = record.get("impact_score", None)
-                        urgency_label = record.get("urgency_label", "")
-                        regulator = record.get("regulator_name", "")
-                        update_type = record.get("update_type", "")
+            with st.spinner("Selecting highlight reel…"):
+                reel = highlight_reel(view, n=n_reel, diversify=diversify)
 
-                        richness_str = f"{int(richness)}/100" if pd.notna(richness) else "—"
-                        impact_str = f"{float(impact_score):.1f}" if pd.notna(impact_score) else "—"
+            if reel.empty:
+                st.info("Not enough records to build a highlight reel with current filters.")
+            else:
+                st.caption(
+                    f"Showing top **{len(reel)}** records by richness score "
+                    f"(median={int(view['richness_score'].dropna().median())}/100 "
+                    f"in current filter)."
+                )
 
-                        display_title = (title[:70] + "…") if len(title) > 70 else (title or artifact_id[:16])
+                # Render as cards in a 3-column grid
+                card_cols = 3
+                for row_start in range(0, len(reel), card_cols):
+                    row_cards = reel.iloc[row_start : row_start + card_cols]
+                    cols = st.columns(card_cols)
+                    for col, (_, record) in zip(cols, row_cards.iterrows()):
+                        with col:
+                            title = str(record.get("title", "")) if pd.notna(record.get("title", None)) else ""
+                            artifact_id = str(record.get("artifact_id", ""))
+                            richness = record.get("richness_score", None)
+                            impact_score = record.get("impact_score", None)
+                            urgency_label = record.get("urgency_label", "")
+                            regulator = record.get("regulator_name", "")
+                            update_type = record.get("update_type", "")
 
-                        st.markdown(
-                            f'<div style="border:1px solid #e0e0e0;border-radius:8px;'
-                            f'padding:12px;height:200px;overflow:hidden;background:#fafafa">'
-                            f"<strong>{display_title}</strong><br>"
-                            f'<small style="color:#888">{str(regulator)[:40]}</small><br>'
-                            f'<small style="color:#888">{str(update_type)}</small><br>'
-                            f'<span style="background:#1976d2;color:white;border-radius:4px;'
-                            f'padding:2px 6px;font-size:0.8em">Richness: {richness_str}</span> '
-                            f'<span style="background:#f57c00;color:white;border-radius:4px;'
-                            f'padding:2px 6px;font-size:0.8em">Impact: {impact_str}</span>'
-                            f"</div>",
-                            unsafe_allow_html=True,
-                        )
+                            richness_str = f"{int(richness)}/100" if pd.notna(richness) else "—"
+                            impact_str = f"{float(impact_score):.1f}" if pd.notna(impact_score) else "—"
 
-                        # Link to drill-down via session state
-                        if st.button(
-                            "View full record",
-                            key=f"reel_btn_{artifact_id}",
-                            width="stretch",
-                        ):
-                            st.session_state["drill_select"] = artifact_id
-                            st.session_state["_switch_to_drilldown"] = True
+                            display_title = (title[:70] + "…") if len(title) > 70 else (title or artifact_id[:16])
 
-        # Handle drill-down navigation from highlight reel
-        if st.session_state.get("_switch_to_drilldown"):
-            st.session_state["_switch_to_drilldown"] = False
-            st.info(
-                "Record selected — switch to the **Record Drill-Down** tab to view it. "
-                f"(artifact_id: `{st.session_state.get('drill_select', '')}`)"
-            )
+                            st.markdown(
+                                f'<div style="border:1px solid #e0e0e0;border-radius:8px;'
+                                f'padding:12px;height:200px;overflow:hidden;background:#fafafa">'
+                                f"<strong>{display_title}</strong><br>"
+                                f'<small style="color:#888">{str(regulator)[:40]}</small><br>'
+                                f'<small style="color:#888">{str(update_type)}</small><br>'
+                                f'<span style="background:#1976d2;color:white;border-radius:4px;'
+                                f'padding:2px 6px;font-size:0.8em">Richness: {richness_str}</span> '
+                                f'<span style="background:#f57c00;color:white;border-radius:4px;'
+                                f'padding:2px 6px;font-size:0.8em">Impact: {impact_str}</span>'
+                                f"</div>",
+                                unsafe_allow_html=True,
+                            )
+
+                            # Link to drill-down via session state
+                            if st.button(
+                                "View full record",
+                                key=f"reel_btn_{artifact_id}",
+                                width="stretch",
+                            ):
+                                st.session_state["drill_select"] = artifact_id
+                                st.session_state["_switch_to_drilldown"] = True
+
+            # Handle drill-down navigation from highlight reel
+            if st.session_state.get("_switch_to_drilldown"):
+                st.session_state["_switch_to_drilldown"] = False
+                st.info(
+                    "Record selected — switch to the **Record Drill-Down** tab to view it. "
+                    f"(artifact_id: `{st.session_state.get('drill_select', '')}`)"
+                )
 
 
 # ===========================================================================

@@ -81,6 +81,29 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
+def _select(df: pd.DataFrame, keep_columns: "list[str] | tuple[str, ...] | None") -> pd.DataFrame:
+    """Return df restricted to the intersection of keep_columns, in keep_columns order.
+
+    Missing columns are silently skipped (no KeyError).  When keep_columns is
+    None, the frame is returned unchanged.
+
+    Parameters
+    ----------
+    df:
+        Source DataFrame.
+    keep_columns:
+        Ordered sequence of column names to retain, or None for no filtering.
+
+    Returns
+    -------
+    pd.DataFrame
+        Filtered frame (or the original frame when keep_columns is None).
+    """
+    if keep_columns is None:
+        return df
+    return df[[c for c in keep_columns if c in df.columns]]
+
+
 def _apply_dtypes(df: pd.DataFrame) -> pd.DataFrame:
     """Cast each column to its declared dtype from schema.DTYPES.
 
@@ -143,6 +166,7 @@ def load_normalized(
     jsonl_path: pathlib.Path = ANNOTATIONS_JSONL,
     categories_path: pathlib.Path = TOPIC_CATEGORIES_CSV,
     rebuild: bool = False,
+    keep_columns: "list[str] | tuple[str, ...] | None" = None,
 ) -> pd.DataFrame:
     """Load the normalized annotations DataFrame, building from JSONL if needed.
 
@@ -158,11 +182,21 @@ def load_normalized(
         when building.
     rebuild:
         If True, re-build the parquet even if it already exists.
+    keep_columns:
+        Optional ordered list (or tuple) of column names to retain in the
+        returned frame.  Acts as a structural allowlist: only the intersection
+        of ``keep_columns`` and the actual frame columns is returned, in
+        ``keep_columns`` order.  Columns absent from the frame are silently
+        skipped (no KeyError).  ``None`` (default) returns all columns
+        unchanged — byte-for-byte identical to the pre-parameter behaviour.
+        Applied after the frame is obtained on both the fast parquet read path
+        and the full JSONL build path.
 
     Returns
     -------
     pd.DataFrame
-        Normalized annotations with exactly ``schema.NORMALIZED_COLUMNS`` columns.
+        Normalized annotations with exactly ``schema.NORMALIZED_COLUMNS``
+        columns (or the subset specified by ``keep_columns``).
 
     Notes
     -----
@@ -177,7 +211,7 @@ def load_normalized(
     if parquet_path.exists() and not rebuild:
         logger.info("Loading annotations from parquet: %s", parquet_path)
         df = pd.read_parquet(parquet_path)
-        return df
+        return _select(df, keep_columns)
 
     # Build path: stream JSONL → normalize → apply dtypes → persist
     logger.info(
@@ -215,7 +249,7 @@ def load_normalized(
         "Parquet written: %s (shape=%s)", parquet_path, df.shape
     )
 
-    return df
+    return _select(df, keep_columns)
 
 
 # ---------------------------------------------------------------------------
