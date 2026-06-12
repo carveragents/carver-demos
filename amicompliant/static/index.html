@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AmiCompliant — Carver Agents</title>
+  <title>Agent Compliance Lab — Carver Agents</title>
   <style>
     /* ── Reset & base ───────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -422,6 +422,8 @@
     .tag-final_rule  { background: #dbeafe; color: #1d4ed8; }
     .tag-ftc  { background: var(--green-faint); color: var(--green-dim); }
     .tag-sec  { background: #ede9fe; color: #6d28d9; }
+    .tag-agency { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); }
+    .tag-relevance { background: #f0f9ff; color: #075985; border: 1px solid #bae6fd; }
 
     .signal-title { font-size: 1rem; font-weight: 700; line-height: 1.3; }
     .signal-meta  { font-size: .78rem; color: var(--gray-500); margin-top: .25rem; }
@@ -473,6 +475,24 @@
     .diff-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
 
     .diff-body { max-height: 420px; overflow-y: auto; }
+
+    .diff-sources {
+      padding: .6rem 1rem;
+      background: #fafafa;
+      border-bottom: 1px solid var(--gray-300);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: .75rem;
+      color: var(--gray-700);
+      display: flex; flex-wrap: wrap; gap: .4rem; align-items: center;
+    }
+    .diff-source-pill {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: 999px;
+      padding: .15rem .55rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
 
     .diff-line {
       display: flex;
@@ -533,6 +553,37 @@
 
     .liability-range { font-size: .85rem; color: #92400e; margin-top: .3rem; }
     .liability-basis { font-size: .8rem; color: #a16207; margin-top: .5rem; font-style: italic; }
+    .liability-sources {
+      margin-top: .75rem;
+      padding-top: .75rem;
+      border-top: 1px solid #fde68a;
+      font-size: .78rem;
+      color: #78350f;
+      display: flex; flex-wrap: wrap; gap: .35rem; align-items: center;
+    }
+    .liability-source-pill {
+      background: var(--white);
+      border: 1px solid #fde68a;
+      border-radius: 999px;
+      padding: .2rem .6rem;
+    }
+    .liability-source-pill a { color: #92400e; text-decoration: underline; }
+
+    .ceiling-banner {
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      background: var(--gray-100);
+    }
+    .ceiling-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--gray-500); margin-bottom: .4rem;
+    }
+    .ceiling-amount { font-size: 1.4rem; font-weight: 800; color: var(--gray-900); }
+    .ceiling-meta   { font-size: .82rem; color: var(--gray-700); margin-top: .35rem; }
+    .ceiling-meta a { color: var(--green-dim); text-decoration: none; }
+    .ceiling-meta a:hover { text-decoration: underline; }
+    .ceiling-note   { font-size: .75rem; color: var(--gray-500); margin-top: .5rem; font-style: italic; }
 
     /* Lead gate */
     .lead-gate {
@@ -602,6 +653,65 @@
     }
     .alert-error   { background: var(--red-faint); color: #991b1b; border: 1px solid #fca5a5; }
 
+    /* ── Industry tiles ─────────────────────────────────────────────────── */
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .industry-tile {
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      cursor: pointer;
+      transition: all .15s ease;
+      background: var(--white);
+    }
+    .industry-tile:hover { border-color: var(--green); }
+    .industry-tile.selected {
+      border-color: var(--green);
+      background: var(--green-faint);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.15);
+    }
+    .industry-tile-head {
+      display: flex; align-items: center; gap: .6rem;
+      font-weight: 700; font-size: 1rem; margin-bottom: .35rem;
+    }
+    .industry-tile-icon { font-size: 1.4rem; }
+    .industry-tile-desc { font-size: .82rem; color: var(--gray-500); line-height: 1.45; margin-bottom: .55rem; }
+    .industry-tile-agencies { font-size: .72rem; color: var(--gray-700); font-weight: 600; letter-spacing: .03em; }
+
+    .context-hint {
+      font-size: .78rem; color: var(--gray-500); margin-top: .35rem; line-height: 1.45;
+    }
+    #context-input { min-height: 70px; }
+
+    /* ── Compliance score banner ────────────────────────────────────────── */
+    .score-banner {
+      display: flex; align-items: center; gap: 1.25rem;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      border: 1.5px solid var(--gray-300);
+      background: var(--white);
+    }
+    .score-circle {
+      width: 84px; height: 84px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem; font-weight: 900; color: var(--white);
+      flex-shrink: 0;
+    }
+    .score-low      { background: #16a34a; }
+    .score-moderate { background: #eab308; }
+    .score-elevated { background: #f97316; }
+    .score-high     { background: #dc2626; }
+    .score-meta-bucket {
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--gray-500); margin-bottom: .25rem;
+    }
+    .score-meta-title { font-size: 1.05rem; font-weight: 800; margin-bottom: .5rem; }
+    .score-rationale { font-size: .88rem; color: var(--gray-700); line-height: 1.55; }
+
     .tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
     .tag {
       font-size: .72rem;
@@ -630,7 +740,7 @@
 <nav>
   <a class="nav-logo" href="#" onclick="showPage('landing')">
     <span class="dot"></span>
-    AmiCompliant
+    Agent Compliance Lab
   </a>
   <span class="nav-badge">by Carver Agents</span>
 </nav>
@@ -644,17 +754,18 @@
     Is your AI agent<br/><em>actually compliant</em>?
   </h1>
   <p class="landing-sub">
-    AmiCompliant checks your AI system prompt against live FTC &amp; SEC
-    enforcement actions and flags the financial exposure you might not know about.
+    Agent Compliance Lab checks the policy behind your customer-facing AI agent
+    against live U.S. regulatory enforcement actions and surfaces the improvements
+    that would harden it.
   </p>
   <button class="btn btn-primary btn-lg" onclick="showPage('choose')">
     Start &rarr;
   </button>
 
   <div class="trust-strip">
-    <div class="trust-item"><span class="trust-dot">●</span> Live FTC feed</div>
-    <div class="trust-item"><span class="trust-dot">●</span> Live SEC feed</div>
+    <div class="trust-item"><span class="trust-dot">●</span> Live U.S. regulatory feeds</div>
     <div class="trust-item"><span class="trust-dot">●</span> 30-day enforcement window</div>
+    <div class="trust-item"><span class="trust-dot">●</span> Nothing you submit is stored</div>
     <div class="trust-item"><span class="trust-dot">●</span> Powered by Carver Agents</div>
   </div>
 </div>
@@ -671,20 +782,26 @@
     <div class="choice-cards">
       <div class="choice-card" onclick="showPage('sanitise')">
         <div class="card-icon">🧹</div>
-        <div class="card-title">Prompt Sanitisation</div>
+        <div class="card-title">Policy Sanitisation Prompt</div>
         <div class="card-desc">
-          Remove company-specific details from your AI system prompt before
-          sharing it externally. We clean it for you — or give you the prompt
-          to do it yourself.
+          Get a curated, copy-pasteable prompt that strips company-specific
+          details from your policy. Run it in the LLM of your choice —
+          your text never leaves your environment.
+          <div style="margin-top:.6rem;font-size:.75rem;color:var(--gray-500);font-style:italic">
+            We don't see or store your policy. We just hand you the prompt.
+          </div>
         </div>
       </div>
       <div class="choice-card" onclick="showPage('evaluate')">
         <div class="card-icon">⚖️</div>
-        <div class="card-title">Evaluate My Prompt</div>
+        <div class="card-title">Evaluate My Policy</div>
         <div class="card-desc">
-          Upload or paste your AI system prompt. We check it against live FTC
-          and SEC enforcement actions from the last 30 days and estimate your
-          financial liability exposure.
+          Upload or paste the policy behind your customer-facing AI agent.
+          We check it against live U.S. regulatory enforcement actions and
+          final rules from the last 30 days and recommend improvements.
+          <div style="margin-top:.6rem;font-size:.75rem;color:var(--gray-500);font-style:italic">
+            Scoped to U.S. customer-facing agents. Your policy text is not stored.
+          </div>
         </div>
       </div>
     </div>
@@ -699,31 +816,25 @@
   <div class="inner-page">
     <div class="inner-header">
       <div>
-        <h2>Prompt Sanitisation</h2>
-        <p>Paste the text you want to sanitise, then choose how you'd like to proceed.</p>
+        <h2>Policy Sanitisation Prompt</h2>
+        <p>
+          Copy the curated prompt below, paste it into any LLM
+          (ChatGPT, Claude, your internal model — whichever you prefer),
+          then paste your policy underneath it. <strong>Your text never leaves your environment.</strong>
+        </p>
       </div>
     </div>
 
-    <div class="label">Your text</div>
-    <textarea id="san-input" placeholder="Paste your AI system prompt or any text here…" rows="9"></textarea>
-
-    <div class="flex-row mt-2">
-      <div class="mode-toggle">
-        <button class="mode-btn active" id="mode-do_it"   onclick="setMode('do_it')">Sanitise for me</button>
-        <button class="mode-btn"        id="mode-give_prompt" onclick="setMode('give_prompt')">Give me the prompt</button>
-      </div>
-      <div style="flex:1"></div>
-      <button class="btn btn-primary" onclick="runSanitise()">Run &rarr;</button>
-    </div>
-
-    <div id="san-loading" style="display:none">
-      <div class="spinner-wrap"><div class="spinner"></div>Sanitising…</div>
+    <div id="san-loading">
+      <div class="spinner-wrap"><div class="spinner"></div>Loading prompt…</div>
     </div>
 
     <div id="san-error" style="display:none" class="alert alert-error mt-2"></div>
     <div id="san-result" style="display:none"></div>
 
-    <button class="btn btn-ghost mt-3" onclick="showPage('choose')">&larr; Back</button>
+    <div class="flex-row mt-3" style="justify-content:flex-start">
+      <button class="btn btn-ghost" onclick="showPage('choose')">&larr; Back</button>
+    </div>
   </div>
 </div>
 
@@ -734,11 +845,25 @@
   <div class="inner-page">
     <div class="inner-header">
       <div>
-        <h2>Evaluate My Prompt</h2>
-        <p>Upload a <code>.md</code> or <code>.pdf</code> file, or paste your prompt below.</p>
+        <h2>Evaluate My Policy</h2>
+        <p>
+          For <strong>customer-facing AI agents operating in the U.S.</strong>
+          Pick your industry, describe what your agent does, then upload or paste
+          your policy.
+        </p>
       </div>
     </div>
 
+    <div class="label">1. Which industry are you in?</div>
+    <div id="industry-grid" class="industry-grid">
+      <div class="spinner-wrap" style="grid-column:1/-1"><div class="spinner"></div>Loading industries…</div>
+    </div>
+
+    <div class="label">2. Describe your AI agent <span style="color:var(--red);font-weight:700">*</span></div>
+    <textarea id="context-input" placeholder="Describe what your agent does — who the end-users are, what tasks it handles, what decisions or recommendations it makes, and any high-risk areas it explicitly avoids. Two or three sentences is the sweet spot.&#10;&#10;Example: 'A consumer-facing chatbot for a regional U.S. bank. Helps retail customers with card replacements, balance lookups, dispute initiation, and routine account questions. Hard-refuses investment, credit, and legal advice and escalates fee waivers to a human agent.'"></textarea>
+    <div class="context-hint">⚡ <strong>Required.</strong> The relevance check is only as sharp as the context you give us. With a vague description we'll miss real gaps; with a clear one we'll surface enforcement actions that map to specific clauses of your policy.</div>
+
+    <div class="label mt-3">3. Your policy</div>
     <!-- File upload -->
     <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
       <input type="file" id="file-input" accept=".md,.pdf,.txt" onchange="handleFileSelect(event)" />
@@ -748,10 +873,11 @@
 
     <div class="or-divider">or</div>
 
-    <div class="label">Paste your prompt</div>
-    <textarea id="eval-input" placeholder="Paste your AI system prompt or compliance policy here…" rows="8"></textarea>
+    <div class="label">Paste your policy</div>
+    <textarea id="eval-input" placeholder="Paste your AI system policy or compliance policy here…" rows="8"></textarea>
 
-    <div class="flex-row mt-2" style="justify-content:flex-end">
+    <div class="flex-row mt-2" style="justify-content:space-between">
+      <button class="btn btn-ghost" onclick="showPage('choose')">&larr; Back</button>
       <button class="btn btn-primary" onclick="runEvaluate()">Evaluate &rarr;</button>
     </div>
 
@@ -764,14 +890,16 @@
 
     <div id="eval-error" style="display:none" class="alert alert-error mt-2"></div>
     <div id="eval-results" style="display:none" class="eval-results"></div>
-
-    <button class="btn btn-ghost mt-3" onclick="showPage('choose')">&larr; Back</button>
   </div>
 </div>
 
 <!-- ── Footer ────────────────────────────────────────────────────────────── -->
 <footer>
-  <span>AmiCompliant · Powered by <a href="https://www.carveragents.ai" target="_blank">Carver Agents</a></span>
+  <span>Agent Compliance Lab · Powered by <a href="https://www.carveragents.ai" target="_blank">Carver Agents</a></span>
+  <div style="margin-top:.6rem;font-size:.72rem;color:#6b7280;line-height:1.55">
+    Scoped to U.S. customer-facing AI agents · Nothing you submit is stored or logged ·
+    Policy Sanitisation hands you a prompt you run yourself — your text is never sent to us.
+  </div>
 </footer>
 
 <script>
@@ -780,43 +908,33 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   window.scrollTo(0, 0);
-  // Reset state on navigate away
-  if (id !== 'sanitise') resetSanitise();
   if (id !== 'evaluate') resetEvaluate();
+  if (id === 'evaluate') loadIndustries();
+  if (id === 'sanitise') loadSanitisationPrompt();
 }
 
 // ── Sanitise ───────────────────────────────────────────────────────────────
-let sanMode = 'do_it';
+let sanitisationPromptLoaded = false;
 
-function setMode(mode) {
-  sanMode = mode;
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('mode-' + mode).classList.add('active');
-  hide('san-result');
-  hide('san-error');
-}
-
-function resetSanitise() {
-  document.getElementById('san-input').value = '';
-  hide('san-loading'); hide('san-result'); hide('san-error');
-}
-
-async function runSanitise() {
-  const text = document.getElementById('san-input').value.trim();
-  if (!text) { showError('san-error', 'Please paste some text first.'); return; }
-
-  hide('san-result'); hide('san-error');
-  show('san-loading');
-
+async function loadSanitisationPrompt() {
+  if (sanitisationPromptLoaded) return;
+  hide('san-result'); hide('san-error'); show('san-loading');
   try {
-    const res = await fetch('/api/sanitise', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ text, mode: sanMode }),
-    });
+    const res = await fetch('/api/sanitisation-prompt');
     const data = await res.json();
-    if (!res.ok) throw new Error(data.detail || 'Server error');
-    renderSanitiseResult(data);
+    if (!res.ok) throw new Error(data.detail || 'Could not load prompt');
+    const el = document.getElementById('san-result');
+    el.innerHTML = `
+      <div class="result-box">
+        <div class="result-box-header">
+          <span>Curated sanitisation prompt</span>
+          <button class="btn btn-copy btn-sm" onclick="copyText('san-output')">Copy prompt</button>
+        </div>
+        <pre id="san-output">${escHtml(data.prompt)}</pre>
+      </div>
+      <p class="small mt-1">Paste this into ChatGPT, Claude, or your internal model, then add your policy underneath. We never see your text.</p>`;
+    show('san-result');
+    sanitisationPromptLoaded = true;
   } catch (e) {
     showError('san-error', e.message);
   } finally {
@@ -824,34 +942,41 @@ async function runSanitise() {
   }
 }
 
-function renderSanitiseResult(data) {
-  const el = document.getElementById('san-result');
-  if (data.mode === 'do_it') {
-    el.innerHTML = `
-      <div class="result-box">
-        <div class="result-box-header">
-          <span>Sanitised text</span>
-          <button class="btn btn-copy btn-sm" onclick="copyText('san-output')">Copy</button>
-        </div>
-        <div class="result-text" id="san-output">${escHtml(data.sanitised)}</div>
-      </div>`;
-  } else {
-    el.innerHTML = `
-      <div class="result-box">
-        <div class="result-box-header">
-          <span>Ready-to-copy sanitisation prompt</span>
-          <button class="btn btn-copy btn-sm" onclick="copyText('san-output')">Copy prompt</button>
-        </div>
-        <pre id="san-output">${escHtml(data.meta_prompt)}</pre>
-      </div>
-      <p class="small mt-1">Paste this into ChatGPT, Claude, or any LLM to sanitise your text.</p>`;
-  }
-  show('san-result');
-}
-
 // ── Evaluate ───────────────────────────────────────────────────────────────
 let selectedFile = null;
 let currentEvalId = null;
+let selectedIndustry = null;
+let industriesLoaded = false;
+
+async function loadIndustries() {
+  if (industriesLoaded) return;
+  try {
+    const res = await fetch('/api/industries');
+    const data = await res.json();
+    const grid = document.getElementById('industry-grid');
+    grid.innerHTML = (data.industries || []).map(ind => `
+      <div class="industry-tile" data-key="${escHtml(ind.key)}" onclick="selectIndustry('${escHtml(ind.key)}')">
+        <div class="industry-tile-head">
+          <span class="industry-tile-icon">${escHtml(ind.icon)}</span>
+          <span>${escHtml(ind.label)}</span>
+        </div>
+        <div class="industry-tile-desc">${escHtml(ind.description)}</div>
+        <div class="industry-tile-agencies">Checks against: ${(ind.agencies || []).map(escHtml).join(' · ') || '—'}</div>
+      </div>
+    `).join('');
+    industriesLoaded = true;
+  } catch (e) {
+    document.getElementById('industry-grid').innerHTML =
+      `<div class="alert alert-error" style="grid-column:1/-1">Could not load industries: ${escHtml(e.message)}</div>`;
+  }
+}
+
+function selectIndustry(key) {
+  selectedIndustry = key;
+  document.querySelectorAll('.industry-tile').forEach(t => {
+    t.classList.toggle('selected', t.dataset.key === key);
+  });
+}
 
 function handleFileSelect(e) {
   selectedFile = e.target.files[0] || null;
@@ -873,16 +998,32 @@ function resetEvaluate() {
   document.getElementById('eval-input').value = '';
   document.getElementById('file-name').textContent = '';
   document.getElementById('file-input').value = '';
+  const ctx = document.getElementById('context-input');
+  if (ctx) ctx.value = '';
   selectedFile = null;
   currentEvalId = null;
+  selectedIndustry = null;
+  document.querySelectorAll('.industry-tile').forEach(t => t.classList.remove('selected'));
   hide('eval-loading'); hide('eval-results'); hide('eval-error');
 }
 
 async function runEvaluate() {
   const text = document.getElementById('eval-input').value.trim();
+  const userContext = (document.getElementById('context-input')?.value || '').trim();
 
+  if (!selectedIndustry) {
+    showError('eval-error', 'Please pick an industry first.');
+    return;
+  }
+  // Mandatory context: at least ~2 sentences worth of detail.
+  const wordCount = userContext.split(/\s+/).filter(Boolean).length;
+  if (wordCount < 15) {
+    showError('eval-error', 'Please describe your AI agent in at least 2 sentences (about 15+ words). The relevance check needs this context to find meaningful improvements.');
+    document.getElementById('context-input').focus();
+    return;
+  }
   if (!text && !selectedFile) {
-    showError('eval-error', 'Please paste your prompt or upload a file.');
+    showError('eval-error', 'Please paste your policy or upload a file.');
     return;
   }
 
@@ -891,6 +1032,8 @@ async function runEvaluate() {
 
   try {
     const form = new FormData();
+    form.append('industry', selectedIndustry);
+    if (userContext) form.append('user_context', userContext);
     if (selectedFile) form.append('file', selectedFile);
     if (text) form.append('prompt_text', text);
 
@@ -910,9 +1053,13 @@ function signalCardHtml(sig, label, labelColor) {
   const typeTag = sig.update_type === 'enforcement'
     ? '<span class="signal-tag tag-enforcement">Enforcement</span>'
     : '<span class="signal-tag tag-final_rule">Final Rule</span>';
-  const agencyTag = sig.topic_name === 'FTC'
-    ? '<span class="signal-tag tag-ftc">FTC</span>'
-    : '<span class="signal-tag tag-sec">SEC</span>';
+  const agencyClass = sig.topic_name === 'FTC' ? 'tag-ftc'
+                    : sig.topic_name === 'SEC' ? 'tag-sec'
+                    : 'tag-agency';
+  const agencyTag = `<span class="signal-tag ${agencyClass}">${escHtml(sig.topic_name || 'Agency')}</span>`;
+  const relTag = (typeof sig.relevance_score === 'number')
+    ? `<span class="signal-tag tag-relevance">Relevance ${sig.relevance_score.toFixed(2)}</span>`
+    : '';
   const aiNote = sig.has_ai_tag
     ? '<div style="margin-top:.6rem;font-size:.8rem;color:#b91c1c;font-weight:600;">⚠️ This action explicitly names AI-generated content as a violation factor.</div>'
     : '';
@@ -925,7 +1072,7 @@ function signalCardHtml(sig, label, labelColor) {
         <div style="flex:1">
           <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:${labelColor};margin-bottom:.5rem">${label}</div>
           <div class="flex-row" style="flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem">
-            ${typeTag} ${agencyTag}
+            ${typeTag} ${agencyTag} ${relTag}
           </div>
           <div class="signal-title">${escHtml(sig.title)}</div>
           <div class="signal-meta">Published ${sig.published_at}${sig.topic_name ? ' · ' + sig.topic_name : ''}</div>
@@ -949,7 +1096,7 @@ function renderEvalResults(data) {
         <div class="eval-count-num" style="color:#6b7280">0</div>
         <div class="eval-count-label">
           <strong>No relevant signals found</strong>
-          No enforcement actions or final rules applicable to your prompt were published in the last 30 days.
+          No enforcement actions or final rules applicable to your policy were published in the last 30 days.
         </div>
       </div>`;
     show('eval-results');
@@ -957,24 +1104,45 @@ function renderEvalResults(data) {
   }
 
   const cs = data.compliance_signal;
-  const ls = data.liability_signal;
+  const ss = data.second_signal;
   const liab = data.liability;
+  const ceiling = data.sector_ceiling;
   const remaining = data.remaining;
-  const sameSignal = data.same_signal;
+
+  // Show top-1 and top-2 cited signals as cards.
+  const shownCount = (cs ? 1 : 0) + (ss ? 1 : 0);
+  const card1 = cs ? signalCardHtml(cs, `Top relevant update — #1 of ${data.n_relevant}`, '#166534') : '';
+  const card2 = ss ? signalCardHtml(ss, `Top relevant update — #2 of ${data.n_relevant}`, '#166534') : '';
+
+  // Liability widget — anchored to the same cited signals as the diff.
+  const liabSourcesHtml = (liab && liab.sources && liab.sources.length)
+    ? `<div class="liability-sources">Anchored to: ${liab.sources.map(s =>
+        `<span class="liability-source-pill"><strong>${escHtml(s.topic_name)}</strong> · ${escHtml(s.title)}${s.link ? ` · <a href="${escHtml(s.link)}" target="_blank">source</a>` : ''}</span>`
+      ).join('')}</div>` : '';
 
   const liabHtml = liab ? `
     <div class="liability-card">
       <div class="liability-label">⚠️ Estimated financial exposure</div>
       <div class="liability-amount">${fmtMoney(liab.low)} – ${fmtMoney(liab.high)}</div>
-      <div class="liability-range">Per-violation civil penalty range</div>
+      <div class="liability-range">Per-violation civil penalty range, derived from the cited action(s) used for this recommendation.</div>
       <div class="liability-basis">${escHtml(liab.basis)}</div>
+      ${liabSourcesHtml}
+    </div>` : '';
+
+  // Sector ceiling — clearly labelled as sector context, NOT your exposure.
+  const ceilingHtml = ceiling ? `
+    <div class="ceiling-banner">
+      <div class="ceiling-label">For context · Largest U.S. action in your sector this period</div>
+      <div class="ceiling-amount">${fmtMoney(ceiling.amount_high)}</div>
+      <div class="ceiling-meta"><strong>${escHtml(ceiling.topic_name)}</strong> · ${escHtml(ceiling.title)}${ceiling.published_at ? ' · ' + escHtml(ceiling.published_at) : ''}${ceiling.link ? ` · <a href="${escHtml(ceiling.link)}" target="_blank">view source</a>` : ''}</div>
+      <div class="ceiling-note">This is sector context only — not an estimate of your exposure. Your estimate (above) is derived from the actions cited for this policy.</div>
     </div>` : '';
 
   const moreHtml = remaining > 0 ? `
     <div class="lead-gate">
       <h3>+ ${remaining} more relevant update${remaining > 1 ? 's' : ''} found</h3>
       <p>Enter your email to receive the full signal report, including all ${remaining} additional
-      enforcement action${remaining > 1 ? 's' : ''} relevant to your prompt.</p>
+      enforcement action${remaining > 1 ? 's' : ''} relevant to your policy.</p>
       <div class="lead-form">
         <input type="email" id="lead-email" placeholder="you@company.com" />
         <button class="btn btn-primary" onclick="submitLead()">Send me the report</button>
@@ -982,23 +1150,33 @@ function renderEvalResults(data) {
       <div id="lead-msg" style="display:none;margin-top:.75rem;font-size:.85rem;font-weight:600;color:var(--green-dim)"></div>
     </div>` : '';
 
-  const complianceCard = signalCardHtml(cs, 'Compliance update', '#166534');
-  const exposureCard   = sameSignal ? '' : signalCardHtml(ls, 'Financial exposure', '#92400e');
+  const bucket = (data.compliance_bucket || 'Low').toLowerCase();
+  const scoreBanner = (typeof data.compliance_score === 'number') ? `
+    <div class="score-banner">
+      <div class="score-circle score-${bucket}">${data.compliance_score}</div>
+      <div style="flex:1">
+        <div class="score-meta-bucket">Risk · ${escHtml(data.compliance_bucket)}</div>
+        <div class="score-meta-title">Risk score: ${data.compliance_score}/100 <span style="font-weight:400;color:var(--gray-500);font-size:.8rem">(higher = more exposure)</span></div>
+        <div class="score-rationale">${escHtml(data.compliance_rationale || '')}</div>
+      </div>
+    </div>` : '';
 
   el.innerHTML = `
+    ${scoreBanner}
     <div class="eval-count-banner">
       <div class="eval-count-num">${data.n_relevant}</div>
       <div class="eval-count-label">
         <strong>regulatory update${data.n_relevant !== 1 ? 's' : ''} published in the last 30 days ${data.n_relevant !== 1 ? 'are' : 'is'} relevant to your policy</strong>
-        Based on live FTC &amp; SEC enforcement feeds via Carver Agents.
+        Based on live U.S. regulatory feeds via Carver Agents. Showing the top ${shownCount} below; ${remaining} more ${remaining === 1 ? 'is' : 'are'} available behind the email gate.
       </div>
     </div>
 
-    ${complianceCard}
+    ${card1}
+    ${card2}
 
     <div class="diff-viewer">
       <div class="diff-header">
-        <span>Suggested prompt update</span>
+        <span>Suggested policy update</span>
         <div class="diff-legend">
           <div class="diff-legend-item">
             <div class="diff-legend-dot" style="background:#86efac"></div> Added
@@ -1008,6 +1186,7 @@ function renderEvalResults(data) {
           </div>
         </div>
       </div>
+      <div id="diff-sources" class="diff-sources" style="display:none"></div>
       <div id="diff-body" class="diff-body">
         <div class="spinner-wrap" style="padding:1.5rem">
           <div class="spinner"></div>
@@ -1016,33 +1195,46 @@ function renderEvalResults(data) {
       </div>
     </div>
 
-    ${exposureCard}
     ${liabHtml}
+    ${ceilingHtml}
     ${moreHtml}`;
 
   show('eval-results');
 
-  // Fetch diff in the background using the compliance signal
-  fetchSuggestedDiff(data.prompt_text, cs);
+  // Fetch diff in the background using top 1-2 signals
+  const diffSignals = [cs];
+  if (data.second_signal) diffSignals.push(data.second_signal);
+  fetchSuggestedDiff(data.prompt_text, diffSignals);
 }
 
-async function fetchSuggestedDiff(promptText, signal) {
+async function fetchSuggestedDiff(promptText, signals) {
   const body = document.getElementById('diff-body');
   if (!body) return;
+  const srcEl = document.getElementById('diff-sources');
+  if (srcEl) { srcEl.innerHTML = ''; srcEl.style.display = 'none'; }
 
   try {
     const res = await fetch('/api/suggest-update', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ prompt_text: promptText, signal }),
+      body: JSON.stringify({ prompt_text: promptText, signals }),
     });
     const data = await res.json();
 
     if (!res.ok) throw new Error(data.detail || 'Could not generate update');
 
+    // Render the "Sources" sub-header above the diff
+    const srcEl = document.getElementById('diff-sources');
+    if (srcEl && Array.isArray(data.sources) && data.sources.length) {
+      srcEl.innerHTML = 'Sources: ' + data.sources.map(s =>
+        `<span class="diff-source-pill">${escHtml(s.topic_name)} · ${escHtml(s.update_type)} · ${escHtml(s.title)}</span>`
+      ).join('');
+      srcEl.style.display = '';
+    }
+
     const lines = data.diff || [];
     if (lines.length === 0) {
-      body.innerHTML = '<div style="padding:1rem;font-size:.85rem;color:var(--gray-500)">No changes suggested — your prompt already addresses this enforcement action.</div>';
+      body.innerHTML = '<div style="padding:1rem;font-size:.85rem;color:var(--gray-500)">No changes suggested — your policy already addresses this enforcement action.</div>';
       return;
     }
 
@@ -1079,7 +1271,7 @@ function renderDiff(lines) {
   return `
     <div class="diff-viewer">
       <div class="diff-header">
-        <span>Suggested prompt update</span>
+        <span>Suggested policy update</span>
         <div class="diff-legend">
           <div class="diff-legend-item">
             <div class="diff-legend-dot" style="background:#86efac"></div> Added

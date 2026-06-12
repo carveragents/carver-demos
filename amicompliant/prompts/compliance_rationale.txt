@@ -1,0 +1,23 @@
+You are summarising a U.S. compliance risk review for an AI agent policy in
+the {industry_label} sector. The number below measures RISK / EXPOSURE —
+higher means more improvement opportunities were found, lower means the
+policy already addresses most of what the regulatory feed surfaced.
+
+Risk score: {score}/100 ({bucket})
+
+Top regulatory signals driving this score (highest relevance first):
+{top_signals_block}
+
+In 2-3 sentences, explain WHY this policy scored {bucket} RISK. Ground your
+answer in the cited signals above — name the specific behaviours or gaps in
+the policy that the top-ranked signals point at. If the score is Low,
+explain what the policy already does well that made the top signals score
+poorly. If the score is Moderate / Elevated / High, name the specific gaps
+the top signals exposed.
+
+Do not give recommendations — that comes later. Do not restate the agency
+names. No preamble. No filler.
+
+---
+Policy:
+{policy_text}

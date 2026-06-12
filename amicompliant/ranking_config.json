@@ -1,0 +1,7 @@
+{
+  "llm_weight": 0.5,
+  "vector_weight": 0.5,
+  "second_signal_min_score": 0.3,
+  "liability_min_relevance": 0.3,
+  "embedding_model": "text-embedding-3-small"
+}

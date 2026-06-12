@@ -1,12 +1,12 @@
 """
-AmiCompliant — FastAPI backend.
+Agent Compliance Lab — FastAPI backend.
 
 Endpoints:
-  GET  /                      → SPA
-  POST /api/sanitise          → sanitise submitted text (LLM or meta-prompt)
-  POST /api/evaluate          → evaluate a prompt against live regulatory signals
-  POST /api/suggest-update    → generate suggested prompt diff for the top signal
-  POST /api/leads             → capture email for gated signal list
+  GET  /                       → SPA
+  GET  /api/sanitisation-prompt → curated, copy-pasteable sanitisation prompt
+  POST /api/evaluate           → evaluate a policy against live regulatory signals
+  POST /api/suggest-update     → generate suggested policy diff for cited signals
+  POST /api/leads              → capture email for gated signal list
 """
 
 import json
@@ -23,13 +23,12 @@ from pydantic import BaseModel
 load_dotenv(Path(__file__).parent / ".env")
 
 import feeds_monitor
-import sanitise as san
 from db import Lead, SignalCache, get_db, init_db
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="AmiCompliant")
+app = FastAPI(title="Agent Compliance Lab")
 
 
 @app.on_event("startup")
@@ -48,13 +47,17 @@ def serve_ui():
 
 
 # ---------------------------------------------------------------------------
-# Models
+# Industries (public metadata, no topic IDs)
 # ---------------------------------------------------------------------------
 
-class SanitiseRequest(BaseModel):
-    text: str
-    mode: str = "do_it"   # "do_it" | "give_prompt"
+@app.get("/api/industries")
+def list_industries():
+    return {"industries": feeds_monitor.public_industries()}
 
+
+# ---------------------------------------------------------------------------
+# Models
+# ---------------------------------------------------------------------------
 
 class LeadRequest(BaseModel):
     email: str
@@ -62,23 +65,18 @@ class LeadRequest(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Sanitise
+# Sanitisation prompt (curated; user runs it themselves elsewhere)
 # ---------------------------------------------------------------------------
 
-@app.post("/api/sanitise")
-async def sanitise(req: SanitiseRequest):
-    if not req.text.strip():
-        raise HTTPException(status_code=400, detail="text is required")
+_SANITISATION_PROMPT_PATH = Path(__file__).parent / "prompts" / "sanitisation_prompt.txt"
 
-    if req.mode == "give_prompt":
-        return {"mode": "give_prompt", "meta_prompt": san.build_meta_prompt(req.text)}
 
+@app.get("/api/sanitisation-prompt")
+def get_sanitisation_prompt():
     try:
-        result = san.sanitise_text(req.text)
-        return {"mode": "do_it", "sanitised": result}
-    except Exception as e:
-        logger.error(f"Sanitise error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        return {"prompt": _SANITISATION_PROMPT_PATH.read_text()}
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="Sanitisation prompt file is missing")
 
 
 # ---------------------------------------------------------------------------
@@ -108,8 +106,22 @@ def _extract_text_from_pdf(data: bytes) -> str:
 @app.post("/api/evaluate")
 async def evaluate(
     prompt_text: str = Form(default=""),
+    industry: str = Form(...),
+    user_context: str = Form(default=""),
     file: UploadFile = File(default=None),
 ):
+    industry = (industry or "").strip().lower()
+    if industry not in feeds_monitor.load_industries():
+        raise HTTPException(status_code=400, detail="Unknown or missing industry")
+
+    # Business context is mandatory — the relevance check is only useful with it.
+    user_context_clean = (user_context or "").strip()
+    if len(user_context_clean.split()) < 15:
+        raise HTTPException(
+            status_code=400,
+            detail="Please describe your AI agent in at least 2 sentences (about 15+ words).",
+        )
+
     # Resolve the prompt text
     text = prompt_text.strip()
 
@@ -133,7 +145,7 @@ async def evaluate(
 
     # Fetch live signals from Carver
     try:
-        signals = feeds_monitor.fetch_signals()
+        signals = feeds_monitor.fetch_signals(industry)
     except Exception as e:
         logger.error(f"Signal fetch error: {e}")
         raise HTTPException(status_code=502, detail=f"Could not reach Carver API: {e}")
@@ -142,26 +154,47 @@ async def evaluate(
         evaluation_id = str(uuid.uuid4())
         return {
             "evaluation_id": evaluation_id,
+            "industry": industry,
             "n_relevant": 0,
-            "top_signal": None,
+            "compliance_signal": None,
+            "second_signal": None,
             "remaining": 0,
             "liability": None,
+            "sector_ceiling": None,
+            "compliance_score": 0,
+            "compliance_bucket": "Low",
+            "compliance_rationale": "",
             "message": "No enforcement or final-rule signals found in the last 30 days.",
         }
 
     # Score relevance against the user's prompt
-    signals = feeds_monitor.score_relevance(signals, text)
+    signals = feeds_monitor.score_relevance(signals, text, industry, user_context_clean)
+
+    # Compute deterministic compliance score and LLM rationale
+    score, bucket = feeds_monitor.compute_compliance_score(signals)
+    rationale = feeds_monitor.generate_compliance_rationale(text, signals, score, bucket, industry)
 
     n_relevant = len(signals)
     evaluation_id = str(uuid.uuid4())
 
-    # Signal 1: best match for prompt compliance update (highest relevance)
+    # Signal 1: best match for policy compliance update (highest relevance)
     compliance_signal = signals[0]
 
-    # Signal 2: best anchor for financial exposure (concrete penalty amounts preferred)
-    liability_signal = feeds_monitor.pick_liability_signal(signals)
+    # Signal 2: second-best for source attribution, only if it clears the
+    # configured minimum (so we don't force a weak citation into the diff).
+    ranking_cfg = feeds_monitor.load_ranking_config()
+    second_signal = None
+    if len(signals) > 1 and signals[1].relevance_score >= ranking_cfg["second_signal_min_score"]:
+        second_signal = signals[1]
 
-    remaining = max(0, n_relevant - (1 if compliance_signal.entry_id == liability_signal.entry_id else 2))
+    # Cited set drives BOTH the diff AND the liability anchor — internally
+    # consistent.
+    cited_signals = [compliance_signal] + ([second_signal] if second_signal else [])
+    liability = feeds_monitor.compute_liability(cited_signals, ranking_cfg["liability_min_relevance"])
+    sector_ceiling = feeds_monitor.compute_sector_ceiling(signals)
+
+    # Cards shown: just the cited signals. Remaining = total minus those.
+    remaining = max(0, n_relevant - len(cited_signals))
 
     # Cache signals to DB for the lead gating lookup
     db = get_db()
@@ -183,12 +216,16 @@ async def evaluate(
 
     return {
         "evaluation_id": evaluation_id,
+        "industry": industry,
         "n_relevant": n_relevant,
         "compliance_signal": feeds_monitor.serialize_signal(compliance_signal),
-        "liability_signal": feeds_monitor.serialize_signal(liability_signal),
-        "same_signal": compliance_signal.entry_id == liability_signal.entry_id,
+        "second_signal": feeds_monitor.serialize_signal(second_signal) if second_signal else None,
         "remaining": remaining,
-        "liability": liability_signal.liability,
+        "liability": liability,
+        "sector_ceiling": sector_ceiling,
+        "compliance_score": score,
+        "compliance_bucket": bucket,
+        "compliance_rationale": rationale,
         # prompt_text echoed back so the frontend can call /api/suggest-update
         "prompt_text": text,
     }
@@ -200,34 +237,52 @@ async def evaluate(
 
 class SuggestRequest(BaseModel):
     prompt_text: str
-    signal: dict
+    signals: list[dict] | None = None
+    signal: dict | None = None  # legacy single-signal payload
+
+
+def _to_signal(d: dict):
+    from feeds_monitor import EnforcementSignal
+    return EnforcementSignal(
+        entry_id=d.get("entry_id", ""),
+        title=d.get("title", ""),
+        summary=d.get("summary", ""),
+        update_type=d.get("update_type", "enforcement"),
+        topic_name=d.get("topic_name", ""),
+        topic_id=d.get("topic_id", ""),
+        published_at=d.get("published_at", ""),
+        link=d.get("link", ""),
+        tags=d.get("tags", []),
+        has_ai_tag=d.get("has_ai_tag", False),
+    )
 
 
 @app.post("/api/suggest-update")
 async def suggest_update(req: SuggestRequest):
     if not req.prompt_text.strip():
         raise HTTPException(status_code=400, detail="prompt_text is required")
-    if not req.signal:
-        raise HTTPException(status_code=400, detail="signal is required")
 
-    # Reconstruct a lightweight EnforcementSignal from the serialised dict
-    from feeds_monitor import EnforcementSignal
-    sig = EnforcementSignal(
-        entry_id=req.signal.get("entry_id", ""),
-        title=req.signal.get("title", ""),
-        summary=req.signal.get("summary", ""),
-        update_type=req.signal.get("update_type", "enforcement"),
-        topic_name=req.signal.get("topic_name", ""),
-        topic_id=req.signal.get("topic_id", ""),
-        published_at=req.signal.get("published_at", ""),
-        link=req.signal.get("link", ""),
-        tags=req.signal.get("tags", []),
-        has_ai_tag=req.signal.get("has_ai_tag", False),
-    )
+    raw_signals = req.signals if req.signals else ([req.signal] if req.signal else [])
+    raw_signals = [s for s in raw_signals if s]
+    if not raw_signals:
+        raise HTTPException(status_code=400, detail="At least one signal is required")
+
+    sigs = [_to_signal(s) for s in raw_signals]
 
     try:
-        diff = feeds_monitor.generate_prompt_update(req.prompt_text, sig)
-        return {"diff": diff}
+        diff = feeds_monitor.generate_prompt_update(req.prompt_text, sigs)
+        return {
+            "diff": diff,
+            "sources": [
+                {
+                    "topic_name": s.topic_name,
+                    "update_type": s.update_type,
+                    "title": s.title,
+                    "link": s.link,
+                }
+                for s in sigs
+            ],
+        }
     except Exception as e:
         logger.error(f"suggest-update error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
