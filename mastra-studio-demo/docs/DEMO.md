@@ -333,3 +333,8 @@ to nothing.
   — rebuild and restart.
 - **Records reflect the corpus snapshot.** The store is only as current as the
   `annotations.jsonl` you built from.
+- **Runs under `npm run dev` only.** The enforcement DB is read at `file:./enforcement.db`
+  relative to the dev server's working directory (`src/mastra/public/`), which is where
+  `npm run build:enforcement` writes it. A production `mastra start` uses a different working
+  directory and would find no records (the grounded agent would then retrieve nothing —
+  silently, like the baseline). Demo via `npm run dev`.

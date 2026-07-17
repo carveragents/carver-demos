@@ -1,5 +1,6 @@
 /**
- * Builds the enforcement vector DB (file:./enforcement.db, index "enforcement") on demand.
+ * Builds the enforcement vector DB (written under src/mastra/public/, index "enforcement") on
+ * demand — see DB_PATH below for the exact resolved location.
  *
  * Streams an annotations.jsonl, keeps every usable record from FTC/SEC/CFTC/CFPB, embeds each
  * (OpenAI text-embedding-3-small, 1536-dim), and upserts vectors + metadata into LibSQLVector.

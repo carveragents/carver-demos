@@ -19,6 +19,7 @@ const DEFAULT_LIMIT = 5;
 // Owned here, like carver-update-tool.ts owns its loaded fixture. Points at the DB the build
 // script writes; opening a not-yet-built store is fine — queries just fail and we degrade.
 const store = new LibSQLVector({ id: 'carver-enforcement-vector', url: DB_URL });
+let warnedNoStore = false;
 
 const queryVectors = async (vector: number[], topK: number): Promise<RawHit[]> => {
   try {
@@ -27,9 +28,16 @@ const queryVectors = async (vector: number[], topK: number): Promise<RawHit[]> =
       queryVector: vector,
       topK,
     })) as RawHit[];
-  } catch {
+  } catch (err) {
     // Index missing/empty -> the one-time `npm run build:enforcement` step hasn't run.
     // Degrade to no results so the agent says it found nothing rather than crashing.
+    if (!warnedNoStore) {
+      warnedNoStore = true;
+      console.warn(
+        `[searchCarverEnforcement] vector store query failed (${(err as Error).message}). ` +
+          'Run: npm run build:enforcement -- <path-to-annotations.jsonl>',
+      );
+    }
     return [];
   }
 };

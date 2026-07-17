@@ -9,6 +9,7 @@ import { investmentCarverAgent } from './agents/investment-carver-agent.ts';
 
 export const mastra = new Mastra({
   // The demo is the contrast: same model, same base prompt, one has Carver data.
+  // Two contrast pairs: regulatory (baseline/carver) and investment (investmentBaseline/investmentCarver).
   agents: { baselineAgent, carverAgent, investmentBaselineAgent, investmentCarverAgent },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.
