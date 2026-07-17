@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit",
     "build:data": "node scripts/build-topics.mjs",
     "build:updates": "node scripts/build-updates.mjs",
+    "build:enforcement": "node scripts/build-enforcement.mjs",
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start"
