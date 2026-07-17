@@ -20,7 +20,14 @@ import { LibSQLVector } from '@mastra/libsql';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const PROJECT = join(HERE, '..');
 
-const DB_URL = 'file:./enforcement.db';
+// `mastra dev` runs the bundled server with its CWD set to src/mastra/public (that is where
+// its own mastra.db lands). The tool opens `file:./enforcement.db`, which therefore resolves
+// to src/mastra/public/enforcement.db at runtime. Build the DB into that exact location —
+// anchored to the project, not to wherever `npm run build:enforcement` was invoked — so the
+// running server reads the corpus we just built instead of an empty stub. Keep this path in
+// sync with DB_URL in src/mastra/tools/carver-enforcement-tool.ts.
+const DB_PATH = join(PROJECT, 'src', 'mastra', 'public', 'enforcement.db');
+const DB_URL = `file:${DB_PATH}`;
 const INDEX_NAME = 'enforcement';
 const DIMENSION = 1536;
 const EMBED_MODEL = 'text-embedding-3-small';

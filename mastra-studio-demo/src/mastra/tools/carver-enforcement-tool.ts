@@ -9,6 +9,9 @@ import { embed } from './embed.ts';
 
 // These MUST match scripts/build-enforcement.mjs. They can't be shared by import (that file
 // is .mjs, this is .ts), so they are duplicated deliberately and kept in sync by convention.
+// `mastra dev` runs with CWD = src/mastra/public (where its own mastra.db lands), so this
+// relative path resolves to src/mastra/public/enforcement.db — which is exactly where the
+// build script writes the corpus. Keep the two in sync.
 export const DB_URL = 'file:./enforcement.db';
 export const INDEX_NAME = 'enforcement';
 const DEFAULT_LIMIT = 5;
