@@ -172,6 +172,13 @@ Still out of scope:
 - **Aggregation** ("which regulators are active on AI?") and **compliance-date reasoning**
   (`compliance_date` is only 8.8% populated in the source).
 
-Designs:
-[`2026-07-16-carver-aware-agent-design.md`](docs/superpowers/specs/2026-07-16-carver-aware-agent-design.md) (contrast demo) ·
-[`2026-07-16-carver-updates-tool-design.md`](docs/superpowers/specs/2026-07-16-carver-updates-tool-design.md) (updates tool)
+## Docs
+
+| Doc | What's in it |
+|---|---|
+| [`docs/DEMO.md`](docs/DEMO.md) | **The run-sheet.** Four beats in order, every query and response verified live. Start here to present. |
+| [`docs/BUILD-NOTES.md`](docs/BUILD-NOTES.md) | **Lessons from the build.** Why the acronym join exists, why false absence is the worst bug here, why the argument is staleness rather than hallucination. Read before changing the matcher or the prompts. |
+| [`docs/build-session-log.md`](docs/build-session-log.md) | The verbatim session record from the build, as written at the time. |
+| [`docs/build-commit-log.md`](docs/build-commit-log.md) | Full commit messages from the original branch, preserved through the clean-copy promotion. |
+| [`docs/superpowers/specs/2026-07-16-carver-aware-agent-design.md`](docs/superpowers/specs/2026-07-16-carver-aware-agent-design.md) | Design: the contrast demo |
+| [`docs/superpowers/specs/2026-07-16-carver-updates-tool-design.md`](docs/superpowers/specs/2026-07-16-carver-updates-tool-design.md) | Design: the updates tool |
