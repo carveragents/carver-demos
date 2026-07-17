@@ -15,6 +15,7 @@ Each demo is self-contained in its own subdirectory with a dedicated README cove
 | [amicompliant](./amicompliant/) | Prompt sanitisation and evaluation tool that scores user-submitted text against live Carver regulatory signals — surfaces compliance risks, suggests prompt diffs to address them, and demonstrates the Horizon API as a content-validation layer for AI applications |
 | [policy-diffs](./policy-diffs/) | POC that converts Mastercard B2B artifact deltas into proposed updates for **Acme Pay**, a fictional payments-compliance company — illustrating how Carver-driven regulatory diffs can be translated into actionable, reviewer-friendly policy revisions |
 | [pred-oracle](./pred-oracle/) | A vertical compliance-intelligence platform for prediction-market operators (Kalshi, Polymarket, CFTC-licensed DCMs) — re-aims Carver's `entry_annotation` regulatory data at GC / CCO / Listing-Risk teams inside platforms |
+| [mastra-studio-demo](./mastra-studio-demo/) | Two [Mastra](https://mastra.ai) agents side by side in Mastra Studio — same model, same prompt, but one is grounded in Carver's regulatory data and the other isn't. Argues the value of the data source by contrast: asked about stablecoins, the ungrounded agent cites *real* BIS papers that are two years stale. Run-sheet: [`docs/DEMO.md`](./mastra-studio-demo/docs/DEMO.md) |
 
 ---
 
