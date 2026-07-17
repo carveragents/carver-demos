@@ -524,6 +524,7 @@ import { createReadStream } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
+import { createClient } from '@libsql/client';
 import { LibSQLVector } from '@mastra/libsql';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -639,14 +640,22 @@ if (kept.length === 0) {
   process.exit(1);
 }
 
-// 2. (Re)create the index.
-const store = new LibSQLVector({ url: DB_URL });
+// 2. (Re)create the table, then drop the DiskANN vector index.
+//
+// The tool queries LibSQLVector WITHOUT a filter, which uses brute-force vector_distance_cos
+// over the table — it does NOT need the DiskANN index. That index costs ~320 KB per vector
+// (≈2 GB for this corpus); dropping it before we insert keeps the DB ~20 MB. Exact
+// brute-force over a few thousand vectors is instant, so nothing is lost.
+// LibSQLVector requires an `id`; drop the vector index via a raw libSQL client.
+const store = new LibSQLVector({ id: 'carver-enforcement-vector', url: DB_URL });
 try {
   await store.deleteIndex({ indexName: INDEX_NAME });
 } catch {
   // No existing index — fine.
 }
 await store.createIndex({ indexName: INDEX_NAME, dimension: DIMENSION, metric: 'cosine' });
+const raw = createClient({ url: DB_URL });
+await raw.execute(`DROP INDEX IF EXISTS ${INDEX_NAME}_vector_idx`);
 
 // 3. Embed + upsert in batches.
 let embedded = 0;
@@ -669,7 +678,7 @@ console.log(`done: ${embedded.toLocaleString()} records in index "${INDEX_NAME}"
 - [ ] **Step 3: Run the build against the real corpus (integration verification)**
 
 Run: `npm run build:enforcement -- ../carver-showcase/data/annotations.jsonl`
-Expected: prints `scanned: 242,512 …`, a `kept:` total in the low thousands (expect roughly 4,000–6,500), a per-body breakdown listing FTC / U.S. SEC / CFTC / CFPB, batch `embedded N / total` progress, and a final `done: … in index "enforcement"`. A `enforcement.db` file appears in the project root. (Takes ~1–3 min and spends ~$0.02 of embeddings.)
+Expected: prints `scanned: 242,512 …`, a `kept:` total in the low thousands (expect roughly 4,000–6,500), a per-body breakdown listing FTC / U.S. SEC / CFTC / CFPB, batch `embedded N / total` progress, and a final `done: … in index "enforcement"`. A `enforcement.db` file (~20 MB — the DiskANN index is dropped, so the file stays small) appears in the project root. (Takes ~2–4 min and spends ~$0.02 of embeddings.)
 
 - [ ] **Step 4: Smoke-test the store returns hits**
 
