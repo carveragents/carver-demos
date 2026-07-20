@@ -1,0 +1,1471 @@
+{
+  "_readme": "SHARED GOLDEN FIXTURE — spec §12. This file is a byte-identical duplicate, checked into BOTH prep/tests/fixtures/ and template/tests/fixtures/. It is the cross-language drift defence: each side runs EVERY group through its own independent implementation, so a behaviour drift shows up as a red test on whichever side drifted, without either side reading the other's code. prep/tests/test_fixture_parity.py asserts the two copies are byte-identical. EDIT BOTH COPIES OR NEITHER. `note` fields are documentation; `name` IS asserted against (test_schema.py pins the three named stage_a_predicate_cases, so a fixture that quietly dropped the boundary case still fails). `prep_only: true` marks a case the TypeScript side structurally CANNOT reproduce; each is justified individually and their count is pinned by test_fixture_parity.py::test_prep_only_cases_are_justified — the flag is a bounded, named hole in the parity guarantee, never a place to park inconvenient cases.",
+  "_groups": {
+    "citation_date_cases": "prep: test_scoring.py -> score_citation, score_compliance_date | template: scorers.test.ts -> scoreCitation, scoreComplianceDate",
+    "judge_cases": "prep: test_judge.py -> parse_and_validate_verdicts | template: scorers.test.ts -> parseAndValidateVerdicts",
+    "obligation_cases": "prep: test_scoring.py -> score_missed_obligation (EVERY case) | template: scorers.test.ts -> scoreMissedObligation (every case NOT prep_only; exactly 1 is)",
+    "stage_a_predicate_cases": "prep: test_schema.py -> predicts_stage_a_violation | template: scorers.test.ts -> predictsStageAViolation"
+  },
+  "citation_date_cases": [
+    {
+      "name": "citation_correct_and_date_correct",
+      "note": "Baseline identified THIS record's source and its real compliance date.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_correct",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_and_date_wrong",
+      "note": "THE Stage B date failure. Unarguable: the baseline proved via its own correct citation that it means this exact document, then stated a readable date contradicting the document's own.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "2026-10-15",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_wrong",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": true
+    },
+    {
+      "name": "citation_correct_date_correct_via_normalization",
+      "note": "A CORRECT answer in the wrong shape. parse_baseline_date normalizes it; a raw string compare would yield date_wrong and admit the record on evidence that the baseline got it RIGHT.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "September 1, 2026",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_correct",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_date_unparseable_ambiguous_slash",
+      "note": "01/09/2026 is day-first-vs-month-first ambiguous. NEVER guessed.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "01/09/2026",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_unparseable",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_date_unparseable_quarter",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "Q3 2026",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_unparseable",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_date_missing_honest_abstention",
+      "note": "An invited 'I don't know' is not a failure mode — it is correct calibration.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": null,
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_missing",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_date_not_applicable_no_ground_truth",
+      "note": "Many bulletin/advisory records legitimately carry no compliance date.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": ""
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "not_applicable",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_trailing_slash_normalized",
+      "note": "Normalization: strip trailing '/'.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "https://www.mfsa.mt/rule-br-16/",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_correct",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_scheme_and_host_case_insensitive",
+      "note": "Normalization: lowercase scheme+host. Path/query untouched.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/16",
+        "source_url": "HTTPS://WWW.MFSA.MT/rule-br-16",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_correct",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_correct_eurlex_query_string_is_significant",
+      "note": "?uri=CELEX%3A... is load-bearing and must NOT be stripped or case-folded — it identifies the document.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "CIR (EU) 2026/451",
+        "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_correct",
+      "expected_date_outcome": "date_correct",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_missing_honest_abstention",
+      "note": "Date is present and even CORRECT, but unattributable: baseline never confirmed it was talking about this record's source.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": false,
+        "source_name": null,
+        "source_url": null,
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Not confident; declining to guess.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {},
+      "expected_citation_outcome": "citation_missing",
+      "expected_date_outcome": "date_uncertain_attribution",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_alternative_real_the_fair_test_fix",
+      "note": "A live URL that is not OUR ground truth is not automatically wrong — it may correctly cite a genuinely different, equally real obligation the coarse prompt could also have been read as asking about.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "BCBS d999",
+        "source_url": "https://www.bis.org/bcbs/publ/d999.htm",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {
+        "https://www.bis.org/bcbs/publ/d999.htm": "resolves"
+      },
+      "expected_citation_outcome": "citation_alternative_real",
+      "expected_date_outcome": "date_uncertain_attribution",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_unverifiable_server_declined_to_answer",
+      "note": "403/429/5xx/timeout/DNS. We asked and the server declined. That is evidence of NOTHING — treating it as fabrication would MANUFACTURE a failure against a baseline that may have cited a real, correct source which merely blocks datacenter IPs.",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "FSS bulletin",
+        "source_url": "https://www.fss.or.kr/fss/bbs/B0000188/view.do?nttId=99991",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {
+        "https://www.fss.or.kr/fss/bbs/B0000188/view.do?nttId=99991": "unverifiable"
+      },
+      "expected_citation_outcome": "citation_unverifiable",
+      "expected_date_outcome": "date_uncertain_attribution",
+      "expected_citation_is_failure": false,
+      "expected_date_is_failure": false
+    },
+    {
+      "name": "citation_fabricated_the_only_deterministic_citation_failure",
+      "note": "404/410 ONLY. The origin server itself answered, authoritatively, that nothing exists at that URL — goal #4's sharpest, most demonstrable failure (success criterion #3).",
+      "record": {
+        "artifact_id": "art-cd-001",
+        "reg_rules": [
+          "MFSA Banking Rule BR/16 (https://www.mfsa.mt/rule-br-16)"
+        ],
+        "reg_statutes": [
+          "Commission Implementing Regulation (EU) 2026/451 of 3 March 2026 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R0451)"
+        ],
+        "reg_other_ref": [],
+        "compliance_date": "2026-09-01"
+      },
+      "stage_b_result": {
+        "record_id": "art-cd-001",
+        "knows_source": true,
+        "source_name": "MFSA Banking Rule BR/99",
+        "source_url": "https://www.mfsa.mt/rule-br-99-consolidated-2026",
+        "compliance_date": "2026-09-01",
+        "confidence_note": "Reasonably confident.",
+        "usage": {
+          "prompt_tokens": 420,
+          "completion_tokens": 80,
+          "reasoning_tokens": 32
+        },
+        "called_at": "2026-07-15T09:30:00Z"
+      },
+      "url_cache": {
+        "https://www.mfsa.mt/rule-br-99-consolidated-2026": "not_found"
+      },
+      "expected_citation_outcome": "citation_fabricated",
+      "expected_date_outcome": "date_uncertain_attribution",
+      "expected_citation_is_failure": true,
+      "expected_date_is_failure": false
+    }
+  ],
+  "judge_cases": [
+    {
+      "name": "well_formed_single_verdict",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 0.91, \"rationale\": \"The draft omits the disclosure requirement.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": true,
+          "omission_material": true,
+          "verdict": "violation",
+          "confidence": 0.91,
+          "rationale": "The draft omits the disclosure requirement."
+        }
+      ]
+    },
+    {
+      "name": "malformed_json_every_id_gets_the_omission_fallback",
+      "note": "Step 1. Never defaults a parse failure to 'violation'.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", ",
+      "requested_ids": [
+        "ob-1",
+        "ob-2"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model omitted this obligation from its response"
+        },
+        {
+          "obligation_id": "ob-2",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model omitted this obligation from its response"
+        }
+      ]
+    },
+    {
+      "name": "duplicate_id_first_occurrence_wins",
+      "note": "Step 2. A stray duplicate never gets to vote twice.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 0.88, \"rationale\": \"First entry — this one counts.\"}, {\"obligation_id\": \"ob-1\", \"applies_to_draft\": false, \"omission_material\": false, \"verdict\": \"compliant\", \"confidence\": 0.1, \"rationale\": \"Second entry — dropped.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": true,
+          "omission_material": true,
+          "verdict": "violation",
+          "confidence": 0.88,
+          "rationale": "First entry — this one counts."
+        }
+      ]
+    },
+    {
+      "name": "hallucinated_id_dropped_silently",
+      "note": "Step 5. Never looked up against data/cleared/ or the narrowed candidate list — this is what stops §9c dereferencing an id absent from its own candidate set.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 0.8, \"rationale\": \"Real requested obligation.\"}, {\"obligation_id\": \"ob-STALE\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 0.99, \"rationale\": \"Not a requested id.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": true,
+          "omission_material": true,
+          "verdict": "violation",
+          "confidence": 0.8,
+          "rationale": "Real requested obligation."
+        }
+      ]
+    },
+    {
+      "name": "omitted_id_gets_uncertain_fallback",
+      "note": "Step 4. NEVER silently 'compliant' (hides a real risk) or 'violation' (fabricates evidence). Order follows requested_ids, not the response.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-2\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 0.75, \"rationale\": \"Only ob-2 came back.\"}]}",
+      "requested_ids": [
+        "ob-1",
+        "ob-2"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model omitted this obligation from its response"
+        },
+        {
+          "obligation_id": "ob-2",
+          "applies_to_draft": true,
+          "omission_material": true,
+          "verdict": "violation",
+          "confidence": 0.75,
+          "rationale": "Only ob-2 came back."
+        }
+      ]
+    },
+    {
+      "name": "confidence_above_range_discarded_not_clamped",
+      "note": "Step 3, THE case. Clamping 5.0 -> 1.0 would silently promote a malformed response into a MAXIMUM-confidence verdict, sailing past judge_confidence_floor to admit a record or abort a live draft on a value the model never validly produced. ob-2 proves the discard is per-entry, not per-response.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": 5.0, \"rationale\": \"Out of range.\"}, {\"obligation_id\": \"ob-2\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"compliant\", \"confidence\": 0.65, \"rationale\": \"In range — survives.\"}]}",
+      "requested_ids": [
+        "ob-1",
+        "ob-2"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model returned an out-of-range confidence for this obligation"
+        },
+        {
+          "obligation_id": "ob-2",
+          "applies_to_draft": true,
+          "omission_material": true,
+          "verdict": "compliant",
+          "confidence": 0.65,
+          "rationale": "In range — survives."
+        }
+      ]
+    },
+    {
+      "name": "confidence_negative_discarded_not_clamped",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": -0.2, \"rationale\": \"Out of range.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model returned an out-of-range confidence for this obligation"
+        }
+      ]
+    },
+    {
+      "name": "confidence_non_numeric_discarded",
+      "note": "Step 3's 'a non-numeric JSON value that survived parsing'. Unlike the NaN case below, this is legal JSON on BOTH sides, so it exercises step 3 itself identically in Python and TypeScript.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": \"high\", \"rationale\": \"Confidence is a string.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model returned an out-of-range confidence for this obligation"
+        }
+      ]
+    },
+    {
+      "name": "confidence_boolean_discarded",
+      "note": "D8's family, on the judge axis. Python's `isinstance(True, int)` is True and `0.0 <= True <= 1.0` is True, so a naive step-3 range check ACCEPTS a boolean and treats it as confidence 1.0 — sailing past judge_confidence_floor to admit a record on a value the model never validly produced. TypeScript's `typeof true === 'boolean'` rejects it, so the two sides would silently DIVERGE. Both languages parse `true` happily, so unlike the NaN case below this is a TRUE parity assertion. judge.py must bool-guard before its range check.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": true, \"rationale\": \"Confidence is a boolean.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model returned an out-of-range confidence for this obligation"
+        }
+      ]
+    },
+    {
+      "name": "confidence_nan_discarded",
+      "prep_only": true,
+      "note": "PREP ONLY — and this is a SPEC GAP, flagged for an orchestrator ruling, not a convenience. §4:2120 asks for the NaN case 'precisely so step 3's discard-not-clamp behavior is asserted identically on both sides of the seam'. That is UNACHIEVABLE, because the two languages disagree that this input is parseable at all: Python's json.loads accepts the non-standard bare `NaN` literal and reaches step 3 (discard -> the OUT-OF-RANGE rationale); JS JSON.parse REJECTS it, so step 1 fires and every requested id takes the OMISSION fallback -> a DIFFERENT rationale, which §4:2088-2093 requires to name which case fired. No expected_verdicts value satisfies both sides. This is the same structural asymmetry §4's seam note already resolves for score_missed_obligation's 4-arg/3-arg split, arriving through a door the spec did not anticipate: JSON's grammar is not the same on both sides. Resolved the same way — the parity guarantee is made NARROWER AND TRUE rather than broad and false. The case still does real work prep-side: it is the only thing standing between judge.py and a NaN confidence, which is exactly D8's trap (every comparison against NaN returns False, so a naive range check PASSES it). Exactly ONE requested id, deliberately: with two, Python would keep the valid sibling and the case would stop being about NaN alone. `confidence_non_numeric_discarded` and `confidence_boolean_discarded` above cover step 3 as TRUE parity cases on both sides.",
+      "raw_response": "{\"verdicts\": [{\"obligation_id\": \"ob-1\", \"applies_to_draft\": true, \"omission_material\": true, \"verdict\": \"violation\", \"confidence\": NaN, \"rationale\": \"Not a number.\"}]}",
+      "requested_ids": [
+        "ob-1"
+      ],
+      "expected_verdicts": [
+        {
+          "obligation_id": "ob-1",
+          "applies_to_draft": false,
+          "omission_material": false,
+          "verdict": "uncertain",
+          "confidence": 0.0,
+          "rationale": "model returned an out-of-range confidence for this obligation"
+        }
+      ]
+    }
+  ],
+  "obligation_cases": [
+    {
+      "name": "violation_above_floor_both_flags_true_is_the_only_failure",
+      "note": "ALL FOUR conditions of §4's conjunction hold.",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": true,
+            "verdict": "violation",
+            "confidence": 0.91,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "violation",
+      "expected_is_failure": true
+    },
+    {
+      "name": "violation_below_confidence_floor_is_not_a_failure",
+      "note": "0.5 < judge_confidence_floor (0.7). The near-miss guard.",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": true,
+            "verdict": "violation",
+            "confidence": 0.5,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "violation",
+      "expected_is_failure": false
+    },
+    {
+      "name": "violation_at_the_confidence_floor_is_a_failure",
+      "note": "The boundary is >= 0.7, not > 0.7.",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": true,
+            "verdict": "violation",
+            "confidence": 0.7,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "violation",
+      "expected_is_failure": true
+    },
+    {
+      "name": "violation_but_applies_to_draft_false_is_not_a_failure",
+      "note": "§4's applicability fix. A judge saying 'violation' while also saying applies_to_draft=False is self-contradictory; the deterministic conjunction, not the model's own verdict label, is authoritative.",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": false,
+            "omission_material": true,
+            "verdict": "violation",
+            "confidence": 0.95,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "violation",
+      "expected_is_failure": false
+    },
+    {
+      "name": "violation_but_omission_material_false_is_not_a_failure",
+      "note": "§4's materiality fix — the other half.",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": false,
+            "verdict": "violation",
+            "confidence": 0.95,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "violation",
+      "expected_is_failure": false
+    },
+    {
+      "name": "compliant_is_not_a_failure",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": true,
+            "verdict": "compliant",
+            "confidence": 0.88,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "compliant",
+      "expected_is_failure": false
+    },
+    {
+      "name": "uncertain_is_not_a_failure",
+      "record": {
+        "artifact_id": "art-ob-001",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "DE",
+        "jurisdiction_bloc": "EU",
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": false,
+            "omission_material": false,
+            "verdict": "uncertain",
+            "confidence": 0.0,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "uncertain",
+      "expected_is_failure": false
+    },
+    {
+      "name": "not_applicable_when_record_is_ineligible_for_the_scenario",
+      "note": "PREP ONLY — the 3-arg TS port structurally cannot reach this branch: the template owns no ScenarioSpec and no isEligible, and every vendored record was admitted under its scenario, so the branch is dead by construction template-side (§4's seam note). Prep keeps the 4-arg form because prep is where ineligible records still exist. NOTE: the judge's verdict here is a high-confidence 'violation' with both flags true — score_missed_obligation must return not_applicable WITHOUT consulting judge_result at all, so a scorer that checked the verdict first would return is_failure=True and fail this case loudly.",
+      "record": {
+        "artifact_id": "art-ob-002",
+        "jurisdiction_scope": "national",
+        "jurisdiction_country": "US",
+        "jurisdiction_bloc": null,
+        "impacted_business": {
+          "size": [
+            "Medium",
+            "Large"
+          ],
+          "type": [
+            "Technology providers"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "scenario": "A",
+      "obligation_id": "ob-1",
+      "judge_result": {
+        "verdicts": [
+          {
+            "obligation_id": "ob-1",
+            "applies_to_draft": true,
+            "omission_material": true,
+            "verdict": "violation",
+            "confidence": 0.99,
+            "rationale": "Judge rationale."
+          }
+        ]
+      },
+      "expected_outcome": "not_applicable",
+      "expected_is_failure": false,
+      "prep_only": true
+    }
+  ],
+  "stage_a_predicate_cases": [
+    {
+      "name": "citation_only",
+      "note": "THE case this predicate exists for. Stage B knowledge evidence proves the baseline does not know this regulation — it proves NOTHING about whether a DRAFT for this scenario violates the obligation. Expecting a block anyway makes the demo and the guarded scoreboard fail while the system behaves exactly as its own curated evidence says it should.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "citation_fabricated",
+            "stage": "B",
+            "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+            "judge_rationale": null
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": null,
+          "artifact_capable_of_violation_confirmed": null,
+          "omission_materiality_confirmed": null
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": false
+    },
+    {
+      "name": "date_only",
+      "note": "The other Stage B mode. Same reasoning. NOTE the excerpt shows 2026-10-15 against the record's real 2026-09-01 — evidence labelled 'wrong date' must not display the RIGHT date; this fixture is the human-readable contract.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "date_wrong",
+            "stage": "B",
+            "baseline_response_excerpt": "source_name='MFSA Guidance Note 04/2026' source_url='https://www.mfsa.mt/guidance-04-2026' compliance_date='2026-10-15'",
+            "judge_rationale": null
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": null,
+          "artifact_capable_of_violation_confirmed": null,
+          "omission_materiality_confirmed": null
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": false
+    },
+    {
+      "name": "missed_obligation_all_three_confirmed",
+      "note": "The ONLY shape that licenses a 'the guardrail blocks this draft' expectation.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "missed_obligation",
+            "stage": "A",
+            "baseline_response_excerpt": "We're excited to announce our new smart-ranking feature...",
+            "judge_rationale": "The draft omits the required disclosure of automated decision logic."
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": true,
+          "artifact_capable_of_violation_confirmed": true,
+          "omission_materiality_confirmed": true
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": true
+    },
+    {
+      "name": "missed_obligation_one_confirmation_false",
+      "note": "THE BOUNDARY. §5 calls clause (b) 'redundant in normal operation' and re-checks it anyway — so it must actually be checked. An implementation that only tested for the presence of missed_obligation passes both cases above and fails this one.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "missed_obligation",
+            "stage": "A",
+            "baseline_response_excerpt": "We're excited to announce our new smart-ranking feature...",
+            "judge_rationale": "The draft omits the required disclosure of automated decision logic."
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": true,
+          "artifact_capable_of_violation_confirmed": true,
+          "omission_materiality_confirmed": false
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": false
+    },
+    {
+      "name": "missed_obligation_one_confirmation_null",
+      "note": "`is True` — never truthiness. null is not a confirmation.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "missed_obligation",
+            "stage": "A",
+            "baseline_response_excerpt": "We're excited to announce our new smart-ranking feature...",
+            "judge_rationale": "The draft omits the required disclosure of automated decision logic."
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": null,
+          "artifact_capable_of_violation_confirmed": true,
+          "omission_materiality_confirmed": true
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": false
+    },
+    {
+      "name": "mixed_evidence_with_all_three_confirmed",
+      "note": "missed_obligation must be PRESENT, not exclusive — a record carrying both Stage B and confirmed Stage A evidence still predicts a block.",
+      "record": {
+        "id": "art-0001",
+        "title": "Guidelines on automated decision-making transparency",
+        "regulator_name": "Malta Financial Services Authority",
+        "jurisdiction": {
+          "scope": "national",
+          "country": "MT",
+          "bloc": "EU",
+          "region_name": null
+        },
+        "update_type": "guidance",
+        "impact_label": "high",
+        "objective": "Set transparency expectations for automated decisions.",
+        "what_changed": "New disclosure obligation for profiling systems.",
+        "why_it_matters": "Affects any firm deploying automated profiling.",
+        "key_requirements": [
+          "Disclose the logic involved in automated decisions."
+        ],
+        "compliance_date": "2026-09-01",
+        "citation": {
+          "name": "MFSA Guidance Note 04/2026",
+          "url": "https://www.mfsa.mt/guidance-04-2026"
+        },
+        "impacted_business": {
+          "size": [
+            "medium",
+            "large"
+          ],
+          "type": [
+            "credit institution"
+          ],
+          "industry": [
+            "Artificial Intelligence"
+          ]
+        },
+        "impacted_functions": [
+          "Compliance",
+          "Engineering"
+        ],
+        "scenario": "A",
+        "baseline_failures": [
+          {
+            "mode": "citation_fabricated",
+            "stage": "B",
+            "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+            "judge_rationale": null
+          },
+          {
+            "mode": "missed_obligation",
+            "stage": "A",
+            "baseline_response_excerpt": "We're excited to announce our new smart-ranking feature...",
+            "judge_rationale": "The draft omits the required disclosure of automated decision logic."
+          }
+        ],
+        "human_review": {
+          "reviewer": "achint",
+          "reviewed_at": "2026-07-16T10:00:00Z",
+          "attestation": "approved",
+          "obligation_applies_confirmed": true,
+          "artifact_capable_of_violation_confirmed": true,
+          "omission_materiality_confirmed": true
+        },
+        "source": {
+          "artifact_id": "art-0001",
+          "topic_id": "topic-77",
+          "source_id": "src-12",
+          "snapshot_date": "2026-07-11"
+        },
+        "probed_at": "2026-07-15T09:30:00Z",
+        "model_id": "openai/gpt-5.6-sol",
+        "model_cutoff": "2026-02-16"
+      },
+      "expected": true
+    }
+  ]
+}

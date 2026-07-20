@@ -1,0 +1,168 @@
+{
+  "id": "805eda1c-3022-45fe-9914-1c09da16bae0",
+  "topic_id": "26ca193a-10e3-4f43-970d-93a7fa8529f0",
+  "source_id": "a5ab2024-a838-4b46-90d9-a4cef320f7d4",
+  "output_data": {
+    "scores": {
+      "impact": {
+        "label": "high",
+        "score": 9,
+        "confidence": 0.9
+      }
+    },
+    "classification": {
+      "update_type": "bulletin",
+      "update_subtype": "regulatory_body",
+      "regulatory_source": {
+        "name": "Malta Financial Services Authority",
+        "other_agency": [],
+        "division_office": "Banking Supervision Office"
+      },
+      "jurisdiction": {
+        "bloc": null,
+        "scope": "national",
+        "country": "MT",
+        "locality": null,
+        "reasoning": "The Malta Financial Services Authority is a national regulator for Malta, as indicated by its name and the base URL mfsa.mt, representing a country-level regulatory authority.",
+        "region_code": null,
+        "region_name": null,
+        "locality_type": null
+      },
+      "metadata": {
+        "title": "Dear Chief Executive Officer: Outcome-Based Supervision: Adequacy of Supervisory Reporting for Less Significant Institutions (LSIs)",
+        "summary": "MFSA reviews supervisory reporting adequacy for Less Significant Institutions",
+        "base_url": "mfsa.mt",
+        "feed_url": "",
+        "language": [
+          "en"
+        ],
+        "extraction_note": []
+      }
+    },
+    "metadata": {
+      "impact_summary": {
+        "objective": "To assess and ensure the adequacy of supervisory reporting by Less Significant Institutions (LSIs) in Malta, supporting sound prudential judgements and supervisory decisions.",
+        "risk_impact": "Persistent deficiencies in supervisory reporting can lead to breaches of binding regulations, negatively affecting institutions' risk profiles and potentially leading to supervisory interventions.",
+        "what_changed": "The MFSA conducted a targeted review of supervisory reporting adequacy for LSIs, embedding supervisory reporting adequacy into its outcomes-based supervisory framework and emphasizing data accuracy, completeness, and timeliness as key indicators of operational resilience and governance.",
+        "why_it_matters": "Accurate and timely supervisory reporting is critical for effective oversight, risk assessment, and maintaining the integrity of both national and European supervisory frameworks, impacting financial stability and regulatory compliance.",
+        "key_requirements": [
+          "Embed robust data governance frameworks with clear accountability and escalation protocols.",
+          "Reinforce pre-submission controls and validation mechanisms to minimize breaches and omissions.",
+          "Ensure completeness by aligning reporting templates strictly with regulatory perimeter and technical specifications.",
+          "Maintain full traceability in submissions with accurate classification of resubmission reasons and comprehensive explanations.",
+          "Engage proactively with the MFSA, escalating data risks promptly and utilizing available technical guidance and resources."
+        ]
+      },
+      "critical_dates": {
+        "other_dates": [
+          {
+            "date": "Q2 2025",
+            "calendar": "gregorian",
+            "description": "Period when the targeted review of supervisory reporting adequacy for LSIs was conducted"
+          },
+          {
+            "date": "2024",
+            "calendar": "gregorian",
+            "description": "Year when the Compliance Outcomes-Based Supervisory framework was introduced"
+          },
+          {
+            "date": "2025",
+            "calendar": "gregorian",
+            "description": "Year when the Compliance Outcomes-Based Supervisory framework was extended to all financial services sectors"
+          },
+          {
+            "date": "May 2025",
+            "calendar": "gregorian",
+            "description": "Publication date of the latest version (v5.6) of the EBA Filing Rules"
+          },
+          {
+            "date": "17 December 2020",
+            "calendar": "gregorian",
+            "description": "Date of Commission Implementing Regulation (EU) 2021/451 laying down implementing technical standards for supervisory reporting"
+          },
+          {
+            "date": "15 March 2021",
+            "calendar": "gregorian",
+            "description": "Date of Commission Implementing Regulation (EU) 2021/453 laying down implementing technical standards for specific reporting requirements for market risk"
+          },
+          {
+            "date": "29 November 2024",
+            "calendar": "gregorian",
+            "description": "Date of Commission Implementing Regulation (EU) 2024/3117 superseding previous regulations on supervisory reporting"
+          }
+        ],
+        "updated_date": "",
+        "effective_date": "",
+        "compliance_date": "",
+        "comment_deadline": "",
+        "pub_date_content": "2025-10-01",
+        "pub_date_calendar": "gregorian",
+        "early_adoption_date": "",
+        "updated_date_calendar": "",
+        "effective_date_calendar": "",
+        "compliance_date_calendar": "",
+        "comment_deadline_calendar": "",
+        "early_adoption_date_calendar": ""
+      },
+      "reg_references": {
+        "rules": [
+          "EBA Filing Rules v5.6 published May 2025 (https://www.eba.europa.eu/regulation-and-policy/supervisory-reporting)",
+          "Banking Rules BR/16, BR/24, BR/31 issued under the Banking Act (Cap. 371) (https://www.mfsa.mt/legislation/banking-act/)"
+        ],
+        "statutes": [
+          "Commission Implementing Regulation (EU) 2021/451 of 17 December 2020 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32021R0451)",
+          "Commission Implementing Regulation (EU) 2021/453 of 15 March 2021 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32021R0453)",
+          "Commission Implementing Regulation (EU) 2024/3117 of 29 November 2024 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R3117)"
+        ],
+        "other_ref": [
+          "EBA Guidelines EBA/GL/2022/08 on benchmarking exercises and data collection (https://www.eba.europa.eu/regulation-and-policy/supervisory-convergence/guidelines)"
+        ],
+        "personnel": [
+          "Christopher P. Buttigieg, Chief Officer Supervision",
+          "Catherine Galea, Head – Banking Supervision"
+        ],
+        "precedents": [],
+        "past_release": []
+      },
+      "impacted_business": {
+        "size": [
+          "Small",
+          "Medium"
+        ],
+        "type": [
+          "Banks",
+          "Less Significant Institutions"
+        ],
+        "industry": [
+          "Banking"
+        ],
+        "other_notes": [
+          "Focus on Less Significant Institutions (LSIs) under Malta jurisdiction"
+        ],
+        "jurisdiction": [
+          "MT"
+        ]
+      },
+      "impacted_functions": [
+        "Compliance",
+        "Risk Management",
+        "Operations",
+        "Regulatory Reporting",
+        "Legal"
+      ],
+      "penalties_consequences": [
+        "Persistent deficiencies may constitute breaches of binding regulations.",
+        "Negative impact on institution’s overall risk profile.",
+        "Potential supervisory interventions and reputational damage."
+      ]
+    },
+    "reconciled_published_date": {
+      "date": "2025-10-01",
+      "valid": true,
+      "source": "LLM",
+      "converted": false,
+      "original_date": null,
+      "original_calendar": "gregorian"
+    }
+  }
+}

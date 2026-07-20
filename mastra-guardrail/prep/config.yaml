@@ -1,0 +1,65 @@
+# ── Model ──────────────────────────────────────────────────────────────────
+model_router_string: openai/gpt-5.6-sol   # str; passed to OpenAI SDK's `model=`; the "provider/model"
+                                            # form is a Mastra-side convention — prep calls OpenAI's SDK
+                                            # directly, so this is just the bare `gpt-5.6-sol` id in
+                                            # practice; kept as the full router string here so both
+                                            # halves' config files read identically (goal #9: "one shared
+                                            # pinned constant" is honored at the config-value level even
+                                            # though prep's call site strips the `openai/` prefix)
+# reasoning_effort is NOT a config key — it is `budget.py`'s module-level constant
+# REASONING_EFFORT = "medium" (§3), never mutable via config, for the same reason
+# SNAPSHOT_DATE isn't: it is a lever on BASELINE STRENGTH. Setting it to "low" weakens
+# the same pinned model, which makes more probes fail, which grows the yield — goal #9's
+# named rigging mode ("harvest more failures... That is rigging, and it is forbidden")
+# reached through a dial goal #9 did not think to name. See §6's anti-padding table.
+# (No `temperature` param anywhere — GPT-5-family; see docs/LESSONS.md.)
+
+# ── Corpus ─────────────────────────────────────────────────────────────────
+# THREE levels, not four. Goal #13 fixes the CWD at `prep/`, and the walk out is
+# prep -> mastra-guardrail -> carver-demos -> repos/carver, where the sibling lives.
+# NOTE: this was FOUR `../` while the project lived at carver-adhoc/projects/mastra-guardrail;
+# the port to carver-demos dropped the `projects/` level. Four `../` now resolves outside
+# repos/carver entirely — a FileNotFoundError on the very first documented command.
+# Verified against the real tree after the port.
+annotations_path: ../../../carver-showcase/data/annotations.jsonl   # read-only
+
+# ── Candidate filter (floor — see goal #11; NEVER relaxed by a config override) ──
+candidate_cutoff_date: "2026-03-01"
+
+# ── Sampling ───────────────────────────────────────────────────────────────
+sample_seed: 42
+probe_batch_size: 40          # progress-logging cadence ONLY (§3) — has no effect on how many
+                              # records are probed or kept; both caps below bind per-record
+target_set_size: 200          # ceiling — ok to reduce; NEVER raised as a way to force more yield
+probe_max_records: 400        # hard sweep cap
+scenario_trial_size: 30
+scenario_trial_min: 10        # §7: the fewest COMPLETED records an arm may have and still yield a
+                              # winner. Below it (and below its own planned size), decide_scenario
+                              # returns outcome="insufficient_trial" rather than reading a winner
+                              # out of a trial that did not happen
+
+# ── Pricing & spend (§3 — ONE ceiling shared by the scenario trial AND curation) ──
+# price_* MUST be >= the pinned floor (PINNED_PRICE_*_USD_PER_MILLION, budget.py) —
+# load_settings() rejects anything lower; only raise these (never lower
+# them below the pinned floor) if OpenAI's actual published rate goes up.
+price_input_per_million_usd: 5.00
+price_output_per_million_usd: 30.00
+total_spend_ceiling_usd: 120.0   # ~7x the typical $17 run; worst case ≈ $88.5 (§3)
+# snapshot_date is NOT a config key — it is `candidates.py`'s module-level constant
+# SNAPSHOT_DATE = "2026-07-11" (§2), never mutable via config. An earlier draft
+# exposed it here as a plain ISO-date-typed key, which would have let a user set it
+# to e.g. "3000-01-01" and silently defeat the upper-bound date-rot gate (§2) — the
+# whole point of that gate is that it is NOT a tunable parameter.
+
+# ── Judge ──────────────────────────────────────────────────────────────────
+# judge_confidence_floor MUST be >= 0.7 (the goal's near-miss guard, §4) —
+# load_settings() rejects anything lower; this is a floor, not a tunable default,
+# for the same anti-padding reason as candidate_cutoff_date (§6's anti-padding table).
+judge_confidence_floor: 0.7
+
+# ── Secrets ────────────────────────────────────────────────────────────────
+dotenv_path: .env
+
+# ── Paths ──────────────────────────────────────────────────────────────────
+cleared_dir: data/cleared
+scratch_dir: data/scratch

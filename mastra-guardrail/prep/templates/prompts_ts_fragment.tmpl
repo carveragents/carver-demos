@@ -1,0 +1,136 @@
+// GENERATED FILE — DO NOT EDIT BY HAND.
+//
+// Written by prep/mastra_prep/generate_template_config.py (spec §7 step 8) after
+// decide_scenario picked scenario {{SCENARIO_ID}}. §8 resolves this module as GENERATED, not
+// hand-authored: generated-from-prep means the eval asks the SAME question the
+// evidence was recorded for; hand-mirrored means it asks a question a human
+// believed was the same. Every constant below is prep's own — scenarios.py owns
+// the buckets, the task template and the negative controls; probe.py owns the
+// update-type phrases and stage_b_user.md.
+//
+// FAIR-TEST DISCIPLINE BINDS THIS FILE (§3's MUST-NOT list, §8). A prompt may
+// contain only the persona, the fictional company, a DOMAIN_BUCKETS phrase and a
+// jurisdiction phrase. It must NEVER contain the record's title, objective,
+// what_changed, why_it_matters, key_requirements, citation or compliance_date —
+// interpolating any of those leaks the answer into the question the whole
+// experiment turns on. prompts.test.ts checks this over every vendored record.
+
+import type { ClearedRecord } from "../schema";
+
+/** The closed bucket VOCABULARY — the winning scenario's five phrases (§8). */
+export const DOMAIN_BUCKETS: readonly string[] = {{DOMAIN_BUCKETS_JSON}};
+
+/** The tag -> bucket MAPPING. Distinct from the vocabulary above; one name, one
+ *  owner. Locked to prep's copy by buckets_golden.json (§8). */
+export const INDUSTRY_TAG_TO_BUCKET: Record<string, string> = {{INDUSTRY_TAG_TO_BUCKET_JSON}};
+
+/** The winning scenario's task templates (§7's table, winning column only). */
+export const SCENARIO_TASK_TEMPLATES = {{SCENARIO_TASK_TEMPLATES_JSON}} as const;
+
+/** §12's benign drafting tasks: 10 benign topics x 3 artifact framings = exactly
+ *  30. Same persona, same fictional company, same task skeleton as a scored item
+ *  — the only difference is the topic, which is what makes them a control. */
+export const NEGATIVE_CONTROL_PROMPTS: readonly string[] = {{NEGATIVE_CONTROL_PROMPTS_JSON}};
+
+// ── internals (prep-derived, not part of the public surface) ────────────────
+
+const DEFAULT_DOMAIN_BUCKET: string = {{DEFAULT_DOMAIN_BUCKET_JSON}};
+
+// [keyword, bucket] pairs scoped to the winning scenario, longest keyword first
+// so specificity is explicit rather than riding on the mapping's key order.
+const SCENARIO_KEYWORD_BUCKETS: readonly (readonly [string, string])[] = {{SCENARIO_KEYWORD_BUCKETS_JSON}};
+
+const COUNTRY_CODE_TO_NAME: Record<string, string> = {{COUNTRY_CODE_TO_NAME_JSON}};
+
+const UPDATE_TYPE_PHRASES: Record<string, string> = {{UPDATE_TYPE_PHRASES_JSON}};
+
+const DEFAULT_UPDATE_TYPE_PHRASE: string = {{DEFAULT_UPDATE_TYPE_PHRASE_JSON}};
+
+const RECENCY_PHRASE: string = {{RECENCY_PHRASE_JSON}};
+
+const STAGE_B_USER_TEMPLATE: string = {{STAGE_B_USER_TEMPLATE_JSON}};
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Case-insensitive. Multi-word keywords match as a plain substring (no
+ *  short-token false-positive risk); single-word keywords are word-bounded, so
+ *  "ai" matches "Generative AI" but never "retail" or "email". */
+function tagMatchesKeyword(tag: string, keyword: string): boolean {
+  const tagLower = tag.toLowerCase();
+  if (keyword.includes(" ")) return tagLower.includes(keyword);
+  return new RegExp(`\\b${escapeRegExp(keyword)}\\b`).test(tagLower);
+}
+
+function recordTags(record: ClearedRecord): string[] {
+  return [...(record.impacted_business?.industry ?? []), ...(record.impacted_functions ?? [])];
+}
+
+/** The first of the record's own tags matching a keyword in THIS scenario's
+ *  bucket vocabulary — falling back to the scenario's default bucket. Always
+ *  returns a member of DOMAIN_BUCKETS, never record-specific text. */
+function domainPhrase(record: ClearedRecord): string {
+  for (const tag of recordTags(record)) {
+    for (const [keyword, bucket] of SCENARIO_KEYWORD_BUCKETS) {
+      if (tagMatchesKeyword(tag, keyword)) return bucket;
+    }
+  }
+  return DEFAULT_DOMAIN_BUCKET;
+}
+
+/** Country/bloc granularity ONLY (§3's fair-test MAY-list) — never region_name
+ *  or locality. Country wins over bloc when both are recorded. */
+function jurisdictionPhrase(record: ClearedRecord): string {
+  const country = record.jurisdiction.country;
+  if (country) return COUNTRY_CODE_TO_NAME[country] ?? country;
+  const bloc = record.jurisdiction.bloc;
+  if (bloc === "EU") return "the EU";
+  if (bloc) return bloc;
+  return "the applicable jurisdiction";
+}
+
+/** "a {{DOMAIN_PHRASE}} feature" -> "an AI-assisted decisioning feature" when the
+ *  substituted value starts with a vowel letter (D30.3: cosmetic, harmless to
+ *  the experiment -- both arms receive the identical corrected string). A plain
+ *  first-letter check, not a general English a/an solver -- sufficient for the
+ *  closed, ten-phrase DOMAIN_BUCKETS vocabulary (both scenarios) this file ever
+ *  substitutes into a template. */
+function fixIndefiniteArticle(text: string, value: string): string {
+  if (!/^[aeiou]/i.test(value)) return text;
+  return text.split(`a ${value}`).join(`an ${value}`);
+}
+
+function render(template: string, substitutions: Record<string, string>): string {
+  let out = template;
+  for (const [key, value] of Object.entries(substitutions)) {
+    out = out.split(`{{${key}}}`).join(value);
+    out = fixIndefiniteArticle(out, value);
+  }
+  return out;
+}
+
+/** §3's Stage A task instance, rendered from the record's coarse, fair-test-legal
+ *  signals alone. */
+export function buildStageAPrompt(record: ClearedRecord): string {
+  return render(SCENARIO_TASK_TEMPLATES.STAGE_A_TASK_TEMPLATE, {
+    DOMAIN_PHRASE: domainPhrase(record),
+    JURISDICTION_PHRASE: jurisdictionPhrase(record),
+  });
+}
+
+/** §3's Stage B knowledge question. Adds exactly two more non-leaking signals on
+ *  top of Stage A's set: the record's update_type rendered through a fixed coarse
+ *  lookup (a category shared by hundreds of pool records, never the record's own
+ *  text), and a fixed recency literal. */
+export function buildStageBPrompt(record: ClearedRecord): string {
+  const updateType = (record.update_type ?? "").trim().toLowerCase();
+  return render(STAGE_B_USER_TEMPLATE, {
+    DOMAIN_PHRASE: domainPhrase(record),
+    JURISDICTION_PHRASE: jurisdictionPhrase(record),
+    TASK_NOUN_PHRASE: SCENARIO_TASK_TEMPLATES.TASK_NOUN_PHRASE,
+    TASK_VERB_PHRASE: SCENARIO_TASK_TEMPLATES.TASK_VERB_PHRASE,
+    UPDATE_TYPE_PHRASE: UPDATE_TYPE_PHRASES[updateType] ?? DEFAULT_UPDATE_TYPE_PHRASE,
+    RECENCY_PHRASE: RECENCY_PHRASE,
+  });
+}

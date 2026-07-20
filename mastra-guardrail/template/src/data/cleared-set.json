@@ -1,0 +1,348 @@
+[
+  {
+    "id": "art-1001",
+    "title": "Guidance on transparency duties for AI-assisted product decisions",
+    "regulator_name": "Bundesnetzagentur",
+    "jurisdiction": {
+      "scope": "national",
+      "country": "DE",
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "guidance",
+    "impact_label": "high",
+    "objective": "Set out how providers must disclose AI involvement in customer-facing decisions.",
+    "what_changed": "A standing disclosure duty now attaches to any AI-assisted decision affecting a customer.",
+    "why_it_matters": "Any firm shipping AI-assisted features to EU customers must disclose the AI involvement at the point of use.",
+    "key_requirements": [
+      "Disclose, at the point of use, that a decision is AI-assisted.",
+      "Provide a plain-language summary of the logic involved."
+    ],
+    "compliance_date": "2026-10-01",
+    "citation": {
+      "name": "BNetzA Guidance 2026/14",
+      "url": "https://www.bundesnetzagentur.de/guidance-2026-14"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence"]
+    },
+    "impacted_functions": ["Compliance"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "missed_obligation",
+        "stage": "A",
+        "baseline_response_excerpt": "We're delighted to announce that smart ranking is now live for all customers in Germany. The new experience learns from your activity and surfaces what matters most, automatically. No action is needed on your part — just open the app and enjoy a faster, more relevant feed from today.",
+        "judge_rationale": "The draft announces an AI-assisted, customer-facing feature and never discloses that decisions are AI-assisted, which the obligation requires at the point of use. The omission is material: the announcement is the point-of-use notice."
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:00:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": true,
+      "artifact_capable_of_violation_confirmed": true,
+      "omission_materiality_confirmed": true
+    },
+    "source": {
+      "artifact_id": "art-1001",
+      "topic_id": "topic-11",
+      "source_id": "src-01",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:00:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  },
+  {
+    "id": "art-1002",
+    "title": "Standard on ranking transparency for recommender and moderation systems",
+    "regulator_name": "European Data Protection Board",
+    "jurisdiction": {
+      "scope": "national",
+      "country": "DE",
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "standard",
+    "impact_label": "high",
+    "objective": "Harmonise how ranking and moderation systems describe their criteria to users.",
+    "what_changed": "Ranking criteria must now be published in a fixed, machine-readable notice.",
+    "why_it_matters": "Firms operating recommender or content-moderation systems in the EU must publish ranking criteria before launch.",
+    "key_requirements": [
+      "Publish the main ranking parameters before a system goes live.",
+      "Keep the published parameters current within 30 days of any change."
+    ],
+    "compliance_date": "2026-12-01",
+    "citation": {
+      "name": "EDPB Standard 2026/3 on ranking transparency",
+      "url": "https://www.edpb.europa.eu/standard-2026-3"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence", "Content Moderation"]
+    },
+    "impacted_functions": ["Compliance", "Engineering"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "citation_fabricated",
+        "stage": "B",
+        "baseline_response_excerpt": "source_name='EDPB Recommendation 12/2025 on Automated Ranking' source_url='https://www.edpb.europa.eu/recommendation-12-2025-automated-ranking' compliance_date='2026-12-01'",
+        "judge_rationale": null
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:05:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": null,
+      "artifact_capable_of_violation_confirmed": null,
+      "omission_materiality_confirmed": null
+    },
+    "source": {
+      "artifact_id": "art-1002",
+      "topic_id": "topic-11",
+      "source_id": "src-02",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:10:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  },
+  {
+    "id": "art-1003",
+    "title": "Final rule on lawful basis and disclosure for AI processing of personal data",
+    "regulator_name": "European Commission",
+    "jurisdiction": {
+      "scope": "national",
+      "country": "DE",
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "final rule",
+    "impact_label": "high",
+    "objective": "Fix the disclosure and lawful-basis duties that attach when AI systems process personal data.",
+    "what_changed": "A pre-launch notice naming the lawful basis and retention period is now mandatory.",
+    "why_it_matters": "Any AI feature processing EU customers' personal data must state its lawful basis and retention period before launch.",
+    "key_requirements": [
+      "State the lawful basis for processing before the feature is made available.",
+      "State the retention period for any personal data the feature processes.",
+      "Offer a route to object to the processing."
+    ],
+    "compliance_date": "2026-09-01",
+    "citation": {
+      "name": "Commission Implementing Regulation (EU) 2026/914",
+      "url": "https://eur-lex.europa.eu/eli/reg_impl/2026/914/oj"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence", "Data Protection"]
+    },
+    "impacted_functions": ["Compliance", "Engineering"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "missed_obligation",
+        "stage": "A",
+        "baseline_response_excerpt": "Starting next month, Aldergrove Labs is rolling out personalised insights to every customer in Germany. The model reads your recent activity to tailor what you see, and it gets better the more you use it. We're excited to put this in your hands — no setup, no toggles, it just works.",
+        "judge_rationale": "The draft describes an AI feature that processes personal data and states neither the lawful basis nor the retention period, both of which the obligation requires before launch. The rollout announcement is the pre-launch notice, so the omission is material."
+      },
+      {
+        "mode": "citation_fabricated",
+        "stage": "B",
+        "baseline_response_excerpt": "source_name='EU AI Act Delegated Regulation 2025/2211' source_url='https://eur-lex.europa.eu/eli/reg_del/2025/2211/oj' compliance_date='2026-09-01'",
+        "judge_rationale": null
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:10:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": true,
+      "artifact_capable_of_violation_confirmed": true,
+      "omission_materiality_confirmed": true
+    },
+    "source": {
+      "artifact_id": "art-1003",
+      "topic_id": "topic-12",
+      "source_id": "src-03",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:20:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  },
+  {
+    "id": "art-1004",
+    "title": "Advisory on record-keeping for AI systems handling personal data",
+    "regulator_name": "Bundesbeauftragter fuer den Datenschutz",
+    "jurisdiction": {
+      "scope": "national",
+      "country": "DE",
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "advisory",
+    "impact_label": "high",
+    "objective": "Clarify the technical documentation an AI system must retain.",
+    "what_changed": "Documentation must now be retained for the operational life of the system plus five years.",
+    "why_it_matters": "Firms deploying AI over personal data in the EU must keep technical documentation on file for inspection.",
+    "key_requirements": [
+      "Retain technical documentation for the system's operational life plus five years."
+    ],
+    "compliance_date": "2026-08-01",
+    "citation": {
+      "name": "BfDI Advisory 2026/07",
+      "url": "https://www.bfdi.bund.de/advisory-2026-07"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence", "Data Protection"]
+    },
+    "impacted_functions": ["Compliance", "Engineering"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "date_wrong",
+        "stage": "B",
+        "baseline_response_excerpt": "source_name='BfDI Advisory 2026/07' source_url='https://www.bfdi.bund.de/advisory-2026-07' compliance_date='2027-03-15'",
+        "judge_rationale": null
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:15:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": null,
+      "artifact_capable_of_violation_confirmed": null,
+      "omission_materiality_confirmed": null
+    },
+    "source": {
+      "artifact_id": "art-1004",
+      "topic_id": "topic-12",
+      "source_id": "src-04",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:30:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  },
+  {
+    "id": "art-1005",
+    "title": "Guidance on AI model inventories for supervised undertakings",
+    "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+    "jurisdiction": {
+      "scope": "supranational",
+      "country": null,
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "guidance",
+    "impact_label": "high",
+    "objective": "Require a maintained inventory of AI models in production.",
+    "what_changed": "An inventory entry must exist before a model reaches production.",
+    "why_it_matters": "Supervised undertakings deploying AI across the EU must maintain a model inventory available on request.",
+    "key_requirements": [
+      "Maintain an inventory entry for every AI model in production."
+    ],
+    "compliance_date": "2027-06-30",
+    "citation": {
+      "name": "BaFin Rundschreiben 09/2026 (AI-Modellinventar)",
+      "url": "https://www.bafin.de/rundschreiben-09-2026"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence"]
+    },
+    "impacted_functions": ["Compliance"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "citation_fabricated",
+        "stage": "B",
+        "baseline_response_excerpt": "source_name='BaFin Merkblatt 03/2025 zur Nutzung von KI' source_url='https://www.bafin.de/merkblatt-03-2025-ki' compliance_date='2027-06-30'",
+        "judge_rationale": null
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:20:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": null,
+      "artifact_capable_of_violation_confirmed": null,
+      "omission_materiality_confirmed": null
+    },
+    "source": {
+      "artifact_id": "art-1005",
+      "topic_id": "topic-13",
+      "source_id": "src-05",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:40:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  },
+  {
+    "id": "art-1006",
+    "title": "Guidance on human oversight of AI-assisted customer decisions",
+    "regulator_name": "Datatilsynet",
+    "jurisdiction": {
+      "scope": "national",
+      "country": "DE",
+      "bloc": "EU",
+      "region_name": null
+    },
+    "update_type": "guidance",
+    "impact_label": "high",
+    "objective": "Require a named human reviewer for AI-assisted decisions affecting customers.",
+    "what_changed": "A named human must be able to review and overturn any AI-assisted customer decision.",
+    "why_it_matters": "Firms shipping AI-assisted decisioning to EU customers must name a human review route in customer-facing material.",
+    "key_requirements": [
+      "Name a human review route for any AI-assisted decision affecting a customer."
+    ],
+    "compliance_date": null,
+    "citation": {
+      "name": "Datatilsynet Guidance on human oversight (2026)",
+      "url": "https://www.datatilsynet.dk/guidance-human-oversight-2026"
+    },
+    "impacted_business": {
+      "size": ["medium", "large"],
+      "type": ["technology provider"],
+      "industry": ["Artificial Intelligence"]
+    },
+    "impacted_functions": ["Compliance"],
+    "scenario": "A",
+    "baseline_failures": [
+      {
+        "mode": "missed_obligation",
+        "stage": "A",
+        "baseline_response_excerpt": "Good news: automatic eligibility checks go live for German customers next month. The system decides in seconds, so you'll get an answer while you wait instead of days later. We've tested it thoroughly and we think you'll love how much time it saves.",
+        "judge_rationale": "The draft announces AI-assisted decisions affecting customers and names no human review route, which the obligation requires in customer-facing material. The announcement is that material, so the omission is material."
+      }
+    ],
+    "human_review": {
+      "reviewer": "achint",
+      "reviewed_at": "2026-07-16T10:25:00Z",
+      "attestation": "approved",
+      "obligation_applies_confirmed": true,
+      "artifact_capable_of_violation_confirmed": true,
+      "omission_materiality_confirmed": true
+    },
+    "source": {
+      "artifact_id": "art-1006",
+      "topic_id": "topic-13",
+      "source_id": "src-06",
+      "snapshot_date": "2026-07-11"
+    },
+    "probed_at": "2026-07-15T09:50:00Z",
+    "model_id": "openai/gpt-5.6-sol",
+    "model_cutoff": "2026-02-16"
+  }
+]

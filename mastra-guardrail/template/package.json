@@ -1,0 +1,25 @@
+{
+  "name": "carver-compliance-guardrail",
+  "type": "module",
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "dev": "mastra dev",
+    "demo": "tsx scripts/demo.ts",
+    "demo:prompt": "tsx scripts/printPrompt.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && vitest run",
+    "test:unit": "npm run typecheck && vitest run --exclude tests/evals.test.ts --exclude tests/comparisonWorkflow.test.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "1.51.0",
+    "zod": "4.0.0",
+    "dotenv": "16.4.7"
+  },
+  "devDependencies": {
+    "mastra": "1.19.0",
+    "typescript": "5.7.3",
+    "tsx": "4.19.2",
+    "vitest": "2.1.8",
+    "@types/node": "22.13.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "goal": "# Carver × Mastra Compliance Guardrail — goal",
+  "stages": [
+    {
+      "id": "01-spec",
+      "title": "01-spec",
+      "status": "approved",
+      "refine_count": 3
+    },
+    {
+      "id": "02-plan",
+      "title": "02-plan",
+      "status": "approved",
+      "refine_count": 2
+    }
+  ]
+}
