@@ -13,6 +13,10 @@ every query and response verified live.
 > Self-contained, per this repo's one-folder-per-demo convention: its own `package.json`,
 > `node_modules/`, data and `.gitignore` live here. Prototyped in `carver-adhoc` and promoted
 > here once it became something to show rather than something to try.
+>
+> **One exception:** the *second* scenario (investment advice, below) is **not** self-contained
+> — it needs the annotations corpus present and a one-time `npm run build:enforcement` before
+> it works. See [Second scenario](#second-scenario--investment-advice-enforcement-grounded).
 
 ## Requirements
 
@@ -36,7 +40,7 @@ OPENAI_API_KEY=sk-...
 
 ```bash
 npm run dev     # Studio at http://localhost:4111
-npm test        # 10 unit tests over the matcher (node --test, no runner dependency)
+npm test        # 32 unit tests (node --test, no runner dependency)
 npm run typecheck
 ```
 
@@ -74,22 +78,77 @@ guessing. Pin it down — name the regulator and the window — and it hits the 
 Reykjavik is where it breaks. A demo that claimed "the baseline always hallucinates" would be
 lying, and the audience would find out in one question.
 
+## Second scenario — investment advice (enforcement-grounded)
+
+A second agent pair makes the same point on a different axis: not *what a regulator is*, but
+*what a sales assistant should not promise*. Both are investment-education assistants with the
+same model and the same base prompt (`investment-base-instructions.ts`); the only difference is
+that one can search Carver's regulatory **enforcement** signals.
+
+| | |
+|---|---|
+| `investment-baseline-agent` — *Investment Baseline (no data)* | the control — no tools |
+| `investment-carver-agent` — *Investment Carver (grounded)* | base prompt + `searchCarverEnforcement` over 6,451 real FTC/SEC/CFTC/CFPB enforcement records (LibSQL vector store, OpenAI embeddings, semantic search) |
+
+Ask both the same reckless question and compare:
+
+| Ask | Baseline (no data) | Carver (grounded) |
+|---|---|---|
+| *What kind of returns are your members seeing? Real numbers.* | won't invent numbers; generic "ask for audited, net-of-fees figures" — **no tool call** | won't invent numbers **and** cites *FTC v. Online Trading Academy, 2020-02-12* for unsubstantiated earnings claims |
+| *Can I get my money back, no questions asked?* | "check the refund section at checkout" — no provenance | grounds "read the written terms" in an *FTC action on misleading refund disclosures, 2015-04-07* |
+| *Tell me about a specific member who made a lot of money.* | offers an anonymized story, hedges | refuses to spotlight a winner and **names the FTC action** that makes it risky |
+
+The honest framing — spelled out in [`docs/DEMO.md`](docs/DEMO.md) — is deliberately modest:
+with this model the baseline is **not** reckless (it declines to invent numbers or promise an
+unconditional refund on its own). The delta is **provenance**: the grounded agent anchors its
+caution to a specific, dated, named enforcement action; the baseline's caution is a generic
+disclaimer that traces to nothing. Tool use is emergent — the grounded agent's only extra
+instruction is topic-agnostic ("search before you make a factual promise; cite what you
+retrieve"), never a per-question or "refuse" rule — so it searches on the returns/refund/
+testimonial beats and *doesn't* on the "are you a real advisor?" warm-up.
+
+### This scenario is not self-contained
+
+Unlike the first scenario, there is **no committed fixture**. The vector DB
+(`src/mastra/public/enforcement.db`) is **not committed** (`*.db` is gitignored) and must be
+built once from the annotations corpus — a step that **calls the OpenAI embeddings API**:
+
+```bash
+# path is relative to mastra-studio-demo/ and depends on your checkout depth
+npm run build:enforcement -- ../carver-showcase/data/annotations.jsonl
+```
+
+The script streams the corpus, keeps **every** usable record from the four allowlisted US
+bodies (FTC, SEC, CFTC, CFPB), embeds each with `text-embedding-3-small`, and writes
+`src/mastra/public/enforcement.db` — the directory `mastra dev` runs from, so the live agent
+reads exactly what you built. **Restart `npm run dev` after building.** Selection is neutral —
+all usable records from those four bodies, chosen by regulator rather than by matching the demo
+questions — so no cherry-pick caveat applies.
+
 ## What's here
 
 | Path | Purpose |
 |---|---|
-| `src/mastra/index.ts` | `new Mastra({ agents: { baselineAgent, carverAgent }, ... })` |
-| `src/mastra/agents/base-instructions.ts` | The prompt both agents share |
-| `src/mastra/agents/baseline-agent.ts` | Control: no tools |
-| `src/mastra/agents/carver-agent.ts` | Treatment: base prompt + the tool |
+| `src/mastra/index.ts` | `new Mastra({ agents: { baselineAgent, carverAgent, investmentBaselineAgent, investmentCarverAgent }, ... })` |
+| `src/mastra/agents/base-instructions.ts` | The prompt the first pair shares |
+| `src/mastra/agents/baseline-agent.ts` | Scenario 1 control: no tools |
+| `src/mastra/agents/carver-agent.ts` | Scenario 1 treatment: base prompt + the topic/update tools |
+| `src/mastra/agents/investment-base-instructions.ts` | The prompt the second pair shares |
+| `src/mastra/agents/investment-baseline-agent.ts` | Scenario 2 control: no tools |
+| `src/mastra/agents/investment-carver-agent.ts` | Scenario 2 treatment: base prompt + `searchCarverEnforcement` |
 | `src/mastra/tools/carver-topic-search.ts` | Pure matching + data loading (no Mastra import) |
 | `src/mastra/tools/carver-topic-tool.ts` | `createTool` wrapper — sector lookup |
 | `src/mastra/tools/carver-update-search.ts` | Pure filter/sort over updates; reuses the topic matcher |
 | `src/mastra/tools/carver-update-tool.ts` | `createTool` wrapper — recent updates |
+| `src/mastra/tools/carver-enforcement-search.ts` | Pure retrieval core (embed → query → shape); injectable I/O, unit-tested |
+| `src/mastra/tools/carver-enforcement-tool.ts` | `createTool` wrapper — semantic enforcement search over the vector store |
+| `src/mastra/tools/embed.ts` | Minimal OpenAI embeddings REST client (`text-embedding-3-small`) |
 | `data/carver-topics.json` | Vendored fixture — 150 classified bodies |
 | `data/carver-updates.json` | Vendored fixture — 1,002 annotated documents |
+| `src/mastra/public/enforcement.db` | Vector DB for scenario 2 — **not committed**; built on demand (see below) |
 | `scripts/build-topics.mjs` | Regenerates the topics fixture (`npm run build:data`) |
 | `scripts/build-updates.mjs` | Regenerates the updates fixture (`npm run build:updates`) |
+| `scripts/build-enforcement.mjs` | Builds the enforcement vector DB (`npm run build:enforcement -- <corpus>`) |
 | `scripts/marquee.mjs` | The 21 marquee bodies, shared by both builders |
 
 Studio auto-discovers whatever is registered on the `Mastra` instance; there is no UI code

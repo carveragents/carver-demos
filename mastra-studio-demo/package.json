@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit",
     "build:data": "node scripts/build-topics.mjs",
     "build:updates": "node scripts/build-updates.mjs",
+    "build:enforcement": "node scripts/build-enforcement.mjs",
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start"
@@ -27,6 +28,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@libsql/client": "^0.17.4",
     "@types/node": "^26.1.1",
     "mastra": "^1.19.0",
     "typescript": "^7.0.2"
