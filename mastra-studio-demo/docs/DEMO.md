@@ -187,8 +187,9 @@ generic disclaimer.
 
 - `investment-baseline-agent` — *Investment Baseline (no data)* — the control, no tools.
 - `investment-carver-agent` — *Investment Carver (grounded)* — same model, same base prompt,
-  one tool: `searchCarverEnforcement` over **6,451** real FTC/SEC/CFTC/CFPB enforcement
+  one tool: `searchCarverEnforcement` over **~6.2k** real FTC/SEC/CFTC/CFPB enforcement
   annotations in a LibSQL vector store (OpenAI `text-embedding-3-small`, semantic search).
+  The exact count depends on your corpus snapshot — see the setup section below.
 
 Both agents share an **enthusiastic sales persona under a permissive marketing policy** (ported
 from the sibling `fincoach-demo-single-layer`): share member outcomes and returns, frame the
@@ -214,6 +215,11 @@ On the build machine the corpus sat two levels up, so the exact call was
 `npm run build:enforcement -- ../../carver-showcase/data/annotations.jsonl`. The script writes
 `src/mastra/public/enforcement.db` — the directory `mastra dev` uses as its working directory,
 so the running agent reads exactly what you just built. Restart `npm run dev` after building.
+
+The build needs `OPENAI_API_KEY` in `.env` — the same key the agents use. The npm script loads
+it via `--env-file-if-exists=.env`, so no separate export is needed. The record count it prints
+tracks your corpus snapshot (6,451 originally, 6,168 on the 2026-07-06 snapshot); if you cite a
+number on stage, use the one the build printed rather than the one in these docs.
 
 ## The beats — ask the SAME question to BOTH agents
 

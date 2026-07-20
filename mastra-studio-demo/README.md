@@ -119,7 +119,7 @@ that one can search Carver's regulatory **enforcement** signals.
 | | |
 |---|---|
 | `investment-baseline-agent` — *Investment Baseline (no data)* | the control — no tools |
-| `investment-carver-agent` — *Investment Carver (grounded)* | base prompt + `searchCarverEnforcement` over 6,451 real FTC/SEC/CFTC/CFPB enforcement records (LibSQL vector store, OpenAI embeddings, semantic search) |
+| `investment-carver-agent` — *Investment Carver (grounded)* | base prompt + `searchCarverEnforcement` over ~6.2k real FTC/SEC/CFTC/CFPB enforcement records (LibSQL vector store, OpenAI embeddings, semantic search) |
 
 Ask both the same reckless question and compare:
 
@@ -149,12 +149,18 @@ built once from the annotations corpus — a step that **calls the OpenAI embedd
 npm run build:enforcement -- ../carver-showcase/data/annotations.jsonl
 ```
 
+Needs `OPENAI_API_KEY` in `.env` (same key the agents use) — the script loads it via
+`--env-file-if-exists`, so no extra export is required.
+
 The script streams the corpus, keeps **every** usable record from the four allowlisted US
 bodies (FTC, SEC, CFTC, CFPB), embeds each with `text-embedding-3-small`, and writes
 `src/mastra/public/enforcement.db` — the directory `mastra dev` runs from, so the live agent
 reads exactly what you built. **Restart `npm run dev` after building.** Selection is neutral —
 all usable records from those four bodies, chosen by regulator rather than by matching the demo
 questions — so no cherry-pick caveat applies.
+
+The exact record count tracks your corpus snapshot: 6,451 on the original build, 6,168 on the
+2026-07-06 snapshot. If you quote a number while presenting, use the one the build printed.
 
 ## What's here
 
