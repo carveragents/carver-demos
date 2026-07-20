@@ -44,6 +44,37 @@ npm test        # 32 unit tests (node --test, no runner dependency)
 npm run typecheck
 ```
 
+## Handing off to another machine
+
+**Scenario 1 (regulatory pair) runs cold** — committed fixtures, nothing external. `npm install`,
+put a key in `.env`, `npm run dev`, follow [`docs/DEMO.md`](docs/DEMO.md).
+
+**Scenario 2 (investment pair) needs the enforcement corpus, which is _not_ in this repo.** The
+vector DB is built (not committed) from `carver-showcase/data/annotations.jsonl` — a **~1.7 GB**
+file that lives in the **separate `carver-showcase` repo**, not here and not committed anywhere in
+this project. There is no fallback fixture. On a fresh machine:
+
+- If you have `carver-showcase` checked out, point the build at its `annotations.jsonl` (the path
+  is relative to `mastra-studio-demo/` and depends on how deep your checkout is — locate the file
+  and pass its actual path; e.g. `../carver-showcase/…` or `../../carver-showcase/…`):
+  `npm run build:enforcement -- <path/to/annotations.jsonl>`, then **restart `npm run dev`**.
+- If you don't have it, obtain the `carver-showcase` repo first, or **skip scenario 2** and demo
+  scenario 1 only — scenario 1 is unaffected.
+
+**Viewing Studio from a different device** (e.g. over Tailscale, not on the host itself): the
+embedded Studio defaults its API endpoint to `localhost:4111`, so a remote browser shows a
+"config screen" and can't connect. Fix: browse to Studio on the **same origin** it's served from,
+open DevTools console, and run —
+
+```js
+localStorage.setItem("mastra-studio-config",
+  JSON.stringify({ baseUrl: location.origin, endpoint: location.origin, apiPrefix: "/api" }));
+location.reload();
+```
+
+The configured endpoint must equal the address-bar origin. Not needed when you run and view on
+the same machine via `localhost`.
+
 ## The demo
 
 In Studio's sidebar, **Agents** lists both. Ask each the same question, then compare their

@@ -16,6 +16,10 @@ npm run dev            # Studio at http://localhost:4111
   switch without losing history.
 - The first response of the session is slow (cold start). Send one throwaway message before
   the audience is watching.
+- **Running this on a fresh machine?** Scenario 1 (below) runs cold, but the second scenario
+  needs the enforcement corpus built first — see
+  [Handing off to another machine](../README.md#handing-off-to-another-machine) in the README
+  for the corpus prerequisite and the remote-Studio access fix.
 
 **Agents**
 
