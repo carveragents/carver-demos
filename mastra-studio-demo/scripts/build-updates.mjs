@@ -61,6 +61,20 @@ const snapshotDate = JSON.parse(readFileSync(SNAPSHOT_META, 'utf8')).snapshot_da
 const isUsableDate = (date) =>
   typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date) && date >= '2000-01-01' && date <= snapshotDate;
 
+/**
+ * The document's own URL, so a cited update is clickable.
+ *
+ * `classification.metadata.base_url` is only a bare domain ("cert.ssi.gouv.fr") — useless as
+ * a citation. The real per-document link lives at `input_data.extracted_metadata.url`.
+ * Mirrors sourceUrlOf() in build-domain-index.mjs; keep the two in step.
+ */
+const sourceUrlOf = (record) => {
+  const direct = record.input_data?.extracted_metadata?.url ?? '';
+  if (typeof direct === 'string' && direct.startsWith('http')) return direct;
+  const domain = record.output_data?.classification?.metadata?.base_url ?? '';
+  return domain ? `https://${domain.replace(/^https?:\/\//, '')}` : '';
+};
+
 const trim = (record) => {
   const out = record.output_data ?? {};
   const cls = out.classification ?? {};
@@ -82,6 +96,7 @@ const trim = (record) => {
     whyItMatters: summary.why_it_matters ?? '',
     keyRequirements: (summary.key_requirements ?? []).slice(0, MAX_KEY_REQUIREMENTS),
     tags: (meta.tags ?? []).slice(0, MAX_TAGS),
+    sourceUrl: sourceUrlOf(record),
   };
 };
 

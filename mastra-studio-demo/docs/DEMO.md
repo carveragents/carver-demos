@@ -439,6 +439,14 @@ with reported active exploitation.
 
 Neither answer is wrong about 2024. Only one is about *now*.
 
+**Click the links.** The grounded agent cites with markdown links straight to the issuing
+body: `cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0711/` and
+`advisories.ncsc.nl/advisory?id=NCSC-2026-0179`. Both return 200, and the CERT-FR page is
+titled *"Multiples vulnérabilités dans les VPN Check Point"* and lists CVE-2026-50751 and
+CVE-2026-50752 — the exact CVEs quoted. Opening one live is the strongest single moment in
+the demo: the audience watches the claim resolve to the regulator's own page. The baseline
+offers nothing to click.
+
 ### Beat 3 — Five years stale
 
 > **Have there been any advisories about credential leaks affecting Fortinet VPN gateways?**
@@ -502,6 +510,11 @@ Two things that did **not** reproduce, recorded so nobody builds a beat on them:
 
 ## Caveats
 
+- **Link quality varies by feed.** Cyber advisories resolve to the document itself
+  (`cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0711/`). Some other feeds — FCA publications in
+  particular — resolve to a search or index page rather than the exact document, because that
+  is the URL the crawler recorded. Prefer a beat whose link is precise if you intend to click
+  through live.
 - **Not self-contained.** Like scenario 2, `cyber.db` is built on demand from the annotations
   corpus and is not committed. No fixture fallback.
 - **Selection is neutral.** Every usable record whose `impacted_business.industry` includes

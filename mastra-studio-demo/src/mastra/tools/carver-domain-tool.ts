@@ -55,7 +55,12 @@ const signalSchema = z.object({
   keyRequirements: z.array(z.string()),
   impactScore: z.number().nullable(),
   tags: z.array(z.string()),
-  sourceUrl: z.string(),
+  sourceUrl: z
+    .string()
+    .describe(
+      'Direct link to the source document on the issuing body\'s own site. Cite this ' +
+        'whenever you reference the record, so the reader can verify the claim.',
+    ),
   score: z.number().describe('Semantic similarity to the query, higher is closer'),
 });
 

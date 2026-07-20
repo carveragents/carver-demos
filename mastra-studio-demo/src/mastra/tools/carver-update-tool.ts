@@ -21,6 +21,12 @@ const updateSchema = z.object({
   whyItMatters: z.string(),
   keyRequirements: z.array(z.string()),
   tags: z.array(z.string()),
+  sourceUrl: z
+    .string()
+    .describe(
+      "Direct link to the source document on the regulator's own site. Cite this whenever " +
+        'you reference the update, so the reader can verify the claim.',
+    ),
 });
 
 export const searchCarverUpdates = createTool({

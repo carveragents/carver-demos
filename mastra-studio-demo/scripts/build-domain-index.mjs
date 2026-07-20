@@ -97,6 +97,21 @@ if (!makeSelector) {
 }
 const inDomain = makeSelector(domain.selector.values);
 
+/**
+ * The document's own URL, so a cited claim is clickable.
+ *
+ * `classification.metadata.base_url` is only a BARE DOMAIN ("cert.ssi.gouv.fr") — useless as
+ * a citation, and what this field used to carry. The real per-document link lives at
+ * `input_data.extracted_metadata.url` and is populated on 100% of records (measured over the
+ * cyber slice). Fall back to the domain rather than emitting nothing.
+ */
+const sourceUrlOf = (record) => {
+  const direct = record.input_data?.extracted_metadata?.url ?? '';
+  if (typeof direct === 'string' && direct.startsWith('http')) return direct;
+  const domain = record.output_data?.classification?.metadata?.base_url ?? '';
+  return domain ? `https://${domain.replace(/^https?:\/\//, '')}` : '';
+};
+
 /** Keeps only the fields the tool shows. Identical across domains, so hits are uniform. */
 const trim = (record) => {
   const out = record.output_data ?? {};
@@ -114,7 +129,7 @@ const trim = (record) => {
     keyRequirements: (summary.key_requirements ?? []).slice(0, 3),
     impactScore: scores.impact?.score ?? null,
     tags: (meta.tags ?? []).slice(0, 8),
-    sourceUrl: cls.metadata?.base_url ?? '',
+    sourceUrl: sourceUrlOf(record),
   };
 };
 

@@ -18,6 +18,8 @@ export type UpdateRecord = {
   whyItMatters: string;
   keyRequirements: string[];
   tags: string[];
+  /** Direct link to the source document on the regulator's own site. */
+  sourceUrl: string;
 };
 
 /** The regulators a query resolved to, reported when more than one matched. */
