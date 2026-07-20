@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit",
     "build:data": "node scripts/build-topics.mjs",
     "build:updates": "node scripts/build-updates.mjs",
-    "build:enforcement": "node --env-file-if-exists=.env scripts/build-enforcement.mjs",
+    "build:domain": "node --env-file-if-exists=.env scripts/build-domain-index.mjs",
+    "build:enforcement": "node --env-file-if-exists=.env scripts/build-domain-index.mjs enforcement",
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start"

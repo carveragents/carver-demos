@@ -1,0 +1,62 @@
+{
+  "_comment": [
+    "Domain registry — the SINGLE source of truth for every vector-backed domain.",
+    "Read by scripts/build-domain-index.mjs (which builds the index) and by",
+    "src/mastra/tools/carver-domain-tool.ts (which queries it). Both load this file",
+    "with readFileSync + JSON.parse, so there is no .mjs/.ts duplication to drift.",
+    "",
+    "To add a domain: add an entry here, then run",
+    "  npm run build:domain -- <id> <path/to/annotations.jsonl>",
+    "and register a tool + agent pair. No builder changes needed unless the domain",
+    "needs a selector kind that does not exist yet.",
+    "",
+    "selector.kind:",
+    "  regulatorAllowlist - exact match on classification.regulatory_source.name",
+    "                       (case-insensitive). Use for 'these specific bodies'.",
+    "  industryAny        - metadata.impacted_business.industry contains any value",
+    "                       (case-insensitive). Use for 'this sector'.",
+    "",
+    "SELECTION MUST STAY NEUTRAL. Select by body or sector, never by matching the",
+    "demo questions — see docs/BUILD-NOTES.md 'Cherry-pick the questions, never the",
+    "fixture.' A fixture rigged to the script collapses on the first adjacent question."
+  ],
+  "domains": [
+    {
+      "id": "enforcement",
+      "dbFile": "enforcement.db",
+      "indexName": "enforcement",
+      "toolId": "search-carver-enforcement",
+      "toolName": "searchCarverEnforcement",
+      "label": "US consumer-protection & markets enforcement",
+      "description": "Search Carver's regulatory enforcement signals from the FTC, SEC, CFTC, and CFPB by meaning. Returns the most semantically similar enforcement actions and guidance, with the regulator, date, what changed, why it matters, and an impact score. Use to ground claims about returns, refunds, testimonials, guarantees, or what regulators have acted on.",
+      "queryHint": "A natural-language description of the claim or topic to check, e.g. \"promising specific investment returns\"",
+      "selector": {
+        "kind": "regulatorAllowlist",
+        "values": [
+          "Federal Trade Commission",
+          "U.S. Securities and Exchange Commission",
+          "U.S. SECURITIES AND EXCHANGE COMMISSION",
+          "SECURITIES AND EXCHANGE COMMISSION",
+          "Securities and Exchange Commission",
+          "Commodity Futures Trading Commission",
+          "U.S. Commodity Futures Trading Commission",
+          "Consumer Financial Protection Bureau"
+        ]
+      }
+    },
+    {
+      "id": "cyber",
+      "dbFile": "cyber.db",
+      "indexName": "cyber",
+      "toolId": "search-carver-cyber",
+      "toolName": "searchCarverCyber",
+      "label": "Cybersecurity advisories & vulnerability alerts",
+      "description": "Search Carver's cybersecurity regulatory signals — national CERT advisories, vulnerability alerts, and security guidance from bodies such as ANSSI, CISA, NCSC, CCN-CERT and the Canadian Centre for Cyber Security — by meaning. Returns the most semantically similar advisories with the issuing body, date, what changed, why it matters, and an impact score. Use to ground any claim about whether a product, vendor, or vulnerability has been the subject of a recent advisory.",
+      "queryHint": "A natural-language description of the product, vendor or vulnerability to check, e.g. \"advisories affecting Schneider Electric products\"",
+      "selector": {
+        "kind": "industryAny",
+        "values": ["cybersecurity"]
+      }
+    }
+  ]
+}

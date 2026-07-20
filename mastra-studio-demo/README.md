@@ -3,9 +3,17 @@
 A [Mastra](https://mastra.ai/docs) demo that shows, by **contrast**, what plugging a data
 source into an agent actually buys you.
 
-Two agents run side by side in Mastra Studio. They are identical — same model, same base
-instructions — except one can query Carver's regulatory data and the other cannot. Ask both
-the same question and the difference is the demo.
+Agents run side by side in Mastra Studio in **pairs**. Each pair is identical — same model,
+same base instructions — except one can query Carver's regulatory data and the other cannot.
+Ask both the same question and the difference is the demo.
+
+Three pairs, in increasing order of how sharp the contrast is:
+
+| Pair | Grounds on | Contrast |
+|---|---|---|
+| regulatory (scenario 1) | committed fixtures | what a body *is*, and what it published |
+| investment (scenario 2) | FTC/SEC/CFTC/CFPB enforcement | provenance for a sales claim |
+| **cybersecurity (scenario 3)** | CERT advisories | **the baseline is confidently two years stale** |
 
 **To run the demo, follow [`docs/DEMO.md`](docs/DEMO.md)** — four beats in a fixed order,
 every query and response verified live.
@@ -147,6 +155,12 @@ built once from the annotations corpus — a step that **calls the OpenAI embedd
 ```bash
 # path is relative to mastra-studio-demo/ and depends on your checkout depth
 npm run build:enforcement -- ../carver-showcase/data/annotations.jsonl
+
+# or, equivalently, via the general form:
+npm run build:domain -- enforcement ../carver-showcase/data/annotations.jsonl
+
+# add --dry-run to see what WOULD be selected without embedding anything ($0):
+npm run build:domain -- enforcement ../carver-showcase/data/annotations.jsonl --dry-run
 ```
 
 Needs `OPENAI_API_KEY` in `.env` (same key the agents use) — the script loads it via
@@ -162,11 +176,54 @@ questions — so no cherry-pick caveat applies.
 The exact record count tracks your corpus snapshot: 6,451 on the original build, 6,168 on the
 2026-07-06 snapshot. If you quote a number while presenting, use the one the build printed.
 
+## Third scenario — cybersecurity advisories (the sharpest contrast)
+
+A third pair, and the strongest of the three. Both are security-operations assistants with
+the same model and the same base prompt (`cyber-base-instructions.ts`); one can search
+Carver's cybersecurity advisories and the other cannot.
+
+| | |
+|---|---|
+| `cyber-baseline-agent` — *Cyber Baseline (no data)* | the control — no tools |
+| `cyber-carver-agent` — *Cyber Carver (grounded)* | base prompt + `searchCarverCyber` over 2,099 CERT advisories (NIST, ENISA, ANSSI, NCSC, CCB, Traficom, CSA Singapore, NATO CCDCOE, …) |
+
+Verified live, *"Any advisories affecting Check Point VPN products recently?"*:
+
+| | Baseline (no data) | Carver (grounded) |
+|---|---|---|
+| Answer | CISA **AA25-141A**, *21 May 2025*, CVE-2024-**24919**, hotfix SK182336 (2024) | **NCSC-2026-0179**, *2026-06-16*, CVE-2026-50751/50752, plus ANSSI *2026-06-09* |
+| Trace | **no tool call** | `searchCarverCyber` |
+
+**Why this domain beats the other two.** Measured over the corpus (see
+`mastra-guardrail/prep/tools/README.md`), `financial services` records come 54% from bodies a
+frontier model knows cold — which is exactly why the investment pair flattens to a provenance
+argument. Cybersecurity is **100% non-famous bodies**, and its artifacts are unbluffable:
+there is no plausible-sounding fallback for *"CCN-CERT AL 04/26 Campaña FortiBleed"*. A
+20-record probe found ~9/20 confident-but-stale, 4/20 honest "I'm not aware", and a
+fabrication that invented the date *"July 17, 2026"* for a real 2026-06-18 alert.
+
+The baseline here is **not** hedging or refusing. It gives a detailed, confident, entirely
+real answer — about 2024 and 2025. That is the whole point.
+
+## Adding a domain
+
+Domains are declared once in `data/carver-domains.json`, which is read by **both** the build
+script and the tools, so the index name and DB path cannot drift apart:
+
+1. Add an entry (`id`, `dbFile`, `indexName`, `toolId`, `toolName`, `description`, `selector`).
+   Selectors are `regulatorAllowlist` (these specific bodies) or `industryAny` (this sector).
+2. `npm run build:domain -- <id> <corpus> --dry-run` to check the selection is sane and sized.
+3. Drop `--dry-run` to build, then **restart `npm run dev`**.
+4. Add a two-line tool file (see `carver-cyber-tool.ts`) and an agent pair.
+
+Keep selection **neutral** — by body or sector, never by matching the demo questions. See
+`docs/BUILD-NOTES.md`, *"Cherry-pick the questions, never the fixture."*
+
 ## What's here
 
 | Path | Purpose |
 |---|---|
-| `src/mastra/index.ts` | `new Mastra({ agents: { baselineAgent, carverAgent, investmentBaselineAgent, investmentCarverAgent }, ... })` |
+| `src/mastra/index.ts` | `new Mastra({ agents: { ...six agents, three pairs }, ... })` |
 | `src/mastra/agents/base-instructions.ts` | The prompt the first pair shares |
 | `src/mastra/agents/baseline-agent.ts` | Scenario 1 control: no tools |
 | `src/mastra/agents/carver-agent.ts` | Scenario 1 treatment: base prompt + the topic/update tools |
@@ -182,10 +239,17 @@ The exact record count tracks your corpus snapshot: 6,451 on the original build,
 | `src/mastra/tools/embed.ts` | Minimal OpenAI embeddings REST client (`text-embedding-3-small`) |
 | `data/carver-topics.json` | Vendored fixture — 150 classified bodies |
 | `data/carver-updates.json` | Vendored fixture — 1,002 annotated documents |
-| `src/mastra/public/enforcement.db` | Vector DB for scenario 2 — **not committed**; built on demand (see below) |
+| `src/mastra/public/enforcement.db` | Vector DB for scenario 2 — **not committed**; built on demand |
+| `src/mastra/public/cyber.db` | Vector DB for scenario 3 — **not committed**; built on demand |
 | `scripts/build-topics.mjs` | Regenerates the topics fixture (`npm run build:data`) |
 | `scripts/build-updates.mjs` | Regenerates the updates fixture (`npm run build:updates`) |
-| `scripts/build-enforcement.mjs` | Builds the enforcement vector DB (`npm run build:enforcement -- <corpus>`) |
+| `src/mastra/agents/cyber-base-instructions.ts` | The prompt the third pair shares |
+| `src/mastra/agents/cyber-baseline-agent.ts` | Scenario 3 control: no tools |
+| `src/mastra/agents/cyber-carver-agent.ts` | Scenario 3 treatment: base prompt + `searchCarverCyber` |
+| `src/mastra/tools/carver-domain-tool.ts` | Factory — builds a search tool for any declared domain |
+| `src/mastra/tools/carver-cyber-tool.ts` | `createTool` wrapper — cybersecurity advisories |
+| `data/carver-domains.json` | **Domain registry** — single source of truth, read by builder AND tools |
+| `scripts/build-domain-index.mjs` | Builds any domain's vector DB (`npm run build:domain -- <id> <corpus> [--dry-run]`) |
 | `scripts/marquee.mjs` | The 21 marquee bodies, shared by both builders |
 
 Studio auto-discovers whatever is registered on the `Mastra` instance; there is no UI code
