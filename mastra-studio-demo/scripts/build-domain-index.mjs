@@ -178,7 +178,16 @@ if (DRY_RUN) {
 
 // 2. Embed and upsert.
 const store = new LibSQLVector({ id: `carver-${domain.id}-vector`, url: DB_URL });
-await store.createIndex({ indexName: domain.indexName, dimension: DIMENSION });
+await store.createIndex({ indexName: domain.indexName, dimension: DIMENSION, metric: 'cosine' });
+
+// Drop the DiskANN vector index BEFORE inserting. The tools query LibSQLVector without a
+// filter, which brute-forces vector_distance_cos over the table and never touches DiskANN.
+// That index costs ~320 KB per vector — it made cyber.db 690 MB for 2,099 records before
+// this line existed. Exact brute force over a few thousand vectors is instant, so nothing
+// is lost. Both this and `metric: 'cosine'` above were in the original build-enforcement.mjs
+// and were lost when it was generalised; do not drop them again.
+const rawClient = createClient({ url: DB_URL });
+await rawClient.execute(`DROP INDEX IF EXISTS ${domain.indexName}_vector_idx`);
 
 for (let i = 0; i < kept.length; i += BATCH) {
   const slice = kept.slice(i, i + BATCH);
@@ -188,7 +197,7 @@ for (let i = 0; i < kept.length; i += BATCH) {
 }
 
 // 3. Report what actually landed, read back from the DB rather than assumed.
-const raw = createClient({ url: DB_URL });
+const raw = rawClient;
 const count = await raw.execute(`SELECT COUNT(*) AS n FROM ${domain.indexName}`);
 console.log(
   `done: ${Number(count.rows[0].n).toLocaleString()} records in index "${domain.indexName}" at ${DB_URL}`,
