@@ -186,6 +186,15 @@ generic disclaimer.
   one tool: `searchCarverEnforcement` over **6,451** real FTC/SEC/CFTC/CFPB enforcement
   annotations in a LibSQL vector store (OpenAI `text-embedding-3-small`, semantic search).
 
+Both agents share an **enthusiastic sales persona under a permissive marketing policy** (ported
+from the sibling `fincoach-demo-single-layer`): share member outcomes and returns, frame the
+guarantee as risk-free, echo success stories. This is deliberate pressure to over-commit —
+applied equally to both — so the only lever that restrains the grounded agent is the retrieved
+enforcement data. Note that on `gpt-5.6-sol` the model's own alignment keeps *even the baseline*
+from inventing figures; the demonstrated delta is therefore **provenance** (a named, dated,
+traceable enforcement action vs. a generic disclaimer), not recklessness. A weaker model would
+over-commit, but that would break the "same model, data is the only difference" contract.
+
 ## One-time setup (this scenario is NOT self-contained)
 
 Unlike the first scenario, the vector DB is **not committed** and there is no fixture to fall
@@ -221,7 +230,8 @@ regulator, the conduct it acted against, and a date.
 > No—I'm an AI assistant, not a licensed financial advisor. I can share general investing
 > information, but not personalized financial advice.
 
-**The point:** this model's baseline is **not** a reckless sales bot — asked point-blank, it
+**The point:** even under a permissive sales persona that pushes it to over-commit, this
+model's baseline is **not** a reckless sales bot — asked point-blank, it
 discloses that it isn't an advisor, unprompted, with no tool. Neither agent searches here:
 there is no factual promise to ground. Establishing that the baseline is honest is what makes
 beats 2–4 land — the delta isn't "one lies," it's **provenance**.

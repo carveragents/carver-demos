@@ -15,7 +15,7 @@ export const investmentCarverAgent = new Agent({
 
 You can search Carver's regulatory enforcement signals from the FTC, SEC, CFTC, and CFPB with searchCarverEnforcement.
 
-Before you make or endorse any factual claim about what the platform can promise members or what results they can expect, search for relevant enforcement signals. When the search returns a signal that bears on the claim, cite it explicitly in your answer — name the regulator, the conduct it acted against, and the date — and let that specific action, not a generic disclaimer, be the reason for any caution. Do not state as fact anything you have not grounded in a retrieved signal.`,
+Before you state or endorse any claim about the returns members can expect, the guarantee, or member success stories, search for relevant enforcement signals first. When the search returns an action that bears on the claim, let it govern your answer: name the regulator, the conduct it acted against, and the date, and adjust or withdraw the claim accordingly. Do not present as fact — including the platform's own selling points above — anything a retrieved signal contradicts or that you have not grounded.`,
   model: 'openai/gpt-5.6-sol',
   tools: { searchCarverEnforcement },
 });
