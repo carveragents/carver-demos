@@ -1,7 +1,17 @@
 # Demo run-sheet
 
-Four beats, ~5 minutes. Every query and response below was verified live against the current
-build. Run them **in this order** — the sequence is the argument.
+Three independent scenarios, four beats each, ~5 minutes per scenario. Every query and
+response below was verified live against the current build. Within a scenario run the beats
+**in order** — the sequence is the argument.
+
+| Scenario | Pair | Contrast | Self-contained? |
+|---|---|---|---|
+| 1 — regulatory | `baseline-agent` / `carver-agent` | what a body *is*, and what it published | **yes**, committed fixtures |
+| 2 — investment | `investment-*-agent` | provenance for a sales claim | no — needs `build:domain -- enforcement` |
+| 3 — cybersecurity | `cyber-*-agent` | **staleness, two to five years** | no — needs `build:domain -- cyber` |
+
+**Short on time, or presenting once?** Run scenario 3. It has the widest gap and the least
+setup ambiguity. Scenario 1 is the best fallback because it runs cold on a fresh machine.
 
 ## Before you start
 
@@ -358,3 +368,145 @@ to nothing.
   `npm run build:enforcement` writes it. A production `mastra start` uses a different working
   directory and would find no records (the grounded agent would then retrieve nothing —
   silently, like the baseline). Demo via `npm run dev`.
+
+---
+
+# Third scenario — cybersecurity advisories (the sharpest contrast)
+
+Both agents are security-operations assistants on the same model with the same base prompt
+(`cyber-base-instructions.ts`). One can search Carver's cybersecurity advisories; the other
+cannot.
+
+- `cyber-baseline-agent` — *Cyber Baseline (no data)* — the control, no tools.
+- `cyber-carver-agent` — *Cyber Carver (grounded)* — same prompt, one tool:
+  `searchCarverCyber` over **2,099** CERT advisories (NIST, ENISA, ANSSI, NCSC-NL, UK NCSC,
+  Centre for Cybersecurity Belgium, Traficom, CSA Singapore, NATO CCDCOE, Canadian Centre for
+  Cyber Security, …).
+
+**Why this domain.** Measured over the corpus, `financial services` records come 54% from
+bodies a frontier model already knows cold — which is why scenario 2 flattens to a provenance
+argument. Cybersecurity is **100% non-famous bodies**, and its artifacts are unbluffable:
+CVE identifiers, version thresholds, vendor bulletin numbers. See
+`mastra-guardrail/prep/tools/README.md` for the measurement.
+
+**The single axis here is staleness, and it is enormous — two to five years.** Read the
+"Honest framing" section below before presenting: this baseline does not fabricate.
+
+## One-time setup
+
+```bash
+npm run build:domain -- cyber ../carver-showcase/data/annotations.jsonl
+```
+
+Path is relative to `mastra-studio-demo/` and depends on your checkout depth. Add `--dry-run`
+first to see the selection without spending anything. Restart `npm run dev` after building.
+Produces `src/mastra/public/cyber.db` (~17 MB).
+
+## The beats — ask the SAME question to BOTH agents
+
+All four verified live 2026-07-20. Wording varies run to run; dates and document identifiers
+have been stable.
+
+### Beat 1 — Warm-up: the baseline is genuinely good
+
+> **We run Fortinet firewalls. What are the standard hardening steps you'd recommend?**
+
+**Baseline** — a solid, correct answer with no tool call: keep FortiOS on supported releases
+and monitor Fortinet PSIRT and CISA's KEV catalog; never expose HTTPS/SSH management to the
+internet; require MFA for admins and VPN users; disable HTTP, Telnet and unused SSL-VPN;
+ship logs to FortiAnalyzer or a SIEM; keep encrypted offline config backups and test restores.
+
+**Carver** — substantially the same advice, having searched anyway.
+
+**The point:** establish that the baseline is competent before you break it. If you skip this
+beat, the next three look like a rigged comparison. Nothing here needs Carver, and saying so
+out loud buys you credibility for beats 2–4.
+
+### Beat 2 — Two years stale
+
+> **Any advisories affecting Check Point VPN products recently?**
+
+**Baseline** (no tool call) — confident, specific, and entirely real:
+CISA added **CVE-2024-24919** to the Known Exploited Vulnerabilities catalog on
+**30 May 2024**; Check Point's advisory *"Security Gateways Information Disclosure
+Vulnerability (CVE-2024-24919)"* was published **28 May 2024**.
+
+**Carver** (`searchCarverCyber`) —
+*"Multiples vulnérabilités dans les VPN Check Point"*, **ANSSI**, **2026-06-09**, and
+*"Security Advisory NCSC-2026-0179 1.0.1"*, **Netherlands Cyber Security Center**,
+**2026-06-16**, covering **CVE-2026-50751** and **CVE-2026-50752** in gateways using IKEv1,
+with reported active exploitation.
+
+Neither answer is wrong about 2024. Only one is about *now*.
+
+### Beat 3 — Five years stale
+
+> **Have there been any advisories about credential leaks affecting Fortinet VPN gateways?**
+
+**Baseline** — CISA's *"Fortinet Warns of Credential Leak for FortiGate SSL-VPN Devices"*,
+**8 September 2021**, on credentials harvested via **CVE-2018-13379**.
+
+**Carver** — *"Alert AL26-014 – FortiBleed leak of thousands of compromised credentials
+impacting Fortinet devices"*, **Canadian Centre for Cyber Security**, **2026-06-18**, plus the
+**UK NCSC**'s *"Alert: NCSC issues advice following global targeting of Fortinet firewalls and
+VPN gateways"*, also **2026-06-18**.
+
+The gap widens from two years to five. This is the beat to sit on: an operator acting on the
+baseline's answer would be rotating credentials for a 2021 incident while a 2026 one is live.
+
+### Beat 4 — The closer: what grounding actually buys
+
+> **Any recent advisories on Stormshield products?**
+
+**Baseline** — CERT-FR's *"Campagne de compromission de pare-feux Stormshield Network Security
+(SNS)"*, **2 February 2024**, on **CVE-2022-3236**.
+
+**Carver** — three ANSSI advisories, each with a version threshold and a vendor bulletin:
+
+| Advisory | Date | Detail |
+|---|---|---|
+| *Multiples vulnérabilités dans Stormshield Management Center* | **2026-06-29** | SMC before **3.9.2**; bulletin **2026-012** |
+| *Vulnérabilité dans Stormshield Network Security* | **2026-06-10** | SNS before **5.0.6**; bulletin **2026-011** |
+| *Multiples vulnérabilités dans Stormshield Network Security* | **2026-03-11** | RCE / DoS; bulletin **2026-001** |
+
+End here. It is the clearest picture of the delta: not "one agent is wrong", but one agent
+hands you three dated advisories, the exact version you must be past, and the bulletin number
+to hand your vendor.
+
+## Then show the traces
+
+Same as the other scenarios, and the same punchline. The grounded run carries a `tool_call`
+span with the real retrieved payload — titles, dates, CVEs. The baseline run has **no
+retrieval step at all**. The empty trace is the point.
+
+## Honest framing (do not oversell)
+
+**This baseline never fabricates.** Across seven verified questions it was confident,
+specific, and consistently *real* — just years out of date. Do not promise the audience a
+hallucination; you will not get one, and the demo is stronger for it. The claim that holds is:
+**an ungrounded agent answers today's operational question with 2021–2024 facts, in a domain
+where that is the difference between patched and breached.**
+
+Two things that did **not** reproduce, recorded so nobody builds a beat on them:
+
+- **The invented-product test fails here.** Asked about *"Zylotech Quantum Firewall
+  appliances"*, the baseline correctly said it did not recognise the vendor and suggested we
+  might mean Zyxel or Check Point Quantum. That is a *better* answer than scenario 1's
+  Reykjavik Bicycle Authority beat produced. There is no hallucination beat in this scenario.
+- **An earlier probe saw a fabricated date; natural phrasing does not.** Using a question that
+  quoted a record's title back at the model, the baseline once invented *"July 17, 2026"* for a
+  real 2026-06-18 alert. Asked naturally — *"Has the Canadian Centre for Cyber Security issued
+  any alerts about Fortinet recently?"* — it instead gave **AL25-001, 15 January 2025**
+  (CVE-2024-55591): stale, not invented. **The fabrication was an artefact of the leading
+  question.** Phrasing changes behaviour; only the natural form belongs in a demo.
+
+## Caveats
+
+- **Not self-contained.** Like scenario 2, `cyber.db` is built on demand from the annotations
+  corpus and is not committed. No fixture fallback.
+- **Selection is neutral.** Every usable record whose `impacted_business.industry` includes
+  `cybersecurity`, chosen by sector — never by matching these questions. `technology` and
+  `information technology` were deliberately excluded after a dry-run showed them pulling in
+  World Economic Forum and ITU material (10,432 → 2,099).
+- **Runs under `npm run dev` only**, for the same working-directory reason as scenario 2.
+- **The corpus ends 2026-07-06.** "Recently" means recent as of that snapshot.
