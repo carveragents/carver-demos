@@ -604,6 +604,92 @@ agent. The full corpus is 244,545 records. Do not claim the full corpus would cl
 that has not been measured — but do not let the room conclude the retrieval is weak, because
 it is not.
 
+### Rejected: reasoning beats. Web search reasons at least as well — measured twice.
+
+The natural next move after the aggregate result is: *"stop building a lookup agent, build one
+that reasons."* We tested that. It does not rescue the scenario, and the way it fails is worth
+knowing.
+
+**Divergence probe** — *"Several national CERTs published on FortiBleed. Where does their advice
+actually diverge, whose posture is most aggressive, and what should we do first?"*
+
+Carver reasoned genuinely well: it found a real axis (Spain's CCN-CERT rotates credentials
+without waiting for confirmed compromise; UK NCSC investigates first but isolates harder once
+confirmed), named the most aggressive with a justification, and sequenced remediation with a
+stated rationale. 50.9s.
+
+The web arm did the same thing **better**, in the same time (53.6s). It framed the axis more
+crisply — *"the real divergence is in the threshold for treating the gateway as compromised,
+not in the basic controls"* — and added two things Carver structurally could not, because the
+bodies are not in the slice: CERT.at's point that upgrading alone leaves legacy SHA-256 hashes
+in exported configs until admins re-authenticate under PBKDF2, and NCSC-NL's reminder to rotate
+SSH keys and hunt across AD/LDAP/RADIUS. Its final ordering explicitly synthesised the two
+poles. **Reasoning over 5–13 documents is not a differentiator — retrieving 5–13 documents is
+exactly what web search is good at, and a frontier model reasons well over what it retrieves.**
+
+**Base-rate probe** — *"Was June 2026 genuinely unusual for Fortinet advisories?"* This is the
+structurally strongest reasoning question, because it needs a denominator rather than a sample.
+
+Carver answered in **10.4s** with numbers exactly matching the table (Jan–Mar 0, Apr 3, May 2,
+Jun 7) and correctly bounded the claim to "Carver's 2026 data": a clear spike.
+
+**The web arm reached the opposite conclusion, and it was right.** It solved the denominator
+problem by picking one consistent publisher (Canada's Cyber Centre) and counting inside it —
+2, 2, 1, 3, 1, 2 — then explained the trap:
+
+> *"June may look exceptional in a multi-agency dataset because the single FortiBleed campaign
+> prompted near-simultaneous alerts from the UK NCSC, Australia's ACSC, the Netherlands' NCSC
+> and others — not because Fortinet suddenly produced an exceptional number of separate
+> vulnerability events."*
+
+That is a direct and correct critique of Carver's answer. Carver counted **documents**; the
+question was about **events**. Six of its seven June records are one campaign. The "spike" is a
+multiple-counting artifact, and **cross-source comparability is what made the wrong inference
+easy** — the very property sold as the advantage two sections above. Do not demo this beat, and
+do not claim base rates from this corpus without an event-level key.
+
+### What actually held up, across five question types
+
+| Question type | Result |
+|---|---|
+| Lookup / recency | tie |
+| **Aggregate count** | **Carver wins** — web correctly declines as unanswerable |
+| Correlation / coverage | web wins, 13 bodies to 7 |
+| Divergence reasoning | web wins — better framing, more sources, same speed |
+| Base-rate reasoning | web wins — and exposes a counting artifact in Carver's answer |
+
+One win from five. It is a real win, but it is narrow, and it is a win because the web arm
+*declines* rather than because it fails.
+
+**The honest diagnosis is that the domain is wrong, not the thesis.** Cybersecurity advisories
+were picked because CERTs are non-famous bodies — but CERT advisories are *published in order
+to be found*: SEO'd, English-mirrored, syndicated through aggregator feeds, deliberately
+maximally distributed. It is the worst possible domain in which to out-retrieve a search
+engine. Anything the web indexes well, the web wins.
+
+What survives regardless of domain, and is worth saying because it was consistent: Carver was
+**3–8× faster** on every probe (10.4s vs 79.9s; 10.8s vs 83.5s), **deterministic**, and every
+citation resolved to the issuing body's own document.
+
+### Where to look next (not yet measured — do not present as fact)
+
+The pattern across all five probes is that web search wins wherever the answer is *public,
+English-mirrored, and event-shaped*. That suggests moving the contrast to content with the
+opposite properties, where Carver's slice is not competing with an index that already has it:
+
+- **Obligation-shaped rather than event-shaped questions** — *"does this rule apply to us, by
+  when, and what evidence do we need"* — where the answer depends on private context joined to
+  a complete regulatory set, not on a public event a search engine has already aggregated.
+- **Domains where completeness is contractual rather than convenient.** For a security
+  advisory, a good-enough answer from Google is genuinely fine, which is why the web keeps
+  winning here. For a regulatory obligation, *"I searched and found nothing"* is not a control
+  anyone can put in front of an auditor. That is a difference in the **cost of being wrong**,
+  not in the difficulty of the question — and it is the only asymmetry these five probes did
+  not erode.
+
+Both need testing before they go anywhere near a stage. The scoreboard above is what four
+untested-then-rejected beats cost; assume the same discipline applies.
+
 ### Rejected: the provable-absence beat
 
 Tempting and intellectually sound — a bounded corpus can say "zero of 2,099 records", which is
