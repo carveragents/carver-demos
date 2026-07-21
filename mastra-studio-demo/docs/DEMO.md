@@ -754,3 +754,99 @@ Two things that did **not** reproduce, recorded so nobody builds a beat on them:
 - **The corpus is a snapshot** (2026-07-06), so "recent" has a hard edge two weeks before any
   demo given after mid-July 2026. July 2026 holds only 11 records. Anchor beats in **June**.
 - **The corpus ends 2026-07-06.** "Recently" means recent as of that snapshot.
+
+# Scenarios 1 and 2, retested against a web-search arm (2026-07-20)
+
+`websearch-agent` is scenario 1's third arm — same `BASE_INSTRUCTIONS`, live web search, no
+Carver. It exists for the same reason the cyber one does, and it produced the same verdict.
+
+## The fixture, not the framing, is what hobbles the financial scenarios
+
+Measure this first, because it changes how everything else here should be read.
+
+| | |
+|---|---|
+| `enforcement.db` (scenario 2) | **100% famous US bodies** — FTC, SEC, CFTC, CFPB, 6,168 records |
+| `carver-updates.json` (scenario 1) | 124 of 145 bodies hold **exactly 3 updates**; only the 21 marquee bodies get 30 |
+
+`PER_OTHER = 3` in `build-updates.mjs`, and there is **no quality filter at all**. Kenya's
+Capital Markets Authority is represented by three records: *"Forbidden"* (an ingested HTTP 403
+page, impact 0), *"NSE Share Prices"* (impact 0), and one real press release. Across all non-US
+updates, **84 are `website error`**.
+
+The corpus is not the constraint. Records available versus records exposed:
+
+| Body | In corpus | In fixture |
+|---|---:|---:|
+| Saudi CMA (هيئة السوق المالية) | **1,374** | 3 |
+| Central Bank of Ireland | **619** | 3 |
+| Kuwait CMA | **387** | 3 |
+| Ghana SEC | **379** | 3 |
+| Central Bank of Iraq | **263** | 3 |
+| Nigeria SEC | **131** | 3 |
+| Kenya CMA | **51** | 3 |
+
+So the long tail — the part that was supposed to be Carver's advantage — has been demoed at
+**three records per body, some of them crawler errors**, against the live web. Any conclusion
+drawn from scenario 1 or 2 before this measures the fixture, not the data. Fixing it is cheap:
+raise `PER_OTHER`, drop `website error` and impact-0 records, rebuild.
+
+## The ambiguous-acronym beat: real, but smaller than it looks
+
+`carver-topics.json` holds 150 bodies across **75 jurisdictions**, with six acronym collisions.
+`CMA` maps to five bodies — Kenya, Kuwait, Oman, Saudi Arabia, and **China's Meteorological
+Administration**. `CBI` maps to the central banks of Iceland, Iraq and Ireland *and* the
+Confederation of British Industry. `SEC` maps to Ghana, Nigeria, Thailand and the US.
+
+Asked *"what has the CMA published recently about capital markets?"*:
+
+| Arm | Behaviour | Time |
+|---|---|---|
+| **Baseline** | **Also disambiguated** — asked which CMA, naming UK/Kenya/Saudi | 4.9s |
+| **Carver** | Enumerated all five **from data**, including the meteorological agency, then gave three thin updates (a crime referral, an IT tender, a sandbox admission) | 11.0s |
+| **Web search** | Assumed **UK Competition and Markets Authority**, answered substantively, then offered to switch jurisdiction | 30.7s |
+
+**The baseline disambiguates unprompted, so disambiguation is not the differentiator.** Carver's
+narrow edge is that it enumerates candidates *from data* rather than memory — it knew about Oman
+and the meteorological agency, which the baseline's list missed. Real, but thin, and buried
+under a fixture with nothing worth saying about any of the five.
+
+## Rejected: "obligation-shaped questions on obscure non-US regulators"
+
+This was the direction recommended at the end of the comparability section. **It does not
+survive contact with the web arm.** Asked *"we are listing a fund in Ghana and Kuwait — what
+have Ghana's SEC and Kuwait's CMA published in the last three months affecting fund licensing
+or disclosure?"*, web search returned:
+
+- Ghana SEC's data-protection directive (10 June 2026) and its online-trading-platform
+  licensing directive (23 June 2026) **with its 31 August 2026 compliance deadline**
+- Kuwait CMA Resolution 80 on ETFs (18 June), Circular 11 mandating **iFSAH/XBRL** disclosure
+  from 1 July, and Resolutions 95 and 96 of 9 July
+- A correctly-scoped negative: *"no new Ghana publication specifically changing fund prospectus
+  or periodic-disclosure requirements during the period"*
+
+That is obligation-shaped, deadline-bearing, jurisdiction-correct work on two genuinely obscure
+non-English regulators, and it is **good**. The hypothesis that the web indexes these bodies
+poorly is false.
+
+## What is actually left, after eight probes across three domains
+
+Web search wins or ties every **retrieval** question and every **reasoning** question we have
+been able to construct — cyber and finance, famous and obscure bodies alike. What separates the
+arms is no longer capability. It is operational, and it is consistent:
+
+| | Carver | Web search |
+|---|---|---|
+| Latency | **~10s** | 30–135s |
+| Calls per question | 20–40 local queries | **70–282 web searches** |
+| Reproducibility | deterministic | ranking-dependent, varies run to run |
+| Negative claims | bounded — *"N of 379 records"* | unprovable — *"I didn't find any"* |
+
+The Ghana answer is the sharpest illustration: the web arm's negative finding is almost
+certainly correct, and it **cannot demonstrate that it is**. It searched some pages. Carver can
+state a denominator.
+
+**This is a different pitch than "our agent is smarter", and the evidence supports it:** the
+same answer, an order of magnitude faster, reproducibly, with a provable denominator, at a
+fraction of the API calls. Before building another beat, decide whether that is the product
+story — because eight probes say the "better answers" story is not available against this model.

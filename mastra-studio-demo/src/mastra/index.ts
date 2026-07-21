@@ -9,6 +9,7 @@ import { investmentCarverAgent } from './agents/investment-carver-agent.ts';
 import { cyberBaselineAgent } from './agents/cyber-baseline-agent.ts';
 import { cyberCarverAgent } from './agents/cyber-carver-agent.ts';
 import { cyberWebsearchAgent } from './agents/cyber-websearch-agent.ts';
+import { websearchAgent } from './agents/websearch-agent.ts';
 
 export const mastra = new Mastra({
   // The demo is the contrast: same model, same base prompt, one has Carver data.
@@ -16,6 +17,7 @@ export const mastra = new Mastra({
   agents: {
     baselineAgent,
     carverAgent,
+    websearchAgent,
     investmentBaselineAgent,
     investmentCarverAgent,
     cyberBaselineAgent,
