@@ -531,6 +531,90 @@ The honest reading:
 
 If you only have time for one differentiating question, ask the **impact-ranking** one.
 
+## The comparability thesis — why lookup beats were always going to lose
+
+Everything above is a *lookup*: "any advisories affecting X?" A lookup is precisely what a
+search engine is built for, so web search will keep tying or winning those, and the demo will
+keep feeling thin. Carver's structured layer does not make lookups better. It makes a
+different class of question possible at all.
+
+`queryCarverCyber` (added 2026-07-20) exposes the structured half of a domain: filter by date
+window, minimum impact, body or keyword; order by date or impact; group by body, type or
+month. Verified against all three arms on 2026-07-20, `gpt-5.6-sol`:
+
+### Beat A — the aggregate question. Carver wins decisively.
+
+> *"How many cybersecurity advisories scored impact 8 or above in June 2026, and which issuing
+> bodies published the most of them?"*
+
+| Arm | Result | Time |
+|---|---|---|
+| **Carver** | **67 advisories**, top bodies ranked, and it noticed the ANSSI label variants unprompted and combined them to 9 | **10.8s** |
+| **Web search** | *"I can't give a defensible count without the source dataset."* Then asked which corpus to use | 83.5s |
+
+The 67 is exactly right — it matches `SELECT COUNT(*)` against the table. **Note what the web
+arm did: it behaved well.** It did not hallucinate a number; it correctly identified the
+question as unanswerable without a defined corpus, and said so. That is the beat. The contrast
+is not competent-versus-incompetent, it is **answerable versus unanswerable**. Carver *is* the
+corpus the web arm asks for.
+
+### Beat B — the correlation question. Web search wins on coverage. Run it anyway.
+
+> *"Which national cyber agencies responded to the FortiBleed campaign, and what did each one
+> publish? Include dates and impact scores."*
+
+Carver returned **7 bodies** — Canada (AL26-014), UK NCSC, CSIRT Italia, Spain's CCN-CERT,
+Andorra, Finland's monthly review, and a Dutch-hosted notice — every one with a numeric impact
+score and a live link, in five languages. It also **flagged the Hudson Rock misattribution by
+itself** (see Caveats) and declined to credit that record to the Dutch NCSC.
+
+Web search returned **13 bodies**, including Australia, Ireland, CISA, Malaysia, Japan ×2,
+Austria, Singapore and Vanuatu. **It beat Carver on coverage, and it is not close.**
+
+Do not hide this. It is the most useful thing in the document, because of *why* it happened
+and what the web arm's own answer admits:
+
+> *"FortiBleed is a credential-compromise campaign, not a single confirmed vulnerability, so
+> there is no universal CVSS/EPSS score. Below, 'impact' means the severity rating published by
+> each agency; **not rated** means it issued guidance without a score."*
+
+**Eight of its thirteen rows are "Not rated."** The remainder are qualitative and mutually
+incompatible — "Critical", "High", "High/Critical". Every one of Carver's seven carries a
+comparable 0–10 number. So the web found nearly twice as many documents and **still could not
+rank, threshold, or aggregate them**, because the open web has no common scale.
+
+That is the thesis, and it survives losing the coverage fight:
+
+> **Carver's edge is comparability, not coverage.** The web has more documents and always
+> will. Never race it there. Race it on whether the documents can be counted, filtered,
+> thresholded and ranked — a question the web cannot enter.
+
+Beat A is Beat B's consequence: you can only ask "how many scored 8 or above" of a corpus where
+everything is scored on one scale.
+
+### The coverage gap is in the corpus, not the agent
+
+Worth knowing before someone asks. Carver's retrieval was **6 of the 6** Fortinet records that
+exist in its June window — essentially perfect against what it holds. CISA, ACSC and Singapore
+*are* in the corpus for that fortnight but published other things; their FortiBleed advisories
+were never ingested. JPCERT, CERT.at and Vanuatu are absent entirely.
+
+So the shortfall is a property of **this 2,099-record sector slice**, not of Carver or of the
+agent. The full corpus is 244,545 records. Do not claim the full corpus would close the gap —
+that has not been measured — but do not let the room conclude the retrieval is weak, because
+it is not.
+
+### Rejected: the provable-absence beat
+
+Tempting and intellectually sound — a bounded corpus can say "zero of 2,099 records", which is
+an auditable negative, whereas web search's "I found nothing" is unfalsifiable. SolarWinds,
+Jenkins, Grafana and MongoDB all return zero here.
+
+**Do not demo it on this slice.** These are sector-filtered snapshot gaps, not real-world
+absences, so "zero" invites exactly the right objection — *"so your data is incomplete"* — and
+you would have to concede it. This beat needs a corpus whose boundary you are willing to
+defend.
+
 ## Honest framing (do not oversell)
 
 **This baseline never fabricates.** Across seven verified questions it was confident,
@@ -566,4 +650,21 @@ Two things that did **not** reproduce, recorded so nobody builds a beat on them:
   `information technology` were deliberately excluded after a dry-run showed them pulling in
   World Economic Forum and ITU material (10,432 → 2,099).
 - **Runs under `npm run dev` only**, for the same working-directory reason as scenario 2.
+- **Regulator names are not canonicalised. Never ask "how many bodies".** ANSSI appears under
+  three spellings (two differing only in apostrophe character), Italy's ACN under two casings,
+  ENISA under two. Worse, `Five Eyes cyber security agencies` is used as a *body name* for
+  three records that are really Canadian and Australian publications. Ask **"which bodies
+  responded and what did each publish"** — that question has a right answer; "how many bodies"
+  does not. Beat A survives this because it counts *advisories*, not bodies, and the agent
+  volunteered the ANSSI variant merge on its own.
+- **One record is misattributed.** The Dutch FortiBleed advisory is filed under `Hudson Rock`,
+  a private threat-intelligence vendor, though its `sourceUrl` is `ncsc.nl`. Hudson Rock was
+  presumably the research source cited inside it. The agent catches this unprompted and says
+  it cannot confidently attribute the record — which is the behaviour you want, and is worth
+  pointing at if it comes up.
+- **`updateType` is a weak filter axis.** 1,033 of 2,099 records are `press release` and only
+  117 are `advisory`. Filtering by type will return far less than the room expects. Filter by
+  impact and date instead.
+- **The corpus is a snapshot** (2026-07-06), so "recent" has a hard edge two weeks before any
+  demo given after mid-July 2026. July 2026 holds only 11 records. Anchor beats in **June**.
 - **The corpus ends 2026-07-06.** "Recently" means recent as of that snapshot.

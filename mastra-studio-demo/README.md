@@ -185,7 +185,8 @@ Carver's cybersecurity advisories and the other cannot.
 | | |
 |---|---|
 | `cyber-baseline-agent` — *Cyber Baseline (no data)* | the control — no tools |
-| `cyber-carver-agent` — *Cyber Carver (grounded)* | base prompt + `searchCarverCyber` over 2,099 CERT advisories (NIST, ENISA, ANSSI, NCSC, CCB, Traficom, CSA Singapore, NATO CCDCOE, …) |
+| `cyber-carver-agent` — *Cyber Carver (grounded)* | base prompt + `searchCarverCyber` and `queryCarverCyber` over 2,099 CERT advisories (NIST, ENISA, ANSSI, NCSC, CCB, Traficom, CSA Singapore, NATO CCDCOE, …) |
+| `cyber-websearch-agent` — *Cyber Web Search (no Carver)* | base prompt + live `webSearch` — the control for *"why not just give it web search?"* |
 
 Verified live, *"Any advisories affecting Check Point VPN products recently?"*:
 
@@ -205,16 +206,34 @@ fabrication that invented the date *"July 17, 2026"* for a real 2026-06-18 alert
 The baseline here is **not** hedging or refusing. It gives a detailed, confident, entirely
 real answer — about 2024 and 2025. That is the whole point.
 
+### Two tools per domain: lookup versus analysis
+
+`searchCarverCyber` is semantic top-k — it answers *"what is this about?"*. `queryCarverCyber`
+is the structured half: filter by date window, minimum impact, body or keyword; order by date
+or impact; group by body, type or month.
+
+The split matters because **web search matches Carver on lookups and will keep doing so**. It
+cannot touch aggregate questions. Asked *"how many advisories scored impact 8 or above in June
+2026, and which bodies published the most?"*, the Carver arm returns **67** with bodies ranked
+in 10.8s; the web arm spends 83.5s and correctly answers *"I can't give a defensible count
+without the source dataset."*
+
+The full three-arm measurement — including the correlation beat where **web search wins on
+coverage, 13 bodies to 7** — is in `docs/DEMO.md`. Read it before presenting; the honest
+framing is *comparability, not coverage*.
+
 ## Adding a domain
 
 Domains are declared once in `data/carver-domains.json`, which is read by **both** the build
 script and the tools, so the index name and DB path cannot drift apart:
 
-1. Add an entry (`id`, `dbFile`, `indexName`, `toolId`, `toolName`, `description`, `selector`).
+1. Add an entry (`id`, `dbFile`, `indexName`, `toolId`, `toolName`, `description`, `selector`,
+   plus `queryToolId`, `queryToolName`, `queryDescription` for the structured tool).
    Selectors are `regulatorAllowlist` (these specific bodies) or `industryAny` (this sector).
 2. `npm run build:domain -- <id> <corpus> --dry-run` to check the selection is sane and sized.
 3. Drop `--dry-run` to build, then **restart `npm run dev`**.
-4. Add a two-line tool file (see `carver-cyber-tool.ts`) and an agent pair.
+4. Add a two-line tool file (see `carver-cyber-tool.ts`) and an agent pair. Both the search and
+   query tools come from the same factory, so a new domain gets both for free.
 
 Keep selection **neutral** — by body or sector, never by matching the demo questions. See
 `docs/BUILD-NOTES.md`, *"Cherry-pick the questions, never the fixture."*
@@ -245,9 +264,11 @@ Keep selection **neutral** — by body or sector, never by matching the demo que
 | `scripts/build-updates.mjs` | Regenerates the updates fixture (`npm run build:updates`) |
 | `src/mastra/agents/cyber-base-instructions.ts` | The prompt the third pair shares |
 | `src/mastra/agents/cyber-baseline-agent.ts` | Scenario 3 control: no tools |
-| `src/mastra/agents/cyber-carver-agent.ts` | Scenario 3 treatment: base prompt + `searchCarverCyber` |
-| `src/mastra/tools/carver-domain-tool.ts` | Factory — builds a search tool for any declared domain |
-| `src/mastra/tools/carver-cyber-tool.ts` | `createTool` wrapper — cybersecurity advisories |
+| `src/mastra/agents/cyber-carver-agent.ts` | Scenario 3 treatment: base prompt + `searchCarverCyber` + `queryCarverCyber` |
+| `src/mastra/agents/cyber-websearch-agent.ts` | Scenario 3 control arm: base prompt + live `webSearch` |
+| `src/mastra/tools/carver-domain-tool.ts` | Factory — builds the search **and** query tools for any declared domain |
+| `src/mastra/tools/carver-domain-query.ts` | Pure filter/rank/group logic behind the query tool |
+| `src/mastra/tools/carver-cyber-tool.ts` | `createTool` wrappers — cybersecurity advisories |
 | `data/carver-domains.json` | **Domain registry** — single source of truth, read by builder AND tools |
 | `scripts/build-domain-index.mjs` | Builds any domain's vector DB (`npm run build:domain -- <id> <corpus> [--dry-run]`) |
 | `scripts/marquee.mjs` | The 21 marquee bodies, shared by both builders |

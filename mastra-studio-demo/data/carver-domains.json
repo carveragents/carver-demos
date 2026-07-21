@@ -10,6 +10,11 @@
     "and register a tool + agent pair. No builder changes needed unless the domain",
     "needs a selector kind that does not exist yet.",
     "",
+    "Each domain exposes TWO tools over the same index: a semantic search tool (toolId/",
+    "toolName/description/queryHint, 'what is this about') and a structured query tool",
+    "(queryToolId/queryToolName/queryDescription, 'how many / ranked by / grouped by').",
+    "See src/mastra/tools/carver-domain-tool.ts for both factories.",
+    "",
     "selector.kind:",
     "  regulatorAllowlist - exact match on classification.regulatory_source.name",
     "                       (case-insensitive). Use for 'these specific bodies'.",
@@ -30,6 +35,9 @@
       "label": "US consumer-protection & markets enforcement",
       "description": "Search Carver's regulatory enforcement signals from the FTC, SEC, CFTC, and CFPB by meaning. Returns the most semantically similar enforcement actions and guidance, with the regulator, date, what changed, why it matters, and an impact score. Use to ground claims about returns, refunds, testimonials, guarantees, or what regulators have acted on.",
       "queryHint": "A natural-language description of the claim or topic to check, e.g. \"promising specific investment returns\"",
+      "queryToolId": "query-carver-enforcement",
+      "queryToolName": "queryCarverEnforcement",
+      "queryDescription": "Count, rank, filter, and group Carver's enforcement actions (FTC, SEC, CFTC, CFPB) — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo (publication date), minImpact (impact score), updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month). Use this whenever the question is \"how many\", \"which regulator brought the most actions\", \"rank by impact\", or bounded to a date window.",
       "selector": {
         "kind": "regulatorAllowlist",
         "values": [
@@ -53,6 +61,9 @@
       "label": "Cybersecurity advisories & vulnerability alerts",
       "description": "Search Carver's cybersecurity regulatory signals — national CERT advisories, vulnerability alerts, and security guidance from bodies such as ANSSI, CISA, NCSC, CCN-CERT and the Canadian Centre for Cyber Security — by meaning. Returns the most semantically similar advisories with the issuing body, date, what changed, why it matters, and an impact score. Use to ground any claim about whether a product, vendor, or vulnerability has been the subject of a recent advisory.",
       "queryHint": "A natural-language description of the product, vendor or vulnerability to check, e.g. \"advisories affecting Schneider Electric products\"",
+      "queryToolId": "query-carver-cyber",
+      "queryToolName": "queryCarverCyber",
+      "queryDescription": "Count, rank, filter, and group Carver's cybersecurity advisories — national CERT alerts and vulnerability notices — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo (publication date), minImpact (impact score), updateType, regulator (the issuing CERT/body), or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month). Use this whenever the question is \"how many\", \"which CERT published the most\", \"rank by impact\", or bounded to a date window.",
       "selector": {
         "kind": "industryAny",
         "values": ["cybersecurity"]
