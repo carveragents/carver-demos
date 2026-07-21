@@ -8,6 +8,7 @@ import { investmentBaselineAgent } from './agents/investment-baseline-agent.ts';
 import { investmentCarverAgent } from './agents/investment-carver-agent.ts';
 import { cyberBaselineAgent } from './agents/cyber-baseline-agent.ts';
 import { cyberCarverAgent } from './agents/cyber-carver-agent.ts';
+import { cyberWebsearchAgent } from './agents/cyber-websearch-agent.ts';
 
 export const mastra = new Mastra({
   // The demo is the contrast: same model, same base prompt, one has Carver data.
@@ -19,6 +20,7 @@ export const mastra = new Mastra({
     investmentCarverAgent,
     cyberBaselineAgent,
     cyberCarverAgent,
+    cyberWebsearchAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.

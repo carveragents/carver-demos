@@ -487,6 +487,50 @@ Same as the other scenarios, and the same punchline. The grounded run carries a 
 span with the real retrieved payload — titles, dates, CVEs. The baseline run has **no
 retrieval step at all**. The empty trace is the point.
 
+## The third arm — `cyber-websearch-agent`, and what it costs the argument
+
+Same model, same base prompt, live web search instead of Carver
+(`openai.tools.webSearch()` via `@ai-sdk/openai`). It exists to answer the question the room
+will ask: *"why not just give it web search?"*
+
+**Run it. The answer is uncomfortable, and you are better off knowing.**
+
+On all four beats above, **web search closes the recency gap completely.** Verified 2026-07-20:
+
+| Beat | Web-search arm found |
+|---|---|
+| Check Point | Check Point's own advisory for **CVE-2026-50751**, 8 June 2026, plus CCCS **AV26-559** |
+| Fortinet creds | UK NCSC **and** Australia's ACSC, both **18 June 2026** |
+| Stormshield | **CERTFR-2026-AVI-0816** (29 June) and **-0723** (10 June) — the same advisories Carver returns, *plus* CVE-2026-31790, which Carver did not surface |
+
+**So beats 2–4 do not distinguish Carver from web search.** They distinguish *grounded* from
+*ungrounded*, which is a real and worthwhile claim — but if you imply the grounded column
+requires Carver specifically, the third arm disproves you in one question. Say the narrower
+thing: **an ungrounded agent is years stale; any grounding fixes that.**
+
+### Where Carver still differs — measured, not asserted
+
+Three probes beyond the beats:
+
+| Probe | Web search | Carver |
+|---|---|---|
+| *Which CERTs published on Fortinet in June 2026?* | 14 tool calls, **155s**, ~4 bodies | 12 calls, **58s**, **6 bodies** |
+| *Has CamCERT published on F5 NGINX?* | 1 call, 9s — found it | 1 call, 8s — found it, with exact fixed versions |
+| *Rank June 2026 advisories by impact score* | **had to invent a proxy**: *"using the highest CVSS v3.1 score … as the impact score"* | returned its own **impact 9** directly from the record |
+
+The honest reading:
+
+1. **Obscure and non-English bodies are NOT a differentiator.** CamCERT's Khmer-language
+   advisory was found by both, equally fast. Do not claim the long tail as Carver's edge.
+2. **Aggregation is a real one.** Carver was ~2.7× faster and more complete on "list every
+   body that published about X". Neither was exhaustive, and they surfaced *different*
+   advisories — worth admitting.
+3. **Structured fields are the sharpest.** Carver carries `impact`, `urgency`,
+   `keyRequirements` as data you can rank and filter. Web search has none, so the model
+   fabricated a substitute metric. That is the one place the web genuinely cannot follow.
+
+If you only have time for one differentiating question, ask the **impact-ranking** one.
+
 ## Honest framing (do not oversell)
 
 **This baseline never fabricates.** Across seven verified questions it was confident,
