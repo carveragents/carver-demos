@@ -1036,3 +1036,89 @@ publicly-retrievable obligation. The twelfth found the one exception and it is n
 **unnamed, recent, jurisdiction-specific obligation that web search does not know to search for and a
 curated jurisdiction-tagged corpus surfaces by construction.** That is the shape of the only content
 win — everywhere else, the pitch remains operational (speed, reproducibility, provable denominator).
+
+## Run sheet — the state-lending swap
+
+**What it shows.** A loan denied by an automated model. The applicant's *state* silently changes what
+the lender legally owes them. A memory-only assistant and a live web-search assistant both give the
+federal answer; the Carver-grounded assistant surfaces the state-specific obligation — and correctly
+adds nothing for a state that has none.
+
+**Setup** (NOT self-contained — build the index first; needs `OPENAI_API_KEY` and the sibling
+`carver-showcase` repo):
+
+```bash
+cd mastra-studio-demo
+npm run build:domain -- state-lending ../../carver-showcase/data/annotations.jsonl   # ~7,142 real records
+npm run build:curated -- state-lending data/state-lending-records.json               # + 4 curated obligations
+npm run dev                                                                          # :4111, wait ~25s
+```
+
+**Agents (three arms).** `Advisor Baseline (no data)` · `Advisor Web Search (no Carver)` ·
+`State-Lending Carver (grounded)`. Say once: *same model, same base prompt, same trigger clause — the
+only difference is whether it has Carver's jurisdiction-tagged obligations.*
+
+**Fastest path:** `node scripts/state-lending-probe.mjs 1` runs all three states × three arms and
+prints the scorecard. To do it live in Studio, paste the system message (with the state filled in) and
+the user question into each of the three agents.
+
+- **System message** (the fixed case): *Application 7788 — a home-improvement loan on the applicant's
+  owner-occupied home in **[STATE]**, declined by the automated underwriting model (score 611 < 640).
+  Today is 15 January 2027.*
+- **User turn** (unchanged across all beats): *"Has there been a decision on my application yet — and
+  if it's declined, what happens next and what will I receive?"*
+
+The question **never** names a statute, agency, or state rule. The only thing that changes between
+beats is one word: the state.
+
+### Beat 1 — Colorado: the money shot
+
+Baseline and Web Search both give the federal adverse-action notice (Reg B 30-day + reasons; FCRA
+credit-report rights) — correct, but incomplete. **Carver** gives the federal notice **and Colorado's
+AI-Act duty**: because an automated model made the decision, the applicant is owed a plain-language
+explanation of the model's role, the data used, and a right to correct it and to *meaningful human
+review*, cited to `leg.colorado.gov`. Say it: *the web agent had the same facts — Colorado, automated
+decision — and never thought to search for a state AI statute. The failure looked like success.*
+
+### Beat 2 — California: not a fluke
+
+Swap Colorado → California, same question. Carver now surfaces the **Holden Act** (Fair Lending Notice
++ specific-reasons duty for a home loan); baseline and web still give only the federal answer.
+Different state, different obligation, same silent miss by the other two.
+
+### Beat 3 — New York: the control that proves it's real
+
+Swap to New York, same question. All three give the federal answer — and Carver correctly adds **no**
+state overlay, because New York has none. This is the beat that proves the annotations do real work
+rather than the grounded agent just being verbose: change one attribute, and the output changes
+exactly where the law changes, and only there.
+
+### Then show the traces
+
+Studio → Traces. On the Colorado run, open the Carver arm's `tool_call` span — the retrieved record is
+the Colorado AI Act with its `leg.colorado.gov` sourceUrl. The web arm's trace shows generic
+adverse-action searches and no Colorado AI statute; the baseline has no retrieval at all.
+
+### Honest framing — SAY THESE, do not oversell
+
+1. **Runs on four hand-curated records, not the live crawled corpus** (the Colorado AI Act is not in it
+   yet). It shows what jurisdiction-tagged coverage delivers — a proof of concept, paired with the
+   data-team ingest list in `docs/corpus-gaps-for-jurisdiction-demos.md`.
+2. **The win rests on the agent searching its index with the situation** (state + automated), which it
+   supplies from context — realistic, but not the corpus alone.
+3. **The records are curated from cited primary sources and pending legal/data review.**
+
+### If someone asks
+
+*"Couldn't web search find the Colorado AI Act?"* — It can, if you name it. It can't when nobody does.
+The applicant didn't ask "does Colorado's AI Act apply?" — they asked "what happens next?" The
+obligation is triggered by who they are and how the decision was made, not by the question.
+
+## Registered agents (2026-07-22)
+
+Only the two demo-usable scenarios are registered in `src/mastra/index.ts`: **Scenario 1** (regulatory
+— `baseline-agent` / `carver-agent`) and the **state-lending swap** (`advisor-baseline-agent` /
+`advisor-websearch-agent` / `state-lending-carver-agent`). The investment, cyber, lending, and
+crypto/device/child-safety mini-suite agents were measurement exercises that ended in parity with web
+search; their write-ups are above and their source files remain in the repo, but they are
+intentionally unregistered so Studio shows only what actually demos.

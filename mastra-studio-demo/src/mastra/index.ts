@@ -4,46 +4,27 @@ import { PinoLogger } from '@mastra/loggers';
 import { MastraStorageExporter, Observability } from '@mastra/observability';
 import { baselineAgent } from './agents/baseline-agent.ts';
 import { carverAgent } from './agents/carver-agent.ts';
-import { investmentBaselineAgent } from './agents/investment-baseline-agent.ts';
-import { investmentCarverAgent } from './agents/investment-carver-agent.ts';
-import { cyberBaselineAgent } from './agents/cyber-baseline-agent.ts';
-import { cyberCarverAgent } from './agents/cyber-carver-agent.ts';
-import { cyberWebsearchAgent } from './agents/cyber-websearch-agent.ts';
-import { lendingBaselineAgent } from './agents/lending-baseline-agent.ts';
-import { lendingCarverAgent } from './agents/lending-carver-agent.ts';
-import { lendingWebsearchAgent } from './agents/lending-websearch-agent.ts';
 import { advisorBaselineAgent } from './agents/advisor-baseline-agent.ts';
 import { advisorWebsearchAgent } from './agents/advisor-websearch-agent.ts';
-import { cryptoCarverAgent } from './agents/crypto-carver-agent.ts';
-import { deviceCarverAgent } from './agents/device-carver-agent.ts';
-import { childSafetyCarverAgent } from './agents/child-safety-carver-agent.ts';
 import { stateLendingCarverAgent } from './agents/state-lending-carver-agent.ts';
-import { websearchAgent } from './agents/websearch-agent.ts';
 
 export const mastra = new Mastra({
-  // The demo is the contrast: same model, same base prompt, one has Carver data.
-  // Two contrast pairs: regulatory (baseline/carver) and investment (investmentBaseline/investmentCarver).
+  // Only the two demo-usable scenarios are registered. The other agents (investment, cyber,
+  // lending, and the crypto/device/child-safety mini-suite) were measurement exercises that
+  // ended in parity with web search — their write-ups live in docs/DEMO.md and their source
+  // files remain in the repo, but they are intentionally NOT registered so Studio shows only
+  // what actually demos. To bring one back, re-add its import and registry entry.
   agents: {
+    // Scenario 1 — regulatory grounding (what a body is, and what it published). Same model,
+    // same base prompt; the only difference is the Carver data. See docs/DEMO.md "Beat 1-4".
     baselineAgent,
     carverAgent,
-    websearchAgent,
-    investmentBaselineAgent,
-    investmentCarverAgent,
-    cyberBaselineAgent,
-    cyberCarverAgent,
-    cyberWebsearchAgent,
-    lendingBaselineAgent,
-    lendingCarverAgent,
-    lendingWebsearchAgent,
-    // Cross-domain silent-trigger mini-suite: two shared arms (advisorBaseline/advisorWebsearch)
-    // plus one grounded arm per sector. See scripts/trigger-probe.mjs.
+    // Winning scenario — state-lending counterfactual swap. A loan denied by an automated model,
+    // the applicant's state swapped CO/CA/NY: the grounded arm surfaces the state obligation
+    // (CO AI Act, CA Holden Act) that baseline and web search both miss. Run with
+    // scripts/state-lending-probe.mjs. See docs/DEMO.md "The state-lending counterfactual swap".
     advisorBaselineAgent,
     advisorWebsearchAgent,
-    cryptoCarverAgent,
-    deviceCarverAgent,
-    childSafetyCarverAgent,
-    // State-lending counterfactual swap: does the grounded arm track obligations that vary by
-    // the applicant's state (CO AI Act, CA Holden Act) where baseline/web give the federal answer?
     stateLendingCarverAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
