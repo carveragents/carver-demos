@@ -129,14 +129,37 @@ measured. **Full write-up: `docs/DEMO.md` → "Cross-domain silent-trigger mini-
   on one identical-prompt device run). Baseline is 20× cheaper on tokens but capped at 4/5 (can never
   cite a link) and dips unpredictably.
 
-This is the eleventh probe to land on the same conclusion: **the durable pitch is operational, not
-"better answers".** Eleven probes now agree. If you are tempted to hunt for a twelfth "better
-answers" beat, re-read this file first — that story is not available against `gpt-5.6-sol` on any
-publicly-retrievable obligation, and every candidate obligation worth demoing is publicly
-retrievable.
+This was the eleventh probe to land on the operational conclusion — but the **twelfth found the one
+exception.** See below.
 
 **How to re-run:** `npm run dev`, then `node scripts/trigger-probe.mjs all 3`. The three sector
 fixtures are gitignored; rebuild with `npm run build:domain -- <crypto-assets|medical-devices|child-safety> ../../carver-showcase/data/annotations.jsonl`.
+
+## The ONE content win — state-lending counterfactual swap (probe 12, 2026-07-22)
+
+The user's original instinct was right after all. A **home loan denied by an automated model**, with
+the applicant's **state** swapped CO/CA/NY, is the one case where Carver beats **both** baseline and
+web search on content: it surfaces Colorado's AI Act (SB 24-205/SB 26-189, ADMT duties) and
+California's Holden Act, which baseline and web both miss (**web 0/5 on Colorado** — it searches
+generically and never looks for a state AI statute). It **scales**: with the obligation embedded in a
+7,142-record haystack of real US consumer-lending regulators, the CO AI Act still ranks **#1 of 7,146**
+for a situation-aware query. Full write-up: `docs/DEMO.md` → "The state-lending counterfactual swap".
+
+**Three caveats that must travel with this result:**
+1. It runs on **4 hand-curated records** (`data/state-lending-records.json`), NOT the crawled corpus
+   (Colorado AI Act: 0 records in the 242k). It proves what jurisdiction-tagged coverage *unlocks* —
+   present as proof-of-concept, not a shipping capability.
+2. Retrieval needs a **situation-aware query** (state + automated); the agent supplies that from its
+   system-message context. On the bare user words the CO record does not rank top-6.
+3. The curated records are **REVIEW-REQUIRED** (Colorado requirements lean partly on secondary
+   summaries; verify against the primary statute).
+
+To get these obligations into the corpus organically (for the data team): what institutions and
+canonical URLs to add is in **`docs/corpus-gaps-for-jurisdiction-demos.md`**.
+
+**How to re-run the swap:** `npm run dev`, then `node scripts/state-lending-probe.mjs 1`. Rebuild the
+index (gitignored) with `npm run build:domain -- state-lending ../../carver-showcase/data/annotations.jsonl`
+then `npm run build:curated -- state-lending data/state-lending-records.json`.
 
 ## Corpus facts worth knowing before you plan
 

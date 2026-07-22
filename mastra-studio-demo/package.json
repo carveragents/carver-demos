@@ -12,7 +12,8 @@
     "build:enforcement": "node --env-file-if-exists=.env scripts/build-domain-index.mjs enforcement",
     "dev": "mastra dev",
     "build": "mastra build",
-    "start": "mastra start"
+    "start": "mastra start",
+    "build:curated": "node --env-file-if-exists=.env scripts/build-curated-index.mjs"
   },
   "keywords": [],
   "author": "",

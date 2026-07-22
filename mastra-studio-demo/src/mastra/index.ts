@@ -17,6 +17,7 @@ import { advisorWebsearchAgent } from './agents/advisor-websearch-agent.ts';
 import { cryptoCarverAgent } from './agents/crypto-carver-agent.ts';
 import { deviceCarverAgent } from './agents/device-carver-agent.ts';
 import { childSafetyCarverAgent } from './agents/child-safety-carver-agent.ts';
+import { stateLendingCarverAgent } from './agents/state-lending-carver-agent.ts';
 import { websearchAgent } from './agents/websearch-agent.ts';
 
 export const mastra = new Mastra({
@@ -41,6 +42,9 @@ export const mastra = new Mastra({
     cryptoCarverAgent,
     deviceCarverAgent,
     childSafetyCarverAgent,
+    // State-lending counterfactual swap: does the grounded arm track obligations that vary by
+    // the applicant's state (CO AI Act, CA Holden Act) where baseline/web give the federal answer?
+    stateLendingCarverAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.

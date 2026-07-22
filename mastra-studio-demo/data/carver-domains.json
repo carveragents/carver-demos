@@ -119,6 +119,36 @@
         "kind": "industryAny",
         "values": ["Social Media", "Data Protection"]
       }
+    },
+    {
+      "id": "state-lending",
+      "dbFile": "state-lending.db",
+      "indexName": "stateLending",
+      "toolId": "search-carver-state-lending",
+      "toolName": "searchCarverStateLending",
+      "label": "US consumer lending — federal + state adverse-action obligations",
+      "description": "Search Carver's curated set of adverse-action / loan-denial obligations for US consumer lending — the federal ECOA/Regulation B and FCRA baseline plus state overlays such as Colorado's AI Act (ADMT) duties on automated decisions and California's Holden Act Fair Lending Notice. Each record carries the issuing body, jurisdiction, an extracted list of key requirements, and a source link. Use to ground what a lender must tell an applicant when a loan is denied, including obligations that vary by the applicant's state.",
+      "queryHint": "A natural-language description of the lending obligation to check, e.g. \"what to disclose when an automated model denies a home loan in Colorado\"",
+      "queryToolId": "query-carver-state-lending",
+      "queryToolName": "queryCarverStateLending",
+      "queryDescription": "Count, filter, and group the curated state-lending obligation records — NOT for \"what is required\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword.",
+      "_selectorNote": "The 4 curated federal+state obligation records (data/state-lending-records.json) are appended via build:curated AFTER this regulator slice is built, so the curated obligations compete against a realistic haystack of real US consumer-lending regulator records. Neutral: selection is by issuing body, never by the demo question.",
+      "selector": {
+        "kind": "regulatorAllowlist",
+        "values": [
+          "Consumer Financial Protection Bureau",
+          "Federal Trade Commission",
+          "Federal Deposit Insurance Corporation",
+          "Board of Governors of the Federal Reserve System",
+          "Federal Reserve Board",
+          "Federal Reserve",
+          "Office of the Comptroller of the Currency",
+          "National Credit Union Administration",
+          "New York State Department of Financial Services",
+          "California Department of Financial Protection and Innovation",
+          "Department of Financial Protection and Innovation"
+        ]
+      }
     }
   ]
 }

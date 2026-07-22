@@ -1,0 +1,87 @@
+{
+  "_comment": [
+    "HAND-CURATED records for the state-lending counterfactual-swap probe. NOT from the",
+    "carver-showcase annotations pipeline. Each record's keyRequirements are grounded in the",
+    "cited primary/authoritative source at sourceUrl — no fabrication, no paraphrase from memory.",
+    "REVIEW REQUIRED before any demo use (doctrine: never ship an unreviewed record).",
+    "",
+    "Selection is neutral: the adverse-action / denial-response obligations that actually apply",
+    "to an automated HOME-LOAN denial, per jurisdiction — federal (all states), Colorado, and",
+    "California. New York is intentionally absent because research found no material NY-specific",
+    "adverse-action-notice overlay beyond federal (see docs). Its absence is the honest state of",
+    "the law, and it is what makes the CO/CA-vs-NY swap discriminating.",
+    "",
+    "Shape matches the trimmed corpus record so the existing tool factory can read it."
+  ],
+  "records": [
+    {
+      "title": "Regulation B § 1002.9 — Adverse action notification (Equal Credit Opportunity Act)",
+      "date": "2024-01-01",
+      "updateType": "regulation",
+      "regulator": "Consumer Financial Protection Bureau (federal — applies in all states)",
+      "jurisdiction": "US",
+      "whatChanged": "The federal baseline for notifying a credit applicant of a denial (adverse action) under the Equal Credit Opportunity Act.",
+      "whyItMatters": "Sets the floor every lender must meet nationwide before any state overlay is considered.",
+      "keyRequirements": [
+        "Notify the applicant of adverse action within 30 days of receiving a completed application.",
+        "Provide a statement of the specific principal reasons for the denial, OR disclose the applicant's right to request those specific reasons within 60 days.",
+        "Include the ECOA anti-discrimination notice and the name and address of the federal agency that enforces compliance."
+      ],
+      "impactScore": 8,
+      "tags": ["adverse action", "ECOA", "Regulation B", "credit denial", "federal"],
+      "sourceUrl": "https://www.consumerfinance.gov/rules-policy/regulations/1002/9/"
+    },
+    {
+      "title": "FCRA § 615 — Adverse action notice when a consumer report is used",
+      "date": "2024-01-01",
+      "updateType": "regulation",
+      "regulator": "Federal Trade Commission / Consumer Financial Protection Bureau (federal — applies in all states)",
+      "jurisdiction": "US",
+      "whatChanged": "The federal baseline for what a lender must disclose when a denial is based in whole or in part on a consumer (credit) report.",
+      "whyItMatters": "Adds credit-report-specific disclosures on top of the ECOA reasons statement; applies in every state.",
+      "keyRequirements": [
+        "Give the name, address, and phone number of the consumer reporting agency that supplied the report, and state that the agency did not make the decision and cannot give the specific reasons for it.",
+        "Notify the consumer of the right to a free copy of their report from that agency within 60 days and the right to dispute its accuracy.",
+        "If a credit score was used in the decision, disclose the score, the range, and the key factors that adversely affected it."
+      ],
+      "impactScore": 8,
+      "tags": ["adverse action", "FCRA", "credit report", "credit score", "federal"],
+      "sourceUrl": "https://www.ftc.gov/business-guidance/resources/using-consumer-reports-credit-decisions-what-know-about-adverse-action-risk-based-pricing-notices"
+    },
+    {
+      "title": "Colorado Artificial Intelligence Act (SB 24-205, amended by SB 26-189) — consumer notice after an AI/ADMT adverse decision",
+      "date": "2026-05-12",
+      "updateType": "final rule",
+      "regulator": "Colorado General Assembly / Colorado Attorney General (Colorado, US-CO)",
+      "jurisdiction": "US-CO",
+      "whatChanged": "When a consequential decision that is adverse to the consumer — including a lending/credit decision — is made using automated decision-making technology (ADMT), Colorado imposes disclosure and review obligations beyond the federal adverse-action notice. SB 24-205 was amended by SB 26-189 (passed May 12, 2026); the operative date is January 1, 2027.",
+      "whyItMatters": "A lender that denies a Colorado applicant using an automated model owes duties that federal law and other states do not require — including disclosing the AI's role and offering human review.",
+      "keyRequirements": [
+        "When an adverse consequential decision (including credit/lending) is made using ADMT, provide the consumer, within the required period, a plain-language description of the decision and the role the ADMT played in it.",
+        "State the principal reasons for the adverse decision, the degree and manner in which the ADMT contributed, and the types, categories, and sources of personal data processed.",
+        "Inform the consumer of the right to request access to and correction of the personal data used, and the right to meaningful human review and reconsideration of the decision to the extent technically and commercially reasonable.",
+        "Operative January 1, 2027 (SB 24-205 as amended by SB 26-189)."
+      ],
+      "impactScore": 9,
+      "tags": ["automated decision", "ADMT", "artificial intelligence", "adverse action", "Colorado", "consequential decision"],
+      "sourceUrl": "https://leg.colorado.gov/bills/sb24-205"
+    },
+    {
+      "title": "California Housing Financial Discrimination Act of 1977 (Holden Act) — Fair Lending Notice and statement of reasons",
+      "date": "2021-10-01",
+      "updateType": "regulation",
+      "regulator": "California Department of Financial Protection and Innovation (California, US-CA)",
+      "jurisdiction": "US-CA",
+      "whatChanged": "For financial assistance secured by an owner-occupied one-to-four-unit residence, California requires a Fair Lending Notice and a statement of specific reasons for adverse action, using a broader definition of adverse action than federal law.",
+      "whyItMatters": "A lender denying a California home loan owes a distinct state notice and a broader reasons obligation on top of the federal ECOA/FCRA notices.",
+      "keyRequirements": [
+        "For financial assistance to purchase, construct, rehabilitate, improve, or refinance an owner-occupied one-to-four-unit residence, provide the applicant with the Fair Lending Notice stating it is illegal to discriminate based on neighborhood/geographic characteristics or on race, color, religion, sex, gender, gender identity, gender expression, sexual orientation, marital status, national origin, ancestry, familial status, source of income, disability, veteran or military status, or genetic information.",
+        "On adverse action — which under the Holden Act includes denying, approving for a lesser amount than requested, or imposing less favorable terms — provide a statement of the specific reason(s), in the manner prescribed by Regulation B (12 CFR 1002.9).",
+        "Provide the California DFPI Consumer Services Office contact information for questions or complaints."
+      ],
+      "impactScore": 8,
+      "tags": ["Holden Act", "fair lending notice", "housing finance", "adverse action", "California", "mortgage"],
+      "sourceUrl": "https://dfpi.ca.gov/wp-content/uploads/sites/337/2021/10/DFPI-1977-FAIR-LENDING-NOTICE.pdf"
+    }
+  ]
+}

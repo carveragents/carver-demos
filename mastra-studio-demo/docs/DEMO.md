@@ -957,3 +957,82 @@ the first ten, and the first to put numbers on the operational alternative.
   arm's searches are heavier still — do not assume grounding lowers cost without measuring.
 - The mechanical checks are coarse (5 regexes); they caught the web arm's one reproducibility drop
   but cannot grade nuance. A finer rubric would sharpen Result 2, not overturn it.
+
+# The state-lending counterfactual swap — the ONE content win (2026-07-22)
+
+Twelfth probe, and the first where a Carver-grounded agent beats **both** the memory-only baseline
+and the live web-search agent on answer content. It is the case the user pointed at from the very
+start (`docs/continuing.md`): a loan denial where the required response varies by the applicant's
+**state**. Earlier probes retired it twice — first on the trimmed fixture, then because research
+showed the base adverse-action notice is federally standardized. What revived it: (a) the variance
+is real but *asymmetric* — California and Colorado have genuine overlays, New York does not — and
+(b) an automated denial in Colorado trips a recent, non-federal obligation the model cannot know.
+
+## The obligations (researched, sourced)
+
+- **Federal floor (all states):** ECOA/Regulation B § 1002.9 (30-day notice, specific reasons or
+  right to request) + FCRA § 615 (credit-report disclosures). The baseline knows this.
+- **Colorado overlay:** the Colorado AI Act (SB 24-205, amended by SB 26-189, operative 2027-01-01)
+  requires, on an ADMT/automated adverse decision, a plain-language explanation of the model's role,
+  the data used, and a right to data correction and *meaningful human review* — beyond federal.
+- **California overlay:** the Holden Act (Housing Financial Discrimination Act of 1977) requires a
+  Fair Lending Notice and a specific-reasons statement for 1-4 unit owner-occupied home loans, with
+  a broader adverse-action definition than federal.
+- **New York:** no material state-specific adverse-action-notice overlay — the correct answer is the
+  federal floor alone. Its absence is what makes the swap discriminating.
+
+## What was built (and the honesty around it)
+
+The differentiating obligations are **not in the 242k crawled corpus** (Colorado AI Act: 0 records;
+Holden Act present only as DFPI reporting-deadline bulletins). So four records were **hand-curated
+from cited primary sources** — `data/state-lending-records.json`, grounded in the CFPB Reg B page,
+the FTC FCRA guidance, `leg.colorado.gov/bills/sb24-205`, and the actual DFPI Fair Lending Notice
+PDF. They are labelled REVIEW-REQUIRED and are NOT from the annotations pipeline. Built into a
+vector index with `scripts/build-curated-index.mjs`; queried by `state-lending-carver-agent` (same
+advisor base + verbatim trigger + maxSteps cap as the mini-suite arms). Probe:
+`scripts/state-lending-probe.mjs` — one home-improvement-loan denial by an automated model, the
+state swapped across CO/CA/NY, obligation never named in the user turn.
+
+To close the data team's gap organically, see `docs/corpus-gaps-for-jurisdiction-demos.md`.
+
+## Result — and it scales
+
+Same request, state swapped, three arms:
+
+| arm | CO AI-Act | CA Holden | NY (federal-only) |
+|---|---|---|---|
+| baseline | MISS | MISS | clean |
+| web search | MISS (0/5 runs) | MISS | clean |
+| **state-lending carver** | **YES** | **YES** | **clean** |
+
+Web search **never** surfaced the Colorado AI Act across five runs: given the same Colorado/automated
+context, it searches generically ("adverse action", "loan denial"), gets the dominant federal
+result, and never thinks to look for a state AI statute. The silent trigger works exactly as the
+thesis predicted — the failure looks like success. Carver surfaced CO's *and* CA's overlay with the
+federal floor and canonical source links, and correctly gave federal-only for NY.
+
+**The win survives scale.** Re-run with the curated records embedded into a realistic **7,142-record**
+haystack of real US consumer-lending regulators (CFPB, FTC, FDIC, Fed, OCC, NCUA, NY DFS, CA DFPI;
+neutral regulator-allowlist selection), the Carver arm still hit CO and CA. Direct ranking check: for
+a situation-aware query ("automated model denies a home loan in Colorado") the CO AI Act record ranks
+**#1 of 7,146**.
+
+## The honest caveats — do not drop these when presenting
+
+1. **It runs on hand-curated records, not the crawled corpus.** This proves *what jurisdiction-tagged
+   coverage unlocks*, not a current capability. Present it as a proof-of-concept, paired with the
+   corpus-gaps note, or it is overclaiming.
+2. **Retrieval depends on a situation-aware query.** On the bare user words ("loan declined, what
+   next") the CO AI Act does not rank top-6; it ranks #1 only when the query carries the state +
+   automated cue. The agent supplies that from its system-message context, which is realistic — but
+   the win rests on the agent searching *with the situation*, not on the corpus alone.
+3. **The records are REVIEW-REQUIRED.** Grounded in cited sources, but the Colorado requirements lean
+   partly on secondary summaries; verify against the primary statute before any live demo.
+
+## What it means for the whole investigation
+
+Twelve probes. Eleven said "better answers" is not available against `gpt-5.6-sol` on any
+publicly-retrievable obligation. The twelfth found the one exception and it is narrow and real: an
+**unnamed, recent, jurisdiction-specific obligation that web search does not know to search for and a
+curated jurisdiction-tagged corpus surfaces by construction.** That is the shape of the only content
+win — everywhere else, the pitch remains operational (speed, reproducibility, provable denominator).
