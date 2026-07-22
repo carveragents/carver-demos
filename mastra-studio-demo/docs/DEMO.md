@@ -1058,18 +1058,29 @@ npm run dev                                                                     
 `State-Lending Carver (grounded)`. Say once: *same model, same base prompt, same trigger clause — the
 only difference is whether it has Carver's jurisdiction-tagged obligations.*
 
-**Fastest path:** `node scripts/state-lending-probe.mjs 1` runs all three states × three arms and
-prints the scorecard. To do it live in Studio, paste the system message (with the state filled in) and
-the user question into each of the three agents.
+**Two ways to run it:**
 
-- **System message** (the fixed case): *Application 7788 — a home-improvement loan on the applicant's
-  owner-occupied home in **[STATE]**, declined by the automated underwriting model (score 611 < 640).
-  Today is 15 January 2027.*
-- **User turn** (unchanged across all beats): *"Has there been a decision on my application yet — and
-  if it's declined, what happens next and what will I receive?"*
+- **Live in Studio (intuitive).** Just **type one natural message** into each of the three agents'
+  chat boxes — no system-prompt setup needed. Measured: the contrast holds whether the situation is a
+  hidden system message or typed straight into the chat, because what web search misses is not the
+  state, it is the *idea of looking for a state statute*. Paste this, swapping only the state word:
 
-The question **never** names a statute, agency, or state rule. The only thing that changes between
-beats is one word: the state.
+  > *"I'm a signed-in applicant. My home-improvement loan (application 7788, on my own home in
+  > **Colorado**) was just declined by your automated underwriting model — score 611, below the 640
+  > cutoff. What happens next, and what will I receive?"*
+
+  Run it in `Advisor Baseline`, `Advisor Web Search`, then `State-Lending Carver`. Then change
+  **Colorado → California → New York** and repeat. The only thing that changes between beats is one
+  word: the state.
+
+- **Scorecard (rigorous).** `node scripts/state-lending-probe.mjs 1` runs all three states × three arms
+  and prints a pass/fail grid. (It injects the case as a system message; the Studio typed version is
+  measured-equivalent.)
+
+**The one rule — describe the situation, never name the obligation.** Mentioning "automated model"
+and the state is fine (that is the situation). Do **not** ask "does Colorado's AI Act apply?" or "what
+*state-specific* rules apply?" — naming or hinting the rule lets web search find it and collapses the
+contrast. Ask naively: *what happens next?*
 
 ### Beat 1 — Colorado: the money shot
 
