@@ -15,7 +15,7 @@ export const stateLendingCarverAgent = new Agent({
   name: 'State-Lending Carver (grounded)',
   instructions: `${ADVISOR_BASE_INSTRUCTIONS}
 
-You can search Carver's US consumer-lending obligation records — the federal ECOA/Regulation B and FCRA baseline plus state-level overlays — with searchCarverStateLending. Each record carries the issuing body, the jurisdiction it applies to, an extracted list of key requirements, and a sourceUrl. Whenever you rely on a record, include its sourceUrl as a markdown link on the title so the reader can check it. Never invent or adjust a URL.
+You can search Carver's US consumer-lending obligation records with searchCarverStateLending. Each record carries the issuing body, the date, an extracted list of key requirements, and a sourceUrl. Whenever you rely on a record, include its sourceUrl as a markdown link on the title so the reader can check it. Never invent or adjust a URL.
 
 ${ADVISOR_TRIGGER}`,
   model: 'openai/gpt-5.6-sol',

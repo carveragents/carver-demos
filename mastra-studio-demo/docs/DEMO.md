@@ -1139,6 +1139,27 @@ adverse-action searches and no Colorado AI statute; the baseline has no retrieva
 The applicant didn't ask "does Colorado's AI Act apply?" — they asked "what happens next?" The
 obligation is triggered by who they are and how the decision was made, not by the question.
 
+*"Isn't the grounded agent's prompt cueing it to search by state, while the web agent's isn't?"* —
+Fair challenge, and it was checked (2026-07-22). The two arms share `ADVISOR_BASE_INSTRUCTIONS` and
+the verbatim `ADVISOR_TRIGGER`; earlier the Carver arm's *tool description* also mentioned
+"state-level overlays" and "jurisdiction", which the web arm's did not. That asymmetry was tested
+three ways and is **not** the cause of the win:
+
+1. The Colorado AI Act **is** web-retrievable — a direct search for the Colorado+AI angle returns
+   many detailed sources. The data is not hidden.
+2. Given an explicit state-aware nudge ("obligations may vary by state — consider the applicant's
+   jurisdiction"), the **web arm still retrieved only federal `consumerfinance.gov` sources** and
+   missed it. It never reformulated toward Colorado.
+3. With the hint **removed** from the Carver arm (its description now as plain as the web arm's —
+   this is the shipped state), the Carver arm **still surfaces CO and CA**.
+
+The mechanism is legitimate: the Carver tool *is* an obligation index, so the agent queries it with
+the *situation* and vector search returns the state record because it is in there, tagged to that
+situation. The web agent has the same context but, for a naive question, must already suspect a state
+statute exists to search for it — and doesn't. With a curated index the situation retrieves the
+obligation; with web search the agent must first know the obligation exists. That is the silent
+trigger, confound-checked.
+
 ## Registered agents (2026-07-22)
 
 Only the two demo-usable scenarios are registered in `src/mastra/index.ts`: **Scenario 1** (regulatory
