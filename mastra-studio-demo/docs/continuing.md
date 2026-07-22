@@ -161,9 +161,18 @@ for a situation-aware query. Full write-up: `docs/DEMO.md` → "The state-lendin
 To get these obligations into the corpus organically (for the data team): what institutions and
 canonical URLs to add is in **`docs/corpus-gaps-for-jurisdiction-demos.md`**.
 
-**How to re-run the swap:** `npm run dev`, then `node scripts/state-lending-probe.mjs 1`. Rebuild the
-index (gitignored) with `npm run build:domain -- state-lending ../../carver-showcase/data/annotations.jsonl`
-then `npm run build:curated -- state-lending data/state-lending-records.json`.
+**The demo now runs as a realistic lookup flow (2026-07-22):** the applicant asks for their loan
+status and gives an applicant ID; the agent calls `lookupApplicant` (auth/CRM stand-in) which returns
+their file — including their state — then answers. IDs `A-1001` (CO) / `A-1002` (CA) / `A-1003` (NY),
+identical loan and denial, state is the one variable. Registered arms:
+`lending-status-{baseline,websearch,carver}-agent`, all sharing `lookupApplicant`. The web arm keeps
+`lookupApplicant` alongside provider `webSearch` (the function-tool-drop hazard did not manifest).
+
+**How to re-run:** `npm run dev`, then `node scripts/lending-status-probe.mjs`. Rebuild the index
+(gitignored) with `npm run build:domain -- state-lending ../../carver-showcase/data/annotations.jsonl`
+then `npm run build:curated -- state-lending data/state-lending-records.json`. (The earlier
+system-message-flow arms `advisor-*` / `state-lending-carver-agent` and `scripts/state-lending-probe.mjs`
+are superseded and unregistered.)
 
 ## Corpus facts worth knowing before you plan
 

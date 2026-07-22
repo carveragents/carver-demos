@@ -1068,61 +1068,68 @@ npm run build:curated -- state-lending data/state-lending-records.json          
 npm run dev                                                                          # :4111, wait ~25s
 ```
 
-**Agents (three arms).** `Advisor Baseline (no data)` · `Advisor Web Search (no Carver)` ·
-`State-Lending Carver (grounded)`. Say once: *same model, same base prompt, same trigger clause — the
-only difference is whether it has Carver's jurisdiction-tagged obligations.*
+**Agents (three arms).** `Lending Status — Baseline (no data)` · `Lending Status — Web Search (no
+Carver)` · `Lending Status — Carver (grounded)`. Say once: *same model, same base prompt, same trigger
+clause, and all three look the applicant up the same way — the only difference is whether it has
+Carver's obligation data.*
 
-**Two ways to run it:**
+**The flow — the applicant never states their state.** The applicant asks for their loan status and
+gives an applicant ID; the agent calls `lookupApplicant` (a stand-in for auth/CRM) which returns their
+file — including their **state** — and then answers. This is the whole point: the state arrives from
+the lookup, exactly like a signed-in production user, not from anything the applicant typed. Three
+demo applicants, identical loan and identical automated denial, differing only by state:
 
-- **Live in Studio (intuitive).** Just **type one natural message** into each of the three agents'
-  chat boxes — no system-prompt setup needed. Measured: the contrast holds whether the situation is a
-  hidden system message or typed straight into the chat, because what web search misses is not the
-  state, it is the *idea of looking for a state statute*. Paste this, swapping only the state word:
+| Applicant ID | State |
+|---|---|
+| **A-1001** | Colorado |
+| **A-1002** | California |
+| **A-1003** | New York |
 
-  > *"I'm a signed-in applicant. My home-improvement loan (application 7788, on my own home in
-  > **Colorado**) was just declined by your automated underwriting model — score 611, below the 640
-  > cutoff. What happens next, and what will I receive?"*
+**Live in Studio.** In each of the three agents, type the same thing, swapping only the ID:
 
-  Run it in `Advisor Baseline`, `Advisor Web Search`, then `State-Lending Carver`. Then change
-  **Colorado → California → New York** and repeat. The only thing that changes between beats is one
-  word: the state.
+> *"Hi, can you check the status of my loan application? My applicant ID is **A-1001**."*
 
-- **Scorecard (rigorous).** `node scripts/state-lending-probe.mjs 1` runs all three states × three arms
-  and prints a pass/fail grid. (It injects the case as a system message; the Studio typed version is
-  measured-equivalent.)
+(If you omit the ID, the agent asks for it.) Run it in Baseline → Web Search → Carver, then swap
+**A-1001 → A-1002 → A-1003** and repeat. Nothing about the state is ever typed — the audience watches
+it arrive from the lookup.
 
-**The one rule — describe the situation, never name the obligation.** Mentioning "automated model"
-and the state is fine (that is the situation). Do **not** ask "does Colorado's AI Act apply?" or "what
-*state-specific* rules apply?" — naming or hinting the rule lets web search find it and collapses the
-contrast. Ask naively: *what happens next?*
+**Scorecard (rigorous).** `node scripts/lending-status-probe.mjs` runs all three applicants × three
+arms and prints a pass/fail grid.
 
-### Beat 1 — Colorado: the money shot
+**The one rule — the applicant asks about their status, never names a rule.** The state comes from the
+lookup; the applicant never says "does Colorado's AI Act apply?" If a presenter types the obligation
+name into the chat, web search finds it and the contrast collapses.
 
-Baseline and Web Search both give the federal adverse-action notice (Reg B 30-day + reasons; FCRA
-credit-report rights) — correct, but incomplete. **Carver** gives the federal notice **and Colorado's
-AI-Act duty**: because an automated model made the decision, the applicant is owed a plain-language
-explanation of the model's role, the data used, and a right to correct it and to *meaningful human
-review*, cited to `leg.colorado.gov`. Say it: *the web agent had the same facts — Colorado, automated
-decision — and never thought to search for a state AI statute. The failure looked like success.*
+### Beat 1 — Applicant A-1001 (Colorado): the money shot
 
-### Beat 2 — California: not a fluke
+All three look up A-1001, see the denial, and proactively explain what happens next. Baseline and Web
+Search give the federal adverse-action notice (Reg B 30-day + reasons; FCRA credit-report rights) —
+correct, but incomplete. **Carver** gives the federal notice **and Colorado's AI-Act duty**: because
+an automated model made the decision, the applicant is owed a plain-language explanation of the
+model's role, the data used, and a right to correct it and to *meaningful human review*, cited to
+`leg.colorado.gov`. Say it: *the web agent had the exact same file — Colorado, automated decision —
+and never thought to search for a state AI statute. The failure looked like success.*
 
-Swap Colorado → California, same question. Carver now surfaces the **Holden Act** (Fair Lending Notice
-+ specific-reasons duty for a home loan); baseline and web still give only the federal answer.
-Different state, different obligation, same silent miss by the other two.
+### Beat 2 — Applicant A-1002 (California): not a fluke
 
-### Beat 3 — New York: the control that proves it's real
+Switch to A-1002, same question. Carver now surfaces the **Holden Act** (Fair Lending Notice +
+specific-reasons duty for a home loan); baseline and web still give only the federal answer. Different
+applicant, different state, different obligation — same silent miss by the other two.
 
-Swap to New York, same question. All three give the federal answer — and Carver correctly adds **no**
-state overlay, because New York has none. This is the beat that proves the annotations do real work
-rather than the grounded agent just being verbose: change one attribute, and the output changes
-exactly where the law changes, and only there.
+### Beat 3 — Applicant A-1003 (New York): the control that proves it's real
+
+Switch to A-1003. All three give the federal answer — and Carver correctly adds **no** state overlay,
+because New York has none. This is the beat that proves the annotations do real work rather than the
+grounded agent just being verbose: change one applicant, and the output changes exactly where the law
+changes, and only there.
 
 ### Then show the traces
 
-Studio → Traces. On the Colorado run, open the Carver arm's `tool_call` span — the retrieved record is
-the Colorado AI Act with its `leg.colorado.gov` sourceUrl. The web arm's trace shows generic
-adverse-action searches and no Colorado AI statute; the baseline has no retrieval at all.
+Studio → Traces. Two spans tell the story on the A-1001 run: (1) the **`lookupApplicant` result** —
+`state: Colorado` — this is the audience proof that the state came from the lookup, not from anything
+the applicant typed; (2) the Carver arm's **`searchCarverStateLending` result** — the Colorado AI Act
+record with its `leg.colorado.gov` sourceUrl. The web arm's trace shows generic adverse-action web
+searches and no Colorado AI statute; the baseline has no obligation retrieval at all.
 
 ### Honest framing — SAY THESE, do not oversell
 
@@ -1163,8 +1170,13 @@ trigger, confound-checked.
 ## Registered agents (2026-07-22)
 
 Only the two demo-usable scenarios are registered in `src/mastra/index.ts`: **Scenario 1** (regulatory
-— `baseline-agent` / `carver-agent`) and the **state-lending swap** (`advisor-baseline-agent` /
-`advisor-websearch-agent` / `state-lending-carver-agent`). The investment, cyber, lending, and
-crypto/device/child-safety mini-suite agents were measurement exercises that ended in parity with web
-search; their write-ups are above and their source files remain in the repo, but they are
-intentionally unregistered so Studio shows only what actually demos.
+— `baseline-agent` / `carver-agent`) and the **lending-status demo** (`lending-status-baseline-agent`
+/ `lending-status-websearch-agent` / `lending-status-carver-agent`, all sharing `lookupApplicant`).
+Everything else — the investment, cyber, lending, and crypto/device/child-safety mini-suite arms, and
+the earlier system-message-flow state-lending arms (`advisor-*`, `state-lending-carver-agent`) that
+the ID-lookup flow superseded — were measurement exercises; their write-ups are above and their source
+files remain in the repo, but they are intentionally unregistered so Studio shows only what demos.
+
+Note: `@mastra/core` retains the `lookupApplicant` function tool alongside the provider-defined
+`webSearch` on the web arm (verified 2026-07-22) — the function-tool-dropping hazard did not manifest
+in this version, so all three arms share the identical lookup flow.

@@ -4,9 +4,9 @@ import { PinoLogger } from '@mastra/loggers';
 import { MastraStorageExporter, Observability } from '@mastra/observability';
 import { baselineAgent } from './agents/baseline-agent.ts';
 import { carverAgent } from './agents/carver-agent.ts';
-import { advisorBaselineAgent } from './agents/advisor-baseline-agent.ts';
-import { advisorWebsearchAgent } from './agents/advisor-websearch-agent.ts';
-import { stateLendingCarverAgent } from './agents/state-lending-carver-agent.ts';
+import { lendingStatusBaselineAgent } from './agents/lending-status-baseline-agent.ts';
+import { lendingStatusWebsearchAgent } from './agents/lending-status-websearch-agent.ts';
+import { lendingStatusCarverAgent } from './agents/lending-status-carver-agent.ts';
 
 export const mastra = new Mastra({
   // Only the two demo-usable scenarios are registered. The other agents (investment, cyber,
@@ -19,13 +19,14 @@ export const mastra = new Mastra({
     // same base prompt; the only difference is the Carver data. See docs/DEMO.md "Beat 1-4".
     baselineAgent,
     carverAgent,
-    // Winning scenario — state-lending counterfactual swap. A loan denied by an automated model,
-    // the applicant's state swapped CO/CA/NY: the grounded arm surfaces the state obligation
-    // (CO AI Act, CA Holden Act) that baseline and web search both miss. Run with
-    // scripts/state-lending-probe.mjs. See docs/DEMO.md "The state-lending counterfactual swap".
-    advisorBaselineAgent,
-    advisorWebsearchAgent,
-    stateLendingCarverAgent,
+    // Winning scenario — lending-status demo. The applicant asks for their loan status and gives an
+    // applicant ID; the agent looks up their file (lookupApplicant, an auth/CRM stand-in) which
+    // carries their STATE, then answers. Same denial for every applicant, state is the one variable:
+    // the Carver arm surfaces the state obligation (CO AI Act, CA Holden Act) that baseline and web
+    // miss. IDs A-1001 (CO) / A-1002 (CA) / A-1003 (NY). See docs/DEMO.md.
+    lendingStatusBaselineAgent,
+    lendingStatusWebsearchAgent,
+    lendingStatusCarverAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.

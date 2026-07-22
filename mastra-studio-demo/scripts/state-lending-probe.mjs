@@ -1,4 +1,9 @@
 /**
+ * SUPERSEDED (2026-07-22) by scripts/lending-status-probe.mjs, which runs the same measurement
+ * through the realistic applicant-ID lookup flow. This version injects the case as a system message
+ * and targets the now-unregistered `advisor-*` / `state-lending-carver-agent` arms — it will 404
+ * unless those are re-registered. Kept for the record (it drove the confound checks in docs/DEMO.md).
+ *
  * State-lending counterfactual swap: hold one loan denial fixed, change ONLY the applicant's
  * state, and see whether each arm tracks the obligation that varies by state.
  *
