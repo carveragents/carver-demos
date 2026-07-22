@@ -12,6 +12,11 @@ import { cyberWebsearchAgent } from './agents/cyber-websearch-agent.ts';
 import { lendingBaselineAgent } from './agents/lending-baseline-agent.ts';
 import { lendingCarverAgent } from './agents/lending-carver-agent.ts';
 import { lendingWebsearchAgent } from './agents/lending-websearch-agent.ts';
+import { advisorBaselineAgent } from './agents/advisor-baseline-agent.ts';
+import { advisorWebsearchAgent } from './agents/advisor-websearch-agent.ts';
+import { cryptoCarverAgent } from './agents/crypto-carver-agent.ts';
+import { deviceCarverAgent } from './agents/device-carver-agent.ts';
+import { childSafetyCarverAgent } from './agents/child-safety-carver-agent.ts';
 import { websearchAgent } from './agents/websearch-agent.ts';
 
 export const mastra = new Mastra({
@@ -29,6 +34,13 @@ export const mastra = new Mastra({
     lendingBaselineAgent,
     lendingCarverAgent,
     lendingWebsearchAgent,
+    // Cross-domain silent-trigger mini-suite: two shared arms (advisorBaseline/advisorWebsearch)
+    // plus one grounded arm per sector. See scripts/trigger-probe.mjs.
+    advisorBaselineAgent,
+    advisorWebsearchAgent,
+    cryptoCarverAgent,
+    deviceCarverAgent,
+    childSafetyCarverAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.

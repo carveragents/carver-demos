@@ -68,6 +68,57 @@
         "kind": "industryAny",
         "values": ["cybersecurity"]
       }
+    },
+    {
+      "id": "crypto-assets",
+      "dbFile": "crypto-assets.db",
+      "indexName": "cryptoAssets",
+      "toolId": "search-carver-crypto",
+      "toolName": "searchCarverCrypto",
+      "label": "Crypto-asset & digital-asset regulation",
+      "description": "Search Carver's crypto-asset regulatory signals — licensing, authorisation, MiCA/CASP transition, stablecoin and market-conduct rules from bodies such as the AMF, BaFin, CNMV, ESMA, FCA and CFTC — by meaning. Returns the most semantically similar records with the issuing body, date, what changed, why it matters, an impact score, and an extracted list of key requirements. Use to ground any claim about what a crypto firm is required to do, by when, and in which jurisdiction.",
+      "queryHint": "A natural-language description of the activity or obligation to check, e.g. \"authorisation to offer crypto custody in the EU\"",
+      "queryToolId": "query-carver-crypto",
+      "queryToolName": "queryCarverCrypto",
+      "queryDescription": "Count, rank, filter, and group Carver's crypto-asset regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
+      "selector": {
+        "kind": "industryAny",
+        "values": ["Crypto", "Cryptoasset", "Cryptocurrency"]
+      }
+    },
+    {
+      "id": "medical-devices",
+      "dbFile": "medical-devices.db",
+      "indexName": "medicalDevices",
+      "toolId": "search-carver-devices",
+      "toolName": "searchCarverDevices",
+      "label": "Medical-device & IVD regulation",
+      "description": "Search Carver's medical-device and in-vitro-diagnostic regulatory signals — registration, UDI, conformity, market-placement and vigilance obligations from bodies such as Swissmedic, BfArM, the FDA, the TGA, and national competent authorities — by meaning. Returns the most semantically similar records with the issuing body, date, what changed, why it matters, an impact score, and an extracted list of key requirements. Use to ground any claim about what a manufacturer or authorised representative is required to do to place a device on a given market, and by when.",
+      "queryHint": "A natural-language description of the obligation to check, e.g. \"registering a medical device to sell it in Switzerland\"",
+      "queryToolId": "query-carver-devices",
+      "queryToolName": "queryCarverDevices",
+      "queryDescription": "Count, rank, filter, and group Carver's medical-device regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
+      "selector": {
+        "kind": "industryAny",
+        "values": ["Medical Device"]
+      }
+    },
+    {
+      "id": "child-safety",
+      "dbFile": "child-safety.db",
+      "indexName": "childSafety",
+      "toolId": "search-carver-child-safety",
+      "toolName": "searchCarverChildSafety",
+      "label": "Online child-safety & data-protection regulation",
+      "description": "Search Carver's online child-safety and data-protection regulatory signals — age assurance, age verification, minors' data, and platform-conduct obligations from bodies such as data-protection authorities (Garante, CNIL, the ICO), the FTC and the FCC — by meaning. Returns the most semantically similar records with the issuing body, date, what changed, why it matters, an impact score, and an extracted list of key requirements. Use to ground any claim about what a platform or product serving minors is required to do, by when, and in which jurisdiction.",
+      "queryHint": "A natural-language description of the obligation to check, e.g. \"age verification requirements for a product used by minors\"",
+      "queryToolId": "query-carver-child-safety",
+      "queryToolName": "queryCarverChildSafety",
+      "queryDescription": "Count, rank, filter, and group Carver's online child-safety and data-protection records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
+      "selector": {
+        "kind": "industryAny",
+        "values": ["Social Media", "Data Protection"]
+      }
     }
   ]
 }

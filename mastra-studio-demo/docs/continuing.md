@@ -1,8 +1,10 @@
 # Continuing — status and how to pick this up
 
-Written 2026-07-21 on `feat-mastra-guardrail-port`. Read this before touching anything; it is the
-short version of a long search that has mostly produced negative results, and those negatives are
-the most valuable thing here. `docs/DEMO.md` has the full record.
+Written 2026-07-21, extended 2026-07-22, on `feat-mastra-guardrail-port`. Read this before touching
+anything; it is the short version of a long search that has mostly produced negative results, and
+those negatives are the most valuable thing here. `docs/DEMO.md` has the full record — including the
+cross-domain mini-suite that closed the "better answers" question for the eleventh time and
+quantified the operational alternative.
 
 ## The question we are trying to answer
 
@@ -52,9 +54,10 @@ Two design rules that came out of this and should be kept:
 2. **Score mechanically.** The rig regex-scores required elements so the verdict does not depend on
    anyone's reading of the transcripts.
 
-## What was built for it
+## What was built for it (the original lending probe — superseded by the mini-suite below)
 
-Three new arms, registered in `src/mastra/index.ts` (now 11 agents total):
+Three lending arms, registered in `src/mastra/index.ts` (the registry now holds 16 agents — these
+three, the cross-domain mini-suite's five, and the earlier regulatory/investment/cyber sets):
 
 | Agent id | Tools |
 |---|---|
@@ -111,52 +114,52 @@ baseline recites the superseded rule confidently and web search retrieves whiche
 highest. It is also the only axis where a curated, dated corpus is structurally advantaged rather
 than incidentally so.
 
-## Next step
+## Next step — DONE. The persona line went cross-domain and confirmed the operational pitch (2026-07-22)
 
-Search the corpus for **persona-triggered obligations that changed recently**, then re-run the
-consumer framing against one. Concretely:
+The persona line was widened (per the user) beyond consumers to any **silent trigger** — an actor
+attribute that fires an unnamed obligation — and beyond finance to the full corpus. A three-domain
+mini-suite (crypto MiCA-CASP, medical-device swissdamed, minors age-assurance) was built and
+measured. **Full write-up: `docs/DEMO.md` → "Cross-domain silent-trigger mini-suite".** Headline:
 
-```bash
-cd src/mastra/public
-sqlite3 enforcement.db "SELECT json_extract(metadata,'\$.date'), json_extract(metadata,'\$.title')
-  FROM enforcement WHERE json_extract(metadata,'\$.updateType')='final rule'
-  AND json_extract(metadata,'\$.date') > '2025-06-01' ORDER BY 1 DESC LIMIT 40;"
-```
+- **Content: web search reaches parity (5/5 vs 5/5) in every domain.** The "unretrievable obscure
+  source" theory was refuted — web search found Banca d'Italia, Swissmedic (German), the Gazzetta
+  Ufficiale, SB243/976, Ofcom, the ICO, accurately and in-language.
+- **Operational: Carver wins, and it's now quantified.** Same answer, ~30% faster (up to 2×), tighter
+  latency, equal-or-lower token burn (40% less on device), and more reproducible (web dropped to 3/5
+  on one identical-prompt device run). Baseline is 20× cheaper on tokens but capped at 4/5 (can never
+  cite a link) and dips unpredictably.
 
-Be warned: run as-is on 2026-07-21, that query returned mostly institutional plumbing — joint data
-standards under the Financial Data Transparency Act, Designated Contract Market rules, Form X-17A-5
-amendments. Those bind *firms*, not personas, so none of them work as a persona trigger. The recent
-`final rule` population may simply not contain a consumer-facing obligation, in which case widen to
-`guidance` and `interpretive rule`, or accept that this line is exhausted too.
+This is the eleventh probe to land on the same conclusion: **the durable pitch is operational, not
+"better answers".** Eleven probes now agree. If you are tempted to hunt for a twelfth "better
+answers" beat, re-read this file first — that story is not available against `gpt-5.6-sol` on any
+publicly-retrievable obligation, and every candidate obligation worth demoing is publicly
+retrievable.
 
-A candidate needs all three: (a) it is triggered by a persona attribute rather than by the question,
-(b) it changed after the model's training cutoff, (c) `keyRequirements` on the record is populated
-and specific. If a candidate fails (c), the Carver arm will hedge exactly as it did on FCRA above.
-
-**Kill the idea fast if it deserves killing.** The cheap falsification is the counterfactual swap:
-hold the request fixed, change one persona attribute, and see whether the output changes. If CA emits
-identical text across personas, the annotations are doing no work and this whole line stops.
+**How to re-run:** `npm run dev`, then `node scripts/trigger-probe.mjs all 3`. The three sector
+fixtures are gitignored; rebuild with `npm run build:domain -- <crypto-assets|medical-devices|child-safety> ../../carver-showcase/data/annotations.jsonl`.
 
 ## Corpus facts worth knowing before you plan
 
-- `enforcement.db` — 6,168 records, **100% US federal**: FTC 1936, SEC 1353+978+150+70 (name not
-  canonicalised), CFTC 1117+117, CFPB 443. No state regulators.
-- **There is no `jurisdiction` field** on the trimmed records. Jurisdiction is only implicit in
-  `regulator`. The user's Colorado/California/NY axis is not in the data and cannot be faked.
-- `keyRequirements` is populated on 5,541 of 6,168 records (90%). This is the structured obligation
-  layer and it is the most under-used asset in the corpus — web search returns a document, Carver
-  returns the obligations already extracted from it.
-- Regulation B's codified sections are present as individual records (`§ 1002.6`, `§ 1002.9`,
-  `§ 1002.10`, `§ 1002.12`, `§ 1002.13`, `§ 1002.15`, `§ 1002.101`).
-- Term counts: `Military Lending` 8, `servicemember` 14, `Regulation B` 34, `ECOA` 14,
-  `adverse action` 11, `accredited investor` 11, `elder` 10. **`MAPR` is 0** — so the Military
-  Lending Act beat is dead on arrival; Carver cannot cite the 36% cap and web search finds it easily.
-- The **financial fixture is still broken** and this is unresolved: `scripts/build-updates.mjs` uses
-  `PER_OTHER = 3` with no quality filter, so Kenya CMA is represented by an ingested HTTP 403 page
-  titled "Forbidden". 84 non-US updates are `website error`. Depth available vs exposed: Saudi CMA
-  1,374→3, Central Bank of Ireland 619→3, Kuwait CMA 387→3, Ghana SEC 379→3. Raising `PER_OTHER` and
-  dropping crawler junk is ~20 minutes and was never approved; the 403 pages are indefensible
-  whatever we end up demoing.
+- **The real corpus is `carver-showcase/data/annotations.jsonl` — 242,512 records, multi-jurisdiction**
+  (US federal + state, plus EU/UK/CH/AU/IN/etc.), with `output_data.reconciled_published_date.date`
+  (a real published date), and a rich structured layer: `metadata.actionables` (by change-type),
+  `reg_references` (rules + statutes), `impacted_business.{industry,jurisdiction}`, `critical_dates`,
+  `penalties_consequences`. Query it via node + `@libsql/client` or stream the JSONL — **`sqlite3`
+  CLI is not installed here.**
+- **`enforcement.db`/`carver-updates.json` are heavily TRIMMED slices** (6.4k / 1k records) of that
+  corpus, selected by a small topic/regulator set. The earlier "100% US federal, no jurisdiction,
+  corpus exhausted" claim in prior versions of this file was an artifact of reading the trimmed
+  fixture — it does **not** hold for the full corpus. The full corpus has a `jurisdiction` field and
+  state/international bodies.
+- `impact_summary.key_requirements` (the fixture's obligation field) is populated on ~90%+ of records
+  across sectors — crypto 2591/2749, device 5633/6316, minors 632/670. This is the most under-used
+  asset: web search returns a document, Carver returns the obligations already extracted from it.
+- To add a demo domain: neutral **sector** selector via `impacted_business.industry` in
+  `carver-domains.json` (`industryAny`), then `npm run build:domain`. Both `crypto-assets` and
+  `medical-devices` and `child-safety` were built this way; the pattern is proven.
+- The **financial fixture is still broken** (separate from the mini-suite): `scripts/build-updates.mjs`
+  uses `PER_OTHER = 3` with no quality filter, so Kenya CMA is an ingested HTTP 403 page titled
+  "Forbidden" and 84 non-US updates are `website error`. Only relevant if you revive scenarios 1/2.
 
 ## Hazards
 
@@ -165,9 +168,12 @@ identical text across personas, the annotations are doing no work and this whole
   and retrieves nothing.
 - **Warm up before demoing.** The first call of a session 504'd at 180s, then answered in 22s on
   retry. Send a throwaway message before anyone is watching.
-- **Carver arm thrashes.** 112 `searchCarverEnforcement` calls in the institution run, 20 in the
-  consumer run. There is a prior incident of 304 calls returning an empty answer. Scope questions
-  tightly and watch the tool-call count — it will look bad on stage.
+- **Carver arm thrashes — now capped on the mini-suite arms.** The three `*-carver-agent`s carry
+  `defaultOptions: { maxSteps: 8 }`, verified to stop an interactive call at ≤8 steps. The
+  `lending-carver-agent` and older arms are **not** capped and still thrash (112 calls seen, a prior
+  incident of 304 returning empty). The cap bounds *steps*, not parallel tool-calls-per-step: a "be
+  thorough, check everything" prompt still fired ~22 parallel searches over 4 steps (140k tokens).
+  Keep demo prompts naive, and add the same cap to any new grounded arm.
 - Studio keys agents by their kebab-case `id`, not the camelCase registry key.
 - Model router strings use a slash: `openai/gpt-5.6-sol`.
 

@@ -850,3 +850,110 @@ state a denominator.
 same answer, an order of magnitude faster, reproducibly, with a provable denominator, at a
 fraction of the API calls. Before building another beat, decide whether that is the product
 story — because eight probes say the "better answers" story is not available against this model.
+
+# Cross-domain silent-trigger mini-suite (2026-07-21/22)
+
+This is the ninth-through-eleventh probe, and the first to leave the financial domain. Full
+back-story in `docs/continuing.md`. Two things forced the move: (1) the earlier "corpus is
+exhausted / 100% US federal" conclusion was measured against the **trimmed** `enforcement.db`
+(6.4k records), not the real corpus — `carver-showcase/data/annotations.jsonl` is **242,512
+records, multi-jurisdiction, with a real `reconciled_published_date` and a structured
+`actionables`/`reg_references` layer**; and (2) "persona" was too narrow — the trigger can be any
+silent attribute of the *actor or situation* (a crypto firm's jurisdiction, a device
+manufacturer's market), not just a consumer's.
+
+## The hypothesis, split in two
+
+A **silent-trigger** beat: an obligation that (a) nobody names in the question, (b) changed in
+2026 — after the model's cutoff, (c) is specific enough that the grounded arm won't hedge. Two
+theories of *why* it would beat a baseline+web-search arm (BWSA):
+
+- **Theory A — trigger failure.** BWSA has the data but never realises a rule exists to search
+  for, so it answers from a stale prior. Fragile: a capable web agent may search anyway.
+- **Theory B — unretrievable data.** The obligation lives in a source web search can't surface
+  (obscure / non-US / non-English / primary PDF), so BWSA loses even when it tries. Robust — *if*
+  such a candidate exists.
+
+## What was built
+
+Three neutral **sector** fixtures (industry selectors in `data/carver-domains.json`, built with
+`npm run build:domain`), each verified to contain its hero obligation with populated
+`keyRequirements`:
+
+| Domain id | Selector (`impacted_business.industry`) | Records | Hero obligation |
+|---|---|---|---|
+| `crypto-assets` | Crypto / Cryptoasset / Cryptocurrency | 1,487 | MiCA CASP authorisation by 1 Jul 2026 |
+| `medical-devices` | Medical Device | 3,062 | swissdamed registration from 1 Jul 2026 |
+| `child-safety` | Social Media / Data Protection | 1,576 | minors age-assurance (ICO/Garante/CA) |
+
+Agents (`src/mastra/agents/`): one shared `advisor-base-instructions` + shared
+`advisor-baseline` (no tools) and `advisor-websearch` (webSearch) reused across all scenarios,
+plus three sector Carver arms (`crypto-`/`device-`/`child-safety-carver-agent`), search-only,
+sharing a **verbatim** trigger clause (`ADVISOR_TRIGGER`) with the web arm so only the corpus
+differs. Probe: `scripts/trigger-probe.mjs` — actor context in a **system** message, a naive
+planning question naming no rule, mechanical scoring, warm-up first.
+
+```bash
+npm run dev                               # wait for :4111
+node scripts/trigger-probe.mjs all 3      # 3 scenarios × 3 arms × 3 repeats
+```
+
+## Result 1 — content: web search reaches parity, Theory B is refuted
+
+First run scored answer content (5 mechanical checks/scenario):
+
+| Scenario | Baseline | Web search | Carver |
+|---|---|---|---|
+| Crypto CASP | 4/5 | 5/5 | 5/5 |
+| Device swissdamed | 3/5 | 5/5 | 5/5 |
+| Child-safety | 4/5 | 5/5 | 5/5 |
+
+**Theory B was empirically refuted.** Web search retrieved Banca d'Italia, CONSOB, the Gazzetta
+Ufficiale, Swissmedic's *German* swissdamed page, California SB243/SB976, Ofcom and the ICO —
+accurately, in-language, every time. Fragmented and foreign ≠ unretrievable. The baseline was also
+strong (3–4/5): MiCA (2023), SB243 (2025) and the EU AI Act (2024) were largely knowable
+pre-cutoff, so criterion (b) held cleanly only for **device**. This is the same wall as the eight
+prior probes: on publicly-retrievable obligations, content does not separate the arms.
+
+## Result 2 — operational cost, measured (the payoff)
+
+Because content ties, the second run measured what actually differs, with a uniform step cap
+(`maxSteps=8`) applied to every arm to discipline the Carver arm's documented thrashing. Median of
+3 repeats:
+
+| arm | latency | tool-calls | total tokens | content |
+|---|---|---|---|---|
+| baseline | 46.3s | 0 | **2,449** | 80% |
+| web search | 79.5s | 5 | 49,013 | 100% |
+| **carver** | **55.8s** | 8 | **45,914** | 100% |
+
+Per scenario, Carver vs web: crypto 44.6s/46k vs 64.6s/49k; **device 45.8s/27k vs 52.3s/47k**;
+child-safety **65.7s/67k vs 136.9s/80k**. The findings:
+
+1. **Same answer, consistently faster** — ~30% overall, up to **2× on child-safety**, with tighter
+   latency (web swung 113–149s there; Carver 56–68s).
+2. **Equal-or-lower token burn** — Carver was cheaper on tokens in all three scenarios (**40% less
+   on device**). And this understates it: the web arm's provider-side search tokens are only
+   partially visible in `usage`, so its 49k is a floor.
+3. **Web search is the least reproducible** — on one device run it silently dropped to **3/5** from
+   the identical prompt; Carver held 5/5.
+4. **Baseline is 20× cheaper (2.4k tok) but structurally capped at 4/5** — it can never satisfy the
+   "cites a link" check; no provenance, and it dips to 3/5 unpredictably.
+
+**Conclusion: the durable Carver edge is operational, now quantified across three fresh domains —
+same answer as a web-search agent, faster, more reproducible, at comparable-or-lower token cost,
+always cited.** "Better answers" is still not the pitch. This is the eleventh probe agreeing with
+the first ten, and the first to put numbers on the operational alternative.
+
+## Doctrine / hazards added by this suite
+
+- **`maxSteps` cap is now baked into the Carver arms** (`defaultOptions: { maxSteps: 8 }`), so the
+  interactive Studio demo can't thrash — verified an interactive call stops at ≤8 steps. The probe
+  applies the same cap per request. Note the cap bounds *steps*, not parallel tool-calls-per-step:
+  a "be thorough, check everything" prompt still fired ~22 parallel searches over 4 steps and burned
+  140k tokens. Keep demo prompts naive.
+- **Token burn is the honest counter-metric.** RAG is not automatically cheap: each search returns
+  5 verbose records that re-accumulate in context. Carver came out ahead here only because the web
+  arm's searches are heavier still — do not assume grounding lowers cost without measuring.
+- The mechanical checks are coarse (5 regexes); they caught the web arm's one reproducibility drop
+  but cannot grade nuance. A finer rubric would sharpen Result 2, not overturn it.
