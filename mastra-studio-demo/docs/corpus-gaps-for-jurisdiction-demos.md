@@ -31,10 +31,32 @@ its requirements. Jurisdiction-variance demos need the latter, tagged by jurisdi
 | **Regulation B § 1002.9** — federal adverse-action notice (30-day, specific reasons or right to request, ECOA notice). | Consumer Financial Protection Bureau | `https://www.consumerfinance.gov/rules-policy/regulations/1002/9/` |
 | **FCRA § 615** — adverse-action notice when a consumer report is used (CRA identification, free-report right, score + key factors). | FTC / CFPB | `https://www.ftc.gov/business-guidance/resources/using-consumer-reports-credit-decisions-what-know-about-adverse-action-risk-based-pricing-notices` |
 
-Note: CFPB (446 records) and CA DFPI (~440 records) are already crawled, but as *publications* — the
-Holden Act Fair Lending Notice obligation and the Reg B § 1002.9 requirement text are not captured as
-obligation records with `keyRequirements`. Colorado's General Assembly and AG do not appear as
-regulatory sources at all for this material (Colorado AI Act: **0 records** in the 242k corpus).
+## Topic coverage — which of these bodies Carver already tracks
+
+Checked against the full Carver topic catalog (`carver-showcase/data/topic_catalog.csv`, 1,060 topics
+— the backend topic universe; the live topics API 401s from this environment, so this is the vendored
+snapshot). **Three of the four source bodies are already topics; only the Colorado statute source is
+missing:**
+
+| Source body | Already a Carver topic? | Implication |
+|---|---|---|
+| **CFPB** (`consumerfinance.gov`) | ✅ yes (~446 records crawled) | No new topic. Capture Reg B § 1002.9 as an obligation record with `keyRequirements`. |
+| **FTC** (`ftc.gov`) | ✅ yes | No new topic. Capture the FCRA § 615 adverse-action guidance as an obligation record. |
+| **California DFPI** (`dfpi.ca.gov`) | ✅ yes (~440 records crawled) | No new topic. Capture the Holden Act Fair Lending Notice obligation. |
+| **Colorado Attorney General** (`coag.gov`) | ✅ yes | No new topic. The operative ADMT disclosure *rules* (due 2027-01-01) will publish here — this path covers the Colorado obligation without touching the legislature. |
+| **Colorado General Assembly** (`leg.colorado.gov`) | ❌ **NO — not a topic** | To crawl the AI Act *statute itself* (SB 24-205 / SB 26-189), **add `leg.colorado.gov` as a new topic** (`jurisdiction: US-CO`). Otherwise rely on the `coag.gov` topic above for the rules. |
+
+So for CFPB / FTC / DFPI the obligations can flow **organically** — those bodies are crawled today; the
+specific obligation documents just are not captured as requirement records yet (they exist only as
+*publications* — press releases, bulletins). The one genuinely new topic needed for the primary
+statute is **`leg.colorado.gov`**.
+
+This matches a corpus-wide pattern: **Carver tracks regulators and executive agencies, not state
+legislatures.** Colorado has 14 topics — all executive (Banking Board, Division of Banking/Securities,
+AG, PUC, Insurance…) and **no legislature**; across the entire 1,060-topic catalog only two state
+legislatures appear at all (Connecticut General Assembly, New Jersey Legislature). That is why primary
+statute/bill text does not get crawled and why the Colorado AI Act shows **0 records** in the 242k
+corpus even though the Colorado AG is tracked.
 
 ## Broader recommendation (to make jurisdiction demos repeatable)
 
