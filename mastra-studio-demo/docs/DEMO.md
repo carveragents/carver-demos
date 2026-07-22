@@ -1019,9 +1019,23 @@ a situation-aware query ("automated model denies a home loan in Colorado") the C
 
 ## The honest caveats — do not drop these when presenting
 
-1. **It runs on hand-curated records, not the crawled corpus.** This proves *what jurisdiction-tagged
-   coverage unlocks*, not a current capability. Present it as a proof-of-concept, paired with the
-   corpus-gaps note, or it is overclaiming.
+1. **It runs on hand-curated records, not the crawled corpus — and the win is 100% dependent on them.**
+   This proves *what jurisdiction-tagged coverage unlocks*, not a current capability. Present it as a
+   proof-of-concept, paired with the corpus-gaps note, or it is overclaiming. **Measured (2026-07-22):**
+   drop the 4 curated records and re-run the swap against the 7,142 real records alone, and the Carver
+   arm **collapses to parity** — MISS on Colorado *and* MISS on California, tying baseline and web.
+
+   - *Colorado* — Carver correctly hedges ("I couldn't locate a relevant Colorado AI Act record"); the
+     Act is 0 records, so there is nothing to surface. Good discipline, zero advantage.
+   - *California* — Carver misses the Holden Act even after thrashing to 12 tool calls. The Act is
+     *named* in 5 real DFPI records, but those are annual reporting-deadline bulletins, not the Fair
+     Lending Notice obligation. **Present-in-name ≠ present-as-a-usable-obligation.**
+   - *Federal floor* survives from the real CFPB/FTC records — confirming the 2 *federal* curated
+     records (Reg B, FCRA) were redundant. **Only the 2 state records are load-bearing.**
+
+   So the accurate one-line framing is not "Carver's corpus surfaces state obligations web misses" but
+   "*if* the corpus held these state obligations as retrievable requirement records — which it does not
+   yet — Carver would surface them." The gap the demo relies on is real and fully load-bearing.
 2. **Retrieval depends on a situation-aware query.** On the bare user words ("loan declined, what
    next") the CO AI Act does not rank top-6; it ranks #1 only when the query carries the state +
    automated cue. The agent supplies that from its system-message context, which is realistic — but

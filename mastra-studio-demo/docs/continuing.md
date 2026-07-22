@@ -146,9 +146,13 @@ generically and never looks for a state AI statute). It **scales**: with the obl
 for a situation-aware query. Full write-up: `docs/DEMO.md` → "The state-lending counterfactual swap".
 
 **Three caveats that must travel with this result:**
-1. It runs on **4 hand-curated records** (`data/state-lending-records.json`), NOT the crawled corpus
-   (Colorado AI Act: 0 records in the 242k). It proves what jurisdiction-tagged coverage *unlocks* —
-   present as proof-of-concept, not a shipping capability.
+1. It runs on **4 hand-curated records** (`data/state-lending-records.json`), NOT the crawled corpus,
+   and the win is **100% dependent on them** — measured: drop them and re-run against the 7,142 real
+   records alone and the Carver arm collapses to parity (MISS on CO *and* CA). CO AI Act is 0 records;
+   CA Holden Act is *named* in 5 DFPI reporting bulletins but the obligation isn't captured
+   (present-in-name ≠ usable-obligation); only the 2 *state* records are load-bearing (the 2 federal
+   ones are redundant with real CFPB/FTC coverage). Proof-of-concept of what coverage *unlocks*, not a
+   shipping capability. Full detail: `docs/DEMO.md` caveat 1.
 2. Retrieval needs a **situation-aware query** (state + automated); the agent supplies that from its
    system-message context. On the bare user words the CO record does not rank top-6.
 3. The curated records are **REVIEW-REQUIRED** (Colorado requirements lean partly on secondary
