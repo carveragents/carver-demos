@@ -43,33 +43,40 @@ const baseApplication = {
   decisionDate: '2027-01-14',
 };
 
+// The applicant ID carries the applicant's 2-letter state code, so a presenter only has to
+// remember to swap "CO" -> "CA" -> "NY" while the number stays the same. The state still comes
+// from the looked-up file (below), not from parsing the ID.
 const APPLICANTS: Record<string, ApplicantProfile> = {
-  'A-1001': {
-    applicantId: 'A-1001',
+  'CO-1001': {
+    applicantId: 'CO-1001',
     name: 'Marcus Webb',
     state: 'Colorado',
     application: { id: 'LN-4471', ...baseApplication },
   },
-  'A-1002': {
-    applicantId: 'A-1002',
+  'CA-1001': {
+    applicantId: 'CA-1001',
     name: 'Dolores Ramirez',
     state: 'California',
     application: { id: 'LN-5182', ...baseApplication },
   },
-  'A-1003': {
-    applicantId: 'A-1003',
+  'NY-1001': {
+    applicantId: 'NY-1001',
     name: 'Priya Nadella',
     state: 'New York',
     application: { id: 'LN-6093', ...baseApplication },
   },
 };
 
-/** Normalise "a-1001", " A-1001 ", "1001" to the canonical key. */
+/** Normalise "co-1001", " CO-1001 ", "CO1001" to the canonical key. */
 const normalise = (raw: string): string => {
-  const t = (raw ?? '').trim().toUpperCase();
+  const t = (raw ?? '').trim().toUpperCase().replace(/\s+/g, '');
   if (APPLICANTS[t]) return t;
-  const withPrefix = `A-${t.replace(/^A-?/, '')}`;
-  return APPLICANTS[withPrefix] ? withPrefix : t;
+  const m = t.match(/^([A-Z]{2})-?(\d+)$/);
+  if (m) {
+    const key = `${m[1]}-${m[2]}`;
+    if (APPLICANTS[key]) return key;
+  }
+  return t;
 };
 
 export const lookupApplicant = createTool({
@@ -79,7 +86,7 @@ export const lookupApplicant = createTool({
     'they are in, and their loan application and its decision. Call this before answering questions ' +
     "about an applicant's application — do not ask the applicant for details their file already holds.",
   inputSchema: z.object({
-    applicantId: z.string().min(1).describe('The applicant ID the person gave, e.g. "A-1001"'),
+    applicantId: z.string().min(1).describe('The applicant ID the person gave, e.g. "CO-1001"'),
   }),
   outputSchema: z.object({
     found: z.boolean(),
@@ -110,7 +117,7 @@ export const lookupApplicant = createTool({
       return {
         found: false,
         profile: null,
-        message: `No applicant found for ID "${inputData.applicantId}". Known demo IDs: A-1001, A-1002, A-1003.`,
+        message: `No applicant found for ID "${inputData.applicantId}". Known demo IDs: CO-1001, CA-1001, NY-1001.`,
       };
     }
     return { found: true, profile, message: `Loaded file for ${profile.name} (${profile.state}).` };

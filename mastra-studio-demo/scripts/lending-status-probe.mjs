@@ -13,9 +13,9 @@ const BASE = process.env.MASTRA_URL ?? 'http://localhost:4111';
 const MAX_STEPS = 8;
 
 const APPLICANTS = [
-  { id: 'A-1001', state: 'Colorado', overlay: ['CO AI-Act', /colorado ai act|SB ?24-?205|SB ?26-?189|meaningful human review|automated decision.{0,45}(disclos|notice|explan|review)/i] },
-  { id: 'A-1002', state: 'California', overlay: ['CA Holden Act', /holden act|housing financial discrimination|fair lending notice/i] },
-  { id: 'A-1003', state: 'New York', overlay: ['(none — federal only)', /$^/] },
+  { id: 'CO-1001', state: 'Colorado', overlay: ['CO AI-Act', /colorado ai act|SB ?24-?205|SB ?26-?189|meaningful human review|automated decision.{0,45}(disclos|notice|explan|review)/i] },
+  { id: 'CA-1001', state: 'California', overlay: ['CA Holden Act', /holden act|housing financial discrimination|fair lending notice/i] },
+  { id: 'NY-1001', state: 'New York', overlay: ['(none — federal only)', /$^/] },
 ];
 const ARMS = ['lending-status-baseline-agent', 'lending-status-websearch-agent', 'lending-status-carver-agent'];
 const MSG = (id) => `Hi, can you check the status of my loan application? My applicant ID is ${id}.`;
@@ -33,7 +33,7 @@ const ask = async (agent, id) => {
   return { latency, tools: toolNames(b), text: b.text ?? '' };
 };
 
-const warm = async () => { process.stdout.write('warming up… '); await Promise.all(ARMS.map((a) => ask(a, 'A-1001'))); console.log('done.\n'); };
+const warm = async () => { process.stdout.write('warming up… '); await Promise.all(ARMS.map((a) => ask(a, 'CO-1001'))); console.log('done.\n'); };
 await warm();
 
 const grid = {};
@@ -50,9 +50,9 @@ for (const app of APPLICANTS) {
 }
 
 console.log(`${'='.repeat(80)}\nSUMMARY — does the arm surface the state-specific obligation?\n${'='.repeat(80)}`);
-console.log(`${'arm'.padEnd(34)} CO (A-1001)  CA (A-1002)  NY (A-1003)`);
+console.log(`${'arm'.padEnd(34)} CO (CO-1001)  CA (CA-1001)  NY (NY-1001)`);
 for (const arm of ARMS) {
-  const co = grid[arm]['A-1001'], ca = grid[arm]['A-1002'], ny = grid[arm]['A-1003'];
+  const co = grid[arm]['CO-1001'], ca = grid[arm]['CA-1001'], ny = grid[arm]['NY-1001'];
   const nyClean = ny && !/holden|colorado ai/i.test('');
   console.log(`${arm.padEnd(34)} ${(co.hit ? 'YES ✓' : 'miss ✗').padEnd(12)} ${(ca.hit ? 'YES ✓' : 'miss ✗').padEnd(12)} ${'clean ✓'}`);
 }

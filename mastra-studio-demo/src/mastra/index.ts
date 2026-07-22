@@ -23,7 +23,7 @@ export const mastra = new Mastra({
     // applicant ID; the agent looks up their file (lookupApplicant, an auth/CRM stand-in) which
     // carries their STATE, then answers. Same denial for every applicant, state is the one variable:
     // the Carver arm surfaces the state obligation (CO AI Act, CA Holden Act) that baseline and web
-    // miss. IDs A-1001 (CO) / A-1002 (CA) / A-1003 (NY). See docs/DEMO.md.
+    // miss. IDs CO-1001 (CO) / CA-1001 (CA) / NY-1001 (NY). See docs/DEMO.md.
     lendingStatusBaselineAgent,
     lendingStatusWebsearchAgent,
     lendingStatusCarverAgent,

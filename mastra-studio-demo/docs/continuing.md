@@ -163,7 +163,7 @@ canonical URLs to add is in **`docs/corpus-gaps-for-jurisdiction-demos.md`**.
 
 **The demo now runs as a realistic lookup flow (2026-07-22):** the applicant asks for their loan
 status and gives an applicant ID; the agent calls `lookupApplicant` (auth/CRM stand-in) which returns
-their file — including their state — then answers. IDs `A-1001` (CO) / `A-1002` (CA) / `A-1003` (NY),
+their file — including their state — then answers. IDs `CO-1001` (CO) / `CA-1001` (CA) / `NY-1001` (NY),
 identical loan and denial, state is the one variable. Registered arms:
 `lending-status-{baseline,websearch,carver}-agent`, all sharing `lookupApplicant`. The web arm keeps
 `lookupApplicant` alongside provider `webSearch` (the function-tool-drop hazard did not manifest).

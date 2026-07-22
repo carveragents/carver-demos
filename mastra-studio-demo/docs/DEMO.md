@@ -1081,16 +1081,16 @@ demo applicants, identical loan and identical automated denial, differing only b
 
 | Applicant ID | State |
 |---|---|
-| **A-1001** | Colorado |
-| **A-1002** | California |
-| **A-1003** | New York |
+| **CO-1001** | Colorado |
+| **CA-1001** | California |
+| **NY-1001** | New York |
 
 **Live in Studio.** In each of the three agents, type the same thing, swapping only the ID:
 
-> *"Hi, can you check the status of my loan application? My applicant ID is **A-1001**."*
+> *"Hi, can you check the status of my loan application? My applicant ID is **CO-1001**."*
 
 (If you omit the ID, the agent asks for it.) Run it in Baseline → Web Search → Carver, then swap
-**A-1001 → A-1002 → A-1003** and repeat. Nothing about the state is ever typed — the audience watches
+**CO-1001 → CA-1001 → NY-1001** and repeat. Nothing about the state is ever typed — the audience watches
 it arrive from the lookup.
 
 **Scorecard (rigorous).** `node scripts/lending-status-probe.mjs` runs all three applicants × three
@@ -1100,9 +1100,9 @@ arms and prints a pass/fail grid.
 lookup; the applicant never says "does Colorado's AI Act apply?" If a presenter types the obligation
 name into the chat, web search finds it and the contrast collapses.
 
-### Beat 1 — Applicant A-1001 (Colorado): the money shot
+### Beat 1 — Applicant CO-1001 (Colorado): the money shot
 
-All three look up A-1001, see the denial, and proactively explain what happens next. Baseline and Web
+All three look up CO-1001, see the denial, and proactively explain what happens next. Baseline and Web
 Search give the federal adverse-action notice (Reg B 30-day + reasons; FCRA credit-report rights) —
 correct, but incomplete. **Carver** gives the federal notice **and Colorado's AI-Act duty**: because
 an automated model made the decision, the applicant is owed a plain-language explanation of the
@@ -1110,22 +1110,22 @@ model's role, the data used, and a right to correct it and to *meaningful human 
 `leg.colorado.gov`. Say it: *the web agent had the exact same file — Colorado, automated decision —
 and never thought to search for a state AI statute. The failure looked like success.*
 
-### Beat 2 — Applicant A-1002 (California): not a fluke
+### Beat 2 — Applicant CA-1001 (California): not a fluke
 
-Switch to A-1002, same question. Carver now surfaces the **Holden Act** (Fair Lending Notice +
+Switch to CA-1001, same question. Carver now surfaces the **Holden Act** (Fair Lending Notice +
 specific-reasons duty for a home loan); baseline and web still give only the federal answer. Different
 applicant, different state, different obligation — same silent miss by the other two.
 
-### Beat 3 — Applicant A-1003 (New York): the control that proves it's real
+### Beat 3 — Applicant NY-1001 (New York): the control that proves it's real
 
-Switch to A-1003. All three give the federal answer — and Carver correctly adds **no** state overlay,
+Switch to NY-1001. All three give the federal answer — and Carver correctly adds **no** state overlay,
 because New York has none. This is the beat that proves the annotations do real work rather than the
 grounded agent just being verbose: change one applicant, and the output changes exactly where the law
 changes, and only there.
 
 ### Then show the traces
 
-Studio → Traces. Two spans tell the story on the A-1001 run: (1) the **`lookupApplicant` result** —
+Studio → Traces. Two spans tell the story on the CO-1001 run: (1) the **`lookupApplicant` result** —
 `state: Colorado` — this is the audience proof that the state came from the lookup, not from anything
 the applicant typed; (2) the Carver arm's **`searchCarverStateLending` result** — the Colorado AI Act
 record with its `leg.colorado.gov` sourceUrl. The web arm's trace shows generic adverse-action web
