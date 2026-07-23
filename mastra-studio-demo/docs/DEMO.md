@@ -1137,25 +1137,32 @@ changes, and only there.
 ### Beat 4 — The operational cost: Carver vs web search
 
 After the content story lands, show what the *better* answer costs. `node scripts/lending-status-probe.mjs 3`
-prints this (median across all applicant-runs, `maxSteps=8`, measured 2026-07-23):
+prints this. Token burn, **per state** (median of 3 runs each, `maxSteps=8`, measured 2026-07-23) —
+the per-state split matters, so do not quote only the pooled figure:
 
-| arm | latency | tool-calls | **total tokens** |
-|---|---|---|---|
-| baseline | 8s | 1 | 1,014 |
-| web search | 16s | 2 | **16,973** |
-| **Carver** | 18s | 2 | **5,583** |
+| state | baseline tok | web search tok | **Carver tok** | Carver vs web |
+|---|---|---|---|---|
+| **CO-1001** (overlay found) | ~1,000 | 16,627 | **5,583** | **−66%** |
+| **CA-1001** (overlay found) | ~1,000 | 16,973 | **4,378** | **−74%** |
+| **NY-1001** (no overlay) | ~1,000 | 18,778 | **10,797** | −42% |
 
-**Lead with token cost, not speed.** Carver gives the *better* answer (surfaces the state obligation
-web misses) for **~⅓ the tokens** — 5,583 vs 16,973, a **~67% reduction**. And web's 17k is a floor:
-the provider-side web-search tokens are only partially counted in `usage`, so the real gap is wider.
-Framing: *"same question, better answer, a third of the cost."*
+Latency is ~tied across the board (baseline ~8s, web ~16s, Carver ~18s); tool-calls are baseline 1,
+web 2, Carver 2 (up to 5 on NY).
 
-**Do NOT claim a speed win here.** Latency is a wash (18s vs 16s) — the applicant lookup dominates and
-both arms pay it. This differs from the earlier cross-domain mini-suite, where broad "what must I do?"
-questions made web search fan out into many heavy searches and Carver was ~30% faster *and* cheaper
-(see "Cross-domain silent-trigger mini-suite" above). On a tight single-obligation lookup like this
-demo, web is lighter and quicker than in that suite — so token efficiency is the honest operational
-win to show, latency is not.
+**Lead with token cost on the CO/CA beats, not speed.** Where Carver surfaces the obligation
+(Colorado, California) it gives the *better* answer for **a third to a quarter of the tokens** —
+−66% and −74%. And web's ~17k is a floor: the provider-side web-search tokens are only partially
+counted in `usage`, so the real gap is wider. Framing: *"same question, better answer, a fraction of
+the cost."*
+
+**Two honesty guards:**
+- **Do NOT claim a speed win.** Latency is a wash (18s vs 16s) — the applicant lookup dominates and
+  both arms pay it. (This differs from the cross-domain mini-suite above, where broad "what must I do?"
+  questions made web fan out into many heavy searches and Carver was ~30% faster *and* cheaper. On a
+  tight single-obligation lookup, web is lighter — token efficiency is the win, latency is not.)
+- **Do NOT headline the NY cost number.** On the no-overlay control, Carver's advantage shrinks to
+  ~42% and its cost roughly doubles (10.8k, one run 12.9k / 5 calls): with no state obligation to
+  find, it keeps searching. Still cheaper than web, but the CO/CA beats are the cost story, not NY.
 
 ### Then show the traces
 
