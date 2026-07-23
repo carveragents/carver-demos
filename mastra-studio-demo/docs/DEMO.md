@@ -1134,13 +1134,37 @@ because New York has none. This is the beat that proves the annotations do real 
 grounded agent just being verbose: change one applicant, and the output changes exactly where the law
 changes, and only there.
 
+### Beat 4 — The operational cost: Carver vs web search
+
+After the content story lands, show what the *better* answer costs. `node scripts/lending-status-probe.mjs 3`
+prints this (median across all applicant-runs, `maxSteps=8`, measured 2026-07-23):
+
+| arm | latency | tool-calls | **total tokens** |
+|---|---|---|---|
+| baseline | 8s | 1 | 1,014 |
+| web search | 16s | 2 | **16,973** |
+| **Carver** | 18s | 2 | **5,583** |
+
+**Lead with token cost, not speed.** Carver gives the *better* answer (surfaces the state obligation
+web misses) for **~⅓ the tokens** — 5,583 vs 16,973, a **~67% reduction**. And web's 17k is a floor:
+the provider-side web-search tokens are only partially counted in `usage`, so the real gap is wider.
+Framing: *"same question, better answer, a third of the cost."*
+
+**Do NOT claim a speed win here.** Latency is a wash (18s vs 16s) — the applicant lookup dominates and
+both arms pay it. This differs from the earlier cross-domain mini-suite, where broad "what must I do?"
+questions made web search fan out into many heavy searches and Carver was ~30% faster *and* cheaper
+(see "Cross-domain silent-trigger mini-suite" above). On a tight single-obligation lookup like this
+demo, web is lighter and quicker than in that suite — so token efficiency is the honest operational
+win to show, latency is not.
+
 ### Then show the traces
 
 Studio → Traces. Two spans tell the story on the CO-1001 run: (1) the **`lookupApplicant` result** —
 `state: Colorado` — this is the audience proof that the state came from the lookup, not from anything
 the applicant typed; (2) the Carver arm's **`searchCarverStateLending` result** — the Colorado AI Act
 record with its `leg.colorado.gov` sourceUrl. The web arm's trace shows generic adverse-action web
-searches and no Colorado AI statute; the baseline has no obligation retrieval at all.
+searches and no Colorado AI statute; the baseline has no obligation retrieval at all. The token counts
+above are visible per-run in the trace's usage, if someone wants to see the cost gap live.
 
 ### Honest framing — SAY THESE, do not oversell
 
