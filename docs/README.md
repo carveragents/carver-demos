@@ -42,6 +42,19 @@ Single-layer variant. See [`fincoach-demo-single-layer/README.md`](../fincoach-d
 
 See [`amicompliant/`](../amicompliant/).
 
+### mastra-studio-demo
+
+Grounded (Carver) vs baseline vs live-web-search agent contrast in Mastra Studio. The current lead is
+the **state-lending demo**: an applicant-ID lookup supplies the applicant's state, and only the
+Carver-grounded arm surfaces the state-specific loan-denial obligation (Colorado AI Act / California
+Holden Act) that baseline and web both miss — measured cheaper too (43–63% less than web search).
+
+- **README:** [`mastra-studio-demo/README.md`](../mastra-studio-demo/README.md) — setup, agents, how to run.
+- **Demo run sheet + operational cost:** [`mastra-studio-demo/docs/DEMO.md`](../mastra-studio-demo/docs/DEMO.md) — all 12 probes, the winning "state-lending counterfactual swap" run sheet, and Beat 4 (token/cost).
+- **Status / how to resume:** [`mastra-studio-demo/docs/continuing.md`](../mastra-studio-demo/docs/continuing.md).
+- **Build internals:** [`mastra-studio-demo/docs/BUILD-NOTES.md`](../mastra-studio-demo/docs/BUILD-NOTES.md) — read before touching matcher/prompts.
+- **Corpus gaps (for the data team):** [`mastra-studio-demo/docs/corpus-gaps-for-jurisdiction-demos.md`](../mastra-studio-demo/docs/corpus-gaps-for-jurisdiction-demos.md) — what to ingest to make jurisdiction demos work organically.
+
 ---
 
 ## For New Developers
