@@ -1,0 +1,2834 @@
+{
+  "_readme": "SHARED GOLDEN FIXTURE — spec §12. Byte-identical duplicate in BOTH prep/tests/fixtures/ and template/tests/fixtures/. Locks prep's Python port `narrow_obligations_pure` (generate_template_config.py) against §9a's TypeScript original `narrowObligationsPure` (tools/narrowObligations.ts). A silent divergence here would be WORSE than the bug it replaces: prep would certify a demo trigger the shipped guardrail then declines to narrow, and the demo would fail exactly where the spec claims it cannot. Asserted by test_generate_template_config.py::test_narrowing_golden_parity and narrowObligations.test.ts::test_narrowing_golden_parity. firmProfile keys are camelCase (`impactedFunctions`) per FirmProfileSchema; clearedSet records are snake_case ClearedRecords per §5. urgencyWeight is relative to SNAPSHOT_DATE 2026-07-11 (never Date.now()): <= 180 days -> 2 (boundary 2027-01-07), else 1; null -> 0. EDIT BOTH COPIES OR NEITHER.",
+  "cases": [
+    {
+      "name": "jurisdiction_required_no_match_excludes_everything",
+      "note": "A firm outside a record's jurisdiction is categorically irrelevant — no exceptions, however strong the topical overlap. These records have PERFECT industry AND function overlap and are still excluded.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "JP",
+          "bloc": null
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-b",
+          "title": "Obligation rec-b",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "FR",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-b.",
+          "what_changed": "What changed for rec-b.",
+          "why_it_matters": "Why rec-b matters.",
+          "key_requirements": [
+            "Requirement for rec-b."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-b",
+            "url": "https://www.bafin.de/rec-b"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-b",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": []
+    },
+    {
+      "name": "supranational_scope_alone_never_matches",
+      "note": "§9a's fix: `scope === 'supranational'` alone was admitting obligations with no real connection to the firm. The BLOC IDENTITIES must actually agree. Here the record's bloc is EU and the firm's bloc is null.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "US",
+          "bloc": null
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-eu",
+          "title": "Obligation rec-eu",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "supranational",
+            "country": null,
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-eu.",
+          "what_changed": "What changed for rec-eu.",
+          "why_it_matters": "Why rec-eu matters.",
+          "key_requirements": [
+            "Requirement for rec-eu."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-eu",
+            "url": "https://www.bafin.de/rec-eu"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-eu",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": []
+    },
+    {
+      "name": "bloc_match_when_country_differs",
+      "note": "Second branch of jurisdictionMatches: bloc identities agree.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "IE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-eu",
+          "title": "Obligation rec-eu",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "supranational",
+            "country": null,
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-eu.",
+          "what_changed": "What changed for rec-eu.",
+          "why_it_matters": "Why rec-eu matters.",
+          "key_requirements": [
+            "Requirement for rec-eu."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-eu",
+            "url": "https://www.bafin.de/rec-eu"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-eu",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-eu"
+      ]
+    },
+    {
+      "name": "topical_required_jurisdiction_only_match_is_excluded",
+      "note": "Required-AND semantics. Jurisdiction matches perfectly; neither industry nor function overlaps. Excluded.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Banking",
+        "industry": [
+          "Banking"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Treasury"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Engineering"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": []
+    },
+    {
+      "name": "function_overlap_alone_is_sufficient",
+      "note": "Topical relevance can come from EITHER dimension — a record can be functionally relevant without a literal industry-tag match.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Banking",
+        "industry": [
+          "Banking"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-a"
+      ]
+    },
+    {
+      "name": "sector_is_folded_into_the_industry_overlap_signal",
+      "note": "industryTags(firm) = [...firm.industry, firm.sector].",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Banking"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Treasury"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Engineering"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-a"
+      ]
+    },
+    {
+      "name": "overlap_is_case_insensitive",
+      "note": "Tag capitalization is not guaranteed consistent across the corpus.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "artificial intelligence",
+        "industry": [
+          "ARTIFICIAL INTELLIGENCE"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-a"
+      ]
+    },
+    {
+      "name": "exactly_one_match",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-far",
+          "title": "Obligation rec-far",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-far.",
+          "what_changed": "What changed for rec-far.",
+          "why_it_matters": "Why rec-far matters.",
+          "key_requirements": [
+            "Requirement for rec-far."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-far",
+            "url": "https://www.bafin.de/rec-far"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-far",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-a"
+      ]
+    },
+    {
+      "name": "ranking_by_overlap_count",
+      "note": "rankOf = industry overlap + function overlap + urgencyWeight. All compliance_dates null (urgencyWeight 0) so overlap alone orders these.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Machine Learning",
+        "industry": [
+          "Artificial Intelligence",
+          "Machine Learning"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance",
+          "Engineering"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-low",
+          "title": "Obligation rec-low",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-low.",
+          "what_changed": "What changed for rec-low.",
+          "why_it_matters": "Why rec-low matters.",
+          "key_requirements": [
+            "Requirement for rec-low."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-low",
+            "url": "https://www.bafin.de/rec-low"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-low",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-high",
+          "title": "Obligation rec-high",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-high.",
+          "what_changed": "What changed for rec-high.",
+          "why_it_matters": "Why rec-high matters.",
+          "key_requirements": [
+            "Requirement for rec-high."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-high",
+            "url": "https://www.bafin.de/rec-high"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence",
+              "Machine Learning"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance",
+            "Engineering"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-high",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-mid",
+          "title": "Obligation rec-mid",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-mid.",
+          "what_changed": "What changed for rec-mid.",
+          "why_it_matters": "Why rec-mid matters.",
+          "key_requirements": [
+            "Requirement for rec-mid."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-mid",
+            "url": "https://www.bafin.de/rec-mid"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence",
+              "Machine Learning"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-mid",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-high",
+        "rec-mid",
+        "rec-low"
+      ]
+    },
+    {
+      "name": "urgency_weight_boundary_at_exactly_180_days",
+      "note": "THE boundary. SNAPSHOT_DATE=2026-07-11. 2027-01-07 is exactly 180 days out -> weight 2. 2027-01-08 is 181 -> weight 1. A `< 180` implementation, or one using Date.now(), fails this case.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-181",
+          "title": "Obligation rec-181",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-181.",
+          "what_changed": "What changed for rec-181.",
+          "why_it_matters": "Why rec-181 matters.",
+          "key_requirements": [
+            "Requirement for rec-181."
+          ],
+          "compliance_date": "2027-01-08",
+          "citation": {
+            "name": "Citation rec-181",
+            "url": "https://www.bafin.de/rec-181"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-181",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-180",
+          "title": "Obligation rec-180",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-180.",
+          "what_changed": "What changed for rec-180.",
+          "why_it_matters": "Why rec-180 matters.",
+          "key_requirements": [
+            "Requirement for rec-180."
+          ],
+          "compliance_date": "2027-01-07",
+          "citation": {
+            "name": "Citation rec-180",
+            "url": "https://www.bafin.de/rec-180"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-180",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-180",
+        "rec-181"
+      ]
+    },
+    {
+      "name": "null_compliance_date_gets_urgency_weight_zero",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-null",
+          "title": "Obligation rec-null",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-null.",
+          "what_changed": "What changed for rec-null.",
+          "why_it_matters": "Why rec-null matters.",
+          "key_requirements": [
+            "Requirement for rec-null."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-null",
+            "url": "https://www.bafin.de/rec-null"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-null",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-far",
+          "title": "Obligation rec-far",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-far.",
+          "what_changed": "What changed for rec-far.",
+          "why_it_matters": "Why rec-far matters.",
+          "key_requirements": [
+            "Requirement for rec-far."
+          ],
+          "compliance_date": "2027-01-08",
+          "citation": {
+            "name": "Citation rec-far",
+            "url": "https://www.bafin.de/rec-far"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-far",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-far",
+        "rec-null"
+      ]
+    },
+    {
+      "name": "tie_break_sooner_deadline_first",
+      "note": "Equal rankOf (both weight 2, same overlaps) -> sooner date first.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-later",
+          "title": "Obligation rec-later",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-later.",
+          "what_changed": "What changed for rec-later.",
+          "why_it_matters": "Why rec-later matters.",
+          "key_requirements": [
+            "Requirement for rec-later."
+          ],
+          "compliance_date": "2026-11-30",
+          "citation": {
+            "name": "Citation rec-later",
+            "url": "https://www.bafin.de/rec-later"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-later",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-sooner",
+          "title": "Obligation rec-sooner",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-sooner.",
+          "what_changed": "What changed for rec-sooner.",
+          "why_it_matters": "Why rec-sooner matters.",
+          "key_requirements": [
+            "Requirement for rec-sooner."
+          ],
+          "compliance_date": "2026-08-01",
+          "citation": {
+            "name": "Citation rec-sooner",
+            "url": "https://www.bafin.de/rec-sooner"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-sooner",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-sooner",
+        "rec-later"
+      ]
+    },
+    {
+      "name": "tie_break_nulls_last",
+      "note": "`a.compliance_date ?? '9999-99-99'` — nulls sort last.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-null-b",
+          "title": "Obligation rec-null-b",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-null-b.",
+          "what_changed": "What changed for rec-null-b.",
+          "why_it_matters": "Why rec-null-b matters.",
+          "key_requirements": [
+            "Requirement for rec-null-b."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-null-b",
+            "url": "https://www.bafin.de/rec-null-b"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-null-b",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-null-a",
+          "title": "Obligation rec-null-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-null-a.",
+          "what_changed": "What changed for rec-null-a.",
+          "why_it_matters": "Why rec-null-a matters.",
+          "key_requirements": [
+            "Requirement for rec-null-a."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-null-a",
+            "url": "https://www.bafin.de/rec-null-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-null-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-null-a",
+        "rec-null-b"
+      ]
+    },
+    {
+      "name": "tie_break_final_by_id_ascending",
+      "note": "Same rankOf, same compliance_date -> id ascending. The final deterministic tie-break; without it the order is sort-stability luck.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-z",
+          "title": "Obligation rec-z",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-z.",
+          "what_changed": "What changed for rec-z.",
+          "why_it_matters": "Why rec-z matters.",
+          "key_requirements": [
+            "Requirement for rec-z."
+          ],
+          "compliance_date": "2026-09-01",
+          "citation": {
+            "name": "Citation rec-z",
+            "url": "https://www.bafin.de/rec-z"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-z",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-a",
+          "title": "Obligation rec-a",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-a.",
+          "what_changed": "What changed for rec-a.",
+          "why_it_matters": "Why rec-a matters.",
+          "key_requirements": [
+            "Requirement for rec-a."
+          ],
+          "compliance_date": "2026-09-01",
+          "citation": {
+            "name": "Citation rec-a",
+            "url": "https://www.bafin.de/rec-a"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-a",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-m",
+          "title": "Obligation rec-m",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-m.",
+          "what_changed": "What changed for rec-m.",
+          "why_it_matters": "Why rec-m matters.",
+          "key_requirements": [
+            "Requirement for rec-m."
+          ],
+          "compliance_date": "2026-09-01",
+          "citation": {
+            "name": "Citation rec-m",
+            "url": "https://www.bafin.de/rec-m"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-m",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-a",
+        "rec-m",
+        "rec-z"
+      ]
+    },
+    {
+      "name": "more_than_five_matches_truncates_to_top_five",
+      "note": "Ranking, not just the gate, is exercised: seven relevant records, the five with the nearest compliance dates survive, in date order.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-1",
+          "title": "Obligation rec-1",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-1.",
+          "what_changed": "What changed for rec-1.",
+          "why_it_matters": "Why rec-1 matters.",
+          "key_requirements": [
+            "Requirement for rec-1."
+          ],
+          "compliance_date": "2026-08-01",
+          "citation": {
+            "name": "Citation rec-1",
+            "url": "https://www.bafin.de/rec-1"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-1",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-2",
+          "title": "Obligation rec-2",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-2.",
+          "what_changed": "What changed for rec-2.",
+          "why_it_matters": "Why rec-2 matters.",
+          "key_requirements": [
+            "Requirement for rec-2."
+          ],
+          "compliance_date": "2026-08-15",
+          "citation": {
+            "name": "Citation rec-2",
+            "url": "https://www.bafin.de/rec-2"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-2",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-3",
+          "title": "Obligation rec-3",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-3.",
+          "what_changed": "What changed for rec-3.",
+          "why_it_matters": "Why rec-3 matters.",
+          "key_requirements": [
+            "Requirement for rec-3."
+          ],
+          "compliance_date": "2026-09-01",
+          "citation": {
+            "name": "Citation rec-3",
+            "url": "https://www.bafin.de/rec-3"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-3",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-4",
+          "title": "Obligation rec-4",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-4.",
+          "what_changed": "What changed for rec-4.",
+          "why_it_matters": "Why rec-4 matters.",
+          "key_requirements": [
+            "Requirement for rec-4."
+          ],
+          "compliance_date": "2026-09-15",
+          "citation": {
+            "name": "Citation rec-4",
+            "url": "https://www.bafin.de/rec-4"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-4",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-5",
+          "title": "Obligation rec-5",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-5.",
+          "what_changed": "What changed for rec-5.",
+          "why_it_matters": "Why rec-5 matters.",
+          "key_requirements": [
+            "Requirement for rec-5."
+          ],
+          "compliance_date": "2026-10-01",
+          "citation": {
+            "name": "Citation rec-5",
+            "url": "https://www.bafin.de/rec-5"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-5",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-6",
+          "title": "Obligation rec-6",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-6.",
+          "what_changed": "What changed for rec-6.",
+          "why_it_matters": "Why rec-6 matters.",
+          "key_requirements": [
+            "Requirement for rec-6."
+          ],
+          "compliance_date": "2026-10-15",
+          "citation": {
+            "name": "Citation rec-6",
+            "url": "https://www.bafin.de/rec-6"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-6",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-7",
+          "title": "Obligation rec-7",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-7.",
+          "what_changed": "What changed for rec-7.",
+          "why_it_matters": "Why rec-7 matters.",
+          "key_requirements": [
+            "Requirement for rec-7."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-7",
+            "url": "https://www.bafin.de/rec-7"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-7",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-1",
+        "rec-2",
+        "rec-3",
+        "rec-4",
+        "rec-5"
+      ]
+    },
+    {
+      "name": "irrelevant_record_never_crowds_out_a_relevant_one",
+      "note": "§9a's central fix. Six jurisdiction-mismatched records cannot occupy a slot however high their other signals; the one relevant record wins.",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [
+        {
+          "id": "rec-noise-1",
+          "title": "Obligation rec-noise-1",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-1.",
+          "what_changed": "What changed for rec-noise-1.",
+          "why_it_matters": "Why rec-noise-1 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-1."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-1",
+            "url": "https://www.bafin.de/rec-noise-1"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-1",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-noise-2",
+          "title": "Obligation rec-noise-2",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-2.",
+          "what_changed": "What changed for rec-noise-2.",
+          "why_it_matters": "Why rec-noise-2 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-2."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-2",
+            "url": "https://www.bafin.de/rec-noise-2"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-2",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-noise-3",
+          "title": "Obligation rec-noise-3",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-3.",
+          "what_changed": "What changed for rec-noise-3.",
+          "why_it_matters": "Why rec-noise-3 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-3."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-3",
+            "url": "https://www.bafin.de/rec-noise-3"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-3",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-noise-4",
+          "title": "Obligation rec-noise-4",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-4.",
+          "what_changed": "What changed for rec-noise-4.",
+          "why_it_matters": "Why rec-noise-4 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-4."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-4",
+            "url": "https://www.bafin.de/rec-noise-4"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-4",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-noise-5",
+          "title": "Obligation rec-noise-5",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-5.",
+          "what_changed": "What changed for rec-noise-5.",
+          "why_it_matters": "Why rec-noise-5 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-5."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-5",
+            "url": "https://www.bafin.de/rec-noise-5"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-5",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-noise-6",
+          "title": "Obligation rec-noise-6",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "JP",
+            "bloc": null,
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-noise-6.",
+          "what_changed": "What changed for rec-noise-6.",
+          "why_it_matters": "Why rec-noise-6 matters.",
+          "key_requirements": [
+            "Requirement for rec-noise-6."
+          ],
+          "compliance_date": "2026-07-15",
+          "citation": {
+            "name": "Citation rec-noise-6",
+            "url": "https://www.bafin.de/rec-noise-6"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-noise-6",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        },
+        {
+          "id": "rec-relevant",
+          "title": "Obligation rec-relevant",
+          "regulator_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+          "jurisdiction": {
+            "scope": "national",
+            "country": "DE",
+            "bloc": "EU",
+            "region_name": null
+          },
+          "update_type": "guidance",
+          "impact_label": "high",
+          "objective": "Objective for rec-relevant.",
+          "what_changed": "What changed for rec-relevant.",
+          "why_it_matters": "Why rec-relevant matters.",
+          "key_requirements": [
+            "Requirement for rec-relevant."
+          ],
+          "compliance_date": null,
+          "citation": {
+            "name": "Citation rec-relevant",
+            "url": "https://www.bafin.de/rec-relevant"
+          },
+          "impacted_business": {
+            "size": [
+              "medium"
+            ],
+            "type": [
+              "technology provider"
+            ],
+            "industry": [
+              "Artificial Intelligence"
+            ]
+          },
+          "impacted_functions": [
+            "Compliance"
+          ],
+          "scenario": "A",
+          "baseline_failures": [
+            {
+              "mode": "citation_fabricated",
+              "stage": "B",
+              "baseline_response_excerpt": "source_name='MFSA Banking Rule BR/99' source_url='https://www.mfsa.mt/rule-br-99-consolidated-2026' compliance_date='2026-09-01'",
+              "judge_rationale": null
+            }
+          ],
+          "human_review": {
+            "reviewer": "achint",
+            "reviewed_at": "2026-07-16T10:00:00Z",
+            "attestation": "approved",
+            "obligation_applies_confirmed": null,
+            "artifact_capable_of_violation_confirmed": null,
+            "omission_materiality_confirmed": null
+          },
+          "source": {
+            "artifact_id": "rec-relevant",
+            "topic_id": "topic-77",
+            "source_id": "src-12",
+            "snapshot_date": "2026-07-11"
+          },
+          "probed_at": "2026-07-15T09:30:00Z",
+          "model_id": "openai/gpt-5.6-sol",
+          "model_cutoff": "2026-02-16"
+        }
+      ],
+      "expectedTopFiveIds": [
+        "rec-relevant"
+      ]
+    },
+    {
+      "name": "empty_cleared_set",
+      "note": "Zero candidates -> the processor returns the draft unchanged (§9a).",
+      "firmProfile": {
+        "jurisdiction": {
+          "country": "DE",
+          "bloc": "EU"
+        },
+        "sector": "Artificial Intelligence",
+        "industry": [
+          "Artificial Intelligence"
+        ],
+        "size": "medium",
+        "impactedFunctions": [
+          "Compliance"
+        ]
+      },
+      "clearedSet": [],
+      "expectedTopFiveIds": []
+    }
+  ]
+}

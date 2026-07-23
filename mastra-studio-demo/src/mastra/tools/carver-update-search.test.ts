@@ -32,6 +32,7 @@ const update = (topicId: string, date: string, title: string, extra: Partial<Upd
   whyItMatters: '',
   keyRequirements: [],
   tags: [],
+  sourceUrl: 'https://example.test/doc',
   ...extra,
 });
 

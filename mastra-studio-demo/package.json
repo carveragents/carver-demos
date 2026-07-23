@@ -8,10 +8,12 @@
     "typecheck": "tsc --noEmit",
     "build:data": "node scripts/build-topics.mjs",
     "build:updates": "node scripts/build-updates.mjs",
-    "build:enforcement": "node scripts/build-enforcement.mjs",
+    "build:domain": "node --env-file-if-exists=.env scripts/build-domain-index.mjs",
+    "build:enforcement": "node --env-file-if-exists=.env scripts/build-domain-index.mjs enforcement",
     "dev": "mastra dev",
     "build": "mastra build",
-    "start": "mastra start"
+    "start": "mastra start",
+    "build:curated": "node --env-file-if-exists=.env scripts/build-curated-index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,8 @@
     "node": ">=22.13.0"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.16",
+    "@libsql/client": "^0.17.4",
     "@mastra/core": "^1.51.0",
     "@mastra/libsql": "^1.16.0",
     "@mastra/loggers": "^1.2.0",
@@ -28,7 +32,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@libsql/client": "^0.17.4",
     "@types/node": "^26.1.1",
     "mastra": "^1.19.0",
     "typescript": "^7.0.2"

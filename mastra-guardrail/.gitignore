@@ -1,0 +1,7 @@
+node_modules/
+.mastra/
+prep/.venv/
+prep/data/scratch/
+prep/.env
+template/.env
+template/output/

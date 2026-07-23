@@ -75,3 +75,74 @@
   - Note: this is a *policy-enforcement* story (closer to `policy-diffs`), distinct from the
     current demo's grounded-vs-ungrounded *retrieval* contrast.
   - Direction from user: **context only for now**; specific direction to follow.
+
+---
+
+## Session Summary (ended 2026-07-23)
+
+**Duration:** 2026-07-17 → 2026-07-23 (multi-day). **Note:** session started on `feat-extend-mastra-demo`
+but all work landed on branch **`feat-mastra-guardrail-port`** (the guardrail port branch); nothing pushed.
+
+### Git summary
+- **26 commits** on `feat-mastra-guardrail-port` vs `main` (whole session). ~14 in the final stretch
+  (the state-lending demo + operational-cost measurement).
+- **Final state of this conversation's work:** 20 files added, 8 modified (all under `mastra-studio-demo/`).
+- **Final git status:** clean working tree. **Not pushed.**
+- Key added files: `src/mastra/tools/lookup-applicant-tool.ts`, `agents/lending-status-*.ts`,
+  `agents/{advisor-*,crypto/device/child-safety-carver}.ts`, `data/state-lending-records.json`,
+  `scripts/{lending-status-probe,trigger-probe,build-curated-index,state-lending-probe}.mjs`,
+  `docs/corpus-gaps-for-jurisdiction-demos.md`.
+
+### Key accomplishments
+1. **Found the ONE content-win scenario in 12 probes** — a Carver-grounded agent beating BOTH baseline
+   and live web search on answer content. Everywhere else the honest pitch is operational, not "better
+   answers" (cross-domain mini-suite: web reaches content parity).
+2. **The winning "lending-status" demo** — signed-in applicant asks for loan status + gives an applicant
+   ID → `lookupApplicant` (auth/CRM stand-in) returns their file incl. **state** → the Carver arm surfaces
+   the state-specific obligation baseline/web miss: **CO-1001** Colorado AI Act, **CA-1001** Holden Act,
+   **NY-1001** federal-only (control). State never typed; visible in the trace.
+3. **Operational cost measured** at real gpt-5.6-sol rates: Carver gives the better answer for **43–63%
+   less than web search** ($44.45/1k vs $78 warm–$122 cold), cache-independent; latency a wash.
+
+### Features implemented
+- `lookupApplicant` tool (3 profiles, state the only variable, forgiving ID normalize).
+- Registry pruned to 5 demo-usable agents (scenario-1 pair + 3 lending-status arms); ~12 measurement
+  agents intentionally unregistered (source retained).
+- `build-curated-index.mjs` (embed a reviewed records file into a vector index, distinct from the crawler).
+- Probes: `lending-status-probe.mjs` (content + cache-split tokens + $ cost, billed vs cold), `trigger-probe.mjs`.
+
+### Problems encountered & solutions
+- **Web arm + function tool:** feared `@mastra/core` drops function tools mixed with provider `webSearch`;
+  verified it does NOT in this version — all 3 arms share `lookupApplicant`.
+- **Future decline date (2027-01-14) not explainable:** searched for a present-in-force substitute — none
+  clean (automated-decision-disclosure wave is uniformly Jan 1 2027; medical-debt bans preempted). Kept
+  2027 and framed the scenario deliberately as "early Jan 2027"; verified CO beat deterministic at 2027 date.
+- **Prompt-asymmetry confound:** neutralized the Carver tool description; confirmed web still misses even
+  when nudged → win isn't a prompt artifact.
+- **Broken install:** `@ai-sdk/openai` declared but missing from node_modules (broke every web-search agent).
+
+### Important findings / caveats (MUST travel with the win)
+- The win runs on **4 hand-curated records** (`data/state-lending-records.json`), NOT the crawled corpus
+  (CO AI Act = 0 of 242k). Drop them → win collapses to parity (measured). Only the **2 state records** are
+  load-bearing. Records are REVIEW-REQUIRED.
+- Web's cost figure is a **floor** (excludes OpenAI's internal web_search fetch/rank tokens — unexposed by
+  any API, so a separate key would NOT help a tokens comparison).
+
+### Dependencies / config
+- Installed `@ai-sdk/openai@4.0.17` (was missing); kept `package.json` caret at `^4.0.16`.
+- Added `build:curated` npm script. Registered `state-lending`/`crypto-assets`/`medical-devices`/`child-safety`
+  domains in `data/carver-domains.json`. New `.db` fixtures are gitignored (rebuild via `build:domain`/`build:curated`).
+
+### What wasn't completed
+- Nothing pushed; no PR/merge.
+- Curated records not yet legally/data-reviewed.
+- Corpus doesn't hold these obligations organically — data-team ingest list in
+  `docs/corpus-gaps-for-jurisdiction-demos.md` (add `leg.colorado.gov` as a topic, etc.).
+
+### Tips for future developers
+- Resume from `docs/continuing.md` and `docs/DEMO.md` ("The state-lending counterfactual swap" + Beat 4).
+- Re-run: `npm run dev` then `node scripts/lending-status-probe.mjs 3`. Rebuild index:
+  `npm run build:domain -- state-lending ../../carver-showcase/data/annotations.jsonl` then
+  `npm run build:curated -- state-lending data/state-lending-records.json`.
+- Persistent memory written: `carver-lending-demo`, `carver-corpus-gaps`.
+- `sqlite3` CLI absent — query the corpus via node + `@libsql/client`, or stream the JSONL.

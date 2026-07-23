@@ -1,0 +1,18 @@
+{
+  "_readme": "P6.1's synthetic ScenarioDecision — the second of the two committed generator inputs. Every field of §7's ScenarioDecision TypedDict carries a literal value, so P6.2's `emit_template_config` run is reproducible and reviewable rather than driven by an ad-hoc dict typed into a shell command. `probed_ids` are deliberately DISJOINT from src/data/cleared-set.json's ids: run_prep.py passes the winner's probed_ids to run_curation as exclude_ids, so the trial's records and the curated cleared set are different samples by construction (§7). `emit_template_config` itself reads only `outcome` and `winner`; the rest is here because the plan pins it and because a half-specified fixture is a TBD wearing an adjective. NOTE: the plan (P6.1) homes this file at prep/tests/fixtures/synthetic_scenario_decision.json; it lives here instead because the P6.2/P6.3 task was scoped read-only over prep/ (a concurrent agent owns that tree). Nothing in prep/ references it — its only consumer is P6.2's generator invocation.",
+  "outcome": "decided",
+  "winner": "A",
+  "stop_reason": "complete",
+  "discarded_rounds": 0,
+  "strength_scores": { "A": 1.5, "B": 1.0 },
+  "survivor_counts": { "A": 4, "B": 2 },
+  "stage_a_survivor_counts": { "A": 2, "B": 1 },
+  "probed_ids": {
+    "A": ["art-9001", "art-9002", "art-9003", "art-9004"],
+    "B": ["art-9101", "art-9102"]
+  },
+  "trial_planned": { "A": 4, "B": 2 },
+  "trial_completed": { "A": 4, "B": 2 },
+  "decided_at": "2026-07-16T00:00:00+00:00",
+  "evidence_path": "data/scratch/scenario_decision.json"
+}

@@ -1,0 +1,115 @@
+{
+  "_readme": "SHARED GOLDEN FIXTURE — spec §8. Byte-identical duplicate in BOTH prep/tests/fixtures/ and template/tests/fixtures/. INDUSTRY_TAG_TO_BUCKET decides which bucket phrase a record's prompt uses; if prep and template disagree, the eval asks a DIFFERENT question than the one the evidence was recorded against, and the >= 0.8 bar absorbs it as noise. Asserted by prep's test_scenarios.py and template's prompts.test.ts. EDIT BOTH COPIES OR NEITHER.",
+  "_groups": {
+    "tag_bucket_cases": "direct INDUSTRY_TAG_TO_BUCKET lookup — scenario-free, the table is flat. BOTH sides run EVERY case.",
+    "unmapped_tag_default_cases": "a tag in NO bucket falls back to the scenario's default bucket (DOMAIN_BUCKETS[scenario][0] prep-side). The default is SCENARIO-SCOPED, hence the extra `scenario` field — and hence an asymmetry the template cannot avoid: prep owns DOMAIN_BUCKETS for BOTH scenarios, but the template's generated `DOMAIN_BUCKETS: readonly string[]` (spec §8:4007) is FLAT — the winning scenario's five phrases only, because goal #10 ships exactly one scenario. `prompts.test.ts` therefore runs ONLY the case whose `scenario` matches the shipped one, and skips the other; prep's test_scenarios.py runs both. §14:5782's 'reproduces every case' is true for tag_bucket_cases and, for this group, true of every case the template can express. Flagged for an orchestrator ruling."
+  },
+  "tag_bucket_cases": [
+    {
+      "tag": "artificial intelligence",
+      "expected_bucket": "AI-assisted decisioning"
+    },
+    {
+      "tag": "generative ai",
+      "expected_bucket": "AI-assisted decisioning"
+    },
+    {
+      "tag": "machine learning",
+      "expected_bucket": "AI-assisted decisioning"
+    },
+    {
+      "tag": "automated decision-making",
+      "expected_bucket": "AI-assisted decisioning"
+    },
+    {
+      "tag": "profiling",
+      "expected_bucket": "automated profiling"
+    },
+    {
+      "tag": "automated profiling",
+      "expected_bucket": "automated profiling"
+    },
+    {
+      "tag": "biometric",
+      "expected_bucket": "biometric/emotion inference"
+    },
+    {
+      "tag": "biometric data",
+      "expected_bucket": "biometric/emotion inference"
+    },
+    {
+      "tag": "facial recognition",
+      "expected_bucket": "biometric/emotion inference"
+    },
+    {
+      "tag": "emotion recognition",
+      "expected_bucket": "biometric/emotion inference"
+    },
+    {
+      "tag": "gdpr",
+      "expected_bucket": "data processing & retention"
+    },
+    {
+      "tag": "data protection",
+      "expected_bucket": "data processing & retention"
+    },
+    {
+      "tag": "personal data",
+      "expected_bucket": "data processing & retention"
+    },
+    {
+      "tag": "content moderation",
+      "expected_bucket": "algorithmic content ranking"
+    },
+    {
+      "tag": "recommender system",
+      "expected_bucket": "algorithmic content ranking"
+    },
+    {
+      "tag": "securities",
+      "expected_bucket": "investment product marketing"
+    },
+    {
+      "tag": "retail investor",
+      "expected_bucket": "investment product marketing"
+    },
+    {
+      "tag": "financial promotion",
+      "expected_bucket": "retail financial promotions"
+    },
+    {
+      "tag": "marketing",
+      "expected_bucket": "retail financial promotions"
+    },
+    {
+      "tag": "advertising",
+      "expected_bucket": "retail financial promotions"
+    },
+    {
+      "tag": "robo-advice",
+      "expected_bucket": "robo-advice disclosures"
+    },
+    {
+      "tag": "consumer credit",
+      "expected_bucket": "credit advertising"
+    },
+    {
+      "tag": "crypto",
+      "expected_bucket": "crypto/digital-asset promotion"
+    }
+  ],
+  "unmapped_tag_default_cases": [
+    {
+      "tag": "sustainable packaging",
+      "scenario": "A",
+      "expected_bucket": "AI-assisted decisioning",
+      "note": "Not in INDUSTRY_TAG_TO_BUCKET at all -> DOMAIN_BUCKETS['A'][0]."
+    },
+    {
+      "tag": "sustainable packaging",
+      "scenario": "B",
+      "expected_bucket": "investment product marketing",
+      "note": "Same unmapped tag, other scenario -> DOMAIN_BUCKETS['B'][0]. This pair is why the default cannot be expressed without a scenario."
+    }
+  ]
+}
