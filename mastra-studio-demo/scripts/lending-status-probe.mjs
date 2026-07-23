@@ -45,9 +45,19 @@ const median = (xs) => { if (!xs.length) return 0; const s = [...xs].sort((a, b)
 const round = (n) => Math.round(n);
 const range = (xs) => (xs.length ? `${Math.min(...xs)}–${Math.max(...xs)}` : '—');
 
+// As billed: cache-read input gets the discounted rate.
 const costOf = (t) =>
   (t.freshInput / 1e6) * RATES.inputPerM +
   (t.cachedInput / 1e6) * RATES.cachedInputPerM +
+  (t.output / 1e6) * RATES.outputPerM +
+  t.wsCalls * RATES.webSearchPerCall;
+
+// No-cache (cold): bill ALL input at the full rate. This is what a run costs when the prompt
+// prefix is not cache-warm — a cold first call, or low-volume traffic where the ~5-10 min cache
+// TTL expires between calls. Carver barely caches, so its two costs are ~equal; the web arm's big
+// fixed scaffold caches heavily, so its no-cache cost is much higher than its billed cost.
+const costNoCacheOf = (t) =>
+  ((t.freshInput + t.cachedInput) / 1e6) * RATES.inputPerM +
   (t.output / 1e6) * RATES.outputPerM +
   t.wsCalls * RATES.webSearchPerCall;
 
@@ -76,6 +86,7 @@ const ask = async (agent, id) => {
     hit: false, text: b.text ?? '',
   };
   t.cost = costOf(t);
+  t.costNoCache = costNoCacheOf(t);
   return t;
 };
 
@@ -117,15 +128,19 @@ for (const arm of ARMS) {
   console.log(`${arm.padEnd(32)} ${`${md('total').toLocaleString()} (${range(r.map((x) => Math.round(x.total / 1000)))}k)`.padEnd(16)} ${md('freshInput').toLocaleString().padEnd(16)} ${md('cachedInput').toLocaleString().padEnd(14)} ${md('output').toLocaleString()}`);
 }
 
-// COST estimate — median $/run across all applicant-runs, + per-1000-runs projection
-console.log(`\n${'='.repeat(90)}\nCOST ESTIMATE — median $/run (ASSUMED rates: in $${RATES.inputPerM}/M, cached $${RATES.cachedInputPerM}/M, out $${RATES.outputPerM}/M, websearch $${RATES.webSearchPerCall}/call)\n${'='.repeat(90)}`);
-console.log(`${'arm'.padEnd(32)} ${'$/run (median)'.padEnd(18)} ${'$ / 1,000 runs'.padEnd(16)} websearch calls`);
+// COST estimate — median $/1,000 runs, billed (cache-warm) and no-cache (cold), per arm.
+console.log(`\n${'='.repeat(90)}\nCOST — median $ / 1,000 runs (rates: in $${RATES.inputPerM}/M, cached $${RATES.cachedInputPerM}/M, out $${RATES.outputPerM}/M, websearch $${RATES.webSearchPerCall}/call)\n${'='.repeat(90)}`);
+console.log(`${'arm'.padEnd(32)} ${'billed (cache-warm)'.padEnd(22)} ${'no-cache (cold)'.padEnd(18)} websearch`);
+const perK = {};
 for (const arm of ARMS) {
   const r = allRuns(arm);
-  const perRun = median(r.map((x) => x.cost));
-  console.log(`${arm.padEnd(32)} ${`$${perRun.toFixed(4)}`.padEnd(18)} ${`$${(perRun * 1000).toFixed(2)}`.padEnd(16)} ${median(r.map((x) => x.wsCalls))}`);
+  perK[arm] = { billed: median(r.map((x) => x.cost)) * 1000, cold: median(r.map((x) => x.costNoCache)) * 1000 };
+  console.log(`${arm.padEnd(32)} ${`$${perK[arm].billed.toFixed(2)}`.padEnd(22)} ${`$${perK[arm].cold.toFixed(2)}`.padEnd(18)} ${median(r.map((x) => x.wsCalls))}`);
 }
-console.log('\nNote: rates are gpt-5.6-sol from OpenAI pricing (checked 2026-07-23); edit RATES at the top');
-console.log('if they change. Token counts are exact (from totalUsage); they exclude OpenAI\'s internal');
-console.log('web_search fetch/rank tokens, which no API exposes — so the web arm\'s cost is a floor.');
+// Carver's saving vs web, as a range across the web cache-warm..cold spread.
+const web = 'lending-status-websearch-agent', carv = 'lending-status-carver-agent';
+const savingVs = (webCost) => (1 - perK[carv].billed / webCost) * 100;
+console.log(`\nCARVER vs WEB SEARCH — Carver $${perK[carv].billed.toFixed(2)}/1k (cache-independent) vs web $${perK[web].billed.toFixed(2)} warm .. $${perK[web].cold.toFixed(2)} cold`);
+console.log(`  → Carver is ${savingVs(perK[web].billed).toFixed(0)}% cheaper (vs web cache-warm) to ${savingVs(perK[web].cold).toFixed(0)}% cheaper (vs web cold) — and web's cost is still a FLOOR (excludes OpenAI's internal web_search fetch/rank tokens).`);
+console.log('\nNote: rates are gpt-5.6-sol from OpenAI pricing (checked 2026-07-23); edit RATES at the top if they change.');
 console.log('\ndone.');

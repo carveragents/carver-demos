@@ -1148,17 +1148,22 @@ prints the tables below (median across all applicant-runs, `maxSteps=8`, 2× cac
 | web search | 18,873 | 8,399 | 9,678 | 744 |
 | **Carver** | **5,577** | 5,000 | 0 | 594 |
 
-**Cost (per run, and per 1,000 runs):**
+**Cost ($/1,000 runs), billed (cache-warm) vs no-cache (cold):**
 
-| arm | $/run | $/1,000 runs | answer |
+| arm | billed (cache-warm) | no-cache (cold) | answer |
 |---|---|---|---|
-| baseline | $0.0121 | $12.10 | 4/5, no citations |
-| web search | **$0.0791** | **$79.13** | misses the state obligation |
-| **Carver** | **$0.0427** | **$42.66** | **surfaces it** |
+| baseline | $12.70 | $12.70 | 4/5, no citations |
+| web search | **$78.04** | **$121.59** | misses the state obligation |
+| **Carver** | **$44.45** | **$44.45** | **surfaces it** |
 
-**Headline: Carver gives the better answer at ~54% of web search's cost — $42.66 vs $79.13 per 1,000
-runs (−46%).** The driver is tokens: web processes ~19k per answer to Carver's ~5.6k. Framing:
-*"same question, better answer, roughly half the cost."*
+**Headline: Carver gives the better answer for 43–63% less than web search — $44.45/1k vs
+$78–$122/1k.** The range is how warm web's prompt cache is: **−43%** vs web cache-warm (realistic
+high-volume steady state) to **−63%** vs web cold (first call, or low-volume where OpenAI's ~5–10 min
+cache TTL expires between calls). **Carver is cache-independent** ($44.45 warm = cold) — its steps sit
+under OpenAI's ~1,024-token cache minimum, so its cost doesn't move; web's swings ~56% with caching
+because it lugs a big fixed hosted-tool scaffold (~4.8k tokens) on every call that caches heavily.
+The driver is tokens: web processes ~19k per answer to Carver's ~5.6k. Framing: *"same question,
+better answer, roughly half to a third of the cost — and stable regardless of cache warmth."*
 
 **How the tokens are counted** (say this if asked): `totalUsage` sums every model step in the tool
 loop; tool *results* land as *input* tokens on the next step, so it's the full count of tokens the
@@ -1167,8 +1172,8 @@ big stable prefix caches well), billed at 1/10th; ignoring caching would *overst
 
 **Two honesty guards:**
 - **The web cost is a floor.** `usage` excludes OpenAI's internal web_search fetch/rank tokens (not
-  exposed by any API, key or not), so web's true cost is *higher* than $79/1k — the −46% gap is
-  conservative.
+  exposed by any API, key or not), so web's true cost is *higher* than $78–$122/1k — both ends of the
+  43–63% gap are conservative.
 - **Do NOT claim a speed win.** Latency is a wash (~18s Carver vs ~16s web) — the applicant lookup
   dominates both. Lead on cost/tokens, not speed. (Differs from the cross-domain mini-suite above,
   where broad questions made web fan out and Carver was faster *and* cheaper.) Also: on the NY
