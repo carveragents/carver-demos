@@ -1085,6 +1085,17 @@ demo applicants, identical loan and identical automated denial, differing only b
 | **CA-1001** | California |
 | **NY-1001** | New York |
 
+**Set the scene: this scenario is dated early January 2027.** Say it up front — *"it's just after
+New Year 2027."* This is deliberate, not a stray future date: the Colorado AI Act's automated-decision
+disclosure duty is **operative January 1, 2027** (as is California's CPPA ADMT rule), so the file's
+decision date is 14 Jan 2027 and the Act is freshly in force. We looked for an equivalent state
+loan-denial obligation already effective in 2026 to keep the scenario present-day — there isn't a
+clean one: this whole regulatory wave is calibrated to Jan 1 2027, and the nearer-term candidates
+(Colorado's 2024 rate-cap opt-out, state medical-debt credit bans) are either the wrong topic or
+under active federal preemption. So the scene is set in early 2027 by design; frame it as "the law
+just took effect — watch which assistant knows." (Corpus/date details:
+`docs/corpus-gaps-for-jurisdiction-demos.md`.)
+
 **Live in Studio.** In each of the three agents, type the same thing, swapping only the ID:
 
 > *"Hi, can you check the status of my loan application? My applicant ID is **CO-1001**."*
