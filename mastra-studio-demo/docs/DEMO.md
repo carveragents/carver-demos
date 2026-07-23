@@ -1137,32 +1137,43 @@ changes, and only there.
 ### Beat 4 — The operational cost: Carver vs web search
 
 After the content story lands, show what the *better* answer costs. `node scripts/lending-status-probe.mjs 3`
-prints this. Token burn, **per state** (median of 3 runs each, `maxSteps=8`, measured 2026-07-23) —
-the per-state split matters, so do not quote only the pooled figure:
+prints the tables below (median across all applicant-runs, `maxSteps=8`, 2× cache warm-up, measured
+2026-07-23 at real gpt-5.6-sol rates: input $5/M, cached $0.50/M, output $30/M, web_search $0.01/call).
 
-| state | baseline tok | web search tok | **Carver tok** | Carver vs web |
+**Tokens (cache-adjusted):**
+
+| arm | total | fresh input | cached input | output |
 |---|---|---|---|---|
-| **CO-1001** (overlay found) | ~1,000 | 16,627 | **5,583** | **−66%** |
-| **CA-1001** (overlay found) | ~1,000 | 16,973 | **4,378** | **−74%** |
-| **NY-1001** (no overlay) | ~1,000 | 18,778 | **10,797** | −42% |
+| baseline | 995 | 710 | 0 | 285 |
+| web search | 18,873 | 8,399 | 9,678 | 744 |
+| **Carver** | **5,577** | 5,000 | 0 | 594 |
 
-Latency is ~tied across the board (baseline ~8s, web ~16s, Carver ~18s); tool-calls are baseline 1,
-web 2, Carver 2 (up to 5 on NY).
+**Cost (per run, and per 1,000 runs):**
 
-**Lead with token cost on the CO/CA beats, not speed.** Where Carver surfaces the obligation
-(Colorado, California) it gives the *better* answer for **a third to a quarter of the tokens** —
-−66% and −74%. And web's ~17k is a floor: the provider-side web-search tokens are only partially
-counted in `usage`, so the real gap is wider. Framing: *"same question, better answer, a fraction of
-the cost."*
+| arm | $/run | $/1,000 runs | answer |
+|---|---|---|---|
+| baseline | $0.0121 | $12.10 | 4/5, no citations |
+| web search | **$0.0791** | **$79.13** | misses the state obligation |
+| **Carver** | **$0.0427** | **$42.66** | **surfaces it** |
+
+**Headline: Carver gives the better answer at ~54% of web search's cost — $42.66 vs $79.13 per 1,000
+runs (−46%).** The driver is tokens: web processes ~19k per answer to Carver's ~5.6k. Framing:
+*"same question, better answer, roughly half the cost."*
+
+**How the tokens are counted** (say this if asked): `totalUsage` sums every model step in the tool
+loop; tool *results* land as *input* tokens on the next step, so it's the full count of tokens the
+model processed, retrieval included. The cache split matters — web's input is ~50% cache-read (its
+big stable prefix caches well), billed at 1/10th; ignoring caching would *overstate* web's cost.
 
 **Two honesty guards:**
-- **Do NOT claim a speed win.** Latency is a wash (18s vs 16s) — the applicant lookup dominates and
-  both arms pay it. (This differs from the cross-domain mini-suite above, where broad "what must I do?"
-  questions made web fan out into many heavy searches and Carver was ~30% faster *and* cheaper. On a
-  tight single-obligation lookup, web is lighter — token efficiency is the win, latency is not.)
-- **Do NOT headline the NY cost number.** On the no-overlay control, Carver's advantage shrinks to
-  ~42% and its cost roughly doubles (10.8k, one run 12.9k / 5 calls): with no state obligation to
-  find, it keeps searching. Still cheaper than web, but the CO/CA beats are the cost story, not NY.
+- **The web cost is a floor.** `usage` excludes OpenAI's internal web_search fetch/rank tokens (not
+  exposed by any API, key or not), so web's true cost is *higher* than $79/1k — the −46% gap is
+  conservative.
+- **Do NOT claim a speed win.** Latency is a wash (~18s Carver vs ~16s web) — the applicant lookup
+  dominates both. Lead on cost/tokens, not speed. (Differs from the cross-domain mini-suite above,
+  where broad questions made web fan out and Carver was faster *and* cheaper.) Also: on the NY
+  control (no overlay) Carver occasionally searches more, so its per-run cost there is noisier
+  (one run $0.09); the CO/CA beats are the clean cost story.
 
 ### Then show the traces
 
