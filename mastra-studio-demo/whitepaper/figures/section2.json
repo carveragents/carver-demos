@@ -1,0 +1,132 @@
+{
+  "snapshot_date": "2026-07-24",
+  "documents_analyzed": 244297,
+  "tokens_per_doc_estimate": 3000,
+  "estimated_source_read_tokens": 732891000,
+  "obligations_extracted": 681249,
+  "reg_references_resolved": 711026,
+  "records_with_critical_dates": 154504,
+  "records_with_penalties": 141317,
+  "penalty_records_with_parseable_amount": 7427,
+  "penalty_money_mentions": 10113,
+  "obligations_by_sector": [
+    {
+      "name": "Banking",
+      "obligations": 220283
+    },
+    {
+      "name": "Insurance",
+      "obligations": 35253
+    },
+    {
+      "name": "Pharmaceutical",
+      "obligations": 23841
+    },
+    {
+      "name": "Healthcare",
+      "obligations": 23672
+    },
+    {
+      "name": "Energy",
+      "obligations": 22645
+    },
+    {
+      "name": "Technology",
+      "obligations": 14954
+    },
+    {
+      "name": "Government",
+      "obligations": 14340
+    },
+    {
+      "name": "Education",
+      "obligations": 9830
+    },
+    {
+      "name": "Medical Device",
+      "obligations": 9519
+    },
+    {
+      "name": "Agriculture",
+      "obligations": 9364
+    },
+    {
+      "name": "Law Enforcement",
+      "obligations": 9189
+    },
+    {
+      "name": "Taxation",
+      "obligations": 5627
+    },
+    {
+      "name": "Environmental",
+      "obligations": 5293
+    },
+    {
+      "name": "Legal",
+      "obligations": 5117
+    }
+  ],
+  "docs_by_sector": [
+    {
+      "name": "Banking",
+      "count": 66233
+    },
+    {
+      "name": "Finance",
+      "count": 24073
+    },
+    {
+      "name": "Insurance",
+      "count": 10203
+    },
+    {
+      "name": "Pharmaceutical",
+      "count": 7137
+    },
+    {
+      "name": "Other Government",
+      "count": 7064
+    },
+    {
+      "name": "Healthcare",
+      "count": 6830
+    },
+    {
+      "name": "Technology",
+      "count": 6684
+    },
+    {
+      "name": "Energy",
+      "count": 6606
+    },
+    {
+      "name": "Government",
+      "count": 4395
+    },
+    {
+      "name": "Law Enforcement",
+      "count": 3513
+    },
+    {
+      "name": "Healthcare & Life Sciences",
+      "count": 3004
+    },
+    {
+      "name": "Education",
+      "count": 2803
+    },
+    {
+      "name": "Medical Device",
+      "count": 2621
+    },
+    {
+      "name": "Agriculture",
+      "count": 2606
+    }
+  ],
+  "notes": {
+    "source_tokens": "ESTIMATE ONLY. Full source documents are stored in S3, not in the snapshot; reading cost = documents_analyzed x tokens_per_doc_estimate (3,000 tokens/doc, deliberately conservative).",
+    "penalties": "penalties_consequences is free-text narrative; monetary figures are a best-effort regex extraction over currency mentions and are counts of records/mentions, NOT a summed dollar total."
+  }
+}

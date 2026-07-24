@@ -1,0 +1,564 @@
+{
+  "snapshot_date": "2026-07-24",
+  "total_records": 244297,
+  "records_with_metadata": 244297,
+  "distinct_entities": 367198,
+  "entity_mentions": 1192351,
+  "distinct_tags": 253771,
+  "tag_mentions": 1747344,
+  "classified_records": 388146,
+  "sectors_top": [
+    {
+      "name": "Banking",
+      "count": 66233
+    },
+    {
+      "name": "Finance",
+      "count": 24073
+    },
+    {
+      "name": "Insurance",
+      "count": 10203
+    },
+    {
+      "name": "Pharmaceutical",
+      "count": 7137
+    },
+    {
+      "name": "Other Government",
+      "count": 7064
+    },
+    {
+      "name": "Healthcare",
+      "count": 6830
+    },
+    {
+      "name": "Technology",
+      "count": 6684
+    },
+    {
+      "name": "Energy",
+      "count": 6606
+    },
+    {
+      "name": "Government",
+      "count": 4395
+    },
+    {
+      "name": "Law Enforcement",
+      "count": 3513
+    },
+    {
+      "name": "Healthcare & Life Sciences",
+      "count": 3004
+    },
+    {
+      "name": "Education",
+      "count": 2803
+    },
+    {
+      "name": "Medical Device",
+      "count": 2621
+    },
+    {
+      "name": "Agriculture",
+      "count": 2606
+    }
+  ],
+  "sectors_by_taxonomy_top": [
+    {
+      "name": "Finance",
+      "count": 124454
+    },
+    {
+      "name": "Other Government",
+      "count": 34720
+    },
+    {
+      "name": "Healthcare & Life Sciences",
+      "count": 22374
+    },
+    {
+      "name": "Environment & Energy",
+      "count": 16947
+    },
+    {
+      "name": "Technology",
+      "count": 15570
+    },
+    {
+      "name": "Justice & Public Safety",
+      "count": 11268
+    },
+    {
+      "name": "Trade, Corporate & Professional",
+      "count": 8558
+    },
+    {
+      "name": "Science, Research & Standards",
+      "count": 4953
+    },
+    {
+      "name": "Education, Labour & Social",
+      "count": 2881
+    },
+    {
+      "name": "Transport & Infrastructure",
+      "count": 2442
+    },
+    {
+      "name": "Gambling & Gaming",
+      "count": 130
+    }
+  ],
+  "jurisdictions_top": [
+    {
+      "name": "US",
+      "count": 27602
+    },
+    {
+      "name": "EU",
+      "count": 18757
+    },
+    {
+      "name": "CN",
+      "count": 9813
+    },
+    {
+      "name": "FR",
+      "count": 7280
+    },
+    {
+      "name": "AU",
+      "count": 6515
+    },
+    {
+      "name": "GB",
+      "count": 4311
+    },
+    {
+      "name": "CH",
+      "count": 4309
+    },
+    {
+      "name": "US-CA",
+      "count": 3672
+    },
+    {
+      "name": "KR",
+      "count": 3588
+    },
+    {
+      "name": "DE",
+      "count": 3526
+    },
+    {
+      "name": "SA",
+      "count": 3060
+    },
+    {
+      "name": "IT",
+      "count": 2954
+    },
+    {
+      "name": "IN",
+      "count": 2670
+    },
+    {
+      "name": "JP",
+      "count": 2585
+    },
+    {
+      "name": "TR",
+      "count": 2557
+    },
+    {
+      "name": "US-TX",
+      "count": 2547
+    },
+    {
+      "name": "ES",
+      "count": 2442
+    },
+    {
+      "name": "US-NY",
+      "count": 2368
+    },
+    {
+      "name": "AE",
+      "count": 2337
+    },
+    {
+      "name": "TW",
+      "count": 2165
+    }
+  ],
+  "distinct_jurisdictions": 995,
+  "distinct_sectors": 3206,
+  "published_by_year": [
+    {
+      "year": "1442",
+      "count": 1
+    },
+    {
+      "year": "1445",
+      "count": 1
+    },
+    {
+      "year": "1446",
+      "count": 1
+    },
+    {
+      "year": "1448",
+      "count": 6
+    },
+    {
+      "year": "1935",
+      "count": 1
+    },
+    {
+      "year": "1942",
+      "count": 1
+    },
+    {
+      "year": "1944",
+      "count": 1
+    },
+    {
+      "year": "1946",
+      "count": 1
+    },
+    {
+      "year": "1947",
+      "count": 1
+    },
+    {
+      "year": "1952",
+      "count": 1
+    },
+    {
+      "year": "1953",
+      "count": 1
+    },
+    {
+      "year": "1957",
+      "count": 1
+    },
+    {
+      "year": "1959",
+      "count": 1
+    },
+    {
+      "year": "1960",
+      "count": 4
+    },
+    {
+      "year": "1961",
+      "count": 2
+    },
+    {
+      "year": "1962",
+      "count": 1
+    },
+    {
+      "year": "1963",
+      "count": 2
+    },
+    {
+      "year": "1965",
+      "count": 2
+    },
+    {
+      "year": "1966",
+      "count": 1
+    },
+    {
+      "year": "1967",
+      "count": 1
+    },
+    {
+      "year": "1968",
+      "count": 5
+    },
+    {
+      "year": "1969",
+      "count": 3
+    },
+    {
+      "year": "1971",
+      "count": 2
+    },
+    {
+      "year": "1973",
+      "count": 3
+    },
+    {
+      "year": "1974",
+      "count": 2
+    },
+    {
+      "year": "1975",
+      "count": 11
+    },
+    {
+      "year": "1976",
+      "count": 13
+    },
+    {
+      "year": "1977",
+      "count": 2
+    },
+    {
+      "year": "1978",
+      "count": 16
+    },
+    {
+      "year": "1979",
+      "count": 2
+    },
+    {
+      "year": "1980",
+      "count": 7
+    },
+    {
+      "year": "1981",
+      "count": 9
+    },
+    {
+      "year": "1982",
+      "count": 2
+    },
+    {
+      "year": "1983",
+      "count": 3
+    },
+    {
+      "year": "1984",
+      "count": 4
+    },
+    {
+      "year": "1985",
+      "count": 6
+    },
+    {
+      "year": "1986",
+      "count": 6
+    },
+    {
+      "year": "1987",
+      "count": 28
+    },
+    {
+      "year": "1988",
+      "count": 6
+    },
+    {
+      "year": "1989",
+      "count": 12
+    },
+    {
+      "year": "1990",
+      "count": 18
+    },
+    {
+      "year": "1991",
+      "count": 19
+    },
+    {
+      "year": "1992",
+      "count": 73
+    },
+    {
+      "year": "1993",
+      "count": 16
+    },
+    {
+      "year": "1994",
+      "count": 56
+    },
+    {
+      "year": "1995",
+      "count": 38
+    },
+    {
+      "year": "1996",
+      "count": 54
+    },
+    {
+      "year": "1997",
+      "count": 75
+    },
+    {
+      "year": "1998",
+      "count": 83
+    },
+    {
+      "year": "1999",
+      "count": 89
+    },
+    {
+      "year": "2000",
+      "count": 95
+    },
+    {
+      "year": "2001",
+      "count": 109
+    },
+    {
+      "year": "2002",
+      "count": 135
+    },
+    {
+      "year": "2003",
+      "count": 166
+    },
+    {
+      "year": "2004",
+      "count": 139
+    },
+    {
+      "year": "2005",
+      "count": 156
+    },
+    {
+      "year": "2006",
+      "count": 195
+    },
+    {
+      "year": "2007",
+      "count": 319
+    },
+    {
+      "year": "2008",
+      "count": 313
+    },
+    {
+      "year": "2009",
+      "count": 367
+    },
+    {
+      "year": "2010",
+      "count": 467
+    },
+    {
+      "year": "2011",
+      "count": 472
+    },
+    {
+      "year": "2012",
+      "count": 722
+    },
+    {
+      "year": "2013",
+      "count": 696
+    },
+    {
+      "year": "2014",
+      "count": 843
+    },
+    {
+      "year": "2015",
+      "count": 908
+    },
+    {
+      "year": "2016",
+      "count": 1292
+    },
+    {
+      "year": "2017",
+      "count": 1522
+    },
+    {
+      "year": "2018",
+      "count": 1934
+    },
+    {
+      "year": "2019",
+      "count": 2793
+    },
+    {
+      "year": "2020",
+      "count": 3731
+    },
+    {
+      "year": "2021",
+      "count": 4589
+    },
+    {
+      "year": "2022",
+      "count": 6302
+    },
+    {
+      "year": "2023",
+      "count": 13222
+    },
+    {
+      "year": "2024",
+      "count": 18743
+    },
+    {
+      "year": "2025",
+      "count": 56797
+    },
+    {
+      "year": "2026",
+      "count": 126519
+    },
+    {
+      "year": "2027",
+      "count": 19
+    },
+    {
+      "year": "2029",
+      "count": 6
+    },
+    {
+      "year": "2030",
+      "count": 13
+    },
+    {
+      "year": "2031",
+      "count": 2
+    },
+    {
+      "year": "2036",
+      "count": 1
+    },
+    {
+      "year": "2047",
+      "count": 5
+    },
+    {
+      "year": "2048",
+      "count": 5
+    },
+    {
+      "year": "2105",
+      "count": 1
+    },
+    {
+      "year": "2200",
+      "count": 1
+    },
+    {
+      "year": "2567",
+      "count": 1
+    },
+    {
+      "year": "2568",
+      "count": 2
+    },
+    {
+      "year": "2569",
+      "count": 1
+    }
+  ],
+  "intelligence_layer": {
+    "obligations_extracted": 681249,
+    "records_with_obligations": 194414,
+    "reg_references_resolved": 711026,
+    "records_with_reg_references": 198457,
+    "records_with_critical_dates": 154504,
+    "records_with_penalties": 141317
+  }
+}

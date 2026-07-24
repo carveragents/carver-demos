@@ -1,0 +1,393 @@
+{
+  "snapshot_date": "2026-07-24",
+  "section1": {
+    "total_records": 244297,
+    "distinct_entities": 367198,
+    "entity_mentions": 1192351,
+    "distinct_tags": 253771,
+    "tag_mentions": 1747344,
+    "classified_records": 388146,
+    "sectors_by_taxonomy_top": [
+      {
+        "name": "Finance",
+        "count": 124454
+      },
+      {
+        "name": "Other Government",
+        "count": 34720
+      },
+      {
+        "name": "Healthcare & Life Sciences",
+        "count": 22374
+      },
+      {
+        "name": "Environment & Energy",
+        "count": 16947
+      },
+      {
+        "name": "Technology",
+        "count": 15570
+      },
+      {
+        "name": "Justice & Public Safety",
+        "count": 11268
+      },
+      {
+        "name": "Trade, Corporate & Professional",
+        "count": 8558
+      },
+      {
+        "name": "Science, Research & Standards",
+        "count": 4953
+      },
+      {
+        "name": "Education, Labour & Social",
+        "count": 2881
+      },
+      {
+        "name": "Transport & Infrastructure",
+        "count": 2442
+      },
+      {
+        "name": "Gambling & Gaming",
+        "count": 130
+      }
+    ],
+    "jurisdictions_top": [
+      {
+        "name": "US",
+        "count": 27602
+      },
+      {
+        "name": "EU",
+        "count": 18757
+      },
+      {
+        "name": "CN",
+        "count": 9813
+      },
+      {
+        "name": "FR",
+        "count": 7280
+      },
+      {
+        "name": "AU",
+        "count": 6515
+      },
+      {
+        "name": "GB",
+        "count": 4311
+      },
+      {
+        "name": "CH",
+        "count": 4309
+      },
+      {
+        "name": "US-CA",
+        "count": 3672
+      },
+      {
+        "name": "KR",
+        "count": 3588
+      },
+      {
+        "name": "DE",
+        "count": 3526
+      },
+      {
+        "name": "SA",
+        "count": 3060
+      },
+      {
+        "name": "IT",
+        "count": 2954
+      },
+      {
+        "name": "IN",
+        "count": 2670
+      },
+      {
+        "name": "JP",
+        "count": 2585
+      },
+      {
+        "name": "TR",
+        "count": 2557
+      },
+      {
+        "name": "US-TX",
+        "count": 2547
+      },
+      {
+        "name": "ES",
+        "count": 2442
+      },
+      {
+        "name": "US-NY",
+        "count": 2368
+      },
+      {
+        "name": "AE",
+        "count": 2337
+      },
+      {
+        "name": "TW",
+        "count": 2165
+      }
+    ],
+    "distinct_jurisdictions": 995,
+    "intelligence_layer": {
+      "obligations_extracted": 681249,
+      "records_with_obligations": 194414,
+      "reg_references_resolved": 711026,
+      "records_with_reg_references": 198457,
+      "records_with_critical_dates": 154504,
+      "records_with_penalties": 141317
+    },
+    "freshness": [
+      {
+        "year": "2016",
+        "count": 1292
+      },
+      {
+        "year": "2017",
+        "count": 1522
+      },
+      {
+        "year": "2018",
+        "count": 1934
+      },
+      {
+        "year": "2019",
+        "count": 2793
+      },
+      {
+        "year": "2020",
+        "count": 3731
+      },
+      {
+        "year": "2021",
+        "count": 4589
+      },
+      {
+        "year": "2022",
+        "count": 6302
+      },
+      {
+        "year": "2023",
+        "count": 13222
+      },
+      {
+        "year": "2024",
+        "count": 18743
+      },
+      {
+        "year": "2025",
+        "count": 56797
+      },
+      {
+        "year": "2026",
+        "count": 126519
+      }
+    ],
+    "recent_2y_count": 183316,
+    "recent_2y_share_pct": 75.0
+  },
+  "section2": {
+    "documents_analyzed": 244297,
+    "tokens_per_doc_estimate": 3000,
+    "estimated_source_read_tokens": 732891000,
+    "obligations_extracted": 681249,
+    "reg_references_resolved": 711026,
+    "records_with_critical_dates": 154504,
+    "records_with_penalties": 141317,
+    "penalty_records_with_parseable_amount": 7427,
+    "penalty_money_mentions": 10113,
+    "obligations_by_sector": [
+      {
+        "name": "Banking",
+        "obligations": 220283
+      },
+      {
+        "name": "Insurance",
+        "obligations": 35253
+      },
+      {
+        "name": "Pharmaceutical",
+        "obligations": 23841
+      },
+      {
+        "name": "Healthcare",
+        "obligations": 23672
+      },
+      {
+        "name": "Energy",
+        "obligations": 22645
+      },
+      {
+        "name": "Technology",
+        "obligations": 14954
+      },
+      {
+        "name": "Government",
+        "obligations": 14340
+      },
+      {
+        "name": "Education",
+        "obligations": 9830
+      },
+      {
+        "name": "Medical Device",
+        "obligations": 9519
+      },
+      {
+        "name": "Agriculture",
+        "obligations": 9364
+      },
+      {
+        "name": "Law Enforcement",
+        "obligations": 9189
+      },
+      {
+        "name": "Taxation",
+        "obligations": 5627
+      },
+      {
+        "name": "Environmental",
+        "obligations": 5293
+      },
+      {
+        "name": "Legal",
+        "obligations": 5117
+      }
+    ],
+    "notes": {
+      "source_tokens": "ESTIMATE ONLY. Full source documents are stored in S3, not in the snapshot; reading cost = documents_analyzed x tokens_per_doc_estimate (3,000 tokens/doc, deliberately conservative).",
+      "penalties": "penalties_consequences is free-text narrative; monetary figures are a best-effort regex extraction over currency mentions and are counts of records/mentions, NOT a summed dollar total."
+    }
+  },
+  "section3": {
+    "measured_date": "2026-07-23",
+    "model": "openai/gpt-5.6-sol",
+    "rates": {
+      "input_per_m": 5,
+      "cached_per_m": 0.5,
+      "output_per_m": 30,
+      "web_search_per_call": 0.01
+    },
+    "tokens": [
+      {
+        "arm": "baseline",
+        "total": 995,
+        "fresh_input": 710,
+        "cached_input": 0,
+        "output": 285
+      },
+      {
+        "arm": "web search",
+        "total": 18873,
+        "fresh_input": 8399,
+        "cached_input": 9678,
+        "output": 744
+      },
+      {
+        "arm": "Carver",
+        "total": 5577,
+        "fresh_input": 5000,
+        "cached_input": 0,
+        "output": 594
+      }
+    ],
+    "cost_per_1k": [
+      {
+        "arm": "baseline",
+        "warm": 12.7,
+        "cold": 12.7,
+        "answer": "4/5, no citations"
+      },
+      {
+        "arm": "web search",
+        "warm": 78.04,
+        "cold": 121.59,
+        "answer": "misses the state obligation"
+      },
+      {
+        "arm": "Carver",
+        "warm": 44.45,
+        "cold": 44.45,
+        "answer": "surfaces it"
+      }
+    ],
+    "headline_pct_warm": 43,
+    "headline_pct_cold": 63,
+    "latency": {
+      "carver_s": 18,
+      "web_s": 16,
+      "note": "wash \u2014 applicant lookup dominates both; NOT a speed win"
+    },
+    "web_cost_is_floor": true
+  },
+  "section4": {
+    "applicants": [
+      {
+        "id": "CO-1001",
+        "state": "Colorado",
+        "extra_obligation": "Colorado AI Act (SB 24-205, amended by SB 26-189) \u2014 consumer notice after an AI/ADMT adverse decision"
+      },
+      {
+        "id": "CA-1001",
+        "state": "California",
+        "extra_obligation": "Holden Act (California Housing Financial Discrimination Act) \u2014 Fair Lending Notice + statement of reasons"
+      },
+      {
+        "id": "NY-1001",
+        "state": "New York",
+        "extra_obligation": null
+      }
+    ],
+    "shared_facts": "Identical declined home-improvement loan, denied by an automated model; the applicant's state is the only variable and is supplied by the CRM lookup, never typed by the applicant.",
+    "arms": [
+      {
+        "arm": "baseline (memory only)",
+        "co_result": "MISS",
+        "note": "recites federal adverse-action rules; never surfaces the state AI/lending obligation"
+      },
+      {
+        "arm": "web search",
+        "co_result": "MISS",
+        "note": "searches generic adverse-action guidance; 0/5 on Colorado \u2014 never reformulates toward a state AI statute"
+      },
+      {
+        "arm": "Carver",
+        "co_result": "HIT",
+        "note": "queries its obligation index with the situation (state + automated) and returns the state record"
+      }
+    ],
+    "federal_baseline": [
+      "Regulation B \u00a7 1002.9 (ECOA adverse-action notice)",
+      "FCRA \u00a7 615 (consumer-report adverse-action notice)"
+    ]
+  },
+  "section5": {
+    "haystack_size": 7146,
+    "co_rank_situation_aware": 1,
+    "co_rank_naive": ">6",
+    "web_co_hit_rate": "0/5",
+    "ablation": "Drop the 4 curated records and re-run against the 7,142 real records alone: the Carver arm collapses to parity (MISS on CO and CA).",
+    "state_tagged_examples": [
+      {
+        "jur": "US-CA",
+        "records": 3672
+      },
+      {
+        "jur": "US-TX",
+        "records": 2547
+      },
+      {
+        "jur": "US-NY",
+        "records": 2368
+      }
+    ],
+    "class_definition": "Silent-trigger queries: an actor attribute (jurisdiction, decision method, role) fires an unnamed obligation the user never mentions. Web search must first suspect the obligation exists to search for it, and fails at that step silently; a situation-queried obligation index returns it because it is tagged to the situation."
+  }
+}
