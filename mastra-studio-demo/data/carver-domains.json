@@ -66,7 +66,9 @@
       "queryDescription": "Count, rank, filter, and group Carver's cybersecurity advisories — national CERT alerts and vulnerability notices — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo (publication date), minImpact (impact score), updateType, regulator (the issuing CERT/body), or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month). Use this whenever the question is \"how many\", \"which CERT published the most\", \"rank by impact\", or bounded to a date window.",
       "selector": {
         "kind": "industryAny",
-        "values": ["cybersecurity"]
+        "values": [
+          "cybersecurity"
+        ]
       }
     },
     {
@@ -83,7 +85,11 @@
       "queryDescription": "Count, rank, filter, and group Carver's crypto-asset regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Crypto", "Cryptoasset", "Cryptocurrency"]
+        "values": [
+          "Crypto",
+          "Cryptoasset",
+          "Cryptocurrency"
+        ]
       }
     },
     {
@@ -100,7 +106,9 @@
       "queryDescription": "Count, rank, filter, and group Carver's medical-device regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Medical Device"]
+        "values": [
+          "Medical Device"
+        ]
       }
     },
     {
@@ -117,7 +125,10 @@
       "queryDescription": "Count, rank, filter, and group Carver's online child-safety and data-protection records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Social Media", "Data Protection"]
+        "values": [
+          "Social Media",
+          "Data Protection"
+        ]
       }
     },
     {
@@ -148,6 +159,23 @@
           "California Department of Financial Protection and Innovation",
           "Department of Financial Protection and Innovation"
         ]
+      }
+    },
+    {
+      "id": "full",
+      "dbFile": "full.db",
+      "indexName": "fullCorpus",
+      "toolId": "search-carver-full",
+      "toolName": "searchCarverFull",
+      "label": "Full Carver regulatory corpus (all sectors, all regulators)",
+      "description": "Search the ENTIRE Carver regulatory corpus by meaning — every sector, every regulator, every jurisdiction Carver covers. Returns the most semantically similar records with the issuing body, date, what changed, why it matters, an impact score, and an extracted list of key requirements. Use to ground any claim about what an organisation is required to do, by when, and in which jurisdiction.",
+      "queryHint": "A natural-language description of the activity, situation, or obligation to check, e.g. \"registration required before selling in-vitro diagnostics in Switzerland\"",
+      "queryToolId": "query-carver-full",
+      "queryToolName": "queryCarverFull",
+      "queryDescription": "Count, rank, filter, and group records across the full Carver corpus — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
+      "selector": {
+        "kind": "all",
+        "values": []
       }
     }
   ]

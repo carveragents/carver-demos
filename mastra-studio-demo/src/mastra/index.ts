@@ -7,6 +7,13 @@ import { carverAgent } from './agents/carver-agent.ts';
 import { lendingStatusBaselineAgent } from './agents/lending-status-baseline-agent.ts';
 import { lendingStatusWebsearchAgent } from './agents/lending-status-websearch-agent.ts';
 import { lendingStatusCarverAgent } from './agents/lending-status-carver-agent.ts';
+import { advisorBaselineAgent } from './agents/advisor-baseline-agent.ts';
+import { advisorWebsearchAgent } from './agents/advisor-websearch-agent.ts';
+import { cryptoCarverAgent } from './agents/crypto-carver-agent.ts';
+import { deviceCarverAgent } from './agents/device-carver-agent.ts';
+import { childSafetyCarverAgent } from './agents/child-safety-carver-agent.ts';
+import { stateLendingCarverAgent } from './agents/state-lending-carver-agent.ts';
+import { fullCarverAgent } from './agents/full-carver-agent.ts';
 
 export const mastra = new Mastra({
   // Only the two demo-usable scenarios are registered. The other agents (investment, cyber,
@@ -27,6 +34,21 @@ export const mastra = new Mastra({
     lendingStatusBaselineAgent,
     lendingStatusWebsearchAgent,
     lendingStatusCarverAgent,
+    // Re-registered for the cost–accuracy–latency experiment (docs/superpowers/specs/
+    // 2026-07-27-cost-accuracy-experiment-plan.md). These are the ARMS of that experiment:
+    // a memory-only control, a live-web arm, a FULL-CORPUS Carver arm (~229k records — the
+    // one that matches what the whitepaper claims), and the per-domain Carver agents kept as
+    // a fourth arm so the experiment can separate "Carver data" from "Carver data that a
+    // human already narrowed to the right sector". All share ADVISOR_BASE_INSTRUCTIONS +
+    // ADVISOR_TRIGGER verbatim, so retrieval is the only variable. They are measurement
+    // agents, not demo agents — de-register them once the experiment's data is captured.
+    advisorBaselineAgent,
+    advisorWebsearchAgent,
+    fullCarverAgent,
+    cryptoCarverAgent,
+    deviceCarverAgent,
+    childSafetyCarverAgent,
+    stateLendingCarverAgent,
   },
   // Storage + observability are what make Studio's Traces view work;
   // without them the exporter disables itself and traces are never persisted.

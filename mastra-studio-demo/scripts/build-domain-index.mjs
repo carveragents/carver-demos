@@ -32,6 +32,10 @@ const DIMENSION = 1536;
 const EMBED_MODEL = 'text-embedding-3-small';
 const BATCH = 256;
 const SNAPSHOT_MAX = '2026-07-06';
+/** Row count above which exact brute force is too slow and the compressed ANN index is built. */
+const ANN_THRESHOLD = 20_000;
+/** Embedding batches in flight at once. The HTTP call dominates; upserts stay ordered. */
+const EMBED_CONCURRENCY = 4;
 
 const argv = process.argv.slice(2);
 const DRY_RUN = argv.includes('--dry-run');
@@ -79,6 +83,12 @@ const SELECTORS = {
     return (record) =>
       allow.has((record.output_data?.classification?.regulatory_source?.name ?? '').toLowerCase());
   },
+  /**
+   * Everything — backs the `full` domain, the whole corpus rather than a sector slice.
+   * Only viable together with the ANN index built below: exact brute force over a
+   * quarter-million vectors measures ~90 s per query, against ~25 ms via vector_top_k.
+   */
+  all: () => () => true,
   industryAny: (values) => {
     const want = new Set(values.map((s) => s.toLowerCase()));
     return (record) =>
@@ -204,11 +214,63 @@ await store.createIndex({ indexName: domain.indexName, dimension: DIMENSION, met
 const rawClient = createClient({ url: DB_URL });
 await rawClient.execute(`DROP INDEX IF EXISTS ${domain.indexName}_vector_idx`);
 
-for (let i = 0; i < kept.length; i += BATCH) {
-  const slice = kept.slice(i, i + BATCH);
-  const vectors = await embedBatch(slice.map(embedText));
-  await store.upsert({ indexName: domain.indexName, vectors, metadata: slice });
-  console.log(`embedded ${Math.min(i + BATCH, kept.length).toLocaleString()} / ${kept.length.toLocaleString()}`);
+// RESUME: `kept` comes out of a single deterministic file scan, so the first N rows already in
+// the table are exactly the first N of `kept`. A 200k-record build takes over an hour — dying at
+// 90% and starting from zero is not acceptable, so skip what is already there.
+let done = 0;
+try {
+  done = Number((await rawClient.execute(`SELECT COUNT(*) AS n FROM ${domain.indexName}`)).rows[0].n);
+} catch {
+  done = 0;
+}
+if (done >= kept.length) {
+  console.log(`already complete: ${done.toLocaleString()} rows present, ${kept.length.toLocaleString()} selected.`);
+} else if (done > 0) {
+  console.log(`resuming: ${done.toLocaleString()} of ${kept.length.toLocaleString()} rows already indexed.`);
+}
+
+// Embed CONCURRENTLY (the API call dominates), upsert IN ORDER (so the resume offset above stays
+// meaningful). Groups of EMBED_CONCURRENCY batches — enough to hide latency, far below any rate limit.
+const started = Date.now();
+for (let i = done; i < kept.length; i += BATCH * EMBED_CONCURRENCY) {
+  const group = [];
+  for (let k = 0; k < EMBED_CONCURRENCY; k++) {
+    const slice = kept.slice(i + k * BATCH, i + (k + 1) * BATCH);
+    if (slice.length) group.push(slice);
+  }
+  const embedded = await Promise.all(group.map((slice) => embedBatch(slice.map(embedText))));
+  for (let k = 0; k < group.length; k++) {
+    await store.upsert({ indexName: domain.indexName, vectors: embedded[k], metadata: group[k] });
+  }
+  const at = Math.min(i + BATCH * EMBED_CONCURRENCY, kept.length);
+  // Fold the WAL back into the db periodically. Without this the WAL grew past 2.4 GB on a
+  // 229k-record build — SQLite cannot checkpoint while any other connection holds a read
+  // snapshot, and an unbounded WAL starves the writer's retry loop. Also: do NOT run a
+  // `mastra dev` server against this file while building, for the same reason.
+  if (at % (BATCH * EMBED_CONCURRENCY * 10) === 0 || at === kept.length) {
+    await rawClient.execute('PRAGMA wal_checkpoint(TRUNCATE)');
+  }
+  const rate = (at - done) / ((Date.now() - started) / 1000);
+  const eta = rate > 0 ? ((kept.length - at) / rate / 60).toFixed(0) : '?';
+  console.log(`embedded ${at.toLocaleString()} / ${kept.length.toLocaleString()}  (${rate.toFixed(0)} rec/s, ~${eta} min left)`);
+}
+
+// 2b. Above ANN_THRESHOLD rows, exact brute force stops being "instant" and the DiskANN index
+// has to come back — but COMPRESSED, which is what made it unaffordable before. Measured on a
+// 7,146-row copy: default DiskANN ~320 KB/vector, `compress_neighbors=float8` + max_neighbors=20
+// gives 36.7 KB/vector, and query drops from 2,622 ms (LibSQLVector brute force) to 24 ms.
+// At 244k records that is the difference between ~90 s and ~25 ms per search.
+//
+// Readers must use `vector_top_k('<index>', …)` to hit this index — a plain ORDER BY
+// vector_distance_cos still brute-forces. See src/mastra/tools/carver-full-tool.ts.
+if (kept.length >= ANN_THRESHOLD) {
+  console.log(`\n${kept.length.toLocaleString()} rows ≥ ANN threshold — building compressed DiskANN index…`);
+  const t0 = Date.now();
+  await rawClient.execute(
+    `CREATE INDEX IF NOT EXISTS ${domain.indexName}_ann ON ${domain.indexName}(` +
+      `libsql_vector_idx(embedding, 'metric=cosine', 'compress_neighbors=float8', 'max_neighbors=20'))`,
+  );
+  console.log(`ANN index built in ${((Date.now() - t0) / 60000).toFixed(1)} min.`);
 }
 
 // 3. Report what actually landed, read back from the DB rather than assumed.
