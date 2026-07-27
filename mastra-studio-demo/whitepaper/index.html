@@ -294,6 +294,29 @@ svg{ display:block; width:100%; height:auto; overflow:visible; }
 .retrieve-card.win .tag{ color:var(--good); }
 .retrieve-card.lose .tag{ color:var(--critical); }
 
+.disclosure{
+  border:1.5px solid var(--warning); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--warning) 8%, var(--surface));
+  padding:20px 24px; margin:28px 0;
+}
+.disclosure h4{ margin:0 0 10px; font-size:.95rem; font-weight:800; color:var(--ink); }
+.disclosure p{ margin:0 0 10px; max-width:none; font-size:.92rem; color:var(--ink-2); }
+.disclosure p:last-child{ margin-bottom:0; }
+.disclosure ul{ margin:0 0 10px; padding-left:20px; font-size:.92rem; color:var(--ink-2); }
+.disclosure ul:last-child{ margin-bottom:0; }
+.disclosure li{ margin-bottom:6px; }
+
+.projected{
+  border:1.5px dashed var(--axis); border-radius: var(--radius);
+  background:var(--surface); padding:20px 24px; margin:28px 0;
+}
+.projected .tag-projected{
+  display:inline-block; font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--ink-muted); border:1px solid var(--border-strong); border-radius:999px; padding:3px 10px; margin-bottom:12px;
+}
+.projected p{ margin:0 0 10px; max-width:none; font-size:.92rem; color:var(--ink-2); }
+.projected p:last-child{ margin-bottom:0; }
+
 footer{ padding: 44px 0 80px; }
 .footnote-list{ font-size:.82rem; color:var(--ink-muted); }
 .footnote-list li{ margin-bottom:8px; }
@@ -303,6 +326,7 @@ footer{ padding: 44px 0 80px; }
   .shell{ display:block; }
   section{ break-inside:avoid; padding:28px 0; border-bottom:1px solid #ccc; }
   .card,.stat,.chart-card,.casefile{ box-shadow:none !important; }
+  .disclosure,.projected{ break-inside:avoid; }
   body{ background:#fff; color:#000; }
   a{ color:#000; text-decoration:underline; }
 }
@@ -320,7 +344,8 @@ footer{ padding: 44px 0 80px; }
       <a href="#head"><span class="n">03</span> Advantage on the head</a>
       <a href="#tail"><span class="n">04</span> Correctness on the tail</a>
       <a href="#class"><span class="n">05</span> The class this generalizes to</a>
-      <a href="#method"><span class="n">06</span> Methodology &amp; roadmap</a>
+      <a href="#replay"><span class="n">06</span> Evals you can replay</a>
+      <a href="#method"><span class="n">07</span> Methodology &amp; roadmap</a>
     </nav>
     <div class="rail-foot">Snapshot 2026-07-24<br>All figures traced to<br><code>whitepaper-data.json</code></div>
   </aside>
@@ -338,6 +363,8 @@ footer{ padding: 44px 0 80px; }
         <p class="lede"><strong>On the head</strong> — the everyday queries that make up the overwhelming majority of traffic — a Carver-grounded agent matches a frontier model running full web search on answer quality, while costing 43–63% less per 1,000 runs, independent of cache state, and more reproducible run to run.</p>
 
         <div class="pull">You don't have to wait for a tail event to benefit — <span>you're already overpaying on the head.</span></div>
+
+        <p class="lede">Together these compose into an operating loop: catch the obligation nobody asked about, at a flat per-question cost you can budget, with results you can replay as regression evals — and, as the dataset versions forward, a defensible way to see when the rules changed.</p>
 
         <div class="grid grid-2 hero-stats">
           <div class="stat">
@@ -643,6 +670,28 @@ footer{ padding: 44px 0 80px; }
           </table>
         </div>
 
+        <h3 style="margin-top:36px;">What it costs per question</h3>
+        <p>Per 1,000 runs is an abstraction; per question is the unit anyone actually budgets against. Converting directly: a regulatory question answered for about four cents on Carver — with web search costing roughly twice that on a cache-warm run, for an answer that missed the state obligation.</p>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>Arm</th><th class="num">Per question, warm</th><th class="num">Per question, cold</th></tr></thead>
+            <tbody>
+              <tr><td>Baseline</td><td class="num tabular">$0.0127</td><td class="num tabular">$0.0127</td></tr>
+              <tr><td>Web search</td><td class="num tabular">$0.078</td><td class="num tabular">$0.122</td></tr>
+              <tr><td>Carver</td><td class="num tabular">$0.044</td><td class="num tabular">$0.044</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note"><b>Unit, stated honestly:</b> this is cost per <b>question answered</b> — a single chat-style query — not per production interaction reviewed. Do not conflate the two when scaling to volume.</div>
+
+        <div class="disclosure">
+          <h4>What these numbers include — and don't</h4>
+          <p>The web arm's cost above <strong>includes</strong> the hosted web-search tool fee (~$10 per 1,000 queries). The Carver arm's cost is <strong>model inference only</strong> — no Carver platform fee is modeled in it.</p>
+          <p>Stated as headroom rather than as a bottom line: Carver could charge up to <strong>~$33.59 per 1,000 queries</strong> on top of inference and still remain cheaper than cache-warm web search; up to <strong>~$77.14 per 1,000</strong> against cache-cold web search. Those are ceilings on an unmodeled fee, not a promise about Carver's actual pricing.</p>
+        </div>
+
+        <p>The web arm's cost also isn't one number — it varies <strong>$78.04–$121.59 per 1,000 queries</strong> depending on cache state at request time. Carver's is flat at <strong>$44.45 per 1,000</strong>, warm or cold. Cost you can budget against is part of the claim, not just cost that's lower on average.</p>
+
         <div class="note" style="margin-top:22px;"><b>Answer quality is parity, not an advantage:</b> on this head-query set, Carver's answers are measured at parity with a frontier model running full web search — not better. The advantage here is not answer quality; it is cost, cache-independence, and reproducibility.</div>
         <div class="note"><b>Latency is a wash, not a win:</b> ~18s for Carver vs. ~16s for web search — applicant lookup dominates both paths, and this is not a speed claim in either direction.</div>
         <div class="note"><b>Web's cost is a floor:</b> it excludes OpenAI's internal <code>web_search</code> tool tokens, which are billed by the provider but not itemized in the visible response — actual web-search cost is at least this high, likely higher.</div>
@@ -742,9 +791,26 @@ footer{ padding: 44px 0 80px; }
         <div class="note"><b>Read this as a proof of concept, not a shipped guarantee:</b> this result runs on 4 hand-curated records that demonstrate what jurisdiction-tagged coverage unlocks — it is not a claim of production-wide coverage today. The records are curated from cited primary sources, pending legal and data review. See §6 for the roadmap.</div>
       </section>
 
-      <!-- ============ 06 METHOD ============ -->
+      <!-- ============ 06 REPLAY ============ -->
+      <section id="replay">
+        <div class="eyebrow"><span class="tag-num">06</span> Evals you can replay</div>
+        <h2>A stable ground truth, not just a right answer</h2>
+        <div class="takeaway">The Carver corpus is snapshot-pinned. The same query against the same snapshot returns the same evidence — which is what makes a regression eval possible in the first place.</div>
+
+        <p class="lede">The dataset behind every figure in this document is pinned to a snapshot dated <strong>2026-07-24</strong>. Re-run the Colorado query against that snapshot next week, next quarter, next year, and the retrieved evidence doesn't move. Live web retrieval has no equivalent: it is unversioned, it cannot be pinned, and an eval built on top of it has no stable ground truth to compare against. You cannot regression-test an agent whose reference data shifts underneath it between one run and the next.</p>
+
+        <p>This reframes the §4/§5 result. The web arm didn't fail once and get lucky four times — across all five runs it missed the Colorado obligation the same way: it searched generically ("adverse action", "loan denial") and never reformulated toward a state AI statute. That's a <strong>consistent, systematic miss</strong>, not run-to-run noise — and a systematic miss is the dangerous kind, because it looks exactly like a stable, working retrieval path from the outside.</p>
+
+        <div class="projected">
+          <span class="tag-projected">Projected — not yet measured</span>
+          <p><strong>Replay economics.</strong> Assurance work re-runs the same context repeatedly. If roughly 90% of the Carver arm's 5,000 fresh input tokens cache on replay (an explicit assumption, not a measurement), cost per 1,000 replayed queries drops to about <strong>$22.57</strong> — roughly half the original $44.45. Web search has no equivalent discount: it re-fetches live on every replay, so its cost does not decline with repetition the way Carver's does.</p>
+          <p><strong>Drift as a diff.</strong> If the corpus is pinned per snapshot, "what changed since last quarter" becomes a comparison between two dataset snapshots rather than re-running every question from scratch against a moving target. This is a projected workflow enabled by snapshot-pinning, not a measured capability today.</p>
+        </div>
+      </section>
+
+      <!-- ============ 07 METHOD ============ -->
       <section id="method">
-        <div class="eyebrow"><span class="tag-num">06</span> Methodology &amp; coverage roadmap</div>
+        <div class="eyebrow"><span class="tag-num">07</span> Methodology &amp; coverage roadmap</div>
         <h2>How this was measured, and what's next</h2>
         <div class="takeaway">Symmetric prompts, mechanical scoring, cache-adjusted costing, and an explicit floor on web's cost — plus an honest accounting of what's curated versus what's corpus-wide.</div>
 
@@ -758,6 +824,8 @@ footer{ padding: 44px 0 80px; }
             <p style="max-width:none;">§3's cost and token figures are a real measurement taken on 2026-07-23. §2's ~732.9M source-read token figure is a stated estimate (3,000 tokens/doc × 244,297 docs), not a metered cost. §4/§5's tail-case win runs on 4 hand-curated records layered onto a 7,146-record realistic haystack — a demonstration of what jurisdiction-tagged coverage delivers, confirmed honest by its own ablation, not a claim that every US state carries this coverage today.</p>
           </div>
         </div>
+
+        <p style="margin-top:-6px;">§3's per-question figures are simply the per-1,000 cost divided by 1,000 — no separate measurement. §3's fee-accounting note discloses an asymmetry: the web arm's cost includes the hosted search-tool fee, the Carver arm's does not include any Carver platform fee, and the resulting headroom figures ($33.59 / $77.14 per 1,000) are a bound, not a price. Anything marked <strong>Projected</strong> in this document — replay economics, drift-as-diff — is a stated assumption, not a measurement, and is excluded from every headline claim.</p>
 
         <h3 style="margin-top:32px;">Coverage roadmap</h3>
         <p>The corpus already carries state-level tags for California (3,672 records), Texas (2,547), New York (2,368) and more (§1, §5) — real coverage, not curated for the demo. What's curated today are the specific Colorado AI Act and California Holden Act obligation records that made the CO/CA hits possible. The roadmap is to extend that same obligation-extraction pipeline (§1's structured-intelligence layer — already applied corpus-wide to produce 681,249 obligations and 711,026 resolved citations) to close the remaining state-AI-disclosure gap, so the tail-case win stops depending on 4 hand-picked records and starts depending on the same pipeline that already covers the rest of the corpus.</p>

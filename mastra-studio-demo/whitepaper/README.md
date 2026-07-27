@@ -33,3 +33,12 @@ from `../docs/DEMO.md` Beat 4 (measured 2026-07-23). Section 4/5 use the curated
 - The 732.9M source-read tokens is a **labeled estimate** (3,000 tokens/doc, conservative).
 - The tail win runs on **4 curated records** — a demonstration of what jurisdiction-tagged
   coverage unlocks, with the ablation stated; not a production-wide capability claim.
+- The §3 comparison discloses fee asymmetry: web arm includes the search-tool fee, Carver
+  arm models no Carver fee — stated as pricing headroom ($33.59/1k warm, $77.14/1k cold),
+  never as an unqualified "cheaper".
+- Per-check figures are per **QUESTION ANSWERED** (chat-style query), not per production
+  interaction reviewed.
+- Replay economics ($22.57/1k) and drift-as-snapshot-diff are labeled **PROJECTED**,
+  excluded from headline claims.
+- The five web runs are described as a **consistent, systematic miss** — never as
+  run-to-run variance.

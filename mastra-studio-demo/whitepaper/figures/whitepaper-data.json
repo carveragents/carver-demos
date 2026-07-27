@@ -325,7 +325,37 @@
       "web_s": 16,
       "note": "wash \u2014 applicant lookup dominates both; NOT a speed win"
     },
-    "web_cost_is_floor": true
+    "web_cost_is_floor": true,
+    "per_check_usd": [
+      {
+        "arm": "baseline",
+        "warm": 0.0127,
+        "cold": 0.0127
+      },
+      {
+        "arm": "web search",
+        "warm": 0.078,
+        "cold": 0.1216
+      },
+      {
+        "arm": "Carver",
+        "warm": 0.0445,
+        "cold": 0.0445
+      }
+    ],
+    "fee_accounting": {
+      "web_arm_includes_vendor_fee": true,
+      "carver_arm_includes_vendor_fee": false,
+      "headroom_per_1k_warm": 33.59,
+      "headroom_per_1k_cold": 77.14,
+      "note": "web arm cost includes the web-search tool fee (~$10/1k); Carver arm is inference only \u2014 headroom is the max Carver fee per 1k queries that keeps Carver cheaper"
+    },
+    "replay_projection": {
+      "status": "PROJECTED - not measured",
+      "assumption": "~90% of the 5,000 fresh input tokens cache on replay (4,500 cached / 500 fresh); output 594 unchanged",
+      "cost_per_1k": 22.57,
+      "note": "web search re-fetches live on every replay; its cost does not decline with repetition"
+    }
   },
   "section4": {
     "applicants": [
@@ -388,6 +418,11 @@
         "records": 2368
       }
     ],
-    "class_definition": "Silent-trigger queries: an actor attribute (jurisdiction, decision method, role) fires an unnamed obligation the user never mentions. Web search must first suspect the obligation exists to search for it, and fails at that step silently; a situation-queried obligation index returns it because it is tagged to the situation."
+    "class_definition": "Silent-trigger queries: an actor attribute (jurisdiction, decision method, role) fires an unnamed obligation the user never mentions. Web search must first suspect the obligation exists to search for it, and fails at that step silently; a situation-queried obligation index returns it because it is tagged to the situation.",
+    "replay": {
+      "snapshot_pinned": "2026-07-24",
+      "web_5run_note": "web search missed the Colorado obligation in all five runs - it searched generically ('adverse action', 'loan denial') and never reformulated toward a state AI statute; a consistent miss, not run-to-run noise. Live web retrieval is unversioned and cannot be pinned.",
+      "drift_note": "PROJECTED workflow: regulatory drift detection = diff between dataset snapshots; not a measured capability"
+    }
   }
 }

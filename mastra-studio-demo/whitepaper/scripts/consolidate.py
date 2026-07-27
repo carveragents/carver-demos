@@ -38,6 +38,36 @@ section3 = {
     "web_cost_is_floor": True,
 }
 
+# derived: cost per single check = cost_per_1k / 1000
+section3["per_check_usd"] = [
+    {"arm": r["arm"], "warm": round(r["warm"] / 1000, 4), "cold": round(r["cold"] / 1000, 4)}
+    for r in section3["cost_per_1k"]
+]
+
+# fee-accounting asymmetry: the web arm's $78.04/$121.59 includes ~$10/1k of the
+# hosted web-search tool fee; the Carver arm is model inference only (no Carver fee
+# modeled). Headroom = how much Carver could charge per 1k queries and stay cheaper.
+_web = next(r for r in section3["cost_per_1k"] if r["arm"] == "web search")
+_carver = next(r for r in section3["cost_per_1k"] if r["arm"] == "Carver")
+section3["fee_accounting"] = {
+    "web_arm_includes_vendor_fee": True,
+    "carver_arm_includes_vendor_fee": False,
+    "headroom_per_1k_warm": round(_web["warm"] - _carver["warm"], 2),
+    "headroom_per_1k_cold": round(_web["cold"] - _carver["cold"], 2),
+    "note": "web arm cost includes the web-search tool fee (~$10/1k); Carver arm is inference only — headroom is the max Carver fee per 1k queries that keeps Carver cheaper",
+}
+
+# PROJECTED (not measured): replay economics if ~90% of the 5,000 fresh input tokens
+# cache on a repeated run (4,500 cached / 500 fresh), output unchanged.
+_r = section3["rates"]
+_replay = (500 * _r["input_per_m"] + 4500 * _r["cached_per_m"] + 594 * _r["output_per_m"]) / 1e6
+section3["replay_projection"] = {
+    "status": "PROJECTED - not measured",
+    "assumption": "~90% of the 5,000 fresh input tokens cache on replay (4,500 cached / 500 fresh); output 594 unchanged",
+    "cost_per_1k": round(_replay * 1000, 2),
+    "note": "web search re-fetches live on every replay; its cost does not decline with repetition",
+}
+
 # --- section 4: the lending exemplar (curated records) ---
 section4 = {
     "applicants": [
@@ -67,6 +97,12 @@ section5 = {
         {"jur": "US-NY", "records": next((j["count"] for j in s1["jurisdictions_top"] if j["name"] == "US-NY"), None)},
     ],
     "class_definition": "Silent-trigger queries: an actor attribute (jurisdiction, decision method, role) fires an unnamed obligation the user never mentions. Web search must first suspect the obligation exists to search for it, and fails at that step silently; a situation-queried obligation index returns it because it is tagged to the situation.",
+}
+
+section5["replay"] = {
+    "snapshot_pinned": s1["snapshot_date"],
+    "web_5run_note": "web search missed the Colorado obligation in all five runs - it searched generically ('adverse action', 'loan denial') and never reformulated toward a state AI statute; a consistent miss, not run-to-run noise. Live web retrieval is unversioned and cannot be pinned.",
+    "drift_note": "PROJECTED workflow: regulatory drift detection = diff between dataset snapshots; not a measured capability",
 }
 
 out = {
