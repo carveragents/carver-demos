@@ -68,3 +68,19 @@ Primary sources: `mastra-studio-demo/docs/DEMO.md`, `docs/continuing.md`,
 **Not done (intentionally, needs user sign-off):** not pushed, not merged to `main`. The 4 curated
 lending records remain REVIEW-REQUIRED (legal/data). Optional follow-ups: live topics-API
 verification pass; widen §5 with real build:domain retrieval runs on more candidates.
+
+### Update 2026-07-27 — v1.1: TAM-deck cross-analysis folded in (`93fa115d`)
+
+Re-analyzed the user's a16z ChatGPT session against our measurements. Key finds:
+(A) §3 had asymmetric fee accounting — web arm includes the search-tool fee, Carver arm
+models no Carver fee; the "43–63% cheaper" claim could invert under Carver's own pricing.
+Fixed by disclosing it and restating as pricing headroom ($33.59/1k warm, $77.14/1k cold).
+(B) The strongest untapped argument is reproducibility, not cost: snapshot-pinned dataset ⇒
+replayable evals; live web is unversioned. New §06 "Evals you can replay" (0/5 framed as
+consistent systematic miss, NOT variance). (C) Replay caching economics (~$22.57/1k) and
+drift-as-snapshot-diff added in a labeled PROJECTED box, excluded from headlines.
+Rejected from the deck: TAM/$40K median (investor-facing), the $5.3K/yr annual table
+(wrong unit + one-pass loop), the "2.5× over-fetch" claim (apples-to-oranges).
+Edits delegated (Haiku: pipeline; Sonnet: HTML) and independently verified: numbers trace
+to whitepaper-data.json, nav 00–07 consistent, both themes legible, no overflow.
+Open measurement: one cached re-run would upgrade replay economics from projected to measured.
