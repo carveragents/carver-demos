@@ -4,7 +4,13 @@
 
 - 2026-05-25-1138-move-existing-demos
 - 2026-05-25-1247-feat-trader-demos
+- 2026-06-03-1027-chore-trader-demo-updates
+- 2026-06-09-0116-feat-showcase-v1
 - 2026-07-17-1529-feat-extend-mastra-demo
+
+Session logs live in `.flux/sessions/` (migrated from `.claude/.sessions/` on 2026-07-28).
+The 2026-06-03 and 2026-06-09 entries were added retroactively — those sessions were never
+formally ended, so their lessons were not consolidated at the time.
 
 ---
 
@@ -77,3 +83,25 @@
 **Mitigation:** Before changing a suspicious value, test whether it's coupled to a domain constraint; if it is, keep the value and make the framing explicit ("this scenario is set in early 2027, when the law takes effect") rather than hiding the coupling.
 
 **Lesson:** A value that looks wrong may be load-bearing. Investigate the coupling first; an explicit, explained constraint beats a cosmetic change that quietly degrades the result.
+
+### 9. Dev-server UIs that hardcode `localhost` break over remote access — fix same-origin, never cross-origin
+
+**Problem:** `mastra dev`'s embedded Studio bakes its API endpoint to `http://localhost:4111` rather than `window.location.origin`. Browsed from another machine (Tailscale, tunnel, LAN), the browser resolves `localhost` to *itself*, the fetch fails, and the UI shows a generic "could not reach the server" config screen that looks like a server problem rather than an origin problem.
+
+**Mitigation:** Fix it same-origin: browse the host serving the UI and point the UI's configured endpoint at that same origin. For Mastra specifically, from DevTools on the Studio origin:
+
+```js
+localStorage.setItem("mastra-studio-config", JSON.stringify({baseUrl:location.origin,endpoint:location.origin,apiPrefix:"/api"})); location.reload();
+```
+
+Two traps. Running a *second* server instance on another port to serve the API is a **dead end** — UI and API then have different origins, and the credentialed request to `/api/auth/capabilities` gets `Access-Control-Allow-Origin: *`, which browsers forbid for credentialed requests. No client-side fix exists. And a host's name and its IP are the *same server* but *different browser origins*; per-origin config set under one is invisible to the other.
+
+**Lesson:** When a local dev UI fails remotely, suspect the origin before the server. Prefer making UI and API share an origin over reconfiguring CORS — with credentialed requests, the cross-origin route is often closed to you entirely. Also bind deliberately: `mastra dev` binds `*:4111`, so on a cloud VM the port is exposed on its public interface unless a private network fronts it.
+
+### 10. End the session, or its lessons are lost
+
+**Problem:** Three sessions in this repo were never formally ended. Their pointers stayed active, their lessons were never consolidated into this file, and the `SESSIONS` list silently understated what had happened. One pointer sat active for four days after the work had merged. A later handoff, harvesting session state to build a resumption doc, looked in the current location, found nothing, and moved on — walking straight past five session logs including an active one containing a hazard with a verified fix.
+
+**Mitigation:** End a session when the work merges, not when you next remember. Ending is what writes the Final Summary, consolidates lessons here, and adds the link under `SESSIONS`. If a session must be reconstructed later, say so in the summary and mark the undocumented span rather than back-filling plausible progress entries.
+
+**Lesson:** An open session pointer is not a neutral state — it is unconsolidated knowledge with no owner. The cost is not paid at the time; it is paid by whoever next needs the context and cannot find it.
