@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carver vs web search vs memory — internal results</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#0f1115; --fg:#e8eaed; --muted:#9aa3ad; --line:#2a2f3a;
+  --accent:#6ea8fe; --warn:#f0b429; --good:#5fd08a; --surface:#171a21;
+}
+@media (prefers-color-scheme:light){
+  :root{--bg:#ffffff;--fg:#15181d;--muted:#5b6570;--line:#dfe3e8;
+        --accent:#1a5fd0;--warn:#9a6700;--good:#1a7f4b;--surface:#f6f8fa}
+}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+#deck{position:relative}
+.slide{
+  display:none; min-height:100vh; padding:4.5vh 6vw 8vh;
+  max-width:1180px; margin:0 auto; flex-direction:column; justify-content:flex-start;
+}
+.slide.active{display:flex}
+.slide>*:first-child{margin-top:0}
+h1{font-size:2.5rem;line-height:1.15;margin:.2em 0 .3em;letter-spacing:-.02em}
+h2{font-size:1.9rem;line-height:1.2;margin:0 0 .6em;letter-spacing:-.015em}
+h3{font-size:1.25rem;margin:1.1em 0 .4em;color:var(--accent)}
+p,li{font-size:1.05rem}
+li{margin:.3em 0}
+strong{color:var(--fg);font-weight:650}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;
+  background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.08em .35em}
+hr{border:0;border-top:1px solid var(--line);margin:1.2em 0}
+blockquote{margin:.6em 0;padding:.3em 0 .3em 1em;border-left:3px solid var(--line);color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:.7em 0;font-size:.92rem;
+  display:block;overflow-x:auto;max-height:64vh}
+th,td{border:1px solid var(--line);padding:.4em .6em;text-align:left;vertical-align:top}
+th{background:var(--surface);font-weight:650;white-space:nowrap;position:sticky;top:0}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface) 55%,transparent)}
+td:first-child,th:first-child{white-space:nowrap}
+.slide table code{background:none;border:0;padding:0}
+/* chrome */
+#bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:var(--line);z-index:20}
+#bar>i{display:block;height:100%;background:var(--accent);transition:width .18s}
+#num{position:fixed;right:14px;bottom:10px;font-size:.8rem;color:var(--muted);z-index:21;
+  font-variant-numeric:tabular-nums}
+#hint{position:fixed;left:14px;bottom:10px;font-size:.8rem;color:var(--muted);z-index:21}
+.edge{position:fixed;top:0;bottom:0;width:9vw;z-index:10;cursor:pointer}
+.edge.l{left:0} .edge.r{right:0}
+/* overview */
+body.overview .slide{display:block;min-height:0;padding:14px 16px;border:1px solid var(--line);
+  border-radius:8px;background:var(--surface);zoom:.42;cursor:pointer;margin:0}
+body.overview #deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:10px;padding:14px}
+body.overview table{max-height:none}
+body.overview .edge{display:none}
+/* print: one slide per page */
+@media print{
+  @page{size:1280px 760px;margin:14mm}
+  html,body{background:#fff;color:#000}
+  .slide{display:block!important;min-height:0;page-break-after:always;break-after:page;
+    padding:0;max-width:none}
+  .slide:last-child{page-break-after:auto}
+  table{display:table;max-height:none;overflow:visible;font-size:.8rem}
+  th{position:static}
+  #bar,#num,#hint,.edge{display:none!important}
+  h1{font-size:2rem}h2{font-size:1.5rem}p,li{font-size:.95rem}
+}
+body.printmode .slide{display:block;min-height:0;page-break-after:always;
+  border-bottom:1px dashed var(--line);margin-bottom:18px}
+body.printmode table{max-height:none}
+body.printmode .edge{display:none}
+</style>
+</head>
+<body>
+<div class="edge l"></div><div class="edge r"></div>
+<div id="deck">
+<section class="slide">
+<h1 id="carver-vs-web-search-vs-memory">Carver vs web search vs
+memory</h1>
+<h3
+id="what-370-measured-agent-runs-say-about-cost-accuracy-and-where-grounding-actually-pays">What
+370 measured agent runs say about cost, accuracy, and where grounding
+actually pays</h3>
+<p>Internal — for feedback, not external use 2026-07-28 · all numbers
+from <code>whitepaper/figures/frontier-data.json</code></p>
+</section>
+<section class="slide">
+<h2 id="why-we-ran-this">Why we ran this</h2>
+<p>The whitepaper's §3 had a <strong>seam</strong>: dollar figures came
+from one benchmark, accuracy percentages from a different one. You could
+not draw a cost-vs-accuracy point for any arm without mixing
+sources.</p>
+<p>It also had a <strong>credibility problem</strong>: the memory-only
+baseline looked dramatically cheap (~$12.70/1k) with no accuracy number
+next to it. A prospect reads that and asks the obvious question — "so
+why would I pay for anything?"</p>
+<p><strong>Goal:</strong> one experiment where cost AND accuracy for
+every arm come from the <em>same runs</em>.</p>
+</section>
+<section class="slide">
+<h2 id="what-we-tested--4-arms">What we tested — 4 arms</h2>
+<p>Same model (<code>gpt-5.6-sol</code>), same step cap, byte-identical
+prompts. <strong>Retrieval is the only variable.</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>what it can reach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>baseline</code></td>
+<td>nothing — model memory only</td>
+</tr>
+<tr class="even">
+<td><code>web</code></td>
+<td>live hosted web search</td>
+</tr>
+<tr class="odd">
+<td><code>carver-full</code></td>
+<td><strong>all 229,287</strong> indexed corpus records</td>
+</tr>
+<tr class="even">
+<td><code>carver-domain</code></td>
+<td>the curated per-sector slice (1.5k–7k records) our demos used</td>
+</tr>
+</tbody>
+</table>
+<p>The last two are the interesting pair: they separate
+<strong>"Carver's data"</strong> from <strong>"Carver's data that a
+human already narrowed to the right sector."</strong> Only the first is
+a capability a customer actually gets.</p>
+</section>
+<section class="slide">
+<h2 id="a-correction-worth-knowing-about">A correction worth knowing
+about</h2>
+<p>Before this experiment, our Carver demos searched <strong>~19,700
+records — about 8% of the corpus</strong> — and each index was pre-aimed
+at its scenario's subject matter.</p>
+<p>Scale forced a new access path. Measured:</p>
+<table>
+<thead>
+<tr class="header">
+<th>rows</th>
+<th>brute-force query</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,487</td>
+<td>573 ms</td>
+</tr>
+<tr class="even">
+<td>7,146</td>
+<td>2,622 ms</td>
+</tr>
+<tr class="odd">
+<td>229,287 (projected)</td>
+<td><strong>~90 s</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p>Fix: compressed ANN index — <strong>36.7 KB/vector</strong> (vs 320
+KB default), <strong>137–266 ms</strong> queries at full scale. Build
+took 169 min, one-time.</p>
+<p><strong>We can now demo against the whole dataset.</strong> We could
+not before.</p>
+</section>
+<section class="slide">
+<h2 id="the-questions--26-pre-registered">The questions — 26,
+pre-registered</h2>
+<p>Each is a realistic operator situation. The system message describes
+the company; the user message asks a naive planning question that
+<strong>names no rule, deadline, or regulator</strong>. The obligation
+has to be <em>noticed</em>, not recalled from the prompt.</p>
+<p>Sourced from the corpus, with answer keys written <strong>before any
+arm ran</strong> and committed to git — the commit timestamp is the
+pre-registration proof.</p>
+<p><strong>Example (q12):</strong> a French crypto firm that already
+holds a MiCA authorisation asks <em>"anything outstanding on the
+regulatory side, or are we fine?"</em> Correct answer: MiCA is
+<strong>not</strong> sufficient — e-money-token services need PSD2
+payment-institution authorisation, due 2 March 2026.</p>
+</section>
+<section class="slide">
+<h2 id="how-we-scored-it">How we scored it</h2>
+<p><strong>6–8 checks per question</strong> (avg 7.6), mixed regex and
+LLM judge.</p>
+<p>Every question carries <strong>two must-pass checks</strong>:</p>
+<ul>
+<li><code>cite-real</code> — cited instrument exists and governs this
+situation</li>
+<li><code>no-fabricated-obligation</code> — asserts no duty that doesn't
+apply</li>
+</ul>
+<p><strong>Failing either caps the question at 0.</strong></p>
+<p>This matters: our old rubric was 5 regexes measuring <em>recall
+only</em>, so a confidently hallucinating arm could have scored 100%.
+Errors are counted separately as <code>miss</code> /
+<code>hallucination</code> / <code>stale</code> and never blended.</p>
+<p>Judge is <strong>arm-blinded</strong> — it sees the scenario, the
+key, and the answer text. Not the arm name, not the tool trace.</p>
+</section>
+<section class="slide">
+<h2 id="headline-the-costaccuracy-frontier">Headline: the cost–accuracy
+frontier</h2>
+<table>
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>accuracy</th>
+<th>$/question</th>
+<th>$/1k</th>
+<th>median latency</th>
+<th>p90 latency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>baseline</td>
+<td>56%</td>
+<td>$0.048</td>
+<td>$48</td>
+<td>36.5s</td>
+<td>68.2s</td>
+</tr>
+<tr class="even">
+<td>web</td>
+<td>79%</td>
+<td>$0.369</td>
+<td>$369</td>
+<td>63.6s</td>
+<td><strong>117.9s</strong></td>
+</tr>
+<tr class="odd">
+<td>carver-full</td>
+<td><strong>82%</strong></td>
+<td>$0.203</td>
+<td>$203</td>
+<td>38.1s</td>
+<td>51.6s</td>
+</tr>
+<tr class="even">
+<td>carver-domain</td>
+<td>81%</td>
+<td><strong>$0.129</strong></td>
+<td><strong>$129</strong></td>
+<td>36.6s</td>
+<td>54.6s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="web-search-is-pareto-dominated--on-cost">Web search is
+Pareto-dominated — on cost.</h3>
+<p><strong>carver-domain is 2.9× cheaper at indistinguishable
+accuracy</strong> (81% vs 79%). carver-full is 1.8× cheaper. Web is also
+the slowest — p90 117.9s vs ~52s.</p>
+<p>⚠️ <strong>Do not claim Carver is "more accurate" than web from
+this.</strong> The three retrieval arms are separated by 1–3pp, and with
+26 questions one question moves a mean by ~4pp — that gap is inside the
+noise (see Appendix B). What is robust here is <strong>cost and
+latency</strong>, not the accuracy ranking.</p>
+<p>Both axes from the same 312 runs. No seam.</p>
+</section>
+<section class="slide">
+<h2 id="the-finding-id-actually-lead-with">The finding I'd actually lead
+with</h2>
+<table>
+<thead>
+<tr class="header">
+<th>stratum</th>
+<th>n</th>
+<th>baseline</th>
+<th>web</th>
+<th>carver-full</th>
+<th>carver-domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>model already knows</td>
+<td>16 q</td>
+<td>79%</td>
+<td>84%</td>
+<td>79%</td>
+<td>79%</td>
+</tr>
+<tr class="even">
+<td><strong>model is blind</strong></td>
+<td>10 q</td>
+<td><strong>27%</strong></td>
+<td>60%</td>
+<td>76%</td>
+<td><strong>85%</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>silent-trigger tail</strong></td>
+<td>5 q</td>
+<td>22%</td>
+<td>86%</td>
+<td><strong>100%</strong></td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Where the model already knows the answer, grounding buys
+nothing</strong> — every arm ties at 79–84%.</p>
+<p>All the value sits in the bottom two rows. That's a sharper and more
+sellable claim than "Carver is more accurate": it tells a buyer
+<em>which questions</em> justify the spend.</p>
+</section>
+<section class="slide">
+<h2 id="breakeven">Breakeven</h2>
+<p>Cost per flawed answer avoided, vs the memory-only baseline:</p>
+<table>
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>extra $/question</th>
+<th>accuracy gain</th>
+<th><strong>$ per flawed answer avoided</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>carver-domain</td>
+<td>+$0.081</td>
+<td>+25pp</td>
+<td><strong>$0.33</strong></td>
+</tr>
+<tr class="even">
+<td>carver-full</td>
+<td>+$0.155</td>
+<td>+26pp</td>
+<td><strong>$0.59</strong></td>
+</tr>
+<tr class="odd">
+<td>web</td>
+<td>+$0.321</td>
+<td>+23pp</td>
+<td>$1.39</td>
+</tr>
+</tbody>
+</table>
+<p>Baseline's flawed-answer rate is <strong>100%</strong> — every
+baseline run failed at least one check, usually <code>provenance</code>:
+it produced <strong>zero citations in 100% of answers</strong>.
+Structural, not incidental.</p>
+</section>
+<section class="slide">
+<h2 id="three-results-that-cut-against-us">Three results that cut
+against us</h2>
+<p><strong>1. Full corpus does not beat curation.</strong> carver-full
+82% vs carver-domain 81% — indistinguishable — for <strong>1.6× the
+cost</strong>. It earns its keep in exactly one place: the
+silent-trigger tail, <strong>100% vs 80%</strong>. Honest claim:
+full-corpus reach buys <em>tail coverage</em>, not general accuracy.</p>
+<p><strong>1b. The three retrieval arms don't separate on overall
+accuracy at all.</strong> 79% / 82% / 81% is one question's worth of
+noise. On this set we can defend <em>cost</em>, <em>latency</em>, and
+the <em>stratum</em> gaps — not an accuracy ranking between web and
+Carver. Fixing that needs more questions, not more runs.</p>
+<p><strong>2. Baseline sits on the Pareto frontier.</strong> At $0.048 /
+56%, nothing dominates it. For questions the model already knows, the
+cheap arm is defensible. We should say so.</p>
+<p><strong>3. The §06 replay projection is dead.</strong> We projected
+<strong><span
+class="math inline">22.57/1<em>k</em> *  * <em>a</em><em>s</em><em>s</em><em>u</em><em>m</em><em>i</em><em>n</em><em>g</em> 90<em>c</em><em>a</em><em>r</em><em>v</em><em>e</em><em>r</em> − <em>f</em><em>u</em><em>l</em><em>l</em><em>f</em><em>e</em><em>l</em><em>l</em>13</span>178</strong>
+and <strong>$136</strong>/1k. <strong>Recommend deleting that box, not
+updating it.</strong> (What survives: web shows <strong>0%</strong>
+cached input and −8% — "web cost doesn't decline on repetition"
+holds.)</p>
+</section>
+<section class="slide">
+<h2 id="a-methodology-bug-we-caught--and-why-it-matters">A methodology
+bug we caught — and why it matters</h2>
+<p>First grading pass scored web at <strong>44%</strong>. Corrected, it
+scores <strong>79%</strong>.</p>
+<p>Cause: our scenarios set a fictional "today" in mid-2026. Live web
+search legitimately returns documents published <em>after</em> that
+date, and the judge failed those real citations as "impossible as
+presented."</p>
+<p>It hit <strong>web only</strong> — 19 of its 101 failed checks,
+<strong>0 for every other arm</strong>, because the Carver indices are
+date-capped.</p>
+<p>We re-graded <strong>all 312 runs</strong> under one corrected rubric
+rather than patching web alone. The flawed pass is retained as
+<code>grades-v1-clockconfound.jsonl</code> so the correction is
+auditable.</p>
+<p><strong>If we had shipped the first pass, we'd have published a
+35-point error in our own favour.</strong></p>
+</section>
+<section class="slide">
+<h2 id="what-this-doesnt-prove">What this doesn't prove</h2>
+<ul>
+<li><strong>Questions are corpus-sourced</strong>, so Carver arms are
+advantaged by construction. Mitigated (every obligation is public and
+web-reachable; baseline-knowable stratum is a fair control) but not
+eliminated.</li>
+<li><strong>26 questions, 4 domains.</strong> Not a broad benchmark —
+and small enough that one question moves a pooled mean by ~4pp, which is
+wider than the gap between the three retrieval arms.</li>
+<li><strong>Our designed pre/post-cutoff split failed</strong> — a 2026
+record date doesn't make an obligation unknowable in 2024. We regrouped
+empirically on what baseline actually answered. Both splits are
+published.</li>
+<li><strong>112 judge verdicts still awaiting human spot-check.</strong>
+Aggregates are provisional until reviewed.</li>
+<li><strong>Latency is reported, not claimed</strong> — prior
+measurements conflict and we hold a no-speed-claim guard.</li>
+<li>No Carver licence fee is modelled anywhere — these are inference
+costs only.</li>
+</ul>
+</section>
+<section class="slide">
+<h2 id="asks">Asks</h2>
+<ol type="1">
+<li><strong>Spot-check review</strong> — 112 verdicts in
+<code>spot-check-queue.md</code>. Anyone disagreeing with the judge
+materially changes the numbers.</li>
+<li><strong>Do we lead with "web is dominated" or with "grounding pays
+only where the model is blind"?</strong> The second is more honest and
+more useful; the first is punchier.</li>
+<li><strong>§06 replay box — delete or restate?</strong> My call is
+delete.</li>
+<li><strong>Is carver-domain-beats-carver-full a problem or a product
+insight?</strong> It suggests sector routing before retrieval is worth
+real money.</li>
+<li><strong>Worth extending?</strong> The obvious gaps: more domains,
+harder tail questions, and a question set <em>not</em> sourced from our
+own corpus.</li>
+</ol>
+</section>
+<section class="slide">
+<h2 id="where-the-artifacts-live">Where the artifacts live</h2>
+<p>Branch <code>flux/docs-carver-whitepaper</code>, under
+<code>mastra-studio-demo/whitepaper/experiments/</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>file</th>
+<th>what</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>questions.json</code></td>
+<td>26 questions + pre-registered keys (committed before any run)</td>
+</tr>
+<tr class="even">
+<td><code>runs.jsonl</code></td>
+<td>370 raw runs — usage, cost, latency, full answer text</td>
+</tr>
+<tr class="odd">
+<td><code>grades.jsonl</code></td>
+<td>every check verdict + judge rationale</td>
+</tr>
+<tr class="even">
+<td><code>grades-v1-clockconfound.jsonl</code></td>
+<td>the superseded first pass, kept for audit</td>
+</tr>
+<tr class="odd">
+<td><code>analysis.py</code></td>
+<td>runs + grades → <code>frontier-data.json</code></td>
+</tr>
+<tr class="even">
+<td><code>../figures/frontier-data.json</code></td>
+<td><strong>single source of truth for every number in this
+deck</strong></td>
+</tr>
+<tr class="odd">
+<td><code>spot-check-queue.md</code></td>
+<td>112 verdicts awaiting human review</td>
+</tr>
+</tbody>
+</table>
+<p>Whitepaper HTML is <strong>untouched</strong> — that's a separate,
+approved step.</p>
+</section>
+<section class="slide">
+<h2 id="appendix-a--the-26-questions">Appendix A — the 26 questions</h2>
+<p>Sourced from the corpus; answer keys written and committed
+<strong>before any arm ran</strong>. Each scenario names no rule,
+deadline, or regulator — the obligation has to be noticed. Full scenario
+text and keys: <code>experiments/QUESTION-SET-REVIEW.md</code>.</p>
+<p><code>blind</code> = the memory-only baseline could not answer it
+(empirical stratum).</p>
+<p><strong>head-pre-cutoff</strong> (8)</p>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>domain</th>
+<th>obligation the arm had to notice</th>
+<th>source</th>
+<th>blind?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>q01</td>
+<td>medical-devices</td>
+<td>Regulation (EU) 2023/607 extended the validity of MDD/AIMDD
+certificates and the MDR transitiona…</td>
+<td>European Parliament and Co, 2023-03</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q02</td>
+<td>medical-devices</td>
+<td>professional users must report serious incidents to Swissmedic AND
+to the supplier</td>
+<td>Swissmedic, 2023-11</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q03</td>
+<td>crypto-assets</td>
+<td>DAC8 requires crypto-asset service providers in the EU to report
+transactions of EU-resident cli…</td>
+<td>Directorate-General for Ta, 2023-10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q04</td>
+<td>crypto-assets</td>
+<td>EBA ML/TF Risk Factors Guidelines were amended to insert
+crypto-asset specific risk factors and …</td>
+<td>European Banking Authority, 2024-01</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q05</td>
+<td>state-lending</td>
+<td>federally insured credit unions must notify the NCUA of a reportable
+cyber incident</td>
+<td>National Credit Union Admi, 2023-08</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q06</td>
+<td>state-lending</td>
+<td>the Second Amendment to 23 NYCRR Part 500 imposes an expanded
+cybersecurity programme on covered…</td>
+<td>New York State Department , 2023-11</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q07</td>
+<td>child-safety</td>
+<td>transparency obligations under GDPR Articles 12–14, as elaborated by
+the EDPB transparency guide…</td>
+<td>European Data Protection B, 2018-04</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q08</td>
+<td>child-safety</td>
+<td>data protection by design and by default under GDPR Article 25</td>
+<td>European Data Protection B, 2020-10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>head-post-cutoff</strong> (10)</p>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>domain</th>
+<th>obligation the arm had to notice</th>
+<th>source</th>
+<th>blind?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>q09</td>
+<td>medical-devices</td>
+<td>device registration in swissdamed becomes mandatory</td>
+<td>Swissmedic, 2026-03</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q10</td>
+<td>medical-devices</td>
+<td>mandatory Unique Device Identification labelling and data submission
+to the Australian UDI Datab…</td>
+<td>Therapeutic Goods Administ, 2026-06</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="odd">
+<td>q11</td>
+<td>medical-devices</td>
+<td>manufacturers must give advance notice of an interruption or
+permanent cessation of supply that …</td>
+<td>ANSM, 2026-05</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q12</td>
+<td>crypto-assets</td>
+<td>EMT-related crypto-asset services count as payment services and
+require payment-institution auth…</td>
+<td>Autorité de Contrôle Prude, 2026-02</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q13</td>
+<td>crypto-assets</td>
+<td>stablecoin issuers recognised as systemic by HM Treasury fall under
+joint Bank of England and FC…</td>
+<td>Bank of England, 2026-06</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q14</td>
+<td>crypto-assets</td>
+<td>only entities authorised under MiCA by an EU competent authority may
+provide crypto-asset servic…</td>
+<td>Czech National Bank, 2026-07</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q15</td>
+<td>state-lending</td>
+<td>federal law preempts the Illinois Interchange Fee Prohibition Act
+for national banks and federal…</td>
+<td>Office of the Comptroller , 2026-04</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q16</td>
+<td>state-lending</td>
+<td>updated disaster planning, preparedness and response requirements,
+including filings</td>
+<td>New York State Department , 2026-05</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q17</td>
+<td>state-lending</td>
+<td>FDIC official digital sign display requirements and non-deposit
+product signage on digital chann…</td>
+<td>Federal Deposit Insurance , 2026-01</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q18</td>
+<td>child-safety</td>
+<td>prior consent of the EDPS is required before dismissing a DPO before
+the end of their term</td>
+<td>European Data Protection S, 2026-02</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>tail-silent-trigger</strong> (5)</p>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>domain</th>
+<th>obligation the arm had to notice</th>
+<th>source</th>
+<th>blind?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>q19</td>
+<td>medical-devices</td>
+<td>a field safety notice affects the catheters the department uses —
+they fail authentication after…</td>
+<td>Inspectie Gezondheidszorg , 2026-05</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>q20</td>
+<td>medical-devices</td>
+<td>an urgent field safety notice requires a mandatory software upgrade
+— this is not a deferrable u…</td>
+<td>BfArM - Federal Institute , 2026-03</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="odd">
+<td>q21</td>
+<td>medical-devices</td>
+<td>a field safety notice changed the validated sterilisation parameters
+for these products</td>
+<td>Integra LifeSciences Corpo, 2026-06</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q22</td>
+<td>medical-devices</td>
+<td>a field safety notice requires a specific clinical workaround and a
+software update</td>
+<td>Federal Institute for Drug, 2026-05</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="odd">
+<td>q23</td>
+<td>crypto-assets</td>
+<td>Louisiana Act 510 (HB 582) changed deferred presentment and small
+loan limits</td>
+<td>Office of Financial Instit, 2026-07</td>
+<td><strong>yes</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>reuse</strong> (3)</p>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>domain</th>
+<th>obligation the arm had to notice</th>
+<th>source</th>
+<th>blind?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>q24</td>
+<td>crypto-assets</td>
+<td>MiCA CASP authorisation is required; the transitional regime
+ends</td>
+<td>various EU competent autho, 2026</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr class="even">
+<td>q25</td>
+<td>medical-devices</td>
+<td>Swiss device registration in swissdamed becomes mandatory</td>
+<td>Swissmedic, 2026-03</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>q26</td>
+<td>child-safety</td>
+<td>age assurance and minors' protection obligations across the three
+named jurisdictions</td>
+<td>various, 2026</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide">
+<h2 id="appendix-b--accuracy-per-question-per-arm">Appendix B — accuracy
+per question, per arm</h2>
+<p>Mean of 3 repeats. A question scores <strong>0</strong> for an arm if
+it failed either must-pass precision check (<code>cite-real</code>,
+<code>no-fabricated-obligation</code>) — a confident hallucination
+scores zero, it does not score partial credit.</p>
+<table>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>stratum</th>
+<th>blind?</th>
+<th>baseline</th>
+<th>web</th>
+<th>carver-full</th>
+<th>carver-domain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>q01</td>
+<td>pre</td>
+<td></td>
+<td>58%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q02</td>
+<td>pre</td>
+<td></td>
+<td>58%</td>
+<td>100%</td>
+<td>33%</td>
+<td>33%</td>
+</tr>
+<tr class="odd">
+<td>q03</td>
+<td>pre</td>
+<td></td>
+<td>88%</td>
+<td>100%</td>
+<td>67%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q04</td>
+<td>pre</td>
+<td></td>
+<td>86%</td>
+<td>33%</td>
+<td>100%</td>
+<td>67%</td>
+</tr>
+<tr class="odd">
+<td>q05</td>
+<td>pre</td>
+<td></td>
+<td>83%</td>
+<td>100%</td>
+<td>67%</td>
+<td>92%</td>
+</tr>
+<tr class="even">
+<td>q06</td>
+<td>pre</td>
+<td></td>
+<td>88%</td>
+<td>100%</td>
+<td>92%</td>
+<td>33%</td>
+</tr>
+<tr class="odd">
+<td>q07</td>
+<td>pre</td>
+<td><strong>blind</strong></td>
+<td>0%</td>
+<td>62%</td>
+<td>33%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q08</td>
+<td>pre</td>
+<td></td>
+<td>75%</td>
+<td>88%</td>
+<td>92%</td>
+<td>96%</td>
+</tr>
+<tr class="odd">
+<td>q09</td>
+<td>post</td>
+<td></td>
+<td>71%</td>
+<td>92%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q10</td>
+<td>post</td>
+<td><strong>blind</strong></td>
+<td>29%</td>
+<td>62%</td>
+<td>67%</td>
+<td>67%</td>
+</tr>
+<tr class="odd">
+<td>q11</td>
+<td>post</td>
+<td><strong>blind</strong></td>
+<td>29%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q12</td>
+<td>post</td>
+<td></td>
+<td>88%</td>
+<td>33%</td>
+<td>100%</td>
+<td>67%</td>
+</tr>
+<tr class="odd">
+<td>q13</td>
+<td>post</td>
+<td></td>
+<td>88%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q14</td>
+<td>post</td>
+<td></td>
+<td>88%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="odd">
+<td>q15</td>
+<td>post</td>
+<td><strong>blind</strong></td>
+<td>33%</td>
+<td>33%</td>
+<td>100%</td>
+<td>92%</td>
+</tr>
+<tr class="even">
+<td>q16</td>
+<td>post</td>
+<td></td>
+<td>54%</td>
+<td>92%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="odd">
+<td>q17</td>
+<td>post</td>
+<td><strong>blind</strong></td>
+<td>21%</td>
+<td>100%</td>
+<td>88%</td>
+<td>88%</td>
+</tr>
+<tr class="even">
+<td>q18</td>
+<td>post</td>
+<td></td>
+<td>88%</td>
+<td>100%</td>
+<td>33%</td>
+<td>67%</td>
+</tr>
+<tr class="odd">
+<td>q19</td>
+<td>tail</td>
+<td></td>
+<td>56%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q20</td>
+<td>tail</td>
+<td><strong>blind</strong></td>
+<td>29%</td>
+<td>62%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="odd">
+<td>q21</td>
+<td>tail</td>
+<td><strong>blind</strong></td>
+<td>0%</td>
+<td>67%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>q22</td>
+<td>tail</td>
+<td><strong>blind</strong></td>
+<td>0%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="odd">
+<td>q23</td>
+<td>tail</td>
+<td><strong>blind</strong></td>
+<td>24%</td>
+<td>100%</td>
+<td>100%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>q24</td>
+<td>reuse</td>
+<td><strong>blind</strong></td>
+<td>48%</td>
+<td>0%</td>
+<td>67%</td>
+<td>67%</td>
+</tr>
+<tr class="odd">
+<td>q25</td>
+<td>reuse</td>
+<td></td>
+<td>86%</td>
+<td>57%</td>
+<td>100%</td>
+<td>95%</td>
+</tr>
+<tr class="even">
+<td>q26</td>
+<td>reuse</td>
+<td></td>
+<td>86%</td>
+<td>67%</td>
+<td>0%</td>
+<td>33%</td>
+</tr>
+<tr class="odd">
+<td><strong>mean</strong></td>
+<td></td>
+<td></td>
+<td><strong>56%</strong></td>
+<td><strong>79%</strong></td>
+<td><strong>82%</strong></td>
+<td><strong>81%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading it:</strong> the arms separate on the
+<code>blind</code> and <code>tail</code> rows and cluster everywhere
+else — the deck's central claim, question by question.</p>
+<p><strong>But look at the variance before trusting the means.</strong>
+Every arm has questions it falls over on: Carver scores 33% on q02 and
+q18 where web scores 100%; carver-full scores 0% on q26; carver-domain
+scores 0% on q23 while carver-full scores 100% on the same question; web
+scores 0% on q24 and 33% on q04, q12 and q15. Those are not rounding —
+they are whole questions lost, usually to a must-pass precision
+failure.</p>
+<p>With 26 questions and 3 repeats, a single question swings a pooled
+mean by ~4pp. <strong>The per-arm means on slide 7 are separated by
+1-3pp between the three retrieval arms</strong> — which is inside that
+noise. The honest reading is that carver-full, carver-domain and web are
+<em>not</em> reliably distinguishable on overall accuracy on this set;
+what IS robust is the cost gap, the <code>blind</code>/<code>tail</code>
+gaps, and baseline's structural inability to cite.</p>
+</section>
+</div>
+<div id="bar"><i></i></div><div id="num"></div><div id="hint">← → navigate · o overview · p print layout</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+const bar=document.querySelector('#bar>i'), num=document.getElementById('num');
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  bar.style.width=((i+1)/slides.length*100)+'%';
+  num.textContent=(i+1)+' / '+slides.length;
+  if(!document.body.classList.contains('overview'))location.hash=i+1;
+}
+function overview(on){
+  document.body.classList.toggle('overview',on);
+  if(on) slides.forEach(s=>s.classList.add('active')); else show(i);
+}
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();
+    document.body.classList.contains('overview')?overview(false):show(i+1);}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+  else if(e.key==='o'){overview(!document.body.classList.contains('overview'));}
+  else if(e.key==='p'){document.body.classList.toggle('printmode');
+    slides.forEach(s=>s.classList.add('active'));}
+  else if(e.key==='Escape'){overview(false);document.body.classList.remove('printmode');}
+});
+slides.forEach((s,k)=>s.addEventListener('click',()=>{
+  if(document.body.classList.contains('overview')){i=k;overview(false);}}));
+document.querySelector('.edge.l').onclick=()=>show(i-1);
+document.querySelector('.edge.r').onclick=()=>show(i+1);
+show(parseInt(location.hash.slice(1)||'1',10)-1);
+</script>
+</body>
+</html>

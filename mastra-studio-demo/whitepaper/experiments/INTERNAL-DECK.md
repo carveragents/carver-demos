@@ -101,10 +101,14 @@ not the tool trace.
 | carver-full | **82%** | $0.203 | $203 | 38.1s | 51.6s |
 | carver-domain | 81% | **$0.129** | **$129** | 36.6s | 54.6s |
 
-### Web search is Pareto-dominated.
+### Web search is Pareto-dominated — on cost.
 
-**carver-domain is 2.9× cheaper AND more accurate.** carver-full is 1.8× cheaper and more accurate.
-Web is also the slowest — p90 117.9s vs ~52s.
+**carver-domain is 2.9× cheaper at indistinguishable accuracy** (81% vs 79%). carver-full is
+1.8× cheaper. Web is also the slowest — p90 117.9s vs ~52s.
+
+⚠️ **Do not claim Carver is "more accurate" than web from this.** The three retrieval arms are
+separated by 1–3pp, and with 26 questions one question moves a mean by ~4pp — that gap is inside
+the noise (see Appendix B). What is robust here is **cost and latency**, not the accuracy ranking.
 
 Both axes from the same 312 runs. No seam.
 
@@ -143,9 +147,14 @@ usually `provenance`: it produced **zero citations in 100% of answers**. Structu
 ## Three results that cut against us
 
 **1. Full corpus does not beat curation.**
-carver-full 82% vs carver-domain 81%, for **1.6× the cost**. It earns its keep in exactly one
-place — the silent-trigger tail, **100% vs 80%**. Honest claim: full-corpus reach buys
+carver-full 82% vs carver-domain 81% — indistinguishable — for **1.6× the cost**. It earns its keep
+in exactly one place: the silent-trigger tail, **100% vs 80%**. Honest claim: full-corpus reach buys
 *tail coverage*, not general accuracy.
+
+**1b. The three retrieval arms don't separate on overall accuracy at all.**
+79% / 82% / 81% is one question's worth of noise. On this set we can defend *cost*, *latency*, and
+the *stratum* gaps — not an accuracy ranking between web and Carver. Fixing that needs more
+questions, not more runs.
 
 **2. Baseline sits on the Pareto frontier.**
 At $0.048 / 56%, nothing dominates it. For questions the model already knows, the cheap arm is
@@ -182,7 +191,8 @@ The flawed pass is retained as `grades-v1-clockconfound.jsonl` so the correction
 - **Questions are corpus-sourced**, so Carver arms are advantaged by construction. Mitigated
   (every obligation is public and web-reachable; baseline-knowable stratum is a fair control)
   but not eliminated.
-- **26 questions, 4 domains.** Not a broad benchmark.
+- **26 questions, 4 domains.** Not a broad benchmark — and small enough that one question moves a
+  pooled mean by ~4pp, which is wider than the gap between the three retrieval arms.
 - **Our designed pre/post-cutoff split failed** — a 2026 record date doesn't make an obligation
   unknowable in 2024. We regrouped empirically on what baseline actually answered. Both splits
   are published.
@@ -221,3 +231,114 @@ Branch `flux/docs-carver-whitepaper`, under `mastra-studio-demo/whitepaper/exper
 | `spot-check-queue.md` | 112 verdicts awaiting human review |
 
 Whitepaper HTML is **untouched** — that's a separate, approved step.
+
+---
+
+## Appendix A — the 26 questions
+
+Sourced from the corpus; answer keys written and committed **before any arm ran**.
+Each scenario names no rule, deadline, or regulator — the obligation has to be noticed.
+Full scenario text and keys: `experiments/QUESTION-SET-REVIEW.md`.
+
+`blind` = the memory-only baseline could not answer it (empirical stratum).
+
+
+**head-pre-cutoff** (8)
+
+| id | domain | obligation the arm had to notice | source | blind? |
+|---|---|---|---|---|
+| q01 | medical-devices | Regulation (EU) 2023/607 extended the validity of MDD/AIMDD certificates and the MDR transitiona… | European Parliament and Co, 2023-03 |  |
+| q02 | medical-devices | professional users must report serious incidents to Swissmedic AND to the supplier | Swissmedic, 2023-11 |  |
+| q03 | crypto-assets | DAC8 requires crypto-asset service providers in the EU to report transactions of EU-resident cli… | Directorate-General for Ta, 2023-10 |  |
+| q04 | crypto-assets | EBA ML/TF Risk Factors Guidelines were amended to insert crypto-asset specific risk factors and … | European Banking Authority, 2024-01 |  |
+| q05 | state-lending | federally insured credit unions must notify the NCUA of a reportable cyber incident | National Credit Union Admi, 2023-08 |  |
+| q06 | state-lending | the Second Amendment to 23 NYCRR Part 500 imposes an expanded cybersecurity programme on covered… | New York State Department , 2023-11 |  |
+| q07 | child-safety | transparency obligations under GDPR Articles 12–14, as elaborated by the EDPB transparency guide… | European Data Protection B, 2018-04 | **yes** |
+| q08 | child-safety | data protection by design and by default under GDPR Article 25 | European Data Protection B, 2020-10 |  |
+
+**head-post-cutoff** (10)
+
+| id | domain | obligation the arm had to notice | source | blind? |
+|---|---|---|---|---|
+| q09 | medical-devices | device registration in swissdamed becomes mandatory | Swissmedic, 2026-03 |  |
+| q10 | medical-devices | mandatory Unique Device Identification labelling and data submission to the Australian UDI Datab… | Therapeutic Goods Administ, 2026-06 | **yes** |
+| q11 | medical-devices | manufacturers must give advance notice of an interruption or permanent cessation of supply that … | ANSM, 2026-05 | **yes** |
+| q12 | crypto-assets | EMT-related crypto-asset services count as payment services and require payment-institution auth… | Autorité de Contrôle Prude, 2026-02 |  |
+| q13 | crypto-assets | stablecoin issuers recognised as systemic by HM Treasury fall under joint Bank of England and FC… | Bank of England, 2026-06 |  |
+| q14 | crypto-assets | only entities authorised under MiCA by an EU competent authority may provide crypto-asset servic… | Czech National Bank, 2026-07 |  |
+| q15 | state-lending | federal law preempts the Illinois Interchange Fee Prohibition Act for national banks and federal… | Office of the Comptroller , 2026-04 | **yes** |
+| q16 | state-lending | updated disaster planning, preparedness and response requirements, including filings | New York State Department , 2026-05 |  |
+| q17 | state-lending | FDIC official digital sign display requirements and non-deposit product signage on digital chann… | Federal Deposit Insurance , 2026-01 | **yes** |
+| q18 | child-safety | prior consent of the EDPS is required before dismissing a DPO before the end of their term | European Data Protection S, 2026-02 |  |
+
+**tail-silent-trigger** (5)
+
+| id | domain | obligation the arm had to notice | source | blind? |
+|---|---|---|---|---|
+| q19 | medical-devices | a field safety notice affects the catheters the department uses — they fail authentication after… | Inspectie Gezondheidszorg , 2026-05 |  |
+| q20 | medical-devices | an urgent field safety notice requires a mandatory software upgrade — this is not a deferrable u… | BfArM - Federal Institute , 2026-03 | **yes** |
+| q21 | medical-devices | a field safety notice changed the validated sterilisation parameters for these products | Integra LifeSciences Corpo, 2026-06 | **yes** |
+| q22 | medical-devices | a field safety notice requires a specific clinical workaround and a software update | Federal Institute for Drug, 2026-05 | **yes** |
+| q23 | crypto-assets | Louisiana Act 510 (HB 582) changed deferred presentment and small loan limits | Office of Financial Instit, 2026-07 | **yes** |
+
+**reuse** (3)
+
+| id | domain | obligation the arm had to notice | source | blind? |
+|---|---|---|---|---|
+| q24 | crypto-assets | MiCA CASP authorisation is required; the transitional regime ends | various EU competent autho, 2026 | **yes** |
+| q25 | medical-devices | Swiss device registration in swissdamed becomes mandatory | Swissmedic, 2026-03 |  |
+| q26 | child-safety | age assurance and minors' protection obligations across the three named jurisdictions | various, 2026 |  |
+
+---
+
+## Appendix B — accuracy per question, per arm
+
+Mean of 3 repeats. A question scores **0** for an arm if it failed either must-pass
+precision check (`cite-real`, `no-fabricated-obligation`) — a confident hallucination
+scores zero, it does not score partial credit.
+
+| id | stratum | blind? | baseline | web | carver-full | carver-domain |
+|---|---|---|---|---|---|---|
+| q01 | pre |  | 58% | 100% | 100% | 100% |
+| q02 | pre |  | 58% | 100% | 33% | 33% |
+| q03 | pre |  | 88% | 100% | 67% | 100% |
+| q04 | pre |  | 86% | 33% | 100% | 67% |
+| q05 | pre |  | 83% | 100% | 67% | 92% |
+| q06 | pre |  | 88% | 100% | 92% | 33% |
+| q07 | pre | **blind** | 0% | 62% | 33% | 100% |
+| q08 | pre |  | 75% | 88% | 92% | 96% |
+| q09 | post |  | 71% | 92% | 100% | 100% |
+| q10 | post | **blind** | 29% | 62% | 67% | 67% |
+| q11 | post | **blind** | 29% | 100% | 100% | 100% |
+| q12 | post |  | 88% | 33% | 100% | 67% |
+| q13 | post |  | 88% | 100% | 100% | 100% |
+| q14 | post |  | 88% | 100% | 100% | 100% |
+| q15 | post | **blind** | 33% | 33% | 100% | 92% |
+| q16 | post |  | 54% | 92% | 100% | 100% |
+| q17 | post | **blind** | 21% | 100% | 88% | 88% |
+| q18 | post |  | 88% | 100% | 33% | 67% |
+| q19 | tail |  | 56% | 100% | 100% | 100% |
+| q20 | tail | **blind** | 29% | 62% | 100% | 100% |
+| q21 | tail | **blind** | 0% | 67% | 100% | 100% |
+| q22 | tail | **blind** | 0% | 100% | 100% | 100% |
+| q23 | tail | **blind** | 24% | 100% | 100% | 0% |
+| q24 | reuse | **blind** | 48% | 0% | 67% | 67% |
+| q25 | reuse |  | 86% | 57% | 100% | 95% |
+| q26 | reuse |  | 86% | 67% | 0% | 33% |
+| **mean** | | | **56%** | **79%** | **82%** | **81%** |
+
+**Reading it:** the arms separate on the `blind` and `tail` rows and cluster everywhere else —
+the deck's central claim, question by question.
+
+**But look at the variance before trusting the means.** Every arm has questions it falls over on:
+Carver scores 33% on q02 and q18 where web scores 100%; carver-full scores 0% on q26; carver-domain
+scores 0% on q23 while carver-full scores 100% on the same question; web scores 0% on q24 and 33% on
+q04, q12 and q15. Those are not rounding — they are whole questions lost, usually to a must-pass
+precision failure.
+
+With 26 questions and 3 repeats, a single question swings a pooled mean by ~4pp. **The per-arm means
+on slide 7 are separated by 1-3pp between the three retrieval arms** — which is inside that noise.
+The honest reading is that carver-full, carver-domain and web are *not* reliably distinguishable on
+overall accuracy on this set; what IS robust is the cost gap, the `blind`/`tail` gaps, and baseline's
+structural inability to cite.
+
