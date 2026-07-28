@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Regulatory-Intelligence Advantage — Carver Whitepaper</title>
+<meta name="description" content="Why agents grounded in a curated regulatory dataset beat web search: on cost every day, and on correctness when it matters most.">
+<style>
+/* ============ DESIGN TOKENS (dataviz reference palette) ============ */
+:root{
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-raise: #ffffff;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-muted: #898781;
+  --line: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --border-strong: rgba(11,11,11,0.18);
+
+  --s1: #2a78d6; /* blue   */
+  --s2: #eb6834; /* orange */
+  --s3: #1baf7a; /* aqua   */
+  --s4: #eda100; /* yellow */
+  --s5: #e87ba4; /* magenta*/
+  --s7: #4a3aa7; /* violet */
+  --s8: #e34948; /* red    */
+
+  --good: #0ca30c;
+  --critical: #d03b3b;
+  --warning: #fab219;
+
+  --seq-450: #2a78d6;
+  --seq-300: #6da7ec;
+  --seq-150: #b7d3f6;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.04), 0 8px 24px -12px rgba(11,11,11,0.12);
+  --radius: 10px;
+  --maxw: 1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-raise: #212120;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #898781;
+    --line: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+    --s7: #9085e9;
+    --s8: #e66767;
+
+    --good: #0ca30c;
+    --critical: #e66767;
+    --warning: #fab219;
+
+    --seq-450: #3987e5;
+    --seq-300: #5598e7;
+    --seq-150: #184f95;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-raise: #212120;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-muted: #898781;
+  --line: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255,255,255,0.10);
+  --border-strong: rgba(255,255,255,0.18);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s7: #9085e9; --s8: #e66767;
+  --good: #0ca30c; --critical: #e66767; --warning: #fab219;
+  --seq-450: #3987e5; --seq-300: #5598e7; --seq-150: #184f95;
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --surface-raise: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --ink-muted: #898781;
+  --line: #e1e0d9; --axis: #c3c2b7;
+  --border: rgba(11,11,11,0.10); --border-strong: rgba(11,11,11,0.18);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s7: #4a3aa7; --s8: #e34948;
+  --good: #0ca30c; --critical: #d03b3b; --warning: #fab219;
+  --seq-450: #2a78d6; --seq-300: #6da7ec; --seq-150: #b7d3f6;
+}
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--page);
+  color:var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+::selection{ background: var(--s1); color:#fff; }
+a{ color:var(--s1); }
+.tabular{ font-variant-numeric: tabular-nums; }
+
+/* ============ LAYOUT SHELL ============ */
+.shell{
+  display:grid;
+  grid-template-columns: 232px minmax(0,1fr);
+  max-width: 1440px;
+  margin:0 auto;
+}
+@media (max-width: 980px){
+  .shell{ grid-template-columns: 1fr; }
+}
+
+/* ---- rail / TOC ---- */
+.rail{
+  position:sticky; top:0; align-self:start; height:100vh;
+  padding: 28px 18px 28px 28px;
+  border-right:1px solid var(--line);
+  overflow-y:auto;
+}
+@media (max-width:980px){
+  .rail{ position:static; height:auto; border-right:none; border-bottom:1px solid var(--line);
+    padding:14px 18px; overflow-x:auto; }
+}
+.rail-brand{ font-weight:800; letter-spacing:-0.02em; font-size:1.05rem; margin-bottom:4px; }
+.rail-sub{ font-size:.72rem; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:22px; }
+@media (max-width:980px){ .rail-brand,.rail-sub{ display:none; } }
+.rail nav{ display:flex; flex-direction:column; gap:2px; }
+@media (max-width:980px){ .rail nav{ flex-direction:row; gap:6px; width:max-content; } }
+.rail a{
+  display:flex; align-items:baseline; gap:10px;
+  text-decoration:none; color:var(--ink-2);
+  padding:8px 10px; border-radius:8px; font-size:.86rem;
+  white-space:nowrap;
+}
+.rail a:hover{ background:var(--surface); color:var(--ink); }
+.rail a .n{ font-weight:700; color:var(--ink-muted); font-size:.75rem; min-width:1.4em; }
+.rail-foot{ margin-top:24px; padding-top:16px; border-top:1px solid var(--line); font-size:.72rem; color:var(--ink-muted); }
+@media (max-width:980px){ .rail-foot{ display:none; } }
+
+main{ min-width:0; }
+.wrap{ max-width: var(--maxw); margin:0 auto; padding: 0 40px; }
+@media (max-width:700px){ .wrap{ padding:0 20px; } }
+
+section{ padding: 76px 0; border-bottom:1px solid var(--line); }
+section:last-of-type{ border-bottom:none; }
+
+.eyebrow{
+  display:flex; align-items:center; gap:10px;
+  font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+  color:var(--ink-muted); margin-bottom:14px;
+}
+.eyebrow .tag-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:6px; border:1px solid var(--border-strong);
+  color:var(--ink-2); font-size:.72rem;
+}
+h1{ font-size: clamp(2.1rem, 4.4vw, 3.6rem); line-height:1.06; letter-spacing:-0.02em; font-weight:800; margin: 0 0 20px; }
+h2{ font-size: clamp(1.5rem, 2.6vw, 2.1rem); letter-spacing:-0.015em; font-weight:800; margin:0 0 10px; }
+h3{ font-size:1.08rem; font-weight:700; margin: 0 0 10px; }
+.takeaway{
+  font-size:1.2rem; font-weight:600; line-height:1.45; color:var(--ink);
+  max-width:52ch; margin: 4px 0 28px;
+  padding-left:16px; border-left:3px solid var(--s1);
+}
+p{ margin:0 0 16px; max-width:68ch; color:var(--ink-2); }
+p.lede{ font-size:1.08rem; color:var(--ink); max-width:64ch; }
+.col-wide p{ max-width:none; }
+strong{ color:var(--ink); font-weight:700;}
+
+.pull{
+  font-size:1.3rem; font-weight:700; line-height:1.4; letter-spacing:-0.01em;
+  margin: 30px 0; padding: 22px 26px; border-radius: var(--radius);
+  background:var(--surface); border:1px solid var(--border);
+  max-width:62ch;
+}
+.pull span{ color:var(--s1); }
+
+.note{
+  font-size:.85rem; color:var(--ink-muted); border-left:2px solid var(--axis);
+  padding-left:12px; margin:14px 0 18px; max-width:60ch;
+}
+.note b{ color:var(--ink-2); }
+
+.grid{ display:grid; gap:18px; }
+.grid-2{ grid-template-columns: repeat(2,1fr); }
+.grid-3{ grid-template-columns: repeat(3,1fr); }
+.grid-4{ grid-template-columns: repeat(4,1fr); }
+@media (max-width: 820px){ .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr 1fr; } }
+@media (max-width: 560px){ .grid-2,.grid-3,.grid-4{ grid-template-columns:1fr; } }
+
+.card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 24px;
+}
+
+.stat{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:22px 22px 20px;
+}
+.stat .v{ font-size:2.3rem; font-weight:800; letter-spacing:-0.02em; line-height:1; margin-bottom:8px; }
+.stat .l{ font-size:.86rem; color:var(--ink-2); font-weight:600; }
+.stat .d{ font-size:.78rem; color:var(--ink-muted); margin-top:6px; }
+.stat.accent .v{ color:var(--s1); }
+
+.hero-stats{ margin-top:34px; }
+.hero-stats .stat{ padding:26px 26px 24px; }
+.hero-stats .v{ font-size:2rem; }
+
+/* status stamp badge */
+.stamp{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em;
+  padding:5px 10px 5px 8px; border-radius:6px; border:1.5px solid currentColor;
+  white-space:nowrap;
+}
+.stamp.miss{ color:var(--critical); }
+.stamp.hit{ color:var(--good); }
+.stamp.parity{ color:var(--ink-2); border-color:var(--border-strong); }
+.stamp .ic{ font-size:.9em; }
+
+table{ border-collapse:collapse; width:100%; font-size:.9rem; }
+th,td{ text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); }
+th{ color:var(--ink-muted); font-weight:700; text-transform:uppercase; font-size:.72rem; letter-spacing:.06em; }
+td.num, th.num{ text-align:right; }
+.tblwrap{ overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+.tblwrap table{ min-width:560px; }
+
+.chart-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px 22px 16px;
+}
+.chart-title{ font-size:.86rem; font-weight:700; color:var(--ink); margin-bottom:2px; }
+.chart-sub{ font-size:.78rem; color:var(--ink-muted); margin-bottom:14px; }
+.chart-scroll{ overflow-x:auto; }
+svg{ display:block; width:100%; height:auto; overflow:visible; }
+.bar-label{ font-size:12.5px; fill: var(--ink-2); }
+.bar-value{ font-size:12.5px; fill: var(--ink); font-weight:700; }
+.axis-text{ font-size:11px; fill: var(--ink-muted); }
+.legend{ display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-size:.78rem; color:var(--ink-2); }
+.legend .sw{ display:inline-flex; align-items:center; gap:6px; }
+.legend .sw i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+.chip{
+  font-size:.78rem; border:1px solid var(--border-strong); color:var(--ink-2);
+  padding:5px 10px; border-radius:999px; background:var(--surface);
+}
+.chip b{ color:var(--ink); }
+
+.toc-mini{ font-size:.78rem; color:var(--ink-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:.08em; font-weight:700;}
+
+/* three-panel case file */
+.casefiles{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin: 30px 0 10px; }
+@media (max-width:860px){ .casefiles{ grid-template-columns:1fr; } }
+.casefile{
+  background:var(--surface-raise); border:1px solid var(--border-strong); border-radius:12px;
+  padding:20px 20px 18px; box-shadow:var(--shadow); position:relative;
+}
+.casefile .tab{
+  position:absolute; top:-13px; left:18px; background:var(--ink); color:var(--page);
+  font-size:.68rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  padding:4px 10px; border-radius:5px;
+}
+.casefile h4{ margin:10px 0 2px; font-size:1.05rem; font-weight:800; }
+.casefile .id{ font-size:.78rem; color:var(--ink-muted); margin-bottom:14px; }
+.arm-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-top:1px solid var(--line); }
+.arm-row:first-of-type{ border-top:none; }
+.arm-row .arm-name{ font-size:.84rem; color:var(--ink-2); font-weight:600; }
+.casefile.control{ background:var(--surface); }
+.casefile .foot-note{ font-size:.76rem; color:var(--ink-muted); margin-top:12px; padding-top:12px; border-top:1px dashed var(--line); }
+
+.retrieve-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:26px 0; }
+@media (max-width:700px){ .retrieve-grid{ grid-template-columns:1fr; } }
+.retrieve-card{ border-radius:var(--radius); padding:24px; border:1.5px solid; }
+.retrieve-card.win{ border-color:var(--good); background: color-mix(in srgb, var(--good) 7%, var(--surface)); }
+.retrieve-card.lose{ border-color:var(--critical); background: color-mix(in srgb, var(--critical) 7%, var(--surface)); }
+.retrieve-card .big{ font-size:2.1rem; font-weight:800; letter-spacing:-0.02em; margin: 6px 0; }
+.retrieve-card .tag{ font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+.retrieve-card.win .tag{ color:var(--good); }
+.retrieve-card.lose .tag{ color:var(--critical); }
+
+.disclosure{
+  border:1.5px solid var(--warning); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--warning) 8%, var(--surface));
+  padding:20px 24px; margin:28px 0;
+}
+.disclosure h4{ margin:0 0 10px; font-size:.95rem; font-weight:800; color:var(--ink); }
+.disclosure p{ margin:0 0 10px; max-width:none; font-size:.92rem; color:var(--ink-2); }
+.disclosure p:last-child{ margin-bottom:0; }
+.disclosure ul{ margin:0 0 10px; padding-left:20px; font-size:.92rem; color:var(--ink-2); }
+.disclosure ul:last-child{ margin-bottom:0; }
+.disclosure li{ margin-bottom:6px; }
+
+.projected{
+  border:1.5px dashed var(--axis); border-radius: var(--radius);
+  background:var(--surface); padding:20px 24px; margin:28px 0;
+}
+.projected .tag-projected{
+  display:inline-block; font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--ink-muted); border:1px solid var(--border-strong); border-radius:999px; padding:3px 10px; margin-bottom:12px;
+}
+.projected p{ margin:0 0 10px; max-width:none; font-size:.92rem; color:var(--ink-2); }
+.projected p:last-child{ margin-bottom:0; }
+
+footer{ padding: 44px 0 80px; }
+.footnote-list{ font-size:.82rem; color:var(--ink-muted); }
+.footnote-list li{ margin-bottom:8px; }
+
+@media print{
+  .rail{ display:none; }
+  .shell{ display:block; }
+  section{ break-inside:avoid; padding:28px 0; border-bottom:1px solid #ccc; }
+  .card,.stat,.chart-card,.casefile{ box-shadow:none !important; }
+  .disclosure,.projected{ break-inside:avoid; }
+  body{ background:#fff; color:#000; }
+  a{ color:#000; text-decoration:underline; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-brand">Carver</div>
+    <div class="rail-sub">Regulatory Intelligence</div>
+    <nav>
+      <a href="#exec"><span class="n">00</span> Executive summary</a>
+      <a href="#dataset"><span class="n">01</span> The dataset</a>
+      <a href="#scratch"><span class="n">02</span> Cost of starting from scratch</a>
+      <a href="#head"><span class="n">03</span> Advantage on the head</a>
+      <a href="#tail"><span class="n">04</span> Correctness on the tail</a>
+      <a href="#class"><span class="n">05</span> The class this generalizes to</a>
+      <a href="#replay"><span class="n">06</span> Evals you can replay</a>
+      <a href="#method"><span class="n">07</span> Methodology &amp; roadmap</a>
+    </nav>
+    <div class="rail-foot">Snapshot 2026-07-24<br>All figures traced to<br><code>whitepaper-data.json</code></div>
+  </aside>
+
+  <main>
+    <div class="wrap">
+
+      <!-- ============ 00 EXECUTIVE SUMMARY ============ -->
+      <section id="exec" style="padding-top:56px;">
+        <div class="eyebrow"><span class="tag-num">00</span> Executive summary · Snapshot 2026-07-24</div>
+        <h1>The Regulatory-Intelligence Advantage</h1>
+        <p class="lede">Why agents grounded in a curated regulatory dataset beat web search: on cost every day, and on correctness when it matters most.</p>
+
+        <p class="lede">This is a two-pronged argument. <strong>On the tail</strong>, a declined loan triggers a silent state obligation — a Colorado AI Act disclosure, a California Holden Act notice — that the applicant never asks about and the query never names. A memory-only baseline misses it. A frontier model with live web search misses it too. An agent grounded in a curated, jurisdiction-tagged regulatory index catches it. Getting regulatory guidance wrong or incomplete carries liability and reputation cost that dwarfs any savings on the query itself.</p>
+        <p class="lede"><strong>On the head</strong> — the everyday queries that make up the overwhelming majority of traffic — a Carver-grounded agent matches a frontier model running full web search on answer quality, while costing 43–63% less per 1,000 runs, independent of cache state, and more reproducible run to run.</p>
+
+        <div class="pull">You don't have to wait for a tail event to benefit — <span>you're already overpaying on the head.</span></div>
+
+        <p class="lede">Together these compose into an operating loop: catch the obligation nobody asked about, at a flat per-question cost you can budget, with results you can replay as regression evals — and, as the dataset versions forward, a defensible way to see when the rules changed.</p>
+
+        <div class="grid grid-2 hero-stats">
+          <div class="stat">
+            <div class="v">Baseline MISS · Web MISS · Carver HIT</div>
+            <div class="l">The state-lending case: three identical applicants, one CRM-supplied state field. Only Carver surfaces the state AI-Act / Holden Act disclosure duty.</div>
+            <div class="d">See §4 — Correctness on the tail</div>
+          </div>
+          <div class="stat accent">
+            <div class="v">43–63% lower cost</div>
+            <div class="l">$44.45 per 1,000 runs on Carver vs. $78.04 (cache-warm) to $121.59 (cache-cold) on web search — flat, cache-independent, vs. a floor that moves with cache state.</div>
+            <div class="d">See §3 — Advantage on the head</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 01 THE DATASET ============ -->
+      <section id="dataset">
+        <div class="eyebrow"><span class="tag-num">01</span> The dataset</div>
+        <h2>A live, structured map of global regulatory activity</h2>
+        <div class="takeaway">244,297 records, spanning ~995 jurisdictions and every major regulated sector, three-quarters of it published in the last two years.</div>
+
+        <div class="grid grid-4" style="margin-bottom:10px;">
+          <div class="stat"><div class="v tabular">244,297</div><div class="l">Regulatory records</div></div>
+          <div class="stat"><div class="v tabular">367,198</div><div class="l">Distinct entities</div></div>
+          <div class="stat"><div class="v tabular">253,771</div><div class="l">Distinct tags</div></div>
+          <div class="stat"><div class="v tabular">~995</div><div class="l">Jurisdictions covered</div></div>
+        </div>
+
+        <h3 style="margin-top:36px;">Sector composition</h3>
+        <p>Finance dominates the corpus at 124,454 records — more than triple every other sector combined at the top of the ranking — reflecting the density of banking, securities and payments rulemaking worldwide.</p>
+        <div class="chart-card">
+          <div class="chart-title">Records by sector taxonomy (top 11)</div>
+          <div class="chart-sub">Count of regulatory records classified into each top-level sector</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 396" role="img" aria-label="Bar chart of records by sector">
+              <g font-family="inherit">
+                <!-- Finance -->
+                <text x="0" y="18" class="bar-label">Finance</text>
+                <rect x="280" y="4" width="620" height="20" rx="4" fill="var(--s1)"/>
+                <text x="908" y="18" text-anchor="end" class="bar-value">124,454</text>
+                <!-- Other Government -->
+                <text x="0" y="54" class="bar-label">Other Government</text>
+                <rect x="280" y="40" width="173.0" height="20" rx="4" fill="var(--s1)"/>
+                <text x="461" y="54" class="bar-value">34,720</text>
+                <!-- Healthcare -->
+                <text x="0" y="90" class="bar-label">Healthcare &amp; Life Sciences</text>
+                <rect x="280" y="76" width="111.5" height="20" rx="4" fill="var(--s1)"/>
+                <text x="399.5" y="90" class="bar-value">22,374</text>
+                <!-- Environment -->
+                <text x="0" y="126" class="bar-label">Environment &amp; Energy</text>
+                <rect x="280" y="112" width="84.4" height="20" rx="4" fill="var(--s1)"/>
+                <text x="372.4" y="126" class="bar-value">16,947</text>
+                <!-- Technology -->
+                <text x="0" y="162" class="bar-label">Technology</text>
+                <rect x="280" y="148" width="77.6" height="20" rx="4" fill="var(--s1)"/>
+                <text x="365.6" y="162" class="bar-value">15,570</text>
+                <!-- Justice -->
+                <text x="0" y="198" class="bar-label">Justice &amp; Public Safety</text>
+                <rect x="280" y="184" width="56.1" height="20" rx="4" fill="var(--s1)"/>
+                <text x="344.1" y="198" class="bar-value">11,268</text>
+                <!-- Trade -->
+                <text x="0" y="234" class="bar-label">Trade, Corporate &amp; Professional</text>
+                <rect x="280" y="220" width="42.6" height="20" rx="4" fill="var(--s1)"/>
+                <text x="330.6" y="234" class="bar-value">8,558</text>
+                <!-- Science -->
+                <text x="0" y="270" class="bar-label">Science, Research &amp; Standards</text>
+                <rect x="280" y="256" width="24.7" height="20" rx="4" fill="var(--s1)"/>
+                <text x="312.7" y="270" class="bar-value">4,953</text>
+                <!-- Education -->
+                <text x="0" y="306" class="bar-label">Education, Labour &amp; Social</text>
+                <rect x="280" y="292" width="14.4" height="20" rx="4" fill="var(--s1)"/>
+                <text x="302.4" y="306" class="bar-value">2,881</text>
+                <!-- Transport -->
+                <text x="0" y="342" class="bar-label">Transport &amp; Infrastructure</text>
+                <rect x="280" y="328" width="12.2" height="20" rx="4" fill="var(--s1)"/>
+                <text x="300.2" y="342" class="bar-value">2,442</text>
+                <!-- Gambling -->
+                <text x="0" y="378" class="bar-label">Gambling &amp; Gaming</text>
+                <rect x="280" y="364" width="4" height="20" rx="2" fill="var(--s1)"/>
+                <text x="292" y="378" class="bar-value">130</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px;">Jurisdiction reach</h3>
+        <p>Beyond a strong US federal and state layer, coverage extends deep into the EU, China, France, Australia, the UK, Switzerland and California specifically as a standalone jurisdiction tag — the beginning of the state-level tagging that makes the tail case in §4 possible.</p>
+        <div class="chart-card">
+          <div class="chart-title">Records by top jurisdiction (of ~995 total)</div>
+          <div class="chart-sub">Top 8 by record count</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 288" role="img" aria-label="Bar chart of records by jurisdiction">
+              <g>
+                <text x="0" y="18" class="bar-label">US</text>
+                <rect x="280" y="4" width="620" height="20" rx="4" fill="var(--s3)"/>
+                <text x="908" y="18" text-anchor="end" class="bar-value">27,602</text>
+                <text x="0" y="54" class="bar-label">EU</text>
+                <rect x="280" y="40" width="421.3" height="20" rx="4" fill="var(--s3)"/>
+                <text x="709.3" y="54" class="bar-value">18,757</text>
+                <text x="0" y="90" class="bar-label">CN</text>
+                <rect x="280" y="76" width="220.4" height="20" rx="4" fill="var(--s3)"/>
+                <text x="508.4" y="90" class="bar-value">9,813</text>
+                <text x="0" y="126" class="bar-label">FR</text>
+                <rect x="280" y="112" width="163.5" height="20" rx="4" fill="var(--s3)"/>
+                <text x="451.5" y="126" class="bar-value">7,280</text>
+                <text x="0" y="162" class="bar-label">AU</text>
+                <rect x="280" y="148" width="146.3" height="20" rx="4" fill="var(--s3)"/>
+                <text x="434.3" y="162" class="bar-value">6,515</text>
+                <text x="0" y="198" class="bar-label">GB</text>
+                <rect x="280" y="184" width="96.8" height="20" rx="4" fill="var(--s3)"/>
+                <text x="384.8" y="198" class="bar-value">4,311</text>
+                <text x="0" y="234" class="bar-label">CH</text>
+                <rect x="280" y="220" width="96.8" height="20" rx="4" fill="var(--s3)"/>
+                <text x="384.8" y="234" class="bar-value">4,309</text>
+                <text x="0" y="270" class="bar-label">US-CA</text>
+                <rect x="280" y="256" width="82.5" height="20" rx="4" fill="var(--s3)"/>
+                <text x="370.5" y="270" class="bar-value">3,672</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px;">Freshness</h3>
+        <p>Coverage is not an archival snapshot: <strong>75% of all records were published in 2025–2026</strong> (183,316 of 244,297), with volume compounding sharply as AI-governance and financial-disclosure rulemaking accelerates worldwide.</p>
+        <div class="chart-card">
+          <div class="chart-title">Records by publication year, 2016–2026</div>
+          <div class="chart-sub">75.0% of the corpus published in the trailing two years</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 900 300" role="img" aria-label="Area chart of record counts by year, 2016 through 2026">
+              <g>
+                <line x1="0" y1="260" x2="900" y2="260" stroke="var(--axis)" stroke-width="1"/>
+                <polygon points="0,260 0,257.3 90,256.9 180,256.0 270,254.3 360,252.3 450,250.6 540,247.0 630,232.8 720,221.5 810,143.3 900,0 900,260"
+                  fill="var(--seq-150)" opacity="0.55"/>
+                <polyline points="0,257.3 90,256.9 180,256.0 270,254.3 360,252.3 450,250.6 540,247.0 630,232.8 720,221.5 810,143.3 900,0"
+                  fill="none" stroke="var(--s1)" stroke-width="2.5" stroke-linejoin="round"/>
+                <g>
+                  <circle cx="810" cy="143.3" r="4" fill="var(--s1)"/>
+                  <circle cx="900" cy="0" r="4" fill="var(--s1)"/>
+                </g>
+                <text x="0" y="280" class="axis-text">2016</text>
+                <text x="180" y="280" class="axis-text">2018</text>
+                <text x="360" y="280" class="axis-text">2020</text>
+                <text x="540" y="280" class="axis-text">2022</text>
+                <text x="720" y="280" class="axis-text">2024</text>
+                <text x="855" y="280" class="axis-text">2026</text>
+                <text x="820" y="135" class="bar-value">56,797</text>
+                <text x="838" y="22" class="bar-value">126,519</text>
+              </g>
+            </svg>
+          </div>
+          <div class="legend"><span class="sw"><i style="background:var(--s1)"></i>Records published, by year</span></div>
+        </div>
+
+        <h3 style="margin-top:40px;">The structured-intelligence layer</h3>
+        <p>Every record in the corpus is more than searchable text — it has been mined into structured, queryable facts: obligations, cross-referenced citations, deadlines, and enforcement outcomes.</p>
+        <div class="grid grid-4">
+          <div class="stat"><div class="v tabular">681,249</div><div class="l">Obligations extracted</div></div>
+          <div class="stat"><div class="v tabular">711,026</div><div class="l">Regulation references resolved</div></div>
+          <div class="stat"><div class="v tabular">154,504</div><div class="l">Records with critical dates</div></div>
+          <div class="stat"><div class="v tabular">141,317</div><div class="l">Records with documented penalties</div></div>
+        </div>
+      </section>
+
+      <!-- ============ 02 COST OF SCRATCH ============ -->
+      <section id="scratch">
+        <div class="eyebrow"><span class="tag-num">02</span> The cost of starting from scratch</div>
+        <h2>This intelligence already exists — mined, structured, current</h2>
+        <div class="takeaway">An agent reading these 244,297 documents cold, with no pre-extraction, would burn an estimated 732.9M tokens just to ingest them — before it answers a single question.</div>
+
+        <p class="lede">Every one of the 244,297 documents in the corpus has already been read, classified, and mined for obligations, citations, deadlines and penalties. A web-search agent starting from zero has none of that: it must locate primary sources, read them, and extract structure on every single run.</p>
+
+        <div class="grid grid-3">
+          <div class="stat"><div class="v tabular">244,297</div><div class="l">Documents already analyzed</div></div>
+          <div class="stat accent"><div class="v tabular">~732.9M</div><div class="l">Estimated tokens to read the corpus cold</div></div>
+          <div class="stat"><div class="v tabular">681,249 / 711,026</div><div class="l">Obligations extracted / citations resolved, already done</div></div>
+        </div>
+        <div class="note"><b>Estimate, not a measurement:</b> 732.9M tokens = 244,297 documents × 3,000 tokens/document, a deliberately conservative reading estimate. Full source documents live in S3, not in this snapshot, so this is a modeled reading cost, not a metered one.</div>
+
+        <h3 style="margin-top:36px;">Where the obligations concentrate</h3>
+        <p>Banking carries the heaviest structured-obligation load in the corpus at 220,283 extracted obligations — consistent with Finance's dominance of the raw record count in §1 — followed by Insurance, Pharmaceutical, Healthcare and Energy.</p>
+        <div class="chart-card">
+          <div class="chart-title">Obligations extracted, by sector</div>
+          <div class="chart-sub">681,249 total obligations pre-extracted across 194,414 records</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 504" role="img" aria-label="Bar chart of obligations extracted by sector">
+              <g>
+                <text x="0" y="18" class="bar-label">Banking</text>
+                <rect x="280" y="4" width="620" height="20" rx="4" fill="var(--s2)"/>
+                <text x="908" y="18" text-anchor="end" class="bar-value">220,283</text>
+                <text x="0" y="54" class="bar-label">Insurance</text>
+                <rect x="280" y="40" width="99.2" height="20" rx="4" fill="var(--s2)"/>
+                <text x="387.2" y="54" class="bar-value">35,253</text>
+                <text x="0" y="90" class="bar-label">Pharmaceutical</text>
+                <rect x="280" y="76" width="67.1" height="20" rx="4" fill="var(--s2)"/>
+                <text x="355.1" y="90" class="bar-value">23,841</text>
+                <text x="0" y="126" class="bar-label">Healthcare</text>
+                <rect x="280" y="112" width="66.6" height="20" rx="4" fill="var(--s2)"/>
+                <text x="354.6" y="126" class="bar-value">23,672</text>
+                <text x="0" y="162" class="bar-label">Energy</text>
+                <rect x="280" y="148" width="63.7" height="20" rx="4" fill="var(--s2)"/>
+                <text x="351.7" y="162" class="bar-value">22,645</text>
+                <text x="0" y="198" class="bar-label">Technology</text>
+                <rect x="280" y="184" width="42.1" height="20" rx="4" fill="var(--s2)"/>
+                <text x="330.1" y="198" class="bar-value">14,954</text>
+                <text x="0" y="234" class="bar-label">Government</text>
+                <rect x="280" y="220" width="40.4" height="20" rx="4" fill="var(--s2)"/>
+                <text x="328.4" y="234" class="bar-value">14,340</text>
+                <text x="0" y="270" class="bar-label">Education</text>
+                <rect x="280" y="256" width="27.7" height="20" rx="4" fill="var(--s2)"/>
+                <text x="315.7" y="270" class="bar-value">9,830</text>
+                <text x="0" y="306" class="bar-label">Medical Device</text>
+                <rect x="280" y="292" width="26.8" height="20" rx="4" fill="var(--s2)"/>
+                <text x="314.8" y="306" class="bar-value">9,519</text>
+                <text x="0" y="342" class="bar-label">Agriculture</text>
+                <rect x="280" y="328" width="26.4" height="20" rx="4" fill="var(--s2)"/>
+                <text x="314.4" y="342" class="bar-value">9,364</text>
+                <text x="0" y="378" class="bar-label">Law Enforcement</text>
+                <rect x="280" y="364" width="25.9" height="20" rx="4" fill="var(--s2)"/>
+                <text x="313.9" y="378" class="bar-value">9,189</text>
+                <text x="0" y="414" class="bar-label">Taxation</text>
+                <rect x="280" y="400" width="15.8" height="20" rx="4" fill="var(--s2)"/>
+                <text x="303.8" y="414" class="bar-value">5,627</text>
+                <text x="0" y="450" class="bar-label">Environmental</text>
+                <rect x="280" y="436" width="14.9" height="20" rx="4" fill="var(--s2)"/>
+                <text x="302.9" y="450" class="bar-value">5,293</text>
+                <text x="0" y="486" class="bar-label">Legal</text>
+                <rect x="280" y="472" width="14.4" height="20" rx="4" fill="var(--s2)"/>
+                <text x="302.4" y="486" class="bar-value">5,117</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px;">Enforcement &amp; penalties</h3>
+        <p>141,317 records document enforcement penalties in free-text narrative. Of those, 7,427 contain a parseable monetary figure.</p>
+        <div class="note"><b>This is a record count, not a liability total:</b> penalty language is free-text narrative; monetary figures are a best-effort extraction over currency mentions in the text. 7,427 is a count of records with a parseable amount — never sum these into a dollar total.</div>
+      </section>
+
+      <!-- ============ 03 HEAD ============ -->
+      <section id="head">
+        <div class="eyebrow"><span class="tag-num">03</span> Operational advantage on the head</div>
+        <h2>Same answer quality, structurally lower cost</h2>
+        <div class="takeaway">On everyday queries, Carver matches web search on answer quality and costs 43–63% less — and stays flat while web search's cost floor moves with cache state.</div>
+
+        <p class="lede">Measured 2026-07-23 against <strong>openai/gpt-5.6-sol</strong> across three arms — a memory-only baseline, the same model with full web search enabled, and the same model grounded on Carver's obligation index.</p>
+
+        <div class="chart-card">
+          <div class="chart-title">Cost per 1,000 runs, by arm</div>
+          <div class="chart-sub">Baseline and Carver are single flat costs. Web search is a band — cache-warm best case to cache-cold worst case.</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 640 300" role="img" aria-label="Bar chart comparing cost per 1000 runs across baseline, web search, and Carver">
+              <g>
+                <line x1="60" y1="260" x2="620" y2="260" stroke="var(--axis)" stroke-width="1"/>
+                <!-- gridlines -->
+                <g stroke="var(--line)" stroke-width="1">
+                  <line x1="60" y1="20" x2="620" y2="20"/>
+                  <line x1="60" y1="90" x2="620" y2="90"/>
+                  <line x1="60" y1="160" x2="620" y2="160"/>
+                </g>
+                <text x="52" y="264" text-anchor="end" class="axis-text">$0</text>
+                <text x="52" y="164" text-anchor="end" class="axis-text">$65</text>
+                <text x="52" y="94" text-anchor="end" class="axis-text">$130</text>
+
+                <!-- baseline flat bar -->
+                <rect x="110" y="234.6" width="70" height="25.4" rx="4" fill="var(--ink-muted)"/>
+                <text x="145" y="222" text-anchor="middle" class="bar-value">$12.70</text>
+                <text x="145" y="280" text-anchor="middle" class="bar-label">Baseline</text>
+
+                <!-- web band -->
+                <line x1="315" y1="260" x2="315" y2="16.8" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <rect x="280" y="16.8" width="70" height="243.2" rx="4" fill="var(--s2)" opacity="0.28"/>
+                <rect x="280" y="16.8" width="70" height="26.6" rx="4" fill="var(--s2)"/>
+                <rect x="280" y="103.9" width="70" height="4" fill="var(--s2)"/>
+                <text x="315" y="10" text-anchor="middle" class="bar-value">$121.59 cold</text>
+                <text x="315" y="98" text-anchor="middle" class="bar-value">$78.04 warm</text>
+                <text x="315" y="280" text-anchor="middle" class="bar-label">Web search</text>
+
+                <!-- carver flat bar -->
+                <rect x="450" y="171.1" width="70" height="88.9" rx="4" fill="var(--s1)"/>
+                <text x="485" y="160" text-anchor="middle" class="bar-value">$44.45</text>
+                <text x="485" y="280" text-anchor="middle" class="bar-label">Carver</text>
+              </g>
+            </svg>
+          </div>
+          <div class="legend">
+            <span class="sw"><i style="background:var(--ink-muted)"></i>Baseline (no retrieval) — flat</span>
+            <span class="sw"><i style="background:var(--s2)"></i>Web search — band, warm→cold</span>
+            <span class="sw"><i style="background:var(--s1)"></i>Carver — flat, cache-independent</span>
+          </div>
+        </div>
+
+        <div class="pull">Carver costs <span>43% less than cache-warm web search</span>, and <span>63% less than cache-cold web search</span> — and never moves, because it doesn't depend on a cache hit to be cheap.</div>
+
+        <h3 style="margin-top:36px;">Token accounting</h3>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>Arm</th><th class="num">Total tokens</th><th class="num">Fresh input</th><th class="num">Cached input</th><th class="num">Output</th></tr></thead>
+            <tbody>
+              <tr><td>Baseline</td><td class="num tabular">995</td><td class="num tabular">710</td><td class="num tabular">0</td><td class="num tabular">285</td></tr>
+              <tr><td>Web search</td><td class="num tabular">18,873</td><td class="num tabular">8,399</td><td class="num tabular">9,678</td><td class="num tabular">744</td></tr>
+              <tr><td>Carver</td><td class="num tabular">5,577</td><td class="num tabular">5,000</td><td class="num tabular">0</td><td class="num tabular">594</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top:36px;">What it costs per question</h3>
+        <p>Per 1,000 runs is an abstraction; per question is the unit anyone actually budgets against. Converting directly: a regulatory question answered for about four cents on Carver — with web search costing roughly twice that on a cache-warm run, for an answer that missed the state obligation.</p>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>Arm</th><th class="num">Per question, warm</th><th class="num">Per question, cold</th></tr></thead>
+            <tbody>
+              <tr><td>Baseline</td><td class="num tabular">$0.0127</td><td class="num tabular">$0.0127</td></tr>
+              <tr><td>Web search</td><td class="num tabular">$0.078</td><td class="num tabular">$0.122</td></tr>
+              <tr><td>Carver</td><td class="num tabular">$0.044</td><td class="num tabular">$0.044</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note"><b>Unit, stated honestly:</b> this is cost per <b>question answered</b> — a single chat-style query — not per production interaction reviewed. Do not conflate the two when scaling to volume.</div>
+
+        <div class="disclosure">
+          <h4>What these numbers include — and don't</h4>
+          <p>The web arm's cost above <strong>includes</strong> the hosted web-search tool fee (~$10 per 1,000 queries). The Carver arm's cost is <strong>model inference only</strong> — no Carver platform fee is modeled in it.</p>
+          <p>Stated as headroom rather than as a bottom line: Carver could charge up to <strong>~$33.59 per 1,000 queries</strong> on top of inference and still remain cheaper than cache-warm web search; up to <strong>~$77.14 per 1,000</strong> against cache-cold web search. Those are ceilings on an unmodeled fee, not a promise about Carver's actual pricing.</p>
+        </div>
+
+        <p>The web arm's cost also isn't one number — it varies <strong>$78.04–$121.59 per 1,000 queries</strong> depending on cache state at request time. Carver's is flat at <strong>$44.45 per 1,000</strong>, warm or cold. Cost you can budget against is part of the claim, not just cost that's lower on average.</p>
+
+        <div class="note" style="margin-top:22px;"><b>Answer quality is parity, not an advantage:</b> on this head-query set, Carver's answers are measured at parity with a frontier model running full web search — not better. The advantage here is not answer quality; it is cost, cache-independence, and reproducibility.</div>
+        <div class="note"><b>Latency is a wash, not a win:</b> ~18s for Carver vs. ~16s for web search — applicant lookup dominates both paths, and this is not a speed claim in either direction.</div>
+        <div class="note"><b>Web's cost is a floor:</b> it excludes OpenAI's internal <code>web_search</code> tool tokens, which are billed by the provider but not itemized in the visible response — actual web-search cost is at least this high, likely higher.</div>
+      </section>
+
+      <!-- ============ 04 TAIL ============ -->
+      <section id="tail">
+        <div class="eyebrow"><span class="tag-num">04</span> Correctness on the tail</div>
+        <h2>The obligation nobody asked about</h2>
+        <div class="takeaway">Three identical applicants, one identical declined automated loan — the state is the only variable, and it's supplied silently by the CRM lookup, never typed by the applicant.</div>
+
+        <p class="lede">A home-improvement loan is declined by an automated underwriting model. The support agent looks up the applicant in the CRM to draft the adverse-action explanation. The applicant's state is a field in that lookup — Colorado, California, or New York — never a word the applicant says. Both federal obligations apply everywhere:</p>
+        <div class="chips">
+          <span class="chip"><b>Regulation B § 1002.9</b> — ECOA adverse-action notice</span>
+          <span class="chip"><b>FCRA § 615</b> — consumer-report adverse-action notice</span>
+        </div>
+        <p style="margin-top:18px;">But two of the three states silently add a further duty the moment the decision is automated. Colorado's AI Act (SB 24-205, amended by SB 26-189) requires a consumer notice after an AI/ADMT adverse decision. California's Holden Act (California Housing Financial Discrimination Act) requires a Fair Lending Notice with a statement of reasons. New York adds nothing beyond the federal baseline — it is the honest control.</p>
+
+        <div class="casefiles">
+          <div class="casefile">
+            <div class="tab">Case file</div>
+            <h4>Colorado</h4>
+            <div class="id">Applicant CO-1001 · Colorado AI Act (SB 24-205 / SB 26-189)</div>
+            <div class="arm-row"><span class="arm-name">Baseline (memory only)</span><span class="stamp miss"><span class="ic">✕</span>Miss</span></div>
+            <div class="arm-row"><span class="arm-name">Web search</span><span class="stamp miss"><span class="ic">✕</span>Miss</span></div>
+            <div class="arm-row"><span class="arm-name">Carver</span><span class="stamp hit"><span class="ic">✓</span>Hit</span></div>
+            <div class="foot-note">Web searches generic adverse-action guidance — 0/5 on Colorado, never reformulating toward a state AI statute. Carver queries its obligation index with the situation (state + automated decision) and returns the record.</div>
+          </div>
+          <div class="casefile">
+            <div class="tab">Case file</div>
+            <h4>California</h4>
+            <div class="id">Applicant CA-1001 · Holden Act — Fair Lending Notice</div>
+            <div class="arm-row"><span class="arm-name">Baseline (memory only)</span><span class="stamp miss"><span class="ic">✕</span>Miss</span></div>
+            <div class="arm-row"><span class="arm-name">Web search</span><span class="stamp miss"><span class="ic">✕</span>Miss</span></div>
+            <div class="arm-row"><span class="arm-name">Carver</span><span class="stamp hit"><span class="ic">✓</span>Hit</span></div>
+            <div class="foot-note">Same mechanism as Colorado, parallel curated record. Without curation the result collapses to parity — see the §5 ablation.</div>
+          </div>
+          <div class="casefile control">
+            <div class="tab">Case file · control</div>
+            <h4>New York</h4>
+            <div class="id">Applicant NY-1001 · no state AI/lending disclosure duty</div>
+            <div class="arm-row"><span class="arm-name">Baseline (memory only)</span><span class="stamp parity">Federal only</span></div>
+            <div class="arm-row"><span class="arm-name">Web search</span><span class="stamp parity">Federal only</span></div>
+            <div class="arm-row"><span class="arm-name">Carver</span><span class="stamp parity">Federal only</span></div>
+            <div class="foot-note">The honest control: there is nothing extra to find, and Carver correctly adds nothing beyond the federal baseline. This is what shows the win isn't a bias toward always adding more.</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:12px;">Why this is dangerous, not just inconvenient</h3>
+        <p>The failure is <strong>silent</strong>. Nothing in the query says "AI Act" or "Holden Act" — the obligation is triggered by an unstated combination of jurisdiction and decision method. A web-search agent that never suspects the obligation exists never searches for it, and returns a fluent, confident, complete-looking adverse-action letter that is quietly missing a legally required disclosure. The failure looks exactly like success. That gap is where liability and reputation risk live — not in queries that visibly fail.</p>
+      </section>
+
+      <!-- ============ 05 CLASS ============ -->
+      <section id="class">
+        <div class="eyebrow"><span class="tag-num">05</span> The class this generalizes to</div>
+        <h2>Silent-trigger queries, defined</h2>
+        <div class="takeaway">The lending case is one instance of a general query class — and the corpus's jurisdiction tagging is what makes the win generalizable rather than a one-off trick.</div>
+
+        <p class="lede"><strong>Silent-trigger query:</strong> an actor attribute — jurisdiction, decision method, role — fires an unnamed obligation the user never mentions. Web search must first suspect the obligation exists in order to search for it, and fails at exactly that step, silently. A situation-queried obligation index returns the record because it is tagged to the situation, not to the words in the query.</p>
+
+        <div class="retrieve-grid">
+          <div class="retrieve-card win">
+            <div class="tag">Situation-aware retrieval</div>
+            <div class="big">Rank #1 <span style="font-size:1rem;font-weight:600;color:var(--ink-2);">of 7,146</span></div>
+            <p style="margin:0;max-width:none;">The Colorado AI Act record ranks first out of a 7,146-record realistic haystack when the query is posed with the situation (state + automated decision) attached.</p>
+          </div>
+          <div class="retrieve-card lose">
+            <div class="tag">Naive / web retrieval</div>
+            <div class="big">0 / 5 <span style="font-size:1rem;font-weight:600;color:var(--ink-2);">web searches hit it</span></div>
+            <p style="margin:0;max-width:none;">Naive ranking (no situation attached) places it outside the top 6; live web search across 5 attempts never surfaces it.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:30px;">Why it generalizes: jurisdiction tagging</h3>
+        <p>The corpus tags records to specific US states, not just country level — the mechanism that made the Colorado and California hits possible extends anywhere the corpus carries a comparable state tag.</p>
+        <div class="chart-card">
+          <div class="chart-title">State-tagged record counts (sample)</div>
+          <div class="chart-sub">A subset of the jurisdiction tags introduced in §1</div>
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 108" role="img" aria-label="Bar chart of state-tagged record counts for California, Texas, and New York">
+              <g>
+                <text x="0" y="18" class="bar-label">US-CA</text>
+                <rect x="280" y="4" width="620" height="20" rx="4" fill="var(--s7)"/>
+                <text x="908" y="18" text-anchor="end" class="bar-value">3,672</text>
+                <text x="0" y="54" class="bar-label">US-TX</text>
+                <rect x="280" y="40" width="430.0" height="20" rx="4" fill="var(--s7)"/>
+                <text x="718" y="54" class="bar-value">2,547</text>
+                <text x="0" y="90" class="bar-label">US-NY</text>
+                <rect x="280" y="76" width="399.8" height="20" rx="4" fill="var(--s7)"/>
+                <text x="687.8" y="90" class="bar-value">2,368</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="pull">Drop the four curated records and re-run against the 7,142 real records alone: <span>the Carver arm collapses to parity</span> (miss on Colorado and California).</div>
+        <div class="note"><b>Read this as a proof of concept, not a shipped guarantee:</b> this result runs on 4 hand-curated records that demonstrate what jurisdiction-tagged coverage unlocks — it is not a claim of production-wide coverage today. The records are curated from cited primary sources, pending legal and data review. See §6 for the roadmap.</div>
+      </section>
+
+      <!-- ============ 06 REPLAY ============ -->
+      <section id="replay">
+        <div class="eyebrow"><span class="tag-num">06</span> Evals you can replay</div>
+        <h2>A stable ground truth, not just a right answer</h2>
+        <div class="takeaway">The Carver corpus is snapshot-pinned. The same query against the same snapshot returns the same evidence — which is what makes a regression eval possible in the first place.</div>
+
+        <p class="lede">The dataset behind every figure in this document is pinned to a snapshot dated <strong>2026-07-24</strong>. Re-run the Colorado query against that snapshot next week, next quarter, next year, and the retrieved evidence doesn't move. Live web retrieval has no equivalent: it is unversioned, it cannot be pinned, and an eval built on top of it has no stable ground truth to compare against. You cannot regression-test an agent whose reference data shifts underneath it between one run and the next.</p>
+
+        <p>This reframes the §4/§5 result. The web arm didn't fail once and get lucky four times — across all five runs it missed the Colorado obligation the same way: it searched generically ("adverse action", "loan denial") and never reformulated toward a state AI statute. That's a <strong>consistent, systematic miss</strong>, not run-to-run noise — and a systematic miss is the dangerous kind, because it looks exactly like a stable, working retrieval path from the outside.</p>
+
+        <div class="projected">
+          <span class="tag-projected">Projected — not yet measured</span>
+          <p><strong>Replay economics.</strong> Assurance work re-runs the same context repeatedly. If roughly 90% of the Carver arm's 5,000 fresh input tokens cache on replay (an explicit assumption, not a measurement), cost per 1,000 replayed queries drops to about <strong>$22.57</strong> — roughly half the original $44.45. Web search has no equivalent discount: it re-fetches live on every replay, so its cost does not decline with repetition the way Carver's does.</p>
+          <p><strong>Drift as a diff.</strong> If the corpus is pinned per snapshot, "what changed since last quarter" becomes a comparison between two dataset snapshots rather than re-running every question from scratch against a moving target. This is a projected workflow enabled by snapshot-pinning, not a measured capability today.</p>
+        </div>
+      </section>
+
+      <!-- ============ 07 METHOD ============ -->
+      <section id="method">
+        <div class="eyebrow"><span class="tag-num">07</span> Methodology &amp; coverage roadmap</div>
+        <h2>How this was measured, and what's next</h2>
+        <div class="takeaway">Symmetric prompts, mechanical scoring, cache-adjusted costing, and an explicit floor on web's cost — plus an honest accounting of what's curated versus what's corpus-wide.</div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>How it was measured</h3>
+            <p style="max-width:none;">All three arms (baseline, web search, Carver) were run against the same model, <strong>openai/gpt-5.6-sol</strong>, with symmetric prompts and mechanical scoring — the same rubric applied to every arm's output, not a subjective read. Cost figures are cache-adjusted: fresh vs. cached input tokens are billed at their own published rates ($5/M fresh input, $0.50/M cached input, $30/M output, plus $0.01 per web-search call) and the web-search cost is reported as a range across cache states rather than a single number, because it moves and Carver's doesn't.</p>
+          </div>
+          <div class="card">
+            <h3>What's pinned, what's estimated</h3>
+            <p style="max-width:none;">§3's cost and token figures are a real measurement taken on 2026-07-23. §2's ~732.9M source-read token figure is a stated estimate (3,000 tokens/doc × 244,297 docs), not a metered cost. §4/§5's tail-case win runs on 4 hand-curated records layered onto a 7,146-record realistic haystack — a demonstration of what jurisdiction-tagged coverage delivers, confirmed honest by its own ablation, not a claim that every US state carries this coverage today.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:-6px;">§3's per-question figures are simply the per-1,000 cost divided by 1,000 — no separate measurement. §3's fee-accounting note discloses an asymmetry: the web arm's cost includes the hosted search-tool fee, the Carver arm's does not include any Carver platform fee, and the resulting headroom figures ($33.59 / $77.14 per 1,000) are a bound, not a price. Anything marked <strong>Projected</strong> in this document — replay economics, drift-as-diff — is a stated assumption, not a measurement, and is excluded from every headline claim.</p>
+
+        <h3 style="margin-top:32px;">Coverage roadmap</h3>
+        <p>The corpus already carries state-level tags for California (3,672 records), Texas (2,547), New York (2,368) and more (§1, §5) — real coverage, not curated for the demo. What's curated today are the specific Colorado AI Act and California Holden Act obligation records that made the CO/CA hits possible. The roadmap is to extend that same obligation-extraction pipeline (§1's structured-intelligence layer — already applied corpus-wide to produce 681,249 obligations and 711,026 resolved citations) to close the remaining state-AI-disclosure gap, so the tail-case win stops depending on 4 hand-picked records and starts depending on the same pipeline that already covers the rest of the corpus.</p>
+
+        <div class="tblwrap" style="margin-top:22px;">
+          <table>
+            <thead><tr><th>Honesty guard</th><th>How this document handles it</th></tr></thead>
+            <tbody>
+              <tr><td>Head answer quality</td><td>Reported as parity, never as a Carver advantage — see §3.</td></tr>
+              <tr><td>Speed</td><td>No speed claim anywhere; latency stated as a wash (~18s vs ~16s) — see §3.</td></tr>
+              <tr><td>Web cost</td><td>Labeled a floor throughout — excludes unitemized <code>web_search</code> tool tokens.</td></tr>
+              <tr><td>Penalty figure</td><td>Reported as a record count (7,427 / 141,317), never summed into a dollar total — see §2.</td></tr>
+              <tr><td>Source-read tokens</td><td>Labeled an estimate with its assumption (3,000 tokens/doc) stated inline — see §2.</td></tr>
+              <tr><td>Tail-case scope</td><td>Stated as a 4-record demonstration with its ablation shown, not shipped production coverage — see §5.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <p class="tabular" style="color:var(--ink-muted);font-size:.82rem;">Snapshot date: 2026-07-24. Section 3 measurements taken 2026-07-23 against openai/gpt-5.6-sol. Every figure in this document traces to <code>whitepaper-data.json</code>.</p>
+      </footer>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>
