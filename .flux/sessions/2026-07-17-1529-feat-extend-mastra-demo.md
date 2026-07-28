@@ -50,18 +50,18 @@
     API different origins → hits **credentialed CORS**: `/api/auth/capabilities` uses
     credentials:'include', server replies `Access-Control-Allow-Origin: *`, which browsers
     forbid for credentialed requests. So cross-origin can't work without server CORS changes.
-  - **Fix (same-origin):** load the `mastra dev` Studio at the SAME host you're browsing, e.g.
-    `http://100.78.210.42:4111`, and set its endpoint to that same address so UI origin == API
-    origin. Config lives in `localStorage["mastra-studio-config"]`
+  - **Fix (same-origin):** load the `mastra dev` Studio at the SAME host you're browsing (the
+    box's private-network address), and set its endpoint to that same address so UI origin ==
+    API origin. Config lives in `localStorage["mastra-studio-config"]`
     (`{baseUrl,endpoint,apiPrefix:"/api"}`). Verified via Playwright: seeding that key → both
     agents render, no error. The configured endpoint MUST equal the address-bar origin.
-  - Note: `mastra dev` binds `*:4111` (public IP 137.184.172.251 exposed); Tailscale
-    (100.78.210.42) keeps it private. Box: openclaw-achint (DO droplet).
-  - **Gotcha (per-origin config):** this box's Tailscale name is `jarvis-openclaw` (=
-    100.78.210.42; `tailscale status`). User accesses from laptop (`achints-macbook-pro`) via
-    `http://jarvis-openclaw:4111`. `jarvis-openclaw:4111` and `100.78.210.42:4111` are the SAME
-    server but DIFFERENT browser origins; `mastra-studio-config` is per-origin. Setting the
-    endpoint to the IP while browsing the name = cross-origin = blank screen.
+  - Note: `mastra dev` binds `*:4111`, so on a cloud VM the port is exposed on its public
+    interface; a private network (Tailscale here) is what keeps it reachable only internally.
+    Check this before leaving a dev server up.
+  - **Gotcha (per-origin config):** a host's private-network *name* and its private *IP* are the
+    SAME server but DIFFERENT browser origins (`tailscale status` shows both), and
+    `mastra-studio-config` is stored per-origin. Setting the endpoint to the IP while browsing
+    by name = cross-origin = blank screen.
   - **Bulletproof recipe (no host to mistype):** on the Studio origin, DevTools Console:
     `localStorage.setItem("mastra-studio-config", JSON.stringify({baseUrl:location.origin,endpoint:location.origin,apiPrefix:"/api"})); location.reload();`
     Verified: 0 console errors, both agents render. User confirmed Studio works.
