@@ -2,6 +2,7 @@ import { openai } from '@ai-sdk/openai';
 import { Agent } from '@mastra/core/agent';
 import { LENDING_STATUS_BASE_INSTRUCTIONS, ADVISOR_TRIGGER } from './lending-status-instructions.ts';
 import { lookupApplicant } from '../tools/lookup-applicant-tool.ts';
+import { demoMemory } from '../memory.ts';
 
 /**
  * The real bar: live web search. Same base + verbatim trigger as the Carver arm; only the grounding
@@ -15,14 +16,18 @@ import { lookupApplicant } from '../tools/lookup-applicant-tool.ts';
 export const lendingStatusWebsearchAgent = new Agent({
   id: 'lending-status-websearch-agent',
   name: 'Lending Status — Web Search (no Carver)',
+  description: 'The real bar. Same applicant lookup, plus live web search — the obvious way to reach current regulation without a curated corpus.',
   instructions: `${LENDING_STATUS_BASE_INSTRUCTIONS}
 
 You can search the live web with webSearch. Prefer the issuing body's own site over secondary coverage, and link to the page you used so the reader can check it. Never invent or adjust a URL.
 
 ${ADVISOR_TRIGGER}`,
   model: 'openai/gpt-5.6-sol',
+  // Same step cap on all three arms — see the note in the baseline arm.
+  defaultOptions: { maxSteps: 8 },
   tools: {
     lookupApplicant,
     webSearch: openai.tools.webSearch(),
   },
+  memory: demoMemory,
 });
