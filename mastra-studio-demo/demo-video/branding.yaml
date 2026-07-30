@@ -1,0 +1,115 @@
+# Carver Agents brand config for the state-lending demo.
+# Colours and voice carried over from ~/demo-videos/pred-oracle and the skill's halyard-spme example
+# so this video sits in the same family as the other Carver demos.
+
+brand:
+  name: ""            # intentionally blank: the co-branded lockup already carries the wordmark
+  tagline: "Carver builds regulation-aware agents, on Mastra"
+  cta:
+    text: "See what your agent is missing"
+    url: "https://carveragents.ai"
+  social:
+    twitter: "@carveragents"
+    linkedin: "carver-agents"
+
+# TWO LOGOS. The small circular badge (make_overlay.py) must be Carver-only — a lockup is unreadable
+# at that size. The full-frame intro/outro slides are co-branded Carver × Mastra for the
+# design-partner pitch.
+#
+# This used to be one field, swapped by hand between script runs, and it silently reverted the
+# slides to Carver-only the first time they were rebuilt. `logo.slide_path` now overrides
+# `logo.path` for the slides only, so both are declared once and no rebuild can lose the lockup.
+# The lockup is built by scratchpad tooling from _assets/carver_wordmark.png + Studio's /mastra.svg.
+logo:
+  path: "./_assets/carver_wordmark.png"              # badge (make_overlay.py)
+  slide_path: "./_assets/carver-mastra-lockup.png"   # intro/outro slides (make_intro_outro.py)
+
+colors:
+  ink: "#101828"          # badge base
+  ink_deep: "#0c1322"     # inner gradient stop
+  accent: "#bae424"       # ring border, waveform, pulse rings (lime)
+  cream: "#fbf7f3"        # logo recolor
+
+captions:
+  font_size: 10
+
+# Mode A (local file), NOT `bg_music_mood: tech`, even though the bed IS the bundled tech track.
+# The source is 207.5s against a 212.8s video, and the pipeline loops with `aloop=loop=-1`. Worse,
+# the track ends with its own fade — measured silent (-91dB) from 196s — so the restart would jump
+# from digital silence to full level at 207.5s, landing squarely on the outro.
+#
+# _assets/bg_music_tech.mp3 is that track, re-cut so it never reaches a loop point:
+#   body 0-192s (its own fade-out stripped) crossfaded 5s into 30-62s  -> 219s of continuous music
+#   front-padded 0.4s -> the bed establishes over the 3.5s title card, the only stretch of the
+#                        video with no narration over it; entering at 4s meant it was never
+#                        heard cleanly, since narration starts the moment the card ends
+#   faded out 206 -> 212.8s, trimmed to exactly the video length -> resolves with the outro
+# Rebuild it if the runtime changes; the fade timings are pinned to 212.8s.
+#
+# 0.3, not the 0.4 default: this is a narration-dense explainer and the bed only has to be felt.
+# Track: "This Or That" by Luigi Talluto via Jamendo (CC-BY-SA 3.0) — attribution required wherever
+# this is posted. finalize_video.py prints the credit line but does NOT burn it into the video.
+audio:
+  bg_music_path: "./_assets/bg_music_tech.mp3"
+  bg_music_volume: 0.3
+
+voice:
+  provider: openai
+  model: "gpt-4o-mini-tts"
+  voice: cedar            # calm/authoritative — matches the other Carver demos
+  tone: "explanatory"
+  instructions: |
+    Read calmly and clearly, like a confident product walkthrough narrator addressing
+    a prospective customer evaluating an AI compliance product. Pace around 140 words
+    per minute. Treat hyphenated initialisms like A-I, C-O, C-A, N-Y, C-R-M, U-S and
+    F-C-R-A as letter-by-letter readings. Read "Reg B" as "Reg Bee". Do not sound
+    rushed or salesy; leave small natural breaths between sentences. This is an
+    evidence-led demo — let the facts carry it rather than adding enthusiasm.
+
+# Injected after every navigation, at record time only.
+#
+# CAPTION SAFE AREA. Burned captions are bottom-centred with MarginV=30 and, at font_size 10 on a
+# 900px-tall video, render ~31px per line (ffmpeg converts SRT→ASS at PlayResY=288, so text scales
+# by 900/288 = 3.125). MarginV is ALSO in script units, so 30 → 30*3.125 ≈ 94px off the bottom, and
+# a three-line block is ~95px tall: captions occupy roughly y=711..806 — a floating band, NOT the
+# bottom of the frame. Measured off a rendered frame rather than assumed; a first attempt reserved
+# the bottom 140px and still collided, because the captions start ABOVE that. 190px clears them.
+# Without this, captions sat on top of Studio's chat composer and the trace span output.
+#
+# Studio's root is a single `div.bg-surface1.font-sans.h-screen`, so shrinking .h-screen shrinks the
+# whole app and leaves a clean band at the bottom of the frame for captions to live in.
+#
+# Scoped to Studio ONLY — the card pages under _assets/pages/ reserve the same 190px in their own
+# stylesheets. Do not add a bare `section` rule here: Studio's trace panels are <section> elements
+# and a global rule breaks their layout.
+recording_css: |
+  .h-screen { height: calc(100vh - 190px) !important; }
+  html, body { background: #0b0d12 !important; }
+
+  /* CALLOUT RECTANGLES on the trace beats — draw the eye to the span's Input and Output, which is
+     where the "he never typed Colorado" proof actually lives.
+     `.mt-3.grid.gap-3` is the span-detail wrapper and exists ONLY on trace pages (verified: 0
+     matches on the agent list and on chat threads), so this cannot leak into other beats. Its four
+     children are Input / Output / Metadata / Attributes — only the first two are the evidence.
+     INSET box-shadow, deliberately: an outer shadow (or `outline`) paints beyond the border box and
+     gets CLIPPED by the span panel's overflow:hidden scroller — verified, it rendered nothing.
+     Inset paints inside the element, so it survives the clip and still costs no layout. */
+  .mt-3.grid.gap-3 > div:nth-child(-n+2) {
+    box-shadow: inset 0 0 0 2px #bae424, inset 0 0 30px rgba(186, 228, 36, 0.16);
+    border-radius: 12px;
+  }
+
+  /* CALLOUT on the answer beats. Every fact the narration names is already on screen; this points
+     at the one the viewer should be reading right now. record_demo.py adds `.snt-highlight` to
+     whatever a beat's `highlight:` selector matches, after the action runs, and strips it off the
+     previous beat — so it never bleeds forward between two beats on the same page (5 → 5b).
+     OUTLINE, not border/padding: the class lands AFTER the beat's scroll, and a box-size change
+     would nudge the frame that scroll just settled. Unlike the trace rule above, the chat column's
+     scroller is loose enough not to clip an 8px offset — verified on beats 5, 5b, 8, 11, 17, 20. */
+  .snt-highlight {
+    outline: 2px solid #bae424;
+    outline-offset: 8px;
+    border-radius: 10px;
+    background: rgba(186, 228, 36, 0.08);
+    box-shadow: 0 0 0 8px rgba(186, 228, 36, 0.08);   /* fills the outline-offset gap */
+  }

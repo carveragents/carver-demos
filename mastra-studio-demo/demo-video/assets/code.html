@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Carver — agent integration</title>
+<style>
+  :root {
+    --ink: #101828;
+    --ink-deep: #0c1322;
+    --accent: #bae424;
+    --cream: #fbf7f3;
+    --muted: #8a94a6;
+    --kw: #c792ea;
+    --str: #ecc48d;
+    --fn: #82aaff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: radial-gradient(120% 120% at 20% 0%, var(--ink) 0%, var(--ink-deep) 70%);
+    color: var(--cream);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  /* 190px reserved at the bottom of the frame for burned captions — see branding.yaml. */
+  .wrap {
+    height: calc(100vh - 190px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 48px 64px;
+  }
+  h1 {
+    font-size: 30px; font-weight: 600; letter-spacing: -0.02em;
+    margin: 0 0 6px;
+  }
+  .sub {
+    font-size: 17px; color: var(--muted); margin: 0 0 34px;
+  }
+  .card {
+    width: 100%; max-width: 1000px;
+    background: rgba(8, 12, 22, 0.82);
+    border: 1px solid rgba(186, 228, 36, 0.16);
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  .card-bar {
+    display: flex; align-items: center; gap: 9px;
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.025);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: #3a4152; }
+  .file {
+    margin-left: 10px; font-size: 14px; color: var(--muted);
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  }
+  pre {
+    margin: 0; padding: 26px 30px;
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 18px; line-height: 1.72;
+    overflow: visible;
+  }
+  .kw  { color: var(--kw); }
+  .str { color: var(--str); }
+  .fn  { color: var(--fn); }
+  .dim { color: var(--muted); }
+  /* The two lines that make the agent Carver-grounded. */
+  .hl {
+    display: block;
+    background: rgba(186, 228, 36, 0.13);
+    box-shadow: inset 3px 0 0 var(--accent);
+    margin: 0 -30px; padding: 0 27px;
+  }
+  .foot {
+    margin-top: 30px;
+    font-size: 19px; color: var(--cream);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pip {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 14px var(--accent);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Grounding a Mastra agent in Carver</h1>
+    <p class="sub">The retrieval tool is the only thing that changes.</p>
+
+    <div class="card">
+      <div class="card-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="file">lending-status-agent.ts</span>
+      </div>
+<pre><span class="kw">import</span> { Agent } <span class="kw">from</span> <span class="str">'@mastra/core/agent'</span>;
+<span class="kw">import</span> { lookupApplicant } <span class="kw">from</span> <span class="str">'./tools/lookup-applicant'</span>;
+<span class="hl"><span class="kw">import</span> { carverLending } <span class="kw">from</span> <span class="str">'@carver/sdk'</span>;</span>
+
+<span class="kw">export const</span> <span class="fn">lendingStatusAgent</span> = <span class="kw">new</span> <span class="fn">Agent</span>({
+  id: <span class="str">'lending-status-agent'</span>,
+  model: <span class="str">'openai/gpt-5.6-sol'</span>,
+  instructions: `${LENDING_STATUS_INSTRUCTIONS}
+<span class="hl"><span class="str">Search Carver for the obligations that apply, and cite
+the source link on anything you rely on.</span></span>`,
+<span class="hl">  tools: { lookupApplicant, carverLending },</span>
+});</pre>
+    </div>
+
+    <!-- Footer line removed 2026-07-28: burned captions sit at the bottom of the frame and covered
+         it. The narration says the same thing, so the card loses nothing. -->
+
+  </div>
+</body>
+</html>
