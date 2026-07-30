@@ -1058,6 +1058,12 @@ the lender legally owes them. A memory-only assistant and a live web-search assi
 federal answer; the Carver-grounded assistant surfaces the state-specific obligation — and correctly
 adds nothing for a state that has none.
 
+> **There is a recorded walkthrough of this scenario**: [`../demo-video/`](../demo-video/) —
+> `carver-state-lending.mp4`, 3:42, narrated and co-branded for external audiences. The storyboard,
+> branding, card pages and the pre-record audit live there too. Read its README before re-recording;
+> the on-screen answers are *replayed from saved threads*, and re-capturing them invalidates trace
+> ids the storyboard hardcodes.
+
 **Setup** (NOT self-contained — build the index first; needs `OPENAI_API_KEY` and the sibling
 `carver-showcase` repo):
 
