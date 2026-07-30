@@ -66,7 +66,9 @@
       "queryDescription": "Count, rank, filter, and group Carver's cybersecurity advisories — national CERT alerts and vulnerability notices — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo (publication date), minImpact (impact score), updateType, regulator (the issuing CERT/body), or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month). Use this whenever the question is \"how many\", \"which CERT published the most\", \"rank by impact\", or bounded to a date window.",
       "selector": {
         "kind": "industryAny",
-        "values": ["cybersecurity"]
+        "values": [
+          "cybersecurity"
+        ]
       }
     },
     {
@@ -83,7 +85,11 @@
       "queryDescription": "Count, rank, filter, and group Carver's crypto-asset regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Crypto", "Cryptoasset", "Cryptocurrency"]
+        "values": [
+          "Crypto",
+          "Cryptoasset",
+          "Cryptocurrency"
+        ]
       }
     },
     {
@@ -100,7 +106,9 @@
       "queryDescription": "Count, rank, filter, and group Carver's medical-device regulatory records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Medical Device"]
+        "values": [
+          "Medical Device"
+        ]
       }
     },
     {
@@ -117,7 +125,10 @@
       "queryDescription": "Count, rank, filter, and group Carver's online child-safety and data-protection records — NOT for \"what is this about\" questions, use the search tool for those. Filter by dateFrom/dateTo, minImpact, updateType, regulator, or keyword; sort with orderBy (date or impactScore); or roll counts up with groupBy (regulator, updateType, or month).",
       "selector": {
         "kind": "industryAny",
-        "values": ["Social Media", "Data Protection"]
+        "values": [
+          "Social Media",
+          "Data Protection"
+        ]
       }
     },
     {
@@ -127,7 +138,7 @@
       "toolId": "search-carver-state-lending",
       "toolName": "searchCarverStateLending",
       "label": "US consumer lending — federal + state adverse-action obligations",
-      "description": "Search Carver's curated set of adverse-action / loan-denial obligations for US consumer lending — the federal ECOA/Regulation B and FCRA baseline plus state overlays such as Colorado's AI Act (ADMT) duties on automated decisions and California's Holden Act Fair Lending Notice. Each record carries the issuing body, jurisdiction, an extracted list of key requirements, and a source link. Use to ground what a lender must tell an applicant when a loan is denied, including obligations that vary by the applicant's state.",
+      "description": "Search Carver's regulatory obligation records for US consumer lending — what a lender must tell an applicant when a loan application is denied. Each record carries the issuing body, jurisdiction, an extracted list of key requirements, and a source link.",
       "queryHint": "A natural-language description of the lending obligation to check, e.g. \"what to disclose when an automated model denies a home loan in Colorado\"",
       "queryToolId": "query-carver-state-lending",
       "queryToolName": "queryCarverStateLending",

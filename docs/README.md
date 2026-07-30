@@ -54,6 +54,7 @@ Holden Act) that baseline and web both miss — measured cheaper too (43–63% l
 - **Status / how to resume:** [`mastra-studio-demo/docs/continuing.md`](../mastra-studio-demo/docs/continuing.md).
 - **Build internals:** [`mastra-studio-demo/docs/BUILD-NOTES.md`](../mastra-studio-demo/docs/BUILD-NOTES.md) — read before touching matcher/prompts.
 - **Corpus gaps (for the data team):** [`mastra-studio-demo/docs/corpus-gaps-for-jurisdiction-demos.md`](../mastra-studio-demo/docs/corpus-gaps-for-jurisdiction-demos.md) — what to ingest to make jurisdiction demos work organically.
+- **Recorded walkthrough:** [`mastra-studio-demo/demo-video/`](../mastra-studio-demo/demo-video/) — `carver-state-lending.mp4` (3:42, narrated, Carver × Mastra co-branded) plus its storyboard, branding, card pages and pre-record audit. Read its README before re-recording.
 
 ---
 

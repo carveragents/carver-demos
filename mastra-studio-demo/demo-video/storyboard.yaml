@@ -1,0 +1,290 @@
+# Carver state-lending demo — storyboard
+#
+# Studio answer beats navigate to SAVED THREADS captured by
+# mastra-studio-demo/scripts/capture-demo-threads.mjs on 2026-07-29 00:1x, under the NEUTRAL tool
+# description (names no state, no statute). The answers on screen are real runs, replayed rather
+# than generated live because the agents take 18-31s per answer, which would be dead air.
+#
+# The ask/type beats open a fresh chat and `fill` the composer with the SAME message that produced
+# the captured thread — verbatim, from capture-demo-threads.mjs. Nothing is sent; the following
+# beat cuts to the saved thread. The typed text and the thread's question are therefore identical.
+#
+# Trace/span ids below belong to the Colorado Carver run in that same capture. Re-capturing the
+# threads CHANGES them — re-read before re-recording.
+#
+# ONE EDIT to a captured answer (2026-07-29): the fixture carries decisionDate 2027-01-14. That
+# date is DELIBERATE AND LOAD-BEARING — see docs/LESSONS.md #8 — because the Colorado obligation
+# being showcased only takes legal effect then; moving it to the present has already been tried and
+# it broke the key beat. DO NOT "fix" it.
+#
+# The web-search arm is the only one that notices, since search grounding gives it today's date, and
+# it spent a paragraph flagging the record as an error. That paragraph was removed from the stored
+# demo-websearch-co-1001 message (both `content` and the `parts[].text` node), along with the
+# trailing "verify the decision date" clause it left dangling. Nothing else in any answer was
+# touched. The edit removes the arm's confusion about a scenario date it has no way to know about —
+# it does not remove a finding.
+#
+# CAPTION SAFE AREA: branding.yaml's recording_css reserves the bottom 190px. Any beat whose claim
+# sits low in the page must scroll it into view (see 11_carver_answer).
+#
+# NARRATION RULE: every factual claim must be visible in that beat's frame. Numbers come from
+# scripts/lending-status-probe.mjs (n=3) and scripts/overlay-hitrate.mjs, both run 2026-07-28.
+
+beats:
+  - id: 01_agents
+    action:
+      type: goto
+      url: "{{ base_url }}/agents"
+    narration: >-
+      This demo shows a consumer lender's customer-facing assistant, built three ways on Mastra's
+      agent toolkit and shown here in Mastra Studio. The instructions are identical, line for line.
+      The only difference is where each one gets its regulatory knowledge.
+
+  - id: 02_code
+    action:
+      type: goto
+      url: "http://localhost:8099/code.html"
+    narration: >-
+      Grounding an agent is a small change. It arrives as an ordinary Mastra tool: import it, add
+      it to the agent, and tell the model to cite what it finds. The tool names no state and no
+      statute — it only knows how to search.
+
+  # ── Colorado: the same question, asked of each arm in turn ──────────────────
+  - id: 03_ask_baseline
+    action:
+      type: goto
+      url: "{{ base_url }}/agents/lending-status-baseline-agent/chat/new"
+    narration: >-
+      An applicant signs in to the lender's site and opens the assistant.
+
+  - id: 04_type_baseline
+    action:
+      type: fill
+      selector: 'textarea[placeholder="Enter your message..."]'
+      value: "Hi, can you check the status of my loan application? My applicant ID is CO-1001."
+    narration: >-
+      He asks about his loan and gives his application I-D. He never says which state he lives in.
+
+  # The denial is the premise the whole video rests on, so the first answer is split in two: this
+  # beat holds on the denial line alone, and 05b moves down to what the arm can say about it.
+  # `.pt-2 > .space-y-3 > p` is the assistant message's FIRST paragraph — the user's bubble nests
+  # its paragraphs under `.bg-surface3 ... py-2`, which has no `pt-2`, so this can't match the
+  # question. Anchoring here also guarantees the denial is in frame under the caption reserve.
+  - id: 05_baseline_answer
+    action:
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-baseline-agent/chat/demo-baseline-co-1001"
+      selector: ".pt-2 > .space-y-3 > p"
+    highlight: ".pt-2 > .space-y-3 > p:nth-child(1)"
+    narration: >-
+      The answer comes back, and it isn't good news. Marcus's home improvement loan was declined.
+      An automated underwriting model scored him 611, against a cutoff of 640. Everything the
+      lender now owes him follows from that one line.
+
+  # Inserted as 05b rather than renumbering, so render_voiceover.py's per-beat cache survives.
+  # NOT "correct" — the answer omits an obligation the lender actually owes, so calling it correct
+  # would be wrong and would blunt the reveal. "Nothing wrong, and incomplete" is both accurate
+  # and sets up the gap the Carver arm closes.
+  - id: 05b_baseline_notice
+    action:
+      type: scroll_into_view
+      selector: ".pt-2 > .space-y-3 > p:nth-child(2)"
+    highlight: ".pt-2 > .space-y-3 > p:nth-child(2)"
+    narration: >-
+      This assistant has no regulatory data of its own. It explains the federal notice he'll
+      receive, and stops there. Nothing it says is wrong. It is also incomplete.
+
+  - id: 06_ask_websearch
+    action:
+      type: goto
+      url: "{{ base_url }}/agents/lending-status-websearch-agent/chat/new"
+    narration: >-
+      Now the same question, to the agent with live web search.
+
+  - id: 07_type_websearch
+    action:
+      type: fill
+      selector: 'textarea[placeholder="Enter your message..."]'
+      value: "Hi, can you check the status of my loan application? My applicant ID is CO-1001."
+    narration: >-
+      Word for word identical. Same applicant I-D.
+
+  # Was a plain `goto`: the chat auto-scrolled to the newest message and the denial line ended up
+  # off the top of the frame, so this was the one answer beat that never showed it. Anchored on the
+  # first assistant paragraph, same selector as beat 05.
+  - id: 08_websearch_answer
+    action:
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-websearch-agent/chat/demo-websearch-co-1001"
+      selector: ".pt-2 > .space-y-3 > p"
+    highlight: ".pt-2 > .space-y-3 > p:nth-child(1)"
+    narration: >-
+      It searches the live web and lands in the same place. Declined, the same 611 against a 640
+      cutoff.
+
+  # Split out of 08 so the ring can MOVE from the denial to the obligations. One beat holds one
+  # highlight, and the whole point here is the contrast: this is the complete list of what the
+  # web-search arm thinks is owed, and every item on it is federal. Beat 11 then adds a fourth
+  # bullet in the same position — the reveal only lands if the viewer has been shown this list first.
+  - id: 08b_websearch_federal
+    action:
+      type: scroll_into_view
+      selector: ".pt-2 ul.list-disc"
+    highlight: ".pt-2 ul.list-disc"
+    narration: >-
+      And everything it lists under what happens next is federal. The adverse-action notice, the
+      credit-report disclosure, the 30-day rule. Nothing here turns on where Marcus lives.
+
+  - id: 09_ask_carver
+    action:
+      type: goto
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/new"
+    narration: >-
+      And once more, to the Carver-grounded agent.
+
+  - id: 10_type_carver
+    action:
+      type: fill
+      selector: 'textarea[placeholder="Enter your message..."]'
+      value: "Hi, can you check the status of my loan application? My applicant ID is CO-1001."
+    narration: >-
+      The same question a third time.
+
+  - id: 11_carver_answer
+    action:
+      # goto_and_scroll, not goto: the chat auto-scrolls to the newest message, and with the caption
+      # safe area shrinking the viewport the Colorado bullet — the whole point of the beat — falls
+      # off the top. Anchor on the statute link so the frame is guaranteed to contain the claim.
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/demo-carver-co-1001"
+      selector: 'a[href*="leg.colorado.gov"]'
+    # 2nd list item is the state overlay; 1st and 3rd are the federal ones every arm gets.
+    highlight: ".pt-2 li:nth-child(2)"
+    # KEEP THIS UNDER ~255 CHARACTERS. Burned captions are centred and wrap by width; at 310 chars
+    # the three-line block reached the brand badge in the bottom-left corner and sat on the
+    # wordmark. Beat 1 at 254 chars clears it. Going to four lines is worse, not better — the
+    # block grows upward out of the 190px reserve and back into the page content.
+    narration: >-
+      Same question, same denial, the same 611. But this one adds what the other two missed:
+      Colorado's Artificial Intelligence Act. Because an automated model made the decision, Marcus
+      is owed the model's role, the data used, and meaningful human review.
+
+  # ── proof, immediately after the money shot ────────────────────────────────
+  - id: 12_trace_lookup
+    action:
+      # Must scroll: with the caption safe area the span panel opens on Name/Type/Duration and the
+      # Input block sits below the fold, so a plain goto would narrate an applicant ID that isn't
+      # on screen. nth-child(1) is the Input block; the callout rectangle marks it.
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-carver-agent/traces?rootEntityType=agent&filterEntityId=lending-status-carver-agent&traceId=bed0b1ae3349f9ae3e2d83aa16a78c41&spanId=6348929db70b5094"
+      selector: ".mt-3.grid.gap-3 > div:nth-child(1)"
+    narration: >-
+      Marcus never mentioned Colorado. The agent passed one applicant I-D to the lookup.
+
+  - id: 13_trace_lookup_state
+    action:
+      # scroll_into_view uses document.querySelector — plain CSS only, NOT Playwright's `text=`.
+      # This is the Output block of the span detail (.mt-3.grid.gap-3 holds Input then Output).
+      type: scroll_into_view
+      selector: ".mt-3.grid.gap-3 > div:nth-child(2)"
+    narration: >-
+      His state came back inside the file, from the lender's own system. That is what the agent
+      had to work with.
+
+  - id: 14_trace_retrieval
+    action:
+      # Same reason as beat 12 — scroll to the retrieval span's Output, where the returned record
+      # and its source URL actually are.
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-carver-agent/traces?rootEntityType=agent&filterEntityId=lending-status-carver-agent&traceId=bed0b1ae3349f9ae3e2d83aa16a78c41&spanId=d5ee8a0aa91aa88b"
+      selector: ".mt-3.grid.gap-3 > div:nth-child(2)"
+    narration: >-
+      It searched Carver with that situation, and the Colorado statute came back — the issuing
+      regulator, the date, and what changed. Every step of it visible in Mastra's tracing.
+
+  # ── not a fluke, and a control ─────────────────────────────────────────────
+  # Same ask → type → answer shape as Colorado, so every applicant's journey starts with the
+  # question. The fill value differs from Colorado's only in the applicant ID.
+  - id: 15_ask_ca
+    action:
+      type: goto
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/new"
+    narration: >-
+      A different applicant now, in California.
+
+  - id: 16_type_ca
+    action:
+      type: fill
+      selector: 'textarea[placeholder="Enter your message..."]'
+      value: "Hi, can you check the status of my loan application? My applicant ID is CA-1001."
+    narration: >-
+      The same question, word for word. Only the applicant I-D changes.
+
+  - id: 17_carver_ca
+    action:
+      # Anchor on the DFPI document link so the California bullet is guaranteed in frame.
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/demo-carver-ca-1001"
+      selector: 'a[href*="dfpi.ca.gov"]'
+    highlight: ".pt-2 li:nth-child(2)"
+    # The agent cites this statute by its FORMAL name — "California Housing Financial
+    # Discrimination Act" — not the common "Holden Act", which appears nowhere on screen. Narration
+    # follows the frame.
+    narration: >-
+      Same outcome, same 611. But a different obligation: California's Fair Lending Notice, under
+      the Housing Financial Discrimination Act, with the state regulator's own document.
+
+  - id: 18_ask_ny
+    action:
+      type: goto
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/new"
+    narration: >-
+      One more, in New York.
+
+  - id: 19_type_ny
+    action:
+      type: fill
+      selector: 'textarea[placeholder="Enter your message..."]'
+      value: "Hi, can you check the status of my loan application? My applicant ID is NY-1001."
+    narration: >-
+      Same question again.
+
+  - id: 20_carver_ny
+    action:
+      # goto_and_scroll, like every other answer beat: anchoring on the list guarantees it's framed,
+      # and the scroll gives the markdown time to render before the highlight lands.
+      type: goto_and_scroll
+      url: "{{ base_url }}/agents/lending-status-carver-agent/chat/demo-carver-ny-1001"
+      selector: ".pt-2 ul.list-disc"
+    # Nothing to point AT here — the ring goes round the whole list to show these two federal items
+    # are all there is. New York adds no third bullet.
+    highlight: ".pt-2 ul.list-disc"
+    narration: >-
+      Priya's application was declined too. And here the grounded assistant adds no state duty at
+      all, because New York has none. It changes exactly where the law changes, and only there.
+
+  # ── measured evidence ──────────────────────────────────────────────────────
+  - id: 21_results_reliability
+    action:
+      type: goto
+      url: "http://localhost:8099/results.html"
+    narration: >-
+      Eight test runs per applicant. The grounded assistant surfaced the state obligation every
+      time, in Colorado and in California. Live web search, not once. And in New York, where no
+      state duty exists, all three correctly added nothing.
+
+  - id: 22_results_tokens
+    action:
+      type: scroll_into_view
+      selector: "#tokens"
+    narration: >-
+      And it got there on roughly a third of the tokens. Just under six thousand, against
+      eighteen thousand four hundred.
+
+  - id: 23_results_caveat
+    action:
+      type: scroll_into_view
+      selector: "#caveat"
+    narration: >-
+      Built on Mastra, and on Carver's regulatory dataset. It shows what jurisdiction-tagged
+      regulatory data makes possible, once an agent can reach it.

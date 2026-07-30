@@ -1,0 +1,33 @@
+# Carver state-lending demo — the applicant's STATE decides what the lender owes them,
+# and only the Carver-grounded arm surfaces it.
+#
+# Target is the local Mastra Studio dev server. Recording navigates to SAVED THREAD URLs
+# (memory enabled 2026-07-28) so every answer on screen is a real captured run, not a live
+# generation — the agents take 18-40s per answer, which would be dead air in a 3-minute video.
+
+site:
+  base_url: "http://localhost:4111"
+
+session:
+  pre_session: []          # Studio dev server has no auth
+
+output:
+  filename: "carver-state-lending.mp4"
+  working_dir: "~/demo-videos/carver-state-lending"
+  speed_multiplier: 1.2
+  target_duration_seconds: 180   # ~3 min, per user direction
+
+features:
+  intro_slide: true
+  outro_slide: true
+  captions:
+    enabled: true
+    mode: "burned"         # local ffmpeg has libass (verified 2026-07-28); burned survives muted autoplay
+  crossfade_seconds: 0.5
+  brand_overlay: true
+
+recording:
+  viewport: { width: 1440, height: 900 }
+  framerate: 25
+  pre_narration_ms: 400
+  post_narration_ms: 700

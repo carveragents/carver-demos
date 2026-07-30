@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Carver — measured results</title>
+<style>
+  :root {
+    --ink: #101828;
+    --ink-deep: #0c1322;
+    --accent: #bae424;
+    --cream: #fbf7f3;
+    --muted: #8a94a6;
+    --dim: #5c6579;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: radial-gradient(120% 100% at 20% 0%, var(--ink) 0%, var(--ink-deep) 70%);
+    background-attachment: fixed;
+    color: var(--cream);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  /* 190px reserved at the bottom of the frame for burned captions — see branding.yaml.
+     Sections are one viewport MINUS that band, so content is never under the caption. */
+  /* Full viewport tall, with the caption band as bottom PADDING rather than a shorter section.
+     Sizing the section to 100vh-190px made the NEXT section begin at 710px, so its heading bled
+     into the bottom of the frame. With padding instead, content centres in the top 710px and the
+     following section starts at 100vh — safely off-screen. */
+  section {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 60px 72px 190px;
+    scroll-margin-top: 0;
+  }
+  h2 {
+    font-size: 32px; font-weight: 600; letter-spacing: -0.02em;
+    margin: 0 0 8px; text-align: center;
+  }
+  .sub {
+    font-size: 17px; color: var(--muted); margin: 0 0 46px; text-align: center;
+  }
+  .rows { width: 100%; max-width: 940px; }
+  .row {
+    display: grid; grid-template-columns: 300px 1fr 210px;
+    align-items: center; gap: 26px;
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.022);
+    margin-bottom: 14px;
+  }
+  .row.win {
+    border-color: rgba(186,228,36,0.4);
+    background: rgba(186,228,36,0.07);
+  }
+  .label { font-size: 19px; font-weight: 500; }
+  .label .muted { display: block; font-size: 14px; color: var(--muted); font-weight: 400; margin-top: 3px; }
+  .bar { height: 12px; border-radius: 999px; background: rgba(255,255,255,0.07); overflow: hidden; }
+  .bar > i { display: block; height: 100%; border-radius: 999px; background: var(--dim); }
+  .row.win .bar > i { background: var(--accent); }
+  .val { font-size: 30px; font-weight: 650; text-align: right; letter-spacing: -0.02em; }
+  .row.win .val { color: var(--accent); }
+  .val .unit { display: block; font-size: 13px; color: var(--muted); font-weight: 400; letter-spacing: 0; margin-top: 4px; }
+  .foot { margin-top: 34px; font-size: 15px; color: var(--dim); text-align: center; }
+
+  /* Per-applicant grid: every cell is x/8, so the denominator explains itself and there is no
+     pooled number to justify. The New York column asks the inverse question (did the arm wrongly
+     claim a state duty?) — same x/8 shape, semantics stated in the column header. */
+  .grid {
+    width: 100%; max-width: 1000px;
+    display: grid; grid-template-columns: 300px repeat(3, 1fr);
+    gap: 12px; align-items: stretch;
+  }
+  .ghead {
+    font-size: 15px; color: var(--muted); text-align: center;
+    padding-bottom: 4px; align-self: end; line-height: 1.35;
+  }
+  .ghead span { display: block; font-size: 12.5px; color: var(--dim); margin-top: 2px; }
+  .arm {
+    display: flex; align-items: center;
+    font-size: 18px; font-weight: 500; padding: 20px 22px;
+    border-radius: 12px; border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.022);
+  }
+  .arm.win { border-color: rgba(186,228,36,0.4); background: rgba(186,228,36,0.07); }
+  .cell {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 18px 10px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.022);
+    font-size: 26px; font-weight: 650; letter-spacing: -0.02em;
+  }
+  .cell span { font-size: 12.5px; font-weight: 400; color: var(--muted); letter-spacing: 0; margin-top: 5px; }
+  .cell.win  { color: var(--accent); border-color: rgba(186,228,36,0.4); background: rgba(186,228,36,0.07); }
+  .cell.zero { color: var(--muted); }
+  .cell.ok   { color: var(--cream); }
+
+  /* closing caveat */
+  .caveat { max-width: 820px; text-align: center; }
+  .caveat h2 { margin-bottom: 26px; }
+  .caveat p { font-size: 18px; line-height: 1.66; color: var(--muted); margin: 0 0 16px; }
+  .caveat .built { color: var(--cream); font-size: 17px; margin-top: 26px; }
+  .caveat .built strong { color: var(--accent); font-weight: 600; }
+  .caveat .pill {
+    display: inline-block; margin-top: 22px; padding: 9px 18px;
+    border: 1px solid rgba(186,228,36,0.34); border-radius: 999px;
+    color: var(--accent); font-size: 15px;
+  }
+</style>
+</head>
+<body>
+
+  <section id="reliability">
+    <h2>Did it surface the applicant&rsquo;s state obligation?</h2>
+    <p class="sub">Eight test runs per applicant. Same question every time &mdash; only the applicant ID changes.</p>
+    <div class="grid">
+      <div class="ghead"></div>
+      <div class="ghead">Colorado</div>
+      <div class="ghead">California</div>
+      <div class="ghead">New York<span>no state duty exists</span></div>
+
+      <div class="arm win">Carver&nbsp;(grounded)</div>
+      <div class="cell win">8&nbsp;/&nbsp;8</div>
+      <div class="cell win">8&nbsp;/&nbsp;8</div>
+      <div class="cell ok">8&nbsp;/&nbsp;8<span>added nothing</span></div>
+
+      <div class="arm">Live web search</div>
+      <div class="cell zero">0&nbsp;/&nbsp;8</div>
+      <div class="cell zero">0&nbsp;/&nbsp;8</div>
+      <div class="cell ok">8&nbsp;/&nbsp;8<span>added nothing</span></div>
+
+      <div class="arm">No regulatory data</div>
+      <div class="cell zero">0&nbsp;/&nbsp;8</div>
+      <div class="cell zero">0&nbsp;/&nbsp;8</div>
+      <div class="cell ok">8&nbsp;/&nbsp;8<span>added nothing</span></div>
+    </div>
+    <p class="foot">Measured 28 July 2026.</p>
+  </section>
+
+  <section id="tokens">
+    <h2>And it costs less to get there</h2>
+    <p class="sub">Median tokens processed per answer, three runs per applicant.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="label">Live web search</div>
+        <div class="bar"><i style="width:100%"></i></div>
+        <div class="val">18,417<span class="unit">tokens</span></div>
+      </div>
+      <div class="row win">
+        <div class="label">Carver&nbsp;(grounded)</div>
+        <div class="bar"><i style="width:32%"></i></div>
+        <div class="val">5,877<span class="unit">tokens</span></div>
+      </div>
+    </div>
+    <p class="foot">Better answer, roughly a third of the tokens.</p>
+  </section>
+
+  <section id="caveat">
+    <div class="caveat">
+      <h2>What this shows</h2>
+      <p>
+        This demo is built on a regulatory dataset from Carver &mdash; obligations tagged by
+        jurisdiction, with a cited primary source behind every record.
+      </p>
+      <p>
+        It demonstrates what jurisdiction-tagged regulatory data makes possible when an agent
+        can reach it.
+      </p>
+      <p class="built">Agents, tools and tracing built on <strong>Mastra</strong>.</p>
+      <span class="pill">carveragents.ai</span>
+    </div>
+  </section>
+
+</body>
+</html>

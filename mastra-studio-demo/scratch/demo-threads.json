@@ -1,0 +1,134 @@
+[
+  {
+    "arm": "baseline",
+    "agentId": "lending-status-baseline-agent",
+    "applicant": "CO-1001",
+    "state": "Colorado",
+    "threadId": "demo-baseline-co-1001",
+    "url": "http://localhost:4111/agents/lending-status-baseline-agent/chat/demo-baseline-co-1001",
+    "latencySeconds": 7,
+    "tools": [
+      "lookupApplicant"
+    ],
+    "totalTokens": 974,
+    "text": "Hi Marcus. Your home improvement loan application **LN-4471 was declined on January 14, 2027**. The automated underwriting score was **611**, below the approval cutoff of **640**.\n\nYou should receive an **adverse action notice** explaining the principal reasons for the decision and how to request additional information. If a consumer credit report influenced the decision, the notice will also identify the credit bureau and explain your right to obtain a free copy of that report and dispute inaccurate information.\n\nReview the notice carefully before reapplying. If you believe information was incorrect or would like to ask about reconsideration, contact the lender using the details provided in that notice."
+  },
+  {
+    "arm": "websearch",
+    "agentId": "lending-status-websearch-agent",
+    "applicant": "CO-1001",
+    "state": "Colorado",
+    "threadId": "demo-websearch-co-1001",
+    "url": "http://localhost:4111/agents/lending-status-websearch-agent/chat/demo-websearch-co-1001",
+    "latencySeconds": 14,
+    "tools": [
+      "lookupApplicant",
+      "webSearch"
+    ],
+    "totalTokens": 18872,
+    "text": "Hi Marcus. Your **home improvement loan application (LN-4471) currently shows “Declined.”** The automated model recorded a score of **611**, below the **640** approval cutoff.\n\nHowever, the file lists the decision date as **January 14, 2027**, which is in the future relative to today, **July 29, 2026**. That appears to be a record error, so I can’t confirm when the decision was formally issued.\n\n### What happens next\n- You should receive a written adverse-action notice stating the specific principal reasons for the denial—or explaining how to request them within 60 days. A score below the cutoff alone is not considered a sufficiently specific reason. ([consumerfinance.gov](https://www.consumerfinance.gov/rules-policy/regulations/1002/2023-04-19/9/?utm_source=openai))\n- If a consumer credit report influenced the decision, the notice should identify the reporting agency, provide applicable credit-score information, and explain your right to request a free report within 60 days and dispute errors. ([consumerfinance.gov](https://www.consumerfinance.gov/ask-cfpb/my-credit-application-was-denied-because-of-my-credit-report-what-can-i-do-en-1253/?utm_source=openai))\n- Because your application is marked complete, federal rules generally require notification within 30 days after the completed application is received. ([consumerfinance.gov](https://www.consumerfinance.gov/rules-policy/regulations/1002/2023-04-19/9/?utm_source=openai))\n\nPlease contact application support and reference **LN-4471** to verify the decision date and delivery of your notice."
+  },
+  {
+    "arm": "carver",
+    "agentId": "lending-status-carver-agent",
+    "applicant": "CO-1001",
+    "state": "Colorado",
+    "threadId": "demo-carver-co-1001",
+    "url": "http://localhost:4111/agents/lending-status-carver-agent/chat/demo-carver-co-1001",
+    "latencySeconds": 21,
+    "tools": [
+      "lookupApplicant",
+      "searchCarverStateLending"
+    ],
+    "totalTokens": 4314,
+    "text": "Hi Marcus — your **home improvement loan application (LN-4471) was declined on January 14, 2027**. Your file shows the automated underwriting score was **611**, below the **640** approval cutoff.\n\nWhat to expect next:\n\n- Under [Regulation B § 1002.9](https://www.consumerfinance.gov/rules-policy/regulations/1002/9/), you should receive an adverse-action notice within 30 days of the completed application. It must provide the principal reasons for the denial or explain how to request them within 60 days.\n- Because an automated model made the decision, Colorado’s [Artificial Intelligence Act](https://leg.colorado.gov/bills/sb24-205) requires additional information about the model’s role and the data used. The notice must also explain your rights to request access or corrections to that data and to seek meaningful human review and reconsideration where technically and commercially reasonable.\n- If a consumer credit report or credit score was used, the notice must include further disclosures, including how to obtain a free report and dispute inaccuracies, under [FCRA § 615](https://www.ftc.gov/business-guidance/resources/using-consumer-reports-credit-decisions-what-know-about-adverse-action-risk-based-pricing-notices)."
+  },
+  {
+    "arm": "baseline",
+    "agentId": "lending-status-baseline-agent",
+    "applicant": "CA-1001",
+    "state": "California",
+    "threadId": "demo-baseline-ca-1001",
+    "url": "http://localhost:4111/agents/lending-status-baseline-agent/chat/demo-baseline-ca-1001",
+    "latencySeconds": 5,
+    "tools": [
+      "lookupApplicant"
+    ],
+    "totalTokens": 946,
+    "text": "Hi Dolores. Your **home improvement loan** application (**LN-5182**) was **declined on January 14, 2027**. The automated underwriting score was **611**, below the approval cutoff of **640**.\n\nYou should receive a written **adverse action notice** explaining the principal reasons for the decision. If credit-report information contributed, the notice will identify the credit bureau and explain how to request a free copy of your report and dispute inaccurate information. Review the notice carefully and contact the lender using the details provided if you believe any information was incorrect."
+  },
+  {
+    "arm": "websearch",
+    "agentId": "lending-status-websearch-agent",
+    "applicant": "CA-1001",
+    "state": "California",
+    "threadId": "demo-websearch-ca-1001",
+    "url": "http://localhost:4111/agents/lending-status-websearch-agent/chat/demo-websearch-ca-1001",
+    "latencySeconds": 16,
+    "tools": [
+      "lookupApplicant",
+      "webSearch"
+    ],
+    "totalTokens": 16930,
+    "text": "Hi Dolores. Your **home improvement loan application (LN-5182) is currently listed as declined**. The automated underwriting score was **611**, below the **640** approval cutoff.\n\nThere is a date discrepancy: the file lists the decision date as **January 14, 2027**, which is in the future relative to today, **July 29, 2026**. That date should be verified.\n\n**What happens next:**\n\n- You should receive an adverse-action notice explaining the specific principal reasons for the decision—or how to request them within 60 days. A score or failure to meet an internal cutoff alone is not a sufficient explanation. ([consumerfinance.gov](https://www.consumerfinance.gov/rules-policy/regulations/1002/2023-04-19/9/?utm_source=openai))\n- If a credit report contributed to the decision, the notice should identify the credit bureau and explain how to request a free report within 60 days. ([consumerfinance.gov](https://www.consumerfinance.gov/ask-cfpb/my-credit-application-was-denied-because-of-my-credit-report-what-can-i-do-en-1253/?utm_source=openai))\n- Please review the notice carefully and contact customer support to have the future-dated decision record checked."
+  },
+  {
+    "arm": "carver",
+    "agentId": "lending-status-carver-agent",
+    "applicant": "CA-1001",
+    "state": "California",
+    "threadId": "demo-carver-ca-1001",
+    "url": "http://localhost:4111/agents/lending-status-carver-agent/chat/demo-carver-ca-1001",
+    "latencySeconds": 31,
+    "tools": [
+      "lookupApplicant",
+      "searchCarverStateLending"
+    ],
+    "totalTokens": 11982,
+    "text": "Hi Dolores. Your home improvement loan application **LN-5182 was declined on January 14, 2027**. The automated underwriting score was **611**, below the approval cutoff of **640**.\n\nWhat to expect next:\n\n- You’ll receive an adverse-action notice stating the specific principal reason(s) for the decision, generally within 30 days of the completed application. See [Regulation B § 1002.9 — Adverse action notification](https://www.consumerfinance.gov/rules-policy/regulations/1002/9/).\n- Because the loan would be secured by your California owner-occupied residence, you’ll also receive California’s Fair Lending Notice and applicable complaint-contact information. See [California Housing Financial Discrimination Act — Fair Lending Notice and statement of reasons](https://dfpi.ca.gov/wp-content/uploads/sites/337/2021/10/DFPI-1977-FAIR-LENDING-NOTICE.pdf).\n- If a consumer credit report or credit score contributed to the decision, the notice will identify the reporting agency and explain your rights to obtain a free report within 60 days and dispute inaccuracies. See [FCRA § 615 — Adverse action notice](https://www.ftc.gov/business-guidance/resources/using-consumer-reports-credit-decisions-what-know-about-adverse-action-risk-based-pricing-notices)."
+  },
+  {
+    "arm": "baseline",
+    "agentId": "lending-status-baseline-agent",
+    "applicant": "NY-1001",
+    "state": "New York",
+    "threadId": "demo-baseline-ny-1001",
+    "url": "http://localhost:4111/agents/lending-status-baseline-agent/chat/demo-baseline-ny-1001",
+    "latencySeconds": 8,
+    "tools": [
+      "lookupApplicant"
+    ],
+    "totalTokens": 1028,
+    "text": "Hi Priya. Your home improvement loan application **LN-6093 was declined on January 14, 2027**. The automated underwriting score was 611, below the approval threshold of 640.\n\nYou should receive a written adverse-action notice explaining the principal reasons for the decision, along with applicable credit-report information and instructions for disputing errors or requesting reconsideration. Review that notice carefully; correcting inaccurate information does not guarantee approval."
+  },
+  {
+    "arm": "websearch",
+    "agentId": "lending-status-websearch-agent",
+    "applicant": "NY-1001",
+    "state": "New York",
+    "threadId": "demo-websearch-ny-1001",
+    "url": "http://localhost:4111/agents/lending-status-websearch-agent/chat/demo-websearch-ny-1001",
+    "latencySeconds": 15,
+    "tools": [
+      "lookupApplicant",
+      "webSearch"
+    ],
+    "totalTokens": 18795,
+    "text": "Hi Priya — application **LN-6093** for a **home improvement loan** currently shows **Declined**.\n\nThe automated underwriting score was **611**, below the **640** approval cutoff. However, the file lists a decision date of **January 14, 2027**, which is in the future relative to today, **July 29, 2026**. That date appears inconsistent and should be confirmed or corrected by the lender.\n\nIf the decline is final, you should receive a written adverse-action notice explaining the principal reasons—not merely that your score was below the cutoff. Automated decisions have the same notice requirements. ([consumerfinance.gov](https://www.consumerfinance.gov/rules-policy/regulations/1002/2023-04-19/9/?utm_source=openai)) If a credit report contributed to the decision, the notice should also explain how to request a free copy of that report within 60 days and dispute inaccuracies. ([consumerfinance.gov](https://www.consumerfinance.gov/ask-cfpb/my-credit-application-was-denied-because-of-my-credit-report-what-can-i-do-en-1253/?utm_source=openai))"
+  },
+  {
+    "arm": "carver",
+    "agentId": "lending-status-carver-agent",
+    "applicant": "NY-1001",
+    "state": "New York",
+    "threadId": "demo-carver-ny-1001",
+    "url": "http://localhost:4111/agents/lending-status-carver-agent/chat/demo-carver-ny-1001",
+    "latencySeconds": 28,
+    "tools": [
+      "lookupApplicant",
+      "searchCarverStateLending"
+    ],
+    "totalTokens": 10440,
+    "text": "Hi Priya — your home improvement loan application **LN-6093 was declined on January 14, 2027**. The automated underwriting score was **611**, below the approval cutoff of **640**.\n\nWhat to expect next:\n\n- You should receive an adverse-action notice within 30 days of the completed application. It will state the principal reasons for the decision or explain how to request them within 60 days. See [Regulation B § 1002.9 — Adverse action notification](https://www.consumerfinance.gov/rules-policy/regulations/1002/9/).\n- If a consumer credit report or credit score was used, the notice must identify the reporting agency, provide applicable score information, and explain your rights to obtain a free report within 60 days and dispute inaccuracies. See [FCRA § 615 — Adverse action notice when a consumer report is used](https://www.ftc.gov/business-guidance/resources/using-consumer-reports-credit-decisions-what-know-about-adverse-action-risk-based-pricing-notices)."
+  }
+]

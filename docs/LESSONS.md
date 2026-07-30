@@ -7,6 +7,7 @@
 - 2026-06-03-1027-chore-trader-demo-updates
 - 2026-06-09-0116-feat-showcase-v1
 - 2026-07-17-1529-feat-extend-mastra-demo
+- 2026-07-28-133900-video-state-lending-demo
 
 Session logs live in `.flux/sessions/` (migrated from `.claude/.sessions/` on 2026-07-28).
 The 2026-06-03 and 2026-06-09 entries were added retroactively — those sessions were never
@@ -105,3 +106,27 @@ Two traps. Running a *second* server instance on another port to serve the API i
 **Mitigation:** End a session when the work merges, not when you next remember. Ending is what writes the Final Summary, consolidates lessons here, and adds the link under `SESSIONS`. If a session must be reconstructed later, say so in the summary and mark the undocumented span rather than back-filling plausible progress entries.
 
 **Lesson:** An open session pointer is not a neutral state — it is unconsolidated knowledge with no owner. The cost is not paid at the time; it is paid by whoever next needs the context and cannot find it.
+
+### 11. A demo's comparison arm can carry the win in its prompt — check the prompt before believing the data
+
+**Problem:** The state-lending demo exists to show that *jurisdiction-tagged data* surfaces an obligation web search misses. Its retrieval tool's description had drifted to name both target obligations outright — Colorado's AI Act and California's Holden Act — while the code comment above it claimed the description was deliberately neutral. The measured win was therefore unattributable: it could have been the data, or it could have been the tool description telling the model what to look for.
+
+**Mitigation:** Neutralise the prompt to name no jurisdiction and no statute, then re-measure. Here: CO 8/8, CA 8/8 — identical to the nudged version, so the result held and was now attributable. Treat any prompt text the comparison arm sees, including tool and parameter *descriptions*, as part of the experiment. Grep for the target terms in every string the arm can read before reporting a result.
+
+**Lesson:** In an A-vs-B demo, the tool description is prompt surface, not documentation. A comment asserting neutrality is not evidence of it — verify against the shipped string, and re-measure after neutralising rather than assuming the delta is unchanged.
+
+### 12. Check whether the repo already knows, before diagnosing from the data in front of you
+
+**Problem:** A demo fixture carried a decision date in 2027. Reading only the data and the agent outputs, the obvious diagnosis was "future-dated record, that's a bug, fix the fixture" — written into a storyboard header and a session log as a deferred to-do. `docs/LESSONS.md` #8 had already recorded the opposite: the date is load-bearing, the obligation only takes legal effect then, and moving it to the present had already been tried and broken the key beat. The note would have led the next person to break the demo, citing it as justification.
+
+**Mitigation:** Before writing down a diagnosis of surprising project state — especially one that recommends a change — search the repo's own accumulated notes for the same symptom. `docs/LESSONS.md`, session logs and long-lived doc comments exist precisely because these questions recur. A wrong note is worse than no note: it converts someone else's caution into confident action.
+
+**Lesson:** "Measure, don't assert" has a prerequisite — find out what has already been measured. Surprising values in a mature project are more often load-bearing than broken.
+
+### 13. Fix build-pipeline defects at the tool, not per-artifact — silent ones especially
+
+**Problem:** Three defects in the shared video pipeline, each invisible in its output. A two-logo setup relied on editing config between script runs, so co-branding silently reverted on the first rebuild and shipped twice that way. `amix` defaults to `normalize=1`, scaling every input by 1/n, so enabling background music quietly attenuated the *narration* by 6dB (measured: peak −2.0 → −8.0dB) — nothing in the output says the audio is half as loud as intended. A highlight selector that matched nothing would have been a silent no-op, narrating an element that wasn't there.
+
+**Mitigation:** Fix the tool: declare both assets once (`logo.slide_path`), set `normalize=0` with a limiter, and make a non-matching selector a hard error. All three were additive and opt-in, so existing projects were unaffected. Each of the first two had already shipped in a delivered cut before being caught by measurement, not by review.
+
+**Lesson:** A workaround whose correctness depends on remembering to undo it is a latent regression that holds exactly until the next rebuild. Prefer a failure that stops the run over a default that degrades the output quietly — and verify pipeline output by measuring it, since the defects that survive review are the ones that look fine.
